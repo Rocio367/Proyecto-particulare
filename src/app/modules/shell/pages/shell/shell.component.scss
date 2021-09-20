@@ -1,0 +1,32 @@
+.example-container {
+    min-width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    margin-top: 64px;
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+    background-color: #003567!important;
+
+  }
+
+
+  .container-header{
+    background-color: #003567!important;
+    width: 100%!important;
+    padding: 15px;
+    z-index:1000;
+    left: 0; /* Posicionamos la cabecera al lado izquierdo */
+    top: 0; /* Posicionamos la cabecera pegada arriba */
+    position: fixed; /* Hacemos que la cabecera tenga una posición fija */
+    flex-wrap: wrap!important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

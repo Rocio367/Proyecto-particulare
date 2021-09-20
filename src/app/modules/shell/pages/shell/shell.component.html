@@ -1,41 +1,24 @@
-<app-header  id='main-header'></app-header>
+<app-header id='main-header ' [menu]='menu' class='desk'> </app-header>
 
-<mat-sidenav-container autosize class="sidenav-container" >
-
-    <mat-sidenav #navigationSidenav mode="over" role="navigation" class="sidenav">
-
-        <mat-nav-list>
-            <ng-container>
-
-                <h2 matSubheader>
-                    <mat-icon matListIcon class="nav-list-icon">person</mat-icon>
-                    {{ username }}</h2>
-
-                <div class="ui divider"></div>
-                <mat-list role="list">
-                    <mat-list-item [routerLinkActive]="['is-active']" role="listitem" *ngFor="let level1 of menu.items">
-                        <a [routerLink]="level1.link">{{level1.name}}
-
-                        </a>
-                    </mat-list-item>
-                </mat-list>
-
-
-                <div class="ui divider"></div>
-                <a mat-list-item [appCloseMenu]=navigationSidenav (click)="logout()">
-                    <mat-icon matListIcon class="nav-list-icon">power_settings_new</mat-icon>
-                    Cerrar sesi&oacute;n
-                </a>
-
-            </ng-container>
-        </mat-nav-list>
-
-    </mat-sidenav>
-
-    <div class="sidenav-content" >
-        <app-main></app-main>
+<div class="container-header mob">
+    <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+            Menu
+        </button>
     </div>
+</div>
 
-    <app-footer ></app-footer>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="over">
+        <mat-list role="list" >
+            <mat-list-item *ngFor='let item of menu' role="listitem" class='list-header'> <a class='a-header' [href]='item.href'></a>{{item.title}}</mat-list-item>
+        
+          </mat-list>
+    </mat-drawer>
 
-</mat-sidenav-container>
+    <mat-drawer-content>
+        <app-main></app-main>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<app-footer></app-footer>

@@ -1,25 +1,24 @@
-$base:login;
-.ui.fluid.image{
-  width: 85%!important;
-  display: inline!important;
+.card{
+  width: 50%;
+  margin:10% auto auto auto;
+  text-align: center;
 }
-.#{$base}-container {
-  height:85vh;
-  display:grid;
+.mat-card-header{
+  display: block;
 }
+input{
+  width: 70%;
+}
+mat-card-actions{
+  text-align: center!important;
 
-.#{$base}-container > * {
-  justify-self:center;
-  align-self:center
 }
-
-.#{$base}-card {
-  min-width:500px;
-  max-height:400px;
-  padding:32px;
+.container-login{
+  display: flex;
+  align-items: center;
 }
-
-.#{$base}-card-actions {
-  text-align:right;
-  margin-right:30px
+button{
+  width: 68%!important;
+  display: block!important;
+  margin: 2px auto auto auto !important;
 }

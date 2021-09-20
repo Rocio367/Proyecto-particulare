@@ -1,27 +1,28 @@
-import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {catchError, mapTo, shareReplay, tap} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
-import {Token} from '../../shared/models/token';
-import {environment} from '../../../environments/environment';
-import {User} from '../../shared/models/user';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, mapTo, shareReplay, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Token } from '../../shared/models/token';
+import { environment } from '../../../environments/environment';
+import { User } from '../../shared/models/user';
+import { Login } from 'src/app/shared/models/login';
 
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root'
 })
 export class AuthService {
 
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   private readonly SESSION_USER = 'SESSION_USER';
-
+  LoggedIn = false;
   // private loggedUser:User = new User();
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
-  login(user:User):Observable<boolean> {
+  login(user: User): Observable<boolean> {
     return of(true);
     // todo:descomentar cuando este el backend
     /*return this.http.post<Token>(`${environment.apiUrl}/login_check`, user).pipe(
@@ -34,7 +35,7 @@ export class AuthService {
       }));*/
   }
 
-  logout():Observable<boolean> {
+  logout(): Observable<boolean> {
     const refreshToken = new Token();
     refreshToken.refresh_token = this.getRefreshToken();
 
@@ -45,11 +46,37 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    // TODO:cuando se resuelva el login, aplicar logica
-    // return !!this.getToken();
-    return true;
+
+    return this.LoggedIn;
   }
 
+  setLoggedIn(r) {
+
+    this.LoggedIn = r;
+  }
+  setRol(rol){
+    localStorage.setItem('rol',rol)
+  }
+
+  getRol(){
+   return localStorage.getItem('rol')
+  }
+  loginSimulator(login :Login){
+    let res=false;
+    let cuentas:Login[]=[];
+    cuentas.push(new Login('admin','admin'))
+    cuentas.push(new Login('alumno','alumno'))
+    cuentas.push(new Login('particular','particular'))
+
+    cuentas.forEach(l=>{
+      if(l.password== login.password && l.username.toLocaleLowerCase() == login.username.toLocaleLowerCase()){
+         res=true;
+         this.setRol(l.username)
+      }
+    })
+    return res;
+
+  }
   getCurrentUser() {
     return localStorage.getItem(this.SESSION_USER);
   }
@@ -59,7 +86,7 @@ export class AuthService {
     refreshToken.refresh_token = this.getRefreshToken();
 
     return this.http.post<Token>(`${environment.apiUrl}/refresh/token`, refreshToken).pipe(
-      tap((token:Token) => {
+      tap((token: Token) => {
         this.storeJwtToken(token.token);
       }));
   }
@@ -78,7 +105,7 @@ export class AuthService {
     return localStorage.getItem(this.REFRESH_TOKEN);
   }
 
-  private storeJwtToken(token:string) {
+  private storeJwtToken(token: string) {
     localStorage.setItem(this.JWT_TOKEN, token);
   }
 
@@ -87,7 +114,7 @@ export class AuthService {
   //   this.removeTokens();
   // }
 
-  private storeTokens(token:Token) {
+  private storeTokens(token: Token) {
     localStorage.setItem(this.JWT_TOKEN, token.token);
     localStorage.setItem(this.REFRESH_TOKEN, token.refresh_token);
     localStorage.setItem(this.SESSION_USER, token.data.name);

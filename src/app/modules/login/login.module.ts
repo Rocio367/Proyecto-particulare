@@ -1,20 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LoginRoutingModule} from './login-routing.module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatInputModule } from '@angular/material/input';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatCardModule} from '@angular/material/card';
+
 import {LoginComponent} from './pages/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';
+import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
 
 
 @NgModule({
-  declarations:[LoginComponent],
-  imports:[CommonModule, LoginRoutingModule, MatCardModule, MatGridListModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, ReactiveFormsModule, MatSnackBarModule],
+  declarations:[LoginComponent, RegistrarseComponent],
+  imports:[CommonModule, LoginRoutingModule,ReactiveFormsModule, AngularMaterialModule],
   exports:[LoginRoutingModule]
 })
 export class LoginModule {
