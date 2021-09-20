@@ -1,0 +1,40 @@
+<section class="facsec2  ">
+    <div class="container">
+        <div class="row">
+          
+            <div class="col-lg-12" id='contacto'>
+                <h2>Dejanos tus datos para recibir más información</h2>
+
+                <form [formGroup]="formDatos">
+                    <div class="cont-3">
+                        <input type="text" formControlName='name' placeholder="*Nombre">
+
+                        <input type="text" formControlName='email' placeholder="*Email">
+                        <div *ngIf="formDatos.get('email').hasError('email') && formDatos.get('email').touched"
+                            class="text-center">
+                            <span class="mda-form-msg">Este campo debe ser un email valido </span>
+                        </div>
+                    </div>
+                    <div class="cont-3">
+
+                        <select formControlName='region'>
+                            <option disabled="" hidden="" select="" value="">* Elige la sede</option>
+                            <option value="Buenos Aires">Buenos Aires</option>
+                            <option value="Mendoza">Mendoza</option>
+                            <option value="Paraná">Paraná</option>
+                            <option value="Rosario">Rosario</option>
+                        </select>
+                    </div>
+
+                    <div class="cont-3">
+                        <textarea formControlName='message' placeholder="Mensaje"></textarea>
+                    </div>
+                    <div class="cont-3">
+                        <button (click)='consultar()' [disabled]='formDatos.invalid' type="submit"
+                            class="btn btn-primary">ENVIAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

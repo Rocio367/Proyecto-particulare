@@ -1,0 +1,48 @@
+<section class="facsec2" id='container-video'>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Conocenos</h2>
+                <p style="display: flex;">
+                    <iframe width="700" height="400" [src]="getVideoIframe(linkCode)" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </p>
+            </div>
+            <div class="col-lg-4" id='contacto'>
+
+                <form [formGroup]="formDatos">
+                    <div class="cont-3">
+                        <input type="text" formControlName='name' placeholder="*Nombre">
+                        <!--  <div *ngIf="formDatos.get('name').hasError('required') && formDatos.get('name').touched" class="text-center">
+          <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+       </div>-->
+                        <input type="text" formControlName='email' placeholder="*Email">
+                        <div *ngIf="formDatos.get('email').hasError('email') && formDatos.get('email').touched"
+                            class="text-center">
+                            <span class="mda-form-msg">Este campo debe ser un email valido </span>
+                        </div>
+                    </div>
+                    <div class="cont-3">
+
+                        <select formControlName='region'>
+                            <option disabled="" hidden="" select="" value="">* Elige la sede</option>
+                            <option value="Buenos Aires">Buenos Aires</option>
+                            <option value="Mendoza">Mendoza</option>
+                            <option value="Paraná">Paraná</option>
+                            <option value="Rosario">Rosario</option>
+                        </select>
+                    </div>
+
+                    <div class="cont-3">
+                        <textarea formControlName='message' placeholder="Mensaje"></textarea>
+                    </div>
+                    <div class="cont-3">
+                        <button (click)='consultar()' [disabled]='formDatos.invalid' type="submit"
+                            class="btn btn-primary">ENVIAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

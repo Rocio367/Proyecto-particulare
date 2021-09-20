@@ -1,0 +1,57 @@
+.contactdrop p,
+#contacto p {
+    margin: 0;
+    color: #003a73;
+}
+
+.contactdrop textarea,
+#contacto textarea {
+    border: none;
+    box-shadow: 0 0 10px #c3c3c3;
+    border-radius: 5px;
+    padding: 8px 15px;
+    min-height: 150px;
+    width: 100%;
+}
+
+.contactdrop input,
+#contacto input,
+.contactdrop select,
+#contacto select {
+    background: white;
+    width: 100%;
+    margin-bottom: 15px;
+    border: none;
+    box-shadow: 0 0 10px #c3c3c3;
+    border-radius: 5px;
+    padding: 8px 15px;
+}
+
+.contactdrop .col-lg-8 form,
+#contacto form {
+    display: flex;
+    flex-wrap: wrap;
+}
+#contacto {
+    text-align: center;
+}
+
+#contacto form input,
+#contacto form textarea {
+    width: 100%;
+}
+
+#contacto .col-lg-8 form {
+    padding: 0;
+    margin-top: 20px;
+}
+
+#contacto .cont-1,
+#contacto .cont-2 {
+    width: 100%;
+    margin: 0;
+}
+
+#contacto form textarea {
+    margin-bottom: 10px;
+}

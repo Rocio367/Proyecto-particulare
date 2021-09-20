@@ -1,0 +1,36 @@
+.img-modal {
+    max-height:55vh;
+    max-width:70vw;
+    width: 100%!important;
+  }
+  
+ 
+  
+  .mat-dialog-container{
+    padding:5px 16px!important;
+    width: 80vw!important;
+    height: 70vh!important;
+    max-height: 70vh!important;
+  }
+
+  .mat-dialog-content {
+    
+    overflow:hidden;
+  }
+
+  p{
+   text-align:center!important; 
+   margin-top: 5px!important;
+ }
+ img{
+    width: auto!important;
+ }
+ .bi{
+   
+ }
+  button{
+    border:none;
+    border-radius:0;
+    background-color:transparent;
+    top:45%!important;
+  }

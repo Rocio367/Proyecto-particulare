@@ -1,0 +1,44 @@
+.container-header{
+    background-color: #003567!important;
+    width: 100%!important;
+    padding: 15px;
+    z-index:1000;
+    left: 0; /* Posicionamos la cabecera al lado izquierdo */
+    top: 0; /* Posicionamos la cabecera pegada arriba */
+    position: fixed; /* Hacemos que la cabecera tenga una posición fija */
+    flex-wrap: wrap!important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav{
+    align-items: center;
+}
+ /* Header */
+ 
+/*ul#myTopnav.responsive {
+    opacity: 1;
+    visibility: visible;
+    flex-direction: column; 
+}
+
+ul#myTopnav {
+    opacity: 0;
+    left:0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #f1f1f1;
+    height: auto;
+    padding: 0px;
+    width:100%;
+    z-index: 9999999;
+    top: 120px;
+}
+*/
+
+
+
+

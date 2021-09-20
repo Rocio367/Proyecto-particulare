@@ -1,0 +1,29 @@
+$base:error-404;
+
+#logo {
+  height: 40px!important;
+  width: auto!important;
+  border-radius: 0%!important;
+  flex-shrink: 0!important;
+  object-fit: cover!important;
+}
+
+.#{$base}-container {
+  height: 100vh;
+  display: grid;
+}
+
+.#{$base}-container>* {
+  justify-self: center;
+  align-self: center
+}
+
+.#{$base}-card {
+  min-width: 500px;
+  max-height: 400px;
+  padding: 32px;
+}
+
+.#{$base}-card-actions {
+  text-align: center;
+}

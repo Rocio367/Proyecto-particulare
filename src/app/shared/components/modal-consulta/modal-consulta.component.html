@@ -1,0 +1,21 @@
+
+<div mat-dialog-content >
+    <div class="">
+        <div class="modal-header">
+          <div type="button" class="close" mat-dialog-close  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </div>
+        </div>
+        <div class="modal-body text-center">
+          <h4>¿Te quedaste con dudas?</h4>
+          <h2>Podés dejarnos tus datos</h2>
+          <p>Te enviaremos info sobre tu carrera de interés o sobre lo que necesites</p>
+          <form [formGroup]="loginForm">
+            <input type="text" formControlName="consulta" placeholder="Carrera o consulta">  
+            <input type="text" formControlName="email"  placeholder="Email">                                        
+            <button type="submit" class="btn btn-primary">ENVIAR</button>
+          </form>
+        </div>
+      </div>
+    </div>
+ 

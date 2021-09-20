@@ -1,0 +1,46 @@
+
+   
+   <section class="subheader">
+        <img class="w-100" src="../../../../../assets/img/noticia.jpg" >            
+        <div class="texto-s container">
+          <h1 class="blanco">Resultados</h1>      
+        </div>
+      </section>
+      
+      <section class="bussec1">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2>Resultados: {{count}} para “{{valor}}”</h2>
+              <div class="d-flex justify-content-center" *ngIf='spinner'>
+                <div class="spinner-grow text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div class="busqueda-cont" *ngIf='!spinner'>
+               
+                <div *ngFor="let item of  results"  class="busqueda-item">
+                  <a [href]="item.link">
+                    <img [src]="item.image">
+                    <h5 class="azul">{{item.title}}</h5>
+                    <span>{{item.updated_at.date | date:'d/M/yy'}}</span>
+                  </a>
+                </div>
+              
+              </div>
+              <div class="paginacion" *ngIf='!spinner'>
+
+                <div (click)='cambiarPagina(page)'  *ngFor="let page of  pages" class="number " [ngClass]='(numberActive == page)?"active":""'>{{page}}</div>
+                
+              </div>
+          </div>
+        </div> 
+    </div>
+      </section>   

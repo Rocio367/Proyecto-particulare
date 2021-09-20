@@ -1,0 +1,60 @@
+<section class="facsec2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 [class]='styleTitle'*ngIf='!title'>Seguinos</h2>
+                <h2 [class]='styleTitle' *ngIf='title'>{{title}}</h2>
+                <div class="redes-sec">
+                    <a href="" target="_blank"><img src="../../../../../assets/img/facebook2.jpg" /></a>
+                    <a href="" target="_blank"><img src="../../../../../assets/img/youtube2.jpg" /></a>
+                    <a href="" target="_blank"><img src="../../../../../assets/img/instagram2.jpg" /></a>
+                    <a href="" target="_blank"><img src="../../../../../assets/img/linkedin2.jpg" /></a>
+                    <a href="" target="_blank"><img src="../../../../../assets/img/twitter3.jpg" /></a>
+                
+                </div>
+            </div>
+        </div>
+        <div class="comu-cont desk">
+            <div class="comu-item" *ngFor="let item of ListaSeguinos">
+                <a [href]="item.link">
+
+                    <img [src]="item.img" />
+                    <div class="comu-desc">
+                        <div class="comu-tit"><img [src]="item.redSocialIcon" /> UCAarg</div>
+                        <p>{{item.title}}</p>
+                        <!--<p class="fecha">09 Mayo 2021</p>-->
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <div class="comu-cont mob">
+            <div id="comu-slider" class="carousel slide mob grid-cont t-dots" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li *ngFor='let item of ListaSeguinos;index as i ' data-target="Noticias-s"
+                        (click)="cambiarSlider(i)" [ngClass]='(item.id== Active)?"active" : ""'></li>
+
+                </ol>
+                <div class="carousel-inner">
+                    {{Active}}
+                    <div class="carousel-item " *ngFor="let item of ListaSeguinos"
+                        [ngClass]='(item.id== Active)?"active" : ""'>
+                        <div class="comu-item">
+                            <a [href]="item.link">
+                                <img [src]="item.img" />
+                                <div class="comu-desc">
+
+                                    <div class="comu-tit"><img [src]="item.redSocialIcon" /> UCAarg</div>
+                                    <p>{{item.title}}</p>
+                                    <!--<p class="fecha">09 Mayo 2021</p>-->
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

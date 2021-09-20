@@ -1,0 +1,21 @@
+<div class="error-500-container">
+    <mat-card class="error-500-card">
+
+        <mat-card-header>
+            <img mat-card-avatar src="assets/logo.svg" alt="Logo">
+            <mat-card-title>Error 500</mat-card-title>
+            <mat-card-subtitle>Ocurri&oacute; un error. Vuelve a intentarlo m&aacute;s tarde</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-actions class="error-500-card-actions">
+            <button mat-raised-button color="primary" appGoBack>VOLVER</button>
+        </mat-card-actions>
+
+
+        <mat-card-footer *ngIf="message">
+            <div class="ui divider"></div>
+            <mat-card-subtitle class="error-500-dev-message">{{message | slice:0:200}}</mat-card-subtitle>
+        </mat-card-footer>
+
+    </mat-card>
+</div>

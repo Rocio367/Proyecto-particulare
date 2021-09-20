@@ -1,0 +1,51 @@
+<div id="app">
+  <div class="ui center aligned middle aligned grid" style="height: 100vh;">
+    <div class="column" style="max-width: 450px;">
+      <form [formGroup]="loginForm" class="ui large error form">
+        <div class="ui segment" style="margin: 1em;">
+          <img src="./assets/img/Logo_SWA_transparent_background.png" alt='logo' class="ui fluid image" >
+          <div class="field">
+            <div class="ui fluid left icon input">
+              <input formControlName="username" placeholder="E-mail address" type="text">
+              <i aria-hidden="true" class="user icon"></i><br>
+            
+             
+            </div>
+          </div>
+          <div class="field">
+              <div *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched"
+                class="text-center">
+                <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+              </div><br>
+              <div *ngIf="loginForm.get('username').hasError('email') && loginForm.get('username').touched"
+                class="text-center">
+                <span class="mda-form-msg">El formato no es correcto</span>
+              </div>
+          </div>
+          <div class="field">
+            <div class="ui fluid left icon input">
+              <input id='password' formControlName="password" placeholder="Password" type="password">
+              <i aria-hidden="true" class="hide link icon" (click)='mostrarPass()' style="cursor: pointer;">
+              </i>
+             
+            </div>
+          </div>
+          <div class="field">
+          
+              <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
+                class="text-center">
+                <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+              </div>
+            </div>
+          <button name="login" (click)='onSubmit()' [disabled]="loginForm.invalid" class="ui large fluid button"
+            style="margin-top:15px;color: white; background-color: rgb(32, 156, 193); font-weight: bold;">Log in</button>
+        </div>
+      </form>
+      <!-- <div class="ui message" style="margin: 1em;">Forgot your password?<a style="cursor: pointer;">
+            <p style="display: block;">Click here to reset password</p>
+        </a
+    </div>>-->
+
+    </div>
+  </div>
+</div>

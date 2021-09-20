@@ -1,0 +1,47 @@
+<section class="facsec2" [style.background]="background">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 [class]='styleTitle'>{{title}}
+        </h2>
+        <div class="grid-cont desk " [ngClass]='(numberCards)? "grid-"+numberCards : "grid-4"'>
+          <div class="grid-item" *ngFor='let item of cardsDesk' [routerLink]='item.systemTitle'>
+            <a class='pointer' [href]="item.systemTitle">
+              <div *ngIf='item.categoria' class='categoria'>{{item.categoria}}</div>
+
+              <img [src]="item.img">
+              <p>{{item.title}}</p>
+            </a>
+          </div>
+
+         <div *ngIf='cards.length>6 && cards.length != cardsDesk.length' class="cargar" (click)='addCards()'>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div *ngIf='cargado && cards.length == cardsDesk.length' class="cargar" (click)='removeCards()'>
+            <i class="fas fa-chevron-up"></i>
+          </div>
+        </div>
+        <div id="hsec1-slider" class="carousel slide mob grid-cont t-dots" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li *ngFor='let item of cards;index as i ' data-target="Noticias-s" (click)="cambiarSlider(i)"
+              [ngClass]='(item.id== noticiaActive)?"active" : ""'></li>
+
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item " *ngFor='let item of cards' class="carousel-item "
+              [ngClass]='(item.id== noticiaActive)?"active" : ""'>
+              <a class='pointer' [href]="item.systemTitle">
+
+                <div class="grid-item">
+                  <img [src]="item.foto">
+                  <p>{{item.title}}</p>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

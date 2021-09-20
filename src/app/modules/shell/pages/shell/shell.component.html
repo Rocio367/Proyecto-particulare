@@ -1,0 +1,41 @@
+<app-header  id='main-header'></app-header>
+
+<mat-sidenav-container autosize class="sidenav-container" >
+
+    <mat-sidenav #navigationSidenav mode="over" role="navigation" class="sidenav">
+
+        <mat-nav-list>
+            <ng-container>
+
+                <h2 matSubheader>
+                    <mat-icon matListIcon class="nav-list-icon">person</mat-icon>
+                    {{ username }}</h2>
+
+                <div class="ui divider"></div>
+                <mat-list role="list">
+                    <mat-list-item [routerLinkActive]="['is-active']" role="listitem" *ngFor="let level1 of menu.items">
+                        <a [routerLink]="level1.link">{{level1.name}}
+
+                        </a>
+                    </mat-list-item>
+                </mat-list>
+
+
+                <div class="ui divider"></div>
+                <a mat-list-item [appCloseMenu]=navigationSidenav (click)="logout()">
+                    <mat-icon matListIcon class="nav-list-icon">power_settings_new</mat-icon>
+                    Cerrar sesi&oacute;n
+                </a>
+
+            </ng-container>
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <div class="sidenav-content" >
+        <app-main></app-main>
+    </div>
+
+    <app-footer ></app-footer>
+
+</mat-sidenav-container>
