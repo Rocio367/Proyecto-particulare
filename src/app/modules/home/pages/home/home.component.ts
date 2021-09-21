@@ -9,8 +9,9 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
 
- 
+  rol:string
   constructor() {
+    this.rol=localStorage.getItem('rol')
   }
 
 

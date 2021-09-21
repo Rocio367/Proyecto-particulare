@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomeRoutingModule} from './home-routing.module';
 import {HomeComponent} from './pages/home/home.component';
@@ -9,13 +9,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { RouterModule } from '@angular/router';
+import { HomeAlumnoComponent } from './components/home-alumno/home-alumno.component';
+import { HomeParticularComponent } from './components/home-particular/home-particular.component';
+import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component';
+import { HomeGeneralComponent } from './components/home-general/home-general.component';
+import { SharedModule } from 'src/app/shared/components/shared.module';
+import { IvyGalleryModule } from 'angular-gallery';
 
 
 
 @NgModule({
-  declarations:[HomeComponent, PaginatorComponent],
-  imports:[ CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
-  exports:[]
+  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent],
+  imports:[SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
+  exports:[],
+  schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
+
 })
 export class HomeModule {
 }

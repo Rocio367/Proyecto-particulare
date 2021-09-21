@@ -28,10 +28,19 @@ body {
     font-size: 30px;
     color: blue;
 }
+.fs-21{
+    font-size: 21px;
+}
 
+.fs-25{
+    font-size: 25px;
+}
+//colors
+.blue-color{
+    color:#003567;
+}
 //form
 .mat-form-field {
-    display: block !important;
     margin: auto
 }
 
@@ -58,11 +67,7 @@ body {
     margin-bottom: -18px !important;
 }
 
-//response
 
-.mob {
-    display: none !important;
-}
 
 //header
 .a-header {
@@ -77,7 +82,18 @@ body {
     cursor: pointer;
     background-color: cadetblue;
 }
-@media screen and (max-width: 991px) {
+a{
+    text-decoration: none!important;
+}
+//response
+
+.mob {
+    display: none !important;
+}
+.desk {
+    display: block !important;
+}
+@media screen and (max-width:900px) {
     .mob {
         display: block !important;
     }

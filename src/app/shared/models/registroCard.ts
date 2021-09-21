@@ -4,7 +4,8 @@ export class RegistroCard{
     id:any;
     categoria:string;
     link:string;
-    systemTitle:string;
-    summary:string;
-    redSocialIcon:string;
+    icon:string;
+    subtitle:string;
+    avatar:string;
+    descripcion:string;
 }

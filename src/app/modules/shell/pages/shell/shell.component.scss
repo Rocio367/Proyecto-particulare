@@ -1,13 +1,26 @@
+mat-drawer-content{
+  margin-top: 10px;
+
+}
 .example-container {
     min-width: 100vw;
     min-height: 100vh;
     height: auto;
     margin-top: 64px;
   }
-  
+  .icofont-navigation-menu{
+    font-size: 32px;
+    color: white!important;
+  }
+  #list-h{
+    float: right;
+    display: flex;
+  }
   .example-sidenav-content {
     display: flex;
     height: 100%;
+    justify-content: space-between;
+
   }
   
   .example-sidenav {

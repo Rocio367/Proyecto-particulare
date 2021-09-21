@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Login } from 'src/app/shared/models/login';
-import { User } from 'src/app/shared/models/user';
 import { AuthService } from '../../../../core/authentication/auth.service';
 import { RedirectService } from '../../../../core/services/redirect/redirect.service';
 
@@ -18,6 +16,7 @@ import { RedirectService } from '../../../../core/services/redirect/redirect.ser
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  passwordVisibility=false;
   constructor(private _snackBar: MatSnackBar,private router: Router, private authService: AuthService, private form: FormBuilder, private redirectService: RedirectService) {
     this.loginForm = this.form.group({
       username: new FormControl('', [Validators.required]),
@@ -30,9 +29,8 @@ export class LoginComponent implements OnInit {
     const pass = this.loginForm.get('password').value;
     const user = this.loginForm.get('username').value;
     let login = new Login(user, pass);
-    console.log(this.authService.loginSimulator(login))
     if(this.authService.loginSimulator(login)){
-      this.authService.setLoggedIn(true)
+      localStorage.setItem('recargar_menu', JSON.stringify(true));
        this.router.navigate(['/home'])
     }else{
       this.openSnackBar('Usuario o contraseña incorrectas','x')
@@ -54,8 +52,11 @@ export class LoginComponent implements OnInit {
     var tipo: any = document.getElementById("password");
     if (tipo.type == "password") {
       tipo.type = "text";
+      this.passwordVisibility=true;
     } else {
       tipo.type = "password";
+      this.passwordVisibility=false;
+
     }
   }
 

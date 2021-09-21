@@ -1,11 +1,17 @@
 <div class="container-header ">
   <span class="logo">
-  
-      <a href="index.html"><img src="../../../../../assets/img/logo.png" alt="logo"></a>
+    <a href="index.html"><img src="../../../../../assets/img/logo.png" alt="logo"></a>
   </span>
-  <mat-list role="list" >
-    <mat-list-item *ngFor='let item of menu' role="listitem" class='list-header'> <a class='a-header' [href]='item.href'></a>{{item.title}}</mat-list-item>
 
+  <mat-list role="list" *ngIf=' mostrar() '>
+    <mat-list-item [routerLinkActive]="['is-active']" *ngFor='let item of menu' role="listitem" class='list-header'>
+      <a class='a-header' [href]='item.href'>{{item.title}}</a>
+    </mat-list-item>
+    <mat-list-item *ngIf='isLoggedIn' role="listitem" (click)='logout()'> <button mat-raised-button>Cerrar
+        Sesion</button></mat-list-item>
+    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='login()'> <button mat-raised-button>Iniciar
+        Sesion</button></mat-list-item>
+    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='register()'> <button
+        mat-raised-button>Registrarse</button></mat-list-item>
   </mat-list>
-
 </div>

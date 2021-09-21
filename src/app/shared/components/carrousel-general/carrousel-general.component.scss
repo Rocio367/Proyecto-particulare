@@ -1,0 +1,29 @@
+.caja-item {
+    background: white;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+.caja-item img {
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+    border-style: none;
+}
+.caja-item .desc {
+    color: #606060;
+    padding: 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 5px 0;
+   // min-height: 100px !important;
+}
+
+.caja-item .fecha {
+    color: #900040;
+    padding: 20px;
+    padding-top: 0;
+}

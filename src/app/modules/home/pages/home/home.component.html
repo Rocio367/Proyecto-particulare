@@ -1,1 +1,4 @@
-
+<app-home-alumno *ngIf='rol=="alumno"'></app-home-alumno>
+<app-home-particular *ngIf='rol=="particular"'></app-home-particular>
+<app-home-administrador *ngIf='rol=="profesor"'></app-home-administrador>
+<app-home-general *ngIf='!rol'></app-home-general>

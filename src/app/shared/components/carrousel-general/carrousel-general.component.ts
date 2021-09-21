@@ -8,96 +8,65 @@ import { RegistroCard } from 'src/app/shared/models/registroCard';
   styleUrls: ['./carrousel-general.component.scss']
 })
 export class CarrouselGeneralComponent implements OnInit {
-
-  cards: RegistroCard[] = [];
-  @Input() id: string;
-  @Input() urlExtra: string;
-  @Input() styleTitle='blanco';
+  @Input() styleTitle: string;
   @Input() title: string;
-  @Input() vanue = false;
-  @Input() vanueValue;
-  @Input() preURL;
   @Input() data: any[];
-  @Input() background = "#ffffff";
-  cant=4;
+  @Input() background = '#ffffff';
+  cards: RegistroCard[] = [];
+  cardsDesk: RegistroCard[] = [];
+  active: number;
   language: any;
-
+  cargado = false;
   constructor(public route: ActivatedRoute) {
-    this.route.params.forEach((params: Params) => {
-      this.language = params['language'];
-    });
   }
+
   ngOnInit(): void {
-    if(this.background=='#ffffff'){
-      this.styleTitle='azul'
-    }
-    this.data.forEach(element => {
+    // if (this.data) {
+    let index = 0;
+    if (true) {
+      this.active =index;
+      // this.data.forEach(element => {
       let registro = new RegistroCard();
-      registro.title = element.title;
-      registro.img = element.path;
-      if(this.urlExtra){
-        registro.systemTitle=this.language+this.urlExtra+element.systemTitle;
-      }else{
-        if (element.systemTitle[0] == '/') {
-          element.systemTitle = element.systemTitle.replace('/', '')
-        }
-        switch (element.typeEntity) {
-          case "Event": {
-            registro.systemTitle =this.language+ '/eventos/' + element.systemTitle;
-          }
-            break;
-          case "Post": {
-            registro.systemTitle = element.link;
-          }
-            break;
-          default:
-            registro.systemTitle = '/'+this.language+'/' + element.systemTitle;
-  
-            break;
-        }
-  
-      }
-  
-
+      registro.title = 'titulo 1';
+      registro.img = 'default-placeholder.png';
+      registro.id = index;
+      registro.categoria = 'Categoria';
+      registro.link = 'link';
+      registro.subtitle='Nombre particular';
+      registro.avatar='default-user.png';
       this.cards.push(registro);
+      index++;
 
 
+      let registro1 = new RegistroCard();
+      registro1.title = 'titulo 2';
+      registro1.img = 'default-placeholder.png';
+      registro1.id = index;
+      registro1.categoria = 'Categoria';
+      registro1.link = 'link';
+      registro1.subtitle='Nombre particular';
+      registro1.avatar='default-user.png';
+      this.cards.push(registro1);
+      index++;
 
 
+      let registro2 = new RegistroCard();
+      registro2.title = 'titulo 3';
+      registro2.img = 'default-placeholder.png';
+      registro2.id = index;
+      registro2.categoria = 'Categoria';
+      registro2.link = 'link';
+      registro2.subtitle='Nombre particular';
+      registro2.avatar='default-user.png';
+      this.cards.push(registro2);
+      index++;
 
-    })
-    /*if(this.cards.length<4){
-      this.cant=this.cards.length;
-    }*/
+
+      // });
+
+
+    }
+
   }
-  url(element: any) {
-    let url = '';
-    if (element.route) {
-      if(element.externalLink){
-        url = element.route;
-
-      }else{
-        url = element.route
-        if (element.route[0] == '/') {
-          url = element.route = element.route.replace('/', '')
-        }
-        url = '/' + this.language + '/' + url;
-      }
-
-    }
-    if (element.systemTitle) {
-      url = element.systemTitle
-      if(element.externalLink){
-        url = element.systemTitle;
-
-      }else{
-      if (element.systemTitle[0] == '/') {
-        url = element.systemTitle = element.systemTitle.replace('/', '')
-      }
-      url = '/' + this.language + '/' + url;
-    }
-    }
-
-    return url;
-  }
+  
 }

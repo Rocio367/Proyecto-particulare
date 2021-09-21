@@ -16,7 +16,6 @@ export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   private readonly SESSION_USER = 'SESSION_USER';
-  LoggedIn = false;
   // private loggedUser:User = new User();
 
   constructor(private http: HttpClient) {
@@ -45,15 +44,16 @@ export class AuthService {
       mapTo(true));
   }
 
-  isLoggedIn() {
+  isLoggedIn() : boolean{
+    if(localStorage.getItem('rol')){
+      return true;
+    }else{
+      return false;
 
-    return this.LoggedIn;
+    }
   }
 
-  setLoggedIn(r) {
 
-    this.LoggedIn = r;
-  }
   setRol(rol){
     localStorage.setItem('rol',rol)
   }

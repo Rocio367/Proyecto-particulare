@@ -35,7 +35,6 @@ export class CardsGeneralDosComponent implements OnInit {
       this.data.forEach(element => {
 
        let registro= new RegistroCard();
-       registro.redSocialIcon='./assets/img/'+element.socialNetworkName+'3.jpg';
        registro.title=element.title;
        registro.img=element.path;
        registro.link=element.link;

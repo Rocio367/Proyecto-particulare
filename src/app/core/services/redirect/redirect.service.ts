@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn:'root'
@@ -8,17 +9,28 @@ export class RedirectService {
 
   constructor(private router:Router) {
   }
+  goToUrl(href:string) {
+      this.router.navigate([href]);
+  }
 
   toHome() {
-    this.router.navigate([{outlets:{primary:['home'], toolbar:['home']}}])
+    if(window.location.href== environment.frontUrl || window.location.href== environment.frontUrl+'/' || window.location.href== environment.frontUrl+'/home'){
+       window.location.reload();
+    }else{
+      this.router.navigate([{outlets:{primary:['home']}}])
       .then(ignored => ignored);
+    }
+   
   }
 
   toLogin() {
     this.router.navigate([{outlets:{primary:['login'], toolbar:null}}])
       .then(ignored => ignored);
   }
-
+  toRegister() {
+    this.router.navigate([{outlets:{primary:['registrarse'], toolbar:null}}])
+      .then(ignored => ignored);
+  }
   toError(errorMessage) {
     this.router.navigate([{outlets:{primary:['error'], toolbar:null}}], {state:{message:errorMessage}})
       .then(ignored => ignored);

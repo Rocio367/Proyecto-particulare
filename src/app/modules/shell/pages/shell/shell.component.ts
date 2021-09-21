@@ -1,4 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/authentication/auth.service';
 import { RedirectService } from '../../../../core/services/redirect/redirect.service';
 import { Menu, MenuItem } from '../../../../shared/models/menu';
@@ -16,9 +18,50 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   public loaded = false;
   showFiller = false;
   rol = ''
-  constructor(private authService: AuthService, private redirectService: RedirectService) {
+  isLoggedIn = false;
+  defaultMenu = true;
+
+  constructor(private authService: AuthService, private router: Router, private redirectService: RedirectService) {
+    this.getMenu()
+  }
+
+  ngOnInit() {
+  }
+
+  public isAuthenticated() {
+    return this.authService.isLoggedIn();
+  }
+
+  logout() {
+    localStorage.clear();
+    localStorage.setItem('recargar_menu', JSON.stringify(false));
+    this.redirectService.toHome();
+  }
+
+  login() {
+    localStorage.setItem('recargar_menu', JSON.stringify(false));
+    this.redirectService.toLogin();
+  }
+
+  register() {
+    this.redirectService.toRegister();
+  }
+
+  ngAfterContentChecked(): void {
+
+    if (this.loaded === false) {
+      this.getMenu();
+    }
+    if (JSON.parse(localStorage.getItem('recargar_menu'))) {
+      this.getMenu();
+      localStorage.setItem('recargar_menu', JSON.stringify(false));
+    }
+
+  }
+  getMenu() {
+    this.isLoggedIn = this.authService.isLoggedIn()
     this.rol = localStorage.getItem('rol');
-    console.log(this.rol)
+
     switch (this.rol) {
       case 'alumno': {
         this.menu.push({ href: 'buscador', title: 'Buscador' })
@@ -38,45 +81,32 @@ export class ShellComponent implements OnInit, AfterContentChecked {
         break;
       }
 
-     default: {
-      this.menu.push({ href: 'login', title: 'Login' })
-      this.menu.push({ href: 'registrarse', title: 'Registrarse' })
-      break;
+      default: {
+        this.defaultMenu = true;
+
+        break;
       }
     }
-  }
 
-  ngOnInit() {
-  }
+    this.loaded = true;
 
-  public isAuthenticated() {
-    return this.authService.isLoggedIn();
-  }
-
-  public logout() {
-
-
-    this.redirectService.toLogin();
-
-  }
-
-  getMenu() {
-    if (this.isAuthenticated() && this.loaded === false) {
-
-
-      this.loaded = true;
-    }
   }
   cerrarContacto() {
     $('.dropdown.contacto').removeClass('show')
   }
-  ngAfterContentChecked(): void {
-    this.username = this.authService.getCurrentUser();
-    this.getMenu();
+
+  mostrar() {
+    if (window.location.href.includes('/login') ||
+      window.location.href.includes('/registrar')) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   ngOnDestroy() {
     this.loaded = false;
     this.menu = [];
   }
+
 }

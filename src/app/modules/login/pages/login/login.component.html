@@ -7,7 +7,7 @@
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="loginForm" class="ui large error form">
-        <mat-form-field class='input-medium' appearance="outline">
+        <mat-form-field class='input-large' appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput formControlName="username" placeholder="username@gmail.com" type="email">
         </mat-form-field>
@@ -19,13 +19,10 @@
           <span class="mda-form-msg">El formato no es correcto</span>
         </div>
   
-        <mat-form-field class='input-medium' appearance="outline">
+        <mat-form-field class='input-large' appearance="outline">
           <mat-label>Contraseña</mat-label>
           <input matInput id='password' formControlName="password" placeholder="Password" type="password">
-  
-          <!--<span  class="material-icons" (click)='mostrarPass()'>
-            visibility
-            </span>-->
+          <i (click)='mostrarPass()' matSuffix  [ngClass]='(!passwordVisibility)?"icofont-eye":"icofont-eye-blocked"' class='fs-25 blue-color'></i>
         </mat-form-field>
         <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
           class="text-center error-msg">

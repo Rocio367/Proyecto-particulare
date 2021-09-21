@@ -31,6 +31,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [],
@@ -39,6 +40,7 @@ import {MatMenuModule} from '@angular/material/menu';
   ],
   exports: [
     MatMenuModule,
+    MatButtonToggleModule,
     MatAutocompleteModule,
     MatNativeDateModule,
     MatTooltipModule,
