@@ -1,6 +1,6 @@
 .img-modal {
-    max-height:55vh;
-    max-width:70vw;
+    max-height:55vh!important;
+    max-width:60vw!important;
     width: 100%!important;
   }
   
@@ -25,12 +25,12 @@
  img{
     width: auto!important;
  }
- .bi{
-   
- }
-  button{
-    border:none;
-    border-radius:0;
-    background-color:transparent;
+
+ .icon{
     top:45%!important;
+    position: relative;
+  }
+
+  .icon:hover{
+    cursor: pointer;
   }

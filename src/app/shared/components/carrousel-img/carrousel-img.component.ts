@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { GeneralService } from 'src/app/core/services/general/general.service';
 import { ModalGalleryComponent } from 'src/app/shared/components/modal-gallery/modal-gallery.component';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-carrousel-img',
@@ -25,21 +22,40 @@ export class CarrouselImgComponent implements OnInit {
      
   }
   ngOnInit(): void {
-    if (this.background=='#ffffff') {
-      this.styleTitle = "azul";
-    }
-    if (this.data) {
+   
+  //  if (this.data) {
       var i = 0;
 
-      this.data.forEach(element => {
+  //    this.data.forEach(element => {
         let img = new imgGallery();
-        img.id = element.id;
-        img.path = element.path;
+        img.id = i.toString();
+        img.path = 'default-placeholder.png';
         img.position = i;
         i++;
         this.gallery.push(img)
-      });
-    }
+
+        let img2 = new imgGallery();
+        img2.id = i.toString();
+        img2.path = 'default-placeholder.png';
+        img2.position = i;
+        i++;
+        this.gallery.push(img2)
+
+        let img3 = new imgGallery();
+        img3.id = i.toString();
+        img3.path = 'default-placeholder.png';
+        img3.position = i;
+        i++;
+        this.gallery.push(img3)
+
+        let img4 = new imgGallery();
+        img4.id = i.toString();
+        img4.path = 'default-placeholder.png';
+        img4.position = i;
+        i++;
+        this.gallery.push(img4)
+   //   });
+ //   }
   }
   openModal(id: number): void {
     this.dialog.open(ModalGalleryComponent, { panelClass: 'custom-dialog-container', data: { titulo: this.title, gallery: this.gallery, id: id } });

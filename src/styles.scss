@@ -93,6 +93,10 @@ a{
 .desk {
     display: block !important;
 }
+
+.container-header{
+ z-index: 100;
+}
 @media screen and (max-width:900px) {
     .mob {
         display: block !important;

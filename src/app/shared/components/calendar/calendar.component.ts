@@ -9,9 +9,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class CalendarComponent implements OnInit {
 
   language: string;
-  @Input() month;
+  @Input() month=2;
   public monthNumber: number;
-  @Input() year;
+  @Input() year=2021;
   @Input() events;
 
   public isLeap: boolean = false;
@@ -32,7 +32,8 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.monthNumber = parseInt(this.month, 10);
+    this.monthNumber = parseInt(this.month.toString(), 10);
+    alert(this.monthNumber)
     this.isLeap = new Date(this.year, 1, 29).getDate() === 29;
 
     this.daysBefore = new Date(this.year + "-" + this.month + "-1").getDay() - 1;

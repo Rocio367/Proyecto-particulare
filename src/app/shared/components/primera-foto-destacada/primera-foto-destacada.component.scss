@@ -1,0 +1,83 @@
+.item-max {
+    height: 94%;
+}
+
+.item-max img {
+    height: 100%;
+}
+
+
+
+.grid-cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.carousel.t-dots {
+    margin-bottom: 50px;
+}
+
+
+.carousel-indicators li.active {
+    background: #1e3e6f;
+}
+
+.carousel-indicators li {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    opacity: 1;
+}
+ol.carousel-indicators {
+    bottom: -38px;
+}
+
+.carousel.t-dots {
+    margin-bottom: 50px;
+}
+
+.carousel-indicators li {
+    background: #8a8a8a;
+}
+.grid-item p {
+    position: absolute;
+    z-index: 9;
+    bottom: 5px;
+    margin: 0;
+    left: 10px;
+    color: white;
+}
+
+.grid-item {
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px 10px #b9b9b9;
+    border-radius: 10px;
+}
+
+.grid-item img {
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.grid-item:before {
+    border-radius: 10px;
+    content: '';
+    height: 100%;
+    display: block;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.79) 96%, rgba(0, 0, 0, 0.7) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.79) 96%, rgba(0, 0, 0, 0.7) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.79) 96%, rgba(0, 0, 0, 0.7) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80ffffff', endColorstr='#cc000000', GradientType=0);
+    /* IE6-9 */
+}

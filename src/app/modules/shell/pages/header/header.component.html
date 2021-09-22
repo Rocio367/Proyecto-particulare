@@ -5,7 +5,8 @@
 
   <mat-list role="list" *ngIf=' mostrar() '>
     <mat-list-item [routerLinkActive]="['is-active']" *ngFor='let item of menu' role="listitem" class='list-header'>
-      <a class='a-header' [href]='item.href'>{{item.title}}</a>
+      <a *ngIf='item.type=="badge"' matBadgeColor="accent" matBadge="4" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" class='a-header' [href]='item.href'>{{item.title}}</a>
+      <a *ngIf='item.type!="badge"' class='a-header' [href]='item.href'>{{item.title}}</a>
     </mat-list-item>
     <mat-list-item *ngIf='isLoggedIn' role="listitem" (click)='logout()'> <button mat-raised-button>Cerrar
         Sesion</button></mat-list-item>

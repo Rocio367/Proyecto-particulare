@@ -1,50 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h2 [class]='styleTitle' style="margin-bottom:10px;">{{title}}</h2>
+    </div>
+  </div>
+  <div class=" desk">
+    <div class='row'>
+      <div class="col col-9">
+        <div class="actua-item item-max  grid-item " *ngIf='cards[0]'>
+          <a [href]='cards[0].link'>
+            <img [src]="'./assets/img/'+cards[0].img" />
+            <p>{{cards[0].title}}</p>
+          </a>
+        </div>
+      </div>
+      <div class="col col-3">
+        <div class="actua-item item-mini grid-item " *ngIf='cards[1]'>
+          <a [href]='cards[1].link'>
+            <img [src]="'./assets/img/'+cards[1].img" />
+            <p>{{cards[1].title}}</p>
+          </a>
+        </div>
 
-   
-    <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2  [class]='styleTitle' style="margin-bottom:10px;">{{title}}</h2>            
-          </div>          
+        <div class="actua-item item-mini  grid-item " *ngIf='cards[2]'>
+          <a [href]='cards[2].link'>
+            <img [src]="'./assets/img/'+cards[2].img" />
+            <p>{{cards[2].title}}</p>
+          </a>
         </div>
-        <div class="actua-cont desk">
-          <div  class='actua-1' >
-            <div class="actua-item grid-item"  *ngIf='ListaUCActualidad[0]'>
-              <a [href]='ListaUCActualidad[0].link'>
+        <div class="actua-item item-mini  grid-item " *ngIf='cards[3]'>
+          <a [href]='cards[3].link'>
+            <img [src]="'./assets/img/'+cards[3].img" />
+            <p>{{cards[3].title}}</p>
+          </a>
+        </div>
+      </div>
+    </div>
 
-              <img [src]="ListaUCActualidad[0].img" />
-              <p>{{ListaUCActualidad[0].title}}</p>
-              </a>
-            </div>
-          </div>
-          <div  class='actua-2' >
-            <div *ngFor="let item of ListaUCActualidad;index as i ">
-              <div *ngIf='i!=0' class="actua-item grid-item" >
-                <a [href]='item.link'>
-                  <img [src]="item.img" />
-                <p>{{item.title}} </p>
-                </a>
-              </div>
-            </div>
-           
+    <div class='row'>
+      <div class="col col-4" *ngFor="let item of cards;index as i ">
+        <div *ngIf='i>3' class="actua-item grid-item">
+          <a [href]='item.link'>
+            <img [src]="'./assets/img/'+item.img" />
+            <p>{{item.title}} </p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+  <div class="actua-cont mob">
+
+    <div id="actua-slider" class="carousel slide mob grid-cont t-dots" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li *ngFor='let item of cards;index as i ' data-target="Noticias-s" (click)="cambiarSlider(i)"
+          [ngClass]='(item.id== active)?"active" : ""'></li>
+
+      </ol>
+      <div class="carousel-inner">
+
+        <div class="carousel-item " *ngFor='let item of cards'
+          [ngClass]='(item.id== active)?"active" : ""'>
+          <div class="actua-item grid-item">
+            <img [src]="'./assets/img/'+item.img" />
+            <p>{{item.title}}</p>
           </div>
         </div>
-        <div class="actua-cont mob">
-  
-          <div id="actua-slider" class="carousel slide mob grid-cont t-dots" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li  *ngFor='let item of ListaUCActualidad;index as i '  data-target="Noticias-s" (click)="cambiarSlider(i)" [ngClass]='(item.id== ActividadActive)?"active" : ""' ></li>
-      
-            </ol>
-            <div class="carousel-inner">
-   
-              <div class="carousel-item "  *ngFor='let item of ListaUCActualidad'  [ngClass]='(item.id== ActividadActive)?"active" : ""'>
-                <div class="actua-item grid-item">
-                    <img [src]="item.img" />
-                    <p>{{item.title}}</p>
-                  </div>
-              </div>
-            
-            </div>
-          </div>
-        </div>
-      </div> 
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,6 +32,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -39,6 +41,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     CommonModule
   ],
   exports: [
+    MatBadgeModule,
+    MatStepperModule,
     MatMenuModule,
     MatButtonToggleModule,
     MatAutocompleteModule,

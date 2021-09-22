@@ -16,6 +16,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {GoBackDirective} from '../../shared/directives/go-back.directive';
 import {CloseMenuDirective} from '../../shared/directives/close-menu.directive';
 import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';
+import { SharedModule } from 'src/app/shared/components/shared.module';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-m
     GoBackDirective, CloseMenuDirective
   ],
   imports:[
-    CommonModule, ShellRoutingModule,AngularMaterialModule,
+    CommonModule, ShellRoutingModule,AngularMaterialModule,SharedModule,
     MatCardModule, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, MatButtonModule, MatSnackBarModule, MatExpansionModule,
   ],
   exports:[ShellComponent, ShellRoutingModule, CloseMenuDirective, GoBackDirective],

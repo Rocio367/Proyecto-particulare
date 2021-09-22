@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter<void>();
   @Input() menu: any;
   @Input() isLoggedIn = false;
+  hidden = false;
+
   constructor(private redirectServices: RedirectService, private authServices: AuthService, private route: Router, private router: ActivatedRoute) {
     this.router.params.forEach((params: Params) => {
       params['language'];
@@ -24,6 +26,9 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
+  }
   ngOnInit() { }
 
   logout() {

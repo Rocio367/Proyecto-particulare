@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import { ModalConsultaComponent } from './modal-consulta/modal-consulta.component';
@@ -9,13 +9,20 @@ import { ModalGeneralComponent } from './modal-general/modal-general.component';
 import { CardsGeneralComponent } from './cards-general/cards-general.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CarrouselGeneralComponent } from './carrousel-general/carrousel-general.component';
+import { PrimeraFotoDestacadaComponent } from './primera-foto-destacada/primera-foto-destacada.component';
+import { CarrouselImgComponent } from './carrousel-img/carrousel-img.component';
+import { PasosComponent } from './pasos/pasos.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { FormContactoComponent } from './form-contacto/form-contacto.component';
+import { CalendarCheckComponent } from './calendar-check/calendar-check.component';
 
 @NgModule({
-  declarations:[ CarrouselGeneralComponent, ModalConsultaComponent,ModalGalleryComponent, ModalGeneralComponent,CardsGeneralComponent],
+  declarations:[CalendarCheckComponent,FormContactoComponent, CalendarComponent, PasosComponent,CarrouselImgComponent, PrimeraFotoDestacadaComponent, CarrouselGeneralComponent, ModalConsultaComponent,ModalGalleryComponent, ModalGeneralComponent,CardsGeneralComponent, PasosComponent],
   imports:[IvyCarouselModule,CommonModule,FormsModule,BrowserModule,ReactiveFormsModule,AngularMaterialModule],
   providers:[],
-  exports:[CarrouselGeneralComponent,IvyCarouselModule,CardsGeneralComponent,ModalGeneralComponent,ModalGalleryComponent,ModalConsultaComponent],
-  entryComponents:[]
+  exports:[FormContactoComponent,CalendarComponent,PasosComponent,CarrouselImgComponent,PrimeraFotoDestacadaComponent,CarrouselGeneralComponent,IvyCarouselModule,CardsGeneralComponent,ModalGeneralComponent,ModalGalleryComponent,ModalConsultaComponent],
+  entryComponents:[],
+
 })
 export class SharedModule {
 }

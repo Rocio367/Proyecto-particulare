@@ -17,6 +17,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   public username: string;
   public loaded = false;
   showFiller = false;
+  hidden = false;
   rol = ''
   isLoggedIn = false;
   defaultMenu = true;
@@ -31,7 +32,9 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   public isAuthenticated() {
     return this.authService.isLoggedIn();
   }
-
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
+  }
   logout() {
     localStorage.clear();
     localStorage.setItem('recargar_menu', JSON.stringify(false));
@@ -64,20 +67,20 @@ export class ShellComponent implements OnInit, AfterContentChecked {
 
     switch (this.rol) {
       case 'alumno': {
-        this.menu.push({ href: 'buscador', title: 'Buscador' })
-        this.menu.push({ href: 'perfil', title: 'Perfil' })
-        this.menu.push({ href: 'mensajes', title: 'Mensajes' })
+        this.menu.push({type:'', href: 'buscador', title: 'Buscador' })
+        this.menu.push({ type:'',href: 'perfil', title: 'Perfil' })
+        this.menu.push({ type:'badge',href: 'mensajes', title: 'Mensajes' })
 
         break;
       }
       case 'admin': {
-        this.menu.push({ href: 'analisis', title: 'Analisis' })
-        this.menu.push({ href: 'usuarios', title: 'Usuarios' })
+        this.menu.push({ type:'', href: 'analisis', title: 'Analisis' })
+        this.menu.push({type:'',  href: 'usuarios', title: 'Usuarios' })
         break;
       }
       case 'particular': {
-        this.menu.push({ href: 'perfil', title: 'Perfil' })
-        this.menu.push({ href: 'mensajes', title: 'Mensajes' })
+        this.menu.push({ type:'', href: 'perfil', title: 'Perfil' })
+        this.menu.push({ type:'badge', href: 'mensajes', title: 'Mensajes' })
         break;
       }
 

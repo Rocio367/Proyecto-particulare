@@ -11,15 +11,14 @@ import Swal from 'sweetalert2';
 })
 export class FormContactoComponent implements OnInit {
 
-  formDatos:FormGroup;
-  constructor(private form:FormBuilder, private services: GeneralService) {
+  formDatos: FormGroup;
+  constructor(private form: FormBuilder, private services: GeneralService) {
     this.formDatos = this.form.group({
-      name: [''],
-      email: ['', Validators.email],
-      region: [''],
-      message: [''],
+      name: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      message: ['', Validators.required],
     });
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -27,27 +26,16 @@ export class FormContactoComponent implements OnInit {
     let datos = new ConsultaRequest();
     datos.email = this.formDatos.get('email').value;
     datos.name = this.formDatos.get('name').value;
-    datos.region = this.formDatos.get('region').value;
     datos.message = this.formDatos.get('message').value;
-    this.services.postConsulta(datos).then(function (response) {
-      return response.json();
-    }).then(res => {
-      if (res.status == 1) {
-        Swal.fire(
-          'La consulta fue enviada con exito!',
-          '',
-          'success'
-        )
-      } else {
-        Swal.fire(
-          'La consulta fallo , lo sentimos',
-          '',
-          'error'
-        )
 
-      }
-    }
+    Swal.fire(
+      'La consulta fue enviada con exito!',
+      '',
+      'success'
     )
+
+
+
 
   }
 
