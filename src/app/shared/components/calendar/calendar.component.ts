@@ -1,5 +1,42 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import {
+  Component,
+  ViewChild,
+  TemplateRef,
+  OnInit,
+} from '@angular/core';
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours,
+} from 'date-fns';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent,
+  CalendarView,
+} from 'src/assets/angular-calendar';
+
+const colors: any = {
+  red: {
+    primary: '#ad2121',
+    secondary: '#FAE3E3',
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF',
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA',
+  },
+};
 
 @Component({
   selector: 'app-calendar',
@@ -7,93 +44,133 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
+  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
-  language: string;
-  @Input() month=2;
-  public monthNumber: number;
-  @Input() year=2021;
-  @Input() events;
+  view: CalendarView = CalendarView.Month;
 
-  public isLeap: boolean = false;
-  public daysBefore;
-  public daysAfter;
-  public week1 = [];
-  public week2 = [];
-  public week3 = [];
-  public week4 = [];
-  public week5 = [];
-  public week6 = [];
+  CalendarView = CalendarView;
 
-  constructor(public route: ActivatedRoute) {
+  viewDate: Date = new Date();
 
-    this.route.params.forEach((params: Params) => {
-      this.language = params['language'];
+  modalData: {
+    action: string;
+    event: CalendarEvent;
+  };
+
+  actions: CalendarEventAction[] = [
+    {
+      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+      a11yLabel: 'Edit',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Edited', event);
+      },
+    },
+    {
+      label: '<i class="fas fa-fw fa-trash-alt"></i>',
+      a11yLabel: 'Delete',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter((iEvent) => iEvent !== event);
+        this.handleEvent('Deleted', event);
+      },
+    },
+  ];
+
+  refresh: Subject<any> = new Subject();
+
+  events: CalendarEvent[] = [
+    {
+      start:new Date(),
+      end: new Date(),
+      title: 'A 3 day event',
+      color: colors.red,
+      actions: this.actions,
+      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+      availability: true,
+    },
+  
+  ];
+
+  activeDayIsOpen: boolean = true;
+
+  constructor(private modal: NgbModal) { }
+  ngOnInit(): void {
+
+  }
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    console.log(events)
+
+    if (isSameMonth(date, this.viewDate)) {
+      if (!events[0].availability) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
+  }
+
+
+
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd,
+  }: CalendarEventTimesChangedEvent): void {
+    console.log('eventTimesChanged')
+    this.events = this.events.map((iEvent) => {
+      if (iEvent === event) {
+        return {
+          ...event,
+          start: newStart,
+          end: newEnd,
+        };
+      }
+      return iEvent;
     });
+    this.handleEvent('Dropped or resized', event);
   }
 
-  ngOnInit() {
-    this.monthNumber = parseInt(this.month.toString(), 10);
-    alert(this.monthNumber)
-    this.isLeap = new Date(this.year, 1, 29).getDate() === 29;
-
-    this.daysBefore = new Date(this.year + "-" + this.month + "-1").getDay() - 1;
-    if (this.daysBefore === -1) {
-      this.daysBefore = new Array(6);
-    } else {
-      this.daysBefore = new Array(this.daysBefore);
-    }
-    this.daysAfter = new Array(7 - new Date(this.year, this.month, 0).getDay());
-    if (this.daysAfter === 6) {
-      this.daysAfter = new Array(0);
-    }
-
-    for (let i = 0; i < this.daysBefore.length; i++) {
-      this.week1.push(0);
-    }
-
-    let dayNumber = 1;
-    while (this.week1.length !== 7) {
-      this.week1.push(dayNumber);
-      dayNumber++;
-    }
-    while (this.week2.length !== 7) {
-      this.week2.push(dayNumber);
-      dayNumber++;
-    }
-    while (this.week3.length !== 7) {
-      this.week3.push(dayNumber);
-      dayNumber++;
-    }
-    while (this.week4.length !== 7) {
-      this.week4.push(dayNumber);
-      dayNumber++;
-    }
-    while (this.week5.length !== 7 && new Date(this.year, this.month - 1, dayNumber).getDate() === dayNumber) {
-      this.week5.push(dayNumber);
-      dayNumber++;
-    }
-    if (this.week5.length === 7) {
-      while (new Date(this.year, this.month - 1, dayNumber).getDate() === dayNumber) {
-        this.week6.push(dayNumber);
-        dayNumber++;
-      }
-      if (this.week6.length === 0) {
-        this.week6 = null;
-      } else {
-        while (this.week6.length !== 7) {
-          this.week6.push(0);
-        }
-      }
-    } else {
-      if (this.week5.length === 0) {
-        this.week5 = null;
-      } else {
-        while (this.week5.length !== 7) {
-          this.week5.push(0);
-        }
-      }
-      this.week6 = null;
-    }
+  handleEvent(action: string, event: CalendarEvent): void {
+    console.log('handleEvent')
+    this.modalData = { event, action };
+    this.modal.open(this.modalContent, { size: 'lg' });
   }
+
+  addEvent(): void {
+    this.events.push(
+      {
+        title: 'New event',
+        start: startOfDay(new Date()),
+        end: endOfDay(new Date()),
+        color: colors.red,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true,
+        },
+        availability: true,
+
+      }
+    )
+
+  }
+
+  deleteEvent(eventToDelete: CalendarEvent) {
+    this.events = this.events.filter((event) => event !== eventToDelete);
+  }
+
+  setView(view: CalendarView) {
+    this.view = view;
+  }
+
+  closeOpenMonthViewDay() {
+    this.activeDayIsOpen = false;
+  }
+
 }
-
