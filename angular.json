@@ -23,8 +23,7 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss",
-                            "src/assets/angular-calendar/scss/angular-calendar.scss"
+                            "src/styles.scss"
                         ],
                         "scripts": [
                             "./node_modules/jquery/dist/jquery.min.js"

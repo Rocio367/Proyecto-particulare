@@ -14,13 +14,9 @@ import { CarrouselImgComponent } from './carrousel-img/carrousel-img.component';
 import { PasosComponent } from './pasos/pasos.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FormContactoComponent } from './form-contacto/form-contacto.component';
-import { CalendarCheckComponent } from './calendar-check/calendar-check.component';
-import { FlatpickrModule } from 'angularx-flatpickr';
-import { CalendarModule, DateAdapter } from 'src/assets/angular-calendar';
-import { adapterFactory } from 'src/assets/angular-calendar/date-adapters/date-fns';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalAnotarseComponent } from './modal-anotarse/modal-anotarse.component';
 @NgModule({
-  declarations: [CalendarCheckComponent,
+  declarations: [
     FormContactoComponent,
     CalendarComponent,
     PasosComponent,
@@ -31,15 +27,10 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     ModalGalleryComponent,
     ModalGeneralComponent,
     CardsGeneralComponent,
-    PasosComponent],
+    PasosComponent,
+    ModalAnotarseComponent],
   imports: [
     FormsModule,
-    NgbModalModule,
-    FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
     IvyCarouselModule,
     CommonModule,
     FormsModule,
@@ -57,7 +48,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     CardsGeneralComponent,
     ModalGeneralComponent,
     ModalGalleryComponent,
-    ModalConsultaComponent],
+    ModalConsultaComponent,
+    ModalAnotarseComponent],
   entryComponents: [],
 
 })

@@ -1,42 +1,9 @@
-import {
-  Component,
-  ViewChild,
-  TemplateRef,
-  OnInit,
-} from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-} from 'date-fns';
-import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView,
-} from 'src/assets/angular-calendar';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import * as moment from 'moment'
+import { RegistroCalendar } from "../../models/registroCalendario";
+import { ModalAnotarseComponent } from "../modal-anotarse/modal-anotarse.component";
 
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
-};
 
 @Component({
   selector: 'app-calendar',
@@ -44,133 +11,93 @@ const colors: any = {
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
-  view: CalendarView = CalendarView.Month;
-
-  CalendarView = CalendarView;
-
-  viewDate: Date = new Date();
-
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
-
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
+  week: any = [
+    "Lunes",
+    "Martes",
+    "Miercoles",
+    "Jueves",
+    "Viernes",
+    "Sabado",
+    "Domingo"
   ];
 
-  refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start:new Date(),
-      end: new Date(),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-      availability: true,
-    },
-  
-  ];
-
-  activeDayIsOpen: boolean = true;
-
-  constructor(private modal: NgbModal) { }
-  ngOnInit(): void {
+  monthSelect: any[]=[];
+  agendaAConfirmar: RegistroCalendar[]=[];
+  dateSelect: any;
+  dateValue: any;
+  constructor( public dialog: MatDialog) {
 
   }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    console.log(events)
+  ngOnInit(): void {
+    this.getDaysFromDate(11, 2020)
+  }
+ 
+  
+  getDaysFromDate(month, year) {
 
-    if (isSameMonth(date, this.viewDate)) {
-      if (!events[0].availability) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
+    const startDate = moment.utc(`${year}/${month}/01`)
+    const endDate = startDate.clone().endOf('month')
+    this.dateSelect = startDate;
+
+    const diffDays = endDate.diff(startDate, 'days', true)
+    const numberDays = Math.round(diffDays);
+
+    const arrayDays = Object.keys([...Array(numberDays)]).map((a: any) => {
+      a = parseInt(a) + 1;
+      const dayObject = moment(`${year}-${month}-${a}`);
+      return {
+        name: dayObject.format("dddd"),
+        value: a,
+        indexWeek: dayObject.isoWeekday(),
+        date:new Date(`${year}-${month}-${a}`)
+      };
+    });
+
+    arrayDays.forEach(day=>{
+      let registro= new RegistroCalendar();
+      registro.date=day.date;
+      registro.name=day.name;
+      registro.value=day.value;
+      registro.indexWeek=day.indexWeek;
+      registro.available=true;
+      registro.available_hours=['09:00AM','10:00AM','09:00AM'];
+      registro.reserved_hours=['09:00AM'];
+      registro.name=day.name;
+
+      this.monthSelect.push(registro)
+    })
+  }
+
+  changeMonth(flag) {
+    if (flag < 0) {
+      const prevDate = this.dateSelect.clone().subtract(1, "month");
+      this.getDaysFromDate(prevDate.format("MM"), prevDate.format("YYYY"));
+    } else {
+      const nextDate = this.dateSelect.clone().add(1, "month");
+      this.getDaysFromDate(nextDate.format("MM"), nextDate.format("YYYY"));
     }
   }
 
+  clickDay(day) {
+    const monthYear = this.dateSelect.format('YYYY-MM')
+    const parse = `${monthYear}-${day.value}`
+    const objectDate = moment(parse)
+    this.dateValue = objectDate;
 
-
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd,
-  }: CalendarEventTimesChangedEvent): void {
-    console.log('eventTimesChanged')
-    this.events = this.events.map((iEvent) => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd,
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    console.log('handleEvent')
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  addEvent(): void {
-    this.events.push(
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-        availability: true,
-
-      }
-    )
 
   }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
+  openModal(date :RegistroCalendar){  
+    this.dialog.open(ModalAnotarseComponent, { panelClass: 'custom-dialog-container', data: date});
+  }
+  addDate(date :RegistroCalendar){
+    this.agendaAConfirmar.push(date)
   }
 
-  setView(view: CalendarView) {
-    this.view = view;
+  removeDate(){
+    
   }
-
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
-  }
-
 }

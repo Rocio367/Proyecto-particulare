@@ -1,0 +1,31 @@
+/* Modal */
+.modal-header {
+    padding: 0;
+    border: none;
+}
+.modal-header .close {
+    margin: 2px 6px 0px auto;
+    padding: 0;
+    color: #1e3e6f;
+    opacity: 1;
+}
+h2 {
+    color: #2eab62;
+}
+p{
+    color: #1e3e6f;
+}
+input {
+    background: white;
+    width: 100%;
+    margin-bottom: 15px;
+    border: none;
+    box-shadow: 0 0 10px #c3c3c3;
+    border-radius: 5px;
+    padding: 8px 15px;
+}
+button.btn.btn-primary {
+    background: #2eab62;
+    border-color: #2eab62;
+    width: 100%;
+}

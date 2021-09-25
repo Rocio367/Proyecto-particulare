@@ -13,7 +13,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {LOCALE_ID, NgModule} from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { SharedModule } from './shared/components/shared.module';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 registerLocaleData(localeAr, 'es-AR');
 
