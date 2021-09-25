@@ -1,0 +1,21 @@
+<mat-form-field class="example-chip-list" appearance="fill">
+    <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let fruit of options" [selectable]="selectable" [removable]="removable"
+            (removed)="remove(fruit)">
+            {{fruit}}
+            <button class='cancel' matChipRemove *ngIf="removable">
+                <i class="icofont-close"></i>
+            </button>
+        </mat-chip>
+        <input  appearance="outline" placeholder="Buscar..." #classInput [formControl]="classCtrl" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let fruit of filteredOptions | async" [value]="fruit">
+            {{fruit}}
+        </mat-option>
+    </mat-autocomplete>
+    <i matSuffix class="icofont-search-2 " (click)='buscar()'></i>
+
+</mat-form-field>

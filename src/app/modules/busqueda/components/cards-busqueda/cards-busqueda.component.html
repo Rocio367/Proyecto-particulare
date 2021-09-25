@@ -1,0 +1,31 @@
+
+<a href="detalle-clase">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div class='categoria'> {{registro.type}}</div>
+         
+            <mat-card-title class='azulLetra'>{{registro.materia}}</mat-card-title>
+            
+            <img mat-card-avatar [src]="'./assets/img/'+registro.foto" alt="foto ">
+            <div class='stars'>
+                <i class="icofont-star" [ngClass]='(registro.stars >= 1)?"amarillo":""'></i>
+                <i class="icofont-star" [ngClass]='(registro.stars >= 2)?"amarillo":""'></i>
+                <i class="icofont-star" [ngClass]='(registro.stars >= 3)?"amarillo":""'></i>
+                <i class="icofont-star" [ngClass]='(registro.stars >= 4)?"amarillo":""'></i>
+                <i class="icofont-star" [ngClass]='(registro.stars >= 5)?"amarillo":""'></i>
+                <span class='subtitle'>
+                    {{registro.stars}}/ 5
+                </span>
+            </div>
+    
+            <mat-card-subtitle>
+                <p  class='fs-16'><i class="icofont-google-map rojo fs-21"></i>{{registro.ubicacion}}</p>
+            </mat-card-subtitle>
+            <mat-card-subtitle class='fs-16'>
+                {{registro.descripcion}}
+            </mat-card-subtitle>
+    
+        </mat-card-header>
+      
+    </mat-card>
+</a>
