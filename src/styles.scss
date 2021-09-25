@@ -28,6 +28,10 @@ body {
     font-size: 30px;
     color: blue;
 }
+.fs-16{
+    font-size: 16px;
+}
+
 .fs-21{
     font-size: 21px;
 }
@@ -119,11 +123,16 @@ a{
     background-color: #fcf8ee !important;
 }
 
-
+.subtitle{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.705);
+}
 .azul{
     background-color: #25798E !important;
 }
-
+.azulClaro{
+    background-color: rgba(113, 196, 212, 0.466)
+}
 .naranjaClaro{
     background-color: #F8E2B3 !important;
 }
@@ -131,7 +140,9 @@ a{
 .naranjaClaro2{
     background-color: #f8e2b3 !important;
 }
-
+.rojo{
+    color: #d63a3a !important;
+}
 .azulLetra{
     color:#25798E !important;
 }
