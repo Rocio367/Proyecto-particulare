@@ -15,6 +15,7 @@ import { PasosComponent } from './pasos/pasos.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FormContactoComponent } from './form-contacto/form-contacto.component';
 import { ModalAnotarseComponent } from './modal-anotarse/modal-anotarse.component';
+import { CardsComunComponent } from './cards-comun/cards-comun.component';
 @NgModule({
   declarations: [
     FormContactoComponent,
@@ -28,7 +29,8 @@ import { ModalAnotarseComponent } from './modal-anotarse/modal-anotarse.componen
     ModalGeneralComponent,
     CardsGeneralComponent,
     PasosComponent,
-    ModalAnotarseComponent],
+    ModalAnotarseComponent,
+    CardsComunComponent],
   imports: [
     FormsModule,
     IvyCarouselModule,

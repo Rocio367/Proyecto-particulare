@@ -1,59 +1,52 @@
 
-<div class="container naranjaClaro2">
-<br>
-<h2  class="ml-2 azulLetra">Busqueda de clases</h2> 
-
-<form>
-  <div class="form-group row container">
-    <div class="col-sm-10  mt-3">
-      <label for="inputClase2" class="sr-only">BusquedaClase</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="validationBusquedaClase" placeholder="Ingrese nombre de la clase o profesor.">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend2"><i class="icofont-search-1"></i></span>
-        </div>
-      </div>   
-    </div>
-
-    <button type="submit" class="btn mt-3 azul blancaLetra col-sm-1">Buscar</button>
-
-  </div>
-</form>
-<br>
-</div>
-
-
-<div class="container naranjaClaro2 mt-5">
+<div class="container blanco">
   <br>
-  <h2  class="ml-2 azulLetra">Conoce nuestros beneficios</h2> 
-  <p class="ml-2 grisLetra">Descubre los descuentos que ofrecemos.</p>
+  <h2  class="ml-3 azulLetra">Busqueda de clases</h2> 
+  <app-buscador></app-buscador>
+  <br>
+</div>
+  
 
-  <div class="container ml-2">
+
+<div class="container blanco mt-5">
+  <br>
+  <h2  class="ml-3 azulLetra">Conoce nuestros beneficios</h2> 
+  <p class="ml-3 grisLetra">Descubre los descuentos que ofrecemos.</p>
+
+  <div class="container">
     <div class="row">
       <div class="col-sm blanco">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>      </div>
+        <mat-card class="example-card">
+          <mat-card-subtitle class="verde blancaLetra">Descuentos</mat-card-subtitle>
+          <mat-card-title>PACK 20 CLASES 10%</mat-card-title>
+          <mat-card-content>
+            <p>This card has divider and indeterminate progress as footer</p>
+            <p></p>
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+        </mat-card>
+      </div>
       <div class="col-sm">
-        <div class="card-body blanco">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>      </div>
+        <mat-card class="example-card">
+          <mat-card-subtitle class="verde blancaLetra">Descuentos</mat-card-subtitle>
+          <mat-card-title>Primer clase GRATIS</mat-card-title>
+          <mat-card-content>
+            <p>Podes probar nuestros servicios gratuitamente la primera vez.</p>
+            <p></p>
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+        </mat-card>
+      </div>
       <div class="col-sm">
-        <div class="card-body blanco">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>    
+        <mat-card class="example-card">
+          <mat-card-subtitle class="verde blancaLetra">Descuentos</mat-card-subtitle>
+          <mat-card-title>20% DE DESCUENTO</mat-card-title>
+          <mat-card-content>
+            <p>Si sos un suscriptor activo de la página durante un año.</p>
+            <p></p>
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+        </mat-card>
       </div>
     </div>
     <br>
@@ -62,27 +55,31 @@
 
 
   
-<div class="container naranjaClaro2 mt-5">
+<div class="container blanco mt-5">
   <br>
-  <h2  class="ml-2 azulLetra">Profesores mas requeridos.</h2> 
+  <h2  class="ml-3 azulLetra">Requeridos</h2> 
   <app-cards-general></app-cards-general>
   <br>
 </div> 
 
 
   
-<div class="container naranjaClaro2 mt-5">
+<div class="container blanco mt-5">
   <br>
-  <h2  class="ml-2 azulLetra">Explicación de la página.</h2> 
+  <h2  class="ml-3 azulLetra">Primeros pasos</h2> 
   <app-carrousel-img></app-carrousel-img>
   <br>
 </div> 
 
 
-<div class="container naranjaClaro2 mt-5">
+<div class="container blanco mt-5">
   <br>
-  <h2  class="ml-2 azulLetra">Pasos de pago.</h2> 
+  <h2  class="ml-3 azulLetra">Pasos de pago</h2> 
   <app-carrousel-img></app-carrousel-img>
   <br>
 </div> 
+
+
+<br>
+<br>
 
