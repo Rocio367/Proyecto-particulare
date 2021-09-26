@@ -1,0 +1,51 @@
+<div mat-dialog-content>
+    <div class="">
+        <div class="modal-header">
+            <div type="button" class="close" mat-dialog-close aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div>
+        </div>
+        <div class="modal-body text-center">
+            <form [formGroup]="archivoForm" class="ui large error form">
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label>Institucion</mat-label>
+                    <input matInput formControlName="institucion" placeholder="" type="text">
+                </mat-form-field>
+                <div *ngIf="archivoForm.get('institucion').hasError('required') && archivoForm.get('institucion').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div>
+
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label>Carrera</mat-label>
+                    <input matInput formControlName="carrera" placeholder="" type="text">
+                </mat-form-field>
+
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label> Materia</mat-label>
+                    <input matInput formControlName="materia" placeholder="" type="text">
+                </mat-form-field>
+            </form>
+            <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
+                style="display:none;">
+            <button mat-raised-button color="success" class="success-button ml-2" (click)="file.click()">
+                Buscar Archivos
+                <i class="icofont-search-document fs-21"></i>
+
+            </button>
+            <span *ngFor='let file of files' >
+                {{file.name}}
+            </span>
+        
+            <span class="empty" *ngIf="!message">
+                Aun no existe un archivo cargado
+            </span>
+
+            <div style='text-align: center; width: 100%;'>
+                <button mat-button class='azul' (click)='confirmar()' >Confirmar</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

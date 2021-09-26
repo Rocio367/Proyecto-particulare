@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <mat-list>
+                <mat-list-item (click)='seleccion(mensaje)' [ngClass]='(mensaje.leido)? "leido":"no-leido "' *ngFor="let mensaje of recibidos">
+                    <div mat-line>{{mensaje.emisor}}</div>
+                    <div mat-line>{{mensaje.asunto}}</div>
+                    <div mat-line> {{mensaje.fecha | date}} </div>
+                    <i class="icofont-ui-delete" (click)='delete(mensaje)'></i>
+                </mat-list-item>
+               
+              </mat-list>
+        </div>
+        <div class='col-lg-8' *ngIf='mensaje'>
+             <app-mensaje-detalle [mensaje]='mensaje'></app-mensaje-detalle>
+        </div>
+
+        <div class='col-lg-8' *ngIf='!mensaje'>
+              Seleccione un mensaje para ver mas detalles
+        </div>
+    </div>
+</div>

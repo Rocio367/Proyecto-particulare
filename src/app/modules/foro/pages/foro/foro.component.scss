@@ -1,0 +1,30 @@
+mat-card{
+    margin: 10px;
+    padding: 16px 0px 16px 0px!important;
+}
+
+.actions {
+    position: absolute;
+    bottom: 60%;
+    right: 1%;
+    padding: 5px 11px;
+    text-align: center;
+}
+
+.like{
+  color:grey;
+}
+.like-active{
+  color:#25798E;
+}
+.card-2{
+    margin-left: 50px;  
+}
+form{
+    width: 100%!important;
+}
+.icofont-like:hover{
+    cursor:pointer;
+    color:#25798E;
+}
+

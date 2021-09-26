@@ -10,7 +10,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from '@agm/core';
 import { environment } from 'src/environments/environment';
-import { MapaComponent } from './mapa/mapa.component';
+import { MapaComponent } from './components/mapa/mapa.component';
 @NgModule({
   declarations:[BusquedaComponent, CardsBusquedaComponent ,MapaComponent],
   imports:[

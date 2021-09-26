@@ -30,7 +30,8 @@ import { CardsComunComponent } from './cards-comun/cards-comun.component';
     CardsGeneralComponent,
     PasosComponent,
     ModalAnotarseComponent,
-    CardsComunComponent],
+    CardsComunComponent,
+  ],
   imports: [
     FormsModule,
     IvyCarouselModule,
@@ -51,7 +52,8 @@ import { CardsComunComponent } from './cards-comun/cards-comun.component';
     ModalGeneralComponent,
     ModalGalleryComponent,
     ModalConsultaComponent,
-    ModalAnotarseComponent],
+    ModalAnotarseComponent,
+    ],
   entryComponents: [],
 
 })

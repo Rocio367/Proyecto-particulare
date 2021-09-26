@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Respuestas, Tema } from 'src/app/shared/models/tema';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-foro',
@@ -6,10 +9,62 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./foro.component.scss']
 })
 export class ForoComponent implements OnInit {
-
-  constructor() { }
-
+  tema = new Tema();
+  formRespuesta :FormGroup;
+  constructor( private form: FormBuilder){
+    this.formRespuesta = this.form.group({
+      text: ['', [Validators.required]]
+    });
+  }
   ngOnInit(): void {
+    this.tema.titulo = 'Tema 1';
+    this.tema.descripcion = 'Descripcion'
+    this.tema.seguidores = 6;
+    this.tema.fecha = new Date();
+    this.tema.like = true;
+    let resp1 = new Respuestas();
+    resp1.text = 'Primer comentario';
+
+    let r1 = new Respuestas();
+    r1.text = 'Respuesta 1 primer comentario';
+
+    let r2 = new Respuestas();
+    r2.text = 'Respuesta 2 primer comentario';
+
+    resp1.respuestas.push(r1, r2)
+    let resp2 = new Respuestas();
+    resp2.text = 'Segundo comentario';
+
+    this.tema.respuesta.push(resp1,resp2)
+   
   }
 
+  verRespuestas(r: Respuestas){
+      this.tema.respuesta[this.tema.respuesta.indexOf(r)].ver=!this.tema.respuesta[this.tema.respuesta.indexOf(r)].ver;
+  }
+  responder(r: Respuestas){
+    this.tema.respuesta[this.tema.respuesta.indexOf(r)].aResponder=!this.tema.respuesta[this.tema.respuesta.indexOf(r)].aResponder;
+
+  }
+  like(t: Tema) {
+    this.tema.like = !this.tema.like;
+  }
+
+  delete() {
+    Swal.fire(
+      'El tema fue eliminado correctamente',
+      '',
+      'success'
+    )
+  }
+
+  responderForm(r: Respuestas) {
+    this.tema.respuesta[this.tema.respuesta.indexOf(r)].respuestas.unshift(r);
+
+    Swal.fire(
+      'Gracias por responder!',
+      '',
+      'success'
+    )
+  }
 }

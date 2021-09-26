@@ -1,1 +1,72 @@
-<p>foro works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title class='azulLetra'> {{tema.titulo}}</mat-card-title>
+                    <div class='actions'>
+                        <span class=" fs-21">{{tema.seguidores}}</span>
+
+                        <i [ngClass]='(tema.like)? "like-active" : "like" ' class="icofont-like fs-21"
+                            (click)="like(tema)"></i>
+                        <i class="icofont-ui-delete fs-21" (click)='delete()'></i>
+                    </div>
+                    <mat-card-subtitle>
+                        <p class='fs-16'>{{tema.descripcion}}</p>
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        <p class='fs-16'>{{tema.fecha | date}}</p>
+                    </mat-card-subtitle>
+                </mat-card-header>
+
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <app-filtros-tema></app-filtros-tema>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12" *ngFor='let resp of tema.respuesta'>
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title class='azulLetra'> {{resp.text}}</mat-card-title>
+                    <div class='actions'>
+                        <a (click)='verRespuestas(resp)' style='cursor: pointer;'> Respuestas</a>
+                        <a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
+                    </div>
+
+                </mat-card-header>
+            </mat-card>
+            <div *ngFor='let resp2 of resp.respuestas'>
+                <mat-card class="example-card card-2" *ngIf=' resp.ver'>
+                    <mat-card-header>
+                        <mat-card-title class='azulLetra'> {{resp2.text}}</mat-card-title>
+                        <div class='actions'>
+                            <a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
+
+                        </div>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+            <mat-card class="example-card card-2" *ngIf=' resp.aResponder'>
+                <mat-card-header>
+                    <form [formGroup]="formRespuesta" class="ui large error form">
+                        <mat-form-field class='input-large' appearance="outline">
+                            <mat-label>Respuesta</mat-label>
+                            <input matInput formControlName="text" placeholder="..." type="text">
+                        </mat-form-field>
+                        <div *ngIf="formRespuesta.get('text').hasError('required') && formRespuesta.get('text').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                        <button mat-button class='azul' [disabled]="formRespuesta.invalid" (click)='responderForm(resp)'>Responder</button>
+
+                    </form>
+                </mat-card-header>
+            </mat-card>
+        </div>
+    </div>
+</div>

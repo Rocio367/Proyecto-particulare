@@ -1,11 +1,11 @@
 <div class="wrapper-calendar">
 	<div class="header-calendar">
 		<div>
-			<button (click)="changeMonth(-1)" class="btn-prev">Antes</button>
+			<i  (click)="changeMonth(-1)" class="fs-21 icofont-arrow-left"></i>
 		</div>
 		<h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
 		<div>
-			<button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
+			<i (click)="changeMonth(1)"  class=" fs-21 icofont-arrow-right"></i>
 		</div>
 	</div>
 	<ol>
@@ -14,8 +14,8 @@
         <li (click)="clickDay(day)"   [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
          *ngFor="let day of monthSelect;let first = first">
 			<span class='day'>{{day?.value}}</span>
-            <button *ngIf='day.available' mat-raised-button color="primary" (click)='openModal(day)'>Anotarse</button>
-
+            <button *ngIf='day.available' mat-raised-button  class='azul' color="primary" (click)='openModal(day)'>Anotarse</button>
+			<span *ngIf='day.available_hours > day.reserved_hours  '> Disponible : {{ day.available_hours}}</span>
 		</li>
 	</ol>
 </div>

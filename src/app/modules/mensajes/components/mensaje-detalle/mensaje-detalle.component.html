@@ -1,0 +1,11 @@
+<p>De : {{mensaje.emisor}}</p>
+<p>Para : {{mensaje.destinatario}}</p>
+<p>
+   Asunto: {{mensaje.asunto}}
+</p>
+<p>
+    {{mensaje.contenido}}
+</p>
+<button *ngIf='responder' mat-button class='azul' (click)='respuesta()' >Responder</button>
+
+<div > {{mensaje.fecha | date}} </div>

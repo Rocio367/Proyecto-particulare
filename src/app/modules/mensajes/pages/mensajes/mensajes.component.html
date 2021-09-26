@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button mat-button class='azul' (click)='nuevo()' >Nuevo mensaje</button>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-tab-group>
+                <mat-tab label="Recibidos">
+                    <app-recibidos></app-recibidos>
+                </mat-tab>
+                <mat-tab label="Enviados">
+                    <app-enviados></app-enviados>
+                </mat-tab>
+                <mat-tab label="Papelera">
+                    <app-papelera></app-papelera>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

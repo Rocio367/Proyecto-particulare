@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button mat-button class='azul' (click)='subirArchivo()' >Subir Archivo</button>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mat-tab-group>
+                <mat-tab label="Buscador">
+                    <app-buscador-de-archivos></app-buscador-de-archivos>
+                </mat-tab>
+                <mat-tab label="Mis modelos">
+                    <app-mis-modelos-alumno></app-mis-modelos-alumno>
+                </mat-tab>
+               
+            </mat-tab-group>
+        </div>
+    </div>
+</div>
