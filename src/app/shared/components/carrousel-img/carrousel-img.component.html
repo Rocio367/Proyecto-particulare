@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class='col-lg-12'>
-                <carousel style='height: 20vw;display: flex;' cellsToShow='3' class='desk' counter='true' autoplay='true' lightDOM='true' loop='true'>
+                <carousel style='height: 20vw;display: flex; z-index: 1;' cellsToShow='3' class='desk' counter='true' autoplay='true' lightDOM='true' loop='true'>
                     <div class="carousel-cell " *ngFor="let item of  gallery;">
                         <img class='img' [src]="'./assets/img/'+item.path" (click)='openModal(item.position)'>
                     </div>
