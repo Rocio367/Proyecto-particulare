@@ -16,6 +16,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { FormContactoComponent } from './form-contacto/form-contacto.component';
 import { ModalAnotarseComponent } from './modal-anotarse/modal-anotarse.component';
 import { CardsComunComponent } from './cards-comun/cards-comun.component';
+import { TableComponent } from './table/table.component';
 @NgModule({
   declarations: [
     FormContactoComponent,
@@ -31,6 +32,7 @@ import { CardsComunComponent } from './cards-comun/cards-comun.component';
     PasosComponent,
     ModalAnotarseComponent,
     CardsComunComponent,
+    TableComponent,
   ],
   imports: [
     FormsModule,
@@ -53,6 +55,7 @@ import { CardsComunComponent } from './cards-comun/cards-comun.component';
     ModalGalleryComponent,
     ModalConsultaComponent,
     ModalAnotarseComponent,
+    TableComponent,
     ],
   entryComponents: [],
 
