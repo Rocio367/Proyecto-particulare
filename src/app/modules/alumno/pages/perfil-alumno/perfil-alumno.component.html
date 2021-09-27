@@ -1,1 +1,46 @@
-<p>perfil-alumno works!</p>
+<div class="naranjaClaro p-5 container">
+<div class="container mt-2">
+        <div class="row">
+          <div class="col-sm-12 col-md-3">
+            <img src="../../../../../assets/img/default-user.png"  width="220" height="200" />
+        </div>
+          <div class="col-sm azul naranjaClaro grisLetra">
+            <h3 class="azulLetra">Nombre y apellido: </h3>
+            <h4>Edad: </h4>
+            <h4>Intereses: </h4>
+            <hr/>
+            <h4>Institución:</h4>
+            <h4>Nivel académicos:</h4>
+          </div>
+        </div>
+</div> 
+
+<div class="container mt-5">
+  <br>
+    <h4 class="azulLetra">Mis clases : </h4>
+    <app-tabla-misclases></app-tabla-misclases>
+  <br>  
+</div> 
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <iframe width="553" height="280" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br>
+    </div>
+      <div class="col-sm azul naranjaClaro grisLetra">
+        <mat-list>
+            <div mat-line><h4 class="azulLetra">Clases cursadas : </h4>
+            </div>
+            <mat-list-item *ngFor="let folder of folders">
+              <mat-icon mat-list-icon><i class="icofont-ui-video-play"></i></mat-icon>
+              <div mat-line>{{folder.name}}</div>
+              <div mat-line> {{folder.updated | date}} </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+          
+      </div>
+    </div>
+</div> 
+</div>

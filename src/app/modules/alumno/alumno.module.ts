@@ -6,10 +6,11 @@ import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { RegistrarAlumnoComponent } from './pages/registrar-alumno/registrar-alumno.component';
+import { TablaComponent } from './components/tabla/tabla.component';
 
 
 @NgModule({
-  declarations:[RegistrarAlumnoComponent, EditarPerfilAlumnoComponent,PerfilAlumnoComponent],
+  declarations:[RegistrarAlumnoComponent, EditarPerfilAlumnoComponent,PerfilAlumnoComponent, TablaComponent],
   imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
