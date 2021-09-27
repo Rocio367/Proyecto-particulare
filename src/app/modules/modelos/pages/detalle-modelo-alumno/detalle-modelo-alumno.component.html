@@ -9,7 +9,11 @@
                 </div>
             </carousel>
         </div>
-
+        <div class="col-lg-12" >
+            <h1 class="azulLetra">
+               Datos generales
+            </h1>
+        </div>
         <div class="col-lg-12 mt-2">
             <p> {{archivo.nombre}}</p>
             <p> {{archivo.fecha | date}}</p>
@@ -19,18 +23,21 @@
             <p> {{ archivo.nivel}}</p>
         </div>
 
-        <div class="col-lg-12" *ngIf='resoluciones'>
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
             <h1 class="azulLetra">
                 Resoluciones
             </h1>
         </div>
-        <div class="col-lg-12" *ngIf='resoluciones'>
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto"' >
             <mat-list role="list">
                 <mat-list-item *ngFor='let res of resoluciones' role="listitem" >{{res}}
                     <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
+                    <button mat-button class='azul' (click)='valorar()' >Valorar</button>
                 </mat-list-item>
-
             </mat-list>
+        </div>
+        <div class="col-lg-12" *ngIf='archivo.estado=="pendiente"' >
+           <p>Aun no hay resoluciones</p>
         </div>
         <div class="col-lg-12">
             <h1 class="azulLetra">
@@ -52,6 +59,8 @@
                         <span class='subtitle'>
                             {{item.valoracion}}/ 5
                         </span>
+
+
                     </div>
 
 
