@@ -26,6 +26,7 @@ import { ForoRoutingModule } from '../modules/foro/foro-routing.module';
 import { ForoModule } from '../modules/foro/foro.module';
 import { ModelosRoutingModule } from '../modules/modelos/modelos-routing.module';
 import { ModelosModule } from '../modules/modelos/modelos.module';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   providers:[
@@ -49,7 +50,8 @@ import { ModelosModule } from '../modules/modelos/modelos.module';
     LoginRoutingModule,
     MensajesRoutingModule,
     ForoRoutingModule,
-    ModelosRoutingModule
+    ModelosRoutingModule,
+    IvyCarouselModule,
    ],
    
   exports:[
@@ -63,7 +65,8 @@ import { ModelosModule } from '../modules/modelos/modelos.module';
     LoginModule,
     MensajesModule,
     ForoModule,
-    ModelosModule
+    ModelosModule,
+    IvyCarouselModule
 
   ],
    
