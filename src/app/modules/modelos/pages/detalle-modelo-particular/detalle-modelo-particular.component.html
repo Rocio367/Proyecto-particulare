@@ -9,10 +9,15 @@
                 </div>
             </carousel>
         </div>
-        <col-lg-12>
+        <col-lg-12 *ngIf=' archivo.estado== "resolver"'>
             <button mat-button class='azul' (click)='postularme()'>Postularme para resolverlo</button>
         </col-lg-12>
-        <div class="col-lg-12 mt-2">
+        <div class="col-lg-12" >
+            <h1 class="azulLetra">
+               Datos generales
+            </h1>
+        </div>
+        <div class="col-lg-12 mt-2" >
             <p> {{archivo.nombre}}</p>
             <p> {{archivo.fecha | date}}</p>
             <p> {{ archivo.estado}}</p>
@@ -20,12 +25,22 @@
             <p> {{ archivo.materia}}</p>
             <p> {{ archivo.nivel}}</p>
         </div>
-        <div class="col-lg-12" *ngIf='resoluciones'>
+        <div class="col-lg-12" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
             <h1 class="azulLetra">
-                Mi resolucion
+                Datos del alumno
             </h1>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-12 mt-2" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
+            <p> {{alumno.nombreCompleto}}</p>
+            <p> {{alumno.edad }}</p>
+            
+        </div>
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado== "pendiente"'>
+            <h1 class="azulLetra">
+                Adjuntar resolucion de modelo
+            </h1>
+        </div>
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado== "pendiente"'>
             <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
                 style="display:none;">
             <button mat-raised-button color="success" class="success-button ml-2" (click)="file.click()">
@@ -40,13 +55,12 @@
                 Aun no existe un archivo cargado
             </span>
         </div>
-        <div class="col-lg-12 mt-2" *ngIf='resoluciones '>
+        <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <h1 class="azulLetra">
-                Otras resoluciones
+                Resolucion entregada
             </h1>
         </div>
-
-        <div class="col-lg-12" *ngIf='resoluciones'>
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <mat-list role="list">
                 <mat-list-item *ngFor='let res of resoluciones' role="listitem">{{res}}
                     <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
@@ -55,6 +69,16 @@
             </mat-list>
         </div>
 
+        <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+            <h1 class="azulLetra">
+                Comentarios opcionales 
+            </h1>
+        </div>
+        <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+            <p class="">
+                Comentarios 
+            </p>
+        </div>
 
 
 

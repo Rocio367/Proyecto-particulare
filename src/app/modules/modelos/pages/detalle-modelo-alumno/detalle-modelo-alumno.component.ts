@@ -1,5 +1,6 @@
 import { M } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Archivo } from 'src/app/shared/models/archivo';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 
@@ -12,7 +13,10 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   gallery: imgGallery[] = [];
   resoluciones: string[] = ['default-placeholder.png'];
   archivo = new Archivo;
-  constructor() {
+  id:number ;
+
+  constructor(private router: ActivatedRoute) {
+    this.id=this.router.snapshot.params['id'];
     this.archivo.archivos = ['default-placeholder.png']
     this.archivo.nombre = 'nombre '
     this.archivo.carrera = 'carrera '
@@ -59,6 +63,15 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.id==1 ){
+      this.archivo.estado='solicitar';
+    }else 
+    if(this.id==2 ){
+      this.archivo.estado='pendiente';
+    } else 
+    if(this.id==3 ){
+      this.archivo.estado='resuelto';
+    }
   }
   open(n: number) {
     window.open('./assets/img/' + this.gallery[n].path)
@@ -67,6 +80,10 @@ export class DetalleModeloAlumnoComponent implements OnInit {
     window.open('./assets/img/' + n)
   }
   contratar(){
+    
+  }
+
+  valorar(){
     
   }
 }
