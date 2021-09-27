@@ -67,7 +67,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
 
     switch (this.rol) {
       case 'alumno': {
-        this.menu.push({ type:'',href: 'perfil', title: 'Perfil' })
+        this.menu.push({ type:'',href: 'perfil-alumno', title: 'Perfil' })
         this.menu.push({ type:'badge',href: 'mensajes', title: 'Mensajes' })
         this.menu.push({ type:'badge',href: 'temas-foro', title: 'Foro' })
         this.menu.push({type:'', href: 'modelos', title: 'Modelos' })
