@@ -1,8 +1,11 @@
 import { M } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Archivo } from 'src/app/shared/models/archivo';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
+import { ModalContratarModelosComponent } from '../../components/modal-contratar-modelos/modal-contratar-modelos.component';
+import { ModalValorarComponent } from '../../components/modal-valorar/modal-valorar.component';
 
 @Component({
   selector: 'app-detalle-modelo-alumno',
@@ -15,7 +18,7 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   archivo = new Archivo;
   id:number ;
 
-  constructor(private router: ActivatedRoute) {
+  constructor(private router: ActivatedRoute ,private dialog: MatDialog) {
     this.id=this.router.snapshot.params['id'];
     this.archivo.archivos = ['default-placeholder.png']
     this.archivo.nombre = 'nombre '
@@ -80,10 +83,11 @@ export class DetalleModeloAlumnoComponent implements OnInit {
     window.open('./assets/img/' + n)
   }
   contratar(){
-    
+    this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container'});
   }
 
   valorar(){
-    
+    this.dialog.open(ModalValorarComponent, { panelClass: 'custom-dialog-container'});
+
   }
 }

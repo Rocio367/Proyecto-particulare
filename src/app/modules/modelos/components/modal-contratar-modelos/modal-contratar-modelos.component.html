@@ -13,7 +13,7 @@
                  
                     <form [formGroup]="formPaso1" class="ui large error form">
                       
-                        <mat-form-field class='input-small' appearance="outline">
+                        <mat-form-field class='input-large' appearance="outline">
                             <mat-label>Tipo</mat-label>
                             <mat-select formControlName="tipo">
                                 <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
@@ -28,7 +28,7 @@
                     </form>
 
                     <div>
-                        <button mat-button class='azul' [disabled]="formPaso1.invalid" (click)='guardarDatosPaso1()'
+                        <button mat-button color='warn' [disabled]="formPaso1.invalid" (click)='guardarDatosPaso1()'
                             matStepperNext>Siguiente</button>
                     </div>
                 </mat-step>
@@ -37,7 +37,7 @@
                     <p> Total a pagar : $300</p>
                     <form [formGroup]="formPaso2" class="ui large error form">
 
-                        <mat-form-field class='input-small' appearance="outline">
+                        <mat-form-field class='input-large' appearance="outline">
                             <mat-label>Metodo de pago</mat-label>
                             <mat-select formControlName="metodo">
                                 <mat-option *ngFor="let metodo of metodos" [value]="metodo.id">
@@ -60,13 +60,13 @@
                         datos para pago con pago facil
                     </div>
                     <div>
-                        <button mat-button class='azul' matStepperPrevious>Volver</button>
-                        <button mat-button [disabled]="formPaso2.invalid" class='azul'
+                        <button mat-button class='m-2' color='warn'  matStepperPrevious>Volver</button>
+                        <button mat-button class='m-2' color='warn'  [disabled]="formPaso2.invalid" class='azul'
                             matStepperNext>Siguiente</button>
                     </div>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>Termonamos! Gracias!</ng-template>
+                    <ng-template matStepLabel>Gracias!</ng-template>
                     imagen
 
                 </mat-step>

@@ -1,0 +1,39 @@
+/* Modal */
+.modal-header {
+    padding: 0;
+    border: none;
+}
+
+.modal-header .close {
+    margin: 2px 6px 0px auto;
+    padding: 0;
+    color: #1e3e6f;
+    opacity: 1;
+}
+
+mat-checkbox {
+    display: none;
+}
+
+label {
+    color: grey;
+}
+
+.clasificacion {
+    direction: rtl;
+    /* right to left */
+    unicode-bidi: bidi-override;
+    /* bidi de bidireccional */
+}
+
+label:hover {
+    color: #e0d71e;
+}
+
+label:hover~label {
+    color: #e0d71e;
+}
+
+input[type="radio"]:checked~label {
+    color: #e0d71e;
+}

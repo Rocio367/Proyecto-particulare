@@ -14,29 +14,31 @@
             <h4>Nombre:</h4> <span>{{archivo.nombre}}</span>
             <h4>Fecha: </h4><span>{{archivo.fecha | date}}</span>
             <h4>Estado:</h4> <span>{{ archivo.estado}}</span>
-                <hr/>
+            <hr />
             <h4>Institución:</h4> <span>{{ archivo.institucion}}</span>
             <h4>Materia:</h4> <span>{{ archivo.materia}}</span>
             <h4> Nivel:</h4> <span>{{ archivo.nivel}}</span>
-         
-          </div>
-     
+
+        </div>
+
 
         <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
             <h1 class="azulLetra">
                 Resoluciones
             </h1>
         </div>
-        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto"' >
+        
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto"'>
             <mat-list role="list">
-                <mat-list-item *ngFor='let res of resoluciones' role="listitem" >{{res}}
+                <mat-list-item *ngFor='let res of resoluciones' role="listitem">{{res}}
                     <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
-                    <button mat-button class='azul' (click)='valorar()' >Valorar</button>
+                    Nombre particular <button class='float-right' mat-button color='primary'
+                        (click)='valorar()'>Valorar</button>
                 </mat-list-item>
             </mat-list>
         </div>
-        <div class="col-lg-12" *ngIf='archivo.estado=="pendiente"' >
-           <p>Aun no hay resoluciones</p>
+        <div class="col-lg-12" *ngIf='archivo.estado=="pendiente"'>
+            <p>Aun no hay resoluciones</p>
         </div>
         <div class="col-lg-12">
             <h1 class="azulLetra">
@@ -59,7 +61,7 @@
                             {{item.valoracion}}/ 5
                         </span>
 
-                        
+
                     </div>
 
                     <div class='actions' style='text-align: end;'>
@@ -77,7 +79,7 @@
 
 
                 </mat-card-header>
-              
+
 
             </mat-card>
         </div>

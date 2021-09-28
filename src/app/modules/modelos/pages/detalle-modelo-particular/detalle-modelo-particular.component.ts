@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -25,7 +25,13 @@ export class DetalleModeloParticularComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
   files = '';
   message=false;
-  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private router: ActivatedRoute) {
+  formComentario: FormGroup;
+
+  constructor(public dialog: MatDialog,private form: FormBuilder,public snackBar: MatSnackBar,private router: ActivatedRoute) {
+    this.formComentario = this.form.group({
+      comentario: [''],
+    });
+
     this.id=this.router.snapshot.params['id'];
     this.archivo.archivos = ['default-placeholder.png']
     this.archivo.nombre = 'nombre '
@@ -121,5 +127,13 @@ export class DetalleModeloParticularComponent implements OnInit {
       horizontalPosition: 'center',
       panelClass: ['red-snackbar'],
     });
+  }
+
+  enviar(){
+    Swal.fire(
+      'La resolucion fue enviada con exito',
+      '',
+      'success'
+    )
   }
 }

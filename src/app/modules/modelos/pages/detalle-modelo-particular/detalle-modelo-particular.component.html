@@ -26,20 +26,19 @@
         </div>
         <div class="col-sm azul naranjaClaro grisLetra"
             *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
-            <h3 class="azulLetra">Datos generales: </h3>
+            <h3 class="azulLetra">Datos del alumno: </h3>
             <h4>Nombre:</h4> <span>{{alumno.nombreCompleto}}</span>
             <h4>Edad: </h4><span>alumno.edad </span>
 
 
         </div>
 
-
-        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado== "pendiente"'>
-            <h1 class="azulLetra">
+        <div class="col-lg-12" *ngIf='resoluciones || archivo.estado== "pendiente"'>
+            <h3 class="azulLetra">
                 Adjuntar resolucion de modelo
-            </h1>
+            </h3>
         </div>
-        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado== "pendiente"'>
+        <div class="col-lg-12  mt-3" *ngIf='resoluciones || archivo.estado== "pendiente"'>
             <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
                 style="display:none;">
             <button mat-raised-button color="success" class="success-button ml-2" (click)="file.click()">
@@ -53,6 +52,16 @@
             <span class="empty" *ngIf="!message">
                 Aun no existe un archivo cargado
             </span>
+            <form [formGroup]="formComentario" class="ui large error form mt-3">
+                <mat-form-field class='input-large' appearance="outline">
+                    <mat-label>Comentario opcional para el alumno</mat-label>
+                    <input matInput formControlName="comentario" placeholder="" type="text">
+                </mat-form-field>
+             
+
+            </form>
+
+            <button mat-raised-button [disabled]='!this.files' color="warn" (click)='enviar()'>Enviar resolucion</button>
         </div>
         <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <h1 class="azulLetra">
