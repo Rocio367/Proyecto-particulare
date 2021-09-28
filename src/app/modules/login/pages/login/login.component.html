@@ -1,15 +1,13 @@
 <div class='container-login container'>
   <mat-card class="card">
     <mat-card-header>
-      <h1 class='title azulLetra'>Inicio de sesión</h1>
-      <!--<img mat-card-image src="" alt="logo">-->
-  
+      <h1 class='title azulLetra mb-4'>Inicio de sesión</h1>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="loginForm" class="ui large error form" >
         <mat-form-field class='input-large' appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="username" placeholder="username@gmail.com" type="email">
+          <mat-label><img src="assets\img\user.png" style="height: 16px; margin-bottom: 1px;" alt=""> Ingresá tu email </mat-label>
+          <input matInput formControlName="username" placeholder="usuario@gmail.com" type="email">
         </mat-form-field>
         <div *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched"
           class="text-center error-msg">
@@ -20,8 +18,8 @@
         </div>
   
         <mat-form-field class='input-large' appearance="outline">
-          <mat-label>Contraseña</mat-label>
-          <input matInput id='password' formControlName="password" placeholder="Password" type="password">
+          <mat-label><img src="assets\img\padlock.png" style="height: 16px; margin-bottom: 1px;" alt=""> Ingresá tu contraseña </mat-label>
+          <input matInput id='password' formControlName="password" placeholder="Contraseña" type="password">
           <i (click)='mostrarPass()' matSuffix  [ngClass]='(!passwordVisibility)?"icofont-eye":"icofont-eye-blocked"' class='fs-25 blue-color'></i>
         </mat-form-field>
         <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
@@ -30,9 +28,13 @@
         </div>
       </form>
     </mat-card-content>
-    <mat-card-actions class="p-4">
+    
+    
+
+    <mat-card-actions>
       <button mat-raised-button class="azul blancaLetra" (click)='onSubmit()'>Confirmar</button>
-      <button mat-raised-button class="azul blancaLetra mt-3" (click)='Registrarse()'>Registrarse</button>
     </mat-card-actions>
+    <div class="mb-2"><a href="/registrarse">¿No tenés una cuenta?</a></div>
+    <div><a href="">¿Olvidaste tu contraseña?</a></div>
   </mat-card>
 </div>
