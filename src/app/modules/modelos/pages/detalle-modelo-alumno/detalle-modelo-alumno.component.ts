@@ -1,7 +1,11 @@
 import { M } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Archivo } from 'src/app/shared/models/archivo';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
+import { ModalContratarModelosComponent } from '../../components/modal-contratar-modelos/modal-contratar-modelos.component';
+import { ModalValorarComponent } from '../../components/modal-valorar/modal-valorar.component';
 
 @Component({
   selector: 'app-detalle-modelo-alumno',
@@ -12,7 +16,10 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   gallery: imgGallery[] = [];
   resoluciones: string[] = ['default-placeholder.png'];
   archivo = new Archivo;
-  constructor() {
+  id:number ;
+
+  constructor(private router: ActivatedRoute ,private dialog: MatDialog) {
+    this.id=this.router.snapshot.params['id'];
     this.archivo.archivos = ['default-placeholder.png']
     this.archivo.nombre = 'nombre '
     this.archivo.carrera = 'carrera '
@@ -59,6 +66,15 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.id==1 ){
+      this.archivo.estado='solicitar';
+    }else 
+    if(this.id==2 ){
+      this.archivo.estado='pendiente';
+    } else 
+    if(this.id==3 ){
+      this.archivo.estado='resuelto';
+    }
   }
   open(n: number) {
     window.open('./assets/img/' + this.gallery[n].path)
@@ -67,6 +83,11 @@ export class DetalleModeloAlumnoComponent implements OnInit {
     window.open('./assets/img/' + n)
   }
   contratar(){
-    
+    this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container'});
+  }
+
+  valorar(){
+    this.dialog.open(ModalValorarComponent, { panelClass: 'custom-dialog-container'});
+
   }
 }

@@ -15,7 +15,7 @@
                     <mat-card-header>
                         <mat-card-title class='azulLetra'> {{tema.titulo}}</mat-card-title>
                         <div class='actions'>
-                            <span class=" fs-21">{{tema.seguidores}}</span>
+                            <span [ngClass]='(tema.like)? "like-active" : "like" ' class="pt-1 pr-1 fs-16 ">{{tema.seguidores}}</span>
 
                             <i [ngClass]='(tema.like)? "like-active" : "like" ' class="icofont-like fs-21"
                                 (click)="like(tema)"></i>

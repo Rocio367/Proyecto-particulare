@@ -51,4 +51,7 @@ export class RecibidosComponent implements OnInit {
   seleccion(m:Mensaje){
     this.mensaje=m;
   }
+
+  
 }
+

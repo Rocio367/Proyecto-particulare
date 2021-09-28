@@ -24,16 +24,25 @@ export class ForoComponent implements OnInit {
     this.tema.like = true;
     let resp1 = new Respuestas();
     resp1.text = 'Primer comentario';
+    resp1.avatar = 'default-user.png';
+    resp1.user = 'Usuario 1';
+    
 
     let r1 = new Respuestas();
     r1.text = 'Respuesta 1 primer comentario';
+    r1.avatar = 'default-user.png';
+    r1.user = 'Usuario 2';
 
     let r2 = new Respuestas();
     r2.text = 'Respuesta 2 primer comentario';
+    r2.avatar = 'default-user.png';
+    r2.user = 'Usuario 3';
 
     resp1.respuestas.push(r1, r2)
     let resp2 = new Respuestas();
     resp2.text = 'Segundo comentario';
+    resp2.avatar = 'default-user.png';
+    resp2.user = 'Usuario 4';
 
     this.tema.respuesta.push(resp1,resp2)
    
@@ -59,7 +68,10 @@ export class ForoComponent implements OnInit {
   }
 
   responderForm(r: Respuestas) {
-    this.tema.respuesta[this.tema.respuesta.indexOf(r)].respuestas.unshift(r);
+    r.text='@'+r.user+ ''+this.formRespuesta.get('text').value;
+    r.user='Usuario actual'
+    this.tema.respuesta[this.tema.respuesta.indexOf(r)].respuestas.push(r);
+    this.tema.respuesta[this.tema.respuesta.indexOf(r)].aResponder=!this.tema.respuesta[this.tema.respuesta.indexOf(r)].aResponder;
 
     Swal.fire(
       'Gracias por responder!',

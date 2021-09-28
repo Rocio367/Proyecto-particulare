@@ -25,7 +25,7 @@ export class ModalContratarModelosComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {archivo:Archivo , particular: number},
     private form: FormBuilder, private router: Router) {
     this.formPaso1 = this.form.group({
-      tipo: ['', [Validators.required]],
+      tipo: ['2', [Validators.required]],
      
     });
 

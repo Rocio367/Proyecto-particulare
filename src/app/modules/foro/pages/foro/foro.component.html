@@ -5,7 +5,7 @@
                 <mat-card-header>
                     <mat-card-title class='azulLetra'> {{tema.titulo}}</mat-card-title>
                     <div class='actions'>
-                        <span class=" fs-21">{{tema.seguidores}}</span>
+                        <span [ngClass]='(tema.like)? "like-active" : "like" ' class="pt-1 pr-1 fs-16 ">{{tema.seguidores}}</span>
 
                         <i [ngClass]='(tema.like)? "like-active" : "like" ' class="icofont-like fs-21"
                             (click)="like(tema)"></i>
@@ -32,10 +32,13 @@
         <div class="col-lg-12" *ngFor='let resp of tema.respuesta'>
             <mat-card class="example-card">
                 <mat-card-header>
-                    <mat-card-title class='azulLetra'> {{resp.text}}</mat-card-title>
+                    <mat-card-title><a href="perfil-alumno">{{resp.user}}</a> </mat-card-title>  
+                    <mat-card-subtitle class='azulLetra'> {{resp.text}}</mat-card-subtitle>
+                    <img mat-card-avatar [src]="'./assets/img/'+resp.avatar" alt="foto ">
+
                     <div class='actions'>
                         <a (click)='verRespuestas(resp)' style='cursor: pointer;'> Respuestas</a>
-                        <a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
+                        |<a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
                     </div>
 
                 </mat-card-header>
@@ -43,7 +46,9 @@
             <div *ngFor='let resp2 of resp.respuestas'>
                 <mat-card class="example-card card-2" *ngIf=' resp.ver'>
                     <mat-card-header>
-                        <mat-card-title class='azulLetra'> {{resp2.text}}</mat-card-title>
+                        <mat-card-title><a href="perfil-alumno">{{resp2.user}}</a> </mat-card-title>  
+                        <mat-card-subtitle > {{resp2.text}}</mat-card-subtitle>
+                        <img mat-card-avatar [src]="'./assets/img/'+resp2.avatar" alt="foto ">
                         <div class='actions'>
                             <a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
 
