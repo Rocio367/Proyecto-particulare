@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   templateUrl: './registrar-alumno.component.html',
   styleUrls: ['./registrar-alumno.component.scss']
 })
-export class RegistrarAlumnoComponent {
+export class RegistrarAlumnoComponent implements OnInit {
+
   formDatos = this.form.group({
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
@@ -21,9 +22,22 @@ export class RegistrarAlumnoComponent {
     nivelAcademico: ['', Validators.required],
   });
 
-  tiposDeArchivosPermitidos = ".png, .jpg, .jpeg"; 
+  tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
+  imagenPerfil = "";
 
   constructor(private form: FormBuilder, private router: Router ) {}
+
+  ngOnInit() {
+    this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
+      archivo => {
+        const reader = new FileReader();
+        reader.readAsDataURL(archivo)
+        reader.onload = () => {
+          this.imagenPerfil = reader.result as string;
+        }
+      }
+    );
+  }
 
   registrarAlumno(){
     if(this.formDatos.valid) {

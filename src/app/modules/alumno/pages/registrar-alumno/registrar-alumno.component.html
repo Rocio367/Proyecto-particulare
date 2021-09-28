@@ -5,13 +5,18 @@
         </mat-card-header>
         <mat-card-content>
             <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarAlumno()">
-            
+                <div *ngIf="imagenPerfil && imagenPerfil !== ''">
+                    <img [src]="imagenPerfil">
+                </div>
+
                 <mat-form-field class='input-large' appearance="outline">
                     <ngx-mat-file-input
                         formControlName="fotoPerfil"
                         multiple=false 
                         accept=".png, .jpg, .jpeg" 
-                        color="accent">
+                        color="accent" placeholder="Foto de perfil"
+                        >
+                        <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
                     </ngx-mat-file-input>
                 </mat-form-field>
 
