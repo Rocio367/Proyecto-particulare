@@ -7,7 +7,7 @@
                 <i class="icofont-close"></i>
             </button>
         </mat-chip>
-        <input appearance="outline" placeholder="Buscar..." #classInput [formControl]="classCtrl"
+        <input appearance="outline" placeholder="Buscar temas..." #classInput [formControl]="classCtrl"
             [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             (matChipInputTokenEnd)="add($event)">
     </mat-chip-list>

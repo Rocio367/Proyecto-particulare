@@ -11,4 +11,5 @@ export class Archivo{
     carrera:string;
     nivel:string;
     like=false;
+    id:number;
 }

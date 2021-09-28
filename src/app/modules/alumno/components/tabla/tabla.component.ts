@@ -5,13 +5,14 @@ export interface PeriodicElement {
   profesor: string;
   date: string;
   symbol: string;
+  boton: string
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {profesor: 'Roxana', name: 'Clase 1', date:'10/10/2012' , symbol: 'H'},
-  {profesor: 'Roxana', name: 'Clase 2', date: '10/10/2012', symbol: 'He'},
-  {profesor: 'Roxana', name: 'Clase 3', date: '10/10/2012', symbol: 'Li'},
-  {profesor: 'Roxana', name: 'Clase 4', date: '10/10/2012', symbol: 'Be'},
+  {profesor: 'Roxana', name: 'Clase 1', date:'10/10/2012' , symbol: 'Finalizada', boton:'' },
+  {profesor: 'Roxana', name: 'Clase 2', date: '10/10/2012', symbol: 'Finalizada', boton:''},
+  {profesor: 'Roxana', name: 'Clase 3', date: '10/10/2012', symbol: 'Ausente', boton:''},
+  {profesor: 'Roxana', name: 'Clase 4', date: '10/10/2021', symbol: 'Pendiente', boton:''},
 ];
 
 @Component({
@@ -22,6 +23,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 export class TablaComponent {
-  displayedColumns: string[] = ['name','profesor', 'date', 'symbol',];
+  displayedColumns: string[] = ['name','profesor', 'date', 'symbol', 'boton'];
   dataSource = ELEMENT_DATA;
 }

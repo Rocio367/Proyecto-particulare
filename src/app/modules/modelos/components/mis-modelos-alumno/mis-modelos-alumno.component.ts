@@ -30,6 +30,7 @@ export class MisModelosAlumnoComponent implements OnInit {
   constructor(private router:Router) {
   
     let a2=new Archivo();
+    a2.id=2;
     a2.archivos=['default-placeholder.png']
     a2.nombre='nombre 2'
     a2.fecha=new Date;
@@ -42,6 +43,7 @@ export class MisModelosAlumnoComponent implements OnInit {
     a2.nivel = 'nivel '
 
     let a3=new Archivo();
+    a3.id=3;
     a3.archivos=['default-placeholder.png']
     a3.nombre='nombre 2'
     a3.fecha=new Date;

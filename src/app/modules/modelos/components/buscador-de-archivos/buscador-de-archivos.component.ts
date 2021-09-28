@@ -29,6 +29,7 @@ export class BuscadorDeArchivosComponent implements OnInit {
 
   constructor(private router:Router) {
     let a1=new Archivo();
+    a1.id=1;
     a1.archivos=['default-placeholder.png']
     a1.nombre='nombre 3'
     a1.fecha=new Date;
@@ -41,6 +42,7 @@ export class BuscadorDeArchivosComponent implements OnInit {
     a1.nivel = 'nivel '
 
     let a2=new Archivo();
+    a2.id=2;
     a2.archivos=['default-placeholder.png']
     a2.nombre='nombre 2'
     a2.fecha=new Date;
@@ -56,6 +58,7 @@ export class BuscadorDeArchivosComponent implements OnInit {
     a3.archivos=['default-placeholder.png']
     a3.nombre='nombre 2'
     a3.fecha=new Date;
+    a3.id=3;
     a3.seguidores=9;
     a3.profesores=['particular 1']
     a3.estado='Resuelto'
@@ -118,6 +121,6 @@ export class BuscadorDeArchivosComponent implements OnInit {
  }
 
  verDetalle(a : Archivo){
-   this.router.navigate(['detalle-modelo-alumno/id'])
+   this.router.navigate(['detalle-modelo-alumno/'+a.id])
  }
 }
