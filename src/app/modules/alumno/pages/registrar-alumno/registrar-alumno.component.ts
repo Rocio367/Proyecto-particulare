@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-alumno',
@@ -7,27 +8,24 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./registrar-alumno.component.scss']
 })
 export class RegistrarAlumnoComponent {
-  formDatos: FormGroup;
-  fotoPerfilFormControl: FormControl;
-  tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
-  foto: any;
+  formDatos = this.form.group({
+    fotoPerfil: ['', Validators.required],
+    nombre: ['', Validators.required],
+    apellido: ['', Validators.required],
+    email: ['', [Validators.email, Validators.required]],
+    contrasenia: ['', Validators.required],
+    repetirContrasenia: ['', Validators.required],
+    fechaNacimiento: ['', Validators.required],
+    intereses: ['', Validators.required], 
+    institucuion: ['', Validators.required],
+    nivelAcademico: ['', Validators.required],
+  });
 
-  constructor(private form: FormBuilder) {
+  tiposDeArchivosPermitidos = ".png, .jpg, .jpeg"; 
 
-    this.fotoPerfilFormControl = new FormControl([this.foto, Validators.required])
+  constructor(private form: FormBuilder, private router: Router ) {}
 
-    this.formDatos = this.form.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      email: ['', [Validators.email, Validators.required]],
-      contrasenia: ['', Validators.required],
-      repetirContrasenia: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
-      intereses: ['', Validators.required], 
-      institucuion: ['', Validators.required],
-      nivelAcademico: ['', Validators.required],
-      fotoPerfil: this.fotoPerfilFormControl
-    });
+  registrarAlumno(){
+    this.router.navigate(['/perfil-alumno']);
   }
-
 }

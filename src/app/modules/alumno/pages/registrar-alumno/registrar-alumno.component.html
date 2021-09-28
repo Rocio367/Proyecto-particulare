@@ -8,7 +8,7 @@
             
                 <mat-form-field class='input-large' appearance="outline">
                     <ngx-mat-file-input
-                        [formControl]="fotoPerfilFormControl" 
+                        formControlName="fotoPerfil"
                         multiple=false 
                         accept=".png, .jpg, .jpeg" 
                         color="accent">
@@ -104,12 +104,10 @@
                     class="text-center error-msg">
                     <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                 </div><br>
-            
-
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="primary" (click)="registrarAlumno()">Registrar</button>
         </mat-card-actions>
     </mat-card>
 </div>
