@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-alumno',
@@ -7,9 +9,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrarAlumnoComponent implements OnInit {
 
-  constructor() { }
+  formDatos = this.form.group({
+    fotoPerfil: ['', Validators.required],
+    nombre: ['', Validators.required],
+    apellido: ['', Validators.required],
+    telefono: ['', Validators.required],
+    email: ['', [Validators.email, Validators.required]],
+    contrasenia: ['', Validators.required],
+    repetirContrasenia: ['', Validators.required],
+    fechaNacimiento: ['', Validators.required],
+    intereses: ['', Validators.required], 
+    institucuion: ['', Validators.required],
+    nivelAcademico: ['', Validators.required],
+  });
 
-  ngOnInit(): void {
+  tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
+  imagenPerfil = "";
+
+  constructor(private form: FormBuilder, private router: Router ) {}
+
+  ngOnInit() {
+    this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
+      archivo => {
+        const reader = new FileReader();
+        reader.readAsDataURL(archivo)
+        reader.onload = () => {
+          this.imagenPerfil = reader.result as string;
+        }
+      }
+    );
   }
 
+  registrarAlumno(){
+    if(this.formDatos.valid) {
+      this.router.navigate(['/perfil-alumno']);
+      return true;
+    } else {
+      this.formDatos.markAllAsTouched();
+    }    
+  }
+
+  fotoDePerfilCargada() : boolean {
+    return this.imagenPerfil && this.imagenPerfil !== '';
+  }
 }

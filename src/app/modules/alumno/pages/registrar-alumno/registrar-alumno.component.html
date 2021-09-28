@@ -1,1 +1,149 @@
-<p>registrar-alumno works!</p>
+<div class='container-login container'>
+    <mat-card class="card">
+        <mat-card-header>
+            <h1 class='title'>Registro Alumno</h1>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarAlumno()">
+                <div class="row">
+                    <div class="col-3">
+                        <div *ngIf="fotoDePerfilCargada(); else sinFoto">
+                            <img [src]="imagenPerfil" class="mx-auto d-block img-thumbnail" style="max-height: 200px; max-width: 200px;">
+                        </div>
+                        <ng-template #sinFoto>
+                            <img src="../../../../../assets/img/default-user.png"  width="220" height="200" />
+                        </ng-template>
+                    </div>
+                    <div class="col-9">
+                        <mat-form-field class='input-large' appearance="outline">
+                            <ngx-mat-file-input
+                                formControlName="fotoPerfil"
+                                multiple=false
+                                accept=".png, .jpg, .jpeg"
+                                color="accent" placeholder="Foto de perfil"
+                                >
+                                <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
+                            </ngx-mat-file-input>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field class='input-large' appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="nombre" placeholder="" type="text">
+                        </mat-form-field>
+                        <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                    </div>
+
+                    <div class="col-6">
+                        <mat-form-field class='input-large' appearance="outline">
+                            <mat-label>Apellido</mat-label>
+                            <input matInput formControlName="apellido" placeholder="" type="text">
+                        </mat-form-field>
+                        <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field class='input-large' appearance="outline">
+                            <mat-label>Telefono de contacto</mat-label>
+                            <input matInput formControlName="telefono" placeholder="" type="text">
+                        </mat-form-field>
+                        <div *ngIf="formDatos.get('telefono').hasError('required') && formDatos.get('telefono').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field class='input-large' appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" placeholder="username@gmail.com" type="email">
+                        </mat-form-field>
+                        <div *ngIf="formDatos.get('email').hasError('required') && formDatos.get('email').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                        <div *ngIf="formDatos.get('email').hasError('email') && formDatos.get('email').touched"
+                            class=" error-msg text-center">
+                            <span class="mda-form-msg">El formato no es correcto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field class='input-large' appearance="outline">
+                        <mat-label>Contraseña</mat-label>
+                            <input matInput formControlName="contrasenia" placeholder="" type="password">
+                        </mat-form-field>
+                        <div *ngIf="formDatos.get('contrasenia').hasError('required') && formDatos.get('contrasenia').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field class='input-large' appearance="outline">
+                            <mat-label>Repetir contraseña</mat-label>
+                            <input matInput formControlName="repetirContrasenia" placeholder="" type="password">
+                        </mat-form-field>
+                        <div *ngIf="formDatos.get('repetirContrasenia').hasError('required') && formDatos.get('repetirContrasenia').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                    </div>
+                </div>
+                <mat-form-field class='input-large' appearance="outline">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <mat-form-field color="accent" appearance="fill">
+                        <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </mat-form-field>
+                <div *ngIf="formDatos.get('fechaNacimiento').hasError('required') && formDatos.get('fechaNacimiento').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+
+                <mat-form-field class='input-large' appearance="outline">
+                    <mat-label>Intereses</mat-label>
+                    <textarea matInput formControlName="intereses" placeholder="" type=""></textarea>
+                </mat-form-field>                
+                <div *ngIf="formDatos.get('intereses').hasError('required') && formDatos.get('intereses').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+
+                <h3 class='title'>Datos académicos</h3>
+                <mat-form-field class='input-large' appearance="outline">
+                    <mat-label>Institución</mat-label>
+                    <input matInput formControlName="institucuion" placeholder="" type="text">
+                </mat-form-field>
+                <div *ngIf="formDatos.get('institucuion').hasError('required') && formDatos.get('institucuion').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+
+                <mat-form-field class='input-large' appearance="outline">
+                    <mat-label>Nivel académico</mat-label>
+                    <input matInput formControlName="nivelAcademico" placeholder="" type="text">
+                </mat-form-field>
+                <div *ngIf="formDatos.get('nivelAcademico').hasError('required') && formDatos.get('nivelAcademico').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+                <mat-card-actions>
+                    <button type="submit" mat-raised-button color="primary">Registrar</button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

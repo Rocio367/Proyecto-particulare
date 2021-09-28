@@ -7,11 +7,12 @@ import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-m
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { RegistrarAlumnoComponent } from './pages/registrar-alumno/registrar-alumno.component';
 import { TablaComponent } from './components/tabla/tabla.component';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 
 @NgModule({
   declarations:[RegistrarAlumnoComponent, EditarPerfilAlumnoComponent,PerfilAlumnoComponent, TablaComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
