@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { Archivo } from 'src/app/shared/models/archivo';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 import Swal from 'sweetalert2';
@@ -19,10 +20,19 @@ export class DetalleModeloParticularComponent implements OnInit {
   public progress: number;
   archivoForm: FormGroup;
   dataimage: any;
+  id:number ;
+  alumno={nombreCompleto:'Agustin Rios',edad:16}
   @ViewChild('fileInput') fileInput: ElementRef;
   files = '';
   message=false;
-  constructor(public dialog: MatDialog,public snackBar: MatSnackBar) {
+  formComentario: FormGroup;
+
+  constructor(public dialog: MatDialog,private form: FormBuilder,public snackBar: MatSnackBar,private router: ActivatedRoute) {
+    this.formComentario = this.form.group({
+      comentario: [''],
+    });
+
+    this.id=this.router.snapshot.params['id'];
     this.archivo.archivos = ['default-placeholder.png']
     this.archivo.nombre = 'nombre '
     this.archivo.carrera = 'carrera '
@@ -65,6 +75,15 @@ export class DetalleModeloParticularComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.id==1 || this.id == 2 || this.id==3){
+      this.archivo.estado='resolver';
+    }else 
+    if(this.id==4 ){
+      this.archivo.estado='pendiente';
+    } else 
+    if(this.id==5 ){
+      this.archivo.estado='resuelto';
+    }
   }
   open(n: number) {
     window.open('./assets/img/' + this.gallery[n].path)
@@ -108,5 +127,13 @@ export class DetalleModeloParticularComponent implements OnInit {
       horizontalPosition: 'center',
       panelClass: ['red-snackbar'],
     });
+  }
+
+  enviar(){
+    Swal.fire(
+      'La resolucion fue enviada con exito',
+      '',
+      'success'
+    )
   }
 }

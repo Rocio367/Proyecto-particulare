@@ -35,7 +35,9 @@ body {
 .fs-21{
     font-size: 21px;
 }
-
+.fs-40{
+    font-size: 40px;
+}
 .fs-25{
     font-size: 25px;
 }
@@ -70,6 +72,30 @@ body {
     margin-top: -18px !important;
 }
 
+.mat-card-title{
+   color: #25798E !important;
+}
+//btn
+.mat-raised-button.mat-warn{
+    background-color: #00aa77!important;
+    color:white!important;
+
+}
+.mat-button.mat-warn{
+    background-color: #00aa77!important;
+    color:white!important;
+
+}
+.mat-button.mat-primary{
+    background-color: #ff8e32!important;
+    color:white!important;
+    margin:10px!important;
+}
+.mat-raised-button.mat-primary{
+    background-color: #ff8e32!important;
+    color:white!important;
+    margin:2px!important;
+}
 //header
 .a-header {
     color: white !important;

@@ -9,28 +9,36 @@
                 </div>
             </carousel>
         </div>
+        <div class="col-sm azul naranjaClaro grisLetra">
+            <h3 class="azulLetra">Datos generales: </h3>
+            <h4>Nombre:</h4> <span>{{archivo.nombre}}</span>
+            <h4>Fecha: </h4><span>{{archivo.fecha | date}}</span>
+            <h4>Estado:</h4> <span>{{ archivo.estado}}</span>
+            <hr />
+            <h4>Institución:</h4> <span>{{ archivo.institucion}}</span>
+            <h4>Materia:</h4> <span>{{ archivo.materia}}</span>
+            <h4> Nivel:</h4> <span>{{ archivo.nivel}}</span>
 
-        <div class="col-lg-12 mt-2">
-            <p> {{archivo.nombre}}</p>
-            <p> {{archivo.fecha | date}}</p>
-            <p> {{ archivo.estado}}</p>
-            <p> {{ archivo.institucion}}</p>
-            <p> {{ archivo.materia}}</p>
-            <p> {{ archivo.nivel}}</p>
         </div>
 
-        <div class="col-lg-12" *ngIf='resoluciones'>
+
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
             <h1 class="azulLetra">
                 Resoluciones
             </h1>
         </div>
-        <div class="col-lg-12" *ngIf='resoluciones'>
+        
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto"'>
             <mat-list role="list">
-                <mat-list-item *ngFor='let res of resoluciones' role="listitem" >{{res}}
+                <mat-list-item *ngFor='let res of resoluciones' role="listitem">{{res}}
                     <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
+                    Nombre particular <button class='float-right' mat-button color='primary'
+                        (click)='valorar()'>Valorar</button>
                 </mat-list-item>
-
             </mat-list>
+        </div>
+        <div class="col-lg-12" *ngIf='archivo.estado=="pendiente"'>
+            <p>Aun no hay resoluciones</p>
         </div>
         <div class="col-lg-12">
             <h1 class="azulLetra">
@@ -52,9 +60,13 @@
                         <span class='subtitle'>
                             {{item.valoracion}}/ 5
                         </span>
+
+
                     </div>
 
-
+                    <div class='actions' style='text-align: end;'>
+                        <button mat-button color='primary' (click)='contratar()'>Contratar</button>
+                    </div>
                     <mat-card-subtitle class='fs-16'>
                         Costo de resolucion : ${{ item.costo}}
                     </mat-card-subtitle>
@@ -67,9 +79,7 @@
 
 
                 </mat-card-header>
-                <div style='text-align: end;'>
-                    <button mat-button class='azul' (click)='contratar()'>Contratar</button>
-                </div>
+
 
             </mat-card>
         </div>

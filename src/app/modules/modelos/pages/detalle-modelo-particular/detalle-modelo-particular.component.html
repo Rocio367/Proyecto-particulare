@@ -9,23 +9,36 @@
                 </div>
             </carousel>
         </div>
-        <col-lg-12>
-            <button mat-button class='azul' (click)='postularme()'>Postularme para resolverlo</button>
-        </col-lg-12>
-        <div class="col-lg-12 mt-2">
-            <p> {{archivo.nombre}}</p>
-            <p> {{archivo.fecha | date}}</p>
-            <p> {{ archivo.estado}}</p>
-            <p> {{ archivo.institucion}}</p>
-            <p> {{ archivo.materia}}</p>
-            <p> {{ archivo.nivel}}</p>
+        <div class='col-lg-12 text-center' *ngIf=' archivo.estado== "resolver"'>
+            <button mat-raised-button class='fs-21 m-3' color="warn" (click)='postularme()'>Postularme para
+                resolverlo</button>
         </div>
-        <div class="col-lg-12" *ngIf='resoluciones'>
-            <h1 class="azulLetra">
-                Mi resolucion
-            </h1>
+        <div class="col-sm azul naranjaClaro grisLetra">
+            <h3 class="azulLetra">Datos generales: </h3>
+            <h4>Nombre:</h4> <span>{{archivo.nombre}}</span>
+            <h4>Fecha: </h4><span>{{archivo.fecha | date}}</span>
+            <h4>Estado:</h4> <span>{{ archivo.estado}}</span>
+            <hr />
+            <h4>Institución:</h4> <span>{{ archivo.institucion}}</span>
+            <h4>Materia:</h4> <span>{{ archivo.materia}}</span>
+            <h4> Nivel:</h4> <span>{{ archivo.nivel}}</span>
+
         </div>
-        <div class="col-lg-12">
+        <div class="col-sm azul naranjaClaro grisLetra"
+            *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
+            <h3 class="azulLetra">Datos del alumno: </h3>
+            <h4>Nombre:</h4> <span>{{alumno.nombreCompleto}}</span>
+            <h4>Edad: </h4><span>alumno.edad </span>
+
+
+        </div>
+
+        <div class="col-lg-12" *ngIf='resoluciones || archivo.estado== "pendiente"'>
+            <h3 class="azulLetra">
+                Adjuntar resolucion de modelo
+            </h3>
+        </div>
+        <div class="col-lg-12  mt-3" *ngIf='resoluciones || archivo.estado== "pendiente"'>
             <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
                 style="display:none;">
             <button mat-raised-button color="success" class="success-button ml-2" (click)="file.click()">
@@ -39,14 +52,23 @@
             <span class="empty" *ngIf="!message">
                 Aun no existe un archivo cargado
             </span>
+            <form [formGroup]="formComentario" class="ui large error form mt-3">
+                <mat-form-field class='input-large' appearance="outline">
+                    <mat-label>Comentario opcional para el alumno</mat-label>
+                    <input matInput formControlName="comentario" placeholder="" type="text">
+                </mat-form-field>
+             
+
+            </form>
+
+            <button mat-raised-button [disabled]='!this.files' color="warn" (click)='enviar()'>Enviar resolucion</button>
         </div>
-        <div class="col-lg-12 mt-2" *ngIf='resoluciones '>
+        <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <h1 class="azulLetra">
-                Otras resoluciones
+                Resolucion entregada
             </h1>
         </div>
-
-        <div class="col-lg-12" *ngIf='resoluciones'>
+        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <mat-list role="list">
                 <mat-list-item *ngFor='let res of resoluciones' role="listitem">{{res}}
                     <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
@@ -55,6 +77,16 @@
             </mat-list>
         </div>
 
+        <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+            <h1 class="azulLetra">
+                Comentarios opcionales
+            </h1>
+        </div>
+        <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+            <p class="">
+                Comentarios
+            </p>
+        </div>
 
 
 

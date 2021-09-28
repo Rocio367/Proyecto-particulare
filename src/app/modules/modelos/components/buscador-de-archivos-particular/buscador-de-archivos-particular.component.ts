@@ -29,8 +29,9 @@ export class BuscadorDeArchivosParticularComponent implements OnInit {
 
   constructor(private router:Router) {
     let a1=new Archivo();
+    a1.id=1;
     a1.archivos=['default-placeholder.png']
-    a1.nombre='nombre 3'
+    a1.nombre='nombre 1'
     a1.fecha=new Date;
     a1.seguidores=4;
     a1.profesores=['particular 1','particular 2']
@@ -41,20 +42,22 @@ export class BuscadorDeArchivosParticularComponent implements OnInit {
     a1.nivel = 'nivel '
 
     let a2=new Archivo();
+    a2.id=2;
     a2.archivos=['default-placeholder.png']
     a2.nombre='nombre 2'
     a2.fecha=new Date;
     a2.seguidores=9;
     a2.profesores=['particular 1']
-    a2.estado='Resuelto por mi'
+    a2.estado='Resolver'
     a2.carrera = 'carrera '
     a2.institucion = 'institucion '
     a2.materia = 'materia '
     a2.nivel = 'nivel '
 
     let a3=new Archivo();
+    a3.id=3;
     a3.archivos=['default-placeholder.png']
-    a3.nombre='nombre 2'
+    a3.nombre='nombre 3'
     a3.fecha=new Date;
     a3.seguidores=9;
     a3.profesores=['particular 1']
@@ -118,7 +121,7 @@ export class BuscadorDeArchivosParticularComponent implements OnInit {
  }
 
  verDetalle(a : Archivo){
-   this.router.navigate(['detalle-modelo-particular/id'])
+   this.router.navigate(['detalle-modelo-particular/'+a.id])
  }
 
  
