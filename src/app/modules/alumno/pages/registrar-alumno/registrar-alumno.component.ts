@@ -13,6 +13,7 @@ export class RegistrarAlumnoComponent implements OnInit {
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
+    telefono: ['', Validators.required],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
@@ -46,5 +47,9 @@ export class RegistrarAlumnoComponent implements OnInit {
     } else {
       this.formDatos.markAllAsTouched();
     }    
+  }
+
+  fotoDePerfilCargada() : boolean {
+    return this.imagenPerfil && this.imagenPerfil !== '';
   }
 }
