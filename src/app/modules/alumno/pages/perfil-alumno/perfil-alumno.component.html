@@ -22,7 +22,7 @@
   <br>
 </div> 
 
-<div class="container mt-5">
+<div class="container mt-5 z-index">
   <br>
     <h4 class="azulLetra">Beneficios : </h4>
     <carousel>
@@ -91,19 +91,7 @@
         </mat-card>
       </div>
     </div>
-    <div class="carousel-cell">
-      <div class="col-sm">
-        <mat-card class="example-card">
-          <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-          <mat-card-title>PACK 20 CLASES A -10%</mat-card-title>
-          <mat-card-content>
-            <p>This card has divider and indeterminate progress as footer</p>
-            <p></p>
-          </mat-card-content>
-          <mat-divider inset></mat-divider>
-        </mat-card>
-      </div>
-    </div>
+
     </carousel>
 
   <br>  
@@ -118,16 +106,21 @@
       <div class="col-sm azul naranjaClaro grisLetra">
         <mat-list>
             <div mat-line><h4 class="azulLetra">Clases cursadas : </h4>
-            </div>
-            <mat-list-item *ngFor="let folder of folders">
-              <mat-icon mat-list-icon><i class="icofont-ui-video-play"></i></mat-icon>
-              <div mat-line>{{folder.name}}</div>
-              <div mat-line> {{folder.updated | date}} </div>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-        </mat-list>
-          
+            </div>    
+          <mat-selection-list #shoes [multiple]="false">
+          <mat-list-option *ngFor="let folder of folders" [value]="folders">
+          <mat-icon mat-list-icon><i class="icofont-ui-video-play"></i></mat-icon>
+          {{folder.name}} <br>
+          {{folder.updated | date}}
+          <hr/>
+          </mat-list-option>
+          </mat-selection-list>
+          </mat-list>
       </div>
     </div>
 </div> 
 </div>
+
+
+
+
