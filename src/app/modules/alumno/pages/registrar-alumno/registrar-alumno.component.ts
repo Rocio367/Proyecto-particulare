@@ -26,6 +26,11 @@ export class RegistrarAlumnoComponent {
   constructor(private form: FormBuilder, private router: Router ) {}
 
   registrarAlumno(){
-    this.router.navigate(['/perfil-alumno']);
+    if(this.formDatos.valid) {
+      this.router.navigate(['/perfil-alumno']);
+      return true;
+    } else {
+      this.formDatos.markAllAsTouched();
+    }    
   }
 }
