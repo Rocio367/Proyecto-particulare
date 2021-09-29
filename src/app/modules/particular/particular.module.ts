@@ -7,11 +7,12 @@ import { ComentariosParticularComponent } from './pages/comentarios-particular/c
 import { EditarPerfilParticularComponent } from './pages/editar-perfil-particular/editar-perfil-particular.component';
 import { PerfilParticularComponent } from './pages/perfil-particular/perfil-particular.component';
 import { RegistrarParticularComponent } from './pages/registrar-particular/registrar-particular.component';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 
 @NgModule({
   declarations:[ RegistrarParticularComponent, PerfilParticularComponent, EditarPerfilParticularComponent, ComentariosParticularComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
