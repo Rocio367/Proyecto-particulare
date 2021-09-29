@@ -42,7 +42,7 @@ export class RegistrarParticularComponent implements OnInit {
   }
   registrarParticular(){
     if(this.formDatos.valid) {
-      this.router.navigate(['/perfil-particular']);
+      this.router.navigate(['/perfil-particular',1]);
       return true;
     } else {
       this.formDatos.markAllAsTouched();
