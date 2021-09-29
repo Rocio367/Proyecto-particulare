@@ -18,7 +18,7 @@ export class RegistrarAlumnoComponent implements OnInit {
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
-    intereses: ['', Validators.required], 
+    intereses: ['', Validators.required],
     institucuion: ['', Validators.required],
     nivelAcademico: ['', Validators.required],
   });
@@ -46,7 +46,7 @@ export class RegistrarAlumnoComponent implements OnInit {
       return true;
     } else {
       this.formDatos.markAllAsTouched();
-    }    
+    }
   }
 
   fotoDePerfilCargada() : boolean {
