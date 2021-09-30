@@ -16,11 +16,12 @@ import { HomeGeneralComponent } from './components/home-general/home-general.com
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { IvyGalleryModule } from 'angular-gallery';
 import { BuscadorComponent } from './components/buscador/buscador.component';
+import { CardsProfesorComponent } from './components/cards-profesor/cards-profesor.component';
 
 
 
 @NgModule({
-  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent],
+  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent, CardsProfesorComponent],
   imports:[SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
