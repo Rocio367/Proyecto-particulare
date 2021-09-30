@@ -21,9 +21,7 @@ export class CardsProfesorComponent implements OnInit {
   constructor() { }
 
   element: Section[] = [
-    {
-      type: 'Online',name: 'Profesor 1', materia:'Inglés principiantes' , ubicacion: 'Ituzaingo, Buenos Aires', descripcion:'Lorem ipsum dolor.',stars:1
-    },
+    {type: 'Online',name: 'Profesor 1', materia:'Inglés principiantes' , ubicacion: 'Ituzaingo, Buenos Aires', descripcion:'Lorem ipsum dolor.',stars:1},
     {type: 'Online', name: 'Profesor 2', materia: 'Inglés intermedio', ubicacion: 'Ramos Mejía, Buenos Aires', descripcion:'Lorem ipsum dolor.',stars:5},
     {type: 'Online', name: 'Profesor 3', materia: 'Inglés básico nivel 1', ubicacion: 'San justo, Buenos Aires', descripcion:'Lorem ipsum dolor.',stars:3},    
   ];

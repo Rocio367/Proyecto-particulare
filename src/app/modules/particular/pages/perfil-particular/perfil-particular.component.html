@@ -1,1 +1,42 @@
-<p>perfil-particular works!</p>
+<div class="naranjaClaro p-5 container">
+    <div class="container mt-2">
+            <div class="row">
+              <div class="col-sm-12 col-md-3">
+                <img src="../../../../../assets/img/default-user.png"  width="220" height="200" />
+            </div>
+              <div class="col-sm-12 col-md-4 azul naranjaClaro grisLetra">
+                <h4 class="azulLetra">Nombre y apellido: </h4>
+                <h5>Edad: </h5>
+                <h5>Localidad: </h5>
+                <hr/>
+                <h5>Estudios:</h5>
+                <h5>Años de experiencia:</h5>
+              </div>
+              <div class="col-sm-12 col-md-5 azul naranjaClaro grisLetra">
+                <iframe width="353" height="180" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+    </div>
+
+    <div class="mt-5">
+      <h4 class="azulLetra">Descripción:</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut, curabitur nibh hendrerit netus inceptos non auctor luctus. Dis pretium parturient a lacinia ac augue placerat mauris vulputate, dui aenean fermentum nec congue nisl iaculis porttitor fames taciti, eget nibh aptent felis platea justo vel lectus. Ridiculus turpis sapien facilisi aliquam viverra dictumst neque hac at praesent netus, nascetur nisl fames elementum phasellus primis ante vehicula natoque ornare, magnis sodales curae dui mauris congue nullam maecenas id metus.</p>
+  </div>
+
+    <div class="mt-5">
+        <hr/>
+        <h4 class="azulLetra">Califiaciones y opiniones</h4>
+        <div class='stars'>
+            <i class="icofont-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
+            <i class="icofont-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
+            <i class="icofont-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
+            <i class="icofont-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
+            <i class="icofont-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
+            <span class='subtitle'>
+                {{3}}/ 5
+            </span>
+        </div>
+
+        <app-comentarios-particular></app-comentarios-particular>
+    </div>
+
+</div> 
