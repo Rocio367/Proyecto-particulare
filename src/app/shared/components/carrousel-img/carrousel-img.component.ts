@@ -19,7 +19,7 @@ export class CarrouselImgComponent implements OnInit {
   @Input() background='#003567';
   styleTitle='blanco';
   constructor( public dialog: MatDialog) {
-     
+
   }
   ngOnInit(): void {
    
@@ -54,6 +54,13 @@ export class CarrouselImgComponent implements OnInit {
         img4.position = i;
         i++;
         this.gallery.push(img4)
+
+        let img5 = new imgGallery();
+        img5.id = i.toString();
+        img5.path = 'default-placeholder.png';
+        img5.position = i;
+        i++;
+        this.gallery.push(img5)
    //   });
  //   }
   }
