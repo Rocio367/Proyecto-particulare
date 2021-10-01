@@ -17,6 +17,7 @@ import { FormContactoComponent } from './form-contacto/form-contacto.component';
 import { ModalAnotarseComponent } from './modal-anotarse/modal-anotarse.component';
 import { CardsComunComponent } from './cards-comun/cards-comun.component';
 import { TableComponent } from './table/table.component';
+
 @NgModule({
   declarations: [
     FormContactoComponent,
