@@ -2,53 +2,97 @@
     <div class="row">
 
         <div class="col-lg-12 mt-2">
-            <carousel style='height: 370px;display: flex;' cellsToShow='3' counter='true' autoplay='true'
+            <carousel class='desk' style='height: 300px;display: flex;' cellsToShow='3' counter='true' autoplay='true'
+                lightDOM='true' loop='true'>
+                <div class="carousel-cell " *ngFor="let item of  gallery;">
+                    <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
+                </div>
+            </carousel>
+            <carousel class='mob' style='height: 300px;display: flex;' cellsToShow='1' counter='true' autoplay='true'
                 lightDOM='true' loop='true'>
                 <div class="carousel-cell " *ngFor="let item of  gallery;">
                     <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
                 </div>
             </carousel>
         </div>
-        <div class="col-sm azul naranjaClaro grisLetra">
-            <h3 class="azulLetra">Datos generales: </h3>
-            <h4>Nombre:</h4> <span>{{archivo.nombre}}</span>
-            <h4>Fecha: </h4><span>{{archivo.fecha | date}}</span>
-            <h4>Estado:</h4> <span>{{ archivo.estado}}</span>
-            <hr />
-            <h4>Institución:</h4> <span>{{ archivo.institucion}}</span>
-            <h4>Materia:</h4> <span>{{ archivo.materia}}</span>
-            <h4> Nivel:</h4> <span>{{ archivo.nivel}}</span>
+        <div class="col-lg-12 text-center">
+            <mat-card>
+                <h3 class="color-a ">Datos generales: </h3>
+
+                <h4 class='color-a fs-16'>Nombre: <span class='color-d '>{{archivo.nombre}}</span></h4>
+                <h4 class='color-a fs-16'>Fecha:<span class='color-d'>{{archivo.fecha | date}}</span> </h4>
+                <h4 class='color-a fs-16'>Estado:<span class='color-d'>{{ archivo.estado}}</span></h4>
+                <hr />
+                <h4 class='color-a fs-16'>Institución: <span class='color-d'>{{ archivo.institucion}}</span></h4>
+                <h4 class='color-a fs-16'>Materia: <span class='color-d'>{{ archivo.materia}}</span></h4>
+                <h4 class='color-a fs-16'> Nivel: <span class='color-d'>{{ archivo.nivel}}</span></h4>
+            </mat-card>
 
         </div>
 
-
-        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
-            <h1 class="azulLetra">
+        <div class='col-lg-12 text-center'
+            *ngIf='resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
+            <h3 class="color-a">
                 Resoluciones
-            </h1>
+            </h3>
+
+            <div *ngIf='resoluciones && archivo.estado=="resuelto"'>
+                <mat-card class="example-card card-particulares" *ngFor='let item of resoluciones'>
+                    <mat-card-header>
+                        <mat-card-title class='color-a'> <i class="icofont-attachment fs-21"></i> {{item.doc}}
+                        </mat-card-title>
+
+                        <div class='stars' *ngIf='item.valoracion'>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                            <span class='subtitle'>
+                                {{item.valoracion}}/ 5
+                            </span>
+
+
+                        </div>
+
+                        <div class='actions' style='text-align: end;'>
+                            <button mat-button color='warn' *ngIf='!item.valoracion'
+                                (click)='valorar()'>Valorar</button>
+                            <button mat-button color='primary' (click)='openRes(item.doc)'>Ver</button>
+
+                        </div>
+                        <mat-card-subtitle class='fs-16'>
+                            <h4 class='color-a fs-16'>Particular: <span class='color-d'>{{ item.particular}}</span></h4>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+
+
+            <p *ngIf='!resoluciones'>Aun no hay resoluciones</p>
+
         </div>
-        
-        <div class="col-lg-12" *ngIf='resoluciones && archivo.estado=="resuelto"'>
-            <mat-list role="list">
-                <mat-list-item *ngFor='let res of resoluciones' role="listitem">{{res}}
-                    <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
-                    Nombre particular <button class='float-right' mat-button color='primary'
-                        (click)='valorar()'>Valorar</button>
-                </mat-list-item>
-            </mat-list>
+
+        <div class='col-lg-12 text-center'
+            *ngIf='!resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
+            <mat-card>
+                <h3 class="color-a">
+                    Resoluciones
+                </h3>
+                <p>Aun no hay resoluciones</p>
+
+            </mat-card>
         </div>
-        <div class="col-lg-12" *ngIf='archivo.estado=="pendiente"'>
-            <p>Aun no hay resoluciones</p>
-        </div>
-        <div class="col-lg-12">
-            <h1 class="azulLetra">
+
+        <div class="col-lg-12 text-center">
+            <h3 class="color-a">
                 Profesores para la resolucion
-            </h1>
+            </h3>
         </div>
         <div class="col-lg-12">
-            <mat-card class="example-card" *ngFor='let item of archivo.profesores'>
+            <mat-card class="example-card card-particulares" *ngFor='let item of archivo.profesores'>
                 <mat-card-header>
-                    <mat-card-title class='azulLetra'>{{item.particular}}</mat-card-title>
+                    <mat-card-title class='color-a'>{{item.particular}}</mat-card-title>
                     <img mat-card-avatar [src]="'./assets/img/'+item.foto" alt="foto ">
 
                     <div class='stars'>
@@ -65,16 +109,18 @@
                     </div>
 
                     <div class='actions' style='text-align: end;'>
-                        <button mat-button color='primary' (click)='contratar()'>Contratar</button>
+                        <button mat-button color='warn' (click)='contratar()'>Contratar</button>
                     </div>
                     <mat-card-subtitle class='fs-16'>
-                        Costo de resolucion : ${{ item.costo}}
+                        <h4 class='color-a fs-16'>Costo de resolucion : <span class='color-d'>{{ item.costo}}</span>
+                        </h4>
                     </mat-card-subtitle>
                     <mat-card-subtitle class='fs-16'>
-                        Costo explicacion : ${{ item.costo_explicacion}}
+                        <h4 class='color-a fs-16'> Costo explicacion : <span
+                                class='color-d'>{{ item.costo_explicacion}}</span></h4>
                     </mat-card-subtitle>
                     <mat-card-subtitle class='fs-16'>
-                        Demora : {{ item.demora}}
+                        <h4 class='color-a fs-16'>Demora: <span class='color-d'>{{ item.demora}}</span></h4>
                     </mat-card-subtitle>
 
 

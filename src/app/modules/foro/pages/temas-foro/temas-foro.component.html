@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container " >
     <div class="row">
         <div class="col-lg-8">
             <app-filtros></app-filtros>
         </div>
-        <div class="col-lg-4">
-            <button mat-button class='azul' (click)='nuevoTema()'> Nuevo tema</button>
+        <div class="col-lg-4 mt-4">
+            <button mat-button  color='warn' (click)='nuevoTema()'> Nuevo tema</button>
 
         </div>
     </div>
@@ -13,7 +13,7 @@
             <a href="foro" *ngFor='let tema of temas'>
                 <mat-card class="example-card">
                     <mat-card-header>
-                        <mat-card-title class='azulLetra'> {{tema.titulo}}</mat-card-title>
+                        <mat-card-title class='color-a'> {{tema.titulo}}</mat-card-title>
                         <div class='actions'>
                             <span [ngClass]='(tema.like)? "like-active" : "like" ' class="pt-1 pr-1 fs-16 ">{{tema.seguidores}}</span>
 

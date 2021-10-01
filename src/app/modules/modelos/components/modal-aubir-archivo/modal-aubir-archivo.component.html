@@ -28,7 +28,7 @@
             </form>
             <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
                 style="display:none;">
-            <button mat-raised-button color="success" class="success-button ml-2" (click)="file.click()">
+            <button mat-button  color='basic' class="success-button ml-2" (click)="file.click()">
                 Buscar Archivos
                 <i class="icofont-search-document fs-21"></i>
 
@@ -42,7 +42,7 @@
             </span>
 
             <div style='text-align: center; width: 100%;'>
-                <button mat-button class='azul' (click)='confirmar()' >Confirmar</button>
+                <button mat-button  color='primary' class='azul' (click)='confirmar()' >Confirmar</button>
 
             </div>
         </div>

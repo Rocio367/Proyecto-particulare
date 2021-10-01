@@ -15,6 +15,17 @@
 .icofont-search-2:hover {
     cursor: pointer;
 }
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard :hover {
+    background-color:  white!important;
+    color: #00aa77  !important;
+}
+
+.mat-button-toggle-checked{
+    background-color: white !important;
+    border-color: #00aa77!important;
+    color: #00aa77  !important;
+}
 
 .example-section {
     margin: 12px 0;

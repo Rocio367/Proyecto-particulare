@@ -1,59 +1,59 @@
 .example-chip-list {
-    width: 100%;
+  width: 100%;
 }
 
 .cancel {
-    border-style: hidden;
-    padding: 0px;
+  border-style: hidden;
+  padding: 0px;
 }
 
 .icofont-search-2 {
-    color: #25798E;
-    font-size: 25px;
+  color: #25798E;
+  font-size: 25px;
 }
 
 .icofont-search-2:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .example-section {
-    margin: 12px 0;
-  }
-  
-  .example-margin {
-    margin: 0 12px;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin-top: 4px;
-  }
+  margin: 12px 0;
+}
 
-  .categoria {
-    background-color: #37b18c;
-    position: absolute;
-    bottom: 70%;
-    right: 1%;
-    font-size: 15px;
-    padding: 2px 5px;
-    text-align: center;
-    color: #fff;
-    margin:10px 10px 0 0 ;
+.example-margin {
+  margin: 0 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
+
+.categoria {
+  background-color: #37b18c;
+  position: absolute;
+  bottom: 70%;
+  right: 1%;
+  font-size: 15px;
+  padding: 2px 5px;
+  text-align: center;
+  color: #fff;
+  margin:10px 10px 0 0 ;
 }
 
 
 .actions {
-  position: absolute;
-  bottom: 2%;
-  right: 1%;
-  padding: 5px 11px;
-  text-align: center;
+position: absolute;
+bottom: 2%;
+right: 1%;
+padding: 5px 11px;
+text-align: center;
 }
 
 .example-card {
-  max-width: 250px;
-  display: inline-grid !important;
-  margin:10px;
+max-width: 250px;
+display: inline-grid !important;
+margin:10px;
 }
 
 .like{
@@ -63,5 +63,5 @@ color:grey;
 color:#25798E;
 }
 .card-2{
-  margin-left: 50px;  
+margin-left: 50px;  
 }

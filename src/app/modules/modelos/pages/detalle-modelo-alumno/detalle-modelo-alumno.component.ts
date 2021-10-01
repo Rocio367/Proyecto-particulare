@@ -14,7 +14,8 @@ import { ModalValorarComponent } from '../../components/modal-valorar/modal-valo
 })
 export class DetalleModeloAlumnoComponent implements OnInit {
   gallery: imgGallery[] = [];
-  resoluciones: string[] = ['default-placeholder.png'];
+  resoluciones: any[] = [{doc:'default-placeholder.png', particular: 'particular 2',valoracion:null},
+    {doc:'default-placeholder.png', particular: 'particular 1',valoracion:5}];
   archivo = new Archivo;
   id:number ;
 

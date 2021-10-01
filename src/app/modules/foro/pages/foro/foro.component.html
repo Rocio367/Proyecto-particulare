@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container ">
     <div class="row">
         <div class="col">
             <mat-card class="example-card">
                 <mat-card-header>
-                    <mat-card-title class='azulLetra'> {{tema.titulo}}</mat-card-title>
+                    <mat-card-title class='color-a'> {{tema.titulo}}</mat-card-title>
                     <div class='actions'>
                         <span [ngClass]='(tema.like)? "like-active" : "like" ' class="pt-1 pr-1 fs-16 ">{{tema.seguidores}}</span>
 
@@ -33,11 +33,11 @@
             <mat-card class="example-card">
                 <mat-card-header>
                     <mat-card-title><a href="perfil-alumno">{{resp.user}}</a> </mat-card-title>  
-                    <mat-card-subtitle class='azulLetra'> {{resp.text}}</mat-card-subtitle>
+                    <mat-card-subtitle class='color-a'> {{resp.text}}</mat-card-subtitle>
                     <img mat-card-avatar [src]="'./assets/img/'+resp.avatar" alt="foto ">
 
-                    <div class='actions'>
-                        <a (click)='verRespuestas(resp)' style='cursor: pointer;'> Respuestas</a>
+                    <div class='actions color-a'>
+                        <a (click)='verRespuestas(resp)'  style='cursor: pointer;'> Respuestas</a>
                         |<a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
                     </div>
 
@@ -67,7 +67,7 @@
                             class="text-center error-msg">
                             <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                         </div><br>
-                        <button mat-button class='azul' [disabled]="formRespuesta.invalid" (click)='responderForm(resp)'>Responder</button>
+                        <button mat-button color='primary' [disabled]="formRespuesta.invalid" (click)='responderForm(resp)'>Responder</button>
 
                     </form>
                 </mat-card-header>
