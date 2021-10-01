@@ -76,13 +76,13 @@ export class ShellComponent implements OnInit, AfterContentChecked {
         break;
       }
       case 'admin': {
-        this.menu.push({ type:'', href: 'analisis', title: 'Analisis' })
-        this.menu.push({type:'',  href: 'usuarios', title: 'Usuarios' })
+        this.menu.push({ type:'', href:'ganacias-administrador', title: 'Analisis' })
+        this.menu.push({type:'',  href: 'control-usuarios', title: 'Usuarios' })
         break;
       }
       case 'particular': {
         this.menu.push({ type:'badge', href: 'modelos-particular', title: 'Modelos' })
-        this.menu.push({ type:'', href: 'perfil', title: 'Perfil' })
+        this.menu.push({ type:'', href: 'perfil-particular/:id', title: 'Perfil' })
         this.menu.push({ type:'badge', href: 'mensajes', title: 'Mensajes' })
         break;
       }
