@@ -38,6 +38,7 @@ export class PerfilAlumnoComponent implements OnInit {
     }
   ];
   ngOnInit(): void {
+    
   }
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
 }

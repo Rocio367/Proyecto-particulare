@@ -6,7 +6,7 @@
     background-color: rgb(255, 255, 255);
 }
 
-mat-card{
+.mat-card{
     margin: 10px;
     padding: 16px 0px 16px 0px!important;
 }
@@ -17,3 +17,6 @@ mat-card{
     margin:auto;
 }
 
+.redondeo{
+    border-radius: 100px!important;
+}
