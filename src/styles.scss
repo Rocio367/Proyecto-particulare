@@ -1,5 +1,6 @@
 @import "theme.scss";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
 /* General */
 body {
@@ -13,26 +14,30 @@ body {
 
 //inputs
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-    color: #00885f!important;
+    color: #00885f !important;
 }
+
 .mat-form-field.mat-form-field {
-    color:rgb(104, 104, 104)!important;
-  }
+    color: rgb(104, 104, 104) !important;
+}
 
-  .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: #00885f!important;
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #00885f !important;
 
-  }
-.container{
-    max-width:100vw!important;
-    min-height:100vh!important;
+}
+
+.container-color {
+    max-width: 100vw !important;
+    min-height: 100vh !important;
     padding: 0px 11%;
 }
+
 //
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
 .mat-button-toggle-group-appearance-standard {
-    margin:0.5em!important;
+    margin: 0.5em !important;
 }
+
 //
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
 .mat-button-toggle-group-appearance-standard :hover {
@@ -40,65 +45,68 @@ body {
     color: white !important;
 }
 
-.mat-button-toggle-checked{
+.mat-button-toggle-checked {
     background-color: #00aa77 !important;
     border-color: #00aa77 !important;
     color: white !important;
 }
 
-.like:hover{
+.like:hover {
     cursor: pointer;
-    color:#0D8DEA!important;
-    font-size: 23px!important;
+    color: #0D8DEA !important;
+    font-size: 23px !important;
 }
 
 //new colors
-.color-a{
-    color:#079167;
+.color-a {
+    color: #079167;
 }
 
-.background-a{
-    background:#00885f;
+.background-a {
+    background: #00885f;
 }
 
-.color-b{
-    color:#F12A2A;
+.color-b {
+    color: #F12A2A;
 }
 
-.background-b{
-    background:#F12A2A;
+.background-b {
+    background: #F12A2A;
 }
 
-.color-c{
-    color:#0D8DEA;
+.color-c {
+    color: #0D8DEA;
 }
 
-.background-c{
-    background:#0D8DEA;
+.background-c {
+    background: #0D8DEA;
 }
 
-.color-d{
-    color:#809589;
+.color-d {
+    color: #809589;
 }
 
-.background-d{
-    background:#809589;
-}
-.color-e{
-    color:#7ce4c5;
+.background-d {
+    background: #809589;
 }
 
-.background-e{
-    background:#94e4cc;
+.color-e {
+    color: #7ce4c5;
+}
+
+.background-e {
+    background: #94e4cc;
 }
 
 //fonts
-h3{
+h3 {
     margin: 10px 0px 20px 0px !important;
 }
+
 .mat-card-header-text {
-    margin: 0px 30px!important;
+    margin: 0px 30px !important;
 }
+
 .fs-16 {
     font-size: 16px;
 }
@@ -148,9 +156,10 @@ h3{
 }
 
 
-.close{
-   color: #00aa77 !important;
+.close {
+    color: #00aa77 !important;
 }
+
 //btn
 .mat-raised-button.mat-warn {
     background-color: #F12A2A !important;
@@ -175,6 +184,7 @@ h3{
     color: white !important;
     margin: 2px !important;
 }
+
 .mat-button.mat-basic {
     background-color: #809589 !important;
     color: white !important;
@@ -186,27 +196,36 @@ h3{
     color: white !important;
     margin: 2px !important;
 }
+
 //header
 .a-header {
-    color: white !important;
+    color:#00aa77!important;
 }
 
 .list-header {
-    color: white !important;
+    color: #00aa77 !important;
     border-left: 1px white;
 }
 
 .list-header:hover {
     cursor: pointer;
-    background-color: cadetblue;
+    background-color: #00aa77 ;
+    color: white!important ;
+}
+.a-header:hover {
+    cursor: pointer;
+    background-color: #00aa77 ;
+    color: white!important ;
 }
 
 a {
     text-decoration: none !important;
 }
-.mat-tab-group.mat-primary .mat-ink-bar{
-    background-color: #00aa77!important;
+
+.mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: #00aa77 !important;
 }
+
 //response
 
 .mob {
@@ -219,6 +238,8 @@ a {
 
 .container-header {
     z-index: 100;
+    color:red!important;
+    background-color: white !important;
 }
 
 @media screen and (max-width:900px) {

@@ -7,34 +7,22 @@
         </div>
         <div class="modal-body text-center">
 
-            <mat-horizontal-stepper>
-                <mat-step>
-                    <ng-template matStepLabel>Valoracion </ng-template>
-                    <p class="clasificacion">
-                        <mat-checkbox id="radio1"  class="example-margin" ></mat-checkbox>
-                        <label for="radio1"><i class="icofont-star fs-40"></i></label>
-                        <mat-checkbox id="radio2"  class="example-margin " ></mat-checkbox>
-                        <label for="radio2"><i class="icofont-star fs-40"></i></label>
-                        <mat-checkbox id="radio3"  class="example-margin" ></mat-checkbox>
-                        <label for="radio3"><i class="icofont-star fs-40"></i></label>
-                        <mat-checkbox id="radio4"  class="example-margin" ></mat-checkbox>
-                        <label for="radio4"><i class="icofont-star fs-40"></i></label>
-                        <mat-checkbox id="radio5"  class="example-margin" ></mat-checkbox>
-                        <label for="radio5"><i class="icofont-star fs-40"></i></label>
-                    </p>
-           
-                    <div>
-                        <button mat-button color='warn' [disabled]="formPaso1.invalid" (click)='guardarDatosPaso1()'
-                            matStepperNext>Siguiente</button>
-                    </div>
-                </mat-step>
-               
-                <mat-step>
-                    <ng-template matStepLabel>Gracias!</ng-template>
-                    imagen gracias por la valoracion
+            <h3 class='color-a'>Valoracion </h3>
+            <p class="clasificacion">
+                <mat-checkbox id="radio1" class="example-margin"></mat-checkbox>
+                <label for="radio1"><i class="icofont-star fs-40"></i></label>
+                <mat-checkbox id="radio2" class="example-margin "></mat-checkbox>
+                <label for="radio2"><i class="icofont-star fs-40"></i></label>
+                <mat-checkbox id="radio3" class="example-margin"></mat-checkbox>
+                <label for="radio3"><i class="icofont-star fs-40"></i></label>
+                <mat-checkbox id="radio4" class="example-margin"></mat-checkbox>
+                <label for="radio4"><i class="icofont-star fs-40"></i></label>
+                <mat-checkbox id="radio5" class="example-margin"></mat-checkbox>
+                <label for="radio5"><i class="icofont-star fs-40"></i></label>
+            </p>
 
-                </mat-step>
-            </mat-horizontal-stepper>
+
+
         </div>
     </div>
 </div>

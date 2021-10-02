@@ -109,6 +109,6 @@ export class MisModelosAlumnoComponent implements OnInit {
  }
 
  verDetalle(a : Archivo){
-   this.router.navigate(['detalle-modelo-alumno/id'])
+   this.router.navigate(['detalle-modelo-alumno/'+a.id])
  }
 }
