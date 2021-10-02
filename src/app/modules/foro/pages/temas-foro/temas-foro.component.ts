@@ -12,7 +12,7 @@ import { ModalNuevoTemaComponent } from '../../components/modal-nuevo-tema/modal
 export class TemasForoComponent implements OnInit {
 
   temas : Tema[]=[];
-  constructor(public dialog: MatDialog) {
+  constructor() {
     let t1=new Tema();
     let t2=new Tema();
     t1.titulo='Tema 1';
@@ -28,10 +28,7 @@ export class TemasForoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  nuevoTema(){
-    this.dialog.open(ModalNuevoTemaComponent, { panelClass: 'custom-dialog-container'});
-
-  }
+ 
 
   like(t:Tema){
      

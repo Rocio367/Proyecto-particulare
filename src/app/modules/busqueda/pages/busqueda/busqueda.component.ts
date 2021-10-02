@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { GeneralService } from 'src/app/core/services/general/general.service';
 import { ConsultaRequest } from 'src/app/shared/models/consultaRequest';
@@ -29,15 +29,24 @@ export class BusquedaComponent implements OnInit {
     types: [],
     componentRestrictions: { country: 'AR' }
   };
+  minDate= new Date;
+
+
   constructor(private aRouter: ActivatedRoute,private form: FormBuilder, private services: GeneralService) {
     this.formDatos = this.form.group({
       materia: [''],
       ubicacion: [''],
       particular: [''],
-      disponiblidad: [''],
+      disponibilidad: [''],
+      tipo: [''],
       nivel: [''],
 
     });
+
+
+    const date = new Date();
+    this.minDate= new Date(date.getTime());
+
   }
  
 

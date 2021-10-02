@@ -1,30 +1,30 @@
-<div class="container container-color " >
+<div class="container container-color ">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <app-filtros></app-filtros>
         </div>
-        <div class="col-lg-4 mt-4">
-            <button mat-button  color='warn' (click)='nuevoTema()'> Nuevo tema</button>
-
-        </div>
+       
     </div>
     <div class="row">
         <div class="col-lg-12">
-           
-                <mat-card class="example-card"  *ngFor='let tema of temas'>
-                    <div class='actions'>
-                        <span class='floar-left color-a fs-21 pt-3'> {{tema.titulo}}
-                        </span>
-                        <i class="float-right icofont-ui-delete fs-21 " stu (click)='delete()'></i>
 
-                        <i [ngClass]='(tema.like)? "like-active" : "like" ' class="float-right icofont-like mt-1 fs-21"
-                            (click)="like(tema)"></i>
-                            <span [ngClass]='(tema.like)? "like-active" : "like" ' class="float-right pt-1 pr-1 fs-21 ">{{tema.seguidores}}</span>
+            <mat-card class="example-card" *ngFor='let tema of temas'>
+                <mat-card-title class='color-d'>
+                   {{tema.titulo}}
+                </mat-card-title>
+                <div class='actions'>
 
-                    </div>
-                    <a href="foro" >
-                    <mat-card-header >
-                       
+                    <i class="float-right icofont-ui-delete fs-21 " stu (click)='delete()'></i>
+
+                    <i [ngClass]='(tema.like)? "like-active" : "like" ' class="float-right icofont-like mt-1 fs-21"
+                        (click)="like(tema)"></i>
+                    <span [ngClass]='(tema.like)? "like-active" : "like" '
+                        class="float-right pt-1 pr-1 fs-21 ">{{tema.seguidores}}</span>
+
+                </div>
+                <a href="foro">
+                    <mat-card-header>
+
                         <mat-card-subtitle>
                             <p class='fs-16'>{{tema.descripcion}}</p>
                         </mat-card-subtitle>
@@ -34,7 +34,7 @@
                     </mat-card-header>
                 </a>
 
-                </mat-card>
+            </mat-card>
 
         </div>
 

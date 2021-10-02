@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container-color">
     <div class="row">
 
         <div class="col-lg-12 mt-2">
@@ -21,23 +21,23 @@
         </div>
         <div class="col-lg-12 text-center">
             <mat-card>
-                <h3 class="color-a ">Datos generales: </h3>
+                <h3 class="color-d ">Datos generales: </h3>
 
-                <h4 class='color-a fs-16'>Nombre: <span class='color-d '>{{archivo.nombre}}</span></h4>
-                <h4 class='color-a fs-16'>Fecha:<span class='color-d'>{{archivo.fecha | date}}</span> </h4>
-                <h4 class='color-a fs-16'>Estado:<span class='color-d'>{{ archivo.estado}}</span></h4>
+                <h4 class='color-d fs-16'>Nombre: <span class='color-d '>{{archivo.nombre}}</span></h4>
+                <h4 class='color-d fs-16'>Fecha:<span class='color-d'>{{archivo.fecha | date}}</span> </h4>
+                <h4 class='color-d fs-16'>Estado:<span class='color-d'>{{ archivo.estado}}</span></h4>
                 <hr />
-                <h4 class='color-a fs-16'>Institución: <span class='color-d'>{{ archivo.institucion}}</span></h4>
-                <h4 class='color-a fs-16'>Materia: <span class='color-d'>{{ archivo.materia}}</span></h4>
-                <h4 class='color-a fs-16'> Nivel: <span class='color-d'>{{ archivo.nivel}}</span></h4>
+                <h4 class='color-d fs-16'>Institución: <span class='color-d'>{{ archivo.institucion}}</span></h4>
+                <h4 class='color-d fs-16'>Materia: <span class='color-d'>{{ archivo.materia}}</span></h4>
+                <h4 class='color-d fs-16'> Nivel: <span class='color-d'>{{ archivo.nivel}}</span></h4>
             </mat-card>
 
         </div>
 
         <div class="col-lg-12 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
             <mat-card>
-                <h3 class="color-a ">Datos del alumno: </h3>
-                <h4 class='color-a fs-16'>Nombre: <span class='color-d '>{{alumno.nombreCompleto}}</span></h4>
+                <h3 class="color-d ">Datos del alumno: </h3>
+                <h4 class='color-d fs-16'>Nombre: <span class='color-d '>{{alumno.nombreCompleto}}</span></h4>
             </mat-card>
 
         </div>
@@ -45,7 +45,7 @@
         <div class="col-lg-12 text-center" *ngIf=' archivo.estado== "pendiente"'>
             <mat-card>
                 <div class="col-lg-12" *ngIf=' archivo.estado== "pendiente"'>
-                    <h3 class="color-a ">
+                    <h3 class="color-d ">
                         Adjuntar resolucion del modelo
                     </h3>
                 </div>
@@ -81,7 +81,7 @@
         <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
            <mat-card>
             <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                <h3 class="color-a ">
+                <h3 class="color-d ">
                     Resolucion entregada
                 </h3>
             </div>
@@ -100,7 +100,7 @@
        <div class="col-lg-12 text-center"  *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <mat-card>
                 <div class="col-lg-12 mt-2" >
-                    <h1 class="color-a ">
+                    <h1 class="color-d ">
                         Comentarios opcionales
                     </h1>
                 </div>

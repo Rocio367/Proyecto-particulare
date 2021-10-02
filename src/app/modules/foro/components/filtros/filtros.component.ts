@@ -3,9 +3,11 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { ModalNuevoTemaComponent } from '../modal-nuevo-tema/modal-nuevo-tema.component';
 
 @Component({
   selector: 'app-filtros',
@@ -25,7 +27,7 @@ export class FiltrosComponent implements OnInit {
   filters:any[]=[{nombre:'Creador por mi'},{nombre:'Ultimas agregados'},{nombre:'Que sigo'},{nombre:'Mas populares'},]
   @ViewChild('classInput') classInput: ElementRef<HTMLInputElement>;
 
-  constructor(private router:Router) {
+  constructor(private router:Router,public dialog: MatDialog) {
     this.filteredOptions = this.classCtrl.valueChanges.pipe(
         startWith(null),
         map((fruit: string | null) => fruit ? this._filter(fruit) : this.allOptions.slice()));
@@ -69,6 +71,10 @@ export class FiltrosComponent implements OnInit {
 
   buscar(){
    // this.router.navigate(['busqueda/'+ this.options])
+  }
+  nuevoTema(){
+    this.dialog.open(ModalNuevoTemaComponent, { panelClass: 'custom-dialog-container'});
+
   }
   setAll(completed: boolean) {
   }
