@@ -14,7 +14,7 @@ import { RedirectService } from '../../../../core/services/redirect/redirect.ser
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  hide = true;
   loginForm: FormGroup;
   passwordVisibility=false;
   constructor(private _snackBar: MatSnackBar,private router: Router, private authService: AuthService, private form: FormBuilder, private redirectService: RedirectService) {
