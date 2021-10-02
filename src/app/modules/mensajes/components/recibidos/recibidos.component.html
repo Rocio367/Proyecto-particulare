@@ -6,7 +6,7 @@
                     <div mat-line>{{mensaje.emisor}}</div>
                     <div mat-line>{{mensaje.asunto}}</div>
                     <div mat-line> {{mensaje.fecha | date}} </div>
-                    <i class="icofont-ui-delete" (click)='delete(mensaje)'></i>
+                    <i class="icofont-ui-delete icon" (click)='delete(mensaje)'></i>
                 </mat-list-item>
                
               </mat-list>
@@ -16,7 +16,7 @@
         </div>
 
         <div class='col-lg-8 seleccion-mensaje mt-2' *ngIf='!mensaje'>
-              Seleccione un mensaje para ver mas detalles
+              Seleccione un mensaje para ver más detalles
         </div>
     </div>
 </div>
