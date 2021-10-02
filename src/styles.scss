@@ -1,26 +1,13 @@
 @import "theme.scss";
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 /* You can add global styles to this file, and also import other style files */
 /* General */
 body {
     margin: 0;
     padding: 0;
     line-height: 1.5em;
+    font-family: 'Roboto', sans-serif;
     /* Relleno superior igual a la altura de la cabecera*/
-}
-
-@font-face {
-    font-family: 'Frutiger';
-    src: url('./assets/fonts/Frutiger-Roman.ttf') format('truetype'),
-        url('./assets/fonts/Frutiger-Roman.woff') format('woff');
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: 'Frutiger';
-    src: url('./assets/fonts/Frutiger-UltraBlack.ttf') format('truetype'),
-        url('./assets/fonts/Frutiger-UltraBlack.woff') format('woff');
-    font-weight: 700;
 }
 
 //fonts
