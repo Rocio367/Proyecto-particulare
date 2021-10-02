@@ -5,7 +5,7 @@
             <img mat-card-avatar src="../../../../../assets/img/default-user.png"  width="220" height="200" />
             <p class='fs-16 mt-3'><i class="icofont-google-map rojo fs-21 mr-2"></i>{{registro.ubicacion}}</p>
         </div>
-        <div class="col-sm azul naranjaClaro grisLetra">
+        <div class="col-sm azul naranjaClaro">
             <h3 class="azulLetra">{{registro.particular}}</h3>
             <h4>Clases de: {{registro.materia}} </h4>
             <hr/>
@@ -31,11 +31,14 @@
                 Precio por hora: $ {{registro.precio_por_hora}} 
              </h4>
         </div>
-        <div class='col-lg-12 text-center mt-4'>
+        <div class='col-lg-12 text-center mt-4 mb-4'>
             {{registro.descripcion}}
         </div>
-          <app-calendar></app-calendar> 
-       
+        <h3 class="mt-4">Agendá tu clase</h3>
+
+        <div class='col-lg-12 text-center mt-4'>
+            <app-calendar></app-calendar> 
+        </div>
 </div>
 
 <div class="container mt-4">
