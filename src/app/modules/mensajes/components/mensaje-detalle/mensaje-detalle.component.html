@@ -1,11 +1,11 @@
-<p>De : {{mensaje.emisor}}</p>
-<p>Para : {{mensaje.destinatario}}</p>
-<p>
-   Asunto: {{mensaje.asunto}}
-</p>
-<p>
-    {{mensaje.contenido}}
-</p>
+<div class="detalles-mensajes mt-2 mb-4">
+<p>De: {{mensaje.emisor}}</p>
+<p>Para: {{mensaje.destinatario}}</p>
+<p>Asunto: {{mensaje.asunto}}</p>
+<mat-card>{{mensaje.contenido}}</mat-card>
+</div>
+
+
 <button *ngIf='responder' mat-button class='azul' (click)='respuesta()' >Responder</button>
 
 <div > {{mensaje.fecha | date}} </div>
