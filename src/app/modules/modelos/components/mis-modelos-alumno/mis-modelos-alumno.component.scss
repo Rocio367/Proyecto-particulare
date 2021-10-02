@@ -29,10 +29,10 @@
     margin-top: 4px;
   }
 
+  
   .categoria {
-    background-color: #37b18c;
     position: absolute;
-    bottom: 70%;
+    bottom: 80%;
     right: 1%;
     font-size: 15px;
     padding: 2px 5px;
@@ -44,8 +44,18 @@
 
 .actions {
   position: absolute;
-  bottom: 2%;
+  bottom: 36%;
   right: 1%;
+  padding: 5px 11px;
+  text-align: end;
+  width: 50%;
+
+}
+.fecha {
+  position: absolute;
+  bottom: 36%;
+  width: 50%;
+  left: 1%;
   padding: 5px 11px;
   text-align: center;
 }
@@ -54,8 +64,8 @@
   max-width: 250px;
   display: inline-grid !important;
   margin:10px;
-}
 
+}
 .like{
 color:grey;
 }

@@ -1,30 +1,52 @@
-mat-card{
-    margin: 10px;
-    padding: 16px 0px 16px 0px!important;
+mat-card {
+  margin: 10px;
+  padding: 16px 0px 16px 0px !important;
+  background-color: #06a367;
+  opacity: 0.6;
+
+
+}
+
+.container {
+  background-image: linear-gradient(150deg, #cadb98 0, #bbd894 16.67%, #a9d490 33.33%, #95d08d 50%, #7fcc8c 66.67%, #67c78d 83.33%, #4bc490 100%);}
+.mat-card-header {
+    margin-bottom: 5px!important;
+  margin-top:3em!important;
+  color:white!important;
+}
+.mat-card-subtitle{
+  color:white!important; 
+  opacity: 1;
 
 }
 
 .actions {
-    position: absolute;
-    bottom: 60%;
-    right: 1%;
-    padding: 5px 11px;
-    text-align: center;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+   
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  padding: 15px;
+  background-color: white!important;
+  width: 100%;
+  
 }
 
-.like{
-  color:grey;
-}
-.like-active{
-  color:#25798E;
+.like {
+  color: grey;
 }
 
-.icofont-like:hover{
-    cursor:pointer;
-    color:#25798E;
+.like-active {
+  color: #25798E;
 }
 
-.icofont-ui-delete{
-  color:#ec0000;
-  margin: 8px;
+.icofont-like:hover {
+  cursor: pointer;
+  color: #25798E;
+}
+
+.icofont-ui-delete {
+  color: #ec0000;
+  margin: 3px;
 }
