@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Respuestas, Tema } from 'src/app/shared/models/tema';
 import Swal from 'sweetalert2';
+import { ModalReporteComponent } from '../../components/modal-reporte/modal-reporte.component';
 
 @Component({
   selector: 'app-foro',
@@ -11,7 +13,7 @@ import Swal from 'sweetalert2';
 export class ForoComponent implements OnInit {
   tema = new Tema();
   formRespuesta :FormGroup;
-  constructor( private form: FormBuilder){
+  constructor( private form: FormBuilder,public dialog: MatDialog){
     this.formRespuesta = this.form.group({
       text: ['', [Validators.required]]
     });
@@ -54,6 +56,10 @@ export class ForoComponent implements OnInit {
   responder(r: Respuestas){
     this.tema.respuesta[this.tema.respuesta.indexOf(r)].aResponder=!this.tema.respuesta[this.tema.respuesta.indexOf(r)].aResponder;
 
+  }
+
+  reportar(r: Respuestas){
+    this.dialog.open(ModalReporteComponent, { panelClass: 'custom-dialog-container', data: 'user'});
   }
   like(t: Tema) {
     this.tema.like = !this.tema.like;
