@@ -10,17 +10,14 @@ import { Router } from '@angular/router';
 export class RegistrarAlumnoComponent implements OnInit {
 
   formDatos = this.form.group({
-    fotoPerfil: ['', Validators.required],
+    fotoPerfil: [''],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    telefono: ['', Validators.required],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
-    intereses: ['', Validators.required],
-    institucuion: ['', Validators.required],
-    nivelAcademico: ['', Validators.required],
+    intereses: [''],
   });
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
@@ -45,6 +42,7 @@ export class RegistrarAlumnoComponent implements OnInit {
       this.router.navigate(['/perfil-alumno']);
       return true;
     } else {
+      console.log(this.formDatos);
       this.formDatos.markAllAsTouched();
     }
   }
