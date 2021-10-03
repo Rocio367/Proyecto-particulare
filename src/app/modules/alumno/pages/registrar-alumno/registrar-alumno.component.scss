@@ -1,10 +1,14 @@
-.wrapper {
-    margin-right: auto;
-    margin-left:  auto;
-    margin-top: 15px;
+.mat-card{
+    margin: 10px;
+    padding: 16px 0px 16px 0px!important;
+}
 
-    max-width: 960px;
+.mat-card-avatar{
+    height: 200px !important;
+    width: 210px !important;
+    margin:auto;
+}
 
-    padding-right: 10px;
-    padding-left:  10px;
+.redondeo{
+    border-radius: 100px!important;
 }
