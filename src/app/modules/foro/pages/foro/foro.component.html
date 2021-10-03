@@ -1,11 +1,12 @@
 <div class="container container-color ">
     <div class="row">
-        <div class="col">
+        <div class="col-12 text-center">
             <mat-card class="example-card">
                 <mat-card-header>
                     <mat-card-title class='color-d'> {{tema.titulo}}</mat-card-title>
                     <div class='actions'>
-                        <span [ngClass]='(tema.like)? "like-active" : "like" ' class="pt-1 pr-1 fs-16 ">{{tema.seguidores}}</span>
+                        <span [ngClass]='(tema.like)? "like-active" : "like" '
+                            class="pt-1 pr-1 fs-16 ">{{tema.seguidores}}</span>
 
                         <i [ngClass]='(tema.like)? "like-active" : "like" ' class="icofont-like fs-21"
                             (click)="like(tema)"></i>
@@ -20,25 +21,25 @@
                 </mat-card-header>
 
             </mat-card>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
             <app-filtros-tema></app-filtros-tema>
+
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-lg-12" *ngFor='let resp of tema.respuesta'>
             <mat-card class="example-card">
                 <mat-card-header>
-                    <mat-card-title class='color-d '><a class='color-d' href="perfil-alumno">{{resp.user}}</a> </mat-card-title>  
+                    <mat-card-title class='color-d '><a class='color-d' href="perfil-alumno">{{resp.user}}</a>
+                    </mat-card-title>
                     <mat-card-subtitle class='color-a'> {{resp.text}}</mat-card-subtitle>
                     <img mat-card-avatar [src]="'./assets/img/'+resp.avatar" alt="foto ">
 
                     <div class='actions'>
-                        <a (click)='verRespuestas(resp)'  style='cursor: pointer;'> Respuestas</a>
+                        <a (click)='verRespuestas(resp)' style='cursor: pointer;'> Respuestas</a>
                         |<a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
+                        |<a (click)='reportar(resp)' style='cursor: pointer;'> Reportar</a>
                     </div>
 
                 </mat-card-header>
@@ -46,11 +47,12 @@
             <div *ngFor='let resp2 of resp.respuestas'>
                 <mat-card class="example-card card-2" *ngIf=' resp.ver'>
                     <mat-card-header>
-                        <mat-card-title><a class='color-d' href="perfil-alumno">{{resp2.user}}</a> </mat-card-title>  
-                        <mat-card-subtitle > {{resp2.text}}</mat-card-subtitle>
+                        <mat-card-title><a class='color-d' href="perfil-alumno">{{resp2.user}}</a> </mat-card-title>
+                        <mat-card-subtitle> {{resp2.text}}</mat-card-subtitle>
                         <img mat-card-avatar [src]="'./assets/img/'+resp2.avatar" alt="foto ">
                         <div class='actions'>
                             <a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
+                            |<a (click)='reportar(resp)' style='cursor: pointer;'> Reportar</a>
 
                         </div>
                     </mat-card-header>
@@ -59,7 +61,7 @@
             <mat-card class="example-card card-2" *ngIf=' resp.aResponder'>
                 <mat-card-header>
                     <form [formGroup]="formRespuesta" class="ui large error form">
-                        <mat-form-field  style='width:95%' appearance="outline">
+                        <mat-form-field style='width:95%' appearance="outline">
                             <mat-label>Respuesta</mat-label>
                             <input matInput formControlName="text" placeholder="..." type="text">
                         </mat-form-field>
@@ -67,7 +69,8 @@
                             class="text-center error-msg">
                             <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                         </div><br>
-                        <button mat-button color='primary' [disabled]="formRespuesta.invalid" (click)='responderForm(resp)'>Responder</button>
+                        <button mat-button color='primary' [disabled]="formRespuesta.invalid"
+                            (click)='responderForm(resp)'>Responder</button>
 
                     </form>
                 </mat-card-header>

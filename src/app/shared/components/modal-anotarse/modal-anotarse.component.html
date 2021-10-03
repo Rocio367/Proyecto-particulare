@@ -10,9 +10,10 @@
             <mat-horizontal-stepper>
                 <mat-step>
                     <ng-template matStepLabel>Datos para tu clase</ng-template>
-                    <div *ngFor='let horario of horasDisponibles'>
-                        {{horario}}
-                    </div>
+                  
+                    <mat-button-toggle-group *ngFor='let horario of horasDisponibles'  multiple>
+                        <mat-button-toggle [value]="horario">{{horario}}</mat-button-toggle>
+                    </mat-button-toggle-group>
                     <form [formGroup]="horariosForm" class="ui large error form">
                         <mat-form-field class='input-small' appearance="outline">
                             <mat-label>Desde</mat-label>
@@ -85,7 +86,7 @@
                     </form>
 
                     <div>
-                        <button mat-button class='azul' [disabled]="horariosForm.invalid" (click)='guardarDatosPaso1()'
+                        <button mat-button  color='warn' [disabled]="horariosForm.invalid" (click)='guardarDatosPaso1()'
                             matStepperNext>Siguiente</button>
                     </div>
                 </mat-step>
@@ -117,14 +118,14 @@
                         datos para pago con pago facil
                     </div>
                     <div>
-                        <button mat-button class='azul' matStepperPrevious>Volver</button>
-                        <button mat-button [disabled]="horariosForm.invalid" class='azul'
+                        <button mat-button color='warn' matStepperPrevious>Volver</button>
+                        <button mat-button  color='warn'[disabled]="horariosForm.invalid" class='azul'
                             matStepperNext>Siguiente</button>
                     </div>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel>Termonamos! Gracias!</ng-template>
-                    imagen
+                   
                     <button color='warn'  mat-button  (click)='detalleClase()'>Ver detalle de la clase</button>
 
                 </mat-step>

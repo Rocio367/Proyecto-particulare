@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalResponderComponent } from 'src/app/modules/mensajes/components/modal-responder/modal-responder.component';
+import { Mensaje } from 'src/app/shared/models/mensaje';
 
 export interface PeriodicElement {
   name: string;
@@ -23,6 +26,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 export class TablaComponent {
-  displayedColumns: string[] = ['name','profesor', 'date', 'symbol', 'boton'];
+  displayedColumns: string[] = ['name','profesor', 'date', 'symbol', 'boton','contacto'];
   dataSource = ELEMENT_DATA;
+  constructor(public dialog: MatDialog){}
+  nuevo(){
+    this.dialog.open(ModalResponderComponent, { panelClass: 'custom-dialog-container', data: new Mensaje});
+  
+  }
 }

@@ -9,3 +9,32 @@
     color: #1e3e6f;
     opacity: 1;
 }
+ 
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard {
+    margin: 0.5em ;
+    border-color: #E47474 ;
+    color: #E47474;
+
+}
+.mat-button-toggle-appearance-standard{
+    color:#E47474!important;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: #E47474 ;
+    color: white ;
+
+}
+
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard  {
+    background-color: #E47474 ;
+    color: white;
+}
+.mat-button-toggle-checked {
+    border-color: #E47474 ;
+    background-color: #E47474;
+    color: white !important;
+}
