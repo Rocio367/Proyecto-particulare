@@ -13,15 +13,12 @@ export class RegistrarParticularComponent implements OnInit {
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    telefono: ['', Validators.required],
+    telefono: [''],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
-    localidad: ['', Validators.required],
-    acercaTuyo: ['', Validators.required],
-    institucuion: ['', Validators.required],
-    estudios: ['', Validators.required],
+    formacionAcademica: ['']
   });
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
