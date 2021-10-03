@@ -73,7 +73,7 @@
           <div class="container">
           <h3 class='title color-a' class="color-a">Datos académicos</h3>
           <mat-form-field class='input-large' appearance="outline">
-              <mat-label>Años de experiencia</mat-label>
+              <mat-label class="color-a">Años de experiencia</mat-label>
               <input matInput formControlName="experiencia" placeholder="" type="text">
           </mat-form-field>
           <div *ngIf="formDatos.get('experiencia').hasError('required') && formDatos.get('experiencia').touched"
