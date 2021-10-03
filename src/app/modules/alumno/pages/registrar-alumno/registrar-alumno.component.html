@@ -1,17 +1,17 @@
-<div class='wrapper container'>
+<div class='container-login container container-color2'>
     <mat-card class="card">
         <mat-card-header>
-            <h1 class='title'>Registro Alumno</h1>
+            <h1 class='title color-a'>Registro Alumno</h1>
         </mat-card-header>
         <mat-card-content class="mt-3">
             <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarAlumno()">
-                <div class="row">
+                <div class="row blanco2 p-2">
                     <div class="col-3">
                         <div *ngIf="fotoDePerfilCargada(); else sinFoto">
-                            <img [src]="imagenPerfil" class="mx-auto d-block img-thumbnail" style="max-height: 200px; max-width: 200px;">
+                            <img [src]="imagenPerfil" mat-card-avatar class="mx-auto d-block img-thumbnail redondeo" style="max-height: 200px; max-width: 200px;">
                         </div>
                         <ng-template #sinFoto>
-                            <img src="../../../../../assets/img/default-user.png"  width="220" height="200" />
+                            <img src="../../../../../assets/img/default-user.png" mat-card-avatar class="d-block redondeo" width="220" height="200" />
                         </ng-template>
                         <div class="row">
                             <mat-form-field class='pl-3 input-large'>
