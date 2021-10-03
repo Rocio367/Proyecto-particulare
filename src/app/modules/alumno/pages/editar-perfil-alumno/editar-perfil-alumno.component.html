@@ -9,12 +9,12 @@
               <img mat-card-avatar class="redondeo"  src="../../../../../assets/img/default-user.png"  width="220" height="200" />
           </ng-template>
 
-          <mat-form-field  appearance="outline">
+          <mat-form-field class='center ml-3'>
             <ngx-mat-file-input
                 formControlName="fotoPerfil"
                 multiple=false
                 accept=".png, .jpg, .jpeg"
-                color="accent" placeholder="Foto de perfil">
+                color="warn" placeholder="Foto de perfil">
                 <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
             </ngx-mat-file-input>
         </mat-form-field>
@@ -92,9 +92,9 @@
     
         </div>
     </div>
-      <mat-card-actions>
-        <button type="submit" mat-raised-button color="warn" class="btn-block">Editar</button>
-    </mat-card-actions>
+    <div class="row ml-1">
+        <button type="submit" mat-raised-button color="primary">Editar</button>
+    </div>
       </div>
   </div>
   </form>

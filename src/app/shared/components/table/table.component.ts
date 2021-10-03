@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import { Mensaje } from 'src/app/shared/models/mensaje';
+import Swal from 'sweetalert2';
+
 
 export interface PeriodicElement {
   name: string;
@@ -38,5 +41,23 @@ export class TableComponent {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  delete() {
+
+    Swal.fire(
+      'El usuario ha sido eliminado',
+      '',
+      'success'
+    )
+  }
+
+  bloqueo() {
+
+    Swal.fire(
+      'El usuario ha sido bloqueado',
+      '',
+      'success'
+    )
   }
 }
