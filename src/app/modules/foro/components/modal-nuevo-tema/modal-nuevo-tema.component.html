@@ -1,0 +1,37 @@
+<div mat-dialog-content style='width: 90vh;'>
+    <div class="">
+        <div class="modal-header">
+            <div type="button" class="close" mat-dialog-close aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div>
+        </div>
+        <div class="modal-body text-center">
+
+            <form [formGroup]="formTema" class="ui large error form">
+              
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label>Titulo</mat-label>
+                    <input matInput formControlName="titulo" placeholder="asunto" type="text">
+                </mat-form-field>
+                <div *ngIf="formTema.get('titulo').hasError('required') && formTema.get('titulo').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label>Descripcion</mat-label>
+                    <textarea matInput formControlName="descripcion" placeholder="..." type="text"></textarea>
+                </mat-form-field>
+                <div *ngIf="formTema.get('descripcion').hasError('required') && formTema.get('descripcion').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+            </form>
+
+            <div>
+                <button mat-button color='primary' [disabled]="formTema.invalid" (click)='crear()'>Crear</button>
+            </div>
+
+        </div>
+    </div>
+</div>

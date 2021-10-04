@@ -7,6 +7,8 @@ export const environment = {
   apiUrl: 'https://admin-uca.candoit.com.ar',
   //apiUrl:'http://wadmin.uca.edu.ar',
   frontUrl: 'http://localhost:4200',
+  keyApiMaps: 'AIzaSyDJdm-0y-RyUb1Z-ypIi4-V7HMACV3dOCk',
+
 };
 
 /*

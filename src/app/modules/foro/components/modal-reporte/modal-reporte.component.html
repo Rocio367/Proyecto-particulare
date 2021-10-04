@@ -1,0 +1,30 @@
+<div mat-dialog-content style='width: 90vh;'>
+    <div class="">
+        <div class="modal-header">
+            <div type="button" class="close" mat-dialog-close aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div>
+        </div>
+        <div class="modal-body text-center">
+
+            <form [formGroup]="formReporte" class="ui large error form">
+              
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label>Motivo</mat-label>
+                    <input matInput formControlName="motivo" placeholder="asunto" type="text">
+                </mat-form-field>
+                <div *ngIf="formReporte.get('motivo').hasError('required') && formReporte.get('motivo').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+
+             
+            </form>
+
+            <div>
+                <button mat-button color='primary' [disabled]="formReporte.invalid" (click)='confirmar()'>Confirmar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

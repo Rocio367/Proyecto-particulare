@@ -1,4 +1,6 @@
 @import "theme.scss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import "./assets/css/bootstrap-social.css";
 
 /* You can add global styles to this file, and also import other style files */
 /* General */
@@ -6,39 +8,147 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.5em;
+    font-family: 'Roboto', sans-serif;
     /* Relleno superior igual a la altura de la cabecera*/
 }
 
-@font-face {
-    font-family: 'Frutiger';
-    src: url('./assets/fonts/Frutiger-Roman.ttf') format('truetype'),
-        url('./assets/fonts/Frutiger-Roman.woff') format('woff');
-    font-weight: 400;
+
+//inputs
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: #E47474 !important
 }
 
-@font-face {
-    font-family: 'Frutiger';
-    src: url('./assets/fonts/Frutiger-UltraBlack.ttf') format('truetype'),
-        url('./assets/fonts/Frutiger-UltraBlack.woff') format('woff');
-    font-weight: 700;
+.mat-form-field.mat-form-field {
+    color: rgb(104, 104, 104) !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #E47474 !important;
+
+}
+.icofont-search-2{
+    color: #E47474 !important;
+}
+
+.container-color {
+    max-width: 100vw !important;
+    min-height: 100vh !important;
+    padding: 0px 5%;
+    background-image: linear-gradient(140deg, #ffcfc5 0, #ffbdb7 25%, #f5a7a7 50%, #e69198 75%, #da808f 100%);
+}
+.container-color2 {
+    max-width: 100vw !important;
+    min-height: 100vh !important;
+    padding: 0px 5%;
+    background-image: linear-gradient(190deg, #fff9f7 0, #ffeded 25%, #fae1e1 50%, #f3d5d6 75%, #eccacc 100%);
+}//
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard {
+    margin: 0.5em ;
+    border-color: #00aa77 ;
+    color: #00aa77;
+
+}
+.mat-button-toggle-appearance-standard{
+    color:#00aa77!important;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: #00aa77 ;
+    color: white ;
+
+}
+
+//
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard  {
+    background-color: #00aa77 ;
+    color: white;
+}
+.mat-button-toggle-checked {
+    border-color: #00aa77 ;
+    background-color: #00aa77;
+    color: white !important;
+}
+.carousel{
+    z-index: 1!important;
+}
+.like:hover {
+    cursor: pointer;
+    color: #0D8DEA !important;
+    font-size: 23px !important;
+}
+
+//new colors
+.color-a {
+    color: #079167;
+}
+
+.background-a {
+    background: #00885f;
+}
+
+.color-b {
+    color: #F12A2A;
+}
+
+.background-b {
+    background: #F12A2A;
+}
+
+.color-c {
+    color: #0D8DEA;
+}
+
+.background-c {
+    background: #0D8DEA;
+}
+
+.color-d {
+    color: #49534d;
+}
+
+.background-d {
+    background: #809589;
+}
+
+.color-e {
+    color: #7ce4c5;
+}
+
+.background-e {
+    background: #94e4cc;
 }
 
 //fonts
-.title {
-    font-size: 30px;
-    color: blue;
+h3 {
+    margin: 10px 0px 20px 0px !important;
 }
-.fs-21{
+
+
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-21 {
     font-size: 21px;
 }
 
-.fs-25{
+.fs-40 {
+    font-size: 40px;
+}
+
+.fs-25 {
     font-size: 25px;
 }
+
 //colors
-.blue-color{
-    color:#003567;
+.blue-color {
+    color: #003567;
 }
+
 //form
 .mat-form-field {
     margin: auto
@@ -64,39 +174,96 @@ body {
 
 .error-msg {
     margin-top: -18px !important;
-    margin-bottom: -18px !important;
 }
 
 
+.close {
+    color: #00aa77 !important;
+}
+
+//btn
+.mat-raised-button.mat-warn {
+    background-color: #E47474 !important;
+    color: white !important;
+
+}
+
+.mat-button.mat-warn {
+    background-color: #E47474 !important;
+    color: white !important;
+
+}
+
+.mat-button.mat-primary {
+    background-color: #00aa77 !important;
+    color: white !important;
+    margin: 10px !important;
+}
+
+.mat-raised-button.mat-primary {
+    background-color: #00aa77 !important;
+    color: white !important;
+    margin: 2px !important;
+}
+
+.mat-button.mat-basic {
+    background-color: #809589 !important;
+    color: white !important;
+    margin: 10px !important;
+}
+
+.mat-raised-button.mat-basic {
+    background-color: #809589 !important;
+    color: white !important;
+    margin: 2px !important;
+}
 
 //header
 .a-header {
-    color: white !important;
+    color:#00aa77!important;
 }
 
 .list-header {
-    color: white !important;
+    color: #00aa77 !important;
     border-left: 1px white;
 }
+
 .list-header:hover {
     cursor: pointer;
-    background-color: cadetblue;
+    background-color: #00aa77 !important ;
+    color: white!important ;
 }
-a{
-    text-decoration: none!important;
+.a-header:hover {
+    cursor: pointer;
+    background-color: #00aa77 !important;
+    color: white!important ;
 }
+h4 > span{
+     color:rgba(0, 0, 0, 0.54)!important;
+}
+a {
+    text-decoration: none !important;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: #E47474 !important;
+}
+
 //response
 
 .mob {
     display: none !important;
 }
+
 .desk {
     display: block !important;
 }
 
-.container-header{
- z-index: 100;
+.container-header {
+    z-index: 100;
+    background-color: white !important;
 }
+
 @media screen and (max-width:900px) {
     .mob {
         display: block !important;
@@ -105,4 +272,63 @@ a{
     .desk {
         display: none !important;
     }
+}
+
+.naranja {
+    background-color: #F5C073 !important;
+}
+
+.verde {
+    background-color: #62BEA3 !important;
+}
+
+/*.blanco {
+    background-color: white !important;
+}*/
+.letraBlanca{
+    color:white;
+}
+.subtitle {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.705);
+}
+
+.azul {
+    background-color: #25798E !important;
+}
+
+.azulClaro {
+    background-color: rgba(113, 196, 212, 0.466)
+}
+
+.naranjaClaro {
+    background-color: #fdf8ed !important;
+}
+
+.naranjaClaro2 {
+    background-color: #f8e2b3 !important;
+}
+
+.rojo {
+    color: #d63a3a !important;
+}
+
+
+
+.verdeLetra {
+    color: #62BEA3 !important;
+}
+
+.blancaLetra {
+    color: #ffffff !important;
+}
+
+.grisLetra {
+    color: #636262 !important;
+}
+
+
+
+.rojoClaro {
+    background-color: #d45c5c !important;
 }

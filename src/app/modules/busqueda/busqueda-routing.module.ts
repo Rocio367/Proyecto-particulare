@@ -6,6 +6,7 @@ import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 
 const routes:Routes = [
   {path:'busqueda/:q', component:BusquedaComponent},
+  {path:'busqueda', component:BusquedaComponent},
 
 ];
 

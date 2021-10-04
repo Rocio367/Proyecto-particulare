@@ -9,33 +9,125 @@
 
             <mat-horizontal-stepper>
                 <mat-step>
-                    <ng-template matStepLabel>Fill out your name</ng-template>
+                    <ng-template matStepLabel>Datos para tu clase</ng-template>
+                  
+                    <mat-button-toggle-group *ngFor='let horario of horasDisponibles'  multiple>
+                        <mat-button-toggle [value]="horario">{{horario}}</mat-button-toggle>
+                    </mat-button-toggle-group>
+                    <form [formGroup]="horariosForm" class="ui large error form">
+                        <mat-form-field class='input-small' appearance="outline">
+                            <mat-label>Desde</mat-label>
+                            <input matInput formControlName="desde" placeholder="" type="number">
+                        </mat-form-field>
+                        <div *ngIf="horariosForm.get('desde').hasError('required') && horariosForm.get('desde').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                        <div *ngIf="horariosForm.get('desde').hasError('pattern') && horariosForm.get('desde').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo solo admite <strong> numeros</strong></span>
+                        </div><br>
+                        <mat-form-field class='input-small' appearance="outline">
+                            <mat-label>Hasta</mat-label>
+                            <input matInput formControlName="hasta" placeholder="" type="number">
+                        </mat-form-field>
+                        <div *ngIf="horariosForm.get('hasta').hasError('required') && horariosForm.get('hasta').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                        <div *ngIf="horariosForm.get('hasta').hasError('pattern') && horariosForm.get('hasta').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo solo admite <strong> numeros</strong></span>
+                        </div><br>
+                        <mat-form-field class='input-small' appearance="outline">
+                            <mat-select formControlName="type">
+                                <mat-option value="1">
+                                    Indivual
+                                 </mat-option>
+                                 <mat-option value="2">
+                                    Grupal
+                                 </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-                    contenido 1
+                        <div *ngIf="horariosForm.get('type').hasError('required') && horariosForm.get('type').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                        <mat-form-field class='input-small' appearance="outline">
+                            <mat-select formControlName="type2">
+                                <mat-option value="1">
+                                    Online
+                                 </mat-option>
+                                 <mat-option value="2">
+                                    Puedo acercarme
+                                 </mat-option>
+                                 <mat-option value="3">
+                                    En mi casa
+                                 </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="horariosForm.get('type2').hasError('required') && horariosForm.get('type2').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                        <mat-form-field class='input-small' appearance="outline">
+                            <mat-label>Plataforma</mat-label>
+                            <mat-select formControlName="plataforma">
+                                <mat-option *ngFor="let plataforma of plataformas" [value]="plataforma.id">
+                                    {{plataforma.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="horariosForm.get('plataforma').hasError('required') && horariosForm.get('plataforma').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                    </form>
 
                     <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                      </div>
-                </mat-step>
-                <mat-step >
-                    <ng-template matStepLabel>Fill out your name</ng-template>
-
-                    contenido 2
-
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                      </div>
+                        <button mat-button  color='warn' [disabled]="horariosForm.invalid" (click)='guardarDatosPaso1()'
+                            matStepperNext>Siguiente</button>
+                    </div>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>Fill out your name</ng-template>
+                    <ng-template matStepLabel>Pago</ng-template>
+                    <p> Total a pagar : $300</p>
+                    <form [formGroup]="pagoForm" class="ui large error form">
 
-                    contenido 3
+                        <mat-form-field class='input-small' appearance="outline">
+                            <mat-label>Metodo de pago</mat-label>
+                            <mat-select formControlName="metodo">
+                                <mat-option *ngFor="let metodo of metodos" [value]="metodo.id">
+                                    {{metodo.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="pagoForm.get('metodo').hasError('required') && pagoForm.get('metodo').touched"
+                            class="text-center error-msg">
+                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                        </div><br>
+                    </form>
+                    <div *ngIf="pagoForm.get('metodo').value == 1">
+                        datos para pago con mercado pago
+                    </div>
+                    <div *ngIf="pagoForm.get('metodo').value == 2">
+                        datos para pago con rapipago
+                    </div>
+                    <div *ngIf="pagoForm.get('metodo').value == 3">
+                        datos para pago con pago facil
+                    </div>
                     <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                      </div>
+                        <button mat-button color='warn' matStepperPrevious>Volver</button>
+                        <button mat-button  color='warn'[disabled]="horariosForm.invalid" class='azul'
+                            matStepperNext>Siguiente</button>
+                    </div>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Termonamos! Gracias!</ng-template>
+                   
+                    <button color='warn'  mat-button  (click)='detalleClase()'>Ver detalle de la clase</button>
+
                 </mat-step>
             </mat-horizontal-stepper>
         </div>

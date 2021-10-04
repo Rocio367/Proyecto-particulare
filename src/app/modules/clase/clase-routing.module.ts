@@ -6,7 +6,6 @@ import { PagoComponent } from './pages/pago/pago.component';
 
 const routes: Routes = [
   { path: 'detalle-clase/:id', component: DetalleClaseComponent },
-  { path: 'pago/:id', component: PagoComponent },
 
 ];
 

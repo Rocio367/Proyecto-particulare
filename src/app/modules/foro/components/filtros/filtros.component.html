@@ -1,0 +1,39 @@
+    <div class="row">
+        <div class="col-lg-8 text-center">
+            <h3 class='color-d'>Temas</h3>
+
+        </div>
+        <div class="col-lg-4 text-center">
+            <button mat-button color='primary' (click)='nuevoTema()'> Nuevo tema</button>
+        </div>
+        <div class="col-lg-12 text-center">
+            <mat-card>
+                <mat-form-field  style='width:90%'  class="example-chip-list mt-4" appearance=outline>
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                        <mat-chip *ngFor="let fruit of options" [selectable]="selectable" [removable]="removable"
+                            (removed)="remove(fruit)">
+                            {{fruit}}
+                            <button class='cancel' matChipRemove *ngIf="removable">
+                                <i class="icofont-close"></i>
+                            </button>
+                        </mat-chip>
+                        <input appearance="outline" placeholder="Buscar temas..." #classInput [formControl]="classCtrl"
+                            [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let fruit of filteredOptions | async" [value]="fruit">
+                            {{fruit}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <i matSuffix class="icofont-search-2 color-a" (click)='buscar()'></i>
+
+                </mat-form-field>
+                <mat-button-toggle-group *ngFor='let option of filters' aria-label="Ingredients" multiple>
+                    <mat-button-toggle [value]="option.nombre">{{option.nombre}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </mat-card>
+
+        </div>
+
+    </div>

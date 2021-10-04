@@ -1,0 +1,120 @@
+<div class="container container-color2">
+    <div class="row">
+
+        <div class="col-lg-12 mt-2">
+            <carousel class='desk' style='height: 300px;display: flex;' cellsToShow='3' counter='true' autoplay='true'
+                lightDOM='true' loop='true'>
+                <div class="carousel-cell " *ngFor="let item of  gallery;">
+                    <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
+                </div>
+            </carousel>
+            <carousel class='mob' style='height: 300px;display: flex;' cellsToShow='1' counter='true' autoplay='true'
+            lightDOM='true' loop='true'>
+            <div class="carousel-cell " *ngFor="let item of  gallery;">
+                <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
+            </div>
+        </carousel>
+        </div>
+        <div class='col-lg-12 text-center' *ngIf=' archivo.estado== "resolver"'>
+            <button mat-raised-button class='fs-21 m-3' color="warn" (click)='postularme()'>Postularme para
+                resolverlo</button>
+        </div>
+        <div class="col-lg-12 text-center">
+            <mat-card>
+                <h3 class="color-a ">Datos generales: </h3>
+
+                <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{archivo.nombre}}</span></h4>
+                <h4 class='color-a fs-16'>Fecha:<span class='color-a'>{{archivo.fecha | date}}</span> </h4>
+                <h4 class='color-a fs-16'>Estado:<span class='color-a'>{{ archivo.estado}}</span></h4>
+                <hr />
+                <h4 class='color-a fs-16'>Institución: <span class='color-a'>{{ archivo.institucion}}</span></h4>
+                <h4 class='color-a fs-16'>Materia: <span class='color-a'>{{ archivo.materia}}</span></h4>
+                <h4 class='color-a fs-16'> Nivel: <span class='color-a'>{{ archivo.nivel}}</span></h4>
+            </mat-card>
+
+        </div>
+
+        <div class="col-lg-12 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
+            <mat-card>
+                <h3 class="color-a ">Datos del alumno: </h3>
+                <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{alumno.nombreCompleto}}</span></h4>
+            </mat-card>
+
+        </div>
+    
+        <div class="col-lg-12 text-center" *ngIf=' archivo.estado== "pendiente"'>
+            <mat-card>
+                <div class="col-lg-12" *ngIf=' archivo.estado== "pendiente"'>
+                    <h3 class="color-a ">
+                        Adjuntar resolucion del modelo
+                    </h3>
+                </div>
+                <div class="col-lg-12  mt-3" *ngIf=' archivo.estado== "pendiente"'>
+                    <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
+                        style="display:none;">
+                    <button mat-button color="basic" class="success-button ml-2" (click)="file.click()">
+                        Buscar Archivos
+                        <i class="icofont-search-document fs-21"></i>
+                    </button>
+                    <span *ngFor='let file of files'>
+                        {{file.name}}
+                    </span>
+
+                    <span class="empty" *ngIf="!message">
+                        Aun no existe un archivo cargado
+                    </span>
+                    <form [formGroup]="formComentario" class="ui large error form mt-3">
+                        <mat-form-field class='input-medium' appearance="outline">
+                            <mat-label>Comentario opcional para el alumno</mat-label>
+                            <input matInput formControlName="comentario" placeholder="" type="text">
+                        </mat-form-field>
+
+
+                    </form>
+
+                    <button mat-raised-button [disabled]='!this.files' color="warn" (click)='enviar()'>Enviar
+                        resolucion</button>
+                </div>
+             
+            </mat-card>
+        </div>
+        <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+           <mat-card>
+            <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+                <h3 class="color-a ">
+                    Resolucion entregada
+                </h3>
+            </div>
+            <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+                <mat-list  style='display: grid!important;justify-content: center!important;' role="list text-center">
+                    <mat-list-item  style='margin:auto!important;' class='text-center' *ngFor='let res of resoluciones' role="listitem">{{res}}
+                        <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
+                    </mat-list-item>
+    
+                </mat-list>
+            </div>
+           </mat-card>
+
+        </div>
+      
+       <div class="col-lg-12 text-center"  *ngIf='resoluciones && archivo.estado== "resuelto" '>
+            <mat-card>
+                <div class="col-lg-12 mt-2" >
+                    <h1 class="color-a ">
+                        Comentarios opcionales
+                    </h1>
+                </div>
+                <div class="col-lg-12 mt-2">
+                    <p class="">
+                        Comentarios
+                    </p>
+                </div>
+        
+            </mat-card>
+       </div>
+       
+
+
+
+    </div>
+</div>

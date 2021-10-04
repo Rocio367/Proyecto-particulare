@@ -1,0 +1,46 @@
+mat-card {
+  margin: 10px;
+  padding: 16px 0px 16px 0px !important;
+ // background-color: #06a367;
+ // opacity: 0.6;
+
+
+}
+
+.mat-card-header {
+    margin-bottom: 5px!important;
+  //margin-top:3em!important;
+  //color:white!important;
+}
+.mat-card-title{
+  //color:white!important; 
+  margin-left: 15px;
+}
+
+.actions {
+ // border-top-right-radius: 4px;
+ // border-top-left-radius: 4px;
+  position: absolute;
+  bottom: 65%;
+  right: 1%;
+  padding: 23px 6px 8px 7px;
+  // background-color: white!important;  
+}
+
+.like {
+  color: grey;
+}
+
+.like-active {
+  color: #25798E;
+}
+
+.icofont-like:hover {
+  cursor: pointer;
+  color: #25798E;
+}
+
+.icofont-ui-delete {
+  color: #ec0000;
+  margin: 3px;
+}

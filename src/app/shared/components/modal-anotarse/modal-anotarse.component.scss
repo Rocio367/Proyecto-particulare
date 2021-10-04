@@ -9,23 +9,32 @@
     color: #1e3e6f;
     opacity: 1;
 }
-h2 {
-    color: #2eab62;
+ 
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard {
+    margin: 0.5em ;
+    border-color: #E47474 ;
+    color: #E47474;
+
 }
-p{
-    color: #1e3e6f;
+.mat-button-toggle-appearance-standard{
+    color:#E47474!important;
 }
-input {
-    background: white;
-    width: 100%;
-    margin-bottom: 15px;
-    border: none;
-    box-shadow: 0 0 10px #c3c3c3;
-    border-radius: 5px;
-    padding: 8px 15px;
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: #E47474 ;
+    color: white ;
+
 }
-button.btn.btn-primary {
-    background: #2eab62;
-    border-color: #2eab62;
-    width: 100%;
+
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard  {
+    background-color: #E47474 ;
+    color: white;
+}
+.mat-button-toggle-checked {
+    border-color: #E47474 ;
+    background-color: #E47474;
+    color: white !important;
 }

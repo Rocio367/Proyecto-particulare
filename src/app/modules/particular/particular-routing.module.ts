@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { EditarPerfilParticularComponent } from './pages/editar-perfil-particular/editar-perfil-particular.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PerfilParticularComponent } from './pages/perfil-particular/perfil-particular.component';

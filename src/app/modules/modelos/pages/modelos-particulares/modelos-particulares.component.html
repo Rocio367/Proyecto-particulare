@@ -1,0 +1,26 @@
+<div class="container container-color2 pt-4">
+    <div class="row">
+        <div class="col-lg-6"  >
+            <h2 class='color-a mt-2'>Modelos</h2>
+        </div>
+        <div class="col-lg-6 text-right"  >
+            <button mat-button  color='primary' (click)='subirArchivo()' >Subir Archivo</button>
+        </div>
+     
+
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mat-tab-group>
+                <mat-tab label="Buscador">
+                    <app-buscador-de-archivos-particular></app-buscador-de-archivos-particular>
+                </mat-tab>
+                <mat-tab label="Mis modelos">
+                    <app-mis-modelos-particular></app-mis-modelos-particular>
+                </mat-tab>
+               
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

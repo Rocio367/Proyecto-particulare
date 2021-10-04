@@ -1,0 +1,46 @@
+<div mat-dialog-content style='width: 90vh;'>
+    <div class="">
+        <div class="modal-header">
+            <div type="button" class="close" mat-dialog-close aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div>
+        </div>
+        <div class="modal-body text-center">
+
+            <form [formGroup]="formMensaje" class="ui large error form">
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label>Destinatario</mat-label>
+                    <input matInput formControlName="destinatario" placeholder="username" type="text">
+                </mat-form-field>
+                <div *ngIf="formMensaje.get('destinatario').hasError('required') && formMensaje.get('destinatario').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+             
+
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label>Asunto</mat-label>
+                    <input matInput formControlName="asunto" placeholder="asunto" type="text">
+                </mat-form-field>
+                <div *ngIf="formMensaje.get('asunto').hasError('required') && formMensaje.get('asunto').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+
+                <mat-form-field class='input-medium' appearance="outline">
+                    <mat-label>Mensaje</mat-label>
+                    <textarea matInput formControlName="mensaje" placeholder="..." type="text"></textarea>
+                </mat-form-field>
+                <div *ngIf="formMensaje.get('mensaje').hasError('required') && formMensaje.get('mensaje').touched"
+                    class="text-center error-msg">
+                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+                </div><br>
+            </form>
+
+            <div>
+                <button mat-button class='btn-mensaje' color='warn' [disabled]="formMensaje.invalid" (click)='enviar()'>Enviar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

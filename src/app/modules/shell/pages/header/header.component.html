@@ -1,6 +1,6 @@
 <div class="container-header ">
   <span class="logo">
-    <a href="index.html"><img src="../../../../../assets/img/logo.png" alt="logo"></a>
+    <a href="index.html"><img src="/assets/img/Logo_2.png" style="height: 55px;" alt="logo"></a>
   </span>
 
   <mat-list role="list" *ngIf=' mostrar() '>
@@ -10,9 +10,9 @@
     </mat-list-item>
     <mat-list-item *ngIf='isLoggedIn' role="listitem" (click)='logout()'> <button mat-raised-button>Cerrar
         Sesion</button></mat-list-item>
-    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='login()'> <button mat-raised-button>Iniciar
+    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='login()'> <button  class="verde blancaLetra" mat-raised-button>Iniciar
         Sesion</button></mat-list-item>
-    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='register()'> <button
+    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='register()'> <button class="azul blancaLetra"
         mat-raised-button>Registrarse</button></mat-list-item>
   </mat-list>
 </div>

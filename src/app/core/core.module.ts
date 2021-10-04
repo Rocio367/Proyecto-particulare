@@ -20,6 +20,13 @@ import { HomeModule } from '../modules/home/home.module';
 import { HomeRoutingModule } from '../modules/home/home-routing.module';
 import { LoginRoutingModule } from '../modules/login/login-routing.module';
 import { LoginModule } from '../modules/login/login.module';
+import { MensajesRoutingModule } from '../modules/mensajes/mensajes-routing.module';
+import { MensajesModule } from '../modules/mensajes/mensajes.module';
+import { ForoRoutingModule } from '../modules/foro/foro-routing.module';
+import { ForoModule } from '../modules/foro/foro.module';
+import { ModelosRoutingModule } from '../modules/modelos/modelos-routing.module';
+import { ModelosModule } from '../modules/modelos/modelos.module';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   providers:[
@@ -40,9 +47,11 @@ import { LoginModule } from '../modules/login/login.module';
     AlumnoRoutingModule,
     AdministradorRoutingModule,
     HomeRoutingModule,
-    LoginRoutingModule
-
-
+    LoginRoutingModule,
+    MensajesRoutingModule,
+    ForoRoutingModule,
+    ModelosRoutingModule,
+    IvyCarouselModule,
    ],
    
   exports:[
@@ -53,8 +62,11 @@ import { LoginModule } from '../modules/login/login.module';
     AlumnoModule,
     AdministradorModule,
     HomeModule,
-    LoginModule
-
+    LoginModule,
+    MensajesModule,
+    ForoModule,
+    ModelosModule,
+    IvyCarouselModule
 
   ],
    
