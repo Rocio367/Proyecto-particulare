@@ -15,12 +15,14 @@ import { FormsModule }   from '@angular/forms';
 import { SharedModule } from './shared/components/shared.module';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider} from 'angularx-social-login';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+
 
 registerLocaleData(localeAr, 'es-AR');
 
 @NgModule({
   declarations:[AppComponent],
-  imports:[BrowserModule, HttpClientModule,FormsModule, CoreModule, SharedModule, AppRoutingModule, BrowserAnimationsModule, SocialLoginModule,],
+  imports:[BrowserModule, HttpClientModule,FormsModule, CoreModule, SharedModule, AppRoutingModule, BrowserAnimationsModule, SocialLoginModule,MatCarouselModule.forRoot(),],
   providers:[
     CookieService,
     {
