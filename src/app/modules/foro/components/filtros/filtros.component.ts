@@ -24,7 +24,7 @@ export class FiltrosComponent implements OnInit {
   options: string[] = [];
   allOptions: string[] = ['Ingles', 'Matematicas', 'Ciencias economicas'];
   allComplete: boolean = false;
-  filters:any[]=[{nombre:'Creador por mi'},{nombre:'Ultimas agregados'},{nombre:'Que sigo'},{nombre:'Mas populares'},]
+  filters:any[]=[{nombre:'Creado por mi'},{nombre:'Últimos agregados'},{nombre:'Que sigo'},{nombre:'Más populares'},]
   @ViewChild('classInput') classInput: ElementRef<HTMLInputElement>;
 
   constructor(private router:Router,public dialog: MatDialog) {
