@@ -17,8 +17,8 @@ export class TemasForoComponent implements OnInit {
     let t2=new Tema();
     t1.titulo='Tema 1';
     t2.titulo='Tema 2';
-    t1.descripcion='Descripcion'
-    t2.descripcion='Descripcion'
+    t1.descripcion='Descripción'
+    t2.descripcion='Descripción'
     t1.seguidores=3;
     t2.seguidores=6;
     t1.fecha=new Date();

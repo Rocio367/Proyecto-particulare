@@ -20,7 +20,7 @@ export class ForoComponent implements OnInit {
   }
   ngOnInit(): void {
     this.tema.titulo = 'Tema 1';
-    this.tema.descripcion = 'Descripcion'
+    this.tema.descripcion = 'Descripción'
     this.tema.seguidores = 6;
     this.tema.fecha = new Date();
     this.tema.like = true;
