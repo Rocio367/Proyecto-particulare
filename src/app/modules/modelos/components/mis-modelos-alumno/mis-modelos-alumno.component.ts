@@ -24,7 +24,6 @@ export class MisModelosAlumnoComponent implements OnInit {
   allOptions: string[] = [];
   allComplete: boolean = false;
   archivos: Archivo[]=[];
-  filters:any[]=[{nombre:'Subidos por mi'},{nombre:'Ultimas agregados'},{nombre:'Mas solicitados'},]
   @ViewChild('classInput') classInput: ElementRef<HTMLInputElement>;
 
   constructor(private router:Router) {
@@ -38,7 +37,7 @@ export class MisModelosAlumnoComponent implements OnInit {
     a2.profesores=['particular 1']
     a2.estado='Pendiente de respuesta'
     a2.carrera = 'carrera '
-    a2.institucion = 'institucion '
+    a2.institucion = 'institución '
     a2.materia = 'materia '
     a2.nivel = 'nivel '
 
@@ -51,7 +50,7 @@ export class MisModelosAlumnoComponent implements OnInit {
     a3.profesores=['particular 1']
     a3.estado='Resuelto'
     a3.carrera = 'carrera '
-    a3.institucion = 'institucion '
+    a3.institucion = 'institución '
     a3.materia = 'materia '
     a3.nivel = 'nivel '
     this.archivos.push(a2,a3)

@@ -24,7 +24,7 @@ export class BuscadorDeArchivosComponent implements OnInit {
   allOptions: string[] = [];
   allComplete: boolean = false;
   archivos: Archivo[]=[];
-  filters:any[]=[{nombre:'Subidos por mi'},{nombre:'Ultimas agregados'},{nombre:'Mas solicitados'},]
+  filters:any[]=[{nombre:'Subidos por mi'},{nombre:'Últimos agregados'},{nombre:'Más solicitados'},]
   @ViewChild('classInput') classInput: ElementRef<HTMLInputElement>;
 
   constructor(private router:Router) {
