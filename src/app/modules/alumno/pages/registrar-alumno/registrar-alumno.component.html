@@ -28,7 +28,7 @@
                     <div class="ml-5 col-6">
                         <div class="row">
                             <mat-form-field class='input-large' appearance="outline">
-                                <mat-label>Nombre</mat-label>
+                                <mat-label class="color-f">Nombre</mat-label>
                                 <input matInput formControlName="nombre" placeholder="" type="text">
                             </mat-form-field>
                             <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched"
@@ -38,7 +38,7 @@
                         </div>
                         <div class="row">
                             <mat-form-field class='input-large' appearance="outline">
-                                <mat-label>Apellido</mat-label>
+                                <mat-label class="color-f">Apellido</mat-label>
                                 <input matInput formControlName="apellido" placeholder="" type="text">
                             </mat-form-field>
                             <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched"
@@ -48,7 +48,7 @@
                         </div>
                         <div class="row">
                             <mat-form-field class='input-large' appearance="outline">
-                                <mat-label>Email</mat-label>
+                                <mat-label class="color-f">Email</mat-label>
                                 <input matInput formControlName="email" placeholder="username@gmail.com" type="email">
                             </mat-form-field>
                             <div *ngIf="formDatos.get('email').hasError('required') && formDatos.get('email').touched"
@@ -62,7 +62,7 @@
                         </div>
                         <div class="row">
                             <mat-form-field class='input-large' appearance="outline">
-                                <mat-label>Contraseña</mat-label>
+                                <mat-label class="color-f">Contraseña</mat-label>
                                 <input matInput formControlName="contrasenia" placeholder="" type="password">
                             </mat-form-field>
                             <div *ngIf="formDatos.get('contrasenia').hasError('required') && formDatos.get('contrasenia').touched"
@@ -72,7 +72,7 @@
                         </div>
                         <div class="row">
                             <mat-form-field class='input-large' appearance="outline">
-                                <mat-label>Repetir contraseña</mat-label>
+                                <mat-label class="color-f">Repetir contraseña</mat-label>
                                 <input matInput formControlName="repetirContrasenia" placeholder="" type="password">
                             </mat-form-field>
                             <div *ngIf="formDatos.get('repetirContrasenia').hasError('required') && formDatos.get('repetirContrasenia').touched"
@@ -81,13 +81,11 @@
                             </div>
                         </div>
                         <div class="row">
-                            <mat-form-field class='input-large' appearance="outline">
-                                <mat-label>Fecha de nacimiento</mat-label>
-                                <mat-form-field color="accent" appearance="fill">
+                            <mat-form-field class='input-large' color="accent" appearance="outline">
+                                <mat-label class="color-f">Fecha de nacimiento</mat-label>
                                     <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento">
                                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                     <mat-datepicker #picker1></mat-datepicker>
-                                </mat-form-field>
                             </mat-form-field>
                             <div *ngIf="formDatos.get('fechaNacimiento').hasError('required') && formDatos.get('fechaNacimiento').touched"
                                 class="text-center error-msg">
@@ -96,7 +94,7 @@
                         </div>
                         <div class="row">
                             <mat-form-field class='input-large' appearance="outline">
-                                <mat-label>Intereses</mat-label>
+                                <mat-label class="color-f">Intereses</mat-label>
                                 <textarea matInput formControlName="intereses" placeholder="" type=""></textarea>
                             </mat-form-field>
                             <div *ngIf="formDatos.get('intereses').hasError('required') && formDatos.get('intereses').touched"
