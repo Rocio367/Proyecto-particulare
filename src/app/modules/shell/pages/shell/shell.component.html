@@ -26,9 +26,9 @@
                     <mat-list-item *ngIf='isLoggedIn' role="listitem" (click)='logout()'> <button
                             mat-raised-button color='basic'>Cerrar Sesion</button></mat-list-item>
                     <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='login()'> <button
-                            mat-raised-button>Iniciar Sesion</button></mat-list-item>
+                            mat-raised-button color='warn'>Iniciar Sesion</button></mat-list-item>
                     <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='register()'> <button
-                            mat-raised-button>Registrarse</button></mat-list-item>
+                            mat-raised-button color='primary' >Registrarse</button></mat-list-item>
                 </mat-list>
             </div>
         </div>

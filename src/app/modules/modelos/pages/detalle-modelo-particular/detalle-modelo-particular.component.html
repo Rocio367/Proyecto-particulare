@@ -20,8 +20,8 @@
                 resolverlo</button>
         </div>
         <div class="col-lg-12 text-center">
-            <mat-card>
-                <h3 class="color-a ">Datos generales: </h3>
+            <mat-card class='opacity'>
+                <h3 class="color-f ">Datos generales: </h3>
 
                 <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{archivo.nombre}}</span></h4>
                 <h4 class='color-a fs-16'>Fecha:<span class='color-a'>{{archivo.fecha | date}}</span> </h4>
@@ -35,17 +35,17 @@
         </div>
 
         <div class="col-lg-12 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
-            <mat-card>
-                <h3 class="color-a ">Datos del alumno: </h3>
+            <mat-card class='opacity'>
+                <h3 class="color-f ">Datos del alumno: </h3>
                 <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{alumno.nombreCompleto}}</span></h4>
             </mat-card>
 
         </div>
     
         <div class="col-lg-12 text-center" *ngIf=' archivo.estado== "pendiente"'>
-            <mat-card>
+            <mat-card class='opacity'>
                 <div class="col-lg-12" *ngIf=' archivo.estado== "pendiente"'>
-                    <h3 class="color-a ">
+                    <h3 class="color-f ">
                         Adjuntar resolucion del modelo
                     </h3>
                 </div>
@@ -79,9 +79,9 @@
             </mat-card>
         </div>
         <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-           <mat-card>
+           <mat-card class='opacity'>
             <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                <h3 class="color-a ">
+                <h3 class="color-f ">
                     Resolucion entregada
                 </h3>
             </div>
@@ -98,7 +98,7 @@
         </div>
       
        <div class="col-lg-12 text-center"  *ngIf='resoluciones && archivo.estado== "resuelto" '>
-            <mat-card>
+            <mat-card class='opacity'>
                 <div class="col-lg-12 mt-2" >
                     <h1 class="color-a ">
                         Comentarios opcionales

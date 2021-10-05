@@ -7,7 +7,7 @@
             <button mat-button color='primary' (click)='nuevoTema()'> Nuevo tema</button>
         </div>
         <div class="col-lg-12 text-center">
-            <mat-card>
+            <mat-card class='opacity'>
                 <mat-form-field  style='width:90%'  class="example-chip-list mt-4" appearance=outline>
                     <mat-chip-list #chipList aria-label="Fruit selection">
                         <mat-chip *ngFor="let fruit of options" [selectable]="selectable" [removable]="removable"
