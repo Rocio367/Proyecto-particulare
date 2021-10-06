@@ -25,7 +25,7 @@
                         </div><br>
                         <div *ngIf="horariosForm.get('desde').hasError('pattern') && horariosForm.get('desde').touched"
                             class="text-center error-msg">
-                            <span class="mda-form-msg">Este campo solo admite <strong> numeros</strong></span>
+                            <span class="mda-form-msg">Este campo solo admite <strong> números</strong></span>
                         </div><br>
                         <mat-form-field class='input-small' appearance="outline">
                             <mat-label>Hasta</mat-label>
@@ -37,7 +37,7 @@
                         </div><br>
                         <div *ngIf="horariosForm.get('hasta').hasError('pattern') && horariosForm.get('hasta').touched"
                             class="text-center error-msg">
-                            <span class="mda-form-msg">Este campo solo admite <strong> numeros</strong></span>
+                            <span class="mda-form-msg">Este campo solo admite <strong> números</strong></span>
                         </div><br>
                         <mat-form-field class='input-small' appearance="outline">
                             <mat-select formControlName="type">
@@ -118,13 +118,13 @@
                         datos para pago con pago facil
                     </div>
                     <div>
-                        <button mat-button color='warn' matStepperPrevious>Volver</button>
+                        <button mat-button color='warn' class="mr-2" matStepperPrevious>Volver</button>
                         <button mat-button  color='warn'[disabled]="horariosForm.invalid" class='azul'
                             matStepperNext>Siguiente</button>
                     </div>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>Termonamos! Gracias!</ng-template>
+                    <ng-template matStepLabel>Terminamos! Gracias!</ng-template>
                    
                     <button color='warn'  mat-button  (click)='detalleClase()'>Ver detalle de la clase</button>
 
