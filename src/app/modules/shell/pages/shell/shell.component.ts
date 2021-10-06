@@ -69,23 +69,21 @@ export class ShellComponent implements OnInit, AfterContentChecked {
       case 'alumno': {
         this.menu.push({ type:'',href: 'perfil-alumno', title: 'Perfil' })
         this.menu.push({ type:'badge',href: 'mensajes', title: 'Mensajes' })
-        this.menu.push({ type:'badge',href: 'temas-foro', title: 'Foro' })
         this.menu.push({type:'', href: 'modelos', title: 'Modelos' })
-
-
+        this.menu.push({ type:'badge',href: 'temas-foro', title: 'Foro' })
         break;
       }
       case 'admin': {
-        this.menu.push({ type:'', href:'ganacias-administrador', title: 'Analisis' })
+        this.menu.push({ type:'', href:'ganacias-administrador', title: 'Análisis' })
         this.menu.push({type:'',  href: 'control-usuarios', title: 'Usuarios' })
         this.menu.push({ type:'badge',href: 'temas-foro', title: 'Foro' })
-
         break;
       }
       case 'particular': {
-        this.menu.push({ type:'badge', href: 'modelos-particular', title: 'Modelos' })
         this.menu.push({ type:'', href: 'perfil-particular/:id', title: 'Perfil' })
         this.menu.push({ type:'badge', href: 'mensajes', title: 'Mensajes' })
+        this.menu.push({ type:'badge', href: 'modelos-particular', title: 'Modelos' })
+        this.menu.push({ type:'badge',href: 'temas-foro', title: 'Foro' })
         break;
       }
 
