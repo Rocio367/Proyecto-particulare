@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CarrouselImgComponent } from './carrousel-img.component';
 
@@ -6,7 +6,7 @@ describe('CarrouselImgComponent', () => {
   let component: CarrouselImgComponent;
   let fixture: ComponentFixture<CarrouselImgComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CarrouselImgComponent ]
     })

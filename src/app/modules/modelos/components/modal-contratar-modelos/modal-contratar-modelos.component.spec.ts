@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ModalContratarModelosComponent } from './modal-contratar-modelos.component';
 
@@ -6,7 +6,7 @@ describe('ModalContratarModelosComponent', () => {
   let component: ModalContratarModelosComponent;
   let fixture: ComponentFixture<ModalContratarModelosComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ModalContratarModelosComponent ]
     })

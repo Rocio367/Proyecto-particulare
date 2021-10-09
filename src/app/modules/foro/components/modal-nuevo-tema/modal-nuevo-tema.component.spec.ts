@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ModalNuevoTemaComponent } from './modal-nuevo-tema.component';
 
@@ -6,7 +6,7 @@ describe('ModalNuevoTemaComponent', () => {
   let component: ModalNuevoTemaComponent;
   let fixture: ComponentFixture<ModalNuevoTemaComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ModalNuevoTemaComponent ]
     })
