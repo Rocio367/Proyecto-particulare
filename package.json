@@ -57,6 +57,7 @@
     "npm": "^7.24.1",
     "pdf-creator-node": "^2.2.2",
     "pdfmake": "^0.1.71",
+    "primeicons": "^4.1.0",
     "primeng": "^11.4.5",
     "rxjs": "^6.6.6",
     "sweetalert2": "^11.0.18",
