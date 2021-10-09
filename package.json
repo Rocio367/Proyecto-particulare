@@ -22,7 +22,7 @@
         "@angular/core": "^9.1.13",
         "@angular/flex-layout": "*",
         "@angular/forms": "^9.1.13",
-        "@angular/localize": "^12.2.8",
+        "@angular/localize": "^10.0.0",
         "@angular/material": "^9.2.4",
         "@angular/platform-browser": "^9.1.13",
         "@angular/platform-browser-dynamic": "^9.1.13",
