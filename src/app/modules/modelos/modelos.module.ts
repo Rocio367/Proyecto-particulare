@@ -15,12 +15,14 @@ import { BuscadorDeArchivosParticularComponent } from './components/buscador-de-
 import { MisModelosParticularComponent } from './components/mis-modelos-particular/mis-modelos-particular.component';
 import { ModalPostulacionModelosComponent } from './components/modal-postulacion-modelos/modal-postulacion-modelos.component';
 import { ModalValorarComponent } from './components/modal-valorar/modal-valorar.component';
+import {OrderListModule} from 'primeng/orderlist';
+import {GalleriaModule} from 'primeng/galleria';
 
 
 
 @NgModule({
   declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalAubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[ GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })

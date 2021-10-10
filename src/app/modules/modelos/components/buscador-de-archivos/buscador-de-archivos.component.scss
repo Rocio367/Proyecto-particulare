@@ -1,54 +1,90 @@
-.example-chip-list {
-    width: 100%;
-}
+.product-item {
+  display: flex;
+  align-items: center;
+  padding: .5rem;
+  width: 100%;
 
-.cancel {
-    border-style: hidden;
-    padding: 0px;
-}
-
-.icofont-search-2 {
-    font-size: 25px;
-}
-
-.icofont-search-2:hover {
-    cursor: pointer;
-}
-
-.example-section {
-    margin: 12px 0;
-  }
-  
-  .example-margin {
-    margin: 0 12px;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin-top: 4px;
+  img {
+    width: 75px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-right: 1rem;
   }
 
-  .categoria {
-    position: absolute;
-    bottom: 80%;
-    right: 1%;
-    font-size: 15px;
-    padding: 2px 5px;
+  .product-list-detail {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    margin: 0px 20px;
+
+  }
+
+  .product-list-img {
+    display: flex;
+    width: 15%;
+    flex-direction: column;
+    align-items: initial;
+  }
+
+  .product-list-action {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .product-category-icon {
+    vertical-align: middle;
+    margin-right: .5rem;
+
+  }
+
+  .product-category {
+    background: #00885f;
+    border-radius:2px ;
+    padding: 6px;
     text-align: center;
     color: #fff;
-    margin:10px 10px 0 0 ;
+    margin: 10px 10px 0 0;
+    vertical-align: middle;
+    line-height: 1;
+  }
 }
+
+@media screen and (max-width: 576px) {
+  .product-item {
+    flex-wrap: wrap;
+
+    .image-container {
+      width: 100%;
+      text-align: center;
+    }
+
+    img {
+      margin: 0 0 1rem 0;
+      width: 100px;
+    }
+  }
+}
+
+
+
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
+
 
 
 .actions {
-  position: absolute;
-  bottom: 36%;
-  right: 1%;
+
   padding: 5px 11px;
   text-align: end;
   width: 50%;
 
 }
+
 .fecha {
   position: absolute;
   bottom: 36%;
@@ -58,18 +94,13 @@
   text-align: center;
 }
 
-.example-card {
-  max-width: 250px;
-  display: inline-grid !important;
-  margin:10px;
 
+
+.like {
+  color: grey;
 }
-.like{
-color:grey;
+
+.like-active {
+  color: #25798E;
 }
-.like-active{
-color:#25798E;
-}
-.card-2{
-  margin-left: 50px;  
-}
+

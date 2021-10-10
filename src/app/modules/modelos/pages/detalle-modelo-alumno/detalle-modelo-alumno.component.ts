@@ -19,8 +19,14 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   archivo = new Archivo;
   id:number ;
 
-  constructor(private router: ActivatedRoute ,private dialog: MatDialog) {
-    this.id=this.router.snapshot.params['id'];
+  constructor(private route: ActivatedRoute ,private dialog: MatDialog) {
+    this.route
+    .params
+    .subscribe(params => {
+     
+     this.id=  params.q
+  });
+
     this.archivo.archivos = ['default-placeholder.png']
     this.archivo.nombre = 'nombre '
     this.archivo.carrera = 'carrera '

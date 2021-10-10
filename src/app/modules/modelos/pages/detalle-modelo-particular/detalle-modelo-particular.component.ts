@@ -28,6 +28,13 @@ export class DetalleModeloParticularComponent implements OnInit {
   formComentario: FormGroup;
 
   constructor(public dialog: MatDialog,private form: FormBuilder,public snackBar: MatSnackBar,private router: ActivatedRoute) {
+      this.router
+        .params
+        .subscribe(params => {
+  
+          this.id = params.q;
+        });
+    
     this.formComentario = this.form.group({
       comentario: [''],
     });
