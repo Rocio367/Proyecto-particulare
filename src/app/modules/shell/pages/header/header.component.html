@@ -1,18 +1,22 @@
-<div class="container-header ">
-  <span class="logo">
-    <a href="index.html"><img src="/assets/img/Logo_2.png" style="height: 55px;" alt="logo"></a>
-  </span>
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <span class="logo">
+      <a href="index.html"><img src="/assets/img/Logo_2.png" style="height: 55px;" alt="logo"></a>
+    </span>
+  </ng-template>
 
-  <mat-list role="list" *ngIf=' mostrar() '>
-    <mat-list-item [routerLinkActive]="['is-active']" *ngFor='let item of menu' role="listitem" class='list-header'>
-      <a *ngIf='item.type=="badge"' matBadgeColor="accent" matBadge="4" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" class='a-header' [href]='item.href'>{{item.title}}</a>
-      <a *ngIf='item.type!="badge"' class='a-header' [href]='item.href'>{{item.title}}</a>
-    </mat-list-item>
-    <mat-list-item *ngIf='isLoggedIn' role="listitem" (click)='logout()'> <button mat-raised-button>Cerrar
-        Sesion</button></mat-list-item>
-    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='login()'> <button  mat-raised-button color='warn'>Iniciar
-        Sesion</button></mat-list-item>
-    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='register()' color='primary' > <button class="azul blancaLetra"
-        mat-raised-button>Registrarse</button></mat-list-item>
-  </mat-list>
+  <div>
+    
+
+<button type="button" pButton label="Cerrar
+Sesion"  *ngIf='isLoggedIn' (click)='logout()' icon="pi pi-sign-out
+" style="margin-left:.25em"></button>
+
+<button type="button" pButton label="Iniciar
+Sesion" *ngIf='!isLoggedIn' (click)='login()'  icon="pi pi-sign-in
+" style="margin-left:.25em"></button>
+
+<button type="button" pButton label="Registrarse" *ngIf='!isLoggedIn'  (click)='register()'  icon="pi pi-user-plus
+" style="margin-left:.25em"></button>
 </div>
+</p-menubar>

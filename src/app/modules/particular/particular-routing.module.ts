@@ -5,10 +5,10 @@ import { PerfilParticularComponent } from './pages/perfil-particular/perfil-part
 import { RegistrarParticularComponent } from './pages/registrar-particular/registrar-particular.component';
 import { ComentariosParticularComponent } from './pages/comentarios-particular/comentarios-particular.component';
 const routes:Routes = [
-  {path:'perfil-particular/:id', component:PerfilParticularComponent},
-  {path:'editar-perfil-particular/:id', component:EditarPerfilParticularComponent},
+  {path:'perfil-particular', component:PerfilParticularComponent},
+  {path:'editar-perfil-particular', component:EditarPerfilParticularComponent},
   {path:'registrar-particular', component:RegistrarParticularComponent},
-  {path:'comentarios-particular/:id', component:ComentariosParticularComponent},
+  {path:'comentarios-particular', component:ComentariosParticularComponent},
 
 ];
 

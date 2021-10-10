@@ -1,39 +1,5 @@
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="over">
-        <mat-list role="list" *ngIf='mostrar()'>
-            <mat-list-item [routerLinkActive]="['is-active']" *ngFor='let item of menu' role="listitem"
-                class='list-header'>
-                <a *ngIf='item.type=="badge"' matBadgeColor="accent" matBadge="4" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()"
-                    class='a-header' [href]='item.href'>{{item.title}}</a>
-                <a *ngIf='item.type!="badge"' class='a-header' [href]='item.href'>{{item.title}}</a>
-            </mat-list-item>
-        </mat-list>
-    </mat-drawer>
+<app-header id='main-header ' [isLoggedIn]='isLoggedIn' [items]='items'> </app-header>
 
-    <mat-drawer-content>
-        <app-header id='main-header ' [isLoggedIn]='isLoggedIn' [menu]='menu' class='desk'> </app-header>
-
-        <div class="container-header mob">
-            <div class="example-sidenav-content">
-
-                <button *ngIf='mostrar()' type="button" mat-button (click)="drawer.toggle()">
-                    <i class="icofont-navigation-menu"></i>
-                </button>
-                <span class="logo">
-                    <a href="index.html"><img src="../../../../../assets/img/logo.png" alt="logo"></a>
-                </span>
-                <mat-list *ngIf='mostrar()' role="list" id='list-h'>
-                    <mat-list-item *ngIf='isLoggedIn' role="listitem" (click)='logout()'> <button
-                            mat-raised-button color='basic'>Cerrar Sesion</button></mat-list-item>
-                    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='login()'> <button
-                            mat-raised-button color='warn'>Iniciar Sesion</button></mat-list-item>
-                    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='register()'> <button
-                            mat-raised-button color='primary' >Registrarse</button></mat-list-item>
-                </mat-list>
-            </div>
-        </div>
-        <app-main></app-main>
-    </mat-drawer-content>
-</mat-drawer-container>
+<app-main></app-main>
 
 <app-footer></app-footer>
