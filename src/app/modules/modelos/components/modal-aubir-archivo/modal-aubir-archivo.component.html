@@ -1,51 +1,35 @@
-<div mat-dialog-content>
-    <div class="">
-        <div class="modal-header">
-            <div type="button" class="close" mat-dialog-close aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 m-5 text-center">
+            <p-card class='card' style="width: 80%;margin:auto;">
+                <h3>Nuevo Modelo</h3>
+            
+                <span class="p-float-label w-80  mt-4">
+                    <input id="float-input"  class='w-100' type="text" pInputText> 
+                    <label for="float-input">Institucion</label>
+                </span>
+                <span class="p-float-label w-80  mt-4">
+                    <input id="float-input"  class='w-100' type="text" pInputText> 
+                    <label for="float-input">Carrera</label>
+                </span>
+                <span class="p-float-label w-80 mt-4">
+                    <input id="float-input"  class='w-100' type="text" pInputText> 
+                    <label for="float-input">Materia</label>
+                </span>
+
+              <div class='w-80 mt-3'>
+                <p-fileUpload class='mt-4'  name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+                accept="image/*" maxFileSize="6">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+              </div>
+            <button pButton type="button"  class='mt-2' [disabled]='!uploadedFiles'  (click)='confirmar()'  label="Confirmar"></button>
+            </p-card>
         </div>
-        <div class="modal-body text-center">
-            <form [formGroup]="archivoForm" class="ui large error form">
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Institucion</mat-label>
-                    <input matInput formControlName="institucion" placeholder="" type="text">
-                </mat-form-field>
-                <div *ngIf="archivoForm.get('institucion').hasError('required') && archivoForm.get('institucion').touched"
-                    class="text-center error-msg">
-                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                </div>
-
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Carrera</mat-label>
-                    <input matInput formControlName="carrera" placeholder="" type="text">
-                </mat-form-field>
-
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label> Materia</mat-label>
-                    <input matInput formControlName="materia" placeholder="" type="text">
-                </mat-form-field>
-            </form>
-            <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
-                style="display:none;">
-            <button mat-button  color='basic' class="success-button ml-2" (click)="file.click()">
-                Buscar Archivos
-                <i class="icofont-search-document fs-21"></i>
-
-            </button>
-            <span *ngFor='let file of files' >
-                {{file.name}}
-            </span>
-        
-            <span class="empty" *ngIf="!message">
-                Aun no existe un archivo cargado
-            </span>
-
-            <div style='text-align: center; width: 100%;'>
-                <button mat-button  color='warn'  (click)='confirmar()' >Confirmar</button>
-
-            </div>
-        </div>
-
     </div>
 </div>

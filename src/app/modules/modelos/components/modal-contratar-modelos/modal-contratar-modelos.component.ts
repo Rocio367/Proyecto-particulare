@@ -13,37 +13,25 @@ import { RegistroCalendar } from 'src/app/shared/models/registroCalendario';
 })
 export class ModalContratarModelosComponent implements OnInit {
 
-  formPaso1: FormGroup;
-  formPaso2: FormGroup;
-  tipos: any[] = [{ id: '1', nombre: 'Contratar solo resolucion', },
-  { id: '2', nombre: 'Contratar resolucion y explicacion' },]
 
-  metodos: any[] = [{ id: '1', nombre: 'Mercado pago', icon: 'mercadoPago' },
-  { id: '2', nombre: 'Rapipago', icon: 'rapipago' },
-  { id: '3', nombre: 'Pagofacil', icon: 'pagofacil' }];
+  selectedType='1';
+  tipos: any[] = [{ code: '1', name: 'Contratar solo resolucion', },
+  { code: '2', name: 'Contratar resolucion y explicacion' },]
+
+ 
   
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {archivo:Archivo , particular: number},
-    private form: FormBuilder, private router: Router) {
-    this.formPaso1 = this.form.group({
-      tipo: ['2', [Validators.required]],
-     
-    });
+  constructor() {
+  
 
-    this.formPaso2 = this.form.group({
-      metodo: ['1', [Validators.required]],
-
-    });
   }
   ngOnInit(): void {
   }
 
-  guardarDatosPaso1() {
+  confirmarPagar() {
 
   }
 
-  guardarDatosPaso2() {
-
-  }
+ 
 
 
 

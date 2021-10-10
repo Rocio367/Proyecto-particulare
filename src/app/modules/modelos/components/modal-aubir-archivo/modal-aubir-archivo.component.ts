@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-aubir-archivo.component.scss']
 })
 export class ModalAubirArchivoComponent implements OnInit {
+  uploadedFiles: any[] = [];
 
   public progress: number;
   archivoForm: FormGroup;
@@ -28,21 +29,14 @@ export class ModalAubirArchivoComponent implements OnInit {
 
 
   }
-   uploadFile = (files) => {
-     this.files=files;
-     console.log(files)
-    if (files.length === 0) {
-      this.message=false;
-        this.openSnackBar('Debe cargar almenos un archivo','x')
-    }else{
-      let fileToUpload = <File>files[0];
-      this.message=true;
-      this.openSnackBar('Archivo cargado','x')
 
-     }
-   
-   
-  }
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+
+  //  this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+}
   ngOnInit(): void {
   }
   confirmar(){

@@ -1,4 +1,4 @@
-<div class="container container-color2">
+<div class="container container-color2 mb-5">
     <div class="row">
         <div class="col-lg-12 mt-2">
             <div class="col-lg-12 mt-2">
@@ -15,41 +15,43 @@
         </div>
         <div class='col-lg-12 text-center mt-3' *ngIf=' archivo.estado== "resolver"'>
 
-                <button pButton type="button"  (click)='postularme()' label="Postularme para
+            <button pButton type="button" (click)='postularme()' label="Postularme para
                 resolverlo"></button>
 
         </div>
-        <div class="col-lg-12 text-center">
-            <mat-card class='opacity'>
+        <div class="col-lg-12 mt-3 text-center">
+            <p-card style="width: 90%;margin: auto;" class='card'>
                 <h3 class="color-f ">Datos generales: </h3>
 
-                <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{archivo.nombre}}</span></h4>
-                <h4 class='color-a fs-16'>Fecha:<span class='color-a'>{{archivo.fecha | date}}</span> </h4>
-                <h4 class='color-a fs-16'>Estado:<span class='color-a'>{{ archivo.estado}}</span></h4>
+                <span class='color-f '>Nombre: {{archivo.nombre}}</span>
+                <span class='color-f'>Fecha: {{archivo.fecha | date}}</span>
+                <span class='color-f'> Estado: {{ archivo.estado}}</span>
                 <hr />
-                <h4 class='color-a fs-16'>Institución: <span class='color-a'>{{ archivo.institucion}}</span></h4>
-                <h4 class='color-a fs-16'>Materia: <span class='color-a'>{{ archivo.materia}}</span></h4>
-                <h4 class='color-a fs-16'> Nivel: <span class='color-a'>{{ archivo.nivel}}</span></h4>
-            </mat-card>
+                <span class='color-f'> Institución:{{ archivo.institucion}}</span>
+                <span class='color-f'> Materia: {{ archivo.materia}}</span>
+                <span class='color-f'> Nivel:{{ archivo.nivel}}</span>
+            </p-card>
 
         </div>
 
-        <div class="col-lg-12 text-center" *ngIf='archivo.estado== "Pendiente" || archivo.estado== "resuelto"'>
-            <mat-card class='opacity'>
+        <div class="col-lg-12 mt-3 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
+            <p-card style="width: 90%;margin: auto;" class='card'>
                 <h3 class="color-f ">Datos del alumno: </h3>
-                <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{alumno.nombreCompleto}}</span></h4>
-            </mat-card>
+                <span class='color-f '> Nombre: {{alumno.nombreCompleto}}</span>
+            </p-card>
 
         </div>
 
-        <div class="col-lg-12 text-center" *ngIf=' archivo.estado== "Pendiente"'>
-            <div  class='card'>
-                <div class="col-lg-12" *ngIf=' archivo.estado== "Pendiente"'>
+        <div class="col-lg-12 text-center mt-3 mb-5" *ngIf=' archivo.estado== "pendiente"'>
+            <p-card style="width: 90%;margin: auto;" class='card'>
+                <div class="col-lg-12" *ngIf=' archivo.estado== "pendiente"'>
                     <h3 class="color-f ">
                         Adjuntar resolucion del modelo
                     </h3>
                 </div>
-                <div class="col-lg-12  mt-3" *ngIf=' archivo.estado== "Pendiente"'>
+                <div class="col-lg-12 text-center  mt-3" *ngIf=' archivo.estado== "pendiente"'>
+
+                    <div class='w-80 mt-4'>
                         <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
                             accept="image/*" maxFileSize="1000000">
                             <ng-template pTemplate="content">
@@ -58,55 +60,58 @@
                                 </ul>
                             </ng-template>
                         </p-fileUpload>
-
+                    </div>
+                    <div class='w-80 mt-4'>
                         <h3 class="color-f ">
                             Comentarios opcionales </h3>
                         <textarea class='m-2 w-100' [rows]="5" [cols]="30" [(ngModel)]="comentario" pInputTextarea
                             autoResize="autoResize"></textarea>
 
+                    </div>
 
 
-                    <button pButton type="button"  class='mt-2' [disabled]='!this.files' (click)='enviar()' label="Enviar
+
+                    <button pButton type="button" class='mt-2' [disabled]='!this.files' (click)='enviar()' label="Enviar
                     resolucion"></button>
 
 
                 </div>
 
-            </div >
+            </p-card>
         </div>
         <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                    <h3 class="color-f ">
-                        Resolucion entregada
-                    </h3>
-                </div>
-                <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                
-                    <ul class='ul-general'>
-                        <li class="li-general"  *ngFor='let res of resoluciones'>
-                         <div class="product-item">
-                             <div class="product-list-img"  >
+            <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+                <h3 class="color-f ">
+                    Resolucion entregada
+                </h3>
+            </div>
+            <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+
+                <ul class='ul-general'  style="width:90%;margin: auto;">
+                    <li class="li-general" *ngFor='let res of resoluciones'>
+                        <div class="product-item " >
+                            <div class="product-list-img">
                                 <i class="pi pi-file" style="font-size: 2rem"></i>
-    
-                             </div>
-                             <div class="product-list-detail">
-                                 <h5 class="p-mb-2">{{res}}</h5>
-                             </div>
-                             <div class="product-list-action">
-                                <button pButton  (click)='openRes(res)' type="button" label="Ver" ></button>
+
                             </div>
-               
-                                 
-                         </div>
-                     
-                        </li>
-                     </ul>
-                </div>
+                            <div class="product-list-detail">
+                                <h5 class="p-mb-2">{{res}}</h5>
+                            </div>
+                            <div class="product-list-action">
+                                <button pButton (click)='openRes(res)' type="button" label="Ver"></button>
+                            </div>
+
+
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
 
         </div>
 
-        <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-            <mat-card class='opacity'>
+        <div class="col-lg-12 text-center mb-5" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+            <p-card style="width: 90%;margin: auto;" class='card'>
                 <div class="col-lg-12 mt-2">
                     <h1 class="color-f ">
                         Comentarios opcionales
@@ -118,7 +123,7 @@
                     </p>
                 </div>
 
-            </mat-card>
+            </p-card>
         </div>
 
 

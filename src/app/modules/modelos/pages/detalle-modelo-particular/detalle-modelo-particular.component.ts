@@ -114,21 +114,7 @@ export class DetalleModeloParticularComponent implements OnInit {
   postularme(){
     this.dialog.open(ModalPostulacionModelosComponent, { panelClass: 'custom-dialog-container'});
   }
-  uploadFile = (files) => {
-    this.files = files;
-    console.log(files)
-    if (files.length === 0) {
-      this.message = false;
-      this.openSnackBar('Debe cargar almenos un archivo', 'x')
-    } else {
-      let fileToUpload = <File>files[0];
-      this.message = true;
-      this.openSnackBar('Archivo cargado', 'x')
-
-    }
-
-
-  }
+ 
 
   confirmar() {
     Swal.fire(

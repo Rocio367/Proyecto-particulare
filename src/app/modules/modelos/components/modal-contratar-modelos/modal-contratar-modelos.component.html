@@ -6,71 +6,14 @@
             </div>
         </div>
         <div class="modal-body text-center">
+            <p> Total a pagar : $300</p>
 
-            <mat-horizontal-stepper>
-                <mat-step>
-                    <ng-template matStepLabel>Tipo de servicio </ng-template>
-                 
-                    <form [formGroup]="formPaso1" class="ui large error form">
-                      
-                        <mat-form-field class='input-large' appearance="outline">
-                            <mat-label>Tipo</mat-label>
-                            <mat-select formControlName="tipo">
-                                <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
-                                    {{tipo.nombre}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <div *ngIf="formPaso1.get('tipo').hasError('required') && formPaso1.get('tipo').touched"
-                            class="text-center error-msg">
-                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                        </div><br>
-                    </form>
+            <ng-template class='mt-3' matStepLabel>Tipo de servicio </ng-template>
+            <p-selectButton [options]="tipos" [(ngModel)]="selectedType" optionLabel="name"></p-selectButton>
+            <button pButton type="button" class='mt-3' (click)='confirmarPagar()' label="Confirmar y pagar"></button>
 
-                    <div>
-                        <button mat-button color='warn' [disabled]="formPaso1.invalid" (click)='guardarDatosPaso1()'
-                            matStepperNext>Siguiente</button>
-                    </div>
-                </mat-step>
-                <mat-step>
-                    <ng-template matStepLabel>Pago</ng-template>
-                    <p> Total a pagar : $300</p>
-                    <form [formGroup]="formPaso2" class="ui large error form">
 
-                        <mat-form-field class='input-large' appearance="outline">
-                            <mat-label>Metodo de pago</mat-label>
-                            <mat-select formControlName="metodo">
-                                <mat-option *ngFor="let metodo of metodos" [value]="metodo.id">
-                                    {{metodo.nombre}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <div *ngIf="formPaso2.get('metodo').hasError('required') && formPaso2.get('metodo').touched"
-                            class="text-center error-msg">
-                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                        </div><br>
-                    </form>
-                    <div *ngIf="formPaso2.get('metodo').value == 1">
-                        datos para pago con mercado pago
-                    </div>
-                    <div *ngIf="formPaso2.get('metodo').value == 2">
-                        datos para pago con rapipago
-                    </div>
-                    <div *ngIf="formPaso2.get('metodo').value == 3">
-                        datos para pago con pago facil
-                    </div>
-                    <div>
-                        <button mat-button class='m-2' color='warn'  matStepperPrevious>Volver</button>
-                        <button mat-button class='m-2' color='warn'  [disabled]="formPaso2.invalid" class='azul'
-                            matStepperNext>Siguiente</button>
-                    </div>
-                </mat-step>
-                <mat-step>
-                    <ng-template matStepLabel>Gracias!</ng-template>
-                    imagen
 
-                </mat-step>
-            </mat-horizontal-stepper>
         </div>
     </div>
 </div>

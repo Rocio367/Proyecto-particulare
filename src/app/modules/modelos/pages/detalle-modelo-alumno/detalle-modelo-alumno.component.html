@@ -6,21 +6,21 @@
 
         </div>
         <div class="col-lg-12 mt-2 text-center">
-            <button pButton type="button" label="Descargar archivos" ></button>
+            <button pButton type="button" label="Descargar archivos"></button>
 
         </div>
-        <div class="col-lg-12 text-center">
-            <mat-card class='opacity'>
+        <div class="col-lg-12 text-center mt-3">
+            <p-card style="width: 90%;margin: auto;" class='card'>
                 <h3 class="color-f ">Datos generales: </h3>
 
-                <h4 class='color-a fs-16 m-4'>Nombre: <span>{{archivo.nombre}}</span></h4>
-                <h4 class='color-a fs-16 m-4'>Fecha:<span>{{archivo.fecha | date}}</span> </h4>
-                <h4 class='color-a fs-16 m-4'>Estado:<span>{{ archivo.estado}}</span></h4>
+                <span>Nombre: {{archivo.nombre}}</span>
+                <span>Fecha: {{archivo.fecha | date}}</span>
+                <span> Estado: {{ archivo.estado}}</span>
                 <hr />
-                <h4 class='color-a fs-16 m-4'>Institución: <span>{{ archivo.institucion}}</span></h4>
-                <h4 class='color-a fs-16 m-4'>Materia: <span>{{ archivo.materia}}</span></h4>
-                <h4 class='color-a fs-16 m-4'> Nivel: <span>{{ archivo.nivel}}</span></h4>
-            </mat-card>
+                <span> Institución: {{ archivo.institucion}}</span>
+                <span> Materia:{{ archivo.materia}}</span>
+                <span> Nivel:{{ archivo.nivel}}</span>
+            </p-card>
 
         </div>
         <p-inplace>
@@ -37,44 +37,45 @@
             </h3>
 
             <div *ngIf='resoluciones && archivo.estado=="resuelto"'>
-                <ul class='ul-general'>
-                    <li class="li-general"  *ngFor='let item of resoluciones'>
-                     <div class="product-item">
-                         <div class="product-list-img"  >
-                            <i class="pi pi-file" style="font-size: 2rem"></i>
+                <ul class='ul-general'  style="width: 90%;margin: auto;">
+                    <li class="li-general" *ngFor='let item of resoluciones'>
+                        <div class="product-item">
+                            <div class="product-list-img">
+                                <i class="pi pi-file" style="font-size: 2rem"></i>
 
-                         </div>
-                         <div class="product-list-detail">
-                             <h5 class="p-mb-2">{{item.doc}}</h5>
-                                 <span >Particular : {{ item.particular}}</span>
-                         </div>
-                         <div class="product-list-action">
-                             <div class='stars'>
-                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
-                                 <span class='subtitle'>
-                                     {{item.valoracion}}/ 5
-                                 </span>
-         
-         
-                             </div>
-         
-                             <div class='actions' style='text-align: end;'>
-                              
-                            <button pButton *ngIf='!item.valoracion' (click)='valorar()' type="button" label="Valorar" style='margin-right: 3px;'></button>
-                            <button pButton  (click)='openRes(item.doc)' type="button" label="Ver" ></button>
+                            </div>
+                            <div class="product-list-detail">
+                                <h5 class="p-mb-2">{{item.doc}}</h5>
+                                <span>Particular : {{ item.particular}}</span>
+                            </div>
+                            <div class="product-list-action">
+                                <div class='stars'>
+                                    <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                                    <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                                    <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                                    <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                                    <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                                    <span class='subtitle'>
+                                        {{item.valoracion}}/ 5
+                                    </span>
+
+
+                                </div>
+
+                                <div class='actions' style='text-align: end;'>
+
+                                    <button pButton *ngIf='!item.valoracion' (click)='valorar()' type="button"
+                                        label="Valorar" style='margin-right: 3px;'></button>
+                                    <button pButton (click)='openRes(item.doc)' type="button" label="Ver"></button>
+                                </div>
+
+
+                            </div>
                         </div>
-           
-                             
-                         </div>
-                     </div>
-                 
+
                     </li>
-                 </ul>
-            
+                </ul>
+
             </div>
 
 
@@ -84,59 +85,59 @@
 
         <div class='col-lg-12 text-center'
             *ngIf='!resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
-            <mat-card class='opacity'>
+            <p-card style="width: 90%;margin: auto;" class='card'>
                 <h3 class="color-f">
                     Resoluciones
                 </h3>
                 <p>Aun no hay resoluciones</p>
 
-            </mat-card>
+            </p-card>
         </div>
 
-        <div class="col-lg-12 text-center">
+        <div class="col-lg-12 text-center ">
             <h3 class="color-f">
                 Profesores para la resolucion:
             </h3>
         </div>
-        <div class="col-lg-12 contorno" >
-            <ul class='ul-general'>
-               <li class="li-general"  *ngFor='let item of archivo.profesores'>
-                <div class="product-item">
-                    <div class="product-list-img"  >
-                        <img [src]="'./assets/img/'+item.foto"
-                            style="display:inline-block;margin:2px 0 2px 2px; width:100%">
-                    </div>
-                    <div class="product-list-detail">
-                        <h5 class="p-mb-2">{{item.particular}}</h5>
-                            <span >Costo de resolucion : {{ item.costo}}</span>
-                            <span > Costo explicacion : {{ item.costo_explicacion}}</span>
-                            <span >Demora: {{ item.demora}}</span>
-                    </div>
-                    <div class="product-list-action">
-                        <div class='stars'>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
-                            <span class='subtitle'>
-                                {{item.valoracion}}/ 5
-                            </span>
-    
-    
+        <div class="col-lg-12 mb-5">
+            <ul class='ul-general'  style="width: 90%;margin: auto;">
+                <li class="li-general" *ngFor='let item of archivo.profesores'>
+                    <div class="product-item">
+                        <div class="product-list-img">
+                            <img [src]="'./assets/img/'+item.foto"
+                                style="display:inline-block;margin:2px 0 2px 2px; width:100%">
                         </div>
-    
-                        <div class='actions' style='text-align: end;'>
-                            <button pButton (click)='contratar()' type="button" label="Contratar" ></button>
+                        <div class="product-list-detail">
+                            <h5 class="p-mb-2">{{item.particular}}</h5>
+                            <span>Costo de resolucion : {{ item.costo}}</span>
+                            <span> Costo explicacion : {{ item.costo_explicacion}}</span>
+                            <span>Demora: {{ item.demora}}</span>
                         </div>
-      
-                        
+                        <div class="product-list-action">
+                            <div class='stars'>
+                                <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                                <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                                <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                                <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                                <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                                <span class='subtitle'>
+                                    {{item.valoracion}}/ 5
+                                </span>
+
+
+                            </div>
+
+                            <div class='actions' style='text-align: end;'>
+                                <button pButton (click)='contratar()' type="button" label="Contratar"></button>
+                            </div>
+
+
+                        </div>
                     </div>
-                </div>
-            
-               </li>
+
+                </li>
             </ul>
-          
+
         </div>
     </div>
 </div>
