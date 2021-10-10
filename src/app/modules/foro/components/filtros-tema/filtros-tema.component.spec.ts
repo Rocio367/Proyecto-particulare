@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FiltrosTemaComponent } from './filtros-tema.component';
 
@@ -6,7 +6,7 @@ describe('FiltrosTemaComponent', () => {
   let component: FiltrosTemaComponent;
   let fixture: ComponentFixture<FiltrosTemaComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FiltrosTemaComponent ]
     })

@@ -29,6 +29,8 @@ import { ModelosModule } from '../modules/modelos/modelos.module';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { ContactoRoutingModule } from '../modules/contacto/contacto-routing.module';
 import { ContactoModule } from '../modules/contacto/contacto.module';
+import { DemoPrimeNgRoutingModule } from '../modules/demo-primeng/demoprimeng-routing.module';
+import { DemoPrimeNgModule } from '../modules/demo-primeng/demoprimeng.module';
 
 @NgModule({
   providers:[
@@ -55,6 +57,7 @@ import { ContactoModule } from '../modules/contacto/contacto.module';
     ModelosRoutingModule,
     IvyCarouselModule,
     ContactoRoutingModule,
+    DemoPrimeNgRoutingModule,
    ],
    
   exports:[
@@ -70,7 +73,8 @@ import { ContactoModule } from '../modules/contacto/contacto.module';
     ForoModule,
     ModelosModule,
     IvyCarouselModule,
-    ContactoRoutingModule
+    ContactoRoutingModule,
+    DemoPrimeNgModule,
   ],
    
   declarations: []
