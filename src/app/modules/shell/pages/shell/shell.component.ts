@@ -83,7 +83,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
               {
                 label: 'Editar perfil',
                 icon: 'pi pi-fw pi-user-edit',
-                routerLink: 'perfil-alumno-editar'
+                routerLink: 'editar-perfil-alumno'
 
               }
 
@@ -175,7 +175,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
               {
                 label: 'Editar perfil',
                 icon: 'pi pi-fw pi-user-edit',
-                routerLink: 'perfil-particular-editar'
+                routerLink: 'editar-perfil-particular'
 
               }
 
