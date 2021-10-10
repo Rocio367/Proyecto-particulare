@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { GeneralService } from 'src/app/core/services/general/general.service';
 import { ConsultaRequest } from 'src/app/shared/models/consultaRequest';
 import { Lugar } from 'src/app/shared/models/lugar';
@@ -30,9 +30,14 @@ export class BusquedaComponent implements OnInit {
     componentRestrictions: { country: 'AR' }
   };
   minDate= new Date;
-
-
-  constructor(private aRouter: ActivatedRoute,private form: FormBuilder, private services: GeneralService) {
+  selectedMateria:any;
+  selectedType:any;
+  selectedNiveles:any;
+  selectedValues: string[] = [];
+  tipos:any[]=[{code:'1',name:'Online'},{code:'2',name:'Me puedo acercar'},{code:'3',name:'En mi casa'}]
+  materias:any[]=[{code:'1',name:'materia 1'},{code:'2',name:'Materia 2'}]
+  niveles:any[]=[{code:'1',name:'Primaria'},{code:'2',name:'Secundaria'},{code:'2',name:'Universitario / Terciario'}]
+  constructor(private router:Router,private aRouter: ActivatedRoute,private form: FormBuilder, private services: GeneralService) {
     this.formDatos = this.form.group({
       materia: [''],
       ubicacion: [''],
@@ -57,7 +62,10 @@ export class BusquedaComponent implements OnInit {
   limpiar() {
    
   }
-
+  onSelectionChange(l){  
+    let id=(new String((l.value[0].id)))
+    this.router.navigate(['detalle-clase', {  q: id  }])
+ }
   getCoordenadas(lugar: Lugar): void {
     this.formDatos.setValue({ 'lat': lugar.lat, 'lng': lugar.lng });
 

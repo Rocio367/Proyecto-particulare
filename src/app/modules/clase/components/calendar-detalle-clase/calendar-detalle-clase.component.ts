@@ -1,24 +1,14 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import * as moment from 'moment'
-import { RegistroCalendar } from "../../models/registroCalendario";
 import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
-interface City {
-  name: string;
-  code: string;
-}
-
-interface Country {
-  name: string;
-  code: string;
-}
-
+import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
 @Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  selector: 'app-calendar-detalle-clase',
+  templateUrl: './calendar-detalle-clase.component.html',
+  styleUrls: ['./calendar-detalle-clase.component.scss']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarDetalleClaseComponent implements OnInit {
   value=new Date;
   horarios:any[];
   monthSelect: any[]=[];

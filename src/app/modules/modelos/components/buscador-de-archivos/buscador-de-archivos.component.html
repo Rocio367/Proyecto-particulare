@@ -1,35 +1,36 @@
+<div class='m-4'>
+    <p-orderList [value]="archivos" [listStyle]="{'height':'auto'}" header="Resultados"
+        filterBy="nombre,estado,materia,institucion,carrera" filterPlaceholder="Filtrar por nombre" [dragdrop]="false"
+        (onSelectionChange)='onSelectionChange($event)'>
+        <ng-template let-archivo pTemplate="item">
 
-  <div class='m-4'>
-    <p-orderList  [value]="archivos" [listStyle]="{'height':'auto'}" header="Resultados" filterBy="nombre,estado,materia,institucion,carrera"
-    filterPlaceholder="Filtrar por nombre" [dragdrop]="false" (onSelectionChange)='onSelectionChange($event)'>
-      <ng-template let-archivo pTemplate="item" >
-          
-          <div class="product-item">
-              <div class="product-list-img"  >
-                  <img [src]="'./assets/img/'+archivo.archivos[0]"
-                      style="display:inline-block;margin:2px 0 2px 2px; width:100%">
+            <div class="product-item">
+                <div class="product-list-img">
+                    <img [src]="'./assets/img/'+archivo.archivos[0]"
+                        style="display:inline-block;margin:2px 0 2px 2px; width:100%">
 
-              </div>
-              <div class="product-list-detail">
-                  <h5 class="p-mb-2">{{archivo.nombre}}</h5>
-                  <span>{{archivo.fecha| date}}</span>
-                  <span> <i class="pi pi-tag product-category-icon"></i>{{archivo.institucion}} | {{ archivo.carrera}} | {{archivo.materia}}</span>
-              </div>
-              <div class="product-list-action">
-                  <div class='actions'>
-                      <span [ngClass]='(archivo.like)? "like-active" : "like" '
-                          class="pt-1 pr-1 fs-16 ">{{archivo.seguidores}}</span>
+                </div>
+                <div class="product-list-detail">
+                    <h5 class="p-mb-2">{{archivo.nombre}}</h5>
+                    <span>{{archivo.fecha| date}}</span>
+                    <span> <i class="pi pi-tag product-category-icon"></i>{{archivo.institucion}} | {{ archivo.carrera}}
+                        | {{archivo.materia}}</span>
+                </div>
+                <div class="product-list-action">
+                    <div class='actions'>
+                        <span [ngClass]='(archivo.like)? "like-active" : "like" '
+                            class="pt-1 pr-1 fs-16 ">{{archivo.seguidores}}</span>
 
-                      <i [ngClass]='(archivo.like)? "like-active" : "like" ' class="icofont-like fs-21"
-                          (click)="like(archivo)"></i>
-                  </div>
+                        <i [ngClass]='(archivo.like)? "like-active" : "like" ' class="icofont-like fs-21"
+                            (click)="like(archivo)"></i>
+                    </div>
 
 
-                  <span class="product-category"> {{archivo.estado}}</span>
+                    <span class="product-category"> {{archivo.estado}}</span>
 
-                  
-              </div>
-          </div>
-      </ng-template>
-</p-orderList>
-  </div>
+
+                </div>
+            </div>
+        </ng-template>
+    </p-orderList>
+</div>
