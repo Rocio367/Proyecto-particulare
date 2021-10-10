@@ -1,12 +1,14 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-4">
+
+<div class="container mt-5">
+    <div class="row" *ngIf='recibidos'>
+        <div class="col-lg-4" >
             <mat-list>
                 <mat-list-item (click)='seleccion(mensaje)' [ngClass]='(mensaje.leido)? "leido":"no-leido "' *ngFor="let mensaje of recibidos">
-                    <div mat-line>{{mensaje.emisor}}</div>
-                    <div mat-line>{{mensaje.asunto}}</div>
-                    <div mat-line> {{mensaje.fecha | date}} </div>
-                    <i class="icofont-ui-delete icon" (click)='delete(mensaje)'></i>
+                    <div class='fs-18' mat-line>{{mensaje.emisor}}</div>
+                    <div   mat-line>{{mensaje.asunto}}</div>
+                    <div  mat-line> {{mensaje.fecha | date}} </div>
+                    <i class="pi pi-trash fs-21
+                    icon" (click)='delete(mensaje)'></i>
                 </mat-list-item>
                
               </mat-list>
@@ -18,5 +20,10 @@
         <div class='col-lg-8 seleccion-mensaje mt-2' *ngIf='!mensaje'>
               Seleccione un mensaje para ver más detalles
         </div>
+    </div>
+
+    <div class="row text-center" *ngIf='!recibidos'>
+        <div class='seleccion-mensaje col-12 text-center' >
+            Aun no hay mensajes eliminados</div>
     </div>
 </div>
