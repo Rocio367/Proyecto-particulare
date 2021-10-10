@@ -23,14 +23,16 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss",
                             "./node_modules/primeicons/primeicons.css",
                             "./node_modules/primeng/resources/themes/saga-blue/theme.css",
-                            "./node_modules/primeng/resources/primeng.min.css"
+                            "./node_modules/primeng/resources/primeng.min.css",
+                            "src/assets/icofont/icofont.min.css",
+                            "src/theme.scss",
+                            "src/assets/css/bootstrap-social.css",
+                            "src/styles.scss"
                         ],
                         "scripts": [
                             "./node_modules/jquery/dist/jquery.min.js"
-
                         ]
                     },
                     "configurations": {
