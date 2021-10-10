@@ -1,23 +1,23 @@
 <div class="container container-color2">
     <div class="row">
-
         <div class="col-lg-12 mt-2">
-            <carousel class='desk' style='height: 300px;display: flex;' cellsToShow='3' counter='true' autoplay='true'
-                lightDOM='true' loop='true'>
-                <div class="carousel-cell " *ngFor="let item of  gallery;">
-                    <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
+            <div class="col-lg-12 mt-2">
+                <div class="col-lg-12 mt-2 text-center">
+                    <h3> Archivos</h3>
+                    <img class='img-a' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
+
                 </div>
-            </carousel>
-            <carousel class='mob' style='height: 300px;display: flex;' cellsToShow='1' counter='true' autoplay='true'
-            lightDOM='true' loop='true'>
-            <div class="carousel-cell " *ngFor="let item of  gallery;">
-                <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
+                <div class="col-lg-12 mt-2 text-center">
+                    <button pButton type="button" label="Descargar archivos"></button>
+
+                </div>
             </div>
-        </carousel>
         </div>
         <div class='col-lg-12 text-center' *ngIf=' archivo.estado== "resolver"'>
-            <button mat-raised-button class='fs-21 m-3' color="warn" (click)='postularme()'>Postularme para
-                resolverlo</button>
+
+                <button pButton type="button"  (click)='postularme()' label="Postularme para
+                resolverlo"></button>
+
         </div>
         <div class="col-lg-12 text-center">
             <mat-card class='opacity'>
@@ -34,73 +34,81 @@
 
         </div>
 
-        <div class="col-lg-12 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
+        <div class="col-lg-12 text-center" *ngIf='archivo.estado== "Pendiente" || archivo.estado== "resuelto"'>
             <mat-card class='opacity'>
                 <h3 class="color-f ">Datos del alumno: </h3>
                 <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{alumno.nombreCompleto}}</span></h4>
             </mat-card>
 
         </div>
-    
-        <div class="col-lg-12 text-center" *ngIf=' archivo.estado== "pendiente"'>
-            <mat-card class='opacity'>
-                <div class="col-lg-12" *ngIf=' archivo.estado== "pendiente"'>
+
+        <div class="col-lg-12 text-center" *ngIf=' archivo.estado== "Pendiente"'>
+            <div  class='card'>
+                <div class="col-lg-12" *ngIf=' archivo.estado== "Pendiente"'>
                     <h3 class="color-f ">
                         Adjuntar resolucion del modelo
                     </h3>
                 </div>
-                <div class="col-lg-12  mt-3" *ngIf=' archivo.estado== "pendiente"'>
-                    <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
-                        style="display:none;">
-                    <button mat-button color="basic" class="success-button ml-2" (click)="file.click()">
-                        Buscar Archivos
-                        <i class="icofont-search-document fs-21"></i>
-                    </button>
-                    <span *ngFor='let file of files'>
-                        {{file.name}}
-                    </span>
+                <div class="col-lg-12  mt-3" *ngIf=' archivo.estado== "Pendiente"'>
+                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+                            accept="image/*" maxFileSize="1000000">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
 
-                    <span class="empty" *ngIf="!message">
-                        Aun no existe un archivo cargado
-                    </span>
-                    <form [formGroup]="formComentario" class="ui large error form mt-3">
-                        <mat-form-field class='input-medium' appearance="outline">
-                            <mat-label>Comentario opcional para el alumno</mat-label>
-                            <input matInput formControlName="comentario" placeholder="" type="text">
-                        </mat-form-field>
+                        <h3 class="color-f ">
+                            Comentarios opcionales </h3>
+                        <textarea class='m-2 w-100' [rows]="5" [cols]="30" [(ngModel)]="comentario" pInputTextarea
+                            autoResize="autoResize"></textarea>
 
 
-                    </form>
 
-                    <button mat-raised-button [disabled]='!this.files' color="warn" (click)='enviar()'>Enviar
-                        resolucion</button>
+                    <button pButton type="button"  class='mt-2' [disabled]='!this.files' (click)='enviar()' label="Enviar
+                    resolucion"></button>
+
+
                 </div>
-             
-            </mat-card>
+
+            </div >
         </div>
         <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-           <mat-card class='opacity'>
-            <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                <h3 class="color-f ">
-                    Resolucion entregada
-                </h3>
-            </div>
-            <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                <mat-list  style='display: grid!important;justify-content: center!important;' role="list text-center">
-                    <mat-list-item  style='margin:auto!important;' class='text-center' *ngFor='let res of resoluciones' role="listitem">{{res}}
-                        <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
-                    </mat-list-item>
+                <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+                    <h3 class="color-f ">
+                        Resolucion entregada
+                    </h3>
+                </div>
+                <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+                
+                    <ul class='ul-general'>
+                        <li class="li-general"  *ngFor='let res of resoluciones'>
+                         <div class="product-item">
+                             <div class="product-list-img"  >
+                                <i class="pi pi-file" style="font-size: 2rem"></i>
     
-                </mat-list>
-            </div>
-           </mat-card>
+                             </div>
+                             <div class="product-list-detail">
+                                 <h5 class="p-mb-2">{{res}}</h5>
+                             </div>
+                             <div class="product-list-action">
+                                <button pButton  (click)='openRes(res)' type="button" label="Ver" ></button>
+                            </div>
+               
+                                 
+                         </div>
+                     
+                        </li>
+                     </ul>
+                </div>
 
         </div>
-      
-       <div class="col-lg-12 text-center"  *ngIf='resoluciones && archivo.estado== "resuelto" '>
+
+        <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <mat-card class='opacity'>
-                <div class="col-lg-12 mt-2" >
-                    <h1 class="color-a ">
+                <div class="col-lg-12 mt-2">
+                    <h1 class="color-f ">
                         Comentarios opcionales
                     </h1>
                 </div>
@@ -109,10 +117,10 @@
                         Comentarios
                     </p>
                 </div>
-        
+
             </mat-card>
-       </div>
-       
+        </div>
+
 
 
 

@@ -18,7 +18,7 @@ const routes:Routes = [
   {path:'buscar-modelos-particular', component:BuscadorDeArchivosParticularComponent},
   {path:'mis-modelos-particular', component:MisModelosParticularComponent},
   {path:'detalle-modelo-alumno', component:DetalleModeloAlumnoComponent},
-  {path:'detalle-modelo-particular/:id', component:DetalleModeloParticularComponent},
+  {path:'detalle-modelo-particular', component:DetalleModeloParticularComponent},
 
 ];
 

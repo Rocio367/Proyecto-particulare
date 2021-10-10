@@ -18,12 +18,15 @@ import { ModalValorarComponent } from './components/modal-valorar/modal-valorar.
 import {OrderListModule} from 'primeng/orderlist';
 import {GalleriaModule} from 'primeng/galleria';
 import {ButtonModule} from 'primeng/button';
+import {FileUploadModule} from 'primeng/fileupload';
+import {ToastModule} from 'primeng/toast';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 
 
 @NgModule({
   declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalAubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent],
-  imports:[ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[InputTextareaModule,ToastModule,FileUploadModule,ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })

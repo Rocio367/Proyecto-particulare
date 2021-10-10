@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Archivo } from 'src/app/shared/models/archivo';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 import Swal from 'sweetalert2';
@@ -25,23 +26,24 @@ export class DetalleModeloParticularComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
   files = '';
   message=false;
-  formComentario: FormGroup;
 
-  constructor(public dialog: MatDialog,private form: FormBuilder,public snackBar: MatSnackBar,private router: ActivatedRoute) {
+  //
+  comentario:string;
+  uploadedFiles: any[] = [];
+
+  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private router: ActivatedRoute) {
       this.router
         .params
         .subscribe(params => {
-  
           this.id = params.q;
         });
     
-    this.formComentario = this.form.group({
-      comentario: [''],
-    });
+  
 
-    this.id=this.router.snapshot.params['id'];
-    this.archivo.archivos = ['default-placeholder.png']
-    this.archivo.nombre = 'nombre '
+    this.archivo.archivos = ['https://www.eltiempo.com/files/article_content/files/crop/uploads/2021/02/22/6033a0a88d9ae.r_1614037672834.0-886-1536-2038.jpeg',
+    'https://www.eltiempo.com/files/article_content/files/crop/uploads/2021/02/22/6033a0a88d9ae.r_1614037672834.0-886-1536-2038.jpeg',
+  'https://www.eltiempo.com/files/article_content/files/crop/uploads/2021/02/22/6033a0a88d9ae.r_1614037672834.0-886-1536-2038.jpeg']
+      this.archivo.nombre = 'nombre '
     this.archivo.carrera = 'carrera '
     this.archivo.institucion = 'institucion '
     this.archivo.materia = 'materia '
@@ -101,6 +103,14 @@ export class DetalleModeloParticularComponent implements OnInit {
   contratar() {
 
   }
+
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+
+  //  this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+}
   postularme(){
     this.dialog.open(ModalPostulacionModelosComponent, { panelClass: 'custom-dialog-container'});
   }
