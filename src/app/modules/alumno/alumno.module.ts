@@ -8,11 +8,15 @@ import { SharedModule } from 'src/app/shared/components/shared.module';
 import { RegistrarAlumnoComponent } from './pages/registrar-alumno/registrar-alumno.component';
 import { TablaComponent } from './components/tabla/tabla.component';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import {CalendarModule} from 'primeng/calendar';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+
 
 
 @NgModule({
   declarations:[RegistrarAlumnoComponent, EditarPerfilAlumnoComponent,PerfilAlumnoComponent, TablaComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule],
+  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule, CalendarModule, InputTextModule, InputTextareaModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })

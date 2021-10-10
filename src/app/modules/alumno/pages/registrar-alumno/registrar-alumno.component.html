@@ -26,31 +26,25 @@
                         </div>
                     </div>
                     <div class="ml-5 col-6">
-                        <div class="row">
-                            <mat-form-field class='input-large' appearance="outline">
-                                <mat-label class="color-f">Nombre</mat-label>
-                                <input matInput formControlName="nombre" placeholder="" type="text">
-                            </mat-form-field>
+                        <div class="row p-float-label">
+                            <input id="nombre" type="text" pInputText formControlName="nombre" placeholder="">
+                            <label for="nombre">Nombre</label>
                             <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched"
                                 class="text-center error-msg">
                                 <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                             </div>
                         </div>
-                        <div class="row">
-                            <mat-form-field class='input-large' appearance="outline">
-                                <mat-label class="color-f">Apellido</mat-label>
-                                <input matInput formControlName="apellido" placeholder="" type="text">
-                            </mat-form-field>
+                        <div class="row p-float-label">
+                            <input id="apellido" type="text" pInputText formControlName="apellido" placeholder="">
+                            <label for="apellido">Apellido</label>
                             <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched"
                                 class="text-center error-msg">
                                 <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                             </div>
                         </div>
-                        <div class="row">
-                            <mat-form-field class='input-large' appearance="outline">
-                                <mat-label class="color-f">Email</mat-label>
-                                <input matInput formControlName="email" placeholder="username@gmail.com" type="email">
-                            </mat-form-field>
+                        <div class="row p-float-label">
+                            <input id="email" type="email" pInputText formControlName="email" placeholder="">
+                            <label for="email">Email</label>
                             <div *ngIf="formDatos.get('email').hasError('required') && formDatos.get('email').touched"
                                 class="text-center error-msg">
                                 <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
@@ -60,49 +54,36 @@
                                 <span class="mda-form-msg">El formato no es correcto</span>
                             </div>
                         </div>
-                        <div class="row">
-                            <mat-form-field class='input-large' appearance="outline">
-                                <mat-label class="color-f">Contraseña</mat-label>
-                                <input matInput formControlName="contrasenia" placeholder="" type="password">
-                            </mat-form-field>
+                        <div class="row p-float-label">
+                            <input id="contrasenia" type="password" pInputText formControlName="contrasenia" placeholder="">
+                            <label for="contrasenia">Contraseña</label>
                             <div *ngIf="formDatos.get('contrasenia').hasError('required') && formDatos.get('contrasenia').touched"
                                     class="text-center error-msg">
                                 <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                             </div>
                         </div>
-                        <div class="row">
-                            <mat-form-field class='input-large' appearance="outline">
-                                <mat-label class="color-f">Repetir contraseña</mat-label>
-                                <input matInput formControlName="repetirContrasenia" placeholder="" type="password">
-                            </mat-form-field>
+                        <div class="row p-float-label">
+                            <input id="repetirContrasenia" type="password" pInputText formControlName="repetirContrasenia" placeholder="">
+                            <label for="repetirContrasenia">Repetir contraseña</label>
                             <div *ngIf="formDatos.get('repetirContrasenia').hasError('required') && formDatos.get('repetirContrasenia').touched"
                             class="text-center error-msg">
                                 <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                             </div>
                         </div>
-                        <div class="row">
-                            <mat-form-field class='input-large' color="accent" appearance="outline">
-                                <mat-label class="color-f">Fecha de nacimiento</mat-label>
-                                    <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento">
-                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker1></mat-datepicker>
-                            </mat-form-field>
+                        <div class="row p-float-label">
+                            <label for="fechaNacimiento">Fecha de nacimiento</label>
+                            <p-calendar formControlName="fechaNacimiento" [showIcon]="true" inputId="fechaNacimiento"></p-calendar>
+
                             <div *ngIf="formDatos.get('fechaNacimiento').hasError('required') && formDatos.get('fechaNacimiento').touched"
                                 class="text-center error-msg">
                                 <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
                             </div>
                         </div>
-                        <div class="row">
-                            <mat-form-field class='input-large' appearance="outline">
-                                <mat-label class="color-f">Intereses</mat-label>
-                                <textarea matInput formControlName="intereses" placeholder="" type=""></textarea>
-                            </mat-form-field>
-                            <div *ngIf="formDatos.get('intereses').hasError('required') && formDatos.get('intereses').touched"
-                                class="text-center error-msg">
-                                <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                            </div>
+                        <div class="row p-float-label">
+                            <textarea id="intereses" pInputTextarea formControlName="intereses"></textarea>
+                            <label for="intereses">Intereses</label>
                         </div>
-                        <div class="row">
+                        <div class="row p-float-label">
                             <button type="submit" mat-raised-button color="primary">Registrar</button>
                         </div>
                     </div>
