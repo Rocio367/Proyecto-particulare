@@ -1,35 +1,29 @@
-
 <div class="container container-color2">
     <div class="row">
-        <div class="col-lg-12 mt-2">z
-            <carousel class='desk' style='height: 300px;display: flex;' cellsToShow='3' counter='true' autoplay='true'
-                lightDOM='true' loop='true'>
-                <div class="carousel-cell " *ngFor="let item of  gallery;">
-                    <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
-                </div>
-            </carousel>
-            <carousel class='mob' style='height: 300px;display: flex;' cellsToShow='1' counter='true' autoplay='true'
-                lightDOM='true' loop='true'>
-                <div class="carousel-cell " *ngFor="let item of  gallery;">
-                    <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
-                </div>
-            </carousel>
+        <div class="col-lg-12 mt-2 text-center">
+            <h3> Archivos</h3>
+            <img class='img-a' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
+
+        </div>
+        <div class="col-lg-12 mt-2 text-center">
+            <button pButton type="button" label="Descargar archivos" ></button>
+
         </div>
         <div class="col-lg-12 text-center">
             <mat-card class='opacity'>
                 <h3 class="color-f ">Datos generales: </h3>
 
-                <h4 class='color-a fs-16 m-4'>Nombre: <span >{{archivo.nombre}}</span></h4>
+                <h4 class='color-a fs-16 m-4'>Nombre: <span>{{archivo.nombre}}</span></h4>
                 <h4 class='color-a fs-16 m-4'>Fecha:<span>{{archivo.fecha | date}}</span> </h4>
-                <h4 class='color-a fs-16 m-4'>Estado:<span >{{ archivo.estado}}</span></h4>
+                <h4 class='color-a fs-16 m-4'>Estado:<span>{{ archivo.estado}}</span></h4>
                 <hr />
-                <h4 class='color-a fs-16 m-4'>Institución: <span >{{ archivo.institucion}}</span></h4>
-                <h4 class='color-a fs-16 m-4'>Materia: <span >{{ archivo.materia}}</span></h4>
-                <h4 class='color-a fs-16 m-4'> Nivel: <span >{{ archivo.nivel}}</span></h4>
+                <h4 class='color-a fs-16 m-4'>Institución: <span>{{ archivo.institucion}}</span></h4>
+                <h4 class='color-a fs-16 m-4'>Materia: <span>{{ archivo.materia}}</span></h4>
+                <h4 class='color-a fs-16 m-4'> Nivel: <span>{{ archivo.nivel}}</span></h4>
             </mat-card>
 
         </div>
-        <p-inplace >
+        <p-inplace>
             <ng-template pTemplate="display">
                 Click to Edit
             </ng-template>
@@ -37,42 +31,50 @@
                 <input type="text" value="PrimeNG" pInputText>
             </ng-template>
         </p-inplace>
-        <div class='col-lg-12 text-center'
-            *ngIf='resoluciones && archivo.estado=="resuelto"'>
+        <div class='col-lg-12 text-center' *ngIf='resoluciones && archivo.estado=="resuelto"'>
             <h3 class="color-f">
                 Resoluciones:
             </h3>
 
             <div *ngIf='resoluciones && archivo.estado=="resuelto"'>
-                <mat-card class="example-card card-particulares opacity" *ngFor='let item of resoluciones'>
-                    <mat-card-header>
-                        <mat-card-title > <i class="icofont-attachment fs-21"></i> {{item.doc}}
-                        </mat-card-title>
+                <ul class='ul-general'>
+                    <li class="li-general"  *ngFor='let item of resoluciones'>
+                     <div class="product-item">
+                         <div class="product-list-img"  >
+                            <i class="pi pi-file" style="font-size: 2rem"></i>
 
-                        <div class='stars' *ngIf='item.valoracion'>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-                            <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
-                            <span class='subtitle'>
-                                {{item.valoracion}}/ 5
-                            </span>
-
-
+                         </div>
+                         <div class="product-list-detail">
+                             <h5 class="p-mb-2">{{item.doc}}</h5>
+                                 <span >Particular : {{ item.particular}}</span>
+                         </div>
+                         <div class="product-list-action">
+                             <div class='stars'>
+                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                                 <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                                 <span class='subtitle'>
+                                     {{item.valoracion}}/ 5
+                                 </span>
+         
+         
+                             </div>
+         
+                             <div class='actions' style='text-align: end;'>
+                              
+                            <button pButton *ngIf='!item.valoracion' (click)='valorar()' type="button" label="Valorar" style='margin-right: 3px;'></button>
+                            <button pButton  (click)='openRes(item.doc)' type="button" label="Ver" ></button>
                         </div>
-
-                        <div class='actions' style='text-align: end;'>
-                            <button mat-button color='warn' *ngIf='!item.valoracion'
-                                (click)='valorar()'>Valorar</button>
-                            <button mat-button color='primary' (click)='openRes(item.doc)'>Ver</button>
-
-                        </div>
-                        <mat-card-subtitle class='fs-16'>
-                            <h4 class='color-a fs-16'>Particular: <span >{{ item.particular}}</span></h4>
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                </mat-card>
+           
+                             
+                         </div>
+                     </div>
+                 
+                    </li>
+                 </ul>
+            
             </div>
 
 
@@ -96,40 +98,45 @@
                 Profesores para la resolucion:
             </h3>
         </div>
-        <div class="col-lg-12">
-            <mat-card class="example-card card-particulares opacity" *ngFor='let item of archivo.profesores'>
-                <mat-card-header>
-                    <mat-card-title class='color-a '>{{item.particular}}</mat-card-title>
-                    <img mat-card-avatar [src]="'./assets/img/'+item.foto" alt="foto ">
-
-                    <div class='stars'>
-                        <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-                        <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-                        <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-                        <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-                        <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
-                        <span class='subtitle'>
-                            {{item.valoracion}}/ 5
-                        </span>
-
-
+        <div class="col-lg-12 contorno" >
+            <ul class='ul-general'>
+               <li class="li-general"  *ngFor='let item of archivo.profesores'>
+                <div class="product-item">
+                    <div class="product-list-img"  >
+                        <img [src]="'./assets/img/'+item.foto"
+                            style="display:inline-block;margin:2px 0 2px 2px; width:100%">
                     </div>
-
-                    <div class='actions' style='text-align: end;'>
-                        <button mat-button color='warn' (click)='contratar()'>Contratar</button>
+                    <div class="product-list-detail">
+                        <h5 class="p-mb-2">{{item.particular}}</h5>
+                            <span >Costo de resolucion : {{ item.costo}}</span>
+                            <span > Costo explicacion : {{ item.costo_explicacion}}</span>
+                            <span >Demora: {{ item.demora}}</span>
                     </div>
-                    <mat-card-subtitle class='fs-16'>
-                        <h4 class='color-a fs-16'>Costo de resolucion : <span>{{ item.costo}}</span>
-                        </h4>
-                    </mat-card-subtitle>
-                    <mat-card-subtitle class='fs-16'>
-                        <h4 class='color-a fs-16'> Costo explicacion : <span>{{ item.costo_explicacion}}</span></h4>
-                    </mat-card-subtitle>
-                    <mat-card-subtitle class='fs-16'>
-                        <h4 class='color-a fs-16'>Demora: <span>{{ item.demora}}</span></h4>
-                    </mat-card-subtitle>
-                </mat-card-header>
-            </mat-card>
+                    <div class="product-list-action">
+                        <div class='stars'>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                            <i class="icofont-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                            <span class='subtitle'>
+                                {{item.valoracion}}/ 5
+                            </span>
+    
+    
+                        </div>
+    
+                        <div class='actions' style='text-align: end;'>
+                            <button pButton (click)='contratar()' type="button" label="Contratar" ></button>
+                        </div>
+      
+                        
+                    </div>
+                </div>
+            
+               </li>
+            </ul>
+          
         </div>
     </div>
 </div>

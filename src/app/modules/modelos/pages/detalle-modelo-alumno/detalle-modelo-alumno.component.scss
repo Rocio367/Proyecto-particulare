@@ -1,19 +1,115 @@
+.ul-general{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: normal;
+    box-sizing: border-box;
+    border: 1px solid #dee2e6;
+    background: #ffffff;
+    color: #495057;
+    padding: 0.5rem 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.li-general{
+    padding: 0.5rem 1rem;
+    margin: 0;
+    border: 0 none;
+    color: #495057;
+    background: transparent;
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.li-general:hover{
 
-
-
-
+    background: #EEEEEE;
+ 
+}
+.product-item {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    width: 100%;
+  
+    img {
+      width: 75px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      margin-right: 1rem;
+    }
+  
+    .product-list-detail {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: initial;
+      margin: 0px 20px;
+  
+    }
+  
+    .product-list-img {
+      display: flex;
+      width: 15%;
+      flex-direction: column;
+      align-items: initial;
+    }
+  
+    .product-list-action {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  
+    .product-category-icon {
+      vertical-align: middle;
+      margin-right: .5rem;
+  
+    }
+  
+    .product-category {
+      background: #00885f;
+      border-radius:2px ;
+      padding: 6px;
+      text-align: center;
+      color: #fff;
+      margin: 10px 10px 0 0;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .product-item {
+      flex-wrap: wrap;
+  
+      .image-container {
+        width: 100%;
+        text-align: center;
+      }
+  
+      img {
+        margin: 0 0 1rem 0;
+        width: 100px;
+      }
+    }
+  }
+  
+  
+.img-a{
+    cursor: pointer;
+    width: 20%;
+    margin: 10px;
+}
 
 .stars {
-    position: absolute;
-    bottom: 70%;
-    right: 1%;
+   
     padding: 5px 11px;
     text-align: center;
 }
 .actions {
-    position: absolute;
-    bottom: 10%;
-    right: 1%;
+  
     padding: 5px 11px;
     text-align: center;
 }

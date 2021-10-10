@@ -17,12 +17,13 @@ import { ModalPostulacionModelosComponent } from './components/modal-postulacion
 import { ModalValorarComponent } from './components/modal-valorar/modal-valorar.component';
 import {OrderListModule} from 'primeng/orderlist';
 import {GalleriaModule} from 'primeng/galleria';
+import {ButtonModule} from 'primeng/button';
 
 
 
 @NgModule({
   declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalAubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent],
-  imports:[ GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })
