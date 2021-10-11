@@ -1,4 +1,4 @@
-<p-menubar [model]="items">
+<p-menubar class='menu' [model]="items">
   <ng-template pTemplate="start">
     <span class="logo">
       <a href="index.html"><img src="/assets/img/Logo_2.png" style="height: 55px;" alt="logo"></a>
@@ -6,17 +6,20 @@
   </ng-template>
 
   <div>
-    
+    <span class="p-input-icon-right m-2">
+      <i class="pi pi-search" (click)='buscar()'></i>
+      <input type="text"   class="p-inputtext-sm w-100" pInputText placeholder="Buscar clases.." [(ngModel)]="buscarText" />
+  </span>
 
-<button type="button" pButton label="Cerrar
-Sesion"  *ngIf='isLoggedIn' (click)='logout()' icon="pi pi-sign-out
-" style="margin-left:.25em"></button>
+<button mat-button color='warn'   *ngIf='isLoggedIn' (click)='logout()' icon="pi pi-sign-out
+" style="margin-left:.25em">Cerrar
+Sesion</button>
 
-<button type="button" pButton label="Iniciar
-Sesion" *ngIf='!isLoggedIn' (click)='login()'  icon="pi pi-sign-in
-" style="margin-left:.25em"></button>
+<button mat-button color='warn'  *ngIf='!isLoggedIn' (click)='login()'  icon="pi pi-sign-in
+" style="margin-left:.25em">Iniciar
+Sesion</button>
 
-<button type="button" pButton label="Registrarse" *ngIf='!isLoggedIn'  (click)='register()'  icon="pi pi-user-plus
-" style="margin-left:.25em"></button>
+<button mat-button color='warn' *ngIf='!isLoggedIn'  (click)='register()'  icon="pi pi-user-plus
+" style="margin-left:.25em">Registrarse</button>
 </div>
 </p-menubar>

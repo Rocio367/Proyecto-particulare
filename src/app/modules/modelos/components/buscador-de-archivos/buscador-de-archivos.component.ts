@@ -23,13 +23,11 @@ export class BuscadorDeArchivosComponent implements OnInit {
   sortKey='id';
   sortField: string;
   selectedEstado:string;
-  estados=[{name:'Sil filtro',code:''},{name:'Podes solicitarlo',code:'1'},{name:'Pendiente de respuesta',code:'2'},{name:'Resuelto',code:'3'}]
+  estados=[{name:'Podes solicitarlo',code:'1'},{name:'Pendiente de respuesta',code:'2'},{name:'Resuelto',code:'3'}]
 
   selectedOrder:string;
   orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}]
 
-  selectedLike:string;
-  likes=[{name:'Sil filtro',code:'1'},{name:'Guardados',code:'2'},{name:'No guardados',code:'2'}]
   constructor( private primengConfig: PrimeNGConfig,private router:Router) {
   
 

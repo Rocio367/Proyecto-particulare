@@ -1,9 +1,9 @@
 <div class="detalles-mensajes mt-2 mb-4">
-<p class='fs-16'><span class="font-weight-bold">De:</span> {{mensaje.emisor}}</p>
-<p  class='fs-16'><span class="font-weight-bold">Para:</span> {{mensaje.destinatario}}</p>
-<p  class='fs-16'><span class="font-weight-bold">Asunto:</span> {{mensaje.asunto}}</p>
-<p-card class='fs-16'>{{mensaje.contenido}}</p-card>
+    <p class='color-f'>De: <span class='color-d'>{{mensaje.emisor}}</span></p>
+    <p class='color-f'>Para: <span class='color-d'> {{mensaje.destinatario}}</span></p>
+    <p class='color-f'>Asunto: <span class='color-d'>{{mensaje.asunto}}</span></p>
+    <p class='color-f'>Contenido: <span class='color-d'>{{mensaje.contenido}}</span></p>
 </div>
-<button pButton type="button" label="Responder"  (click)='respuesta()'  > </button>
+<button mat-button color='warn' *ngIf='responder' (click)='respuesta()'  > Responder</button>
 
 

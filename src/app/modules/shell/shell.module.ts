@@ -19,6 +19,7 @@ import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-m
 import { SharedModule } from 'primeng/api';
 import {MenubarModule} from 'primeng/menubar';
 import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ButtonModule} from 'primeng/button';
     GoBackDirective, CloseMenuDirective
   ],
   imports:[
+    InputTextModule,
     ButtonModule,
     MenubarModule,
     CommonModule, ShellRoutingModule,AngularMaterialModule,SharedModule,

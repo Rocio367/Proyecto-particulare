@@ -209,8 +209,33 @@ export class ShellComponent implements OnInit, AfterContentChecked {
           {
             label: 'Mensajes',
             icon: 'pi pi-fw pi-envelope',
-            routerLink: 'mensajes'
-            // items:[]
+            items: [
+              {
+                label: 'Nuevo mensaje',
+                icon: 'pi pi-fw pi-pencil',
+                routerLink: 'nuevo-mensaje'
+
+              },
+              {
+                label: 'Recibidos',
+                icon: 'pi pi-fw pi-window-minimize',
+                routerLink: 'recibidos'
+
+              },
+              {
+                label: 'Enviados',
+                icon: 'pi pi-fw pi-window-maximize',
+                routerLink: 'enviados'
+
+              },
+              {
+                label: 'Papelera',
+                icon: 'pi pi-fw pi-trash',
+                routerLink: 'papelera'
+
+              }
+
+            ]
           },
           {
             label: 'Modelos',

@@ -19,14 +19,15 @@ import {CardModule} from 'primeng/card';
 import {SelectButtonModule} from 'primeng/selectbutton'
 import {CheckboxModule} from 'primeng/checkbox';
 import {CalendarModule} from 'primeng/calendar';
-
+import {DataViewModule} from 'primeng/dataview';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations:[BusquedaComponent, CardsBusquedaComponent ,MapaComponent],
   imports:[
     AgmCoreModule.forRoot({
       //key de maps javascript api
       apiKey: environment.keyApiMaps
-    }),CalendarModule
+    }),CalendarModule,DataViewModule,DropdownModule   
     ,CheckboxModule,ButtonModule,ToastModule,SelectButtonModule,CardModule,
     OrderListModule,
     InputTextModule,
