@@ -38,7 +38,11 @@ mat-card{
       border-bottom: 1px solid rgb(5, 168, 114); 
     }
 
-.letraGrande{
+.letraGrande {
     font-size: 40px; 
 }
 
+.mat-card-avatar {
+    object-fit: cover;
+    border-radius: 100px;
+}

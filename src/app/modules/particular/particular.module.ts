@@ -13,13 +13,15 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
+import {DividerModule} from 'primeng/divider';
+
 
 
 
 @NgModule({
   declarations:[ RegistrarParticularComponent, PerfilParticularComponent, EditarPerfilParticularComponent, ComentariosParticularComponent],
   imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule,CalendarModule, 
-    InputTextModule, InputTextareaModule, CardModule, ButtonModule,],
+    InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
