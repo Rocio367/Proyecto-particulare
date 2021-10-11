@@ -44,31 +44,14 @@
       <br>
     </div>
   </p-card>
-</div>
-
-<div class="p-5 container container-color">
-   <div class="container mt-3 text">
-    <br>
-    <h4 class="color-f">Mis clases : </h4>
-    <app-tabla-misclases></app-tabla-misclases>
-    <br>
-  </div>
-
-  <div class="container mt-5 blanco2">
-    <div class="row">
-      <div class="col-sm-12 col-md-7 mt-3">
-        <iframe width="553" height="280" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-        <br>
-      </div>
-      <div class="col-sm grisLetra">
+  <p-card styleClass="mt-3">
+    <div class="flex flex-row">
+      <div class="flex-grow-1">
+        <div mat-line>
+          <h4 class="color-f">Clases cursadas : </h4>
+        </div>
         <mat-list>
-          <div mat-line>
-            <h4 class="color-f">Clases cursadas : </h4>
-          </div>
-          <mat-selection-list #shoes [multiple]="false">
+          <mat-selection-list [multiple]="false">
             <mat-list-option *ngFor="let folder of folders" [value]="folders" class="borde">
               <mat-icon mat-list-icon><i class="icofont-ui-video-play"></i></mat-icon>
               {{folder.name}} <br>
@@ -78,5 +61,12 @@
         </mat-list>
       </div>
     </div>
-  </div>
+  </p-card>
+</div>
+
+
+<h4 class="color-f">Mis clases : </h4>
+<app-tabla-misclases></app-tabla-misclases>
+<div class="col-sm grisLetra">
+
 </div>
