@@ -17,7 +17,7 @@ export class DetalleClaseComponent implements OnInit {
     this.registro.ubicacion = 'Ituzaingo, Buenos Aires';
     this.registro.nivel = 'Secundario';
     this.registro.particular = 'Romina Perez';
-    this.registro.academico='Titulo academico '
+    this.registro.academico='Titulo academico ';
     this.registro.precio_por_hora=500.00;
   }
 
