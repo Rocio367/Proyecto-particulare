@@ -22,4 +22,39 @@
       </div>
     </div>
   </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
+        <h4 class="color-f">Estudios:</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</p>
+      </div>
+    </div>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
+        <h4 class="color-f">Descripción:</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut, curabitur nibh hendrerit netus inceptos non auctor luctus. Dis pretium parturient a lacinia ac augue placerat mauris vulputate, dui aenean fermentum nec congue nisl iaculis porttitor fames taciti, eget nibh aptent felis platea justo vel lectus. Ridiculus turpis sapien facilisi aliquam viverra dictumst neque hac at praesent netus, nascetur nisl fames elementum phasellus primis ante vehicula natoque ornare, magnis sodales curae dui mauris congue nullam maecenas id metus.</p>
+      </div>
+    </div>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
+          <h4 class="color-f">Calificaciones y opiniones</h4>
+          <div class='stars'>
+            <i class="pi pi-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
+            <i class="pi pi-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
+            <i class="pi pi-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
+            <i class="pi pi-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
+            <i class="pi pi-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
+            <span class='subtitle'>
+                {{3}}/ 5
+            </span>
+          </div>
+         <app-comentarios-particular></app-comentarios-particular>
+      </div>
+    </div>
+  </p-card>
 </div>
