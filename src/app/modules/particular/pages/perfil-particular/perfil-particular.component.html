@@ -40,13 +40,15 @@
     </div>
   </p-card>
   <p-card styleClass="mt-3">
-    <div class="flex flex-column">
-      <h4 class="color-f">Calificaciones y opiniones</h4>
-      <div class="flex justify-content-center">
-        <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
-        <div class='subtitle ml-2'>3 / 5</div>
+    <div class="grid">
+      <div class="col">
+        <h4 class="color-f">Calificaciones y opiniones</h4>
+        <div class="flex justify-content-center">
+          <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
+          <div class='subtitle ml-2'>3 / 5</div>
+        </div>
+        <app-comentarios-particular></app-comentarios-particular>
       </div>
-      <app-comentarios-particular></app-comentarios-particular>
     </div>
   </p-card>
 </div>
