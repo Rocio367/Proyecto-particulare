@@ -15,10 +15,11 @@ import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 
 
+
 @NgModule({
   declarations:[ RegistrarParticularComponent, PerfilParticularComponent, EditarPerfilParticularComponent, ComentariosParticularComponent],
   imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule,CalendarModule, 
-    InputTextModule, InputTextareaModule, CardModule, ButtonModule, ],
+    InputTextModule, InputTextareaModule, CardModule, ButtonModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
