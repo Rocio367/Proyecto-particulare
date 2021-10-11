@@ -1,51 +1,54 @@
-<div class="p-5 container container-color">
-    <div class="mt-2 ">
-      <div class="row p-3 borde">
-              <div class="col-sm-12 col-md-2">
-                <br>
-                <img mat-card-avatar src="../../../../../assets/img/default-user.png"  width="220" height="200" />
-                <br>
-              </div>
-              <div class="col-sm-12 col-md-4 grisLetra">
-                <h3 class="color-f m-4">Nombre y apellido </h3>
-                <h4 class='color-a fs-16 m-4'>Edad: <span>Edad</span></h4>
-                <h4 class='color-a fs-16 m-4'>Localidad: <span>Localidad</span></h4>
-                <hr/>
-                <h4 class='color-a fs-16 m-4'>Años de experiencia: <span>Años de experiencia</span></h4>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <br>
-                <iframe width="453" height="240" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+<div class="p-3 conteiner container-color">
+  <p-card>
+    <div class="flex justify-content-evenly">
+      <div>
+        <img mat-card-avatar src="../../../../../assets/img/default-user.png"/>
       </div>
-
-    <div class="mt-5 blanco2 p-3 borde">
+      <p-divider layout="vertical"></p-divider>
+      <div>
+        <h4>Nombre y apellido </h4>
+        <h5>Edad: <span class="grisLetra">Edad</span></h5>
+        <h5>Localidad: <span class="grisLetra">Localidad</span></h5>
+        <h5>Experiencia: <span class="grisLetra">Años de experiencia</span></h5>
+      </div>
+      <p-divider layout="vertical"></p-divider>
+      <div>
+          <iframe src="https://www.youtube.com/embed/V202A8p7uh8" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+      </div>
+    </div>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
         <h4 class="color-f">Estudios:</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</p>
         <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</p>
-    </div>    
-
-  <div class="mt-5 blanco2 p-3 borde">
-      <h4 class="color-f">Descripción:</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut, curabitur nibh hendrerit netus inceptos non auctor luctus. Dis pretium parturient a lacinia ac augue placerat mauris vulputate, dui aenean fermentum nec congue nisl iaculis porttitor fames taciti, eget nibh aptent felis platea justo vel lectus. Ridiculus turpis sapien facilisi aliquam viverra dictumst neque hac at praesent netus, nascetur nisl fames elementum phasellus primis ante vehicula natoque ornare, magnis sodales curae dui mauris congue nullam maecenas id metus.</p>
-  </div>
-
-
-    <div class="mt-5">
-        <hr/>
-        <h4 class="color-f">Califiaciones y opiniones</h4>
-        <div class='stars'>
-            <i class="pi pi-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
-            <i class="pi pi-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
-            <i class="pi pi-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
-            <i class="pi pi-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
-            <i class="pi pi-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
-            <span class='subtitle'>
-                {{3}}/ 5
-            </span>
-        </div>
-
-        <app-comentarios-particular></app-comentarios-particular>
+      </div>
     </div>
-
-</div> 
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
+        <h4 class="color-f">Descripción:</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut, curabitur nibh hendrerit netus inceptos non auctor luctus. Dis pretium parturient a lacinia ac augue placerat mauris vulputate, dui aenean fermentum nec congue nisl iaculis porttitor fames taciti, eget nibh aptent felis platea justo vel lectus. Ridiculus turpis sapien facilisi aliquam viverra dictumst neque hac at praesent netus, nascetur nisl fames elementum phasellus primis ante vehicula natoque ornare, magnis sodales curae dui mauris congue nullam maecenas id metus.</p>
+      </div>
+    </div>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
+        <h4 class="color-f">Calificaciones y opiniones</h4>
+        <div class="flex justify-content-center">
+          <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
+          <div class='subtitle ml-2'>3 / 5</div>
+        </div>
+        <app-comentarios-particular></app-comentarios-particular>
+      </div>
+    </div>
+  </p-card>
+</div>
