@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CardModel } from 'src/app/shared/models/card';
 
 export interface Section {
   name: string;
@@ -21,6 +22,8 @@ export interface PeriodicElement {
 })
 export class PerfilAlumnoComponent implements OnInit {
 
+  beneficios: CardModel[]
+
   constructor() { }
 
    folders: Section[] = [
@@ -37,8 +40,13 @@ export class PerfilAlumnoComponent implements OnInit {
       updated: new Date('1/28/16'),
     }
   ];
-  ngOnInit(): void {
-    
+
+  ngOnInit() {
+
+    this.beneficios = [
+      { titulo: 'Pack 20 clases 10%', subtitulo: 'Descuentos', contenido: 'This card has divider and indeterminate progress as footer'},
+      { titulo: '20% de descuento', subtitulo: 'Descuentos', contenido: 'Si sos un suscriptor activo de la página durante un año.'},
+      { titulo: 'Primer clase GRATIS', subtitulo: 'Descuentos', contenido: 'Podes probar nuestros servicios gratuitamente la primera vez.'}
+    ];
   }
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
 }
