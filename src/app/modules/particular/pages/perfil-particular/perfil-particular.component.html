@@ -40,21 +40,13 @@
     </div>
   </p-card>
   <p-card styleClass="mt-3">
-    <div class="grid">
-      <div class="col">
-          <h4 class="color-f">Calificaciones y opiniones</h4>
-          <div class='stars'>
-            <i class="pi pi-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
-            <i class="pi pi-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
-            <i class="pi pi-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
-            <i class="pi pi-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
-            <i class="pi pi-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
-            <span class='subtitle'>
-                {{3}}/ 5
-            </span>
-          </div>
-         <app-comentarios-particular></app-comentarios-particular>
+    <div class="flex flex-column">
+      <h4 class="color-f">Calificaciones y opiniones</h4>
+      <div class="flex justify-content-center">
+        <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
+        <div class='subtitle ml-2'>3 / 5</div>
       </div>
+      <app-comentarios-particular></app-comentarios-particular>
     </div>
   </p-card>
 </div>
