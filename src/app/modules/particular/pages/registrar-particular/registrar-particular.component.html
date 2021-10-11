@@ -1,4 +1,3 @@
-<h3>Datos académicos</h3>
 <div class="contenedor">
     <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarParticular()">
         <div class="grid">
@@ -31,6 +30,9 @@
             <div class="col-8">
                 <p-card>
                     <div class="fluid grid">
+                        <div class="col-12">
+                            <h3>Datos personales</h3>
+                        </div>
                         <div class="field col-12">
                             <span class="p-float-label">
                                 <input id="nombre" type="text" pInputText formControlName="nombre" class="inputfield w-full">
