@@ -11,15 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-responder.component.scss']
 })
 export class ModalResponderComponent implements OnInit {
-  formMensaje :FormGroup;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Mensaje, private form: FormBuilder) { 
-    this.formMensaje = this.form.group({
-      destinatario: [data.destinatario, [Validators.required]],
-      asunto: [data.asunto, [Validators.required]],
-      mensaje: ['', [Validators.required]],
-      archivo: [''],
-
-    });
+  text:string;
+  constructor() { 
   }
 
   ngOnInit(): void {

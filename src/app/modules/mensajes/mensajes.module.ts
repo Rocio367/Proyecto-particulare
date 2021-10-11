@@ -9,12 +9,16 @@ import { EnviadosComponent } from './components/enviados/enviados.component';
 import { ModalResponderComponent } from './components/modal-responder/modal-responder.component';
 import { PapeleraComponent } from './components/papelera/papelera.component';
 import { MensajeDetalleComponent } from './components/mensaje-detalle/mensaje-detalle.component';
-
-
+import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
+import {CardModule} from 'primeng/card';
+import {EditorModule} from 'primeng/editor';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [MensajesComponent, RecibidosComponent, EnviadosComponent, ModalResponderComponent, PapeleraComponent, MensajeDetalleComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[MessagesModule,MessageModule,EditorModule,CardModule,InputTextModule, ButtonModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })
