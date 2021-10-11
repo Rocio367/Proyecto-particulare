@@ -50,15 +50,19 @@
         <div mat-line>
           <h4 class="color-f">Clases cursadas : </h4>
         </div>
-        <mat-list>
-          <mat-selection-list [multiple]="false">
-            <mat-list-option *ngFor="let folder of folders" [value]="folders" class="borde">
-              <mat-icon mat-list-icon><i class="icofont-ui-video-play"></i></mat-icon>
-              {{folder.name}} <br>
-              {{folder.updated | date}}
-            </mat-list-option>
-          </mat-selection-list>
-        </mat-list>
+        <p-dataView [value]="folders">
+          <ng-template let-folder pTemplate="listItem">
+            <div class="flex align-content-center">
+              <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-youtube" style="font-size: 2rem"></i>
+              </div>
+              <div class="flex align-items-center justify-content-center ml-3">
+                {{folder.name}} <br>
+                {{folder.updated | date}}
+              </div>
+            </div>
+          </ng-template>
+        </p-dataView>
       </div>
     </div>
   </p-card>
