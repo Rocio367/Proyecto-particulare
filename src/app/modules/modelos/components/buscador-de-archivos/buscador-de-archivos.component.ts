@@ -4,7 +4,7 @@ import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Router } from '@angular/router';
-import { PrimeNGConfig } from 'primeng/api';
+import { PrimeNGConfig, SelectItem } from 'primeng/api';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Archivo } from 'src/app/shared/models/archivo';
@@ -17,10 +17,19 @@ import { Archivo } from 'src/app/shared/models/archivo';
 export class BuscadorDeArchivosComponent implements OnInit {
 
   archivos: Archivo[]=[];
-    
+  sortOptions: SelectItem[];
+
+  sortOrder: number;
+  sortKey='id';
+  sortField: string;
+  selectedEstado:string;
+  estados=[{name:'Podes solicitarlo',code:'1'},{name:'Pendiente de respuesta',code:'2'},{name:'Resuelto',code:'3'}]
+
+  selectedOrder:string;
+  orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}]
+
   constructor( private primengConfig: PrimeNGConfig,private router:Router) {
   
-    this.primengConfig.ripple = true;
 
     let a1=new Archivo();
     a1.id=1;
@@ -61,7 +70,10 @@ export class BuscadorDeArchivosComponent implements OnInit {
     a3.materia = 'materia '
     a3.nivel = 'nivel '
     this.archivos.push(a1,a2,a3)
+    this.archivos.push(a1,a2,a3)
+    this.archivos.push(a1,a2,a3)
    
+    
   }
 
 
@@ -69,17 +81,19 @@ export class BuscadorDeArchivosComponent implements OnInit {
 
  
   ngOnInit(): void {
+ 
+    this.primengConfig.ripple = true;
   }
 
 
-
+ 
   like(t:Archivo){
      
     this.archivos[ this.archivos.indexOf(t)].seguidores++;
     this.archivos[ this.archivos.indexOf(t)].like=!this.archivos[ this.archivos.indexOf(t)].like;
  }
- onSelectionChange(l){  
-    let id=(new String((l.value[0].id)))
+ verDetalle(l){  
+    let id=l.id;
     this.router.navigate(['detalle-modelo-alumno', {  q: id  }])
  }
 

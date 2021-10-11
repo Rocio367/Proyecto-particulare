@@ -38,16 +38,6 @@ export class BusquedaComponent implements OnInit {
   materias:any[]=[{code:'1',name:'materia 1'},{code:'2',name:'Materia 2'}]
   niveles:any[]=[{code:'1',name:'Primaria'},{code:'2',name:'Secundaria'},{code:'2',name:'Universitario / Terciario'}]
   constructor(private router:Router,private aRouter: ActivatedRoute,private form: FormBuilder, private services: GeneralService) {
-    this.formDatos = this.form.group({
-      materia: [''],
-      ubicacion: [''],
-      particular: [''],
-      disponibilidad: [''],
-      tipo: [''],
-      nivel: [''],
-
-    });
-
 
     const date = new Date();
     this.minDate= new Date(date.getTime());
@@ -93,16 +83,7 @@ export class BusquedaComponent implements OnInit {
   }
 
 
-  cambiarPagina(page) {
-
-    this.count = 0;
-    this.pages = [];
-    this.results = [];
-    page = (page == '...') ? (this.numberActive + 1) : page;
-
-    this.buscar(page)
-  }
-
+  
   buscar(page) {
     this.numberActive=page;
     this.pages.push(1);
@@ -178,6 +159,10 @@ export class BusquedaComponent implements OnInit {
     this.results.push(r6)
     this.count = this.results.length;
     this.spinner = false;
+
+  }
+  ver(l){
+    this.router.navigate(['detalle-clase', {  q: l.id  }])
 
   }
 }

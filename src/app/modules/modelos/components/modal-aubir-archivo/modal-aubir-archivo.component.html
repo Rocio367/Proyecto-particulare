@@ -1,10 +1,10 @@
 
 
 
-<div class="container">
+<div class="container container-color pb-5 pt-5">
     <div class="row">
-        <div class="col-lg-12 m-5 text-center">
-            <p-card class='card' style="width: 80%;margin:auto;">
+        <div class="col-lg-12  text-center">
+            <mat-card class=' card-container card' style="width: 80%;margin:auto;">
                 <h3>Nuevo Modelo</h3>
             
                 <span class="p-float-label w-80  mt-4">
@@ -30,8 +30,8 @@
                 </ng-template>
             </p-fileUpload>
               </div>
-            <button pButton type="button"  class='mt-2' [disabled]='!uploadedFiles'  (click)='confirmar()'  label="Confirmar"></button>
-            </p-card>
+            <button mat-button color='warn'  class='mt-2' [disabled]='!uploadedFiles'  (click)='confirmar()'  >Confirmar</button>
+            </mat-card>
         </div>
     </div>
 </div>

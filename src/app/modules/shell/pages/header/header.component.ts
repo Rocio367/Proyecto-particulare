@@ -15,6 +15,7 @@ import { RedirectService } from 'src/app/core/services/redirect/redirect.service
 export class HeaderComponent implements OnInit {
   @Input() isLoggedIn = false;
   hidden = false;
+  buscarText:string;
   @Input() items: MenuItem[];
 
   constructor(private redirectServices: RedirectService, private authServices: AuthService, private route: Router, private router: ActivatedRoute) {
@@ -24,9 +25,12 @@ export class HeaderComponent implements OnInit {
   
   }
 
-
+ 
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
+  }
+  buscar(){
+    this.route.navigate(['busqueda', {  q: this.buscarText  }])
   }
   ngOnInit() { }
 

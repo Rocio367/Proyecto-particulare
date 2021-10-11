@@ -1,33 +1,77 @@
+<div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
+    <p-dataView #dv [value]="archivos" [paginator]="true" [rows]="6" filterBy="nombre,materia,institucion,carrera"
+        [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+        <ng-template pTemplate="header">
+            <div class="text-center">
 
-  <div class='m-4'>
-    <p-orderList  [value]="archivos" [listStyle]="{'height':'auto'}" header="Resultados" filterBy="nombre,estado,materia,institucion,carrera"
-    filterPlaceholder="Filtrar por nombre" [dragdrop]="false" (onSelectionChange)='onSelectionChange($event)'>
-      <ng-template let-archivo pTemplate="item" >
-          
-          <div class="product-item">
-              <div class="product-list-img"  >
-                  <img [src]="'./assets/img/'+archivo.archivos[0]"
-                      style="display:inline-block;margin:2px 0 2px 2px; width:100%">
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
+                    <i class="pi pi-search"></i>
+                    <input  class='w-100' type="search" pInputText placeholder="Buscar por nombre , materia , carrera o institucion..."
+                        (input)="dv.filter($event.target.value)">
+                </span>
 
-              </div>
-              <div class="product-list-detail">
-                  <h5 class="p-mb-2">{{archivo.nombre}}</h5>
-                  <span>{{archivo.fecha| date}}</span>
-                  <span> <i class="pi pi-tag product-category-icon"></i>{{archivo.institucion}} | {{ archivo.carrera}} | {{archivo.materia}}</span>
-              </div>
-              <div class="product-list-action">
-                  <div class='actions'>
-                      <span [ngClass]='(archivo.like)? "like-active" : "like" '
-                          class="pt-1 pr-1 fs-16 ">{{archivo.seguidores}}</span>
+            </div>
+            <div class=" text-center mt-3">
 
-                      <i [ngClass]='(archivo.like)? "like-active" : "like" ' class="icofont-like fs-21"
-                          (click)="like(archivo)"></i>
-                  </div>
 
-                  <span class="product-category"> {{archivo.estado}}</span>
+                <span class='m-3'>
+                    <p-dropdown placeholder="Filtrar por estado "
+                    optionLabel="name" [showClear]="true"  [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
 
-              </div>
-          </div>
-      </ng-template>
-</p-orderList>
-  </div>
+                </span>
+                <span class='m-3'>
+                    <p-dropdown placeholder="Ordenar "
+                    optionLabel="name" [showClear]="true"  [options]="orden" [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
+
+                </span>
+               
+            </div>
+        </ng-template>
+
+        <ng-template let-product pTemplate="gridItem">
+            <div class="p-col-12 p-md-4">
+                <div class="product-grid-item card card-interna">
+                    <div class="product-grid-item-top">
+
+                        <div class='categoria background-a'> <i class="pi pi-tag product-category-icon"></i>
+                            {{product.estado}}</div>
+
+
+
+
+                    </div>
+                    <div class="product-grid-item-content">
+                        <img [src]="'./assets/img/'+product.archivos[0]">
+                        <div class="product-name color-f">{{product.nombre}}</div>
+                        <p class='color-f'>Institucion: <span class='color-d'>{{product.institucion}}</span></p>
+                        <p class='color-f'>Materia: <span class='color-d'>{{product.materia}}</span></p>
+
+                        <p class='color-f'>Nivel:<span class='color-d'> {{product.nivel}}</span></p>
+
+                    </div>
+                    <div class="product-grid-item-bottom ">
+
+
+                        <button mat-button color='warn' (click)='verDetalle(product)'>Ver detalles</button>
+                    </div>
+                    <div class='contenedor-acctions'>
+                        <div class="fecha">
+                            <span class='color-d'>{{product.fecha | date}}</span>
+
+                        </div>
+                        <div class="actions">
+                           <!--<span [ngClass]='(product.like)? "like-active" : "like" '
+                                class="pt-1 pr-1 fs-16 ">{{product.seguidores}}</span>-->
+
+                            <i [ngClass]='(product.like)? "like-active" : "like" ' class="pi pi-bookmark fs-21"
+                                (click)="like(product)"></i> 
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>

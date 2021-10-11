@@ -1,35 +1,24 @@
-.ul-general {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 1rem;
-  font-weight: normal;
-  box-sizing: border-box;
-  border: 1px solid #dee2e6;
-  background: #ffffff;
-  color: #495057;
-  padding: 0.5rem 0;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
 
-.li-general {
+
+.card-interna{
   padding: 0.5rem 1rem;
-  margin: 0;
   border: 0 none;
   color: #495057;
-  background: transparent;
   transition: box-shadow 0.2s;
   cursor: pointer;
   display: block;
   overflow: hidden;
   position: relative;
+  padding: 0.5rem 1rem;
+  margin: 10px auto;
+  width: 95%;
+  
 }
-
-.li-general:hover {
+.li-general:hover{
 
   background: #EEEEEE;
 
 }
-
 .product-item {
   display: flex;
   align-items: center;
@@ -73,7 +62,7 @@
 
   .product-category {
     background: #00885f;
-    border-radius: 2px;
+    border-radius:2px ;
     padding: 6px;
     text-align: center;
     color: #fff;
@@ -84,6 +73,7 @@
 }
 
 @media screen and (max-width: 576px) {
+
   .product-item {
     flex-wrap: wrap;
 
@@ -100,52 +90,42 @@
 }
 
 
-.img-a {
+.img-a{
   cursor: pointer;
   width: 20%;
   margin: 10px;
 }
 
 .stars {
-
+ 
   padding: 5px 11px;
   text-align: center;
 }
-
 .actions {
 
   padding: 5px 11px;
   text-align: center;
 }
-
-mat-card {
+mat-card{
   margin: 10px;
-  padding: 16px 0px 16px 0px !important;
+  padding: 16px 0px 16px 0px!important;
 }
 
-span {
+span{
   display: inline;
-  margin: 10px;
 }
-
-.mat-card-avatar {
+.mat-card-avatar{
 
   height: 90px !important;
   width: 90px !important;
-  margin-left: 10px !important;
+  margin-left: 10px!important;
 
 }
 
-.w-80 {
-  width: 80%;
-  margin: auto;
-}
-
-.pi pi-star {
+.pi pi-star{
   color: #b2beb7;
-  font-size: 25px !important;
+  font-size: 25px!important;
 }
-
-.amarillo {
-  color: #e0d71e !important;
+.amarillo{
+  color: #e0d71e!important;
 }
