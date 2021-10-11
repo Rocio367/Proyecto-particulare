@@ -8,11 +8,18 @@ import { EditarPerfilParticularComponent } from './pages/editar-perfil-particula
 import { PerfilParticularComponent } from './pages/perfil-particular/perfil-particular.component';
 import { RegistrarParticularComponent } from './pages/registrar-particular/registrar-particular.component';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import {CalendarModule} from 'primeng/calendar';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
+
 
 
 @NgModule({
   declarations:[ RegistrarParticularComponent, PerfilParticularComponent, EditarPerfilParticularComponent, ComentariosParticularComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule,],
+  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule,CalendarModule, 
+    InputTextModule, InputTextareaModule, CardModule, ButtonModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
