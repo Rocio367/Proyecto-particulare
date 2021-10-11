@@ -55,7 +55,7 @@ export class RegistrarAlumnoComponent implements OnInit {
   obtenerRangoDeEdad() :string {
     var fechaActual = new Date().getFullYear();
     var fechaLimiteMaxima = fechaActual - 18;
-    var fechaLimiteMinima = fechaLimiteMaxima - 100;
+    var fechaLimiteMinima = fechaActual - 100;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
 }

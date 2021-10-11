@@ -23,6 +23,7 @@ export class RegistrarParticularComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
+  imagenDefault = "../../../../../assets/img/default-user.png";
 
   constructor(private form: FormBuilder, private router: Router) { }
 
@@ -48,5 +49,12 @@ export class RegistrarParticularComponent implements OnInit {
 
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
+  }
+  
+  obtenerRangoDeEdad() :string {
+    var fechaActual = new Date().getFullYear();
+    var fechaLimiteMaxima = fechaActual - 18;
+    var fechaLimiteMinima = fechaActual - 100;
+    return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
 }
