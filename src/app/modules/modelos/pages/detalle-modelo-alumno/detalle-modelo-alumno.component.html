@@ -1,25 +1,62 @@
 <div class="container container-color">
     <div class="row">
-        <div class="col-lg-12 mt-2 text-center">
-            <h3> Archivos</h3>
-            <img class='img-a' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
 
-        </div>
-        <div class="col-lg-12 mt-2 text-center">
-            <button pButton type="button" label="Descargar archivos"></button>
-
-        </div>
         <div class="col-lg-12 text-center mt-3">
             <p-card style="width: 90%;margin: auto;" class='card'>
-                <h3 class="color-f ">Datos generales: </h3>
+                <div class="col-lg-12 mt-3 text-center">
+                    <h3 class="color-f "> Archivos</h3>
+                    <img class='img-a' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
 
-                <span>Nombre: {{archivo.nombre}}</span>
-                <span>Fecha: {{archivo.fecha | date}}</span>
-                <span> Estado: {{ archivo.estado}}</span>
-                <hr />
-                <span> Institución: {{ archivo.institucion}}</span>
-                <span> Materia:{{ archivo.materia}}</span>
-                <span> Nivel:{{ archivo.nivel}}</span>
+                </div>
+                <div class="col-lg-12 mt-3 text-center">
+                    <button mat-button color='primary'>Descargar archivos</button>
+
+                </div>
+            </p-card>
+        </div>
+
+        <div class="col-lg-12 text-center mt-3">
+            <p-card style="width: 90%;margin: auto;" class='card'>
+                <div class="row">
+
+                    <div class="col-12">
+                        <h3 class="color-f ">Datos generales: </h3>
+
+                    </div>
+                    <div class='col-4 desk'>
+                        <p class='color-f '>Nombre: <span class='color-d'>{{archivo.nombre}}</span></p>
+                        <p class='color-f '>Fecha: <span class='color-d'>{{archivo.fecha | date}}</span></p>
+                        <p class='color-f '>Estado: <span class='color-d'>{{archivo.estado}}</span></p>
+                    </div>
+                    <div class='col-4 desk'>
+                        <p class='color-f  '>Institución: <span class='color-d'>{{archivo.institucion}}</span></p>
+                        <p class='color-f  '>Carrera: <span class='color-d'>{{archivo.carrera}}</span></p>
+
+                    </div>
+
+                    <div class='col-4 desk'>
+
+                        <p class='color-f  '>Materia: <span class='color-d'>{{archivo.materia}}</span></p>
+                        <p class='color-f  '>Nivel: <span class='color-d'>{{archivo.nivel}}</span></p>
+                    </div>
+
+                    <div class='col-12 mob'>
+                        <p class='color-f '>Nombre: <span class='color-d'>{{archivo.nombre}}</span></p>
+                        <p class='color-f '>Fecha: <span class='color-d'>{{archivo.fecha | date}}</span></p>
+                        <p class='color-f '>Estado: <span class='color-d'>{{archivo.estado}}</span></p>
+
+                        <p class='color-f  '>Institución: <span class='color-d'>{{archivo.institucion}}</span></p>
+                        <p class='color-f  '>Carrera: <span class='color-d'>{{archivo.carrera}}</span></p>
+
+                        <p class='color-f  '>Materia: <span class='color-d'>{{archivo.materia}}</span></p>
+                        <p class='color-f  '>Nivel: <span class='color-d'>{{archivo.nivel}}</span></p>
+                    </div>
+                </div>
+
+
+
+
+
             </p-card>
 
         </div>
@@ -31,59 +68,61 @@
                 <input type="text" value="PrimeNG" pInputText>
             </ng-template>
         </p-inplace>
-        <div class='col-lg-12 text-center' *ngIf='resoluciones && archivo.estado=="resuelto"'>
+        <div class='col-lg-12 text-center mt-3' *ngIf='resoluciones && archivo.estado=="resuelto"'>
+           <mat-card style="width: 90%;margin: auto;">
             <h3 class="color-f">
                 Resoluciones:
             </h3>
 
             <div *ngIf='resoluciones && archivo.estado=="resuelto"'>
-                <ul class='ul-general'  style="width: 90%;margin: auto;">
-                    <li class="li-general" *ngFor='let item of resoluciones'>
-                        <div class="product-item">
-                            <div class="product-list-img">
-                                <i class="pi pi-file" style="font-size: 2rem"></i>
+                <mat-card class='card-interna' *ngFor='let item of resoluciones' style="width: 90%;margin: auto;">
+                    <div class="product-item">
+                        <div class="product-list-img">
+                            <i class="pi pi-file" style="font-size: 2rem"></i>
 
-                            </div>
-                            <div class="product-list-detail">
-                                <h5 class="p-mb-2">{{item.doc}}</h5>
-                                <span>Particular : {{ item.particular}}</span>
-                            </div>
-                            <div class="product-list-action">
-                                <div class='stars'>
-                                    <i class="pi pi-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-                                    <i class="pi pi-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-                                    <i class="pi pi-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-                                    <i class="pi pi-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-                                    <i class="pi pi-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
-                                    <span class='subtitle'>
-                                        {{item.valoracion}}/ 5
-                                    </span>
-
-
-                                </div>
-
-                                <div class='actions' style='text-align: end;'>
-
-                                    <button pButton *ngIf='!item.valoracion' (click)='valorar()' type="button"
-                                        label="Valorar" style='margin-right: 3px;'></button>
-                                    <button pButton (click)='openRes(item.doc)' type="button" label="Ver"></button>
-                                </div>
-
-
-                            </div>
                         </div>
+                        <div class="product-list-detail">
+                            <h5 class="p-mb-2">{{item.doc}}</h5>
+                            <span>Particular : {{ item.particular}}</span>
+                        </div>
+                        <div class="product-list-action">
+                            <div class='stars'>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                                <span class='subtitle'>
+                                    {{item.valoracion}}/ 5
+                                </span>
 
-                    </li>
-                </ul>
+
+                            </div>
+
+                            <div class='actions' style='text-align: end;'>
+
+                                <button mat-button color='primary' *ngIf='!item.valoracion' (click)='valorar()' type="button"
+                                    style='margin-right: 3px;'> Valorar</button>
+                                <button mat-button color='warn'(click)='openRes(item.doc)' type="button">Ver</button>
+                          
+                          
+                            </div>
+
+
+                        </div>
+                    </div>
+                </mat-card>
+
 
             </div>
 
 
             <p *ngIf='!resoluciones'>Aun no hay resoluciones</p>
+           </mat-card>
 
         </div>
 
-        <div class='col-lg-12 text-center'
+        <div class='col-lg-12 text-center mt-3'
             *ngIf='!resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
             <p-card style="width: 90%;margin: auto;" class='card'>
                 <h3 class="color-f">
@@ -94,32 +133,38 @@
             </p-card>
         </div>
 
-        <div class="col-lg-12 text-center ">
-            <h3 class="color-f">
-                Profesores para la resolucion:
-            </h3>
-        </div>
-        <div class="col-lg-12 mb-5">
-            <ul class='ul-general'  style="width: 90%;margin: auto;">
-                <li class="li-general" *ngFor='let item of archivo.profesores'>
+
+        <div class="col-lg-12 mb-5 mt-3">
+            <mat-card style='width: 90%;margin: auto;'>
+                <div class="col-lg-12 text-center ">
+                    <h3 class="color-f">
+                        Profesores para la resolucion:
+                    </h3>
+                </div>
+
+                <mat-card class="card-interna" *ngFor='let item of archivo.profesores'
+                    style="width: 90%;margin: 2px auto;">
                     <div class="product-item">
                         <div class="product-list-img">
-                            <img [src]="'./assets/img/'+item.foto"
-                                style="display:inline-block;margin:2px 0 2px 2px; width:100%">
+                            <img mat-card-avatar [src]="'./assets/img/'+item.foto" style=" width:100%;">
                         </div>
                         <div class="product-list-detail">
-                            <h5 class="p-mb-2">{{item.particular}}</h5>
-                            <span>Costo de resolucion : {{ item.costo}}</span>
-                            <span> Costo explicacion : {{ item.costo_explicacion}}</span>
-                            <span>Demora: {{ item.demora}}</span>
+                            <h5 class="p-mb-2 color-f">{{item.particular}}</h5>
+                            <p style='display: block;' class='color-f'>Costo de resolucion : <span
+                                    class='color-d'>{{ item.costo}}</span></p>
+                            <p style='display: block;' class='color-f'> Costo explicacion: <span
+                                    class='color-d'>{{ item.costo_explicacion}}</span></p>
+                            <p style='display: block;' class='color-f'>Demora: <span class='color-d'>
+                                    {{ item.demora}}</span></p>
+
                         </div>
                         <div class="product-list-action">
                             <div class='stars'>
-                                <i class="pi pi-star" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-                                <i class="pi pi-star" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-                                <i class="pi pi-star" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-                                <i class="pi pi-star" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-                                <i class="pi pi-star" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
                                 <span class='subtitle'>
                                     {{item.valoracion}}/ 5
                                 </span>
@@ -128,15 +173,17 @@
                             </div>
 
                             <div class='actions' style='text-align: end;'>
-                                <button pButton (click)='contratar()' type="button" label="Contratar"></button>
+                                <button mat-button color='warn' (click)='contratar()' type="button">Contratar</button>
                             </div>
 
 
                         </div>
                     </div>
+                </mat-card>
 
-                </li>
-            </ul>
+
+            </mat-card>
+
 
         </div>
     </div>

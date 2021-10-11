@@ -6,13 +6,18 @@
             </div>
         </div>
         <div class="modal-body text-center">
-            <p> Total a pagar : $300</p>
+            <div class="w-100">
+                <h3 class='color-f'> Total a pagar : $300</h3>
 
-            <ng-template class='mt-3' matStepLabel>Tipo de servicio </ng-template>
-            <p-selectButton [options]="tipos" [(ngModel)]="selectedType" optionLabel="name"></p-selectButton>
-            <button pButton type="button" class='mt-3' (click)='confirmarPagar()' label="Confirmar y pagar"></button>
+                <h3 class='color-f'>Tipo de servicio :</h3>
 
+                <p-dropdown [options]="tipos" [(ngModel)]="selectedType" optionLabel="name"></p-dropdown>
+            </div>
 
+            <div class='w-100 mt-3'>
+                <button mat-button color='warn' (click)='confirmarPagar()'>"Confirmar y pagar</button>
+
+            </div>
 
         </div>
     </div>
