@@ -19,7 +19,7 @@ import {RatingModule} from 'primeng/rating';
 @NgModule({
   declarations:[ RegistrarParticularComponent, PerfilParticularComponent, EditarPerfilParticularComponent, ComentariosParticularComponent],
   imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule,CalendarModule, 
-    InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule,RatingModule, ],
+    InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule,RatingModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })

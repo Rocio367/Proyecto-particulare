@@ -4,20 +4,12 @@
              <img  mat-card-avatar src="../../../../../assets/img/default-user.png"  width="100" height="100" />
              <span class="color-a ml-2 letraGrande"> {{element.name}} </span>
              <mat-card-actions>
-                <div class='stars'>
-                    <i class="pi pi-star" [ngClass]='(element.stars >= 1)?"amarillo":""'></i>
-                    <i class="pi pi-star" [ngClass]='(element.stars >= 2)?"amarillo":""'></i>
-                    <i class="pi pi-star" [ngClass]='(element.stars >= 3)?"amarillo":""'></i>
-                    <i class="pi pi-star" [ngClass]='(element.stars >= 4)?"amarillo":""'></i>
-                    <i class="pi pi-star" [ngClass]='(element.stars >= 5)?"amarillo":""'></i>
-                    <span class='subtitle'>
-                        {{element.stars}}/ 5
-                    </span>
+                <div class="flex justify-content-center">
+                    <p-rating [ngModel]="element.stars" readonly="true" stars="5" [cancel]="false"></p-rating>
+                    <div class='subtitle ml-2'>{{element.stars}}/ 5</div>
                 </div>
-            </mat-card-actions>  
-               
+            </mat-card-actions>
             <mat-card-subtitle>  {{element.comentario}}</mat-card-subtitle>
-
           </mat-card>
       </div>
 </a>
