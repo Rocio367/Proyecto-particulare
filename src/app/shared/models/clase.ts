@@ -3,4 +3,5 @@ export interface Clase {
     profesor: string
     fecha: Date
     estado: string
+    cantidadDeAlumnos: number
 }

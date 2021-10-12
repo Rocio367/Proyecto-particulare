@@ -15,11 +15,12 @@ import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {DividerModule} from 'primeng/divider';
 import {RatingModule} from 'primeng/rating';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations:[ RegistrarParticularComponent, PerfilParticularComponent, EditarPerfilParticularComponent, ComentariosParticularComponent],
   imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule,CalendarModule, 
-    InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule,RatingModule,],
+    InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule,RatingModule,TableModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
