@@ -38,13 +38,25 @@
 .p-menubar .p-menuitem-link .p-menuitem-text {
     color: white;
 }
-
-
+.p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #cc8b8b2b;
+    border-color: #f09797;
+}
+.p-inputtext:enabled:hover {
+   
+    border-color: #f09797;
+}
 .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link .p-menuitem-icon {
     color: white;
     margin-right: 0.5rem;
 }
-
+.p-button {
+    color: #ffffff;
+    background: #E47474 !important;
+    border: #E47474 !important;
+}
 
 @media screen and (max-width: 960px){
 .p-menubar .p-menubar-root-list {
@@ -130,8 +142,7 @@ body {
 }
 
 .card-interna {
-    box-shadow: 3px 3px 3px 3px #62BEA3 !important;
-
+    box-shadow: 2px 2px 2px 2px #62bea263 !important;
 }
 
 .carousel {
