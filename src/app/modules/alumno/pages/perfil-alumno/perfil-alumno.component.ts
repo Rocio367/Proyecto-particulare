@@ -52,10 +52,10 @@ export class PerfilAlumnoComponent implements OnInit {
     ];
 
     this.clases = [
-      { nombre: 'Clase 1', profesor: 'Roxana', fecha: new Date(2021, 9, 10), estado: 'Finalizada'},
-      { nombre: 'Clase 2', profesor: 'Roxana', fecha: new Date(2021, 9, 10), estado: 'Finalizada'},
-      { nombre: 'Clase 3', profesor: 'Roxana', fecha: new Date(2021, 9, 10), estado: 'Ausente'},
-      { nombre: 'Clase 4', profesor: 'Roxana', fecha: new Date(2021, 9, 10), estado: 'Pendiente'},
+      { nombre: 'Clase 1', profesor: 'Sergio Bonavento', fecha: new Date(2021, 9, 10), estado: 'Finalizada'},
+      { nombre: 'Clase 2', profesor: 'Fiorella Coloca', fecha: new Date(2021, 9, 10), estado: 'Finalizada'},
+      { nombre: 'Clase 3', profesor: 'Rocío Isaurralde', fecha: new Date(2021, 9, 10), estado: 'Ausente'},
+      { nombre: 'Clase 4', profesor: 'Lucas Di Nubila', fecha: new Date(2021, 9, 10), estado: 'Pendiente'},
     ];
   }
 }
