@@ -6,7 +6,7 @@
                 <img [src]="imagenPerfil" class="mx-auto d-block img-thumbnail" style="max-height: 200px; max-width: 200px;">
             </div>
             <ng-template #sinFoto>
-                <img mat-card-avatar class="redondeo"  src="../../../../../assets/img/default-user.png"  width="220" height="200" />
+                <img mat-card-avatar class="redondeo"  src="../../../../../assets/img/IMG-20211012-WA0030.jpg"  width="220" height="200" />
             </ng-template>
   
             <mat-form-field class='center ml-3'>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-6">
                 <mat-form-field class='input-large' appearance="outline">
-                    <mat-label class="color-f">Nombre</mat-label>
+                    <mat-label class="color-f">Sergio</mat-label>
                     <input matInput formControlName="nombre" placeholder="" type="text" value="Jose">
                 </mat-form-field>
                 <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched"
@@ -37,7 +37,7 @@
   
             <div class="col-6">
                 <mat-form-field class='input-large' appearance="outline">
-                    <mat-label class="color-f">Apellido</mat-label>
+                    <mat-label class="color-f">Bonavento</mat-label>
                     <input matInput formControlName="apellido" placeholder="" type="text" >
                 </mat-form-field>
                 <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched"
@@ -48,7 +48,7 @@
   
             <div class="col-12">
               <mat-form-field  color="accent" appearance="outline" class='input-large'>
-                        <mat-label class="color-f">Fecha de nacimiento</mat-label>
+                        <mat-label class="color-f">10/02/1989</mat-label>
                             <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento" >
                             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
@@ -90,7 +90,11 @@
 
           <mat-form-field class='input-large' appearance="outline">
             <mat-label class="color-f">Descripción</mat-label>
-            <textarea matInput formControlName="descripcion" placeholder="" type="text"></textarea>
+            <textarea matInput formControlName="descripcion" placeholder="" type="text">Me llamo Sergio, soy ingeniero en informática, programador freelance. 
+                La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases o estudiando programación por interés propio.
+                Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre vaya por más.
+                Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se aprende mas rápido, disfrutando lo que se hace.
+            </textarea>
         </mat-form-field>
         <div *ngIf="formDatos.get('descripcion').hasError('required') && formDatos.get('descripcion').touched"
             class="text-center error-msg">
