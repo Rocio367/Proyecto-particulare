@@ -1,121 +1,100 @@
-<div class="p-5 container container-color">
-  <div class="container mt-2">
-    <div class="row">
-      <div class="col-sm-12 col-md-3 mt-3">
-          <img mat-card-avatar src="../../../../../assets/img/default-user.png" width="220" height="200" />
-
+<div class="p-3 container-color">
+  <p-card>
+    <div class="flex justify-content-evenly">
+      <div>
+        <img mat-card-avatar src="../../../../../assets/img/default-user.png"/>
       </div>
-      <div class="col-sm grisLetra">
-        <h3 class="color-f m-4">Nombre y apellido </h3>
-
-        <h4 class='color-a fs-16 m-4'>Edad: <span>Edad</span></h4>
-        <h4 class='color-a fs-16 m-4'> Intereses: <span>Intereses</span></h4>
-        <hr />
-        <h4 class='color-a fs-16 m-4'>Institución: <span> Institución </span></h4>
-        <h4 class='color-a fs-16 m-4'>Nivel académico:<span> Nivel académico</span> </h4>
-
+      <p-divider layout="vertical"></p-divider>
+      <div>
+        <h4>Nombre y apellido </h4>
+        <h5>Edad: <span class="grisLetra">Edad</span></h5>
+        <h5>Intereses: <span class="grisLetra">Intereses</span></h5>
+        <h5>Institución: <span class="grisLetra">Institución</span></h5>
+        <h5>Nivel académico:: <span class="grisLetra">Nivel académico:</span></h5>
       </div>
-    </div>
-  </div>
-
-
-
-  <div class="container mt-3 text">
-    <br>
-    <h4 class="color-f">Mis clases : </h4>
-    <app-tabla-misclases></app-tabla-misclases>
-    <br>
-  </div>
-
-  <div class="container mt-5 z-index blanco2">
-    <br>
-    <h4 class="color-f">Beneficios : </h4>
-    <carousel>
-      <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-            <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-
-    </carousel>
-
-    <br>
-  </div>
-
-  <div class="container mt-5 blanco2">
-    <div class="row">
-      <div class="col-sm-12 col-md-7 mt-3">
-        <iframe width="553" height="280" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-        <br>
-      </div>
-      <div class="col-sm grisLetra">
-        <mat-list>
-          <div mat-line>
-            <h4 class="color-f">Clases cursadas : </h4>
-          </div>
-          <mat-selection-list #shoes [multiple]="false">
-            <mat-list-option *ngFor="let folder of folders" [value]="folders" class="borde">
-              <mat-icon mat-list-icon><i class="icofont-ui-video-play"></i></mat-icon>
-              {{folder.name}} <br>
-              {{folder.updated | date}}
-            </mat-list-option>
-          </mat-selection-list>
-        </mat-list>
+      <p-divider layout="vertical"></p-divider>
+      <div>
+          <iframe src="https://www.youtube.com/embed/V202A8p7uh8" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
       </div>
     </div>
-  </div>
-
+  </p-card>
+  <p-card styleClass="mt-3">
+    <p-table [value]="clases">
+      <ng-template pTemplate="caption">
+        <div>
+          <h4 class="color-f">Mis clases</h4>
+        </div>
+    </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre de la clase</th>
+          <th>Nombre del profesor</th>
+          <th>Fecha de clase</th>
+          <th>Estado</th>
+          <th>Video</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-clase>
+        <tr>
+            <td>{{clase.nombre}}</td>
+            <td>{{clase.profesor}}</td>
+            <td>{{clase.fecha | date}}</td>
+            <td>{{clase.estado}}</td>
+            <td><button pButton icon="pi pi-youtube"></button></td>
+            <td><button pButton label="Ver más"></button></td>
+            <td><button pButton label="Contactar"></button></td>
+        </tr>
+    </ng-template>
+    </p-table>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col-12">
+        <h2 class="color-f">Conocé nuestros beneficios</h2>
+        <p class="grisLetra">Descubre los descuentos que ofrecemos.</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-4" *ngFor="let beneficio of beneficios">
+        <p-card styleClass="card-interna">
+          <ng-template pTemplate="header">
+              <div class="verde blancaLetra pl-2 card-subtitulo">{{beneficio.subtitulo}}</div>
+          </ng-template>
+          <ng-template pTemplate="title">{{beneficio.titulo}}</ng-template>
+          <p>{{beneficio.contenido}}</p>
+          <p-divider></p-divider>
+        </p-card>
+      </div>
+      <br>
+    </div>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="flex flex-row">
+      <div class="flex-grow-1">
+        <div mat-line>
+          <h4 class="color-f">Clases cursadas : </h4>
+        </div>
+        <p-dataView [value]="folders">
+          <ng-template let-folder pTemplate="listItem">
+            <div class="flex align-content-center">
+              <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-youtube" style="font-size: 2rem"></i>
+              </div>
+              <div class="flex align-items-center justify-content-center ml-3">
+                {{folder.name}} <br>
+                {{folder.updated | date}}
+              </div>
+            </div>
+          </ng-template>
+        </p-dataView>
+      </div>
+    </div>
+  </p-card>
 </div>

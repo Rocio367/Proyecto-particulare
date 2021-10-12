@@ -21,6 +21,8 @@ mat-card{
     height: 200px !important;
     width: 210px !important;
     margin:auto;
+    object-fit: cover;
+    border-radius: 100px;
 }
 
 .borde
@@ -32,3 +34,9 @@ mat-card{
     font-size: 40px; 
 }
 
+.card-subtitulo {
+    position: relative;
+    top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+}

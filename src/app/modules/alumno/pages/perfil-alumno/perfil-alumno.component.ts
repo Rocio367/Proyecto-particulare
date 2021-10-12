@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CardModel } from 'src/app/shared/models/card';
+import { Clase } from 'src/app/shared/models/clase';
 
 export interface Section {
   name: string;
@@ -21,6 +23,9 @@ export interface PeriodicElement {
 })
 export class PerfilAlumnoComponent implements OnInit {
 
+  beneficios: CardModel[]
+  clases: Clase[]
+
   constructor() { }
 
    folders: Section[] = [
@@ -37,8 +42,20 @@ export class PerfilAlumnoComponent implements OnInit {
       updated: new Date('1/28/16'),
     }
   ];
-  ngOnInit(): void {
-    
+
+  ngOnInit() {
+
+    this.beneficios = [
+      { titulo: 'Pack 20 clases 10%', subtitulo: 'Descuentos', contenido: 'This card has divider and indeterminate progress as footer'},
+      { titulo: '20% de descuento', subtitulo: 'Descuentos', contenido: 'Si sos un suscriptor activo de la página durante un año.'},
+      { titulo: 'Primer clase GRATIS', subtitulo: 'Descuentos', contenido: 'Podes probar nuestros servicios gratuitamente la primera vez.'}
+    ];
+
+    this.clases = [
+      { nombre: 'Clase 1', profesor: 'Roxana', fecha: new Date(2021, 9, 10), estado: 'Finalizada'},
+      { nombre: 'Clase 2', profesor: 'Roxana', fecha: new Date(2021, 9, 10), estado: 'Finalizada'},
+      { nombre: 'Clase 3', profesor: 'Roxana', fecha: new Date(2021, 9, 10), estado: 'Ausente'},
+      { nombre: 'Clase 4', profesor: 'Roxana', fecha: new Date(2021, 9, 10), estado: 'Pendiente'},
+    ];
   }
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
 }
