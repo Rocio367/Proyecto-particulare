@@ -25,6 +25,7 @@ export class EditarPerfilAlumnoComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
+  imagenDefault = "../../../../../assets/img/IMG-20211012-WA0031.jpg";
 
   constructor(private form: FormBuilder, private router: Router ) { }
 
@@ -51,5 +52,11 @@ export class EditarPerfilAlumnoComponent implements OnInit {
     } else {
       this.formDatos.markAllAsTouched();
     }
+  }
+  obtenerRangoDeEdad() :string {
+    var fechaActual = new Date().getFullYear();
+    var fechaLimiteMaxima = fechaActual - 18;
+    var fechaLimiteMinima = fechaActual - 100;
+    return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
 }
