@@ -6,23 +6,14 @@
             </div>
         </div>
         <div class="modal-body text-center">
-
-            <form [formGroup]="formReporte" class="ui large error form">
-              
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Motivo</mat-label>
-                    <input matInput formControlName="motivo" placeholder="asunto" type="text">
-                </mat-form-field>
-                <div *ngIf="formReporte.get('motivo').hasError('required') && formReporte.get('motivo').touched"
-                    class="text-center error-msg">
-                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                </div><br>
-
-             
-            </form>
+            <h3>Reportar</h3>
+            <span class="p-float-label w-80  mt-4">
+                <input id="float-input"  class='w-100' type="text" pInputText> 
+                <label for="float-input">Movito</label>
+            </span>
 
             <div>
-                <button mat-button color='primary' [disabled]="formReporte.invalid" (click)='confirmar()'>Confirmar</button>
+                <button mat-button color='warn' [disabled]="formReporte.invalid" (click)='confirmar()'>Confirmar</button>
             </div>
 
         </div>

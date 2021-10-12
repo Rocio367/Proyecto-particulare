@@ -16,7 +16,7 @@ import { ModalPostulacionModelosComponent } from '../../components/modal-postula
 })
 export class DetalleModeloParticularComponent implements OnInit {
   gallery: imgGallery[] = [];
-  resoluciones: string[] = ['default-placeholder.png'];
+  resoluciones: any[] = [{nombre:'resolucion',doc:'https://2.bp.blogspot.com/-9jVR3GjWcn8/UZxBIaDMe7I/AAAAAAAAFuk/62w7V-Xo6Jg/s1600/GEOMETRIA+PLANA+Y+DEL+ESPACIO+PROBLEMAS+RESUELTOS+TIPO+EXAMEN+DE+ADMISION+UNI+(4).gif'}];
   archivo = new Archivo;
   public progress: number;
   archivoForm: FormGroup;
@@ -40,47 +40,18 @@ export class DetalleModeloParticularComponent implements OnInit {
     
   
 
-    this.archivo.archivos = ['https://www.eltiempo.com/files/article_content/files/crop/uploads/2021/02/22/6033a0a88d9ae.r_1614037672834.0-886-1536-2038.jpeg',
-    'https://www.eltiempo.com/files/article_content/files/crop/uploads/2021/02/22/6033a0a88d9ae.r_1614037672834.0-886-1536-2038.jpeg',
-  'https://www.eltiempo.com/files/article_content/files/crop/uploads/2021/02/22/6033a0a88d9ae.r_1614037672834.0-886-1536-2038.jpeg']
-      this.archivo.nombre = 'nombre '
-    this.archivo.carrera = 'carrera '
-    this.archivo.institucion = 'institucion '
-    this.archivo.materia = 'materia '
-    this.archivo.nivel = 'nivel '
-    this.archivo.fecha = new Date;
-    this.archivo.seguidores = 4;
-    this.archivo.estado = 'Pendiente'
+        this.archivo.archivos = ['https://cdn-v1.udocz-assets.com/uploads/book/cover/68845/examen_geometria_1_instancia_con_respuesta_final.jpg',
+        'https://cdn-v1.udocz-assets.com/uploads/book/cover/68843/examen_geometria_2_instancia_final.jpg',
+        'https://cdn-v1.udocz-assets.com/uploads/book/cover/68842/examen_geometria_final_1_instancia_con_respuesta.jpg']
+      this.archivo.nombre = 'Examen de geometria '
+      this.archivo.carrera = 'Tecnicaura en Desarrollo Web '
+      this.archivo.institucion = 'UNLAM '
+      this.archivo.materia = 'Geometria '
+      this.archivo.nivel = 'Terciario '
+      this.archivo.fecha = new Date;
+      this.archivo.seguidores = 40;
 
-    var i = 0;
-
-    let img = new imgGallery();
-    img.id = i.toString();
-    img.path = 'default-placeholder.png';
-    img.position = i;
-    i++;
-    this.gallery.push(img)
-
-    let img2 = new imgGallery();
-    img2.id = i.toString();
-    img2.path = 'default-placeholder.png';
-    img2.position = i;
-    i++;
-    this.gallery.push(img2)
-
-    let img3 = new imgGallery();
-    img3.id = i.toString();
-    img3.path = 'default-placeholder.png';
-    img3.position = i;
-    i++;
-    this.gallery.push(img3)
-
-    let img4 = new imgGallery();
-    img4.id = i.toString();
-    img4.path = 'default-placeholder.png';
-    img4.position = i;
-    i++;
-    this.gallery.push(img4)
+  
   }
 
   ngOnInit(): void {
@@ -98,7 +69,7 @@ export class DetalleModeloParticularComponent implements OnInit {
     window.open('./assets/img/' + this.gallery[n].path)
   }
   openRes(n: string) {
-    window.open('./assets/img/' + n)
+    window.open( n)
   }
   contratar() {
 

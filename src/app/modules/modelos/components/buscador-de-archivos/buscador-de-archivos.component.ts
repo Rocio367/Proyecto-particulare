@@ -33,45 +33,46 @@ export class BuscadorDeArchivosComponent implements OnInit {
 
     let a1=new Archivo();
     a1.id=1;
-    a1.archivos=['default-placeholder.png']
-    a1.nombre='nombre 3'
+    a1.archivos=['https://cdn-v1.udocz-assets.com/uploads/book/cover/68837/examen_de_matematica_prim_inst_final_respuestas.jpg']
+    a1.nombre='Ingreso matematicas'
     a1.fecha=new Date;
     a1.seguidores=4;
     a1.profesores=['particular 1','particular 2']
     a1.estado='Podes solicitarlo'
-    a1.carrera = 'carrera '
-    a1.institucion = 'institucion '
-    a1.materia = 'materia '
-    a1.nivel = 'nivel '
+    a1.carrera = 'Ingenieria '
+    a1.institucion = 'Unlam '
+    a1.materia = 'Matemtaticas '
+    a1.nivel = 'Universitario '
 
     let a2=new Archivo();
     a2.id=2;
-    a2.archivos=['default-placeholder.png']
-    a2.nombre='nombre 2'
+    a2.archivos=['https://www.altillo.com/examenes/uba/ubaxxi/matematica/Imageggesn5.gif']
+    a2.nombre='Parcial 1 de matematicas'
     a2.fecha=new Date;
     a2.seguidores=9;
     a2.profesores=['particular 1']
     a2.estado='Pendiente de respuesta'
-    a2.carrera = 'carrera '
-    a2.institucion = 'institucion '
-    a2.materia = 'materia '
-    a2.nivel = 'nivel '
+    a2.carrera = 'Administracion de empresas '
+    a2.institucion = 'UBA '
+    a2.materia = 'Matematicas '
+    a2.nivel = 'Universitario '
 
     let a3=new Archivo();
-    a3.archivos=['default-placeholder.png']
-    a3.nombre='nombre 2'
+    a3.archivos=['https://cdn-v1.udocz-assets.com/uploads/book/cover/68845/examen_geometria_1_instancia_con_respuesta_final.jpg']
+    a3.nombre='Ingreso parcial de geometria'
     a3.fecha=new Date;
     a3.id=3;
     a3.seguidores=9;
     a3.profesores=['particular 1']
     a3.estado='Resuelto'
-    a3.carrera = 'carrera '
-    a3.institucion = 'institucion '
-    a3.materia = 'materia '
-    a3.nivel = 'nivel '
+    a3.carrera = 'Tecnicatura en desarrollo web'
+    a3.institucion = 'Unlam '
+    a3.materia = 'Geometria '
+    a3.nivel = 'Universitario '
     this.archivos.push(a1,a2,a3)
     this.archivos.push(a1,a2,a3)
     this.archivos.push(a1,a2,a3)
+  
    
     
   }

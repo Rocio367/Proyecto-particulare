@@ -4,14 +4,14 @@
 
             <mat-card class='card-container card'>
                 <div class="col-lg-12 mt-3 text-center">
-                    <h3 class="color-f "> Archivos</h3>
-                    <img class='img-a' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
+                    <h3 class="color-f "> Examen de geometria ingreso</h3>
+                    <img class='img-a img-border' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
 
                 </div>
                 <div class="col-lg-12 mt-3 text-center">
                     <button mat-button color='primary'>Descargar archivos</button>
                     <br>
-                    <button mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>Postularme para
+                    <button  *ngIf='archivo.estado== "resolver" ' mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>Postularme para
                         resolverlo</button>
 
                 </div>
@@ -22,7 +22,7 @@
                 <div class="row">
 
                     <div class="col-12">
-                        <h3 class="color-f ">Datos generales: </h3>
+                        <h3 class=" ml-3 color-f ">Datos generales: </h3>
 
                     </div>
                     <div class='col-4 desk'>
@@ -65,7 +65,7 @@
 
         <div class="col-lg-12 mt-3 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
             <mat-card class='card card-container '>
-                <h3 class="color-f ">Datos del alumno: </h3>
+                <h3 class="color-f ml-3">Datos del alumno: </h3>
                 <p class='color-f '>Nombre: <span class='color-d'>{{alumno.nombreCompleto}}</span></p>
 
             </mat-card>
@@ -125,7 +125,7 @@
 
                             </div>
                             <div class="product-list-detail">
-                                <h5 class="p-mb-2">{{item}}</h5>
+                                <h5 class="p-mb-2">{{item.nombre}}</h5>
                                 <span>Particular : nombre particular</span>
                             </div>
                             <div class="product-list-action">
@@ -145,7 +145,7 @@
                                 <div class='actions' style='text-align: end;'>
 
 
-                                    <button mat-button color='warn' (click)='openRes(item)' type="button">Ver</button>
+                                    <button mat-button color='warn' (click)='openRes(item.doc)' type="button">Ver</button>
 
 
                                 </div>

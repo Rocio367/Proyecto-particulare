@@ -1,5 +1,5 @@
 <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
-    <p-dataView #dv [value]="archivos" [paginator]="true" [rows]="6" filterBy="nombre,materia,institucion,carrera"
+    <p-dataView #dv [value]="archivos" [paginator]="true" [rows]="8" filterBy="nombre,materia,institucion,carrera"
         [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
         <ng-template pTemplate="header">
             <div class="text-center">
@@ -39,7 +39,7 @@
 
                     </div>
                     <div class="product-grid-item-content">
-                        <img [src]="'./assets/img/'+product.archivos[0]">
+                        <img [src]="product.archivos[0]">
                         <div class="product-name color-f">{{product.nombre}}</div>
                         <p class='color-f'>Institucion: <span class='color-d'>{{product.institucion}}</span></p>
                         <p class='color-f'>Materia: <span class='color-d'>{{product.materia}}</span></p>
