@@ -1,12 +1,14 @@
 mat-card {
-  margin: 10px;
+  margin: 10px auto;
   padding: 16px 0px 16px 0px !important;
  // background-color: #06a367;
  // opacity: 0.6;
 
   
 }
-
+.card-2{
+  margin-left: 15%;
+}
 .mat-card-header {
     margin-bottom: 5px!important;
   //margin-top:3em!important;
@@ -35,12 +37,14 @@ mat-card {
   color: #25798E;
 }
 
-.icofont-like:hover {
+.pi-thumbs-up:hover {
   cursor: pointer;
   color: #25798E;
 }
 
-.icofont-ui-delete {
+.pi-trash {
   color: #ec0000;
   margin: 3px;
+  cursor: pointer;
+
 }

@@ -1,80 +1,111 @@
 <div class="container container-color ">
     <div class="row">
-        <div class="col-12 text-center">
-            <mat-card class="example-card opacity">
-                <mat-card-header>
-                    <mat-card-title class='color-d'> {{tema.titulo}}</mat-card-title>
-                    <div class='actions'>
-                        <span [ngClass]='(tema.like)? "like-active" : "like" '
-                            class="pt-1 pr-1 fs-16 ">{{tema.seguidores}}</span>
+        <div class="col-12 ">
+            <mat-card class="example-card  " style="width: 90%;margin: auto;">
+                <mat-card-title class='color-d ml-3'>
+                    {{tema.titulo}}
+                </mat-card-title>
+                <div class='actions'>
 
-                        <i [ngClass]='(tema.like)? "like-active" : "like" ' class="icofont-like fs-21"
-                            (click)="like(tema)"></i>
-                        <i class="icofont-ui-delete fs-21" (click)='delete()'></i>
-                    </div>
-                    <mat-card-subtitle>
-                        <p class='fs-16'>{{tema.descripcion}}</p>
-                    </mat-card-subtitle>
-                    <mat-card-subtitle>
-                        <p class='fs-16'>{{tema.fecha | date}}</p>
-                    </mat-card-subtitle>
-                </mat-card-header>
+                    <i class="float-right pi pi-trash fs-21 " stu (click)='delete()'></i>
 
-            </mat-card>
-            <app-filtros-tema></app-filtros-tema>
+                    <i [ngClass]='(tema.like)? "like-active" : "like" ' class="float-right pi pi-thumbs-up mt-1 fs-21"
+                        (click)="like(tema)"></i>
+                    <span [ngClass]='(tema.like)? "like-active" : "like" '
+                        class="float-right pt-1 pr-1 fs-18 ">{{tema.seguidores}}</span>
 
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-lg-12" *ngFor='let resp of tema.respuesta'>
-            <mat-card class="example-card opacity">
-                <mat-card-header>
-                    <mat-card-title class='color-d '><a class='color-d' href="perfil-alumno">{{resp.user}}</a>
-                    </mat-card-title>
-                    <mat-card-subtitle class='color-a'> {{resp.text}}</mat-card-subtitle>
-                    <img mat-card-avatar [src]="'./assets/img/'+resp.avatar" alt="foto ">
-
-                    <div class='actions'>
-                        <a (click)='verRespuestas(resp)' style='cursor: pointer;'> Respuestas</a>
-                        |<a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
-                        |<a (click)='reportar(resp)' style='cursor: pointer;'> Reportar</a>
-                    </div>
-
-                </mat-card-header>
-            </mat-card>
-            <div *ngFor='let resp2 of resp.respuestas'>
-                <mat-card class="example-card card-2" *ngIf=' resp.ver'>
+                </div>
+                <a href="foro">
                     <mat-card-header>
-                        <mat-card-title><a class='color-d' href="perfil-alumno">{{resp2.user}}</a> </mat-card-title>
-                        <mat-card-subtitle> {{resp2.text}}</mat-card-subtitle>
-                        <img mat-card-avatar [src]="'./assets/img/'+resp2.avatar" alt="foto ">
-                        <div class='actions'>
-                            <a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
-                            |<a (click)='reportar(resp)' style='cursor: pointer;'> Reportar</a>
 
-                        </div>
+                        <mat-card-subtitle>
+                            <p class='fs-16'>{{tema.descripcion}}</p>
+                        </mat-card-subtitle>
+                        <mat-card-subtitle>
+                            <p class='fs-16'>{{tema.fecha | date}}</p>
+                        </mat-card-subtitle>
                     </mat-card-header>
-                </mat-card>
-            </div>
-            <mat-card class="example-card card-2 opacity" *ngIf=' resp.aResponder'>
-                <mat-card-header>
-                    <form [formGroup]="formRespuesta" class="ui large error form">
-                        <mat-form-field style='width:95%' appearance="outline">
-                            <mat-label>Respuesta</mat-label>
-                            <input matInput formControlName="text" placeholder="..." type="text">
-                        </mat-form-field>
-                        <div *ngIf="formRespuesta.get('text').hasError('required') && formRespuesta.get('text').touched"
-                            class="text-center error-msg">
-                            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                        </div><br>
-                        <button mat-button color='primary' [disabled]="formRespuesta.invalid"
-                            (click)='responderForm(resp)'>Responder</button>
+                </a>
 
-                    </form>
-                </mat-card-header>
             </mat-card>
         </div>
+        <div class="col-12">
+            <div class="card mt-3 mb-3"  style="width: 90%;margin: auto;">
+                <p-dataView #dv [value]="tema.respuesta" [paginator]="true" [rows]="6" filterBy="titulo" layout="grid">
+                    <ng-template pTemplate="header">
+                        <div class="text-center">
+    
+                            <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
+                                <i class="pi pi-search"></i>
+                                <input class='w-100' type="search" pInputText placeholder="Buscar por titulo..."
+                                    (input)="dv.filter($event.target.value)">
+                            </span>
+    
+                        </div>
+                        <div class=" text-center mt-3">
+    
+                            <span class='m-3'>
+                                <p-dropdown placeholder="Filtrar por estado " optionLabel="name" [showClear]="true"
+                                    [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
+    
+                            </span>
+                            <span class='m-3'>
+                                <p-dropdown placeholder="Ordenar " optionLabel="name" [showClear]="true" [options]="orden"
+                                    [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
+    
+                            </span>
+                        </div>
+                    </ng-template>
+    
+                    <ng-template let-resp pTemplate="gridItem">
+    
+                        <mat-card class="example-card card-interna " style="width:90%;">
+                            <mat-card-header>
+                                <mat-card-title class='color-d '><a class='color-d' href="perfil-alumno">{{resp.user}}</a>
+                                </mat-card-title>
+                                <mat-card-subtitle class='color-a'> {{resp.text}}</mat-card-subtitle>
+                                <img mat-card-avatar [src]="resp.avatar" alt="foto ">
+    
+                                <div class='actions'>
+                                    <a (click)='verRespuestas(resp)' style='cursor: pointer;'> Respuestas</a>
+                                    |<a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
+                                    |<a (click)='reportar(resp)' style='cursor: pointer;'> Reportar</a>
+                                </div>
+    
+                            </mat-card-header>
+                        </mat-card>
+                        <div *ngFor='let resp2 of resp.respuestas' class=''>
+                            <mat-card class="example-card card-2 float-ringht card-interna " style="width:80%;" *ngIf=' resp.ver'>
+                                <mat-card-header>
+                                    <mat-card-title><a class='color-d' href="perfil-alumno">{{resp2.user}}</a>
+                                    </mat-card-title>
+                                    <mat-card-subtitle> {{resp2.text}}</mat-card-subtitle>
+                                    <img mat-card-avatar [src]="resp2.avatar" alt="foto ">
+                                    <div class='actions'>
+                                        <a (click)='responder(resp)' style='cursor: pointer;'> Responder</a>
+                                        |<a (click)='reportar(resp)' style='cursor: pointer;'> Reportar</a>
+    
+                                    </div>
+                                </mat-card-header>
+                            </mat-card>
+                        </div>
+                        <mat-card class="example-card float-ringht card-interna " style="width:90%;" *ngIf=' resp.aResponder'>
+                            <mat-card-header>
+                                <span class="p-float-label " style="width: 95%;">
+                                    <textarea class='w-100' placeholder="..." pInputTextarea></textarea>
+                                    <label for="float-input">Comentario</label>
+                                </span>
+                            </mat-card-header>
+                            <mat-card-actions class='text-center' >
+                                <button mat-button color='warn' 
+                                (click)='responderForm(resp)'>Responder</button>
+                              </mat-card-actions>
+                        </mat-card>
+    
+                    </ng-template>
+                </p-dataView>
+            </div>
+        </div>
     </div>
+
 </div>

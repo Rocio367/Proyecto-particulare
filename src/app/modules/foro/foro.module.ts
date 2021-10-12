@@ -9,12 +9,16 @@ import { FiltrosComponent } from './components/filtros/filtros.component';
 import { ModalNuevoTemaComponent } from './components/modal-nuevo-tema/modal-nuevo-tema.component';
 import { FiltrosTemaComponent } from './components/filtros-tema/filtros-tema.component';
 import { ModalReporteComponent } from './components/modal-reporte/modal-reporte.component';
-
+import {CardModule} from 'primeng/card';
+import {InputTextModule} from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
+import {DataViewModule} from 'primeng/dataview';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 
 @NgModule({
   declarations:[ForoComponent, TemasForoComponent, FiltrosComponent, ModalNuevoTemaComponent, FiltrosTemaComponent, ModalReporteComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[InputTextareaModule,DataViewModule,CardModule,DropdownModule, InputTextModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })

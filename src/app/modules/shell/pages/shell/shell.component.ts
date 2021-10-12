@@ -148,9 +148,19 @@ export class ShellComponent implements OnInit, AfterContentChecked {
           {
             label: 'Foro',
             icon: 'pi pi-fw pi-comments',
-            routerLink: 'temas-foro'
+             items:[
+               {
+              label: 'Nuevo tema',
+              icon: 'pi pi-fw pi-comment',
+              routerLink: 'nuevo-tema'
 
-            //  items:[]
+            },
+            {
+              label: 'Explorar temas',
+              icon: 'pi pi-fw pi-tags',
+              routerLink: 'temas-foro',
+
+            }]
           },
         ];
         break;
@@ -265,9 +275,19 @@ export class ShellComponent implements OnInit, AfterContentChecked {
           {
             label: 'Foro',
             icon: 'pi pi-fw pi-comments',
-            routerLink: 'temas-foro'
+             items:[
+               {
+              label: 'Nuevo tema',
+              icon: 'pi pi-fw pi-folder',
+              routerLink: 'nuevo-tema'
 
-            //  items:[]
+            },
+            {
+              label: 'Explorar temas',
+              icon: 'pi pi-fw pi-folder',
+              routerLink: 'temas-foro',
+
+            }]
           },
         ];
         break;

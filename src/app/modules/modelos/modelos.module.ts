@@ -16,17 +16,21 @@ import { MisModelosParticularComponent } from './components/mis-modelos-particul
 import { ModalPostulacionModelosComponent } from './components/modal-postulacion-modelos/modal-postulacion-modelos.component';
 import { ModalValorarComponent } from './components/modal-valorar/modal-valorar.component';
 import {OrderListModule} from 'primeng/orderlist';
-import {InputTextModule} from 'primeng/inputtext';
 import {GalleriaModule} from 'primeng/galleria';
 import {ButtonModule} from 'primeng/button';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {CardModule} from 'primeng/card';
 import {FileUploadModule} from 'primeng/fileupload';
 import {ToastModule} from 'primeng/toast';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {CheckboxModule} from 'primeng/checkbox';
 import {DataViewModule} from 'primeng/dataview';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CardModule} from 'primeng/card';
+import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
+
+
+
+
 
 
 
