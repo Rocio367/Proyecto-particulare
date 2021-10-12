@@ -1,122 +1,124 @@
-<div class="contenedor">
-    <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarParticular()">
-        <div class="grid">
-            <div class="col-4">
-                <p-card>
-                    <div class="grid">
-                        <div class="col-12">
-                            <img *ngIf="fotoDePerfilCargada(); else imgDefault"
-                                [src]="imagenPerfil" mat-card-avatar 
-                                class="mx-auto d-block img-thumbnail redondeo" style="max-height: 200px; max-width: 200px;"/>
-                                <ng-template #imgDefault>
-                                    <img mat-card-avatar [src]="imagenDefault" 
-                                         class="d-block redondeo" width="220" height="200" />
-                                </ng-template>
+<div class="fondo-rosa">
+    <div class="contenedor">
+        <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarParticular()">
+            <div class="grid">
+                <div class="col-4">
+                    <p-card>
+                        <div class="grid">
+                            <div class="col-12">
+                                <img *ngIf="fotoDePerfilCargada(); else imgDefault"
+                                    [src]="imagenPerfil" mat-card-avatar 
+                                    class="mx-auto d-block img-thumbnail redondeo" style="max-height: 200px; max-width: 200px;"/>
+                                    <ng-template #imgDefault>
+                                        <img mat-card-avatar [src]="imagenDefault" 
+                                             class="d-block redondeo" width="220" height="200" />
+                                    </ng-template>
+                            </div>
+                            <div class="col-12">
+                                <mat-form-field class='pl-3 input-large'>
+                                    <ngx-mat-file-input
+                                        formControlName="fotoPerfil"
+                                        multiple=false
+                                        accept=".png, .jpg, .jpeg"
+                                        color="warn" placeholder="Foto de perfil">
+                                        <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
+                                    </ngx-mat-file-input>
+                                </mat-form-field>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <mat-form-field class='pl-3 input-large'>
-                                <ngx-mat-file-input
-                                    formControlName="fotoPerfil"
-                                    multiple=false
-                                    accept=".png, .jpg, .jpeg"
-                                    color="warn" placeholder="Foto de perfil">
-                                    <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
-                                </ngx-mat-file-input>
-                            </mat-form-field>
+                    </p-card>
+                </div>
+                <div class="col-8">
+                    <p-card>
+                        <div class="fluid grid">
+                            <div class="col-12">
+                                <h3>Datos personales</h3>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="nombre" type="text" pInputText formControlName="nombre" class="inputfield w-full">
+                                    <label for="nombre">Sergio</label>
+                                </span>
+                                <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="apellido" type="text" pInputText formControlName="apellido" class="inputfield w-full">
+                                    <label for="apellido">Bonavento</label>
+                                </span>
+                                <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="telefono" type="text" pInputText formControlName="telefono" class="inputfield w-full">
+                                    <label for="telefono">Telefono</label>
+                                </span>
+                                <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="email" type="email" pInputText formControlName="email" class="inputfield w-full">
+                                    <label for="email">sergioBonavento@gmail.com</label>
+                                </span>
+                                <div *ngIf="formDatos.get('email').hasError('required') && formDatos.get('email').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                                <div *ngIf="formDatos.get('email').hasError('email') && formDatos.get('email').touched"
+                                    class="text-center">
+                                    <small class="p-error">El formato no es correcto</small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="contrasenia" type="password" pInputText formControlName="contrasenia" class="inputfield w-full">
+                                    <label for="contrasenia">********</label>
+                                </span>
+                                <div *ngIf="formDatos.get('contrasenia').hasError('required') && formDatos.get('contrasenia').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="repetirContrasenia" type="password" pInputText formControlName="repetirContrasenia" class="inputfield w-full">
+                                    <label for="repetirContrasenia">********</label>
+                                </span>
+                                <div *ngIf="formDatos.get('repetirContrasenia').hasError('required') && formDatos.get('repetirContrasenia').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <p-calendar inputId="fechaNacimiento" formControlName="fechaNacimiento" dateFormat="dd-mm-yy" 
+                                    [showIcon]="true" styleClass="w-full" 
+                                    [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
+                                    <label for="fechaNacimiento">20/02/1989</label>
+                                </span>
+                                <div *ngIf="formDatos.get('fechaNacimiento').hasError('required') && formDatos.get('fechaNacimiento').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <h3>Datos académicos</h3>
+                                <span class="p-float-label">
+                                    <textarea id="formacionAcademica" pInputTextarea formControlName="formacionAcademica" class="inputfield w-full"></textarea>
+                                    <label for="formacionAcademica">Ingeniero en informática</label>
+                                </span>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <button pButton type="submit">Registrar</button>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </p-card>
+                    </p-card>
+                </div>
             </div>
-            <div class="col-8">
-                <p-card>
-                    <div class="fluid grid">
-                        <div class="col-12">
-                            <h3>Datos personales</h3>
-                        </div>
-                        <div class="field col-12">
-                            <span class="p-float-label">
-                                <input id="nombre" type="text" pInputText formControlName="nombre" class="inputfield w-full">
-                                <label for="nombre">Sergio</label>
-                            </span>
-                            <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched" class="text-center">
-                                <small class="p-error">Este campo es <strong>requerido</strong></small>
-                            </div>
-                        </div>
-                        <div class="field col-12">
-                            <span class="p-float-label">
-                                <input id="apellido" type="text" pInputText formControlName="apellido" class="inputfield w-full">
-                                <label for="apellido">Bonavento</label>
-                            </span>
-                            <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched" class="text-center">
-                                <small class="p-error">Este campo es <strong>requerido</strong></small>
-                            </div>
-                        </div>
-                        <div class="field col-12">
-                            <span class="p-float-label">
-                                <input id="telefono" type="text" pInputText formControlName="telefono" class="inputfield w-full">
-                                <label for="telefono">Telefono</label>
-                            </span>
-                            <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched" class="text-center">
-                                <small class="p-error">Este campo es <strong>requerido</strong></small>
-                            </div>
-                        </div>
-                        <div class="field col-12">
-                            <span class="p-float-label">
-                                <input id="email" type="email" pInputText formControlName="email" class="inputfield w-full">
-                                <label for="email">sergioBonavento@gmail.com</label>
-                            </span>
-                            <div *ngIf="formDatos.get('email').hasError('required') && formDatos.get('email').touched" class="text-center">
-                                <small class="p-error">Este campo es <strong>requerido</strong></small>
-                            </div>
-                            <div *ngIf="formDatos.get('email').hasError('email') && formDatos.get('email').touched"
-                                class="text-center">
-                                <small class="p-error">El formato no es correcto</small>
-                            </div>
-                        </div>
-                        <div class="field col-12">
-                            <span class="p-float-label">
-                                <input id="contrasenia" type="password" pInputText formControlName="contrasenia" class="inputfield w-full">
-                                <label for="contrasenia">********</label>
-                            </span>
-                            <div *ngIf="formDatos.get('contrasenia').hasError('required') && formDatos.get('contrasenia').touched" class="text-center">
-                                <small class="p-error">Este campo es <strong>requerido</strong></small>
-                            </div>
-                        </div>
-                        <div class="field col-12">
-                            <span class="p-float-label">
-                                <input id="repetirContrasenia" type="password" pInputText formControlName="repetirContrasenia" class="inputfield w-full">
-                                <label for="repetirContrasenia">********</label>
-                            </span>
-                            <div *ngIf="formDatos.get('repetirContrasenia').hasError('required') && formDatos.get('repetirContrasenia').touched" class="text-center">
-                                <small class="p-error">Este campo es <strong>requerido</strong></small>
-                            </div>
-                        </div>
-                        <div class="field col-12">
-                            <span class="p-float-label">
-                                <p-calendar inputId="fechaNacimiento" formControlName="fechaNacimiento" dateFormat="dd-mm-yy" 
-                                [showIcon]="true" styleClass="w-full" 
-                                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
-                                <label for="fechaNacimiento">20/02/1989</label>
-                            </span>
-                            <div *ngIf="formDatos.get('fechaNacimiento').hasError('required') && formDatos.get('fechaNacimiento').touched" class="text-center">
-                                <small class="p-error">Este campo es <strong>requerido</strong></small>
-                            </div>
-                        </div>
-                        <div class="field col-12">
-                            <h3>Datos académicos</h3>
-                            <span class="p-float-label">
-                                <textarea id="formacionAcademica" pInputTextarea formControlName="formacionAcademica" class="inputfield w-full"></textarea>
-                                <label for="formacionAcademica">Formacion Academica</label>
-                            </span>
-                        </div>
-                        <div class="field col-12">
-                            <span class="p-float-label">
-                                <button pButton type="submit">Registrar</button>
-                            </span>
-                        </div>
-                    </div>
-                </p-card>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
