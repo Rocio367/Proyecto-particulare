@@ -1,11 +1,11 @@
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { Router } from '@angular/router';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-buscador',
@@ -13,60 +13,24 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./buscador.component.scss']
 })
 export class BuscadorComponent implements OnInit {
-  selectable = true;
-  removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  classCtrl = new FormControl();
-  filteredOptions: Observable<string[]>;
-  options: string[] = [];
-  allOptions: string[] = ['Ingles', 'Matematicas', 'Ciencias economicas'];
 
-  @ViewChild('classInput') classInput: ElementRef<HTMLInputElement>;
+  buscarText: string;
 
-  constructor(private router:Router) {
-    this.filteredOptions = this.classCtrl.valueChanges.pipe(
-        startWith(null),
-        map((fruit: string | null) => fruit ? this._filter(fruit) : this.allOptions.slice()));
-  }
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
+  constructor(private router: Router) {
 
-    // Add our fruit
-    if (value) {
-      this.options.push(value);
-    }
-
-    // Clear the input value
-    event.value=null;
-
-    this.classCtrl.setValue(null);
-  }
-
-  remove(fruit: string): void {
-    const index = this.options.indexOf(fruit);
-
-    if (index >= 0) {
-      this.options.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.options.push(event.option.viewValue);
-    this.classInput.nativeElement.value = '';
-    this.classCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allOptions.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
   ngOnInit(): void {
   }
 
-  buscar(){
-    this.router.navigate(['busqueda/'+ this.options])
+  results: string[];
+
+  search(event) {
+    console.log(event)
+     this.results=this.results.filter(d=>d.includes(event))
+  }
+  buscar() {
+    this.router.navigate(['busqueda', { q: this.buscarText }])
   }
 
 }

@@ -1,92 +1,112 @@
 <div class="p-5 container container-color">
     <div class='container'>
-        <section class="container mt-2" style="display: flex; justify-content: space-between;">
-            <div class="col-sm-12 col-md-3">
-                <img mat-card-avatar src="../../../../../assets/img/default-user.png" style="display:inline-block;margin:2px 0 2px 2px; width:100%" />
-                <p class='fs-16 mt-3'> <i class='pi pi-map-marker rojo'></i> {{registro.ubicacion}}</p>
-            </div>
-            <div class="col-sm">
-                <h3 class="color-f">{{registro.materia}}</h3>
-                <h4 class='fs-16'>Nombre del particular: <span> {{registro.particular}} </span></h4>
-                <hr />
-                <h4 class='fs-16 mb-3'>Nivel: <span> {{registro.nivel}}</span></h4>
-                <h4 class='fs-16 mb-3'>Método: <span> {{registro.type}}</span></h4>
-                <h4 class='fs-16 mb-3'>Tipo de clase: <span> Individual</span></h4>
-            </div>
-            <div class="col-lg-4 mt-5 ">
-                <br>
-                <i class="pi pi-star x" [ngClass]='(registro.stars >= 1)?"amarillo":""'></i>
-                <i class="pi pi-star x" [ngClass]='(registro.stars >= 2)?"amarillo":""'></i>
-                <i class="pi pi-star x" [ngClass]='(registro.stars >= 3)?"amarillo":""'></i>
-                <i class="pi pi-star x" [ngClass]='(registro.stars >= 4)?"amarillo":""'></i>
-                <i class="pi pi-star x" [ngClass]='(registro.stars >= 5)?"amarillo":""'></i>
-                <span class='subtitle'>
-                    {{registro.stars}} / 5
-                </span>
-                <h4 class="mt-3"> Precio por hora: $ {{registro.precio_por_hora}} </h4>
-            </div>
-        </section>
+        <div class="col-lg-12">
+            <p-card>
+                <div class="flex justify-content-evenly">
+                    <div>
+                        <img mat-card-avatar src="../../../../../assets/img/default-user.png" />
+
+                    </div>
+                    <div>
+                        <h4>Ingles</h4>
+                        <h4 class='fs-16 mb-3'>Nivel: <span> Secundario</span></h4>
+                        <h4 class='fs-16 mb-3'>Método: <span> Online</span></h4>
+                        <h4 class='fs-16 mb-3'>Tipo de clase: <span> Individual</span></h4>
+                        <h4 class='fs-16 mb-3'>Localidad: <span> <i class='pi pi-map-marker rojo'></i>
+                                {{registro.ubicacion}}</span></h4>
+                    </div>
+                    <p-divider layout="vertical"></p-divider>
+                    <div>
+                        <br>
+                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 1)?"amarillo":""'></i>
+                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 2)?"amarillo":""'></i>
+                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 3)?"amarillo":""'></i>
+                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 4)?"amarillo":""'></i>
+                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 5)?"amarillo":""'></i>
+                        <span class='subtitle'>
+                            {{registro.stars}} / 5
+                        </span>
+                        <h4 class="mt-3"> Precio por hora: $ {{registro.precio_por_hora}} </h4>
+                    </div>
+                </div>
+            </p-card>
+
+        </div>
     </div>
 
     <div class="container">
-        <div class='col-lg-12 mt-4 mb-4 p-3 '>
+        <div class='col-lg-12 mt-3  p-3 '>
             <p-card>
-                {{registro.descripcion}}
+                <h3 class="color-f">Descripcion:</h3>
+                Haber vivido en Londres y Enseñar Inglés a nivel Internacional me ha permitido dar clases a muchas personas de habla hispana con óptimos resultados. Estar en el Reino Unido, estudiar allí y convivir con su cultura y su gente me ha capacitado y preparado para enseñar en todos los niveles, desde el más bajo hasta los niveles más elevados con las temáticas en las que los alumnos tienen problemas para reforzar el aprendizaje. Mi experiencia es de 20 años dictando clases tanto a adultos como a adolescentes. Son muchos los jóvenes y adultos que hoy en día necesitan aprender o reforzar la lengua inglesa, ya sea porque están buscando trabajo y el mercado actual demanda cada día más la bilinguidad, cuanto porque- quizás- desean probar suerte en otros paises que demandan la lengua inglesa. Tanto para uno como para otro hablar inglés fluido, entender y hacerse entender es fundamental. Las clases on line resultan hoy una herramienta perfecta para el manejo de las clases uno a uno. Tengo manejo de las plataformas virtuales y he practicado las distintas metodologías de enseñanza por este medio desde hace años. Preparo en todos los niveles.             </p-card>
+        </div>
+
+        <div class='col-lg-12  p-3 '>
+            <p-card>
+                <h3 class="mt-1 color-f">Agendá tu clase</h3>
+                    <div class='col-lg-12  mt-4 '>
+                        <app-calendar-detalle-clase></app-calendar-detalle-clase>
+                    </div>
+
             </p-card>
         </div>
-        <h3 class="mt-4 color-f">Agendá tu clase</h3>
 
-        <div class='col-lg-12  mt-4 '>
-            <app-calendar-detalle-clase></app-calendar-detalle-clase>
-        </div>
     </div>
 
-    <div class="container mt-4">
-        <hr>
-        <h3 class="color-f">Opiniones de {{registro.particular}}</h3>
-        
-        <a href="perfil-alumno">
-            <div class="container mt-4">
-                <mat-card class="p-5 card-interna mb-3">
-                     <img  class="mat-card-avatar2 ml-3" src="../../../../../assets/img/default-user.png"  width="100" height="100" />
-                     <span class="ml-2 letraGrande"> Margarita Gonzales </span>
-                     <mat-card-actions class="ml-3">
-                        <div>
-                            <i class="pi pi-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
-                            <i class="pi pi-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
-                            <i class="pi pi-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
-                            <i class="pi pi-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
-                            <i class="pi pi-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
-                            <span class='subtitle'>
-                                3/ 5
-                            </span>
-                        </div>
-                    </mat-card-actions>  
-                       
-                    <mat-card-subtitle class="ml-3">Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</mat-card-subtitle>
-        
-                  </mat-card>
-    
-                  <mat-card class="p-5 card-interna">
-                    <img  class="mat-card-avatar2 ml-3" src="../../../../../assets/img/default-user.png"  width="100" height="100" />
-                    <span class="ml-2 letraGrande"> Alejo Romano </span>
-                    <mat-card-actions class="ml-3">
-                       <div>
-                           <i class="pi pi-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
-                           <i class="pi pi-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
-                           <i class="pi pi-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
-                           <i class="pi pi-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
-                           <i class="pi pi-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
-                           <span class='subtitle'>
-                               3/ 5
-                           </span>
-                       </div>
-                   </mat-card-actions>  
-                      
-                   <mat-card-subtitle class="ml-3">Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</mat-card-subtitle>
-       
-                 </mat-card>
-              </div>
-        </a>
+    <div class="container mt-3">
+        <div class="col-lg-12">
+            <p-card>
+                <h3 class="color-f">Calificaciones y opiniones
+                    de {{registro.particular}}</h3>
+
+                <a href="perfil-alumno">
+                    <div class="container mt-4">
+                        <mat-card class="pl-3 pr-3 p-2 card-interna mb-3">
+                            <img style='width: 40px;height: 40px;margin: auto;' mat-card-avatar
+                                src="../../../../../assets/img/default-user.png" width="100" height="100" />
+                            <span class="ml-2 letraGrande"> Margarita Gonzales </span>
+                            <mat-card-actions class="ml-3">
+                                <div class='stars'>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
+                                    <span class='subtitle'>
+                                        3/ 5
+                                    </span>
+                                </div>
+                            </mat-card-actions>
+
+                            <mat-card-subtitle class="ml-3">Lorem ipsum dolor sit amet consectetur adipiscing elit arcu
+                                platea ut.</mat-card-subtitle>
+
+                        </mat-card>
+
+                        <mat-card class="p-2 card-interna">
+                            <img style='width: 40px;height: 40px;' mat-card-avatar
+                                src="../../../../../assets/img/default-user.png" />
+                            <span class="ml-2 letraGrande"> Alejo Romano </span>
+                            <mat-card-actions class="ml-3">
+                                <div class='stars'>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
+                                    <span class='subtitle'>
+                                        3/ 5
+                                    </span>
+                                </div>
+                            </mat-card-actions>
+
+                            <mat-card-subtitle class="ml-3">Lorem ipsum dolor sit amet consectetur adipiscing elit arcu
+                                platea ut.</mat-card-subtitle>
+
+                        </mat-card>
+                    </div>
+                </a>
+            </p-card>
+        </div>
     </div>
 </div>

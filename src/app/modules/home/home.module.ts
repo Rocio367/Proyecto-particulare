@@ -17,12 +17,16 @@ import { SharedModule } from 'src/app/shared/components/shared.module';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { CardsProfesorComponent } from './components/cards-profesor/cards-profesor.component';
 import { PrimerosPasosComponent } from './components/primeros-pasos/primeros-pasos.component';
-
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
+import { CardDescuentosComponent } from './components/card-descuentos/card-descuentos.component';
+import {CardModule} from 'primeng/card';
 
 
 @NgModule({
-  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent, CardsProfesorComponent,PrimerosPasosComponent,],
-  imports:[SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
+  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent, CardsProfesorComponent,PrimerosPasosComponent, CardDescuentosComponent,],
+  imports:[CardModule,InputTextModule,ButtonModule,AutoCompleteModule,SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 

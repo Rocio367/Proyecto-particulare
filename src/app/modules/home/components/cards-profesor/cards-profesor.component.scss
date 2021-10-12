@@ -4,14 +4,35 @@
     padding: 5px 11px;
     text-align: center;
 }
-.pi pi-star{
+
+.pi pi-star {
     color: #b2beb7;
-    font-size: 25px!important;
+    font-size: 25px !important;
 }
-.amarillo{
-    color: #e0d71e!important;
+.mat-card-avatar {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
 }
-.pi-map-marker{
+.amarillo {
+    color: #e0d71e !important;
+}
+
+.pi-map-marker {
     color: #E47474;
-  
-  }
+
+}
+
+.categoria {
+    background-color: #62BEA3;
+    position: absolute;
+    bottom: 90%;
+    right: 1%;
+    font-size: 15px;
+    padding: 2px 5px;
+    text-align: center;
+    color: #fff;
+    margin: 10px 10px 0 0;
+}

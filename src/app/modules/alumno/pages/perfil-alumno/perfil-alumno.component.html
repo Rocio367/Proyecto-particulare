@@ -7,10 +7,12 @@
       <p-divider layout="vertical"></p-divider>
       <div>
         <h4>Nombre y apellido </h4>
-        <h5>Edad: <span class="grisLetra">Edad</span></h5>
-        <h5>Intereses: <span class="grisLetra">Intereses</span></h5>
-        <h5>Institución: <span class="grisLetra">Institución</span></h5>
-        <h5>Nivel académico:: <span class="grisLetra">Nivel académico:</span></h5>
+  
+        <h4 class='fs-16 mb-3'>Edad: <span> </span></h4>
+        <h4 class='fs-16 mb-3'>Intereses: <span> </span></h4>
+        <h4 class='fs-16 mb-3'>Institución: <span> </span></h4>
+        <h4 class='fs-16 mb-3'>Nivel académico: <span> </span></h4>
+
       </div>
       <p-divider layout="vertical"></p-divider>
       <div>
@@ -65,11 +67,10 @@
       <div class="col-4" *ngFor="let beneficio of beneficios">
         <p-card styleClass="card-interna">
           <ng-template pTemplate="header">
-              <div class="verde blancaLetra pl-2 card-subtitulo">{{beneficio.subtitulo}}</div>
+              <div class="categoria pl-2 ">{{beneficio.subtitulo}}</div>
           </ng-template>
           <ng-template pTemplate="title">{{beneficio.titulo}}</ng-template>
           <p>{{beneficio.contenido}}</p>
-          <p-divider></p-divider>
         </p-card>
       </div>
       <br>

@@ -140,11 +140,22 @@ body {
     background-color: #62BEA3;
     color: white !important;
 }
-
+.p-card .p-card-title {
+    font-size: 1.5rem;
+    font-weight: 500!important;
+    margin-bottom: 0.5rem;
+    margin-top: 24px;
+}
+h3{
+    text-align: initial!important;
+}
 .card-interna {
     box-shadow: 2px 2px 2px 2px #62bea263 !important;
 }
-
+.p-autocomplete {
+  
+    width: 100%;
+}
 .carousel {
     z-index: 1 !important;
 }
@@ -238,10 +249,6 @@ body {
     color: black;
 }
 
-//fonts
-h3 {
-    margin: 10px 0px 20px 0px !important;
-}
 
 
 
