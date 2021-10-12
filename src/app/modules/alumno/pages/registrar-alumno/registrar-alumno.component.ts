@@ -22,7 +22,7 @@ export class RegistrarAlumnoComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
-  imagenDefault = "../../../../../assets/img/default-user.png";
+  imagenDefault = "../../../../../assets/img/IMG-20211012-WA0031.jpg";
 
   constructor(private form: FormBuilder, private router: Router ) {}
 

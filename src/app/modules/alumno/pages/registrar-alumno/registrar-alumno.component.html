@@ -36,7 +36,7 @@
                         <div class="field col-12">
                             <span class="p-float-label">
                                 <input id="nombre" type="text" pInputText formControlName="nombre" class="inputfield w-full">
-                                <label for="nombre">Nombre</label>
+                                <label for="nombre">Rocío</label>
                             </span>
                             <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched" class="text-center">
                                 <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -45,7 +45,7 @@
                         <div class="field col-12">
                             <span class="p-float-label">
                                 <input id="apellido" type="text" pInputText formControlName="apellido" class="inputfield w-full">
-                                <label for="apellido">Apellido</label>
+                                <label for="apellido">Centurión</label>
                             </span>
                             <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched" class="text-center">
                                 <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -54,7 +54,7 @@
                         <div class="field col-12">
                             <span class="p-float-label">
                                 <input id="email" type="email" pInputText formControlName="email" class="inputfield w-full">
-                                <label for="email">Email</label>
+                                <label for="email">rocioCentu@gmail.com</label>
                             </span>
                             <div *ngIf="formDatos.get('email').hasError('required') && formDatos.get('email').touched" class="text-center">
                                 <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -67,7 +67,7 @@
                         <div class="field col-12">
                             <span class="p-float-label">
                                 <input id="contrasenia" type="password" pInputText formControlName="contrasenia" class="inputfield w-full">
-                                <label for="contrasenia">Contraseña</label>
+                                <label for="contrasenia">*********</label>
                             </span>
                             <div *ngIf="formDatos.get('contrasenia').hasError('required') && formDatos.get('contrasenia').touched" class="text-center">
                                 <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -76,7 +76,7 @@
                         <div class="field col-12">
                             <span class="p-float-label">
                                 <input id="repetirContrasenia" type="password" pInputText formControlName="repetirContrasenia" class="inputfield w-full">
-                                <label for="repetirContrasenia">Repetir Contraseña</label>
+                                <label for="repetirContrasenia">*********</label>
                             </span>
                             <div *ngIf="formDatos.get('repetirContrasenia').hasError('required') && formDatos.get('repetirContrasenia').touched" class="text-center">
                                 <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -87,7 +87,7 @@
                                 <p-calendar inputId="fechaNacimiento" formControlName="fechaNacimiento" dateFormat="dd-mm-yy" 
                                 [showIcon]="true" styleClass="w-full" 
                                 [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
-                                <label for="fechaNacimiento">Fecha de nacimiento</label>
+                                <label for="fechaNacimiento">29/05/1996</label>
                             </span>
                             <div *ngIf="formDatos.get('fechaNacimiento').hasError('required') && formDatos.get('fechaNacimiento').touched" class="text-center">
                                 <small class="p-error">Este campo es <strong>requerido</strong></small>
