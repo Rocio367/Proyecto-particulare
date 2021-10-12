@@ -1,9 +1,10 @@
-<div class="row">
-	<div class="col-lg-7">
+<div class="flex justify-content-evenly">
+
+	<div>
 		<p-calendar [(ngModel)]="value" [inline]="true" [showWeek]="true"></p-calendar>
 
 	</div>
-	<div class="col-lg-5">
+	<div>
 		<p-fieldset legend="Horarios disponibles" [toggleable]="true">
 			<h5>{{value| date}}</h5>
 			<p-listbox [options]="horarios" [group]="true" [(ngModel)]="selected" [metaKeySelection]="false"
@@ -14,7 +15,7 @@
 					</div>
 				</ng-template>
 			</p-listbox>
-			<button pButton class='mt-2' type="button" label="Confirmar" ></button>
+			<button pButton class='mt-2' type="button" label="Confirmar"></button>
 
 		</p-fieldset>
 

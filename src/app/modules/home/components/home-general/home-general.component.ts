@@ -11,5 +11,5 @@ export class HomeGeneralComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
 }

@@ -3,9 +3,11 @@
 }
 
 .stars {
-    bottom: 43%;
+    position: absolute;
+    bottom: 73%;
     right: 1%;
     padding: 5px 11px;
+    text-align: center;
 }
 
 .pi pi-star{
