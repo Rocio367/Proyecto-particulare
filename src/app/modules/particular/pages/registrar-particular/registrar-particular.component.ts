@@ -57,4 +57,5 @@ export class RegistrarParticularComponent implements OnInit {
     var fechaLimiteMinima = fechaActual - 100;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
+  
 }
