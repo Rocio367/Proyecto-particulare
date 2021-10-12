@@ -69,7 +69,8 @@ body {
     padding: 0;
     line-height: 1.5em;
     font-family: 'Roboto', sans-serif !important;
-    /* Relleno superior igual a la altura de la cabecera*/
+    background-color: #ffeded !important;
+        /* Relleno superior igual a la altura de la cabecera*/
 }
 
 
@@ -90,20 +91,12 @@ body {
 .icofont-search-2 {
     color: black !important;
 }
-/* 
-.container-color {
-    max-width: 100vw !important;
-    min-height: 100vh !important;
-    padding: 0px 5%;
-    background-image: linear-gradient(140deg, #ffcfc5 0, #ffbdb7 25%, #f5a7a7 50%, #e69198 75%, #da808f 100%);
-}
-*/
 
 .container-color {
     max-width: 100vw !important;
     min-height: 100vh !important;
-    padding: 0px 5%;
-    background-image: linear-gradient(190deg, #fff9f7 0, #ffeded 25%, #fae1e1 50%, #f3d5d6 75%, #eccacc 100%);
+    padding: 0px 0%;
+    background-color: #ffeded;
 }
 
 //
