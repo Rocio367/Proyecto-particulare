@@ -10,7 +10,7 @@
         <h5>Edad: <span class="grisLetra">Edad</span></h5>
         <h5>Intereses: <span class="grisLetra">Intereses</span></h5>
         <h5>Institución: <span class="grisLetra">Institución</span></h5>
-        <h5>Nivel académico:: <span class="grisLetra">Nivel académico:</span></h5>
+        <h5>Nivel académico: <span class="grisLetra">Nivel académico:</span></h5>
       </div>
       <p-divider layout="vertical"></p-divider>
       <div>
@@ -73,28 +73,6 @@
         </p-card>
       </div>
       <br>
-    </div>
-  </p-card>
-  <p-card styleClass="mt-3">
-    <div class="flex flex-row">
-      <div class="flex-grow-1">
-        <div mat-line>
-          <h4 class="color-f">Clases cursadas : </h4>
-        </div>
-        <p-dataView [value]="folders">
-          <ng-template let-folder pTemplate="listItem">
-            <div class="flex align-content-center">
-              <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-youtube" style="font-size: 2rem"></i>
-              </div>
-              <div class="flex align-items-center justify-content-center ml-3">
-                {{folder.name}} <br>
-                {{folder.updated | date}}
-              </div>
-            </div>
-          </ng-template>
-        </p-dataView>
-      </div>
     </div>
   </p-card>
 </div>
