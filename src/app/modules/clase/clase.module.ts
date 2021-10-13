@@ -19,6 +19,12 @@ import {DropdownModule} from 'primeng/dropdown';
 import {DataViewModule} from 'primeng/dataview';
 import {CheckboxModule} from 'primeng/checkbox';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import {TableModule} from 'primeng/table';
+import {OrderListModule} from 'primeng/orderlist';
+import {GalleriaModule} from 'primeng/galleria';
+import {FileUploadModule} from 'primeng/fileupload';
+import {ToastModule} from 'primeng/toast';
+
 
 @NgModule({
   declarations:[DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent],
@@ -26,7 +32,8 @@ import {SelectButtonModule} from 'primeng/selectbutton';
     ButtonModule,
     ListboxModule,
     CalendarModule, CommonModule,SharedModule,RouterModule,AngularMaterialModule,InputTextModule,
-    InputTextareaModule,DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule ],
+    InputTextareaModule,DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,
+    TableModule,OrderListModule,GalleriaModule,FileUploadModule,ToastModule ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })

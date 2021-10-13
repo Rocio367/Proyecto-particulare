@@ -1,23 +1,33 @@
-<div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
-    <p-dataView #dv filterBy="nombre,materia,institucion,carrera"
-        layout="grid">
-        <ng-template pTemplate="header">
-            <div class="text-center">
-                <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
-                    <i class="pi pi-search"></i>
-                    <input  class='w-100' type="search" pInputText placeholder="Buscar por, materia o carrera ...">
-                </span>
-            </div>
-            <div class=" text-center mt-3">
-                <span class='m-3'>
-                    <p-dropdown placeholder="Filtrar por estado " optionLabel="name" [showClear]="true"  [options]="filtro"></p-dropdown>
-                </span>
-                <span class='m-3'>
-                    <p-dropdown placeholder="Ordenar" optionLabel="name" [showClear]="true"  [options]="orden"></p-dropdown>
-                </span>
-            </div>
-        </ng-template>
+  <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
 
-       
-    </p-dataView>
-</div>
+    <p-table [value]="clases">
+        <ng-template pTemplate="caption">
+          <div>
+            <h4 class="color-f">Mis publicaciones</h4>
+          </div>
+      </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nombre de la clase</th>
+            <th>Fecha de clase</th>
+            <th>Cantidad de alumnos</th>
+            <th>Estado</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-clase>
+          <tr>
+              <td>{{clase.nombre}}</td>
+              <td>{{clase.fecha | date}}</td>
+              <td>{{clase.cantidadDeAlumnos}}</td>
+              <td>{{clase.estado}}</td>
+              <td><button pButton label="Ver más"></button></td>
+              <td><button pButton label="Editar"></button></td>
+              <td><button pButton  class="bg-secondary" label="Eliminar"></button></td>
+          </tr>
+      </ng-template>
+      </p-table>
+    </div>
+

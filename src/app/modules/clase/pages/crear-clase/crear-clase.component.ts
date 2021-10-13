@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class CrearClaseComponent implements OnInit {
 
-  filtro=[{name:'Online',code:'1'},{name:'Presencial',code:'2'}]
+  clase=[{name:'Online',code:'1'},{name:'Presencial',code:'2'}]
+  tipo=[{name:'Individual',code:'1'},{name:'Grupal',code:'2'}]
 
   formDatos = this.form.group({
     fotoPerfil: [''],
@@ -37,6 +39,7 @@ export class CrearClaseComponent implements OnInit {
       console.log(this.formDatos);
       this.formDatos.markAllAsTouched();
     }
+    
   }
 
 }

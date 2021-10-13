@@ -30,13 +30,13 @@
 
                             <div class="col-6">
                                 <span>
-                                    <p-dropdown placeholder="Filtrar por estado " optionLabel="name" [showClear]="true"  [options]="filtro"></p-dropdown>
+                                    <p-dropdown placeholder="Modo de clase" optionLabel="name" [showClear]="true"  [options]="clase"></p-dropdown>
                 
                                 </span>
                             </div>
                             <div class="col-6">
                                 <span>
-                                    <p-dropdown placeholder="Filtrar por estado " optionLabel="name" [showClear]="true"  [options]="filtro"></p-dropdown>
+                                    <p-dropdown placeholder="Tipo de clase" optionLabel="name" [showClear]="true"  [options]="tipo"></p-dropdown>
                                 </span>
                             </div>
                             </div>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <button pButton type="submit">Guardar clase</button>
+                    <button pButton type="submit"  (click)='registrarClase()'>Guardar clase</button>
                 </form>
             </mat-card>
         </div>
