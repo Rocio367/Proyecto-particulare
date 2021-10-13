@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Clase } from 'src/app/shared/models/clase';
+import { Publicacion } from 'src/app/shared/models/publicacion';
 
 @Component({
   selector: 'app-ver-mis-clases-particular',
@@ -12,7 +12,7 @@ export class VerMisClasesParticularComponent implements OnInit {
 
   orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}]
   filtro=[{name:'Disponible',code:'1'},{name:'No disponible',code:'2'}]
-  clases: Clase[];
+  publicacion: Publicacion[];
 
   sortOrder: number;
   sortKey='id';
@@ -22,11 +22,11 @@ export class VerMisClasesParticularComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.clases = [
-      { nombre: 'Clase 1', profesor: 'Sergio Bonavento', fecha: new Date(2021, 9, 10), estado: 'Finalizada', cantidadDeAlumnos: 5},
-      { nombre: 'Clase 2', profesor: 'Sergio Bonavento', fecha: new Date(2021, 9, 10), estado: 'Finalizada', cantidadDeAlumnos: 1},
-      { nombre: 'Clase 3', profesor: 'Sergio Bonavento', fecha: new Date(2021, 9, 10), estado: 'Ausente', cantidadDeAlumnos: 5},
-      { nombre: 'Clase 4', profesor: 'Sergio Bonavento', fecha: new Date(2021, 9, 10), estado: 'Pendiente', cantidadDeAlumnos: 2},
+    this.publicacion = [
+      { materia: 'Matematica', nivel: 'Secundario básico',modo:'online', estado: 'Finalizada', tipo: 'individual'},
+      { materia: 'Matematica', nivel: 'Secundario Superior', modo:'online', estado: 'Finalizada', tipo: 'individual'},
+      { materia: 'Algebra', nivel: 'Universidad', modo:'online', estado: 'Ausente', tipo:'individual'},
+      { materia: 'Matematica', nivel: 'Universidad', modo:'online', estado: 'Pendiente', tipo: 'individual'},
     ];
   }
 
