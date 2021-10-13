@@ -36,6 +36,15 @@ export class RegistrarAlumnoComponent implements OnInit {
         }
       }
     );
+
+    // Datos mockeados para video
+    this.formDatos.controls['nombre'].setValue('Rocío');
+    this.formDatos.controls['apellido'].setValue('Centurión');
+    this.formDatos.controls['email'].setValue('rocioCentu@gmail.com');
+    this.formDatos.controls['contrasenia'].setValue('pass123');
+    this.formDatos.controls['repetirContrasenia'].setValue('pass123');
+    this.formDatos.controls['fechaNacimiento'].setValue(new Date(1996, 4, 29));
+    this.formDatos.controls['intereses'].setValue('Aprender sobre devops');
   }
 
   registrarAlumno(){
