@@ -273,6 +273,25 @@ export class ShellComponent implements OnInit, AfterContentChecked {
             ]
           },
           {
+            label: 'Publicación',
+            icon: 'pi pi-fw pi-user',
+            items: [
+              {
+                label: 'Subir publicación',
+                icon: 'pi pi-fw pi-file-o',
+                routerLink: 'crear-clase'
+
+              },
+              {
+                label: 'Mis publicaciones',
+                icon: 'pi pi-fw pi-folder',
+                routerLink: 'ver-clase-particular'
+
+              }
+
+            ]
+          },
+          {
             label: 'Foro',
             icon: 'pi pi-fw pi-comments',
              items:[
@@ -289,6 +308,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
 
             }]
           },
+        
         ];
         break;
       }

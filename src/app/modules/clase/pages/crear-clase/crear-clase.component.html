@@ -1,0 +1,75 @@
+<div class="container container-color pb-5 pt-5">
+    <div class="row">
+        <div class="col-lg-12  text-center">
+            <mat-card class=' card-container card' style="width: 80%;margin:auto;">
+                <h3>Crear clase:</h3>
+                <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarClase()">
+
+                    <div class="grid container">
+                        <div class="col-md-6"> 
+                            <br>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="materia" type="text" pInputText formControlName="materia" class="inputfield w-full">
+                                    <label for="materia">Nombre de la Materia</label>
+                                </span>
+                                <div *ngIf="formDatos.get('materia').hasError('required') && formDatos.get('materia').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="nivel" type="text" pInputText formControlName="nivel" class="inputfield w-full">
+                                    <label for="nivel">Nivel academico</label>
+                                </span>
+                                <div *ngIf="formDatos.get('nivel').hasError('required') && formDatos.get('nivel').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="grid col-12">
+
+                            <div class="col-6">
+                                <span>
+                                    <p-dropdown placeholder="Filtrar por estado " optionLabel="name" [showClear]="true"  [options]="filtro"></p-dropdown>
+                
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span>
+                                    <p-dropdown placeholder="Filtrar por estado " optionLabel="name" [showClear]="true"  [options]="filtro"></p-dropdown>
+                                </span>
+                            </div>
+                            </div>
+                          
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="precio" type="text" pInputText formControlName="precio" class="inputfield w-full">
+                                    <label for="precio">Precio de la clase</label>
+                                </span>
+                                <div *ngIf="formDatos.get('precio').hasError('required') && formDatos.get('precio').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+    
+                            <div class="field col-12">
+                                <h3>Descripcion</h3>
+                                <span class="p-float-label">
+                                    <textarea id="descripcion" type="text" pInputText formControlName="descripcion" class="inputfield w-full"></textarea>
+                                    <label for="descripcion"></label>
+                                </span>
+                                <div *ngIf="formDatos.get('descripcion').hasError('required') && formDatos.get('descripcion').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button pButton type="submit">Guardar clase</button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
