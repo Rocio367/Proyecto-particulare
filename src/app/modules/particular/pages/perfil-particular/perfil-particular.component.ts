@@ -48,7 +48,10 @@ export class PerfilParticularComponent implements OnInit {
   eliminar(){
 
   }
+  oponDoc(doc){
+    window.open(doc)
 
+  }
   onUpload(event) {
     for(let file of event.files) {
         this.uploadedFiles.push(file);

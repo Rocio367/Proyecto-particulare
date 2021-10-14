@@ -31,8 +31,9 @@
           <mat-card>
             <div mat-line><i class="pi pi-briefcase
                 ml-2 mr-2" style="font-size: 1rem"></i>{{item.titulo}}</div>
-            <div class='ml-2' mat-line> {{item.desde}} - {{item.hasta}}</div>
-            <div class='actions'>
+                <div class='ml-2' mat-line> {{item.desde}} - {{item.hasta}}</div>
+                <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;" (click)="oponDoc(item.doc)"> Ver certificado</a></div>
+                <div class='actions'>
               <i class="pi pi-pencil fs-21 m-1
                   " style="color:#35a763;cursor:pointer;" (click)='editar(item)'></i>
 
