@@ -18,7 +18,7 @@ export class ForoComponent implements OnInit {
   estados=[{name:'Que sigo',code:'1'},{name:'Creados por mi',code:'2'}]
 
   selectedOrder:string;
-  orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'},{name:'Con mas likes',code:'3'}]
+  orden=[{name:'Más recientes',code:'1'},{name:'Más antiguos',code:'2'},{name:'Con más likes',code:'3'}]
   
   formDatos = this.form.group({
     comentario: ['',Validators.required],
@@ -29,7 +29,7 @@ export class ForoComponent implements OnInit {
   
   }
   ngOnInit(): void {
-    this.tema.titulo = 'Matematicas - Problemas de logaritmos';
+    this.tema.titulo = 'Matemáticas - Problemas de logaritmos';
     this.tema.descripcion = 'Este es un tema para aclarar dudas sobre problemas de logaritmos para un nivel univercitario '
     this.tema.seguidores = 31;
     this.tema.fecha = new Date();
