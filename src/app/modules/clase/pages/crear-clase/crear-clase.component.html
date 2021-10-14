@@ -20,7 +20,7 @@
                             <div class="field col-12">
                                 <span class="p-float-label">
                                     <input id="nivel" type="text" pInputText formControlName="nivel" class="inputfield w-full">
-                                    <label for="nivel">Nivel academico</label>
+                                    <label for="nivel">Nivel académico</label>
                                 </span>
                                 <div *ngIf="formDatos.get('nivel').hasError('required') && formDatos.get('nivel').touched" class="text-center">
                                     <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -55,10 +55,9 @@
                             </div>
     
                             <div class="field col-12">
-                                <h3>Descripcion</h3>
                                 <span class="p-float-label">
                                     <textarea id="descripcion" type="text" pInputText formControlName="descripcion" class="inputfield w-full"></textarea>
-                                    <label for="descripcion"></label>
+                                    <label for="descripcion">Descripción</label>
                                 </span>
                                 <div *ngIf="formDatos.get('descripcion').hasError('required') && formDatos.get('descripcion').touched" class="text-center">
                                     <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -67,7 +66,7 @@
                         </div>
                     </div>
 
-                    <button pButton type="submit"  (click)='registrarClase()'>Guardar clase</button>
+                    <button pButton type="submit"  (click)='registrarClase()'>Crear clase</button>
                 </form>
             </mat-card>
         </div>
