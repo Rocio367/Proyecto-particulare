@@ -1,8 +1,8 @@
-<div class="container container-color pb-5 pt-5">
+<div class="container container-color pb-5 pt-5" style="min-height: 45vh;width: 80%;">
     <div class="row">
         <div class="col-lg-12  text-center">
-            <mat-card class=' card-container card' style="width: 80%;margin:auto;">
-                <h3>Nueva clase:</h3>
+            <p-card class='card-container card'>
+                <h3>Nueva clase</h3>
                 <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarClase()">
 
                     <div class="grid container">
@@ -77,13 +77,13 @@
 
                         </div>
                         <div class="col-md-12">
-                            <h5 class='color-f'>Asignar disponiblidad</h5>
+                            <h5 class="subtitulo">Asignar disponiblidad</h5>
                             <app-calendar-completar></app-calendar-completar>
                         </div>
                     </div>
-                    <button pButton type="submit" (click)='registrarClase()'>Crear</button>
+                    <button pButton type="submit" class="mt-2" (click)='registrarClase()'>Crear clase</button>
                 </form>
-            </mat-card>
+            </p-card>
         </div>
     </div>
 </div>
