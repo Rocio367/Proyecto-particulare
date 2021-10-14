@@ -1,7 +1,7 @@
 <div class="container container-color pb-5 pt-5" style="min-height: 45vh;width: 80%;">
     <div class="row">
         <div class="col-lg-12  text-center">
-            <mat-card class=' card-container card' style="width: 80%;margin:auto;">
+            <p-card class='card-container card'>
                 <h3>Nuevo Modelo</h3>
                 <form [formGroup]="formDatos" class="ui large error form">
 
@@ -44,9 +44,9 @@
                         </p-fileUpload>
                     </div>
                 </form>
-                <button mat-button color='warn' class='mt-2' [disabled]='!uploadedFiles'
+                <button pButton class='mt-2' [disabled]='!uploadedFiles'
                     (click)='confirmar()'>Confirmar</button>
-            </mat-card>
+            </p-card>
         </div>
     </div>
 </div>
