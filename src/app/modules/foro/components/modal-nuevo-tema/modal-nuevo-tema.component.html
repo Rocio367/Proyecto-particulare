@@ -6,7 +6,7 @@
                     <span class="p-float-label w-80  mt-4">
                         <input id="float-input" formControlName="titulo" value='Paula Tufró' class='w-100'
                             type="text" pInputText>
-                        <label for="float-input">Titulo</label>
+                        <label for="float-input">Título</label>
                     </span>
                     <div *ngIf="formDatos.get('titulo').hasError('required') && formDatos.get('titulo').touched"
                         class="text-center">
@@ -26,7 +26,7 @@
                 </form>
               
 
-                <button mat-button color='warn' class='mt-2' (click)='enviar()'>Confirmar</button>
+                <button pButton class='mt-2' (click)='enviar()'>Confirmar</button>
             </p-card>
         </div>
     </div>
