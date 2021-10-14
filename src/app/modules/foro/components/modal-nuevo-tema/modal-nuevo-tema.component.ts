@@ -9,18 +9,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-nuevo-tema.component.scss']
 })
 export class ModalNuevoTemaComponent implements OnInit {
-  formTema:FormGroup;
-  constructor( private form: FormBuilder) { 
-    this.formTema = this.form.group({
-      titulo: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-});
+  text:string;
+
+  constructor( ) { 
+  
   }
 
   ngOnInit(): void {
 
   }
-  crear(){
+  enviar(){
     Swal.fire(
       'El tema fue creado correctamente',
       '',

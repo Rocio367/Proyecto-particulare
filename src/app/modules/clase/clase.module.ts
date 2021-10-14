@@ -24,10 +24,15 @@ import {OrderListModule} from 'primeng/orderlist';
 import {GalleriaModule} from 'primeng/galleria';
 import {FileUploadModule} from 'primeng/fileupload';
 import {ToastModule} from 'primeng/toast';
+import { CalendarDetalleClaseParticularComponent } from './components/calendar-detalle-clase-particular/calendar-detalle-clase-particular.component';
+import { DetalleClaseParticularComponent } from './pages/detalle-clase-particular/detalle-clase-particular.component';
+import { EditarClaseParticularComponent } from './pages/editar-clase-particular/editar-clase-particular.component';
+import { CalendarCompletarComponent } from './components/calendar-completar/calendar-completar.component';
+import { CalendarEditarComponent } from './components/calendar-editar/calendar-editar.component';
 
 
 @NgModule({
-  declarations:[DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent],
+  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent],
   imports:[ CardModule,FieldsetModule,
     ButtonModule,
     ListboxModule,

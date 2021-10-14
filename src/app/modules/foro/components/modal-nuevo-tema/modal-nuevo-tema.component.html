@@ -1,37 +1,20 @@
-<div mat-dialog-content style='width: 90vh;'>
-    <div class="">
-        <div class="modal-header">
-            <div type="button" class="close" mat-dialog-close aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </div>
-        </div>
-        <div class="modal-body text-center">
+<div class="container container-color pb-5 pt-5 " style="min-height: 45vh;width: 80%;">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <p-card class='card-container card'>
+                <h3>Nuevo Mensaje</h3>
+                <span class="p-float-label w-80  mt-4">
+                    <input id="float-input" class='w-100' type="text" pInputText>
+                    <label for="float-input">Titulo</label>
+                </span>
+                <span class="p-float-label w-80 mt-4">
+                    <textarea  class='w-100'  pInputTextarea></textarea>
+                    <label for="float-input">Descripción</label>
 
-            <form [formGroup]="formTema" class="ui large error form">
-              
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Titulo</mat-label>
-                    <input matInput formControlName="titulo" placeholder="asunto" type="text">
-                </mat-form-field>
-                <div *ngIf="formTema.get('titulo').hasError('required') && formTema.get('titulo').touched"
-                    class="text-center error-msg">
-                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                </div><br>
+                </span>
 
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Descripcion</mat-label>
-                    <textarea matInput formControlName="descripcion" placeholder="..." type="text"></textarea>
-                </mat-form-field>
-                <div *ngIf="formTema.get('descripcion').hasError('required') && formTema.get('descripcion').touched"
-                    class="text-center error-msg">
-                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                </div><br>
-            </form>
-
-            <div>
-                <button mat-button color='primary' [disabled]="formTema.invalid" (click)='crear()'>Crear</button>
-            </div>
-
+                <button mat-button color='warn' class='mt-2' (click)='enviar()'>Confirmar</button>
+            </p-card>
         </div>
     </div>
 </div>

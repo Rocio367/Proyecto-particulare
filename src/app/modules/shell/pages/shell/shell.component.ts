@@ -277,7 +277,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
             icon: 'pi pi-fw pi-user',
             items: [
               {
-                label: 'Crear clase',
+                label: 'Nueva clase',
                 icon: 'pi pi-fw pi-file-o',
                 routerLink: 'crear-clase'
 
