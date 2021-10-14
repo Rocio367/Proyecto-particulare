@@ -9,7 +9,7 @@
         <h4>Nombre y apellido </h4>
         <h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>
         <h4 class='fs-16 mb-3'>Localidad: <span> - <i class='pi pi-map-marker rojo'></i></span></h4>
-            <h4 class='fs-16 mb-3'>Experiencia: <span> -</span></h4>
+        <h4 class='fs-16 mb-3'>Experiencia: <span> -</span></h4>
 
       </div>
       <p-divider layout="vertical"></p-divider>
@@ -24,8 +24,100 @@
   <p-card styleClass="mt-3">
     <div class="grid">
       <div class="col">
-        <h4 class="color-f">Datos académicos:</h4>
-        <p>Ingeniero en informática</p>
+
+        <h4 class="color-f">Datos académicos: <i class="pi pi-plus-circle ml-2 mt-2 mr-2"
+            style="font-size: 2rem;color:#35a763" (click)='crear()'></i></h4>
+        <mat-list-item *ngFor="let item of datosAcademicos">
+          <mat-card>
+            <div mat-line><i class="pi pi-briefcase
+                ml-2 mr-2" style="font-size: 1rem"></i>{{item.titulo}}</div>
+            <div class='ml-2' mat-line> {{item.desde}} - {{item.hasta}}</div>
+            <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;"
+                (click)="oponDoc(item.doc)"> Ver certificado</a></div>
+            <div class='actions'>
+              <i class="pi pi-pencil fs-21 m-1
+                  " style="color:#35a763;cursor:pointer;" (click)='editar(item)'></i>
+
+              <i class="pi pi-trash fs-21 m-1" (click)='eliminar()' style="cursor:pointer;color:red"></i>
+            </div>
+
+          </mat-card>
+
+          <mat-card *ngIf='open'>
+
+            <i class="pi pi-times float-right m-4" (click)='close()' style='color:#35a763;'></i>
+            <form [formGroup]="formDatos" class="ui large error form text-center">
+
+              <div class="grid container">
+                <div class="col-md-6">
+                  <br>
+                  <div class="field col-12">
+                    <span class="p-float-label">
+                      <input id="materia" formControlName="titulo" type="text" pInputText class="inputfield w-full">
+                      <label for="materia">Titulo</label>
+                    </span>
+                    <div
+                      *ngIf="formDatos.get('titulo').hasError('required') && formDatos.get('titulo').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                  </div>
+
+                  <div class="field col-12">
+                    <span class="p-float-label">
+                      <input id="materia" type="text" formControlName="desde" pInputText class="inputfield w-full">
+                      <label for="materia">Desde</label>
+                    </span>
+                    <div
+                      *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <div
+                    *ngIf="formDatos.get('desde').hasError('pattern') && formDatos.get('desde').touched"
+                    class="text-center">
+                    <small class="p-error">Este campo es solo admite <strong>numeros</strong></small>
+                  </div>
+                  </div>
+
+
+                </div>
+                <div class="col-md-6">
+                  <br>
+
+                  <div class="field col-12">
+                    <span class="p-float-label">
+                      <input id="materia" type="text" formControlName="hasta" pInputText class="inputfield w-full">
+                      <label for="materia">Hasta</label>
+                    </span>
+                    <div
+                      *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <div
+                      *ngIf="formDatos.get('hasta').hasError('pattern') && formDatos.get('hasta').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es solo admite <strong>numeros</strong></small>
+                    </div>
+                  </div>
+
+                  <div class="field col-12">
+                    <span class="p-float-label">
+                      <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*"
+                        maxFileSize="1000000" (onUpload)="onUpload($event)" [auto]="true"
+                        chooseLabel="Adjuntar documento"></p-fileUpload>
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <button pButton type="submit" (click)='confirmar()' style='margin:auto'>Confirmar</button>
+            </form>
+          </mat-card>
+        </mat-list-item>
       </div>
     </div>
   </p-card>
@@ -33,10 +125,13 @@
     <div class="grid">
       <div class="col">
         <h4 class="color-f">Descripción:</h4>
-        <p>Me llamo Sergio, soy ingeniero en informática, programador freelance. 
-          La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases o estudiando programación por interés propio.
-          Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre vaya por más.
-          Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se aprende mas rápido, disfrutando lo que se hace.</p>
+        <p>Me llamo Sergio, soy ingeniero en informática, programador freelance.
+          La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases
+          o estudiando programación por interés propio.
+          Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre
+          vaya por más.
+          Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se
+          aprende mas rápido, disfrutando lo que se hace.</p>
       </div>
     </div>
   </p-card>
@@ -46,29 +141,26 @@
         <div>
           <h4 class="color-f">Mis clases</h4>
         </div>
-    </ng-template>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th>Nombre de la clase</th>
-          <th>Fecha de clase</th>
+          <th>Materia</th>
+          <th>Fecha de publicacion</th>
           <th>Cantidad de alumnos</th>
-          <th>Estado</th>
-          <th>Video</th>
-          <th></th>
+          <th>Calificacion</th>
+
           <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-clase>
         <tr>
-            <td>{{clase.nombre}}</td>
-            <td>{{clase.fecha | date}}</td>
-            <td>{{clase.cantidadDeAlumnos}}</td>
-            <td>{{clase.estado}}</td>
-            <td><button pButton icon="pi pi-youtube"></button></td>
-            <td><button pButton label="Ver más"></button></td>
-            <td><button pButton label="Editar"></button></td>
+          <td>{{clase.materia}}</td>
+          <td>{{clase.fecha | date}}</td>
+          <td>{{clase.cantidadDeAlumnos}}</td>
+          <td>{{clase.calificacion}} / 5</td>
+          <td><button pButton label="Ver más" (click)='verDetalle(clase)'></button></td>
         </tr>
-    </ng-template>
+      </ng-template>
     </p-table>
   </p-card>
   <p-card styleClass="mt-3">

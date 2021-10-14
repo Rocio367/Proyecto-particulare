@@ -1,4 +1,11 @@
 :host ::ng-deep {
+  .p-md-4 {
+    width: 24.3333%;
+    display: inline-flex;
+    padding: 0.5rem !important;
+
+  }
+
   .p-dropdown {
     width: 14rem;
     font-weight: normal;
@@ -6,7 +13,7 @@
 
   .product-name {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .product-description {
@@ -73,9 +80,10 @@
     }
 
     img {
-      width: 80%;
+      height: 300px;
+      width: 90%;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-      margin: 1rem 0 0.5rem  0;
+      margin: 1rem 0 0.5rem 0;
     }
 
     .product-grid-item-content {
@@ -94,6 +102,46 @@
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   margin-bottom: 2rem;
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .p-md-4 {
+    width: 33.3333%;
+    display: inline-flex;
+    padding: 0.5rem !important;
+
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .p-md-4 {
+    width: 50%;
+    display: inline-flex;
+    padding: 0.5rem !important;
+
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .p-md-4 {
+    width: 100%;
+    display: inline-flex;
+    padding: 0.5rem !important;
+
+  }
+
+  .filters {
+    display: grid;
+  }
+
+  .product-grid-item img {
+    height: auto;
+  }
+
+  .card {
+    max-width: 80vw;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -126,33 +174,6 @@
       align-items: center;
       width: 100%;
     }
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .p-md-4 {
-    width: 24.3333%;
-    display: inline-flex;
-    padding: 0.5rem !important;
-
-  }
-}
-
-@media screen and (min-width: 768px) {
-
-  .p-md-1,
-  .p-md-2,
-  .p-md-3,
-  .p-md-4,
-  .p-md-5,
-  .p-md-6,
-  .p-md-7,
-  .p-md-8,
-  .p-md-9,
-  .p-md-10,
-  .p-md-11,
-  .p-md-12 {
-    flex: 0 0 auto;
   }
 }
 
@@ -189,12 +210,13 @@
   border-radius: 2px;
 }
 
-.contenedor-acctions{
+.contenedor-acctions {
   display: inline-flex;
   width: 100%;
   padding: 5px 0p;
 
 }
+
 .actions {
 
   width: 50%;
@@ -207,10 +229,11 @@
 .fecha {
   width: 50%;
 
-   padding: 5px 11px;
-  text-align:left;
+  padding: 5px 11px;
+  text-align: left;
 }
-p{
-  margin: 2px 0px 1px 0px!important;
+
+p {
+  margin: 2px 0px 1px 0px !important;
 
 }

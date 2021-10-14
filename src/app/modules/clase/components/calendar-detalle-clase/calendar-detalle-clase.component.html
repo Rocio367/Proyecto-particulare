@@ -4,7 +4,7 @@
 
 	</div>
 	<div class="col-lg-5">
-		<p-fieldset legend="Horarios disponibles" [toggleable]="true">
+		<p-fieldset legend="Horarios disponibles " [toggleable]="true">
 			<h5>{{value| date}}</h5>
 			<p-listbox [options]="horarios" [group]="true" [(ngModel)]="selected" [metaKeySelection]="false"
 				[checkbox]="true" [filter]="true" [multiple]="true" [listStyle]="{'max-height':'210px'}">

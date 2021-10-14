@@ -1,23 +1,38 @@
-
-<div class="container container-color pb-5 pt-5 " style="min-height: 45vh;">
+<div class="container container-color pb-5 pt-5 " style="min-height: 45vh;width: 80%;">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <p-card class='card-container card' >
+            <p-card class='card-container card'>
                 <h3>Nuevo Mensaje</h3>
-                <span class="p-float-label w-80  mt-4">
-                    <input id="float-input"  class='w-100' type="text" pInputText> 
-                    <label for="float-input">Destinario</label>
-                </span>
-                <span class="p-float-label w-80  mt-4">
-                    <input id="float-input"  class='w-100' type="text" pInputText> 
-                    <label for="float-input">Asunto</label>
-                </span>
-                <span class="p-float-label w-80 mt-4">
-                    <p-editor [(ngModel)]="text" [style]="{'height':'320px'}"></p-editor>
+                <form [formGroup]="formDatos" class="ui large error form">
+                    <span class="p-float-label w-80  mt-4">
+                        <input id="float-input" formControlName="destinatario" value='Paula Tufró' class='w-100'
+                            type="text" pInputText>
+                        <label for="float-input">Destinario</label>
+                    </span>
+                    <div *ngIf="formDatos.get('destinatario').hasError('required') && formDatos.get('destinatario').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <span class="p-float-label w-80  mt-4">
+                        <input id="float-input" formControlName="asunto" class='w-100' type="text" pInputText>
+                        <label for="float-input">Asunto</label>
+                    </span>
+                    <div *ngIf="formDatos.get('asunto').hasError('required') && formDatos.get('asunto').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <span class="p-float-label w-80 mt-4">
+                        <p-editor [(ngModel)]="text" formControlName="mensaje" [style]="{'height':'320px'}"></p-editor>
 
-                </span>
+                    </span>
+                    <div *ngIf="formDatos.get('mensaje').hasError('required') && formDatos.get('mensaje').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
 
-            <button mat-button color='warn' class='mt-2'   (click)='enviar()'  >Confirmar</button>
+                </form>
+
+                <button mat-button color='warn' class='mt-2' (click)='enviar()'>Confirmar</button>
             </p-card>
         </div>
     </div>

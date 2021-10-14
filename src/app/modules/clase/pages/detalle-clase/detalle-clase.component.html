@@ -3,11 +3,23 @@
         <div class="col-lg-12">
             <p-card>
                 <div class="flex justify-content-evenly">
-                    <div>
+                    <div class='div-a '>
                         <img mat-card-avatar src="https://d131oejryywhj7.cloudfront.net/p/api/usuario/dup/4NufvtIc2Ug4tC42XsKSTrpZrWiwzKWQ0.jpg/120x120cut/?s=l" />
-
+                        <br>
+                       
+                        <div class='mt-3'>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 1)?"amarillo":""'></i>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 2)?"amarillo":""'></i>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 3)?"amarillo":""'></i>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 4)?"amarillo":""'></i>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 5)?"amarillo":""'></i>
+                            <span class='subtitle mb-5'>
+                                {{registro.stars}} / 5
+                            </span>
+                        </div>
+                        <h4 class="mt-3"> Precio por hora: $ {{registro.precio_por_hora}} </h4>
                     </div>
-                    <div class='ml-4'>
+                    <div  class='div-a ml-4'>
                         <h3 class='color-f'>Clases de inglés para apoyo escolar y niveles avanzados</h3>
                         <h4 class='fs-16 mb-3'>Particular: <span> Paula Tufró</span></h4>
                         <h4 class='fs-16 mb-3'>Nivel: <span> Primario | Secundario | Universitario</span></h4>
@@ -16,19 +28,7 @@
                         <h4 class='fs-16 mb-3'>Localidad: <span> <i class='pi pi-map-marker rojo'></i>
                                 {{registro.ubicacion}}</span></h4>
                     </div>
-                    <p-divider layout="vertical"></p-divider>
-                    <div>
-                        <br>
-                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 1)?"amarillo":""'></i>
-                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 2)?"amarillo":""'></i>
-                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 3)?"amarillo":""'></i>
-                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 4)?"amarillo":""'></i>
-                        <i class="pi pi-star x" [ngClass]='(registro.stars >= 5)?"amarillo":""'></i>
-                        <span class='subtitle'>
-                            {{registro.stars}} / 5
-                        </span>
-                        <h4 class="mt-3"> Precio por hora: $ {{registro.precio_por_hora}} </h4>
-                    </div>
+                  
                 </div>
             </p-card>
 

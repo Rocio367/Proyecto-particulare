@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Mensaje } from 'src/app/shared/models/mensaje';
 import { Patters } from 'src/app/shared/models/patters';
 import Swal from 'sweetalert2';
@@ -12,17 +13,25 @@ import Swal from 'sweetalert2';
 })
 export class ModalResponderComponent implements OnInit {
   text:string;
-  constructor() { 
+  formDatos = this.form.group({
+    destinatario: ['',Validators.required],
+    asunto: ['', Validators.required],
+    mensaje: ['', Validators.required],
+   
+  });
+  constructor(private form: FormBuilder,private _snackBar : MatSnackBar) { 
+    
   }
 
   ngOnInit(): void {
 
   }
   enviar(){
-    Swal.fire(
-      'El mensaje fue enviado correctamente',
-      '',
-      'success'
-    )
+    if(this.formDatos.valid) {
+      this._snackBar.open('El mensaje fue enviado correctamente', 'x');
+      return true;
+    } else {
+      this.formDatos.markAllAsTouched();
+    }
   }
 }

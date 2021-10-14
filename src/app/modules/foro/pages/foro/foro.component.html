@@ -91,10 +91,17 @@
                         </div>
                         <mat-card class="example-card float-ringht card-interna " style="width:90%;" *ngIf=' resp.aResponder'>
                             <mat-card-header>
+                                <form [formGroup]="formDatos" class="ui large error form">
+
                                 <span class="p-float-label " style="width: 95%;">
-                                    <textarea class='w-100' placeholder="..." pInputTextarea></textarea>
+                                    <textarea class='w-100' formControlName="comentario" placeholder="..." pInputTextarea></textarea>
                                     <label for="float-input">Comentario</label>
                                 </span>
+                                <div *ngIf="formDatos.get('comentario').hasError('required') && formDatos.get('comentario').touched"
+                                class="text-center">
+                                <small class="p-error">Este campo es <strong>requerido</strong></small>
+                            </div>
+                                </form>
                             </mat-card-header>
                             <mat-card-actions class='text-center' >
                                 <button mat-button color='warn' 

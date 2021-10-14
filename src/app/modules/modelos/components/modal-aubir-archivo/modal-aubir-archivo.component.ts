@@ -14,17 +14,16 @@ export class ModalAubirArchivoComponent implements OnInit {
   uploadedFiles: any[] = [];
 
   public progress: number;
-  archivoForm: FormGroup;
+  formDatos: FormGroup;
   dataimage: any;
   @ViewChild('fileInput') fileInput: ElementRef;
   files = '';
   message=false;
   constructor(private form: FormBuilder,public snackBar: MatSnackBar) {
-    this.archivoForm = this.form.group({
+    this.formDatos = this.form.group({
       institucion: ['', [Validators.required]],
-      carrera: [''],
-      materia: [''],
-      archivo: ['', [Validators.required]],
+      carrera: ['',Validators.required],
+      materia: ['',Validators.required],
     });
 
 
@@ -35,16 +34,16 @@ export class ModalAubirArchivoComponent implements OnInit {
         this.uploadedFiles.push(file);
     }
 
-  //  this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
   ngOnInit(): void {
+    if(this.formDatos.valid) {
+      this.snackBar.open('El modelo fue cargado correctamente', 'x')
+    } else {
+      this.formDatos.markAllAsTouched();
+    }
   }
   confirmar(){
-    Swal.fire(
-      'El archivo fue subido correctamente',
-      '',
-      'success'
-    )
+   
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

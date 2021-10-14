@@ -386,7 +386,19 @@ a {
     z-index: 100;
     background-color: white !important;
 }
-
+.p-fieldset {
+    margin: 10px!important;
+}
+.p-calendar {
+    margin: 10px!important;
+}
+.p-listbox .p-listbox-list .p-listbox-item{
+    justify-content: center!important;
+}
+.p-dropdown {
+    text-align: initial;
+    
+}
 @media screen and (max-width:900px) {
     .mob {
         display: block !important;

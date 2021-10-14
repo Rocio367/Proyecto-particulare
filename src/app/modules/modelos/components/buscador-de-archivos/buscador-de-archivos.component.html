@@ -13,12 +13,12 @@
             </div>
             <div class=" text-center mt-3">
 
-                <span class='m-3'>
+                <span class='m-3 filters'>
                     <p-dropdown  placeholder="Filtrar por estado "
                     optionLabel="name" [showClear]="true" [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
 
                 </span>
-                <span class='m-3'>
+                <span class='m-3 filters'>
                     <p-dropdown  placeholder="Ordenar "
                     optionLabel="name" [showClear]="true"  [options]="orden" [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
 
@@ -27,6 +27,7 @@
         </ng-template>
 
         <ng-template let-product pTemplate="gridItem">
+            
             <div class="p-col-12 p-md-4">
                 <div class="product-grid-item card card-interna">
                     <div class="product-grid-item-top">
@@ -41,10 +42,9 @@
                     <div class="product-grid-item-content">
                         <img [src]="product.archivos[0]">
                         <div class="product-name color-f">{{product.nombre}}</div>
-                        <p class='color-f'>Institucion: <span class='color-d'>{{product.institucion}}</span></p>
-                        <p class='color-f'>Materia: <span class='color-d'>{{product.materia}}</span></p>
-
-                        <p class='color-f'>Nivel:<span class='color-d'> {{product.nivel}}</span></p>
+                        <p class='color-f mb-3'>Institucion: <span >{{product.institucion}}</span></p>
+                        <p class='color-f mb-3'>Materia: <span>{{product.materia}}</span></p>
+                        <p class='color-f mb-3' >Nivel:<span > {{product.nivel}}</span></p>
 
                     </div>
                     <div class="product-grid-item-bottom ">

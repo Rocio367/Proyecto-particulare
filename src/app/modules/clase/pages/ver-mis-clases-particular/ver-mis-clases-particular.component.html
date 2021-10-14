@@ -1,4 +1,4 @@
-  <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
+<mat-card class=' card-container card pb-5 pt-5' style="width: 80%;">
 
     <p-table [value]="publicacion">
         <ng-template pTemplate="caption">
@@ -25,11 +25,11 @@
               <td>{{clase.modo}}</td>
               <td>{{clase.tipo}}</td>
               <td>{{clase.estado}}</td>
-              <td><a href="detalle-clase"><button pButton label="Ver más"></button></a></td>
-              <td><a href="editar-clase"><button pButton label="Editar"></button></a></td>
-              <td><button pButton  class="bg-secondary" label="Eliminar" (click)='eliminar()'></button></td>
+              <td><a href="/detalle-clase-particular"><button pButton label="Ver más"></button></a></td>
+              <td><a href="/editar-detalle-clase-particular"><button pButton label="Editar"></button></a></td>
+              <td><button pButton  class="bg-secondary" label="Eliminar"></button></td>
           </tr>
       </ng-template>
       </p-table>
-    </div>
+    </mat-card>
 

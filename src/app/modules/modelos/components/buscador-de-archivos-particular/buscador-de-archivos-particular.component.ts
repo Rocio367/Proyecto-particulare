@@ -40,7 +40,7 @@ export class BuscadorDeArchivosParticularComponent implements OnInit {
     a1.estado='Podes Postularte'
     a1.carrera = 'Ingenieria '
     a1.institucion = 'Unlam '
-    a1.materia = 'Matemtaticas '
+    a1.materia = 'Matematicas '
     a1.nivel = 'Universitario '
 
     let a2=new Archivo();

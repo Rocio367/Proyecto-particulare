@@ -7,13 +7,20 @@
         </div>
         <div class="modal-body text-center">
             <h3>Reportar</h3>
-            <span class="p-float-label w-80  mt-4">
-                <input id="float-input"  class='w-100' type="text" pInputText> 
-                <label for="float-input">Movito</label>
-            </span>
+            <form [formGroup]="formDatos" class="ui large error form">
 
+                <span class="p-float-label w-80  mt-4">
+                    <input id="float-input" formControlName="motivo" class='w-100' type="text" pInputText>
+                    <label for="float-input">Movito</label>
+                </span>
+                <div *ngIf="formDatos.get('motivo').hasError('required') && formDatos.get('motivo').touched"
+                    class="text-center">
+                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                </div>
+            </form>
             <div>
-                <button mat-button color='warn' [disabled]="formReporte.invalid" (click)='confirmar()'>Confirmar</button>
+                <button mat-button color='warn' 
+                    (click)='confirmar()'>Confirmar</button>
             </div>
 
         </div>

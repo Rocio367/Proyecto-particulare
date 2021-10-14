@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-lg-7">
+        <p-calendar [(ngModel)]="dates" selectionMode="multiple" [readonlyInput]="true" inputId="multiple" [inline]="true" [showWeek]="true"></p-calendar>
+    </div>
+    <div class="col-lg-5 text-center">
+        <p-fieldset legend="Horarios disponibles " [toggleable]="true">
+            <h5>{{value| date}}</h5>
+            <p-listbox [options]="horarios" optionLabel="name" ></p-listbox>
+            <a href="editar-detalle-clase-particular"><button pButton class='mt-2' type="button"
+                    label="Editar"></button></a>
+        </p-fieldset>
+    </div>
+</div>
