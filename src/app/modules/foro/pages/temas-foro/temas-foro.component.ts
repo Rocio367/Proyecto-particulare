@@ -15,13 +15,13 @@ export class TemasForoComponent implements OnInit {
   estados=[{name:'Que sigo',code:'1'},{name:'Creados por mi',code:'2'}]
 
   selectedOrder:string;
-  orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'},{name:'Con mas likes',code:'3'}]
+  orden=[{name:'Más recientes',code:'1'},{name:'Más antiguos',code:'2'},{name:'Con más likes',code:'3'}]
   temas : Tema[]=[];
   constructor( private primengConfig: PrimeNGConfig,) {
     let t1=new Tema();
     let t2=new Tema();
-    t1.titulo='Matematicas - Problemas de logaritmos';
-    t2.titulo='Diseño web - Teoria del color';
+    t1.titulo='Matemáticas - Problemas de logaritmos';
+    t2.titulo='Diseño web - Teoría del color';
     t1.descripcion='Este es un tema para aclarar dudas sobre problemas de logaritmos para un nivel univercitario '
     t2.descripcion='Este es un tema para profundizar en la teoria del color orientado a un ambito de diseño en la web '
     t1.seguidores=30;
