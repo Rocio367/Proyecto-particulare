@@ -31,9 +31,10 @@
           <mat-card>
             <div mat-line><i class="pi pi-briefcase
                 ml-2 mr-2" style="font-size: 1rem"></i>{{item.titulo}}</div>
-                <div class='ml-2' mat-line> {{item.desde}} - {{item.hasta}}</div>
-                <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;" (click)="oponDoc(item.doc)"> Ver certificado</a></div>
-                <div class='actions'>
+            <div class='ml-2' mat-line> {{item.desde}} - {{item.hasta}}</div>
+            <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;"
+                (click)="oponDoc(item.doc)"> Ver certificado</a></div>
+            <div class='actions'>
               <i class="pi pi-pencil fs-21 m-1
                   " style="color:#35a763;cursor:pointer;" (click)='editar(item)'></i>
 
@@ -45,24 +46,40 @@
           <mat-card *ngIf='open'>
 
             <i class="pi pi-times float-right m-4" (click)='close()' style='color:#35a763;'></i>
-            <form class="ui large error form text-center">
+            <form [formGroup]="formDatos" class="ui large error form text-center">
 
               <div class="grid container">
                 <div class="col-md-6">
                   <br>
                   <div class="field col-12">
                     <span class="p-float-label">
-                      <input id="materia" type="text" pInputText class="inputfield w-full">
+                      <input id="materia" formControlName="titulo" type="text" pInputText class="inputfield w-full">
                       <label for="materia">Titulo</label>
                     </span>
+                    <div
+                      *ngIf="formDatos.get('titulo').hasError('required') && formDatos.get('titulo').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
                   </div>
 
                   <div class="field col-12">
                     <span class="p-float-label">
-                      <input id="materia" type="text" pInputText class="inputfield w-full">
+                      <input id="materia" type="text" formControlName="desde" pInputText class="inputfield w-full">
                       <label for="materia">Desde</label>
                     </span>
+                    <div
+                      *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <div
+                    *ngIf="formDatos.get('desde').hasError('pattern') && formDatos.get('desde').touched"
+                    class="text-center">
+                    <small class="p-error">Este campo es solo admite <strong>numeros</strong></small>
                   </div>
+                  </div>
+
 
                 </div>
                 <div class="col-md-6">
@@ -70,13 +87,26 @@
 
                   <div class="field col-12">
                     <span class="p-float-label">
-                      <input id="materia" type="text" pInputText class="inputfield w-full">
+                      <input id="materia" type="text" formControlName="hasta" pInputText class="inputfield w-full">
                       <label for="materia">Hasta</label>
                     </span>
+                    <div
+                      *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <div
+                      *ngIf="formDatos.get('hasta').hasError('pattern') && formDatos.get('hasta').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es solo admite <strong>numeros</strong></small>
+                    </div>
                   </div>
+
                   <div class="field col-12">
                     <span class="p-float-label">
-                      <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)" [auto]="true" chooseLabel="Adjuntar documento"></p-fileUpload>
+                      <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*"
+                        maxFileSize="1000000" (onUpload)="onUpload($event)" [auto]="true"
+                        chooseLabel="Adjuntar documento"></p-fileUpload>
                     </span>
                   </div>
 
@@ -84,7 +114,7 @@
 
               </div>
 
-              <button pButton type="submit" style='margin:auto'>Confirmar</button>
+              <button pButton type="submit" (click)='confirmar()' style='margin:auto'>Confirmar</button>
             </form>
           </mat-card>
         </mat-list-item>
@@ -118,7 +148,7 @@
           <th>Fecha de publicacion</th>
           <th>Cantidad de alumnos</th>
           <th>Calificacion</th>
-        
+
           <th></th>
         </tr>
       </ng-template>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Respuestas, Tema } from 'src/app/shared/models/tema';
 import Swal from 'sweetalert2';
 import { ModalReporteComponent } from '../../components/modal-reporte/modal-reporte.component';
@@ -19,10 +20,13 @@ export class ForoComponent implements OnInit {
   selectedOrder:string;
   orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'},{name:'Con mas likes',code:'3'}]
   
-  constructor( private form: FormBuilder,public dialog: MatDialog){
-    this.formRespuesta = this.form.group({
-      text: ['', [Validators.required]]
-    });
+  formDatos = this.form.group({
+    comentario: ['',Validators.required],
+  
+   
+  });
+  constructor(private _snackBar : MatSnackBar, private form: FormBuilder,public dialog: MatDialog){
+  
   }
   ngOnInit(): void {
     this.tema.titulo = 'Matematicas - Problemas de logaritmos';
@@ -61,7 +65,12 @@ export class ForoComponent implements OnInit {
   }
   responder(r: Respuestas){
     this.tema.respuesta[this.tema.respuesta.indexOf(r)].aResponder=!this.tema.respuesta[this.tema.respuesta.indexOf(r)].aResponder;
-
+    if(this.formDatos.valid) {
+     // this._snackBar.open('El mensaje fue enviado correctamente', 'x');
+      return true;
+    } else {
+      this.formDatos.markAllAsTouched();
+    }
   }
 
   reportar(r: Respuestas){

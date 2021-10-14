@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,9 +9,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-reporte.component.scss']
 })
 export class ModalReporteComponent implements OnInit {
-  formReporte: FormGroup;
-  constructor(private form: FormBuilder) {
-    this.formReporte = this.form.group({
+  formDatos: FormGroup;
+  constructor(private form: FormBuilder, private _snackBar:MatSnackBar) {
+    this.formDatos = this.form.group({
       motivo: ['', [Validators.required]],
     });
   }
@@ -19,11 +20,13 @@ export class ModalReporteComponent implements OnInit {
 
   }
   confirmar() {
-    Swal.fire(
-      'El reporte fue enviado correctamente',
-      '',
-      'success'
-    )
+    
+    if(this.formDatos.valid) {
+      this._snackBar.open('El reporte fue enviado correctamente','x')
+      return true;
+    } else {
+      this.formDatos.markAllAsTouched();
+    }
   }
 
 }

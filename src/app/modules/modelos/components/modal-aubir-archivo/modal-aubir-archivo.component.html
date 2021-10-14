@@ -1,36 +1,51 @@
-
-
-
 <div class="container container-color pb-5 pt-5" style="min-height: 45vh;width: 80%;">
     <div class="row">
         <div class="col-lg-12  text-center">
             <mat-card class=' card-container card' style="width: 80%;margin:auto;">
                 <h3>Nuevo Modelo</h3>
-            
-                <span class="p-float-label w-80  mt-4">
-                    <input id="float-input"  class='w-100' type="text" pInputText> 
-                    <label for="float-input">Institución</label>
-                </span>
-                <span class="p-float-label w-80  mt-4">
-                    <input id="float-input"  class='w-100' type="text" pInputText> 
-                    <label for="float-input">Carrera</label>
-                </span>
-                <span class="p-float-label w-80 mt-4">
-                    <input id="float-input"  class='w-100' type="text" pInputText> 
-                    <label for="float-input">Materia</label>
-                </span>
+                <form [formGroup]="formDatos" class="ui large error form">
 
-              <div class='w-80 mt-3'>
-                <p-fileUpload class='mt-4'  name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
-                accept="image/*" maxFileSize="6">
-                <ng-template pTemplate="content">
-                    <ul *ngIf="uploadedFiles.length">
-                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                    </ul>
-                </ng-template>
-            </p-fileUpload>
-              </div>
-            <button mat-button color='warn'  class='mt-2' [disabled]='!uploadedFiles'  (click)='confirmar()'  >Confirmar</button>
+                    <span class="p-float-label w-80  mt-4">
+                        <input id="float-input" class='w-100' formControlName="institucion" pInputText>
+                        <label for="float-input">Institución</label>
+                    </span>
+                    <div *ngIf="formDatos.get('institucion').hasError('required') && formDatos.get('institucion').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+
+
+                    <span class="p-float-label w-80  mt-4">
+                        <input id="float-input" class='w-100' formControlName='carrera' type="text" pInputText>
+                        <label for="float-input">Carrera</label>
+                    </span>
+                    <div *ngIf="formDatos.get('carrera').hasError('required') && formDatos.get('carrera').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <span class="p-float-label w-80 mt-4">
+                        <input id="float-input" class='w-100' formControlName='materia' type="text" pInputText>
+                        <label for="float-input">Materia</label>
+                    </span>
+
+                    <div *ngIf="formDatos.get('materia').hasError('required') && formDatos.get('materia').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+
+                    <div class='w-80 mt-3'>
+                        <p-fileUpload class='mt-4' name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                            multiple="multiple" accept="image/*" maxFileSize="6">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                    </div>
+                </form>
+                <button mat-button color='warn' class='mt-2' [disabled]='!uploadedFiles'
+                    (click)='confirmar()'>Confirmar</button>
             </mat-card>
         </div>
     </div>

@@ -14,11 +14,11 @@ import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
 import {DataViewModule} from 'primeng/dataview';
 import {InputTextareaModule} from 'primeng/inputtextarea';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 @NgModule({
   declarations:[ForoComponent, TemasForoComponent, FiltrosComponent, ModalNuevoTemaComponent, FiltrosTemaComponent, ModalReporteComponent],
-  imports:[InputTextareaModule,DataViewModule,CardModule,DropdownModule, InputTextModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[ConfirmDialogModule,InputTextareaModule,DataViewModule,CardModule,DropdownModule, InputTextModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })

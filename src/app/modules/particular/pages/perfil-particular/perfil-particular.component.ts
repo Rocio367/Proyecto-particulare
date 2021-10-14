@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder, PatternValidator } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Clase } from 'src/app/shared/models/clase';
+import { Patters } from 'src/app/shared/models/patters';
 
 @Component({
   selector: 'app-perfil-particular',
@@ -12,7 +15,12 @@ export class PerfilParticularComponent implements OnInit {
   clases: any[]
   open=false;
   openTipo='';
-  constructor(private router:Router) { }
+   formDatos = this.form.group({
+    titulo: ['', [Validators.required]],
+    desde: ['',[Validators.required,Validators.pattern(Patters.OnlyNumber)]],
+    hasta: ['',[Validators.required,Validators.pattern(Patters.OnlyNumber)]],
+  });
+  constructor(private router:Router,private form: FormBuilder,public snackBar: MatSnackBar) { }
   uploadedFiles: any[] = [];
 
   ngOnInit(): void {
@@ -28,16 +36,20 @@ export class PerfilParticularComponent implements OnInit {
    
   crear(){
    this.open=true;
-   this.openTipo='crear'
+   this.openTipo='creado'
   }
   confirmar(){
     this.open=true;
     this.openTipo;
-
+    if(this.formDatos.valid) {
+      this.snackBar.open('El dato academico fue '+this.openTipo+' correctamente', 'x')
+    } else {
+      this.formDatos.markAllAsTouched();
+    }
    }
   editar(item:any){
     this.open=true;
-    this.openTipo='editar'
+    this.openTipo='editado'
 
   }
   close(){

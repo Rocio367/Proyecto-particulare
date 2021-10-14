@@ -1,6 +1,6 @@
 <div class="fondo-rosa">
     <div class="contenedor">
-        <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="registrarParticular()">
+        <form [formGroup]="formDatos" class="ui large error form" >
             <div class="grid">
                 <div class="col-4">
                     <p-card>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
-                                    <button pButton type="submit">Registrar</button>
+                                    <button pButton (click)="registrarParticular()">Registrar</button>
                                 </span>
                             </div>
                         </div>

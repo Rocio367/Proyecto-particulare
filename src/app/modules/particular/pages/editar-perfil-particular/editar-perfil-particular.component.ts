@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,7 +31,7 @@ export class EditarPerfilParticularComponent implements OnInit {
   imagenPerfil = "";
   imagenDefault = "../../../../../assets/img/IMG-20211012-WA0030.jpg";
 
-  constructor(private form: FormBuilder, private router: Router) { }
+  constructor(private _snackBar:MatSnackBar, private form: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
@@ -58,6 +59,7 @@ export class EditarPerfilParticularComponent implements OnInit {
 
   editarParticular(){
     if(this.formDatos.valid) {
+      this._snackBar.open('Perfil editado correctamente', 'x');
       this.router.navigate(['/perfil-alumno']);
       return true;
     } else {
