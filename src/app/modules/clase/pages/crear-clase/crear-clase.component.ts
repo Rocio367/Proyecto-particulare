@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class CrearClaseComponent implements OnInit {
 
   clase=[{name:'Online',code:'1'},{name:'Presencial',code:'2'}]
-  tipo=[{name:'Individual',code:'1'},{name:'Grupal',code:'2'}]
+  tipo=[{name:'Individual',code:'1'},{name:'Grupal',code:'2'},{name:'Mixto',code:'3'}]
 
   formDatos = this.form.group({
     fotoPerfil: [''],

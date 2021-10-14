@@ -24,10 +24,11 @@ import {OrderListModule} from 'primeng/orderlist';
 import {GalleriaModule} from 'primeng/galleria';
 import {FileUploadModule} from 'primeng/fileupload';
 import {ToastModule} from 'primeng/toast';
+import { EditarClaseComponent } from './pages/editar-clase/editar-clase.component';
 
 
 @NgModule({
-  declarations:[DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent],
+  declarations:[DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, EditarClaseComponent],
   imports:[ CardModule,FieldsetModule,
     ButtonModule,
     ListboxModule,

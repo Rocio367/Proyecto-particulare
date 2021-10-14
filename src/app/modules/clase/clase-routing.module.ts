@@ -5,6 +5,7 @@ import { DetalleClaseComponent } from './pages/detalle-clase/detalle-clase.compo
 import { PagoComponent } from './pages/pago/pago.component';
 import { CrearClaseComponent } from './pages/crear-clase/crear-clase.component';
 import { VerMisClasesParticularComponent } from './pages/ver-mis-clases-particular/ver-mis-clases-particular.component';
+import { EditarClaseComponent } from './pages/editar-clase/editar-clase.component';
 
 
 
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'detalle-clase', component: DetalleClaseComponent },
   { path: 'crear-clase', component: CrearClaseComponent },
   { path: 'ver-clase-particular', component: VerMisClasesParticularComponent },
+  { path: 'editar-clase', component: EditarClaseComponent },
+
 
 ];
 

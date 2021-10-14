@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Publicacion } from 'src/app/shared/models/publicacion';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-ver-mis-clases-particular',
@@ -30,4 +32,11 @@ export class VerMisClasesParticularComponent implements OnInit {
     ];
   }
 
+  eliminar(){
+    Swal.fire(
+      'Se ha cancelado la clase correctamente',
+      '',
+      'success'
+    )
+  }
 }

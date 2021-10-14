@@ -273,17 +273,17 @@ export class ShellComponent implements OnInit, AfterContentChecked {
             ]
           },
           {
-            label: 'Publicación',
+            label: 'Mis clases',
             icon: 'pi pi-fw pi-user',
             items: [
               {
-                label: 'Subir publicación',
+                label: 'Subir clase',
                 icon: 'pi pi-fw pi-file-o',
                 routerLink: 'crear-clase'
 
               },
               {
-                label: 'Mis publicaciones',
+                label: 'Ver mis clases',
                 icon: 'pi pi-fw pi-folder',
                 routerLink: 'ver-clase-particular'
 
