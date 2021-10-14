@@ -36,14 +36,13 @@ export class ModalAubirArchivoComponent implements OnInit {
 
 }
   ngOnInit(): void {
+  }
+  confirmar(){
     if(this.formDatos.valid) {
       this.snackBar.open('El modelo fue cargado correctamente', 'x')
     } else {
       this.formDatos.markAllAsTouched();
     }
-  }
-  confirmar(){
-   
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
