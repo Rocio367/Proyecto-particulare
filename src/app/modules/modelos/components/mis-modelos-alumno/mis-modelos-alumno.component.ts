@@ -26,7 +26,7 @@ export class MisModelosAlumnoComponent implements OnInit {
   estados=[{name:'Todos',code:''},{name:'Guardados',code:'1'},{name:'Pendiente de respuesta',code:'2'},{name:'Resuelto',code:'3'}]
 
   selectedOrder:string;
-  orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}]
+  orden=[{name:'Más recientes',code:'1'},{name:'Más antiguos',code:'2'}]
 
 
   constructor( private primengConfig: PrimeNGConfig,private router:Router) {
@@ -35,27 +35,27 @@ export class MisModelosAlumnoComponent implements OnInit {
     let a2=new Archivo();
     a2.id=2;
     a2.archivos=['https://cdn-v1.udocz-assets.com/uploads/book/cover/68837/examen_de_matematica_prim_inst_final_respuestas.jpg']
-    a2.nombre='Parcial 1 de matematicas'
+    a2.nombre='1° Parcial de Matemáticas'
     a2.fecha=new Date;
     a2.seguidores=9;
     a2.profesores=['particular 1']
     a2.estado='Pendiente de respuesta'
     a2.carrera = 'Tecnicatura en desarrollo web '
     a2.institucion = 'UNLAM '
-    a2.materia = 'Matematicas '
+    a2.materia = 'Matemáticas '
     a2.nivel = 'Terciario '
 
     let a3=new Archivo();
     a3.id=3;
     a3.archivos=['https://www.altillo.com/examenes/uba/ubaxxi/matematica/Imageggesn5.gif']
-    a3.nombre='Parcial 2 matematicas'
+    a3.nombre='2° Parcial Matemáticas'
     a3.fecha=new Date;
     a3.seguidores=9;
     a3.profesores=['particular 1']
     a3.estado='Resuelto'
     a3.carrera = 'Tecnicatura en desarrollo web '
     a3.institucion = 'UNLAM '
-    a3.materia = 'Matematicas '
+    a3.materia = 'Matemáticas '
     a3.nivel = 'Terciario '
     this.archivos.push(a2,a3)
   
