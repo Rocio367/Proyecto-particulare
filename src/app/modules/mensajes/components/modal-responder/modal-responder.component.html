@@ -1,46 +1,39 @@
-<div mat-dialog-content style='width: 90vh;'>
-    <div class="">
-        <div class="modal-header">
-            <div type="button" class="close" mat-dialog-close aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </div>
-        </div>
-        <div class="modal-body text-center">
+<div class="container container-color pb-5 pt-5" style="min-height: 45vh;width: 80%;">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <p-card class='card-container card'>
+                <h3>Nuevo Mensaje</h3>
+                <form [formGroup]="formDatos" class="ui large error form">
+                    <span class="p-float-label w-80  mt-4">
+                        <input id="float-input" formControlName="destinatario" value='Paula Tufró' class='w-100'
+                            type="text" pInputText>
+                        <label for="float-input">Paula Tufró</label>
+                    </span>
+                    <div *ngIf="formDatos.get('destinatario').hasError('required') && formDatos.get('destinatario').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <span class="p-float-label w-80  mt-4">
+                        <input id="float-input" formControlName="asunto" class='w-100' type="text" pInputText>
+                        <label for="float-input">Asunto</label>
+                    </span>
+                    <div *ngIf="formDatos.get('asunto').hasError('required') && formDatos.get('asunto').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <span class="p-float-label w-80 mt-4">
+                        <p-editor [(ngModel)]="text" formControlName="mensaje" [style]="{'height':'320px'}"></p-editor>
 
-            <form [formGroup]="formMensaje" class="ui large error form">
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Destinatario</mat-label>
-                    <input matInput formControlName="destinatario" placeholder="username" type="text">
-                </mat-form-field>
-                <div *ngIf="formMensaje.get('destinatario').hasError('required') && formMensaje.get('destinatario').touched"
-                    class="text-center error-msg">
-                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                </div><br>
-             
+                    </span>
+                    <div *ngIf="formDatos.get('mensaje').hasError('required') && formDatos.get('mensaje').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
 
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Asunto</mat-label>
-                    <input matInput formControlName="asunto" placeholder="asunto" type="text">
-                </mat-form-field>
-                <div *ngIf="formMensaje.get('asunto').hasError('required') && formMensaje.get('asunto').touched"
-                    class="text-center error-msg">
-                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                </div><br>
+                </form>
 
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Mensaje</mat-label>
-                    <textarea matInput formControlName="mensaje" placeholder="..." type="text"></textarea>
-                </mat-form-field>
-                <div *ngIf="formMensaje.get('mensaje').hasError('required') && formMensaje.get('mensaje').touched"
-                    class="text-center error-msg">
-                    <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
-                </div><br>
-            </form>
-
-            <div>
-                <button mat-button class='btn-mensaje' color='warn' [disabled]="formMensaje.invalid" (click)='enviar()'>Enviar</button>
-            </div>
-
+                <button pButton class='mt-2' (click)='enviar()'>Confirmar</button>
+            </p-card>
         </div>
     </div>
 </div>

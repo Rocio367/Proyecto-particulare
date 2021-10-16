@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,8 +26,9 @@ export class EditarPerfilAlumnoComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
+  imagenDefault = "../../../../../assets/img/default-user.png";
 
-  constructor(private form: FormBuilder, private router: Router ) { }
+  constructor(private _snackBar :MatSnackBar, private form: FormBuilder, private router: Router ) { }
 
   ngOnInit(): void {
     this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
@@ -46,10 +48,17 @@ export class EditarPerfilAlumnoComponent implements OnInit {
 
   editarAlumno(){
     if(this.formDatos.valid) {
+      this._snackBar.open('Perfil editado correctamente', 'x');
       this.router.navigate(['/perfil-alumno']);
       return true;
     } else {
       this.formDatos.markAllAsTouched();
     }
+  }
+  obtenerRangoDeEdad() :string {
+    var fechaActual = new Date().getFullYear();
+    var fechaLimiteMaxima = fechaActual - 18;
+    var fechaLimiteMinima = fechaActual - 100;
+    return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
 }

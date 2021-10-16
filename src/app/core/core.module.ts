@@ -27,6 +27,8 @@ import { ForoModule } from '../modules/foro/foro.module';
 import { ModelosRoutingModule } from '../modules/modelos/modelos-routing.module';
 import { ModelosModule } from '../modules/modelos/modelos.module';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { ContactoRoutingModule } from '../modules/contacto/contacto-routing.module';
+import { ContactoModule } from '../modules/contacto/contacto.module';
 
 @NgModule({
   providers:[
@@ -52,6 +54,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     ForoRoutingModule,
     ModelosRoutingModule,
     IvyCarouselModule,
+    ContactoRoutingModule,
    ],
    
   exports:[
@@ -66,8 +69,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     MensajesModule,
     ForoModule,
     ModelosModule,
-    IvyCarouselModule
-
+    IvyCarouselModule,
+    ContactoRoutingModule,
   ],
    
   declarations: []

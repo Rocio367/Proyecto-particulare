@@ -1,18 +1,25 @@
-<div class="container-header ">
-  <span class="logo">
-    <a href="index.html"><img src="/assets/img/Logo_2.png" style="height: 55px;" alt="logo"></a>
+<p-menubar class='menu' [model]="items">
+  <ng-template pTemplate="start">
+    <span class="logo">
+      <a href="/"><img src="/assets/img/logoAnteojoREDONDO.png" style="height: 55px;" alt="logo"></a>
+    </span>
+  </ng-template>
+
+  <div>
+    <span class="p-input-icon-right m-2">
+      <i class="pi pi-search" (click)='buscar()'></i>
+      <input type="text"   class="p-inputtext-sm w-100" pInputText placeholder="Buscar clases.." [(ngModel)]="buscarText" />
   </span>
 
-  <mat-list role="list" *ngIf=' mostrar() '>
-    <mat-list-item [routerLinkActive]="['is-active']" *ngFor='let item of menu' role="listitem" class='list-header'>
-      <a *ngIf='item.type=="badge"' matBadgeColor="accent" matBadge="4" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" class='a-header' [href]='item.href'>{{item.title}}</a>
-      <a *ngIf='item.type!="badge"' class='a-header' [href]='item.href'>{{item.title}}</a>
-    </mat-list-item>
-    <mat-list-item *ngIf='isLoggedIn' role="listitem" (click)='logout()'> <button mat-raised-button>Cerrar
-        Sesion</button></mat-list-item>
-    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='login()'> <button  class="verde blancaLetra" mat-raised-button>Iniciar
-        Sesion</button></mat-list-item>
-    <mat-list-item *ngIf='!isLoggedIn' role="listitem" (click)='register()'> <button class="azul blancaLetra"
-        mat-raised-button>Registrarse</button></mat-list-item>
-  </mat-list>
+<button mat-button color='warn'   *ngIf='isLoggedIn' (click)='logout()' icon="pi pi-sign-out
+" style="margin-left:.25em">Cerrar
+Sesion</button>
+
+<button mat-button color='warn'  *ngIf='!isLoggedIn' (click)='login()'  icon="pi pi-sign-in
+" style="margin-left:.25em">Iniciar
+Sesion</button>
+
+<button mat-button color='warn' *ngIf='!isLoggedIn'  (click)='register()'  icon="pi pi-user-plus
+" style="margin-left:.25em">Registrarse</button>
 </div>
+</p-menubar>

@@ -1,13 +1,13 @@
     <div class="row">
-        <div class="col-lg-8 text-center">
-            <h3 class='color-d'>Temas</h3>
+        <div class="col-lg-8 pt-4">
+            <h2 class='color-f'>Temas</h2>
 
         </div>
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-4 text-right pt-4">
             <button mat-button color='primary' (click)='nuevoTema()'> Nuevo tema</button>
         </div>
         <div class="col-lg-12 text-center">
-            <mat-card>
+            <mat-card class='opacity'>
                 <mat-form-field  style='width:90%'  class="example-chip-list mt-4" appearance=outline>
                     <mat-chip-list #chipList aria-label="Fruit selection">
                         <mat-chip *ngFor="let fruit of options" [selectable]="selectable" [removable]="removable"

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Archivo } from 'src/app/shared/models/archivo';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ import { ModalPostulacionModelosComponent } from '../../components/modal-postula
 })
 export class DetalleModeloParticularComponent implements OnInit {
   gallery: imgGallery[] = [];
-  resoluciones: string[] = ['default-placeholder.png'];
+  resoluciones: any[] = [{nombre:'resolucion',doc:'https://2.bp.blogspot.com/-9jVR3GjWcn8/UZxBIaDMe7I/AAAAAAAAFuk/62w7V-Xo6Jg/s1600/GEOMETRIA+PLANA+Y+DEL+ESPACIO+PROBLEMAS+RESUELTOS+TIPO+EXAMEN+DE+ADMISION+UNI+(4).gif'}];
   archivo = new Archivo;
   public progress: number;
   archivoForm: FormGroup;
@@ -25,53 +26,32 @@ export class DetalleModeloParticularComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
   files = '';
   message=false;
-  formComentario: FormGroup;
 
-  constructor(public dialog: MatDialog,private form: FormBuilder,public snackBar: MatSnackBar,private router: ActivatedRoute) {
-    this.formComentario = this.form.group({
-      comentario: [''],
-    });
+  //
+  comentario:string;
+  uploadedFiles: any[] = [];
 
-    this.id=this.router.snapshot.params['id'];
-    this.archivo.archivos = ['default-placeholder.png']
-    this.archivo.nombre = 'nombre '
-    this.archivo.carrera = 'carrera '
-    this.archivo.institucion = 'institucion '
-    this.archivo.materia = 'materia '
-    this.archivo.nivel = 'nivel '
-    this.archivo.fecha = new Date;
-    this.archivo.seguidores = 4;
-    this.archivo.estado = 'Pendiente'
+  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private router: ActivatedRoute) {
+      this.router
+        .params
+        .subscribe(params => {
+          this.id = params.q;
+        });
+    
+  
 
-    var i = 0;
+        this.archivo.archivos = ['https://cdn-v1.udocz-assets.com/uploads/book/cover/68845/examen_geometria_1_instancia_con_respuesta_final.jpg',
+        'https://cdn-v1.udocz-assets.com/uploads/book/cover/68843/examen_geometria_2_instancia_final.jpg',
+        'https://cdn-v1.udocz-assets.com/uploads/book/cover/68842/examen_geometria_final_1_instancia_con_respuesta.jpg']
+      this.archivo.nombre = 'Examen de geometria '
+      this.archivo.carrera = 'Tecnicaura en Desarrollo Web '
+      this.archivo.institucion = 'UNLAM '
+      this.archivo.materia = 'Geometria '
+      this.archivo.nivel = 'Terciario '
+      this.archivo.fecha = new Date;
+      this.archivo.seguidores = 40;
 
-    let img = new imgGallery();
-    img.id = i.toString();
-    img.path = 'default-placeholder.png';
-    img.position = i;
-    i++;
-    this.gallery.push(img)
-
-    let img2 = new imgGallery();
-    img2.id = i.toString();
-    img2.path = 'default-placeholder.png';
-    img2.position = i;
-    i++;
-    this.gallery.push(img2)
-
-    let img3 = new imgGallery();
-    img3.id = i.toString();
-    img3.path = 'default-placeholder.png';
-    img3.position = i;
-    i++;
-    this.gallery.push(img3)
-
-    let img4 = new imgGallery();
-    img4.id = i.toString();
-    img4.path = 'default-placeholder.png';
-    img4.position = i;
-    i++;
-    this.gallery.push(img4)
+  
   }
 
   ngOnInit(): void {
@@ -89,29 +69,23 @@ export class DetalleModeloParticularComponent implements OnInit {
     window.open('./assets/img/' + this.gallery[n].path)
   }
   openRes(n: string) {
-    window.open('./assets/img/' + n)
+    window.open( n)
   }
   contratar() {
 
   }
+
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+
+  //  this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+}
   postularme(){
     this.dialog.open(ModalPostulacionModelosComponent, { panelClass: 'custom-dialog-container'});
   }
-  uploadFile = (files) => {
-    this.files = files;
-    console.log(files)
-    if (files.length === 0) {
-      this.message = false;
-      this.openSnackBar('Debe cargar almenos un archivo', 'x')
-    } else {
-      let fileToUpload = <File>files[0];
-      this.message = true;
-      this.openSnackBar('Archivo cargado', 'x')
-
-    }
-
-
-  }
+ 
 
   confirmar() {
     Swal.fire(

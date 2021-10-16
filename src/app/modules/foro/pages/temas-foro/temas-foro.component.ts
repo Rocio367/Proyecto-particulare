@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PrimeNGConfig } from 'primeng/api';
 import { Tema } from 'src/app/shared/models/tema';
 import Swal from 'sweetalert2';
 import { ModalNuevoTemaComponent } from '../../components/modal-nuevo-tema/modal-nuevo-tema.component';
@@ -10,23 +11,29 @@ import { ModalNuevoTemaComponent } from '../../components/modal-nuevo-tema/modal
   styleUrls: ['./temas-foro.component.scss']
 })
 export class TemasForoComponent implements OnInit {
+  selectedEstado:string;
+  estados=[{name:'Que sigo',code:'1'},{name:'Creados por mi',code:'2'}]
 
+  selectedOrder:string;
+  orden=[{name:'Más recientes',code:'1'},{name:'Más antiguos',code:'2'},{name:'Con más likes',code:'3'}]
   temas : Tema[]=[];
-  constructor() {
+  constructor( private primengConfig: PrimeNGConfig,) {
     let t1=new Tema();
     let t2=new Tema();
-    t1.titulo='Tema 1';
-    t2.titulo='Tema 2';
-    t1.descripcion='Descripción'
-    t2.descripcion='Descripción'
-    t1.seguidores=3;
-    t2.seguidores=6;
+    t1.titulo='Matemáticas - Problemas de logaritmos';
+    t2.titulo='Diseño web - Teoría del color';
+    t1.descripcion='Este es un tema para aclarar dudas sobre problemas de logaritmos para un nivel univercitario '
+    t2.descripcion='Este es un tema para profundizar en la teoria del color orientado a un ambito de diseño en la web '
+    t1.seguidores=30;
+    t2.seguidores=60;
     t1.fecha=new Date();
     t2.fecha=new Date();
     this.temas.push(t1,t2)
    }
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
+
   }
  
 

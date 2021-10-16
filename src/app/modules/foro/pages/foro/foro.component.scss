@@ -1,15 +1,18 @@
-mat-card{
-    margin: 10px;
-    padding: 20px 0px 20px 0px!important;
-}
+mat-card {
+  margin: 10px auto;
+  padding: 16px 0px 16px 0px !important;
+ // background-color: #06a367;
+ // opacity: 0.6;
 
+  
+}
 
 .mat-card-avatar{
   height: 50px!important;
   width: 50px!important;
 }
 a:hover{
-  color:#00448d!important;
+  color:#E47474 !important;
 }
 .mat-card-subtitle{
   color:#5e6369!important;
@@ -22,10 +25,21 @@ a:hover{
     padding: 5px 11px;
     text-align: center;
 }
-.icofont-ui-delete{
-    color:#ec0000;
-    margin: 8px;
-  }
+.like-active {
+  color: #25798E;
+}
+
+.pi-thumbs-up:hover {
+  cursor: pointer;
+  color: #25798E;
+}
+
+.pi-trash {
+  color: #ec0000;
+  margin: 3px;
+  cursor: pointer;
+
+}
 .like{
   color:grey;
 }
@@ -33,14 +47,12 @@ a:hover{
   color:#25798E;
 }
 .card-2{
-    margin-left: 50px;  
+    margin-left: 15%;  
 }
 form{
     width: 100%!important;
 }
-.icofont-like:hover{
-    cursor:pointer;
-}
+
 .mat-card-avatar{
   margin-left: 10px;
 }

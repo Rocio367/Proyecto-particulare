@@ -1,7 +1,19 @@
 .example-chip-list {
     width: 100%;
 }
-
+.pi-search{
+    font-size: 23px;
+    bottom: 23%;
+    position: absolute;
+    right: 1%;
+    cursor: pointer;
+    right: 0.5rem;
+    color: #6c757d;
+}
+.p-autocomplete {
+  
+    width: 100%!important;
+}
 .cancel {
     border-style: hidden;
     padding: 0px;

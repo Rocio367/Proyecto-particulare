@@ -1,75 +1,244 @@
-.example-chip-list {
-  width: 100%;
+:host ::ng-deep {
+  .p-md-4 {
+    width: 24.3333%;
+    display: inline-flex;
+    padding: 0.5rem !important;
+
+  }
+
+  .p-dropdown {
+    width: 14rem;
+    font-weight: normal;
+  }
+
+  .product-name {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .product-description {
+    margin: 0 0 1rem 0;
+  }
+
+  .product-category-icon {
+    vertical-align: middle;
+    margin-right: .5rem;
+  }
+
+  .product-category {
+    font-weight: 600;
+    vertical-align: middle;
+  }
+
+  .product-list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+
+    img {
+      width: 150px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      margin-right: 2rem;
+    }
+
+    .product-list-detail {
+      flex: 1 1 0;
+    }
+
+    .p-rating {
+      margin: 0 0 .5rem 0;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: .5rem;
+      align-self: flex-end;
+    }
+
+    .product-list-action {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p-button {
+      margin-bottom: .5rem;
+    }
+  }
+  
+  .detalles-items{
+    height: 160px;
+  }
+
+  .product-grid-item {
+    margin: .5em;
+    border: 1px solid #dee2e6;
+    height: 580px;
+
+    .product-grid-item-top,
+    .product-grid-item-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1%;
+    }
+
+    img {
+      height: 300px;
+      width: 90%;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    .product-grid-item-content {
+      text-align: center;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
 }
 
-.cancel {
-  border-style: hidden;
-  padding: 0px;
+.card {
+  padding: 0.5rem;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin-bottom: 2rem;
 }
 
-.icofont-search-2 {
-  font-size: 25px;
+
+@media only screen and (max-width: 1200px) {
+  .p-md-4 {
+    width: 33.3333%;
+    display: inline-flex;
+    padding: 0.5rem !important;
+
+  }
 }
 
-.icofont-search-2:hover {
-  cursor: pointer;
+@media only screen and (max-width: 900px) {
+  .p-md-4 {
+    width: 50%;
+    display: inline-flex;
+    padding: 0.5rem !important;
+
+  }
 }
 
-.example-section {
-  margin: 12px 0;
+@media only screen and (max-width: 700px) {
+  .p-md-4 {
+    width: 100%;
+    display: inline-flex;
+    padding: 0.5rem !important;
+
+  }
+
+  .filters {
+    display: grid;
+  }
+
+  .product-grid-item img {
+    height: auto;
+  }
+
+  .card {
+    max-width: 80vw;
+  }
 }
 
-.example-margin {
-  margin: 0 12px;
+@media screen and (max-width: 576px) {
+  :host ::ng-deep .product-list-item {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 80%;
+      margin: 2rem 0;
+    }
+
+    .product-list-detail {
+      text-align: center;
+    }
+
+    .product-price {
+      align-self: center;
+    }
+
+    .product-list-action {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-list-action {
+      margin-top: 2rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  }
 }
 
-ul {
-  list-style-type: none;
-  margin-top: 4px;
+.layout-content .card {
+  background: var(--surface-e);
+  padding: 2rem;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+
+.product-grid-item {
+  margin: .5em;
+  border: 1px solid var(--surface-d);
+}
+
+.like {
+  color: grey;
+}
+
+.like-active {
+  color: #25798E;
 }
 
 .categoria {
   position: absolute;
-  bottom: 80%;
-  right: 1%;
+  bottom: 86%;
+  right: 11%;
   font-size: 15px;
   padding: 2px 5px;
   text-align: center;
   color: #fff;
-  margin:10px 10px 0 0 ;
+  margin: 10px 10px 0 0;
+  border-radius: 2px;
 }
 
+.contenedor-acctions {
+  display: inline-flex;
+  width: 100%;
+  padding: 5px 0p;
+
+}
 
 .actions {
-position: absolute;
-bottom: 36%;
-right: 1%;
-padding: 5px 11px;
-text-align: end;
-width: 50%;
+
+  width: 50%;
+
+  padding: 5px 0px;
+  text-align: right;
 
 }
+
 .fecha {
-position: absolute;
-bottom: 36%;
-width: 50%;
-left: 1%;
-padding: 5px 11px;
-text-align: center;
+  width: 50%;
+
+  padding: 5px 11px;
+  text-align: left;
 }
 
-.example-card {
-max-width: 250px;
-display: inline-grid !important;
-margin:10px;
+p {
+  margin: 2px 0px 1px 0px !important;
 
-}
-.like{
-color:grey;
-}
-.like-active{
-color:#25798E;
-}
-.card-2{
-margin-left: 50px;  
 }

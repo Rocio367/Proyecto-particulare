@@ -1,96 +1,121 @@
-<div class="p-5 container container-color2">
-<div class='container'>
-    <section class="container mt-2" style="display: flex; justify-content: space-between;">
-        <div class="col-sm-12 col-md-3">
-            <img mat-card-avatar src="../../../../../assets/img/default-user.png"  width="220" height="200" />
-            <p class='fs-16 mt-3'><i class="icofont-google-map rojo fs-21 mr-2"></i>{{registro.ubicacion}}</p>
-        </div>
-        <div class="col-sm">
-            <h3 class="color-a m-4">{{registro.particular}}</h3>
-            <h4 class='color-a fs-16 m-4'>Clases de: <span> {{registro.materia}}</span></h4>
-            <hr/>
-            <h4 class='color-a fs-16 ml-4'>Niveles: <span> {{registro.nivel}}</span></h4>
-            <h4 class='color-a fs-16 ml-4'>Metodo: <span> {{registro.type}}</span></h4>
-        </div>
-        <div class="col-lg-4 mt-5 ">
-            <br>
-            <i class="icofont-star x" [ngClass]='(registro.stars >= 1)?"amarillo":""'></i>
-            <i class="icofont-star x" [ngClass]='(registro.stars >= 2)?"amarillo":""'></i>
-            <i class="icofont-star x" [ngClass]='(registro.stars >= 3)?"amarillo":""'></i>
-            <i class="icofont-star x" [ngClass]='(registro.stars >= 4)?"amarillo":""'></i>
-            <i class="icofont-star x" [ngClass]='(registro.stars >= 5)?"amarillo":""'></i>
-            <span class='subtitle'>
-                {{registro.stars}} / 5
-            </span>
-            <h4 class="mt-3 color-a "> Precio por hora: $ {{registro.precio_por_hora}} </h4>
-        </div>
-    </section> 
-</div>
-
-<div class="container">
-        <div class='col-lg-12 mt-4 mb-4 p-3 borde blanco2'>
-            {{registro.descripcion}}
-        </div>
-        <h3 class="mt-4 color-a">Agendá tu clase</h3>
-
-        <div class='col-lg-12  mt-4 blanco2'>
-            <app-calendar></app-calendar> 
-        </div>
-</div>
-
-<div class="container mt-4">
-    <hr>
-    <h3 class="color-a">Opiniones de {{registro.particular}}</h3>
-    
-    <a href="perfil-alumno">
-        <div class="container mt-4">
-            <mat-card class="p-5">
-                 <img  class="mat-card-avatar2 ml-3" src="../../../../../assets/img/default-user.png"  width="100" height="100" />
-                 <span class="color-a ml-2 letraGrande"> Margarita Gonzales </span>
-                 <mat-card-actions class="ml-3">
-                    <div>
-                        <i class="icofont-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
-                        <i class="icofont-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
-                        <i class="icofont-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
-                        <i class="icofont-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
-                        <i class="icofont-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
-                        <span class='subtitle'>
-                            3/ 5
-                        </span>
+<div class="p-5 container container-color">
+    <div class='container'>
+        <div class="col-lg-12">
+            <p-card>
+                <div class="flex justify-content-evenly">
+                    <div class='div-a '>
+                        <img mat-card-avatar src="https://d131oejryywhj7.cloudfront.net/p/api/usuario/dup/4NufvtIc2Ug4tC42XsKSTrpZrWiwzKWQ0.jpg/120x120cut/?s=l" />
+                        <br>
+                       
+                        <div class='mt-3 ml-4'>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 1)?"amarillo":""'></i>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 2)?"amarillo":""'></i>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 3)?"amarillo":""'></i>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 4)?"amarillo":""'></i>
+                            <i class="pi pi-star x" [ngClass]='(registro.stars >= 5)?"amarillo":""'></i>
+                            <span class='subtitle mb-5'>
+                                {{registro.stars}} / 5
+                            </span>
+                        </div>
+                        <h4 class="mt-3"> Precio por hora: $ {{registro.precio_por_hora}} </h4>
+                        
                     </div>
-                </mat-card-actions>  
-                   
-                <mat-card-subtitle class="ml-3">Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</mat-card-subtitle>
-    
-              </mat-card>
-
-              <mat-card class="p-5">
-                <img  class="mat-card-avatar2 ml-3" src="../../../../../assets/img/default-user.png"  width="100" height="100" />
-                <span class="color-a ml-2 letraGrande"> Alejo Romano </span>
-                <mat-card-actions class="ml-3">
-                   <div>
-                       <i class="icofont-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
-                       <i class="icofont-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
-                       <i class="icofont-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
-                       <i class="icofont-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
-                       <i class="icofont-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
-                       <span class='subtitle'>
-                           3/ 5
-                       </span>
-                   </div>
-               </mat-card-actions>  
+                    <div  class='div-a ml-4'>
+                        <h3 class='color-f'>Clases de inglés para apoyo escolar y niveles avanzados</h3>
+                        <h4 class='fs-16 mb-3'>Particular: <span> Paula Tufró</span></h4>
+                        <h4 class='fs-16 mb-3'>Nivel: <span> Primario | Secundario | Universitario</span></h4>
+                        <h4 class='fs-16 mb-3'>Método: <span> Online | Presencial</span></h4>
+                        <h4 class='fs-16 mb-3'>Tipo de clase: <span> Individual</span></h4>
+                        <h4 class='fs-16 mb-3'>Localidad: <span> <i class='pi pi-map-marker rojo'></i>
+                                {{registro.ubicacion}}</span></h4>
+                        <td><a href="nuevo-mensaje"><button pButton label="Contactar" class="mt-2"></button></a> </td>  
+                            
+                    </div>
                   
-               <mat-card-subtitle class="ml-3">Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</mat-card-subtitle>
-   
-             </mat-card>
-          </div>
-    </a>
+                </div>
+            </p-card>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class='col-lg-12 mt-3  p-3 '>
+            <p-card>
+                <h3>Descripción:</h3>
+                Actualmente soy docente y ejerzo hace 30 años hasta la fecha. Acompaño a mis alumnos para rendir exámenes internacionales.
+                Mis clases son personalizadas e incluyen distintas actividades para motivarlos como por ejemplo aprender a través de canciones,juegos y películas.
+                Selecciono material de acuerdo a las características del alumno ya sea si la persona es auditiva,visual o kinestésica.
+            </p-card>
+        </div>
+
+        <div class='col-lg-12  p-3 '>
+            <p-card>
+                <h3 class="mt-1">Agendá tu clase</h3>
+                    <div class='col-lg-12  mt-4 '>
+                        <app-calendar-detalle-clase></app-calendar-detalle-clase>
+                    </div>
+
+            </p-card>
+        </div>
+
+    </div>
+
+    <div class="container mt-3">
+        <div class="col-lg-12">
+            <p-card>
+                <h3 class="color-f">Calificaciones y opiniones
+                    de {{registro.particular}}</h3>
+
+                <a href="perfil-alumno">
+                    <div class="container mt-4">
+                        <mat-card class="pl-3 pr-3 p-2 card-interna mb-3">
+                            <img style='width: 40px;height: 40px;margin: auto;' mat-card-avatar
+                                src="https://ta.azureedge.net/p/images/usuarios/l/kGHItZdX1UgJ9ggnJOw7SY1gt6iMC6F30.jpg/190x190cut/" width="100" height="100" />
+                            <span class="ml-2 letraGrande"> Margarita Gonzales </span>
+                            <mat-card-actions class="ml-3">
+                                <div class='stars'>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 1)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 2)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 3)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 4)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 5)?"amarillo":""'></i>
+                                    <span class='subtitle'>
+                                        3/ 5
+                                    </span>
+                                </div>
+                            </mat-card-actions>
+
+                            <mat-card-subtitle class="ml-3">
+                                Me encanto , me ayudo bastamte en mis examanes 
+                            </mat-card-subtitle>
+
+                        </mat-card>
+
+                        <mat-card class="p-2 card-interna">
+                            <img style='width: 40px;height: 40px;' mat-card-avatar
+                                src="https://d131oejryywhj7.cloudfront.net/p/api/usuario/dup/BRc_X-GJ2UiA8TCTmF5vR7MAk3kaBTYZ0.jpg/190x190cut/?s=l" />
+                            <span class="ml-2 letraGrande"> Alejo Romano </span>
+                            <mat-card-actions class="ml-3">
+                                <div class='stars'>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 1)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 2)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 3)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 4)?"amarillo":""'></i>
+                                    <i class="pi pi-star" [ngClass]='(5 >= 5)?"amarillo":""'></i>
+                                    <span class='subtitle'>
+                                        3/ 5
+                                    </span>
+                                </div>
+                            </mat-card-actions>
+
+                            <mat-card-subtitle class="ml-3">
+                                Excelente!! Explica muy bien 
+                            </mat-card-subtitle>
+
+                        </mat-card>
+                    </div>
+                </a>
+            </p-card>
+        </div>
+    </div>
 </div>
-
-
-
-
-
-
-</div>
-

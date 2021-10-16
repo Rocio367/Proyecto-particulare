@@ -6,38 +6,38 @@
             </div>
         </div>
         <div class="modal-body text-center">
-            <mat-checkbox class="example-margin" [(ngModel)]="soloResolucion">Solo resolver y mandar
-                respuesta
-            </mat-checkbox>
-            <br>
-            <form *ngIf='soloResolucion' [formGroup]="formTipo1" class="ui large error form">
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Costo </mat-label>
-                    <input matInput type='number' formControlName="costoUno">
-                </mat-form-field>
-                <br>
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Demora </mat-label>
-                    <mat-select matInput formControlName="demora">
-                        <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
-                            {{tipo.nombre}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <br>
-            </form>
+
+            <div class="p-field-checkbox">
+                <p-checkbox [(ngModel)]="soloResolucion" binary="true" inputId="binary"></p-checkbox>
+                <label for="binary">Solo resolver y mandar
+                    respuesta</label>
+            </div>
+            <div>
+                <span class="p-float-label w-80  mt-4">
+                    <input id="float-input"  class='w-100' type="text" pInputText> 
+                    <label for="float-input">Costo</label>
+                </span>
+
+                <span class="p-float-label w-80  mt-4">
+                    <input id="float-input"  class='w-100' type="text" pInputText> 
+                    <label for="float-input">Demora en dias</label>
+                </span>
+            </div>
 
             <br>
-            <mat-checkbox class="example-margin" [(ngModel)]="masExplicacion">Resolucion y explicacion
-            </mat-checkbox>
-            <form *ngIf='masExplicacion' [formGroup]="formTipo2" class="ui large error form">
-                <mat-form-field class='input-medium' appearance="outline">
-                    <mat-label>Costo </mat-label>
-                    <input matInput type='number' formControlName="costoDos">
-                </mat-form-field>
-            </form>
+            <div class="p-field-checkbox">
+                <p-checkbox [(ngModel)]="masExplicacion" binary="true" inputId="binary"></p-checkbox>
+                <label for="binary">Resolucion y explicacion</label>
+            </div>
+
+            <div >
+                <span class="p-float-label w-80  mt-4">
+                    <input id="float-input"  class='w-100' type="text" pInputText> 
+                    <label for="float-input">Costo</label>
+                </span>
+            </div>
             <div>
-                <button mat-button class='azul' (click)='confirmar()'>Confirmar</button>
+                <button mat-button color='warn' class='mt-5' (click)='confirmar()'>Confirmar</button>
             </div>
 
         </div>

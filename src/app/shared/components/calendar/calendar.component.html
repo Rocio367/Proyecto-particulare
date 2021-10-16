@@ -1,22 +1,24 @@
-<div class="wrapper-calendar">
-	<div class="header-calendar">
-		<div>
-			<i  (click)="changeMonth(-1)" class="fs-21 icofont-arrow-left"></i>
-		</div>
-		<h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
-		<div>
-			<i (click)="changeMonth(1)"  class=" fs-21 icofont-arrow-right"></i>
-		</div>
+<div class="flex justify-content-evenly">
+
+	<div>
+		<p-calendar [(ngModel)]="value" [inline]="true" [showWeek]="true"></p-calendar>
+
 	</div>
-	<ol>
-		<li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
+	<div>
+		<p-fieldset legend="Horarios disponibles" [toggleable]="true">
+			<h5>{{value| date}}</h5>
+			<p-listbox [options]="horarios" [group]="true" [(ngModel)]="selected" [metaKeySelection]="false"
+				[checkbox]="true" [filter]="true" [multiple]="true" [listStyle]="{'max-height':'250px'}">
+				<ng-template let-group pTemplate="group">
+					<div class="p-d-flex p-ai-center">
+						<span>{{group.label}}</span>
+					</div>
+				</ng-template>
+			</p-listbox>
+			<button pButton class='mt-2' type="button" label="Confirmar"></button>
 
-        <li (click)="clickDay(day)"   [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
-         *ngFor="let day of monthSelect;let first = first">
-			<span class='day'>{{day?.value}}</span>
-            <button *ngIf='day.available' mat-raised-button  class='azul' color="primary" (click)='openModal(day)'>Anotarse</button>
-			<span *ngIf='day.available_hours > day.reserved_hours  '> Disponible : {{ day.available_hours}}</span>
-		</li>
-	</ol>
+		</p-fieldset>
+
+
+	</div>
 </div>
-

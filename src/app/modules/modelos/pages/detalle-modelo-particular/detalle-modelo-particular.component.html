@@ -1,118 +1,180 @@
-<div class="container container-color2">
+<div class="container container-color pt-3 pb-5">
     <div class="row">
+        <div class="col-lg-12 text-center mt-3">
 
-        <div class="col-lg-12 mt-2">
-            <carousel class='desk' style='height: 300px;display: flex;' cellsToShow='3' counter='true' autoplay='true'
-                lightDOM='true' loop='true'>
-                <div class="carousel-cell " *ngFor="let item of  gallery;">
-                    <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
+            <mat-card class='card-container card'>
+                <div class="col-lg-12 mt-3 text-center">
+                    <h3 class="color-f "> Exámen de geometría ingreso</h3>
+                    <img class='img-a img-border' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
+
                 </div>
-            </carousel>
-            <carousel class='mob' style='height: 300px;display: flex;' cellsToShow='1' counter='true' autoplay='true'
-            lightDOM='true' loop='true'>
-            <div class="carousel-cell " *ngFor="let item of  gallery;">
-                <img class='img' [src]="'./assets/img/'+item.path" (click)='open(item.position)'>
-            </div>
-        </carousel>
-        </div>
-        <div class='col-lg-12 text-center' *ngIf=' archivo.estado== "resolver"'>
-            <button mat-raised-button class='fs-21 m-3' color="warn" (click)='postularme()'>Postularme para
-                resolverlo</button>
-        </div>
-        <div class="col-lg-12 text-center">
-            <mat-card>
-                <h3 class="color-a ">Datos generales: </h3>
+                <div class="col-lg-12 mt-3 text-center">
+                    <button mat-button color='primary'>Descargar archivos</button>
+                    <br>
+                    <button  *ngIf='archivo.estado== "resolver" ' mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>Postularme para
+                        resolverlo</button>
 
-                <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{archivo.nombre}}</span></h4>
-                <h4 class='color-a fs-16'>Fecha:<span class='color-a'>{{archivo.fecha | date}}</span> </h4>
-                <h4 class='color-a fs-16'>Estado:<span class='color-a'>{{ archivo.estado}}</span></h4>
-                <hr />
-                <h4 class='color-a fs-16'>Institución: <span class='color-a'>{{ archivo.institucion}}</span></h4>
-                <h4 class='color-a fs-16'>Materia: <span class='color-a'>{{ archivo.materia}}</span></h4>
-                <h4 class='color-a fs-16'> Nivel: <span class='color-a'>{{ archivo.nivel}}</span></h4>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-lg-12 text-center mt-3">
+            <mat-card class='card card-container '>
+                <div class="row">
+
+                    <div class="col-12">
+                        <h3 class=" ml-3 color-f ">Datos generales: </h3>
+
+                    </div>
+                    <div class='col-4 desk'>
+                        <p class='color-f '>Nombre: <span class='color-d'>{{archivo.nombre}}</span></p>
+                        <p class='color-f '>Fecha: <span class='color-d'>{{archivo.fecha | date}}</span></p>
+                        <p class='color-f '>Estado: <span class='color-d'>{{archivo.estado}}</span></p>
+                    </div>
+                    <div class='col-4 desk'>
+                        <p class='color-f  '>Institución: <span class='color-d'>{{archivo.institucion}}</span></p>
+                        <p class='color-f  '>Carrera: <span class='color-d'>{{archivo.carrera}}</span></p>
+
+                    </div>
+
+                    <div class='col-4 desk'>
+
+                        <p class='color-f  '>Materia: <span class='color-d'>{{archivo.materia}}</span></p>
+                        <p class='color-f  '>Nivel: <span class='color-d'>{{archivo.nivel}}</span></p>
+                    </div>
+
+                    <div class='col-12 mob'>
+                        <p class='color-f '>Nombre: <span class='color-d'>{{archivo.nombre}}</span></p>
+                        <p class='color-f '>Fecha: <span class='color-d'>{{archivo.fecha | date}}</span></p>
+                        <p class='color-f '>Estado: <span class='color-d'>{{archivo.estado}}</span></p>
+
+                        <p class='color-f  '>Institución: <span class='color-d'>{{archivo.institucion}}</span></p>
+                        <p class='color-f  '>Carrera: <span class='color-d'>{{archivo.carrera}}</span></p>
+
+                        <p class='color-f  '>Materia: <span class='color-d'>{{archivo.materia}}</span></p>
+                        <p class='color-f  '>Nivel: <span class='color-d'>{{archivo.nivel}}</span></p>
+                    </div>
+                </div>
+
+
+
+
+
             </mat-card>
 
         </div>
 
-        <div class="col-lg-12 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
-            <mat-card>
-                <h3 class="color-a ">Datos del alumno: </h3>
-                <h4 class='color-a fs-16'>Nombre: <span class='color-a '>{{alumno.nombreCompleto}}</span></h4>
+        <div class="col-lg-12 mt-3 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
+            <mat-card class='card card-container '>
+                <h3 class="color-f ml-3">Datos del alumno: </h3>
+                <p class='color-f '>Nombre: <span class='color-d'>{{alumno.nombreCompleto}}</span></p>
+
             </mat-card>
 
         </div>
-    
-        <div class="col-lg-12 text-center" *ngIf=' archivo.estado== "pendiente"'>
-            <mat-card>
+
+        <div class="col-lg-12 text-center mt-3 mb-5" *ngIf=' archivo.estado== "pendiente"'>
+            <mat-card class='card card-container '>
                 <div class="col-lg-12" *ngIf=' archivo.estado== "pendiente"'>
-                    <h3 class="color-a ">
-                        Adjuntar resolucion del modelo
+                    <h3 class="color-f ">
+                        Adjuntar resolución del modelo
                     </h3>
                 </div>
-                <div class="col-lg-12  mt-3" *ngIf=' archivo.estado== "pendiente"'>
-                    <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
-                        style="display:none;">
-                    <button mat-button color="basic" class="success-button ml-2" (click)="file.click()">
-                        Buscar Archivos
-                        <i class="icofont-search-document fs-21"></i>
-                    </button>
-                    <span *ngFor='let file of files'>
-                        {{file.name}}
-                    </span>
+                <div class="col-lg-12 text-center  mt-3" *ngIf=' archivo.estado== "pendiente"'>
 
-                    <span class="empty" *ngIf="!message">
-                        Aun no existe un archivo cargado
-                    </span>
-                    <form [formGroup]="formComentario" class="ui large error form mt-3">
-                        <mat-form-field class='input-medium' appearance="outline">
-                            <mat-label>Comentario opcional para el alumno</mat-label>
-                            <input matInput formControlName="comentario" placeholder="" type="text">
-                        </mat-form-field>
+                    <div class='w-80 mt-4'>
+                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+                            accept="image/*" maxFileSize="1000000">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                    </div>
+                    <div class='w-80 mt-4'>
+                        <h3 class="color-f ">
+                            Comentarios opcionales </h3>
+                        <textarea class='m-2 w-100' [rows]="5" [cols]="30" [(ngModel)]="comentario" pInputTextarea
+                            autoResize="autoResize"></textarea>
+
+                    </div>
 
 
-                    </form>
 
-                    <button mat-raised-button [disabled]='!this.files' color="warn" (click)='enviar()'>Enviar
+                    <button mat-button color='warn' class='mt-2' [disabled]='!this.files' (click)='enviar()'>Enviar
                         resolucion</button>
+
+
                 </div>
-             
+
             </mat-card>
         </div>
-        <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-           <mat-card>
-            <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                <h3 class="color-a ">
-                    Resolucion entregada
-                </h3>
-            </div>
-            <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
-                <mat-list  style='display: grid!important;justify-content: center!important;' role="list text-center">
-                    <mat-list-item  style='margin:auto!important;' class='text-center' *ngFor='let res of resoluciones' role="listitem">{{res}}
-                        <i class="icofont-file-document fs-21" style='cursor: pointer;' (click)='openRes(res)'></i>
-                    </mat-list-item>
-    
-                </mat-list>
-            </div>
-           </mat-card>
+
+        <div class="col-lg-12 text-center mt-3" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+            <mat-card class='card-container card'>
+                <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+                    <h3 class="color-f ">
+                        Resolución entregada
+                    </h3>
+                </div>
+                <div class="col-lg-12 text-center" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+                    <mat-card class='card-interna' *ngFor='let item of resoluciones'>
+                        <div class="product-item">
+                            <div class="product-list-img">
+                                <i class="pi pi-file" style="font-size: 2rem"></i>
+
+                            </div>
+                            <div class="product-list-detail">
+                                <h5 class="p-mb-2">{{item.nombre}}</h5>
+                                <span>Particular : nombre particular</span>
+                            </div>
+                            <div class="product-list-action">
+                                <div class='stars'>
+                                    <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                                    <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                                    <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                                    <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                                    <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                                    <span class='subtitle'>
+                                        {{item.valoracion}}/ 5
+                                    </span>
+
+
+                                </div>
+
+                                <div class='actions' style='text-align: end;'>
+
+
+                                    <button mat-button color='warn' (click)='openRes(item.doc)' type="button">Ver</button>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </mat-card>
 
         </div>
-      
-       <div class="col-lg-12 text-center"  *ngIf='resoluciones && archivo.estado== "resuelto" '>
-            <mat-card>
-                <div class="col-lg-12 mt-2" >
-                    <h1 class="color-a ">
+
+        <div class="col-lg-12 text-center mt-3 mb-5" *ngIf='resoluciones && archivo.estado== "resuelto" '>
+            <mat-card class='card card-container '>
+                <div class="col-lg-12 mt-2">
+                    <h3 class="color-f ">
                         Comentarios opcionales
-                    </h1>
+                    </h3>
                 </div>
                 <div class="col-lg-12 mt-2">
                     <p class="">
                         Comentarios
                     </p>
                 </div>
-        
+
             </mat-card>
-       </div>
-       
+        </div>
+
 
 
 

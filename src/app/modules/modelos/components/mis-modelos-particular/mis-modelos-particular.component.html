@@ -1,63 +1,66 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12  text-center">
-            <mat-form-field class="example-chip-list mt-4" appearance=outline>
-                <mat-chip-list #chipList aria-label="Fruit selection">
-                    <mat-chip *ngFor="let fruit of options" [selectable]="selectable" [removable]="removable"
-                        (removed)="remove(fruit)">
-                        {{fruit}}
-                        <button class='cancel' matChipRemove *ngIf="removable">
-                            <i class="icofont-close "></i>
-                        </button>
-                    </mat-chip>
-                    <input appearance="outline" placeholder="Buscar..." #classInput [formControl]="classCtrl"
-                        [matAutocomplete]="auto" [matChipInputFor]="chipList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                    <mat-option *ngFor="let fruit of filteredOptions | async" [value]="fruit">
-                        {{fruit}}
-                    </mat-option>
-                </mat-autocomplete>
-                <i matSuffix class="icofont-search-2  color-a" (click)='buscar()'></i>
+<div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
+    <p-dataView #dv [value]="archivos" [paginator]="true" [rows]="6" filterBy="nombre,materia,institucion,carrera"
+        [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+        <ng-template pTemplate="header">
+            <div class="text-center">
 
-            </mat-form-field>
-            <mat-button-toggle-group *ngFor='let option of filters' aria-label="Ingredients" multiple>
-                <mat-button-toggle [value]="option.nombre">{{option.nombre}}</mat-button-toggle>
-            </mat-button-toggle-group>
-        </div>
-        <div class="col-lg-12  text-center">
-            <mat-card class="example-card " *ngFor='let archivo of archivos'>
-                <mat-card-header class='text-center'>
-                    <div class='categoria background-a'>{{archivo.estado}}</div>
-                    <div class='actions'>
-                        <span [ngClass]='(archivo.like)? "like-active" : "like" '
-                            class="pt-1 pr-1 fs-16 ">{{archivo.seguidores}}</span>
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
+                    <i class="pi pi-search"></i>
+                    <input  class='w-100' type="search" pInputText placeholder="Buscar por nombre, materia, carrera o institución..."
+                        (input)="dv.filter($event.target.value)">
+                </span>
 
-                        <i [ngClass]='(archivo.like)? "like-active" : "like" ' class="icofont-like fs-21"
-                            (click)="like(archivo)"></i>
+            </div>
+            <div class=" text-center mt-3">
+
+
+                <span class='m-3 filters'>
+                    <p-dropdown placeholder="Filtrar por estado "
+                    optionLabel="name" [showClear]="true"  [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
+
+                </span>
+                <span class='m-3 filters'>
+                    <p-dropdown placeholder="Ordenar "
+                    optionLabel="name" [showClear]="true"  [options]="orden" [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
+
+                </span>
+               
+            </div>
+        </ng-template>
+
+        <ng-template let-product pTemplate="gridItem">
+            <div class="p-col-12 p-md-4">
+                <div class="product-grid-item card card-interna">
+                    <div class="product-grid-item-top">
+                        <div class='categoria background-a'> <i class="pi pi-tag product-category-icon"></i>
+                            {{product.estado}}</div>
                     </div>
-                    <div class='fecha'>
-                       <span class='color-d'>{{archivo.fecha | date}}</span>
+                    <div class="product-grid-item-content">
+                        <img [src]="product.archivos[0]">
+                        <div class="detalles-items">
+                            <div class="product-name color-f">{{product.nombre}}</div>
+                            <p class='color-f mb-3'>Institución: <span >{{product.institucion}}</span></p>
+                            <p class='color-f mb-3'>Materia: <span>{{product.materia}}</span></p>
+                            <p class='color-f mb-3' >Nivel:<span > {{product.nivel}}</span></p>
+                        </div>
                     </div>
-                    <mat-card-title class='color-d '>{{archivo.nombre}}</mat-card-title>
-                </mat-card-header>
-                <img mat-card-image [src]="'./assets/img/'+archivo.archivos[0]" alt="foto">
-        
-                <mat-card-subtitle class='fs-16'>
-                    <span class='color-d'>Institucion:</span>   {{archivo.institucion}}
-                </mat-card-subtitle>
-                <mat-card-subtitle class='fs-16'>
-                    <span class='color-d'>Materia:</span>   {{archivo.materia}}
-                </mat-card-subtitle>
-                <mat-card-subtitle class='fs-16'>
-                    <span class='color-d'>Nivel:</span>   {{archivo.nivel}}
-                </mat-card-subtitle>
-                <mat-card-actions>
-                    <button mat-button color='warn' (click)='verDetalle(archivo)'>Ver detalles</button>
-                </mat-card-actions>
-            </mat-card>
+                    <div class="product-grid-item-bottom ">
+                        <button mat-button color='warn' (click)='verDetalle(product)'>Ver detalles</button>
+                    </div>
+                    <div class='contenedor-acctions'>
+                        <div class="fecha">
+                            <span class='color-d'>{{product.fecha | date}}</span>
+                        </div>
+                        <div class="actions">
+                           <!--<span [ngClass]='(product.like)? "like-active" : "like" '
+                                class="pt-1 pr-1 fs-16 ">{{product.seguidores}}</span>-->
+                            <i [ngClass]='(product.like)? "like-active" : "like" ' class="pi pi-bookmark fs-21"
+                                (click)="like(product)"></i> 
+                        </div>
 
-        </div>
-    </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
 </div>

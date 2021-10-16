@@ -11,13 +11,26 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from '@agm/core';
 import { environment } from 'src/environments/environment';
 import { MapaComponent } from './components/mapa/mapa.component';
+import {OrderListModule} from 'primeng/orderlist';
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import {ToastModule} from 'primeng/toast';
+import {CardModule} from 'primeng/card';
+import {SelectButtonModule} from 'primeng/selectbutton'
+import {CheckboxModule} from 'primeng/checkbox';
+import {CalendarModule} from 'primeng/calendar';
+import {DataViewModule} from 'primeng/dataview';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations:[BusquedaComponent, CardsBusquedaComponent ,MapaComponent],
   imports:[
     AgmCoreModule.forRoot({
       //key de maps javascript api
       apiKey: environment.keyApiMaps
-    }),
+    }),CalendarModule,DataViewModule,DropdownModule   
+    ,CheckboxModule,ButtonModule,ToastModule,SelectButtonModule,CardModule,
+    OrderListModule,
+    InputTextModule,
     GooglePlaceModule,
      CommonModule,
      SharedModule,

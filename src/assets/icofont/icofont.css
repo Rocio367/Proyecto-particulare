@@ -193,7 +193,7 @@ url("./fonts/icofont.woff") format("woff");
   content: "\e81f";
 }
 
-.icofont-star-shape:before
+.pi pi-star-shape:before
 {
   content: "\e820";
 }
@@ -10263,17 +10263,17 @@ url("./fonts/icofont.woff") format("woff");
   content: "\effd";
 }
 
-.icofont-star-alt-1:before
+.pi pi-star-alt-1:before
 {
   content: "\effe";
 }
 
-.icofont-star-alt-2:before
+.pi pi-star-alt-2:before
 {
   content: "\efff";
 }
 
-.icofont-star:before
+.pi pi-star:before
 {
   content: "\f000";
 }

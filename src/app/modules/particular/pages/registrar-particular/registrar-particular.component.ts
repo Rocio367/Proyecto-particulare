@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,8 +24,9 @@ export class RegistrarParticularComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
+  imagenDefault = "../../../../../assets/img/IMG-20211012-WA0030.jpg";
 
-  constructor(private form: FormBuilder, private router: Router) { }
+  constructor(private _snackBar:MatSnackBar,private form: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
@@ -36,9 +38,20 @@ export class RegistrarParticularComponent implements OnInit {
         }
       }
     );
+
+    //Datos mockeados para video
+    this.formDatos.controls['nombre'].setValue('Sergio');
+    this.formDatos.controls['apellido'].setValue('Bonavento');
+    this.formDatos.controls['telefono'].setValue('1155778956');
+    this.formDatos.controls['email'].setValue('sergio.bonavento@gmail.com');
+    this.formDatos.controls['contrasenia'].setValue('12345');
+    this.formDatos.controls['repetirContrasenia'].setValue('12345');
+    this.formDatos.controls['fechaNacimiento'].setValue(new Date(1989, 1, 20));
+    this.formDatos.controls['formacionAcademica'].setValue('Ingeniero en informática');
   }
   registrarParticular(){
     if(this.formDatos.valid) {
+      this._snackBar.open('Perfil creado correctamente', 'x');
       this.router.navigate(['/perfil-particular',1]);
       return true;
     } else {
@@ -49,4 +62,12 @@ export class RegistrarParticularComponent implements OnInit {
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
   }
+  
+  obtenerRangoDeEdad() :string {
+    var fechaActual = new Date().getFullYear();
+    var fechaLimiteMaxima = fechaActual - 18;
+    var fechaLimiteMinima = fechaActual - 100;
+    return fechaLimiteMinima + ":" + fechaLimiteMaxima;
+  }
+  
 }

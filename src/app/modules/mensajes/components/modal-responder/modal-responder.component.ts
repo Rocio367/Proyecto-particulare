@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Mensaje } from 'src/app/shared/models/mensaje';
 import { Patters } from 'src/app/shared/models/patters';
 import Swal from 'sweetalert2';
@@ -11,25 +12,26 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-responder.component.scss']
 })
 export class ModalResponderComponent implements OnInit {
-  formMensaje :FormGroup;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Mensaje, private form: FormBuilder) { 
-    this.formMensaje = this.form.group({
-      destinatario: [data.destinatario, [Validators.required]],
-      asunto: [data.asunto, [Validators.required]],
-      mensaje: ['', [Validators.required]],
-      archivo: [''],
-
-    });
+  text:string;
+  formDatos = this.form.group({
+    destinatario: ['',Validators.required],
+    asunto: ['', Validators.required],
+    mensaje: ['', Validators.required],
+   
+  });
+  constructor(private form: FormBuilder,private _snackBar : MatSnackBar) { 
+    
   }
 
   ngOnInit(): void {
 
   }
   enviar(){
-    Swal.fire(
-      'El mensaje fue enviado correctamente',
-      '',
-      'success'
-    )
+    if(this.formDatos.valid) {
+      this._snackBar.open('El mensaje fue enviado correctamente', 'x');
+      return true;
+    } else {
+      this.formDatos.markAllAsTouched();
+    }
   }
 }

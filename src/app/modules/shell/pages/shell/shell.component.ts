@@ -13,7 +13,6 @@ import { Menu, MenuItem } from '../../../../shared/models/menu';
 })
 export class ShellComponent implements OnInit, AfterContentChecked {
 
-  public menu: any[] = [];
   public username: string;
   public loaded = false;
   showFiller = false;
@@ -22,6 +21,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   isLoggedIn = false;
   defaultMenu = true;
 
+  items: any[];
   constructor(private authService: AuthService, private router: Router, private redirectService: RedirectService) {
     this.getMenu()
   }
@@ -64,26 +64,252 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   getMenu() {
     this.isLoggedIn = this.authService.isLoggedIn()
     this.rol = localStorage.getItem('rol');
+    this.items = [];
 
     switch (this.rol) {
       case 'alumno': {
-        this.menu.push({ type:'',href: 'perfil-alumno', title: 'Perfil' })
-        this.menu.push({ type:'badge',href: 'mensajes', title: 'Mensajes' })
-        this.menu.push({ type:'badge',href: 'temas-foro', title: 'Foro' })
-        this.menu.push({type:'', href: 'modelos', title: 'Modelos' })
+        this.items = [
 
+          {
+            label: 'Perfil',
+            icon: 'pi pi-fw pi-user',
+            items: [
+              {
+                label: 'Ver perfil',
+                icon: 'pi pi-fw pi-user-plus',
+                routerLink: 'perfil-alumno'
 
+              },
+              {
+                label: 'Editar perfil',
+                icon: 'pi pi-fw pi-user-edit',
+                routerLink: 'editar-perfil-alumno'
+
+              }
+
+            ]
+          },
+          {
+            label: 'Mensajes',
+            icon: 'pi pi-fw pi-envelope',
+            items: [
+              {
+                label: 'Nuevo mensaje',
+                icon: 'pi pi-fw pi-pencil',
+                routerLink: 'nuevo-mensaje'
+
+              },
+              {
+                label: 'Recibidos',
+                icon: 'pi pi-fw pi-window-minimize',
+                routerLink: 'recibidos'
+
+              },
+              {
+                label: 'Enviados',
+                icon: 'pi pi-fw pi-window-maximize',
+                routerLink: 'enviados'
+
+              },
+              {
+                label: 'Papelera',
+                icon: 'pi pi-fw pi-trash',
+                routerLink: 'papelera'
+
+              }
+
+            ]
+          },
+          {
+            label: 'Modelos',
+            icon: 'pi pi-fw pi-user',
+            items: [
+              {
+                label: 'Subir modelo',
+                icon: 'pi pi-fw pi-file-o',
+                routerLink: 'nuevo-modelo'
+
+              },
+              {
+                label: 'Buscar modelos',
+                icon: 'pi pi-fw pi-search',
+                routerLink: 'buscar-modelos-alumno'
+
+              },
+              {
+                label: 'Mis modelos',
+                icon: 'pi pi-fw pi-folder',
+                routerLink: 'mis-modelos-alumno'
+
+              }
+
+            ]
+          },
+          {
+            label: 'Foro',
+            icon: 'pi pi-fw pi-comments',
+             items:[
+               {
+              label: 'Nuevo tema',
+              icon: 'pi pi-fw pi-comment',
+              routerLink: 'nuevo-tema'
+
+            },
+            {
+              label: 'Explorar temas',
+              icon: 'pi pi-fw pi-tags',
+              routerLink: 'temas-foro',
+
+            }]
+          },
+        ];
         break;
       }
       case 'admin': {
-        this.menu.push({ type:'', href:'ganacias-administrador', title: 'Analisis' })
-        this.menu.push({type:'',  href: 'control-usuarios', title: 'Usuarios' })
+        this.items = [
+
+          {
+            label: 'Usuarios',
+            icon: 'pi pi-fw pi-users',
+            routerLink: 'nuevo-modelo'
+
+          },
+          {
+            label: 'Análisis',
+            icon: 'pi pi-fw pi-chart-bar',
+            routerLink: 'ganacias-administrador'
+
+          },
+       
+          {
+            label: 'Foro',
+            icon: 'pi pi-fw pi-comments',
+            routerLink:'temas-foro'
+    
+            //  items:[]
+          },
+        ];
+       
         break;
       }
       case 'particular': {
-        this.menu.push({ type:'badge', href: 'modelos-particular', title: 'Modelos' })
-        this.menu.push({ type:'', href: 'perfil-particular/:id', title: 'Perfil' })
-        this.menu.push({ type:'badge', href: 'mensajes', title: 'Mensajes' })
+      
+
+        this.items = [
+
+          {
+            label: 'Perfil',
+            icon: 'pi pi-fw pi-user',
+            items: [
+              {
+                label: 'Ver perfil',
+                icon: 'pi pi-fw pi-user-plus',
+                routerLink: 'perfil-particular'
+
+              },
+              {
+                label: 'Editar perfil',
+                icon: 'pi pi-fw pi-user-edit',
+                routerLink: 'editar-perfil-particular'
+
+              }
+
+            ]
+          },
+          {
+            label: 'Mensajes',
+            icon: 'pi pi-fw pi-envelope',
+            items: [
+              {
+                label: 'Nuevo mensaje',
+                icon: 'pi pi-fw pi-pencil',
+                routerLink: 'nuevo-mensaje'
+
+              },
+              {
+                label: 'Recibidos',
+                icon: 'pi pi-fw pi-window-minimize',
+                routerLink: 'recibidos'
+
+              },
+              {
+                label: 'Enviados',
+                icon: 'pi pi-fw pi-window-maximize',
+                routerLink: 'enviados'
+
+              },
+              {
+                label: 'Papelera',
+                icon: 'pi pi-fw pi-trash',
+                routerLink: 'papelera'
+
+              }
+
+            ]
+          },
+          {
+            label: 'Modelos',
+            icon: 'pi pi-fw pi-user',
+            items: [
+              {
+                label: 'Subir modelo',
+                icon: 'pi pi-fw pi-file-o',
+                routerLink: 'nuevo-modelo'
+
+              },
+              {
+                label: 'Buscar modelos',
+                icon: 'pi pi-fw pi-search',
+                routerLink: 'buscar-modelos-particular'
+
+              },
+              {
+                label: 'Mis modelos',
+                icon: 'pi pi-fw pi-folder',
+                routerLink: 'mis-modelos-particular'
+
+              }
+
+            ]
+          },
+          {
+
+            label: 'Clases',
+            icon: 'pi pi-fw pi-user',
+            items: [
+              {
+                label: 'Nueva clase',
+                icon: 'pi pi-fw pi-file-o',
+                routerLink: 'crear-clase'
+
+              },
+              {
+                label: 'Mis clases',
+                icon: 'pi pi-fw pi-folder',
+                routerLink: 'ver-clase-particular'
+              }
+
+            ]
+          },
+          {
+            label: 'Foro',
+            icon: 'pi pi-fw pi-comments',
+             items:[
+               {
+              label: 'Nuevo tema',
+              icon: 'pi pi-fw pi-folder',
+              routerLink: 'nuevo-tema'
+
+            },
+            {
+              label: 'Explorar temas',
+              icon: 'pi pi-fw pi-folder',
+              routerLink: 'temas-foro',
+
+            }]
+          },
+        
+        ];
         break;
       }
 
@@ -112,7 +338,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
 
   ngOnDestroy() {
     this.loaded = false;
-    this.menu = [];
+    this.items = [];
   }
 
 }

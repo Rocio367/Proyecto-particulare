@@ -11,46 +11,38 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-aubir-archivo.component.scss']
 })
 export class ModalAubirArchivoComponent implements OnInit {
+  uploadedFiles: any[] = [];
 
   public progress: number;
-  archivoForm: FormGroup;
+  formDatos: FormGroup;
   dataimage: any;
   @ViewChild('fileInput') fileInput: ElementRef;
   files = '';
   message=false;
   constructor(private form: FormBuilder,public snackBar: MatSnackBar) {
-    this.archivoForm = this.form.group({
+    this.formDatos = this.form.group({
       institucion: ['', [Validators.required]],
-      carrera: [''],
-      materia: [''],
-      archivo: ['', [Validators.required]],
+      carrera: ['',Validators.required],
+      materia: ['',Validators.required],
     });
 
 
   }
-   uploadFile = (files) => {
-     this.files=files;
-     console.log(files)
-    if (files.length === 0) {
-      this.message=false;
-        this.openSnackBar('Debe cargar almenos un archivo','x')
-    }else{
-      let fileToUpload = <File>files[0];
-      this.message=true;
-      this.openSnackBar('Archivo cargado','x')
 
-     }
-   
-   
-  }
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+
+}
   ngOnInit(): void {
   }
   confirmar(){
-    Swal.fire(
-      'El archivo fue subido correctamente',
-      '',
-      'success'
-    )
+    if(this.formDatos.valid) {
+      this.snackBar.open('El modelo fue cargado correctamente', 'x')
+    } else {
+      this.formDatos.markAllAsTouched();
+    }
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

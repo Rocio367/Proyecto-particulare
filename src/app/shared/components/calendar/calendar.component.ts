@@ -2,8 +2,16 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import * as moment from 'moment'
 import { RegistroCalendar } from "../../models/registroCalendario";
-import { ModalAnotarseComponent } from "../modal-anotarse/modal-anotarse.component";
+import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
+interface City {
+  name: string;
+  code: string;
+}
 
+interface Country {
+  name: string;
+  code: string;
+}
 
 @Component({
   selector: 'app-calendar',
@@ -11,28 +19,43 @@ import { ModalAnotarseComponent } from "../modal-anotarse/modal-anotarse.compone
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-
-  week: any = [
-    "Lunes",
-    "Martes",
-    "Miercoles",
-    "Jueves",
-    "Viernes",
-    "Sabado",
-    "Domingo"
-  ];
-
-
+  value=new Date;
+  horarios:any[];
   monthSelect: any[]=[];
-  agendaAConfirmar: RegistroCalendar[]=[];
+  horarioSelect:any;
   dateSelect: any;
   dateValue: any;
-  constructor( public dialog: MatDialog) {
+  selected: any[];
+  constructor(private primengConfig: PrimeNGConfig ,public dialog: MatDialog) {
 
+    this.horarios = [
+      {
+        label: "Fecha 1",
+        value: "de",
+        items: [
+          { label: "14:00 PM", value: "" },
+          { label: "15:00 PM", value: "" },
+          { label: "16:00 PM", value: "" },
+          { label: "17:00 PM", value: "" }
+        ]
+      },
+      {
+        label: "Fecha 2",
+        value: "us",
+        items: [
+          { label: "8:00 AM", value: "" },
+          { label: "9:00 AM", value: " " },
+          { label: "10:00 AM", value: " " },
+          { label: "11:00 AM", value: " " }
+        ]
+      },
+    
+    ];
   }
 
   ngOnInit(): void {
     let now=new Date();
+    this.primengConfig.ripple = true;
 
     this.getDaysFromDate(now.getMonth()+2, now.getFullYear())
   }
@@ -81,33 +104,5 @@ export class CalendarComponent implements OnInit {
     })
   }
 
-  changeMonth(flag) {
-    if (flag < 0) {
-      const prevDate = this.dateSelect.clone().subtract(1, "month");
-      this.getDaysFromDate(prevDate.format("MM"), prevDate.format("YYYY"));
-    } else {
-      const nextDate = this.dateSelect.clone().add(1, "month");
-      this.getDaysFromDate(nextDate.format("MM"), nextDate.format("YYYY"));
-    }
-  }
-
-  clickDay(day) {
-    const monthYear = this.dateSelect.format('YYYY-MM')
-    const parse = `${monthYear}-${day.value}`
-    const objectDate = moment(parse)
-    this.dateValue = objectDate;
-
-
-  }
-
-  openModal(date :RegistroCalendar){  
-    this.dialog.open(ModalAnotarseComponent, { panelClass: 'custom-dialog-container', data: date});
-  }
-  addDate(date :RegistroCalendar){
-    this.agendaAConfirmar.push(date)
-  }
-
-  removeDate(){
-    
-  }
+  
 }

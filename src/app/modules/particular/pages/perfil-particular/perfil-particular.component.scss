@@ -4,8 +4,12 @@
     padding: 5px 11px;
     text-align: center;
 }
-
-.icofont-star{
+.actions{
+    position: absolute;
+    bottom: 43%;
+    right: 1%;
+}
+.pi pi-star{
     color: #b2beb7;
     font-size: 50px!important;
 }
@@ -19,7 +23,7 @@
 }
 
 .blanco2{
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.555);
 }
 
 mat-card{
@@ -38,7 +42,11 @@ mat-card{
       border-bottom: 1px solid rgb(5, 168, 114); 
     }
 
-.letraGrande{
+.letraGrande {
     font-size: 40px; 
 }
 
+.mat-card-avatar {
+    object-fit: cover;
+    border-radius: 100px;
+}

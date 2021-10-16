@@ -1,42 +1,66 @@
-<div class="container container-color ">
-    <div class="row">
-        <div class="col-lg-12">
-            <app-filtros></app-filtros>
-        </div>
-      
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
+<div class="container pb-3 pt-3 container-color ">
 
-            <mat-card class="example-card" *ngFor='let tema of temas'>
-                <mat-card-title class='color-d'>
-                   {{tema.titulo}}
-                </mat-card-title>
-                <div class='actions'>
+    <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
+        <p-dataView #dv [value]="temas" [paginator]="true" [rows]="6" filterBy="título"
+            layout="grid">
+            <ng-template pTemplate="header">
+                <div class="text-center">
 
-                    <i class="float-right icofont-ui-delete fs-21 " stu (click)='delete()'></i>
-
-                    <i [ngClass]='(tema.like)? "like-active" : "like" ' class="float-right icofont-like mt-1 fs-21"
-                        (click)="like(tema)"></i>
-                    <span [ngClass]='(tema.like)? "like-active" : "like" '
-                        class="float-right pt-1 pr-1 fs-21 ">{{tema.seguidores}}</span>
+                    <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
+                        <i class="pi pi-search"></i>
+                        <input class='w-100' type="search" pInputText
+                            placeholder="Buscar por título..."
+                            (input)="dv.filter($event.target.value)">
+                    </span>
 
                 </div>
-                <a href="foro">
-                    <mat-card-header>
+                <div class=" text-center mt-3">
 
-                        <mat-card-subtitle>
-                            <p class='fs-16'>{{tema.descripcion}}</p>
-                        </mat-card-subtitle>
-                        <mat-card-subtitle>
-                            <p class='fs-16'>{{tema.fecha | date}}</p>
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                </a>
+                    <span class='m-3'>
+                        <p-dropdown placeholder="Filtrar por estado " optionLabel="name" [showClear]="true"
+                            [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
 
-            </mat-card>
+                    </span>
+                    <span class='m-3'>
+                        <p-dropdown placeholder="Ordenar " optionLabel="name" [showClear]="true" [options]="orden"
+                            [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
 
-        </div>
+                    </span>
+                </div>
+            </ng-template>
 
+            <ng-template  let-tema pTemplate="gridItem">
+
+                <mat-card class="example-card card-interna " style="width:90%;">
+                    <mat-card-title class='color-d'>
+                        {{tema.titulo}}
+                    </mat-card-title>
+                    <div class='actions'>
+
+                        <i class="float-right pi pi-trash fs-21 " stu (click)='delete()'></i>
+
+                        <i [ngClass]='(tema.like)? "like-active" : "like" ' class="float-right pi pi-thumbs-up mt-1 fs-21"
+                            (click)="like(tema)"></i>
+                        <span [ngClass]='(tema.like)? "like-active" : "like" '
+                            class="float-right pt-1 pr-1 fs-18 ">{{tema.seguidores}}</span>
+
+                    </div>
+                    <a href="foro">
+                        <mat-card-header>
+
+                            <mat-card-subtitle>
+                                <p class='fs-16'>{{tema.descripcion}}</p>
+                            </mat-card-subtitle>
+                            <mat-card-subtitle>
+                                <p class='fs-16'>{{tema.fecha | date}}</p>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                    </a>
+
+                </mat-card>
+
+            </ng-template>
+        </p-dataView>
     </div>
+
 </div>

@@ -18,6 +18,7 @@ import { GoogleLoginProvider} from 'angularx-social-login';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 
+
 registerLocaleData(localeAr, 'es-AR');
 
 @NgModule({

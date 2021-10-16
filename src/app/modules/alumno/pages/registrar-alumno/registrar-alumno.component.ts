@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,8 +23,9 @@ export class RegistrarAlumnoComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
+  imagenDefault = "../../../../../assets/img/IMG-20211012-WA0031.jpg";
 
-  constructor(private form: FormBuilder, private router: Router ) {}
+  constructor(private form: FormBuilder,private _snackBar: MatSnackBar, private router: Router ) {}
 
   ngOnInit() {
     this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
@@ -35,10 +37,20 @@ export class RegistrarAlumnoComponent implements OnInit {
         }
       }
     );
+
+    // Datos mockeados para video
+    this.formDatos.controls['nombre'].setValue('Rocío');
+    this.formDatos.controls['apellido'].setValue('Centurión');
+    this.formDatos.controls['email'].setValue('rocioCentu@gmail.com');
+    this.formDatos.controls['contrasenia'].setValue('pass123');
+    this.formDatos.controls['repetirContrasenia'].setValue('pass123');
+    this.formDatos.controls['fechaNacimiento'].setValue(new Date(1996, 4, 29));
+    this.formDatos.controls['intereses'].setValue('Aprender sobre devops');
   }
 
   registrarAlumno(){
     if(this.formDatos.valid) {
+      this._snackBar.open('Perfil creado correctamente', 'x');
       this.router.navigate(['/perfil-alumno']);
       return true;
     } else {
@@ -49,5 +61,12 @@ export class RegistrarAlumnoComponent implements OnInit {
 
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
+  }
+
+  obtenerRangoDeEdad() :string {
+    var fechaActual = new Date().getFullYear();
+    var fechaLimiteMaxima = fechaActual - 18;
+    var fechaLimiteMinima = fechaActual - 100;
+    return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
 }

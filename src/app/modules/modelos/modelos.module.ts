@@ -15,12 +15,28 @@ import { BuscadorDeArchivosParticularComponent } from './components/buscador-de-
 import { MisModelosParticularComponent } from './components/mis-modelos-particular/mis-modelos-particular.component';
 import { ModalPostulacionModelosComponent } from './components/modal-postulacion-modelos/modal-postulacion-modelos.component';
 import { ModalValorarComponent } from './components/modal-valorar/modal-valorar.component';
+import {OrderListModule} from 'primeng/orderlist';
+import {GalleriaModule} from 'primeng/galleria';
+import {ButtonModule} from 'primeng/button';
+import {FileUploadModule} from 'primeng/fileupload';
+import {ToastModule} from 'primeng/toast';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {CheckboxModule} from 'primeng/checkbox';
+import {DataViewModule} from 'primeng/dataview';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CardModule} from 'primeng/card';
+import {InputTextModule} from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
+
+
+
+
 
 
 
 @NgModule({
   declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalAubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,CardModule,InputTextModule,InputTextareaModule,ToastModule,FileUploadModule,ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })

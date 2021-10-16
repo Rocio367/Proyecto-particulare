@@ -14,81 +14,60 @@ import { ModalValorarComponent } from '../../components/modal-valorar/modal-valo
 })
 export class DetalleModeloAlumnoComponent implements OnInit {
   gallery: imgGallery[] = [];
-  resoluciones: any[] = [{doc:'default-placeholder.png', particular: 'particular 2',valoracion:null},
-    {doc:'default-placeholder.png', particular: 'particular 1',valoracion:5}];
+  resoluciones: any[] = [{ nombre:'DocResolucion',doc: 'https://2.bp.blogspot.com/-9jVR3GjWcn8/UZxBIaDMe7I/AAAAAAAAFuk/62w7V-Xo6Jg/s1600/GEOMETRIA+PLANA+Y+DEL+ESPACIO+PROBLEMAS+RESUELTOS+TIPO+EXAMEN+DE+ADMISION+UNI+(4).gif', particular: 'Ezequiel Castillo', valoracion: null },
+  { nombre:'DocResolucion2',doc: 'https://i.pinimg.com/736x/3b/12/27/3b12275ad674bbfcccde1c71b582c576.jpg', particular: 'Camila Centurion', valoracion: 5 }];
   archivo = new Archivo;
-  id:number ;
+  id: number;
 
-  constructor(private router: ActivatedRoute ,private dialog: MatDialog) {
-    this.id=this.router.snapshot.params['id'];
-    this.archivo.archivos = ['default-placeholder.png']
-    this.archivo.nombre = 'nombre '
-    this.archivo.carrera = 'carrera '
-    this.archivo.institucion = 'institucion '
-    this.archivo.materia = 'materia '
-    this.archivo.nivel = 'nivel '
+  constructor(private route: ActivatedRoute, private dialog: MatDialog) {
+    this.route
+      .params
+      .subscribe(params => {
+        this.id = params.q
+      });
+
+    this.archivo.archivos = ['https://cdn-v1.udocz-assets.com/uploads/book/cover/68845/examen_geometria_1_instancia_con_respuesta_final.jpg',
+      'https://cdn-v1.udocz-assets.com/uploads/book/cover/68843/examen_geometria_2_instancia_final.jpg',
+      'https://cdn-v1.udocz-assets.com/uploads/book/cover/68842/examen_geometria_final_1_instancia_con_respuesta.jpg']
+    this.archivo.nombre = 'Examen de geometria '
+    this.archivo.carrera = 'Tecnicaura en Desarrollo Web '
+    this.archivo.institucion = 'UNLAM '
+    this.archivo.materia = 'Geometria '
+    this.archivo.nivel = 'Terciario '
     this.archivo.fecha = new Date;
-    this.archivo.seguidores = 4;
+    this.archivo.seguidores = 40;
     this.archivo.profesores = [
-      { particular: 'particular 1',foto:'default-user.png' ,valoracion:5,costo_explicacion:100, costo: 100, demora: '1 dia' },
-      { particular: 'particular 2',foto:'default-user.png', valoracion:4,costo_explicacion:100,costo: 200, demora: '1 dia' },
-      { particular: 'particular 3',foto:'default-user.png',valoracion:5, costo_explicacion:100, costo: 150, demora: '1 dia' }]
+      { particular: 'Ezequiel Castillo', foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYTVaR_IMpvFxeYNMtYgyEMZX0ITAWOuzM_w&usqp=CAU', valoracion: 5, costo_explicacion: 100, costo: 100, demora: '1 dia' },
+      { particular: 'Teresa Cuello', foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR90JPbRmExXI8DZMz-wrFFCTV37A9iLSsMnQ&usqp=CAU', valoracion: 4, costo_explicacion: 100, costo: 200, demora: '1 dia' },
+      { particular: 'Mirta Perez', foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCfcXpXZEwtTtygwQJwKZcEAtoO1Th3xtizw&usqp=CAU', valoracion: 5, costo_explicacion: 100, costo: 150, demora: '1 dia' }]
     this.archivo.estado = 'Podes solicitarlo'
 
-    var i = 0;
 
-    let img = new imgGallery();
-    img.id = i.toString();
-    img.path = 'default-placeholder.png';
-    img.position = i;
-    i++;
-    this.gallery.push(img)
-
-    let img2 = new imgGallery();
-    img2.id = i.toString();
-    img2.path = 'default-placeholder.png';
-    img2.position = i;
-    i++;
-    this.gallery.push(img2)
-
-    let img3 = new imgGallery();
-    img3.id = i.toString();
-    img3.path = 'default-placeholder.png';
-    img3.position = i;
-    i++;
-    this.gallery.push(img3)
-
-    let img4 = new imgGallery();
-    img4.id = i.toString();
-    img4.path = 'default-placeholder.png';
-    img4.position = i;
-    i++;
-    this.gallery.push(img4)
   }
 
   ngOnInit(): void {
-    if(this.id==1 ){
-      this.archivo.estado='solicitar';
-    }else 
-    if(this.id==2 ){
-      this.archivo.estado='pendiente';
-    } else 
-    if(this.id==3 ){
-      this.archivo.estado='resuelto';
-    }
+    if (this.id == 1) {
+      this.archivo.estado = 'solicitar';
+    } else
+      if (this.id == 2) {
+        this.archivo.estado = 'pendiente';
+      } else
+        if (this.id == 3) {
+          this.archivo.estado = 'resuelto';
+        }
   }
-  open(n: number) {
-    window.open('./assets/img/' + this.gallery[n].path)
+  open(n: string) {
+    window.open(n)
   }
   openRes(n: string) {
-    window.open('./assets/img/' + n)
+    window.open( n)
   }
-  contratar(){
-    this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container'});
+  contratar() {
+    this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container' });
   }
 
-  valorar(){
-    this.dialog.open(ModalValorarComponent, { panelClass: 'custom-dialog-container'});
+  valorar() {
+    this.dialog.open(ModalValorarComponent, { panelClass: 'custom-dialog-container' });
 
   }
 }

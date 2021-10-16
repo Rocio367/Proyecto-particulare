@@ -4,6 +4,7 @@ import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Router } from '@angular/router';
+import { PrimeNGConfig, SelectItem } from 'primeng/api';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Archivo } from 'src/app/shared/models/archivo';
@@ -15,91 +16,57 @@ import { Archivo } from 'src/app/shared/models/archivo';
 })
 export class MisModelosAlumnoComponent implements OnInit {
 
-  selectable = true;
-  removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  classCtrl = new FormControl();
-  filteredOptions: Observable<string[]>;
-  options: string[] = [];
-  allOptions: string[] = [];
-  allComplete: boolean = false;
   archivos: Archivo[]=[];
-  @ViewChild('classInput') classInput: ElementRef<HTMLInputElement>;
+  sortOptions: SelectItem[];
 
-  constructor(private router:Router) {
+  sortOrder: number;
+  sortKey='id';
+  sortField: string;
+  selectedEstado:string;
+  estados=[{name:'Todos',code:''},{name:'Guardados',code:'1'},{name:'Pendiente de respuesta',code:'2'},{name:'Resuelto',code:'3'}]
+
+  selectedOrder:string;
+  orden=[{name:'Más recientes',code:'1'},{name:'Más antiguos',code:'2'}]
+
+
+  constructor( private primengConfig: PrimeNGConfig,private router:Router) {
   
+    this.primengConfig.ripple = true;
     let a2=new Archivo();
     a2.id=2;
-    a2.archivos=['default-placeholder.png']
-    a2.nombre='nombre 2'
+    a2.archivos=['https://static.filadd.com/files/f%2350479/html/external_resources/bg1.png']
+    a2.nombre='Historia de la Psicología'
     a2.fecha=new Date;
     a2.seguidores=9;
     a2.profesores=['particular 1']
-    a2.estado='Pendiente de respuesta'
-    a2.carrera = 'carrera '
-    a2.institucion = 'institución '
-    a2.materia = 'materia '
-    a2.nivel = 'nivel '
+    a2.estado='Pendiente de Respuesta'
+    a2.carrera = 'Licenciatura en Psicología'
+    a2.institucion = 'UBA'
+    a2.materia = 'Psicología '
+    a2.nivel = 'Universitario '
 
     let a3=new Archivo();
     a3.id=3;
-    a3.archivos=['default-placeholder.png']
-    a3.nombre='nombre 2'
+    a3.archivos=['https://imgv2-2-f.scribdassets.com/img/document/333613744/original/9fb59343e0/1632755742?v=1']
+    a3.nombre='Psicología Evolutiva: Niñez'
     a3.fecha=new Date;
     a3.seguidores=9;
     a3.profesores=['particular 1']
     a3.estado='Resuelto'
-    a3.carrera = 'carrera '
-    a3.institucion = 'institución '
-    a3.materia = 'materia '
-    a3.nivel = 'nivel '
+    a3.carrera = 'Licenciatura en Psicología'
+    a3.institucion = 'UBA '
+    a3.materia = 'Psicología '
+    a3.nivel = 'Universitario '
     this.archivos.push(a2,a3)
-    this.filteredOptions = this.classCtrl.valueChanges.pipe(
-        startWith(null),
-        map((fruit: string | null) => fruit ? this._filter(fruit) : this.allOptions.slice()));
+  
   }
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
 
-    // Add our fruit
-    if (value) {
-      this.options.push(value);
-    }
-
-    // Clear the input value
-    event.value=null;
-
-    this.classCtrl.setValue(null);
-  }
-
-  remove(fruit: string): void {
-    const index = this.options.indexOf(fruit);
-
-    if (index >= 0) {
-      this.options.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.options.push(event.option.viewValue);
-    this.classInput.nativeElement.value = '';
-    this.classCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allOptions.filter(fruit => fruit.toLowerCase().includes(filterValue));
-  }
+  
   ngOnInit(): void {
   }
 
-  buscar(){
-   // this.router.navigate(['busqueda/'+ this.options])
-  }
-  setAll(completed: boolean) {
-  }
+ 
 
   like(t:Archivo){
      
@@ -107,7 +74,8 @@ export class MisModelosAlumnoComponent implements OnInit {
     this.archivos[ this.archivos.indexOf(t)].like=!this.archivos[ this.archivos.indexOf(t)].like;
  }
 
- verDetalle(a : Archivo){
-   this.router.navigate(['detalle-modelo-alumno/'+a.id])
- }
+ verDetalle(l){  
+  let id=l.id;
+  this.router.navigate(['detalle-modelo-alumno', {  q: id  }])
+}
 }

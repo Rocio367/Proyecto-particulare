@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Mensaje } from 'src/app/shared/models/mensaje';
 import { ModalResponderComponent } from '../modal-responder/modal-responder.component';
 
@@ -9,16 +10,15 @@ import { ModalResponderComponent } from '../modal-responder/modal-responder.comp
   styleUrls: ['./mensaje-detalle.component.scss']
 })
 export class MensajeDetalleComponent implements OnInit {
-  @Input() mensaje:Mensaje;
-  @Input() responder=true;
-  constructor(public dialog: MatDialog) { }
+  @Input() mensaje: Mensaje;
+  @Input() responder = true;
+  constructor(public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  respuesta(){
-      this.dialog.open(ModalResponderComponent, { panelClass: 'custom-dialog-container', data: this.mensaje});
-    
+  respuesta() {
+    this.router.navigate(['nuevo-mensaje'])
   }
 
 }

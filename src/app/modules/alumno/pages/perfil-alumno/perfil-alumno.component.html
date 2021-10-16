@@ -1,124 +1,77 @@
-<div class="p-5 container container-color2">
-  <div class="container mt-2">
-    <div class="row">
-      <div class="col-sm-12 col-md-3 mt-3">
-          <img mat-card-avatar src="../../../../../assets/img/default-user.png" width="220" height="200" />
-
-            <a href="editar-perfil-alumno" class='text-center actions'>
-              <button class="blancaLetra" color='warn' mat-raised-button>Editar</button> </a>
-
+<div class="p-3 container-color">
+  <p-card>
+    <div class="flex justify-content-evenly">
+      <div>
+        <img mat-card-avatar src="../../../../../assets/img/default-user.png"/>
       </div>
-      <div class="col-sm grisLetra">
-        <h3 class="color-a m-4">Nombre y apellido </h3>
-
-        <h4 class='color-a fs-16 m-4'>Edad: <span>Edad</span></h4>
-        <h4 class='color-a fs-16 m-4'> Intereses: <span>Intereses</span></h4>
-        <hr />
-        <h4 class='color-a fs-16 m-4'>Institución: <span> Institución </span></h4>
-        <h4 class='color-a fs-16 m-4'>Nivel académico:<span> Nivel académico</span> </h4>
-
+      <p-divider layout="vertical"></p-divider>
+      <div>
+        <h4>Rocío Centurión </h4>  
+        <h4 class='fs-16 mb-3'>Edad: <span>25</span></h4>
+        <h4 class='fs-16 mb-3'>Intereses: <span> - </span></h4>
+        <h4 class='fs-16 mb-3'>Institución: <span> - </span></h4>
+        <h4 class='fs-16 mb-3'>Nivel académico: <span> - </span></h4>
       </div>
-    </div>
-  </div>
-
-
-
-  <div class="container mt-3 text">
-    <br>
-    <h4 class="color-a">Mis clases : </h4>
-    <app-tabla-misclases></app-tabla-misclases>
-    <br>
-  </div>
-
-  <div class="container mt-5 z-index blanco2">
-    <br>
-    <h4 class="color-a">Beneficios : </h4>
-    <carousel>
-      <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-      <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-            <div class="carousel-cell">
-        <div class="col-sm">
-          <mat-card class="example-card">
-            <mat-card-subtitle class="verde blancaLetra pl-2">Descuentos</mat-card-subtitle>
-            <h6>PACK 20 CLASES A -10%</h6>
-            <mat-card-content>
-              <p>This card has divider and indeterminate progress as footer</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-
-    </carousel>
-
-    <br>
-  </div>
-
-  <div class="container mt-5 blanco2">
-    <div class="row">
-      <div class="col-sm-12 col-md-7 mt-3">
-        <iframe width="553" height="280" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-        <br>
-      </div>
-      <div class="col-sm grisLetra">
-        <mat-list>
-          <div mat-line>
-            <h4 class="color-a">Clases cursadas : </h4>
-          </div>
-          <mat-selection-list #shoes [multiple]="false">
-            <mat-list-option *ngFor="let folder of folders" [value]="folders" class="borde">
-              <mat-icon mat-list-icon><i class="icofont-ui-video-play"></i></mat-icon>
-              {{folder.name}} <br>
-              {{folder.updated | date}}
-            </mat-list-option>
-          </mat-selection-list>
-        </mat-list>
+      <p-divider layout="vertical"></p-divider>
+      <div>
+          <iframe src="https://www.youtube.com/embed/V202A8p7uh8" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
       </div>
     </div>
-  </div>
-
+  </p-card>
+  <p-card styleClass="mt-3">
+    <p-table [value]="clases">
+      <ng-template pTemplate="caption">
+        <div>
+          <h4 class="color-f">Mis clases</h4>
+        </div>
+    </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre de la clase</th>
+          <th>Nombre del profesor</th>
+          <th>Fecha de clase</th>
+          <th>Estado</th>
+          <th>Video</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-clase>
+        <tr>
+            <td>{{clase.nombre}}</td>
+            <td>{{clase.profesor}}</td>
+            <td>{{clase.fecha | date}}</td>
+            <td>{{clase.estado}}</td>
+            <td><button pButton icon="pi pi-youtube"></button></td>
+            <td><button pButton label="Ver más"></button></td>
+            <td><a href="nuevo-mensaje"><button pButton label="Contactar" class="mt-2"></button></a> </td>  
+        </tr>
+    </ng-template>
+    </p-table>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col-12">
+        <h2 class="color-f">Conocé nuestros beneficios</h2>
+        <p class="grisLetra">Descubre los descuentos que ofrecemos.</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-4" *ngFor="let beneficio of beneficios">
+        <p-card styleClass="card-interna">
+          <ng-template pTemplate="header">
+              <div class="categoria pl-2 ">{{beneficio.subtitulo}}</div>
+          </ng-template>
+          <ng-template pTemplate="title">{{beneficio.titulo}}</ng-template>
+          <p>{{beneficio.contenido}}</p>
+        </p-card>
+      </div>
+      <br>
+    </div>
+  </p-card>
 </div>

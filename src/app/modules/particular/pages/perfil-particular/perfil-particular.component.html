@@ -1,53 +1,184 @@
-<div class="p-5 container container-color2">
-    <div class="mt-2 ">
-      <div class="row p-3 borde">
-              <div class="col-sm-12 col-md-2">
-                <br>
-                <img mat-card-avatar src="../../../../../assets/img/default-user.png"  width="220" height="200" />
-                <br>
-                <a href="editar-perfil-particular/:id">
-                  <button class="blancaLetra" color='warn' mat-raised-button>Editar</button> </a>
-              </div>
-              <div class="col-sm-12 col-md-4 grisLetra">
-                <h3 class="color-a m-4">Nombre y apellido </h3>
-                <h4 class='color-a fs-16 m-4'>Edad: <span>Edad</span></h4>
-                <h4 class='color-a fs-16 m-4'>Localidad: <span>Localidad</span></h4>
-                <hr/>
-                <h4 class='color-a fs-16 m-4'>Años de experiencia: <span>Años de experiencia</span></h4>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <br>
-                <iframe width="453" height="240" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+<div class="p-3 container-color">
+  <p-card>
+    <div class="flex justify-content-evenly">
+      <div>
+        <img mat-card-avatar src="../../../../../assets/img/default-user.png" />
       </div>
+      <p-divider layout="vertical"></p-divider>
+      <div>
+        <h4>Nombre y apellido </h4>
+        <h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>
+        <h4 class='fs-16 mb-3'>Localidad: <span> - <i class='pi pi-map-marker rojo'></i></span></h4>
+        <h4 class='fs-16 mb-3'>Experiencia: <span> -</span></h4>
 
-    <div class="mt-5 blanco2 p-3 borde">
-        <h4 class="color-a">Estudios:</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut.</p>
-    </div>    
-
-  <div class="mt-5 blanco2 p-3 borde">
-      <h4 class="color-a">Descripción:</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipiscing elit arcu platea ut, curabitur nibh hendrerit netus inceptos non auctor luctus. Dis pretium parturient a lacinia ac augue placerat mauris vulputate, dui aenean fermentum nec congue nisl iaculis porttitor fames taciti, eget nibh aptent felis platea justo vel lectus. Ridiculus turpis sapien facilisi aliquam viverra dictumst neque hac at praesent netus, nascetur nisl fames elementum phasellus primis ante vehicula natoque ornare, magnis sodales curae dui mauris congue nullam maecenas id metus.</p>
-  </div>
-
-
-    <div class="mt-5">
-        <hr/>
-        <h4 class="color-a">Califiaciones y opiniones</h4>
-        <div class='stars'>
-            <i class="icofont-star" [ngClass]='(3 >= 1)?"amarillo":""'></i>
-            <i class="icofont-star" [ngClass]='(3 >= 2)?"amarillo":""'></i>
-            <i class="icofont-star" [ngClass]='(3 >= 3)?"amarillo":""'></i>
-            <i class="icofont-star" [ngClass]='(3 >= 4)?"amarillo":""'></i>
-            <i class="icofont-star" [ngClass]='(3 >= 5)?"amarillo":""'></i>
-            <span class='subtitle'>
-                {{3}}/ 5
-            </span>
-        </div>
-
-        <app-comentarios-particular></app-comentarios-particular>
+      </div>
+      <p-divider layout="vertical"></p-divider>
+      <div>
+        <iframe src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
 
-</div> 
+        <h4 class="color-f">Datos académicos: <i class="pi pi-plus-circle ml-2 mt-2 mr-2"
+            style="font-size: 2rem;color:#35a763" (click)='crear()'></i></h4>
+        <mat-list-item *ngFor="let item of datosAcademicos">
+          <mat-card>
+            <div mat-line><i class="pi pi-briefcase
+                ml-2 mr-2" style="font-size: 1rem"></i>{{item.titulo}}</div>
+            <div class='ml-2' mat-line> {{item.desde}} - {{item.hasta}}</div>
+            <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;"
+                (click)="oponDoc(item.doc)"> Ver certificado</a></div>
+            <div class='actions'>
+              <i class="pi pi-pencil fs-21 m-1
+                  " style="color:#35a763;cursor:pointer;" (click)='editar(item)'></i>
+
+              <i class="pi pi-trash fs-21 m-1" (click)='eliminar()' style="cursor:pointer;color:red"></i>
+            </div>
+
+          </mat-card>
+
+          <mat-card *ngIf='open'>
+
+            <i class="pi pi-times float-right m-4" (click)='close()' style='color:#35a763;'></i>
+            <form [formGroup]="formDatos" class="ui large error form text-center">
+
+              <div class="grid container">
+                <div class="col-md-6">
+                  <br>
+                  <div class="field col-12">
+                    <span class="p-float-label">
+                      <input id="materia" formControlName="titulo" type="text" pInputText class="inputfield w-full">
+                      <label for="materia">Titulo</label>
+                    </span>
+                    <div
+                      *ngIf="formDatos.get('titulo').hasError('required') && formDatos.get('titulo').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                  </div>
+
+                  <div class="field col-12">
+                    <span class="p-float-label">
+                      <input id="materia" type="text" formControlName="desde" pInputText class="inputfield w-full">
+                      <label for="materia">Desde</label>
+                    </span>
+                    <div
+                      *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <div
+                    *ngIf="formDatos.get('desde').hasError('pattern') && formDatos.get('desde').touched"
+                    class="text-center">
+                    <small class="p-error">Este campo es solo admite <strong>numeros</strong></small>
+                  </div>
+                  </div>
+
+
+                </div>
+                <div class="col-md-6">
+                  <br>
+
+                  <div class="field col-12">
+                    <span class="p-float-label">
+                      <input id="materia" type="text" formControlName="hasta" pInputText class="inputfield w-full">
+                      <label for="materia">Hasta</label>
+                    </span>
+                    <div
+                      *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <div
+                      *ngIf="formDatos.get('hasta').hasError('pattern') && formDatos.get('hasta').touched"
+                      class="text-center">
+                      <small class="p-error">Este campo es solo admite <strong>numeros</strong></small>
+                    </div>
+                  </div>
+
+                  <div class="field col-12">
+                    <span class="p-float-label">
+                      <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*"
+                        maxFileSize="1000000" (onUpload)="onUpload($event)" [auto]="true"
+                        chooseLabel="Adjuntar documento"></p-fileUpload>
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <button pButton type="submit" (click)='confirmar()' style='margin:auto'>Confirmar</button>
+            </form>
+          </mat-card>
+        </mat-list-item>
+      </div>
+    </div>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
+        <h4 class="color-f">Descripción:</h4>
+        <p>Me llamo Sergio, soy ingeniero en informática, programador freelance.
+          La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases
+          o estudiando programación por interés propio.
+          Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre
+          vaya por más.
+          Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se
+          aprende mas rápido, disfrutando lo que se hace.</p>
+      </div>
+    </div>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <p-table [value]="clases">
+      <ng-template pTemplate="caption">
+        <div>
+          <h4 class="color-f">Mis clases</h4>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Materia</th>
+          <th>Fecha de publicacion</th>
+          <th>Cantidad de alumnos</th>
+          <th>Calificacion</th>
+
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-clase>
+        <tr>
+          <td>{{clase.materia}}</td>
+          <td>{{clase.fecha | date}}</td>
+          <td>{{clase.cantidadDeAlumnos}}</td>
+          <td>{{clase.calificacion}} / 5</td>
+          <td><button pButton label="Ver más" (click)='verDetalle(clase)'></button></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+  <p-card styleClass="mt-3">
+    <div class="grid">
+      <div class="col">
+        <h4 class="color-f">Calificaciones y opiniones</h4>
+        <div class="flex justify-content-center">
+          <i class="pi pi-star fs-25 x" [ngClass]='(5 >= 1)?"amarillo":""'></i>
+          <i class="pi pi-star fs-25 x" [ngClass]='(5 >= 2)?"amarillo":""'></i>
+          <i class="pi pi-star fs-25 x" [ngClass]='(5 >= 3)?"amarillo":""'></i>
+          <i class="pi pi-star  fs-25 x" [ngClass]='(5 >= 4)?"amarillo":""'></i>
+          <i class="pi pi-star fs-25 x" [ngClass]='(5 >= 5)?"amarillo":""'></i>
+          <span class='subtitle'>
+            5 / 5
+          </span>
+        </div>
+        <app-comentarios-particular></app-comentarios-particular>
+      </div>
+    </div>
+  </p-card>
+</div>

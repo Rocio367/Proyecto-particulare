@@ -16,7 +16,7 @@ export class PrimerosPasosComponent {
     this.pasos = [
       this.crearPaso('Paso 1', 'Buscá tu profe ideal', 'lupa.jpg'), 
       this.crearPaso('Paso 2', 'Registrate', 'registro.jpg'), 
-      this.crearPaso('Paso 3', 'Contrata clases con los mejores profes', 'contrato.png'),
+      this.crearPaso('Paso 3', 'Contrata una clase', 'contrato.png'),
       this.crearPaso('Paso 4', 'Aprendé con nosotros', 'aprender.png')
     ];
   }
