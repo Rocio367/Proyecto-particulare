@@ -45,7 +45,7 @@ export class EditarPerfilParticularComponent implements OnInit {
     );
 
     // Mock para el video
-    this.formDatos.controls['descripcion'].setValue(`Me llamo Sergio, soy ingeniero en informática, programador freelance. 
+    this.formDatos.controls['descripcion'].setValue(`Me llamo Mario, soy ingeniero en informática, programador freelance. 
     La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases o estudiando programación por interés propio.
     Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre vaya por más.
     Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se aprende mas rápido, disfrutando lo que se hace.`);
