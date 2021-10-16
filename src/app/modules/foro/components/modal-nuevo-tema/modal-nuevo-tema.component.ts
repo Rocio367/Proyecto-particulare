@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { data } from 'jquery';
 import Swal from 'sweetalert2';
 
@@ -17,7 +18,7 @@ export class ModalNuevoTemaComponent implements OnInit {
     descripcion: ['', Validators.required],
    
   });
-  constructor(private form: FormBuilder,private _snackBar : MatSnackBar) { 
+  constructor(private router: Router,private form: FormBuilder,private _snackBar : MatSnackBar) { 
   }
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ export class ModalNuevoTemaComponent implements OnInit {
         verticalPosition: "top",
         panelClass: ['green-snackbar']
       });
+      this.router.navigate(['temas-foro'])
       return true;
     } else {
       this.formDatos.markAllAsTouched();

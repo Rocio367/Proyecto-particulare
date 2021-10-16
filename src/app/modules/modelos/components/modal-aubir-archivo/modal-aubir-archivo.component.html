@@ -39,7 +39,7 @@
 
                     <div class='w-80 mt-3'>
                         <p-fileUpload class='mt-4' name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
-                            multiple="multiple" accept="image/*" maxFileSize="6">
+                            multiple="multiple" accept="image/*">
                             <ng-template pTemplate="content">
                                 <ul *ngIf="uploadedFiles.length">
                                     <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
