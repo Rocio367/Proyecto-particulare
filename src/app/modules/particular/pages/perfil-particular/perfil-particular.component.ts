@@ -42,7 +42,12 @@ export class PerfilParticularComponent implements OnInit {
     this.open=true;
     this.openTipo;
     if(this.formDatos.valid) {
-      this.snackBar.open('El dato academico fue '+this.openTipo+' correctamente', 'x')
+      this.snackBar.open('El dato academico fue '+this.openTipo+' correctamente',"", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
     } else {
       this.formDatos.markAllAsTouched();
     }

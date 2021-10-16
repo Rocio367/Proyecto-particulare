@@ -46,7 +46,12 @@ export class ModalAubirArchivoComponent implements OnInit {
   }
   confirmar(){
     if(this.formDatos.valid) {
-      this.snackBar.open('El modelo fue cargado correctamente', 'x')
+      this.snackBar.open('El modelo fue cargado correctamente', "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
     } else {
       this.formDatos.markAllAsTouched();
     }
@@ -61,13 +66,6 @@ export class ModalAubirArchivoComponent implements OnInit {
   filterMateria(event) {
     this.filteredMateria=this.materias.filter(d=>d.toLowerCase().includes(event.query.toLowerCase()))
 }
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 6000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      panelClass: ['red-snackbar'],
-    });
-  }
+  
 
 }

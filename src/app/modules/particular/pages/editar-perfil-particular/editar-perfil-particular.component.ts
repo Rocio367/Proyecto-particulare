@@ -59,7 +59,12 @@ export class EditarPerfilParticularComponent implements OnInit {
 
   editarParticular(){
     if(this.formDatos.valid) {
-      this._snackBar.open('Perfil editado correctamente', 'x');
+      this._snackBar.open('Perfil editado correctamente',"", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
       this.router.navigate(['/perfil-alumno']);
       return true;
     } else {

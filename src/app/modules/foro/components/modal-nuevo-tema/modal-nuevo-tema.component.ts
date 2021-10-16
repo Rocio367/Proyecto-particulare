@@ -25,7 +25,13 @@ export class ModalNuevoTemaComponent implements OnInit {
   }
   enviar(){
     if(this.formDatos.valid) {
-      this._snackBar.open('El tema fue correctamente', 'x');
+
+      this._snackBar.open("El tema fue correctamente", "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
       return true;
     } else {
       this.formDatos.markAllAsTouched();

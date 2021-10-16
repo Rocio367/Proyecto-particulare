@@ -92,20 +92,14 @@ export class DetalleModeloParticularComponent implements OnInit {
       'success'
     )
   }
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 6000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      panelClass: ['red-snackbar'],
-    });
-  }
+ 
 
   enviar(){
-    Swal.fire(
-      'La resolución fue enviada con exito',
-      '',
-      'success'
-    )
+    this.snackBar.open('La resolucion fue enviada con exito', "", {
+      duration: 1500,
+      horizontalPosition: "end",
+      verticalPosition: "top",
+      panelClass: ['green-snackbar']
+    });
   }
 }

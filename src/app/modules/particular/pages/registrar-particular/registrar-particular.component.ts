@@ -51,7 +51,12 @@ export class RegistrarParticularComponent implements OnInit {
   }
   registrarParticular(){
     if(this.formDatos.valid) {
-      this._snackBar.open('Perfil creado correctamente', 'x');
+      this._snackBar.open('Perfil creado correctamente',"", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
       this.router.navigate(['/perfil-particular',1]);
       return true;
     } else {
