@@ -26,11 +26,11 @@ export class DetalleModeloAlumnoComponent implements OnInit {
         this.id = params.q
       });
 
-    this.archivo.archivos = ['https://www.altillo.com/examenes/uba/farmaciaybioquim/fisicoquimica/fisicoquimica2001final/fisico.gif']
-    this.archivo.nombre = '1° Examen de Fisicoquímica '
-    this.archivo.carrera = 'Ciencias Biologicas '
+    this.archivo.archivos = ['https://static.filadd.com/files/f%2350479/html/external_resources/bg1.png']
+    this.archivo.nombre = 'Historia de la Psicología '
+    this.archivo.carrera = 'Licenciatura en Psicología '
     this.archivo.institucion = 'UBA '
-    this.archivo.materia = 'Fisicoquímica '
+    this.archivo.materia = 'Psicología '
     this.archivo.nivel = 'Universitario '
     this.archivo.fecha = new Date;
     this.archivo.seguidores = 40;
