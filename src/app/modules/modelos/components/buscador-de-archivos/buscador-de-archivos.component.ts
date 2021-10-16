@@ -33,41 +33,40 @@ export class BuscadorDeArchivosComponent implements OnInit {
 
     let a1=new Archivo();
     a1.id=1;
-    a1.archivos=['https://cdn-v1.udocz-assets.com/uploads/book/cover/68837/examen_de_matematica_prim_inst_final_respuestas.jpg']
-    a1.nombre='Ingreso Matemáticas'
+    a1.archivos=['https://static.docsity.com/documents_first_pages/apuntes/2014/01/20/74ccb88c48297be707e62ae800958193.png']
+    a1.nombre='Historia de la Psicología '
     a1.fecha=new Date;
     a1.seguidores=4;
     a1.profesores=['particular 1','particular 2']
     a1.estado='Podés solicitarlo'
-    a1.carrera = 'Ingeniería '
-    a1.institucion = 'Unlam '
-    a1.materia = 'Matemáticas '
+    a1.carrera = 'Licenciatura en Psicología '
+    a1.institucion = 'UBA '
+    a1.materia = 'Historia de la Psicología '
     a1.nivel = 'Universitario '
 
     let a2=new Archivo();
     a2.id=2;
     a2.archivos=['https://www.altillo.com/examenes/uba/ubaxxi/matematica/Imageggesn5.gif']
-    a2.nombre='1° Parcial de Matemáticas'
+    a2.nombre='1° Examen de Fisicoquímica'
     a2.fecha=new Date;
     a2.seguidores=9;
     a2.profesores=['particular 1']
     a2.estado='Pendiente de respuesta'
-    a2.carrera = 'Administracion de empresas '
+    a2.carrera = 'Ciencias Biologicas '
     a2.institucion = 'UBA '
-    a2.materia = 'matemáticas '
+    a2.materia = 'Fisicoquímica '
     a2.nivel = 'Universitario '
 
     let a3=new Archivo();
-    a3.archivos=['https://cdn-v1.udocz-assets.com/uploads/book/cover/68845/examen_geometria_1_instancia_con_respuesta_final.jpg']
-    a3.nombre='Ingreso -Parcial de Geometría'
+    a3.archivos=['https://imgv2-2-f.scribdassets.com/img/document/333613744/original/9fb59343e0/1632755742?v=1']
+    a3.nombre='Psicología Evolutiva: Niñez'
     a3.fecha=new Date;
-    a3.id=3;
     a3.seguidores=9;
     a3.profesores=['particular 1']
     a3.estado='Resuelto'
-    a3.carrera = 'Tecnicatura en Desarrollo Web'
-    a3.institucion = 'Unlam '
-    a3.materia = 'Geometría '
+    a3.carrera = 'Licenciatura en Psicología'
+    a3.institucion = 'UBA '
+    a3.materia = 'Psicología Evolutiva '
     a3.nivel = 'Universitario '
     this.archivos.push(a1,a2,a3)
     this.archivos.push(a1,a2,a3)
