@@ -1,7 +1,7 @@
 <div class="container pb-3 pt-3 container-color ">
 
     <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
-        <p-dataView #dv [value]="temas" [paginator]="true" [rows]="6" filterBy="titulo"
+        <p-dataView #dv [value]="temas" [paginator]="true" [rows]="6" filterBy="título"
             layout="grid">
             <ng-template pTemplate="header">
                 <div class="text-center">
@@ -9,7 +9,7 @@
                     <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
                         <i class="pi pi-search"></i>
                         <input class='w-100' type="search" pInputText
-                            placeholder="Buscar por titulo..."
+                            placeholder="Buscar por título..."
                             (input)="dv.filter($event.target.value)">
                     </span>
 
