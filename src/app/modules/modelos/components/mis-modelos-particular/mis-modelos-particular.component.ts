@@ -29,29 +29,29 @@ export class MisModelosParticularComponent implements OnInit {
   constructor( private primengConfig: PrimeNGConfig,private router:Router) {
     let a2=new Archivo();
     a2.id=4;
-    a2.archivos=['https://cdn-v1.udocz-assets.com/uploads/book/cover/68837/examen_de_matematica_prim_inst_final_respuestas.jpg']
-    a2.nombre='Parcial 1 de matematicas'
+    a2.archivos=['https://static.filadd.com/files/f%2350479/html/external_resources/bg1.png']
+    a2.nombre='Historia de la Psicología'
     a2.fecha=new Date;
     a2.seguidores=9;
     a2.profesores=['particular 1']
-    a2.estado='Pendiente de respuesta'
-    a2.carrera = 'Tecnicatura en desarrollo web '
-    a2.institucion = 'UNLAM '
-    a2.materia = 'Matematicas '
-    a2.nivel = 'Terciario '
+    a2.estado='Pendiente de Respuesta'
+    a2.carrera = 'Licenciatura en Psicología'
+    a2.institucion = 'UBA'
+    a2.materia = 'Psicología '
+    a2.nivel = 'Universitario '
 
     let a3=new Archivo();
     a3.id=5;
-    a3.archivos=['https://www.altillo.com/examenes/uba/ubaxxi/matematica/Imageggesn5.gif']
-    a3.nombre='Parcial 2 matematicas'
+    a3.archivos=['https://imgv2-2-f.scribdassets.com/img/document/333613744/original/9fb59343e0/1632755742?v=1']
+    a3.nombre='Psicología Evolutiva: Niñez'
     a3.fecha=new Date;
     a3.seguidores=9;
     a3.profesores=['particular 1']
     a3.estado='Resuelto'
-    a3.carrera = 'Tecnicatura en desarrollo web '
-    a3.institucion = 'UNLAM '
-    a3.materia = 'Matematicas '
-    a3.nivel = 'Terciario '
+    a3.carrera = 'Licenciatura en Psicología'
+    a3.institucion = 'UBA '
+    a3.materia = 'Psicología '
+    a3.nivel = 'Universitario '
 
     this.primengConfig.ripple = true;
 
