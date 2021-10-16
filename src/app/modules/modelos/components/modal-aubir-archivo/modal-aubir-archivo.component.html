@@ -6,9 +6,11 @@
                 <form [formGroup]="formDatos" class="ui large error form">
 
                     <span class="p-float-label w-80  mt-4">
-                        <input id="float-input" class='w-100' formControlName="institucion" pInputText>
+                        <p-autoComplete  class='w-100' formControlName="institucion" [suggestions]="filteredIntitucion"
+                        (completeMethod)="filterIntitucion($event)"  [minLength]="1"></p-autoComplete>
                         <label for="float-input">Institución</label>
                     </span>
+                    
                     <div *ngIf="formDatos.get('institucion').hasError('required') && formDatos.get('institucion').touched"
                         class="text-center">
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -16,7 +18,8 @@
 
 
                     <span class="p-float-label w-80  mt-4">
-                        <input id="float-input" class='w-100' formControlName='carrera' type="text" pInputText>
+                        <p-autoComplete  class='w-100' formControlName="carrera" [suggestions]="filteredCarreras"
+                        (completeMethod)="filterCarrera($event)"  [minLength]="1"></p-autoComplete>
                         <label for="float-input">Carrera</label>
                     </span>
                     <div *ngIf="formDatos.get('carrera').hasError('required') && formDatos.get('carrera').touched"
@@ -24,8 +27,8 @@
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
                     <span class="p-float-label w-80 mt-4">
-                        <input id="float-input" class='w-100' formControlName='materia' type="text" pInputText>
-                        <label for="float-input">Materia</label>
+                        <p-autoComplete  class='w-100' formControlName="materia" [suggestions]="filteredMateria"
+                        (completeMethod)="filterMateria($event)"  [minLength]="1"></p-autoComplete>                        <label for="float-input">Materia</label>
                     </span>
 
                     <div *ngIf="formDatos.get('materia').hasError('required') && formDatos.get('materia').touched"

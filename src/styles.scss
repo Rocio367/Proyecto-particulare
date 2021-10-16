@@ -402,6 +402,10 @@ a {
 .green-snackbar {
     background: #23be90;
   }
+
+.p-autocomplete-input.p-inputtext{
+    width: 100%;
+}
 @media screen and (max-width:900px) {
     .mob {
         display: block !important;

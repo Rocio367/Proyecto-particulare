@@ -12,7 +12,14 @@ import Swal from 'sweetalert2';
 })
 export class ModalAubirArchivoComponent implements OnInit {
   uploadedFiles: any[] = [];
+  instituciones: any[] = ['UBA','UTN','UADE'];
+  filteredIntitucion :any[] = [];
 
+  carreras: any[] = ['Psicologia','Abogacia','Derecho'];
+  filteredCarreras :any[] = [];
+
+  materias: any[] = ['Fisica','Quimica','Sociologia'];
+  filteredMateria :any[] = [];
   public progress: number;
   formDatos: FormGroup;
   dataimage: any;
@@ -44,6 +51,16 @@ export class ModalAubirArchivoComponent implements OnInit {
       this.formDatos.markAllAsTouched();
     }
   }
+
+  filterIntitucion(event) {
+        this.filteredIntitucion=this.instituciones.filter(d=>d.toLowerCase().includes(event.query.toLowerCase()))
+  }
+  filterCarrera(event) {
+        this.filteredCarreras=this.carreras.filter(d=>d.toLowerCase().includes(event.query.toLowerCase()))
+  }
+  filterMateria(event) {
+    this.filteredMateria=this.materias.filter(d=>d.toLowerCase().includes(event.query.toLowerCase()))
+}
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 6000,
