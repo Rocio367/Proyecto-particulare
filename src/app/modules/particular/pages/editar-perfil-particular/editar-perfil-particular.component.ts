@@ -29,7 +29,7 @@ export class EditarPerfilParticularComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
-  imagenDefault = "../../../../../assets/img/IMG-20211012-WA0030.jpg";
+  imagenDefault = "../../../../../assets/img/default-user.png";
 
   constructor(private _snackBar:MatSnackBar, private form: FormBuilder, private router: Router) { }
 
