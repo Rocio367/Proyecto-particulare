@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-nuevo-tema.component.scss']
 })
 export class ModalNuevoTemaComponent implements OnInit {
+  titulo: any[] = ['Consultas de Física','Consultas de Quimica','Consultas de Sociologia'];
+  filteredTitulo :any[] = [];
   formDatos = this.form.group({
     titulo: ['',Validators.required],
     descripcion: ['', Validators.required],
@@ -29,5 +31,7 @@ export class ModalNuevoTemaComponent implements OnInit {
       this.formDatos.markAllAsTouched();
     }
   }
-
+  filterTitulo(event) {
+    this.filteredTitulo=this.titulo.filter(d=>d.toLowerCase().includes(event.query.toLowerCase()))
+}
 }

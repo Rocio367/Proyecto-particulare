@@ -28,7 +28,8 @@
                     </div>
                     <span class="p-float-label w-80 mt-4">
                         <p-autoComplete  class='w-100' formControlName="materia" [suggestions]="filteredMateria"
-                        (completeMethod)="filterMateria($event)"  [minLength]="1"></p-autoComplete>                        <label for="float-input">Materia</label>
+                        (completeMethod)="filterMateria($event)"  [minLength]="1"></p-autoComplete>               
+                                 <label for="float-input">Materia</label>
                     </span>
 
                     <div *ngIf="formDatos.get('materia').hasError('required') && formDatos.get('materia').touched"

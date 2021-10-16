@@ -4,8 +4,8 @@
             <p-card class='card-container card'>
                 <form [formGroup]="formDatos" class="ui large error form">
                     <span class="p-float-label w-80  mt-4">
-                        <input id="float-input" formControlName="titulo" value='Paula Tufró' class='w-100'
-                            type="text" pInputText>
+                        <p-autoComplete  class='w-100' formControlName="titulo" [suggestions]="filteredTitulo"
+                        (completeMethod)="filterTitulo($event)"  [minLength]="1"></p-autoComplete>  
                         <label for="float-input">Título</label>
                     </span>
                     <div *ngIf="formDatos.get('titulo').hasError('required') && formDatos.get('titulo').touched"

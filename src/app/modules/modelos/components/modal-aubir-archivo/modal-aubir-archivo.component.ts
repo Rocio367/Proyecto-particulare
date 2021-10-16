@@ -18,7 +18,7 @@ export class ModalAubirArchivoComponent implements OnInit {
   carreras: any[] = ['Psicologia','Abogacia','Derecho'];
   filteredCarreras :any[] = [];
 
-  materias: any[] = ['Fisica','Quimica','Sociologia'];
+  materias: any[] = ['Física','Quimica','Sociologia'];
   filteredMateria :any[] = [];
   public progress: number;
   formDatos: FormGroup;
