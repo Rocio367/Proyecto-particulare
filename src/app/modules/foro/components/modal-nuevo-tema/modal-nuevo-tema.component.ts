@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-nuevo-tema.component.scss']
 })
 export class ModalNuevoTemaComponent implements OnInit {
-  titulo: any[] = ['Consultas de Física','Consultas de Quimica','Consultas de Sociologia'];
+  titulo: any[] = ['Consultas de Física','Consultas de Química','Consultas de Sociología'];
   filteredTitulo :any[] = [];
   formDatos = this.form.group({
     titulo: ['',Validators.required],
