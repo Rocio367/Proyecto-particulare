@@ -15,8 +15,8 @@ export class ModalContratarModelosComponent implements OnInit {
 
 
   selectedType='1';
-  tipos: any[] = [{ code: '1', name: 'Contratar solo resolucion', },
-  { code: '2', name: 'Contratar resolucion y explicacion' },]
+  tipos: any[] = [{ code: '1', name: 'Contratar solo resolución', },
+  { code: '2', name: 'Contratar resolución y explicacion' },]
 
  
   

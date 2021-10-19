@@ -54,7 +54,7 @@
                   <div class="field col-12">
                     <span class="p-float-label">
                       <input id="materia" formControlName="titulo" type="text" pInputText class="inputfield w-full">
-                      <label for="materia">Titulo</label>
+                      <label for="materia">Título</label>
                     </span>
                     <div
                       *ngIf="formDatos.get('titulo').hasError('required') && formDatos.get('titulo').touched"
@@ -76,7 +76,7 @@
                     <div
                     *ngIf="formDatos.get('desde').hasError('pattern') && formDatos.get('desde').touched"
                     class="text-center">
-                    <small class="p-error">Este campo es solo admite <strong>numeros</strong></small>
+                    <small class="p-error">Este campo es solo admite <strong>números</strong></small>
                   </div>
                   </div>
 
@@ -98,7 +98,7 @@
                     <div
                       *ngIf="formDatos.get('hasta').hasError('pattern') && formDatos.get('hasta').touched"
                       class="text-center">
-                      <small class="p-error">Este campo es solo admite <strong>numeros</strong></small>
+                      <small class="p-error">Este campo es solo admite <strong>números</strong></small>
                     </div>
                   </div>
 
@@ -131,7 +131,7 @@
           Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre
           vaya por más.
           Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se
-          aprende mas rápido, disfrutando lo que se hace.</p>
+          aprende más rápido, disfrutando lo que se hace.</p>
       </div>
     </div>
   </p-card>
@@ -145,9 +145,9 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Materia</th>
-          <th>Fecha de publicacion</th>
+          <th>Fecha de publicación</th>
           <th>Cantidad de alumnos</th>
-          <th>Calificacion</th>
+          <th>Calificación</th>
 
           <th></th>
         </tr>

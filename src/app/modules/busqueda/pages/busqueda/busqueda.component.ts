@@ -90,7 +90,7 @@ export class BusquedaComponent implements OnInit {
     this.pages.push(1);
     this.spinner = true;
     let r1 = new Resultado();
-    r1.descripcion = 'Actualmente soy docente y ejerzo hace 30 años hasta la fecha. Acompaño a mis alumnos para rendir exámenes internaci...';
+    r1.descripcion = 'Actualmente soy docente y ejerzo hace 30 años hasta la fecha. Acompaño a mis alumnos para rendir exámenes internacionales...';
     r1.foto = 'https://d131oejryywhj7.cloudfront.net/p/api/usuario/dup/4NufvtIc2Ug4tC42XsKSTrpZrWiwzKWQ0.jpg/120x120cut/?s=l';
     r1.materia = 'Clases de inglés para apoyo escolar y niveles avanzados';
     r1.stars = 5;
@@ -109,9 +109,9 @@ export class BusquedaComponent implements OnInit {
 
 
     let r3 = new Resultado();
-    r3.descripcion = 'Clases de apoyo en ingles, explicación de gramática, comprensión de texto, etc.Ejercitación';
+    r3.descripcion = 'Clases de apoyo en inglés, explicación de gramática, comprensión de texto, etc. Ejercitaciónes y ...';
     r3.foto = 'https://d131oejryywhj7.cloudfront.net/p/api/usuario/dup/a7hj0EqO2UivQLGyeRw1SJvM5HErd6bo0.jpg/120x120cut/?s=l';
-    r3.materia = 'Ingles';
+    r3.materia = 'Inglés';
     r3.stars = 5;
     r3.type = 'Online';
     r3.ubicacion = 'Caballito , Buenos Aires';
@@ -120,9 +120,9 @@ export class BusquedaComponent implements OnInit {
 
 
     let r4 = new Resultado();
-    r4.descripcion = 'Academia online con profes Certificados en Cambridge, clases adaptadas a tus necesidades Las veces a la semana y ho...';
+    r4.descripcion = 'Academia online con profes Certificados en Cambridge, clases adaptadas a tus necesidades. ';
     r4.foto = 'https://tcl.azureedge.net/p/images_ar/fotos/l/800676.jpg/120x120cut/?v=637667783836313280';
-    r4.materia = 'Ingles avanzado';
+    r4.materia = 'Inglés avanzado';
     r4.stars = 3;
     r4.type = 'Presencial | Online';
     r4.ubicacion = 'Moron , Buenos Aires';
@@ -130,18 +130,18 @@ export class BusquedaComponent implements OnInit {
 
 
     let r5 = new Resultado();
-    r5.descripcion = 'Soy profesor de Inglés desde hace 8 años, tanto en escuelas como de manera particular. Trabajo con niños, adolescen...';
+    r5.descripcion = 'Soy profesor de Inglés desde hace 8 años, tanto en escuelas como de manera particular. Trabajo con niños, adolescentes...';
     r5.foto = 'https://ta.azureedge.net/p/images/usuarios/l/xhOzzI861kg4PEA4IxvJRKBA85d67Aj10.jpg/120x120cut/ 1x, https://ta.azureedge.net/p/images/usuarios/l/xhOzzI861kg4PEA4IxvJRKBA85d67Aj10.jpg/190x190cut/ 2x';
-    r5.materia = 'Ingles para principiantes';
+    r5.materia = 'Inglés para principiantes';
     r5.stars = 3;
     r5.type = 'Online';
     r5.ubicacion = 'Castelar , Buenos Aires';
     this.results.push(r5)
 
     let r6 = new Resultado();
-    r6.descripcion = 'Clases particulares, para una o más personas, en domicilio o lugar a convenir. O bien vía Zoom. Las clases pueden e...';
+    r6.descripcion = 'Clases particulares, para una o más personas, en domicilio o lugar a convenir. O bien vía Zoom. Las clases pueden ser...';
     r6.foto = 'https://ta.azureedge.net/p/images/usuarios/l/ThJ7zW0y2Eg39BdOIVNZQJuPZK5oAye00.jpg/120x120cut/ 1x, https://ta.azureedge.net/p/images/usuarios/l/ThJ7zW0y2Eg39BdOIVNZQJuPZK5oAye00.jpg/190x190cut/ 2x';
-    r6.materia = 'Ingles';
+    r6.materia = 'Inglés';
     r6.stars = 5;
     r6.type = 'Online';
     r6.ubicacion = 'Moron , Buenos Aires';
