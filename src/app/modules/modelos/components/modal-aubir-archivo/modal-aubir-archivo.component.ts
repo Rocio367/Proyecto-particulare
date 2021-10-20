@@ -15,10 +15,10 @@ export class ModalAubirArchivoComponent implements OnInit {
   instituciones: any[] = ['UBA','UTN','UADE'];
   filteredIntitucion :any[] = [];
 
-  carreras: any[] = ['Psicologia','Abogacia','Derecho'];
+  carreras: any[] = ['Psicología','Abogacia','Derecho'];
   filteredCarreras :any[] = [];
 
-  materias: any[] = ['Física','Quimica','Sociologia'];
+  materias: any[] = ['Física','Química','Sociologia', 'Historia de la Psicología'];
   filteredMateria :any[] = [];
   public progress: number;
   formDatos: FormGroup;
