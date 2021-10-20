@@ -14,10 +14,10 @@ export class DetalleClaseComponent implements OnInit {
     this.registro.materia = 'Ingles';
     this.registro.stars = 5;
     this.registro.type = 'Online';
-    this.registro.ubicacion = 'Moron, Buenos Aires';
+    this.registro.ubicacion = 'Morón, Buenos Aires';
     this.registro.nivel = 'Secundario';
     this.registro.particular = 'Romina Perez';
-    this.registro.academico='Titulo academico ';
+    this.registro.academico='Título académico ';
     this.registro.precio_por_hora=500.00;
   }
 

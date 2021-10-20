@@ -25,10 +25,10 @@ export class VerMisClasesParticularComponent implements OnInit {
 
   ngOnInit(): void {
     this.publicacion = [
-      { materia: 'Matemática', nivel: 'Secundario básico',modo:'online', estado: 'Finalizada', tipo: 'individual'},
-      { materia: 'Matemática', nivel: 'Secundario Superior', modo:'online', estado: 'Finalizada', tipo: 'individual'},
+      { materia: 'Matemáticas', nivel: 'Secundario básico',modo:'online', estado: 'Finalizada', tipo: 'individual'},
+      { materia: 'Matemáticas', nivel: 'Secundario Superior', modo:'online', estado: 'Finalizada', tipo: 'individual'},
       { materia: 'Álgebra', nivel: 'Universidad', modo:'online', estado: 'Ausente', tipo:'individual'},
-      { materia: 'MatemÁtica', nivel: 'Universidad', modo:'online', estado: 'Pendiente', tipo: 'individual'},
+      { materia: 'Matemáticas', nivel: 'Universidad', modo:'online', estado: 'Pendiente', tipo: 'individual'},
     ];
   }
 

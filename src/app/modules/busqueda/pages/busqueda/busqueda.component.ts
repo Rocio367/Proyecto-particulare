@@ -95,7 +95,7 @@ export class BusquedaComponent implements OnInit {
     r1.materia = 'Clases de inglés para apoyo escolar y niveles avanzados';
     r1.stars = 5;
     r1.type = 'Presencial | Online';
-    r1.ubicacion = 'Moron, Buenos Aires';
+    r1.ubicacion = 'Morón, Buenos Aires';
     this.results.push(r1)
 
     let r2 = new Resultado();
@@ -104,7 +104,7 @@ export class BusquedaComponent implements OnInit {
     r2.foto = 'https://d131oejryywhj7.cloudfront.net/p/api/usuario/dup/lLnYgleF2Uhi7ecOlfqSSJEeygjUvI5P0.jpg/120x120cut/?s=l';
     r2.stars = 4;
     r2.type = 'Online';
-    r2.ubicacion = 'Ituzaingo, Buenos Aires';
+    r2.ubicacion = 'Ituzaingó, Buenos Aires';
     this.results.push(r2)
 
 
@@ -125,7 +125,7 @@ export class BusquedaComponent implements OnInit {
     r4.materia = 'Inglés avanzado';
     r4.stars = 3;
     r4.type = 'Presencial | Online';
-    r4.ubicacion = 'Moron , Buenos Aires';
+    r4.ubicacion = 'Morón , Buenos Aires';
     this.results.push(r4)
 
 
@@ -144,7 +144,7 @@ export class BusquedaComponent implements OnInit {
     r6.materia = 'Inglés';
     r6.stars = 5;
     r6.type = 'Online';
-    r6.ubicacion = 'Moron , Buenos Aires';
+    r6.ubicacion = 'Morón , Buenos Aires';
     this.results.push(r6)
     this.count = this.results.length;
     this.spinner = false;
