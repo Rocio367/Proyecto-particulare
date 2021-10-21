@@ -41,7 +41,7 @@ export class ForoComponent implements OnInit {
     
 
     let r1 = new Respuestas();
-    r1.text = 'Holaa, si solo debés resolverlo asi log4 6 = log4 (2 * 3) = log4 2 + log4 3 = 0,5 + 0,7924 = 1,2924 ';
+    r1.text = 'Holaa, solo debés resolverlo así log4 6 = log4 (2 * 3) = log4 2 + log4 3 = 0,5 + 0,7924 = 1,2924 ';
     r1.avatar = 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos.jpg';
     r1.user = 'Micaela Cuello';
 
