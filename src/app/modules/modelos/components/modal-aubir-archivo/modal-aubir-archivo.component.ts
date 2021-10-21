@@ -31,6 +31,7 @@ export class ModalAubirArchivoComponent implements OnInit {
       institucion: ['', [Validators.required]],
       carrera: ['',Validators.required],
       materia: ['',Validators.required],
+      nivel: ['',Validators.required],
     });
 
 
