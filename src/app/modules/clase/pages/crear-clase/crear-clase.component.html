@@ -9,29 +9,9 @@
                         <div class="col-md-6">
                             <br>
                             <div class="field col-12">
-                                <span class="p-float-label">
-                                    <input id="materia" type="text" pInputText formControlName="materia"
-                                        class="inputfield w-full">
-                                    <label for="materia">Nombre de la Materia</label>
-                                </span>
-                                <div *ngIf="formDatos.get('materia').hasError('required') && formDatos.get('materia').touched"
-                                    class="text-center">
-                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
-                                </div>
-                            </div>
-                         
-                            <div class=" field col-12">
-                                <span>
-                                    <p-dropdown placeholder="Modo de clase" optionLabel="name" [showClear]="true"
-                                        [options]="clase"></p-dropdown>
-
-                                </span>
-                            </div>
-                            <div class="field col-12">
-                                <span class="p-float-label">
-                                    <input id="nivel" type="text" pInputText formControlName="nivel"
-                                        class="inputfield w-full">
-                                    <label for="nivel">Nivel académico</label>
+                                <span >
+                                    <p-dropdown [options]="niveles" class='w-100' formControlName="nivel" optionLabel="name" [showClear]="true">
+                                    </p-dropdown>
                                 </span>
                                 <div *ngIf="formDatos.get('nivel').hasError('required') && formDatos.get('nivel').touched"
                                     class="text-center">
@@ -39,11 +19,14 @@
                                 </div>
 
                             </div>
+                            <div class=" field col-12">
+                                <span>
+                                    <p-dropdown class='w-100' placeholder="Modo de clase" optionLabel="name"
+                                        [showClear]="true" [options]="clase"></p-dropdown>
 
+                                </span>
+                            </div>
 
-                        </div>
-                        <div class="col-md-6">
-                            <br>
                             <div class="field col-12">
                                 <span class="p-float-label">
                                     <input id="precio" type="text" pInputText formControlName="precio"
@@ -56,10 +39,36 @@
                                 </div>
                             </div>
 
+
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <p-dropdown [options]="materias" class='w-100' formControlName="materia"  optionLabel="name"
+                                    [filter]="true" filterBy="name" [showClear]="true" placeholder="Materia">
+                                    <ng-template pTemplate="selectedItem">
+                                        <div class="country-item country-item-value" *ngIf="formDatos.get('materia').value">
+                                            <div>{{(formDatos.get('materia').value).name}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="country-item">
+                                            <div>{{country.name}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                                </span>
+                                <div *ngIf="formDatos.get('materia').hasError('required') && formDatos.get('materia').touched"
+                                    class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
                             <div class="field col-12">
                                 <span>
-                                    <p-dropdown placeholder="Tipo de clase" optionLabel="name" [showClear]="true"
-                                        [options]="tipo"></p-dropdown>
+                                    <p-dropdown class='w-100' placeholder="Tipo de clase" optionLabel="name"
+                                        [showClear]="true" [options]="tipo"></p-dropdown>
                                 </span>
                             </div>
 

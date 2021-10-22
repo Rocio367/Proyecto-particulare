@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-md-12 text-center MT-3">
+            <h2> ¿Quieres tomar clases particulares? <span class="gratis"> Primera clase gratis</span></h2>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="./assets/img/landing.png" alt="">
+        </div>
+        <div class="col-md-6 text-center">
+            <mat-card class='mt-4'>
+                <p>Te podemos sugerir clases segun tus intereses</p>
+                <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="enviar()">
+
+                    <div class="grid container">
+
+                        <div class="field col-12">
+                            <span class="p-float-label">
+                                <p-autoComplete [multiple]="true" class='w-100' formControlName="materia" [suggestions]="filteredMateria"
+                                (completeMethod)="filterMateria($event)"  [minLength]="1"></p-autoComplete>   
+                                <label for="materia">Materias</label>
+                            </span>
+                            <div *ngIf="formDatos.get('materia').hasError('required') && formDatos.get('materia').touched"
+                                class="text-center">
+                                <small class="p-error">Este campo es <strong>requerido</strong></small>
+                            </div>
+                        </div>
+                        <div class="field col-12">
+                            <span class="p-float-label">
+                                <input id="materia" type="text" pInputText formControlName="email"
+                                    class="inputfield w-full">
+                                <label for="materia">Email</label>
+                            </span>
+                            <div *ngIf="formDatos.get('email').hasError('required') && formDatos.get('email').touched"
+                                class="text-center">
+                                <small class="p-error">Este campo es <strong>requerido</strong></small>
+                            </div>
+                            <div *ngIf="formDatos.get('email').hasError('email') && formDatos.get('email').touched"
+                                class="text-center">
+                                <small class="p-error">Este debe ser un <strong>email</strong></small>
+                            </div>
+                        </div>
+                        <div class="field col-12">
+                            <button pButton type="button" label="ENVIAR" icon="" class="p-button-lg"></button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+    <mat-card class='mt-3'>
+        <div class="row">
+
+            <div class="col-md-12 text-center">
+                <h2>¿Por qué elegirnos? </h2>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <mat-list>
+                    <mat-list-item>
+                        <div mat-line>
+                            <i class="pi pi-check-circle" style="font-size: 1.5rem; color:#23be90 !important"></i>
+
+                        </div>
+                    </mat-list-item>
+
+                </mat-list>
+
+            </div>
+        </div>
+    </mat-card>
+
+
+    <mat-card class='mt-3'>
+        <div class="row">
+
+            <div class="col-md-12 text-center">
+                <h2>Comentarios </h2>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <mat-list>
+                    <mat-list-item>
+                        <div mat-line>
+                            Comentarios
+
+                        </div>
+                    </mat-list-item>
+
+                </mat-list>
+
+            </div>
+        </div>
+    </mat-card>
+</div>

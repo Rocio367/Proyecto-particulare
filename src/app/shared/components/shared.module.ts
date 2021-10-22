@@ -12,7 +12,6 @@ import { CarrouselGeneralComponent } from './carrousel-general/carrousel-general
 import { PrimeraFotoDestacadaComponent } from './primera-foto-destacada/primera-foto-destacada.component';
 import { CarrouselImgComponent } from './carrousel-img/carrousel-img.component';
 import { PasosComponent } from './pasos/pasos.component';
-import { CalendarComponent } from './calendar/calendar.component';
 import { FormContactoComponent } from './form-contacto/form-contacto.component';
 import { ModalAnotarseComponent } from './modal-anotarse/modal-anotarse.component';
 import { CardsComunComponent } from './cards-comun/cards-comun.component';
@@ -25,7 +24,6 @@ import {FieldsetModule} from 'primeng/fieldset';
 @NgModule({
   declarations: [
     FormContactoComponent,
-    CalendarComponent,
     PasosComponent,
     CarrouselImgComponent,
     PrimeraFotoDestacadaComponent,
@@ -53,7 +51,6 @@ import {FieldsetModule} from 'primeng/fieldset';
     AngularMaterialModule],
   providers: [],
   exports: [FormContactoComponent,
-    CalendarComponent,
     PasosComponent,
     CarrouselImgComponent,
     PrimeraFotoDestacadaComponent,

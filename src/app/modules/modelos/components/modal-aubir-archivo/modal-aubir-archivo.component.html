@@ -3,33 +3,68 @@
         <div class="col-lg-12  text-center">
             <p-card class='card-container card'>
                 <h3>Nuevo Modelo</h3>
-                <form [formGroup]="formDatos" class="ui large error form">
 
+                <form [formGroup]="formDatos" class="ui large error form">
                     <span class="p-float-label w-80  mt-4">
-                        <p-autoComplete  class='w-100' formControlName="institucion" [suggestions]="filteredIntitucion"
-                        (completeMethod)="filterIntitucion($event)"  [minLength]="1"></p-autoComplete>
-                        <label for="float-input">Institución</label>
+                        <p-dropdown [options]="niveles" class='w-100' formControlName="nivel" optionLabel="name"
+                            [showClear]="true">
+                        </p-dropdown>
                     </span>
-                    
-                    <div *ngIf="formDatos.get('institucion').hasError('required') && formDatos.get('institucion').touched"
+                    <div *ngIf="formDatos.get('nivel').hasError('required') && formDatos.get('nivel').touched"
                         class="text-center">
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
 
+                    <span class="p-float-label w-80  mt-4" *ngIf='mostrarUniversidad'> <p-dropdown [options]="universidades" class='w-100' formControlName="universidad"  optionLabel="name"
+                        [filter]="true" filterBy="name" [showClear]="true" placeholder="Universidad">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="formDatos.get('universidad').value">
+                                <div>{{(formDatos.get('universidad').value).name}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.name}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    </span>
 
-                    <span class="p-float-label w-80  mt-4">
-                        <p-autoComplete  class='w-100' formControlName="carrera" [suggestions]="filteredCarreras"
-                        (completeMethod)="filterCarrera($event)"  [minLength]="1"></p-autoComplete>
-                        <label for="float-input">Carrera</label>
+
+
+                    <span class="p-float-label w-80  mt-4" *ngIf='mostrarCarrera'>
+                        <p-dropdown [options]="carreras" class='w-100' formControlName="carrera"  optionLabel="name"
+                        [filter]="true" filterBy="name" [showClear]="true" placeholder="Carrera">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="formDatos.get('carrera').value">
+                                <div>{{(formDatos.get('carrera').value).name}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.name}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
                     </span>
                     <div *ngIf="formDatos.get('carrera').hasError('required') && formDatos.get('carrera').touched"
                         class="text-center">
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
                     <span class="p-float-label w-80 mt-4">
-                        <p-autoComplete  class='w-100' formControlName="materia" [suggestions]="filteredMateria"
-                        (completeMethod)="filterMateria($event)"  [minLength]="1"></p-autoComplete>               
-                                 <label for="float-input">Materia</label>
+                        <p-dropdown [options]="materias" class='w-100' formControlName="materia"  optionLabel="name"
+                            [filter]="true" filterBy="name" [showClear]="true" placeholder="Materia">
+                            <ng-template pTemplate="selectedItem">
+                                <div class="country-item country-item-value" *ngIf="formDatos.get('materia').value">
+                                    <div>{{(formDatos.get('materia').value).name}}</div>
+                                </div>
+                            </ng-template>
+                            <ng-template let-country pTemplate="item">
+                                <div class="country-item">
+                                    <div>{{country.name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
                     </span>
 
                     <div *ngIf="formDatos.get('materia').hasError('required') && formDatos.get('materia').touched"
@@ -48,8 +83,7 @@
                         </p-fileUpload>
                     </div>
                 </form>
-                <button pButton class='mt-2' [disabled]='!uploadedFiles'
-                    (click)='confirmar()'>Confirmar</button>
+                <button pButton class='mt-2' [disabled]='!uploadedFiles' (click)='confirmar()'>Confirmar</button>
             </p-card>
         </div>
     </div>
