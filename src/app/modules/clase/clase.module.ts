@@ -24,7 +24,6 @@ import {OrderListModule} from 'primeng/orderlist';
 import {GalleriaModule} from 'primeng/galleria';
 import {FileUploadModule} from 'primeng/fileupload';
 import {ToastModule} from 'primeng/toast';
-
 import { CalendarDetalleClaseParticularComponent } from './components/calendar-detalle-clase-particular/calendar-detalle-clase-particular.component';
 import { DetalleClaseParticularComponent } from './pages/detalle-clase-particular/detalle-clase-particular.component';
 import { EditarClaseParticularComponent } from './pages/editar-clase-particular/editar-clase-particular.component';
