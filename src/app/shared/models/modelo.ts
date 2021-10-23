@@ -4,8 +4,15 @@ export interface Modelo {
     id?: number,
     institucion: string,
     carrera: string,
-    materia: string,
-    nivel: string,
+    materia: {
+        id: number,
+        nombre: string
+    },
+    nivel: {
+        id: number,
+        descripcion: string,
+        tipo: string
+    },
     archivos: Documento[],
     fecha?: Date
     estado?: string
