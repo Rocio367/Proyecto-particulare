@@ -4,7 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FileUpload } from 'primeng/fileupload';
 import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
 import { Documento } from 'src/app/shared/models/documento';
+import { Materia } from 'src/app/shared/models/materia';
 import { Modelo } from 'src/app/shared/models/modelo';
+import { Nivel } from 'src/app/shared/models/nivel';
 
 @Component({
   selector: 'app-modal-subir-archivo',
@@ -13,22 +15,9 @@ import { Modelo } from 'src/app/shared/models/modelo';
 })
 export class ModalSubirArchivoComponent implements OnInit {
   uploadedFiles: any[] = [];
-  instituciones: any[] = ['UBA','UTN','UADE'];
-  filteredIntitucion :any[] = [];
-
-  carreras: any[] = ['Psicología','Abogacia','Derecho'];
-  filteredCarreras :any[] = [];
-
-  materias: any[] = ['Física','Química','Sociologia', 'Historia de la Psicología'];
-  niveles: any[] = [{ code: '1', name: 'Primaria' }, { code: '2', name: 'Secundaria' }, { code: '3', name: 'Universitario / Terciario' }]
-  filteredMateria :any[] = [];
-  public progress: number;
+  _materias: Materia[] = [];
+  _niveles: Nivel[] = [];
   formDatos: FormGroup;
-  dataimage: any;
-  @ViewChild('fileInput') fileInput: ElementRef;
-  files = '';
-  message=false;
-
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
 
@@ -43,6 +32,24 @@ export class ModalSubirArchivoComponent implements OnInit {
       materia: ['',Validators.required],
       nivel: ['',Validators.required],
     });
+
+    this.modelosService.obtenerMaterias()
+      .subscribe(
+        (materias) => {
+          this._materias = materias;
+        }, 
+        (error) => {
+          console.log("Error obeteniendo las materias", error);
+        });
+
+    this.modelosService.obtenerNiveles()
+      .subscribe(
+        (niveles) => {
+          this._niveles = niveles;
+        },
+        (error) => {
+          console.log("Error obteniendo los niveles", error);
+        });
   }
 
   confirmar(){
@@ -125,15 +132,5 @@ export class ModalSubirArchivoComponent implements OnInit {
       }
     });
     console.log("Se elimino un modelo");
-  }
-
-  filterIntitucion(event) {
-        this.filteredIntitucion=this.instituciones.filter(d=>d.toLowerCase().includes(event.query.toLowerCase()))
-  }
-  filterCarrera(event) {
-        this.filteredCarreras=this.carreras.filter(d=>d.toLowerCase().includes(event.query.toLowerCase()))
-  }
-  filterMateria(event) {
-    this.filteredMateria=this.materias.filter(d=>d.toLowerCase().includes(event.query.toLowerCase()))
   }
 }
