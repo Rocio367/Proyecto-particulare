@@ -1,6 +1,9 @@
 //efectos
 
-  
+#card{
+    opacity: 0;
+    transform: translate(0, 0);
+}
 .fadeTop {
     opacity: 0; 
     transform: translate(0, 10vh);
@@ -20,7 +23,7 @@
   }
    
 .visible {
-    opacity: 1;
+    opacity: 1!important;
     transform: translate(0, 0);
   }
       
@@ -32,10 +35,22 @@
 -ms-transform: scale(1.1);
 transform: scale(1.1);
 }
-.flex{
-    display: flex;
-}
 
+.p-button-lg{
+    width: 70%;;
+}
+.p-button-lg2{
+    width: 25%;
+}
+.flex{
+    display: flex!important;
+}
+.p-ef-r{
+    padding: 0px 60px 0px 0px;
+}
+.p-ef-f{
+    padding: 0px 0px 0px 60px;
+}
 .gratis{
     background-color: #23be90;
     border-radius: 2px;
@@ -69,7 +84,9 @@ button{
 .mat-list-base {
     display: flex;
 }
-
+.text-right{
+    text-align: right;
+}
 .stars {
     position: absolute;
     bottom: 73%;

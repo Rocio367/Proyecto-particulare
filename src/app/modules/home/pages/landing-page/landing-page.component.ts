@@ -39,6 +39,9 @@ export class LandingPageComponent implements OnInit {
     });
     window.addEventListener('scroll', function()  {
       let elements = document.getElementsByClassName('scroll-content');
+      let element = document.getElementById('card');
+      element.classList.add('visible');
+
       let screenSize = window.innerHeight;
       
         for(var i = 0; i < elements.length; i++) {
