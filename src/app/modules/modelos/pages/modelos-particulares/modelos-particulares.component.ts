@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalAubirArchivoComponent } from '../../components/modal-aubir-archivo/modal-aubir-archivo.component';
+import { ModalSubirArchivoComponent } from '../../components/modal-subir-archivo/modal-subir-archivo.component';
 
 @Component({
   selector: 'app-modelos-particulares',
@@ -14,7 +14,7 @@ export class ModelosParticularesComponent implements OnInit {
   }
 
   subirArchivo(){
-    this.dialog.open(ModalAubirArchivoComponent, { panelClass: 'custom-dialog-container'});
+    this.dialog.open(ModalSubirArchivoComponent, { panelClass: 'custom-dialog-container'});
 
   }
 

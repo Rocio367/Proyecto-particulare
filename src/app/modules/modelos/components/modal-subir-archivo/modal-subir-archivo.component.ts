@@ -7,11 +7,11 @@ import { Documento } from 'src/app/shared/models/documento';
 import { Modelo } from 'src/app/shared/models/modelo';
 
 @Component({
-  selector: 'app-modal-aubir-archivo',
-  templateUrl: './modal-aubir-archivo.component.html',
-  styleUrls: ['./modal-aubir-archivo.component.scss']
+  selector: 'app-modal-subir-archivo',
+  templateUrl: './modal-subir-archivo.component.html',
+  styleUrls: ['./modal-subir-archivo.component.scss']
 })
-export class ModalAubirArchivoComponent implements OnInit {
+export class ModalSubirArchivoComponent implements OnInit {
   uploadedFiles: any[] = [];
   instituciones: any[] = ['UBA','UTN','UADE'];
   filteredIntitucion :any[] = [];
