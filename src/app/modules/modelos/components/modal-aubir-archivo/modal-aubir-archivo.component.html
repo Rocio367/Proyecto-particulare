@@ -43,13 +43,11 @@
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
                     <div class='w-80 mt-3'>
-                        <p-fileUpload class='mt-4' name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
-                            multiple="multiple" accept="image/*">
-                            <ng-template pTemplate="content">
-                                <ul *ngIf="uploadedFiles.length">
-                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                                </ul>
-                            </ng-template>
+                        <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
+                            (onSelect)="seleccionarModelo($event)"
+                            (onClear)="cancelarSeleccionDeModelos()"
+                            (onRemove)="borrarModelo($event)"
+                            multiple="multiple" accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
                         </p-fileUpload>
                     </div>
                 </form>
