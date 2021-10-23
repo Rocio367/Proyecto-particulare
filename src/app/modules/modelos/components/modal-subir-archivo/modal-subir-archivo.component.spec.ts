@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { ModalAubirArchivoComponent } from './modal-aubir-archivo.component';
+import { ModalAubirArchivoComponent } from './modal-subir-archivo.component';
 
 describe('ModalAubirArchivoComponent', () => {
   let component: ModalAubirArchivoComponent;
