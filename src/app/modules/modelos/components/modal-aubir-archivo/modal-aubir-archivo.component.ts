@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FileUpload } from 'primeng/fileupload';
 import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
 import { Documento } from 'src/app/shared/models/documento';
 import { Modelo } from 'src/app/shared/models/modelo';
@@ -26,6 +27,9 @@ export class ModalAubirArchivoComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
   files = '';
   message=false;
+
+  @ViewChild(FileUpload)
+  private fileUploadComponent: FileUpload;
 
   constructor(private form: FormBuilder,public snackBar: MatSnackBar, private modelosService: ModelosService) {
 
@@ -67,6 +71,8 @@ export class ModalAubirArchivoComponent implements OnInit {
                     verticalPosition: "top",
                     panelClass: ['green-snackbar']
                   });
+                  this.formDatos.reset();
+                  this.fileUploadComponent.clear();
                 },
                 (error) => {
                   //!= 200
