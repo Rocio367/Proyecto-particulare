@@ -20,6 +20,7 @@ export class ModalSubirArchivoComponent implements OnInit {
   filteredCarreras :any[] = [];
 
   materias: any[] = ['Física','Química','Sociologia', 'Historia de la Psicología'];
+  niveles: any[] = [{ code: '1', name: 'Primaria' }, { code: '2', name: 'Secundaria' }, { code: '3', name: 'Universitario / Terciario' }]
   filteredMateria :any[] = [];
   public progress: number;
   formDatos: FormGroup;

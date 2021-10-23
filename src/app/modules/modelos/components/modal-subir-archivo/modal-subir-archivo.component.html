@@ -6,8 +6,7 @@
 
                 <form [formGroup]="formDatos" class="ui large error form">
                     <span class="p-float-label w-80  mt-4">
-                        <p-dropdown [options]="niveles" class='w-100' formControlName="nivel" optionLabel="name"
-                            [showClear]="true">
+                        <p-dropdown [options]="niveles" class='w-100' formControlName="nivel" optionLabel="name">
                         </p-dropdown>
                     </span>
                     <div *ngIf="formDatos.get('nivel').hasError('required') && formDatos.get('nivel').touched"
