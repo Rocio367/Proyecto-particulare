@@ -12,7 +12,7 @@ import { ModalNuevoTemaComponent } from '../../components/modal-nuevo-tema/modal
 })
 export class TemasForoComponent implements OnInit {
   selectedEstado:string;
-  estados=[{name:'Que sigo',code:'1'},{name:'Creados por mi',code:'2'}]
+  estados=[{name:'Que sigo',code:'1'},{name:'Creados por mí',code:'2'}]
 
   selectedOrder:string;
   orden=[{name:'Más recientes',code:'1'},{name:'Más antiguos',code:'2'},{name:'Con más likes',code:'3'}]
@@ -22,8 +22,8 @@ export class TemasForoComponent implements OnInit {
     let t2=new Tema();
     t1.titulo='Matemáticas - Problemas de logaritmos';
     t2.titulo='Diseño web - Teoría del color';
-    t1.descripcion='Este es un tema para aclarar dudas sobre problemas de logaritmos para un nivel univercitario '
-    t2.descripcion='Este es un tema para profundizar en la teoria del color orientado a un ambito de diseño en la web '
+    t1.descripcion='Este es un tema para aclarar dudas sobre problemas de logaritmos para un nivel universitario '
+    t2.descripcion='Este es un tema para profundizar en la teoría del color orientado a un ámbito de diseño en la web '
     t1.seguidores=30;
     t2.seguidores=60;
     t1.fecha=new Date();

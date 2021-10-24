@@ -9,6 +9,7 @@ import { GeneralService } from 'src/app/core/services/general/general.service';
 })
 export class FooterComponent implements OnInit {
   menuItem:any;
+  lansdingPage=false;
   constructor(private general:GeneralService) {
     this.general.getItemsFooter('es').subscribe(footer=>{
       this.menuItem=footer.data[0].menu[0].menuItem;
@@ -16,5 +17,10 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(window.location.href.includes('/landing-page')){
+      this.lansdingPage=true;
+    }else{
+      this.lansdingPage=false;
+    }
   }
 }

@@ -22,11 +22,13 @@ import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import { CardDescuentosComponent } from './components/card-descuentos/card-descuentos.component';
 import {CardModule} from 'primeng/card';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import {DividerModule} from 'primeng/divider';
 
 
 @NgModule({
-  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent, CardsProfesorComponent,PrimerosPasosComponent, CardDescuentosComponent,],
-  imports:[CardModule,InputTextModule,ButtonModule,AutoCompleteModule,SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
+  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent, CardsProfesorComponent,PrimerosPasosComponent, CardDescuentosComponent, LandingPageComponent,],
+  imports:[DividerModule,CardModule,InputTextModule,ButtonModule,AutoCompleteModule,SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 

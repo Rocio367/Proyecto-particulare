@@ -54,7 +54,6 @@
     "ng2-file-upload": "^1.4.0",
     "ngx-cookie-service": "^12.0.3",
     "ngx-google-places-autocomplete": "^2.0.5",
-    "node-sass": "^4.0.0",
     "npm": "^7.24.1",
     "pdf-creator-node": "^2.2.2",
     "pdfmake": "^0.1.71",

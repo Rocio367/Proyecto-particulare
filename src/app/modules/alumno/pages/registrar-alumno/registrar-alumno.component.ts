@@ -23,7 +23,7 @@ export class RegistrarAlumnoComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
-  imagenDefault = "../../../../../assets/img/IMG-20211012-WA0031.jpg";
+  imagenDefault = "../../../../../assets/img/default-user.png";
 
   constructor(private form: FormBuilder,private _snackBar: MatSnackBar, private router: Router ) {}
 
@@ -50,7 +50,13 @@ export class RegistrarAlumnoComponent implements OnInit {
 
   registrarAlumno(){
     if(this.formDatos.valid) {
-      this._snackBar.open('Perfil creado correctamente', 'x');
+ 
+      this._snackBar.open("Perfil creado correctamente", "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
       this.router.navigate(['/perfil-alumno']);
       return true;
     } else {

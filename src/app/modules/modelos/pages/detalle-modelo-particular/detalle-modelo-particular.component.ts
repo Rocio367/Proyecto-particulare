@@ -16,7 +16,7 @@ import { ModalPostulacionModelosComponent } from '../../components/modal-postula
 })
 export class DetalleModeloParticularComponent implements OnInit {
   gallery: imgGallery[] = [];
-  resoluciones: any[] = [{nombre:'resolucion',doc:'https://2.bp.blogspot.com/-9jVR3GjWcn8/UZxBIaDMe7I/AAAAAAAAFuk/62w7V-Xo6Jg/s1600/GEOMETRIA+PLANA+Y+DEL+ESPACIO+PROBLEMAS+RESUELTOS+TIPO+EXAMEN+DE+ADMISION+UNI+(4).gif'}];
+  resoluciones: any[] = [{nombre:'Resolución',doc:'https://2.bp.blogspot.com/-9jVR3GjWcn8/UZxBIaDMe7I/AAAAAAAAFuk/62w7V-Xo6Jg/s1600/GEOMETRIA+PLANA+Y+DEL+ESPACIO+PROBLEMAS+RESUELTOS+TIPO+EXAMEN+DE+ADMISION+UNI+(4).gif'}];
   archivo = new Archivo;
   public progress: number;
   archivoForm: FormGroup;
@@ -40,16 +40,14 @@ export class DetalleModeloParticularComponent implements OnInit {
     
   
 
-        this.archivo.archivos = ['https://cdn-v1.udocz-assets.com/uploads/book/cover/68845/examen_geometria_1_instancia_con_respuesta_final.jpg',
-        'https://cdn-v1.udocz-assets.com/uploads/book/cover/68843/examen_geometria_2_instancia_final.jpg',
-        'https://cdn-v1.udocz-assets.com/uploads/book/cover/68842/examen_geometria_final_1_instancia_con_respuesta.jpg']
-      this.archivo.nombre = 'Examen de geometria '
-      this.archivo.carrera = 'Tecnicaura en Desarrollo Web '
-      this.archivo.institucion = 'UNLAM '
-      this.archivo.materia = 'Geometria '
-      this.archivo.nivel = 'Terciario '
-      this.archivo.fecha = new Date;
-      this.archivo.seguidores = 40;
+        this.archivo.archivos = ['https://www.altillo.com/examenes/uba/farmaciaybioquim/fisicoquimica/fisicoquimica2001final/fisico.gif']
+        this.archivo.nombre = '1° Examen de Fisicoquímica '
+        this.archivo.carrera = 'Ciencias Biologicas '
+        this.archivo.institucion = 'UBA '
+        this.archivo.materia = 'Fisicoquímica '
+        this.archivo.nivel = 'Universitario '
+        this.archivo.fecha = new Date;
+        this.archivo.seguidores = 40;
 
   
   }
@@ -94,20 +92,14 @@ export class DetalleModeloParticularComponent implements OnInit {
       'success'
     )
   }
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 6000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      panelClass: ['red-snackbar'],
-    });
-  }
+ 
 
   enviar(){
-    Swal.fire(
-      'La resolucion fue enviada con exito',
-      '',
-      'success'
-    )
+    this.snackBar.open('La resolucion fue enviada con exito', "", {
+      duration: 1500,
+      horizontalPosition: "end",
+      verticalPosition: "top",
+      panelClass: ['green-snackbar']
+    });
   }
 }

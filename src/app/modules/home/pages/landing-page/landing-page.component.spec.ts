@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditarClaseComponent } from './editar-clase.component';
+import { LandingPageComponent } from './landing-page.component';
 
-describe('EditarClaseComponent', () => {
-  let component: EditarClaseComponent;
-  let fixture: ComponentFixture<EditarClaseComponent>;
+describe('LandingPageComponent', () => {
+  let component: LandingPageComponent;
+  let fixture: ComponentFixture<LandingPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditarClaseComponent ]
+      declarations: [ LandingPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditarClaseComponent);
+    fixture = TestBed.createComponent(LandingPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

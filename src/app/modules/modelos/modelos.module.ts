@@ -5,7 +5,7 @@ import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-m
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { ModelosParticularesComponent } from './pages/modelos-particulares/modelos-particulares.component';
 import { ModelosAlumnoComponent } from './pages/modelos-alumno/modelos-alumno.component';
-import { ModalAubirArchivoComponent } from './components/modal-aubir-archivo/modal-aubir-archivo.component';
+import { ModalSubirArchivoComponent } from './components/modal-subir-archivo/modal-subir-archivo.component';
 import { BuscadorDeArchivosComponent } from './components/buscador-de-archivos/buscador-de-archivos.component';
 import { MisModelosAlumnoComponent } from './components/mis-modelos-alumno/mis-modelos-alumno.component';
 import { DetalleModeloAlumnoComponent } from './pages/detalle-modelo-alumno/detalle-modelo-alumno.component';
@@ -27,16 +27,12 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CardModule} from 'primeng/card';
 import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
-
-
-
-
-
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 
 @NgModule({
-  declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalAubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent],
-  imports:[DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,CardModule,InputTextModule,InputTextareaModule,ToastModule,FileUploadModule,ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalSubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent],
+  imports:[AutoCompleteModule,DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,CardModule,InputTextModule,InputTextareaModule,ToastModule,FileUploadModule,ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })

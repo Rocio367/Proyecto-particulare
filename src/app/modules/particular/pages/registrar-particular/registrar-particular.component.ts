@@ -24,7 +24,7 @@ export class RegistrarParticularComponent implements OnInit {
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
-  imagenDefault = "../../../../../assets/img/IMG-20211012-WA0030.jpg";
+  imagenDefault = "../../../../../assets/img/default-user.png";
 
   constructor(private _snackBar:MatSnackBar,private form: FormBuilder, private router: Router) { }
 
@@ -40,10 +40,10 @@ export class RegistrarParticularComponent implements OnInit {
     );
 
     //Datos mockeados para video
-    this.formDatos.controls['nombre'].setValue('Sergio');
-    this.formDatos.controls['apellido'].setValue('Bonavento');
+    this.formDatos.controls['nombre'].setValue('Mario');
+    this.formDatos.controls['apellido'].setValue('Perez');
     this.formDatos.controls['telefono'].setValue('1155778956');
-    this.formDatos.controls['email'].setValue('sergio.bonavento@gmail.com');
+    this.formDatos.controls['email'].setValue('mario@gmail.com');
     this.formDatos.controls['contrasenia'].setValue('12345');
     this.formDatos.controls['repetirContrasenia'].setValue('12345');
     this.formDatos.controls['fechaNacimiento'].setValue(new Date(1989, 1, 20));
@@ -51,7 +51,12 @@ export class RegistrarParticularComponent implements OnInit {
   }
   registrarParticular(){
     if(this.formDatos.valid) {
-      this._snackBar.open('Perfil creado correctamente', 'x');
+      this._snackBar.open('Perfil creado correctamente',"", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
       this.router.navigate(['/perfil-particular',1]);
       return true;
     } else {

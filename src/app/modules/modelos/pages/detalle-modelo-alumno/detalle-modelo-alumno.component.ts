@@ -26,14 +26,12 @@ export class DetalleModeloAlumnoComponent implements OnInit {
         this.id = params.q
       });
 
-    this.archivo.archivos = ['https://cdn-v1.udocz-assets.com/uploads/book/cover/68845/examen_geometria_1_instancia_con_respuesta_final.jpg',
-      'https://cdn-v1.udocz-assets.com/uploads/book/cover/68843/examen_geometria_2_instancia_final.jpg',
-      'https://cdn-v1.udocz-assets.com/uploads/book/cover/68842/examen_geometria_final_1_instancia_con_respuesta.jpg']
-    this.archivo.nombre = 'Examen de geometria '
-    this.archivo.carrera = 'Tecnicaura en Desarrollo Web '
-    this.archivo.institucion = 'UNLAM '
-    this.archivo.materia = 'Geometria '
-    this.archivo.nivel = 'Terciario '
+    this.archivo.archivos = ['https://static.filadd.com/files/f%2350479/html/external_resources/bg1.png']
+    this.archivo.nombre = 'Historia de la Psicología '
+    this.archivo.carrera = 'Licenciatura en Psicología '
+    this.archivo.institucion = 'UBA '
+    this.archivo.materia = 'Psicología '
+    this.archivo.nivel = 'Universitario '
     this.archivo.fecha = new Date;
     this.archivo.seguidores = 40;
     this.archivo.profesores = [
@@ -47,13 +45,13 @@ export class DetalleModeloAlumnoComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.id == 1) {
-      this.archivo.estado = 'solicitar';
+      this.archivo.estado = 'Solicitar';
     } else
       if (this.id == 2) {
-        this.archivo.estado = 'pendiente';
+        this.archivo.estado = 'Pendiente';
       } else
         if (this.id == 3) {
-          this.archivo.estado = 'resuelto';
+          this.archivo.estado = 'Resuelto';
         }
   }
   open(n: string) {

@@ -22,7 +22,12 @@ export class ModalReporteComponent implements OnInit {
   confirmar() {
     
     if(this.formDatos.valid) {
-      this._snackBar.open('El reporte fue enviado correctamente','x')
+      this._snackBar.open("El reporte fue enviado correctamente", "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
       return true;
     } else {
       this.formDatos.markAllAsTouched();

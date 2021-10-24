@@ -15,10 +15,11 @@ import {DropdownModule} from 'primeng/dropdown';
 import {DataViewModule} from 'primeng/dataview';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 @NgModule({
   declarations:[ForoComponent, TemasForoComponent, FiltrosComponent, ModalNuevoTemaComponent, FiltrosTemaComponent, ModalReporteComponent],
-  imports:[ConfirmDialogModule,InputTextareaModule,DataViewModule,CardModule,DropdownModule, InputTextModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[AutoCompleteModule,ConfirmDialogModule,InputTextareaModule,DataViewModule,CardModule,DropdownModule, InputTextModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })

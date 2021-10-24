@@ -11,7 +11,7 @@ import { Patters } from 'src/app/shared/models/patters';
   styleUrls: ['./perfil-particular.component.scss']
 })
 export class PerfilParticularComponent implements OnInit {
-  datosAcademicos:any[]=[{titulo:'Ingenieria en infromatica',desde:'2015',hasta:'2018',doc:'https://image.slidesharecdn.com/certificadoparticipantes-140819025230-phpapp01/95/certificado-participantes-1-638.jpg?cb=1408416938'}]
+  datosAcademicos:any[]=[{titulo:'Ingeniería en Informática',desde:'2015',hasta:'2018',doc:'https://image.slidesharecdn.com/certificadoparticipantes-140819025230-phpapp01/95/certificado-participantes-1-638.jpg?cb=1408416938'}]
   clases: any[]
   open=false;
   openTipo='';
@@ -26,9 +26,9 @@ export class PerfilParticularComponent implements OnInit {
   ngOnInit(): void {
 
     this.clases = [
-      { id:1,materia: 'Ingles basico', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
-      {id:2, materia: 'Ingles Avanzado', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
-      {id:3, materia: 'Programacion OPP', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
+      { id:1,materia: 'Inglés básico', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
+      {id:2, materia: 'Inglés Avanzado', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
+      {id:3, materia: 'Programación OPP', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
      
     ];
 
@@ -42,7 +42,12 @@ export class PerfilParticularComponent implements OnInit {
     this.open=true;
     this.openTipo;
     if(this.formDatos.valid) {
-      this.snackBar.open('El dato academico fue '+this.openTipo+' correctamente', 'x')
+      this.snackBar.open('El dato academico fue '+this.openTipo+' correctamente',"", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
     } else {
       this.formDatos.markAllAsTouched();
     }
