@@ -59,11 +59,7 @@ export class BuscadorDeArchivosParticularComponent implements OnInit {
   
  verDetalle(l){  
     let id=l.id;
-    this.router.navigate(['detalle-modelo-alumno', {  q: id  }])
-  }
-
-  like(modelo: Modelo) {
-    
+    this.router.navigate(['detalle-modelo-particular', {  q: id  }])
   }
 
 }

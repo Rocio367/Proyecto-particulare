@@ -61,9 +61,4 @@ export class BuscadorDeArchivosComponent implements OnInit {
     let id=l.id;
     this.router.navigate(['detalle-modelo-alumno', {  q: id  }])
   }
-
-  like(modelo: Modelo) {
-    
-  }
-
 }
