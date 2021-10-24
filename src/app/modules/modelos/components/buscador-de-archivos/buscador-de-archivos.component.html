@@ -3,41 +3,29 @@
         [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
         <ng-template pTemplate="header">
             <div class="text-center">
-
                 <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
                     <i class="pi pi-search"></i>
                     <input  class='w-100' type="search" pInputText placeholder="Buscar por nombre, materia, carrera o institución..."
                         (input)="dv.filter($event.target.value)">
                 </span>
-
             </div>
             <div class=" text-center mt-3">
-
                 <span class='m-3 filters'>
                     <p-dropdown  placeholder="Filtrar por estado "
                     optionLabel="name" [showClear]="true" [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
-
                 </span>
                 <span class='m-3 filters'>
                     <p-dropdown  placeholder="Ordenar "
                     optionLabel="name" [showClear]="true"  [options]="orden" [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
-
                 </span>
             </div>
         </ng-template>
-
-        <ng-template let-product pTemplate="gridItem">
-            
+        <ng-template let-product pTemplate="gridItem">            
             <div class="p-col-12 p-md-4">
                 <div class="product-grid-item card card-interna">
                     <div class="product-grid-item-top">
-
                         <div class='categoria background-a'> <i class="pi pi-tag product-category-icon"></i>
                             {{product.estado}}</div>
-
-
-
-
                     </div>
                     <div class="product-grid-item-content">
                         <img [src]="product.archivos[0]">
@@ -61,9 +49,6 @@
                             <i [ngClass]='(product.like)? "like-active" : "like" ' class="pi pi-bookmark fs-21"
                                 (click)="like(product)"></i> 
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
