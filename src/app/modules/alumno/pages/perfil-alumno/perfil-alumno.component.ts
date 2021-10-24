@@ -51,11 +51,6 @@ export class PerfilAlumnoComponent implements OnInit {
       { titulo: 'Primer clase GRATIS', subtitulo: 'Descuentos', contenido: 'Podes probar nuestros servicios gratuitamente la primera vez.'}
     ];
 
-    this.clases = [
-      { nombre: 'Clase 1', profesor: 'Mario', fecha: new Date(2021, 9, 10), estado: 'Finalizada', cantidadDeAlumnos: 0},
-      { nombre: 'Clase 2', profesor: 'Fiorella', fecha: new Date(2021, 9, 10), estado: 'Finalizada', cantidadDeAlumnos: 0},
-      { nombre: 'Clase 3', profesor: 'Rocío ', fecha: new Date(2021, 9, 10), estado: 'Ausente', cantidadDeAlumnos: 0},
-      { nombre: 'Clase 4', profesor: 'Lucas ', fecha: new Date(2021, 9, 10), estado: 'Pendiente', cantidadDeAlumnos: 0},
-    ];
+    
   }
 }
