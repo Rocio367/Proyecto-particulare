@@ -27,6 +27,7 @@ export class ModalSubirArchivoComponent implements OnInit {
 
   ngOnInit(): void {
     this.formDatos = this.form.group({
+      nombre: ['', [Validators.required]],
       institucion: ['', [Validators.required]],
       carrera: ['',Validators.required],
       materia: ['',Validators.required],
@@ -61,6 +62,7 @@ export class ModalSubirArchivoComponent implements OnInit {
       this.cargarArchivos(this.uploadedFiles)
         .then((archivos) => {
             modelo = {
+              nombre: this.formDatos.controls["nombre"].value,
               institucion: this.formDatos.controls["institucion"].value,
               materia: this.formDatos.controls["materia"].value,
               carrera: this.formDatos.controls["carrera"].value,
