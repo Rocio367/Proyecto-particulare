@@ -11,6 +11,7 @@ import { Modelo } from 'src/app/shared/models/modelo';
   templateUrl: './mis-modelos-alumno.component.html',
   styleUrls: ['./mis-modelos-alumno.component.scss']
 })
+
 export class MisModelosAlumnoComponent implements OnInit {
 
   sortOptions: SelectItem[];
