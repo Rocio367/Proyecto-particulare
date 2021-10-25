@@ -72,7 +72,7 @@ registrarClase(){
     this.claseService.subirClase(clase)
               .subscribe(
                 () => {
-                  this.snackBar.open('El modelo fue cargado correctamente', "", {
+                  this.snackBar.open('La clase fue cargada correctamente', "", {
                     duration: 1500,
                     horizontalPosition: "end",
                     verticalPosition: "top",

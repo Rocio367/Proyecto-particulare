@@ -13,7 +13,7 @@ export class ClaseService {
   constructor(private http: HttpClient) {}
 
   subirClase(clase: Clase): Observable<void> {
-    return this.http.post<void>(`${environment.backUrl}/v1/clase`, clase);
+    return this.http.post<void>(`${environment.backUrl}/v1/clases`, clase);
   }
 
   obtenerMaterias(): Observable<Materia[]> {
