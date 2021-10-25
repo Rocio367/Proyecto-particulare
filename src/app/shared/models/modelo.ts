@@ -2,6 +2,7 @@ import { Documento } from "./documento";
 
 export interface Modelo {
     id?: number,
+    nombre: string,
     institucion: string,
     carrera: string,
     materia: {

@@ -1,9 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Archivo } from 'src/app/shared/models/archivo';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 import Swal from 'sweetalert2';
@@ -12,7 +11,8 @@ import { ModalPostulacionModelosComponent } from '../../components/modal-postula
 @Component({
   selector: 'app-detalle-modelo-particular',
   templateUrl: './detalle-modelo-particular.component.html',
-  styleUrls: ['./detalle-modelo-particular.component.scss']
+  styleUrls: ['./detalle-modelo-particular.component.scss'],
+  providers: [DialogService]
 })
 export class DetalleModeloParticularComponent implements OnInit {
   gallery: imgGallery[] = [];
@@ -31,14 +31,12 @@ export class DetalleModeloParticularComponent implements OnInit {
   comentario:string;
   uploadedFiles: any[] = [];
 
-  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private router: ActivatedRoute) {
+  constructor(public snackBar: MatSnackBar,private router: ActivatedRoute, public dialogService: DialogService) {
       this.router
         .params
         .subscribe(params => {
           this.id = params.q;
         });
-    
-  
 
         this.archivo.archivos = ['https://www.altillo.com/examenes/uba/farmaciaybioquim/fisicoquimica/fisicoquimica2001final/fisico.gif']
         this.archivo.nombre = '1° Examen de Fisicoquímica '
@@ -81,7 +79,11 @@ export class DetalleModeloParticularComponent implements OnInit {
   //  this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
   postularme(){
-    this.dialog.open(ModalPostulacionModelosComponent, { panelClass: 'custom-dialog-container'});
+    this.dialogService.open(ModalPostulacionModelosComponent, {
+      data: {
+        idModelo: this.id
+      },
+      header: 'Postularme par resolver ' + this.archivo.nombre});
   }
  
 
