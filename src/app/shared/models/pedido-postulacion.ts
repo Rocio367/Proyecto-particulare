@@ -1,6 +1,5 @@
-export interface PedidoPostulacion {
-    idModelo: Number,
+export interface OfertaDeResolucion {
     costo: Number,
-    tipo: string,
-    demoraEnDias: number
+    tipoResolucion: number,
+    tipoDeDemora: number
 }
