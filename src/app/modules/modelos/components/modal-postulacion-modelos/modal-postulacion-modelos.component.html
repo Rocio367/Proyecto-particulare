@@ -1,45 +1,41 @@
-<div mat-dialog-content>
-    <div class="">
-        <div class="modal-header">
-            <div type="button" class="close" mat-dialog-close aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </div>
-        </div>
-        <div class="modal-body text-center">
-
-            <div class="p-field-checkbox">
-                <p-checkbox [(ngModel)]="soloResolucion" binary="true" inputId="binary"></p-checkbox>
-                <label for="binary">Solo resolver y mandar
-                    respuesta</label>
-            </div>
-            <div>
-                <span class="p-float-label w-80  mt-4">
-                    <input id="float-input"  class='w-100' type="text" pInputText> 
-                    <label for="float-input">Costo</label>
-                </span>
-
-                <span class="p-float-label w-80  mt-4">
-                    <input id="float-input"  class='w-100' type="text" pInputText> 
-                    <label for="float-input">Demora en días</label>
-                </span>
-            </div>
-
-            <br>
-            <div class="p-field-checkbox">
-                <p-checkbox [(ngModel)]="masExplicacion" binary="true" inputId="binary"></p-checkbox>
-                <label for="binary">Resolución y explicación</label>
-            </div>
-
-            <div >
-                <span class="p-float-label w-80  mt-4">
-                    <input id="float-input"  class='w-100' type="text" pInputText> 
-                    <label for="float-input">Costo</label>
-                </span>
-            </div>
-            <div>
-                <button mat-button color='warn' class='mt-5' (click)='confirmar()'>Confirmar</button>
-            </div>
-
+<div class="container container-color pb-5 pt-5" style="min-height: 45vh;width: 80%;">
+    <div class="row">
+        <div class="col-lg-12  text-center">
+            <p-card class='card-container card'>
+                <form [formGroup]="formularioDePostulacion" class="ui large error form">
+                    <div class="field p-float-label max-w-full">
+                        <p-dropdown
+                            id="tipoDeResolucion"
+                            [options]="tiposResolucion"
+                            [autoDisplayFirst]="false"
+                            formControlName="tipoDeResolucion"
+                            class='w-100'
+                            optionLabel="descripcion"
+                            optionValue="id">
+                        </p-dropdown>
+                        <label for="tipoResolucion">Tipo de resolución</label>
+                    </div>
+                    <div class="field p-float-label max-w-full">
+                        <p-dropdown
+                            id="tipos"
+                            [options]="tiposDeDemoras"
+                            [autoDisplayFirst]="false"
+                            formControlName="tipoDeDemora"
+                            class='w-100'
+                            optionLabel="descripcion"
+                            optionValue="id">
+                        </p-dropdown>
+                        <label for="tipos">Demora</label>
+                    </div>
+                    <div class="field p-float-label max-w-full">
+                        <span class="p-float-label w-80  mt-4">
+                            <input id="costo" type="text" class='w-100' pInputText formControlName="costo">
+                            <label for="costo">Costo</label>
+                        </span>
+                    </div>
+                </form>
+                <button pButton class='mt-2' (click)='confirmar()'>Confirmar</button>
+            </p-card>
         </div>
     </div>
 </div>
