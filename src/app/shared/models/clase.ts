@@ -10,7 +10,7 @@ export interface Clase {
         nombre: string
     },
     modo: string
-    tipo: string
+    metodo: string
     precio: number
     descripcion: string
     fecha?: Date

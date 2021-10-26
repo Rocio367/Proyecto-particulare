@@ -20,7 +20,7 @@
                     formControlName="nombre"
                     class="inputfield w-full"
                   />
-                  <label for="nombre">Nombre de la clase</label>
+                  <label for="nombre">Nombre</label>
                   </span>
                   <div
                     *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched"
@@ -50,14 +50,16 @@
                 </div>
                 <div class="field col-12">
                   <span class="p-float-label">
-                    <input
+                    <p-dropdown
                     id="modo"
-                    type="text"
-                    pInputText
+                    [autoDisplayFirst]="false"
+                    [options]="modo"
+                    placeholder="Modo"
+                    class="w-100"
                     formControlName="modo"
-                    class="inputfield w-full"
-                  />
-                  <label for="modo">Modo de clase</label>
+                    optionLabel="name"
+                    optionValue="value">
+                    </p-dropdown>
                   </span>
                   <div
                     *ngIf="formDatos.get('modo').hasError('required') && formDatos.get('modo').touched"
@@ -75,7 +77,7 @@
                       formControlName="precio"
                       class="inputfield w-full"
                     />
-                    <label for="precio">Precio de la clase</label>
+                    <label for="precio">Precio</label>
                   </span>
                   <div
                     *ngIf="
@@ -121,17 +123,19 @@
                 </div>
                 <div class="field col-12">
                   <span class="p-float-label">
-                    <input
-                    id="tipo"
-                    type="text"
-                    pInputText
-                    formControlName="tipo"
-                    class="inputfield w-full"
-                  />
-                  <label for="tipo">Tipo de clase</label>
+                    <p-dropdown
+                    id="metodo"
+                    [autoDisplayFirst]="false"
+                    [options]="metodo"
+                    placeholder="Método"
+                    class="w-100"
+                    formControlName="metodo"
+                    optionLabel="name"
+                    optionValue="value">
+                  </p-dropdown>                 
                   </span>
                   <div
-                    *ngIf="formDatos.get('tipo').hasError('required') && formDatos.get('tipo').touched"
+                    *ngIf="formDatos.get('metodo').hasError('required') && formDatos.get('metodo').touched"
                     class="text-center">
                     <small class="p-error">Este campo es <strong>requerido</strong></small>
                   </div>
