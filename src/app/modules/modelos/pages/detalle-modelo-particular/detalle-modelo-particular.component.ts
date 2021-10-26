@@ -3,10 +3,15 @@ import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
 import { Archivo } from 'src/app/shared/models/archivo';
+import { Documento } from 'src/app/shared/models/documento';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
+import { Modelo } from 'src/app/shared/models/modelo';
 import Swal from 'sweetalert2';
 import { ModalPostulacionModelosComponent } from '../../components/modal-postulacion-modelos/modal-postulacion-modelos.component';
+import * as JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-detalle-modelo-particular',
@@ -21,7 +26,7 @@ export class DetalleModeloParticularComponent implements OnInit {
   public progress: number;
   archivoForm: FormGroup;
   dataimage: any;
-  id:number ;
+  id:Number ;
   alumno={nombreCompleto:'Agustin Rios',edad:16}
   @ViewChild('fileInput') fileInput: ElementRef;
   files = '';
@@ -31,42 +36,36 @@ export class DetalleModeloParticularComponent implements OnInit {
   comentario:string;
   uploadedFiles: any[] = [];
 
-  constructor(public snackBar: MatSnackBar,private router: ActivatedRoute, public dialogService: DialogService) {
+  modelo: Modelo;
+
+  constructor(public snackBar: MatSnackBar,private router: ActivatedRoute, public dialogService: DialogService, private modeloService: ModelosService) {
       this.router
         .params
         .subscribe(params => {
           this.id = params.q;
         });
-
-        this.archivo.archivos = ['https://www.altillo.com/examenes/uba/farmaciaybioquim/fisicoquimica/fisicoquimica2001final/fisico.gif']
-        this.archivo.nombre = '1° Examen de Fisicoquímica '
-        this.archivo.carrera = 'Ciencias Biologicas '
-        this.archivo.institucion = 'UBA '
-        this.archivo.materia = 'Fisicoquímica '
-        this.archivo.nivel = 'Universitario '
-        this.archivo.fecha = new Date;
-        this.archivo.seguidores = 40;
-
-  
   }
 
   ngOnInit(): void {
-    if(this.id==1 || this.id == 2 || this.id==3){
-      this.archivo.estado='resolver';
-    }else 
-    if(this.id==4 ){
-      this.archivo.estado='pendiente';
-    } else 
-    if(this.id==5 ){
-      this.archivo.estado='resuelto';
-    }
+
+    this.modeloService.obtenerModeloPorId(this.id)
+    .subscribe(
+      (modelo) => {
+        this.modelo = modelo;
+        this.modeloService.obtenerArchivosPorModelo(modelo)
+          .subscribe(
+            (archivos) => this.modelo.archivos = archivos,
+            (error) => console.error(error)
+          )
+      },
+      (error) => console.error(error)
+    );
   }
-  open(n: number) {
-    window.open('./assets/img/' + this.gallery[n].path)
-  }
+
   openRes(n: string) {
     window.open( n)
   }
+
   contratar() {
 
   }
@@ -75,9 +74,12 @@ export class DetalleModeloParticularComponent implements OnInit {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }
-
-  //  this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
+
+  sePuedePostularse(): boolean {
+    return this.modelo.estado == "PENDIENTE";
+  }
+
   postularme(){
     this.dialogService.open(ModalPostulacionModelosComponent, {
       data: {
@@ -85,7 +87,6 @@ export class DetalleModeloParticularComponent implements OnInit {
       },
       header: 'Postularme par resolver ' + this.archivo.nombre});
   }
- 
 
   confirmar() {
     Swal.fire(
@@ -94,7 +95,6 @@ export class DetalleModeloParticularComponent implements OnInit {
       'success'
     )
   }
- 
 
   enviar(){
     this.snackBar.open('La resolucion fue enviada con exito', "", {
@@ -103,5 +103,28 @@ export class DetalleModeloParticularComponent implements OnInit {
       verticalPosition: "top",
       panelClass: ['green-snackbar']
     });
+  }
+
+  obtenerImagenEnBase64(documento: Documento) :string {
+    return `data:${documento.extension};base64,${documento.datos}`
+  }
+
+  verArchivo(documento: Documento) {
+    var imagen = new Image();
+    imagen.src = this.obtenerImagenEnBase64(documento);
+    var ventana = window.open("");
+    ventana.document.write(imagen.outerHTML);
+  }
+
+  descargarArchivos() {
+    var zip = new JSZip();
+    this.modelo.archivos.forEach((archivo: Documento, indice: number) => {
+      var extension = archivo.extension.split("/")[1];
+      zip.file("hoja" + (indice + 1) + "." + extension, archivo.datos, {base64: true});
+    });
+    zip.generateAsync({type:"blob"})
+      .then(function (content) {
+        saveAs(content, "examen.zip");
+      });
   }
 }
