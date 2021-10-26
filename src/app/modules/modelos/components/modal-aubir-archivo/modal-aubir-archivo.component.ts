@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-modal-aubir-archivo',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './modal-aubir-archivo.component.html,
+  templateUrl: './modal-aubir-archivo.component.html',
   styleUrls: ['./modal-aubir-archivo.component.scss']
 })
 export class ModalAubirArchivoComponent implements OnInit, DoCheck {

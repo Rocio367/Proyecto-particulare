@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Documento } from 'src/app/shared/models/documento';
+import { FiltrosModelo } from 'src/app/shared/models/filtrosModelos';
 import { Materia } from 'src/app/shared/models/materia';
 import { Modelo } from 'src/app/shared/models/modelo';
 import { Nivel } from 'src/app/shared/models/nivel';
@@ -31,12 +32,22 @@ export class ModelosService {
   ofertarResolucion(ofertaDeResolucion: OfertaDeResolucion, idModelo: Number): Observable<void> {
     return this.http.post<void>(`${environment.backUrl}/v1/modelos/${idModelo}/ofertasDeResoluciones`, ofertaDeResolucion);
   }
+  filtrarModelosAlumno(filtros: FiltrosModelo):  Observable<Modelo[]> {
+    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/filtrarModelosAlumno`, filtros);
+  }
 
+  filtrarModelosParticular(filtros: FiltrosModelo):  Observable<Modelo[]> {
+    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/filtrarModelosParticular`, filtros);
+  }
   // ¿Lo movemos a MateriasService?
   obtenerMaterias(): Observable<Materia[]> {
     return this.http.get<Materia[]>(`${environment.backUrl}/v1/materias`);
   }
-
+ // ¿Lo movemos a PostulacionesService?
+    obtenerPostulacionesPorModelo(id): Observable<any> {
+      console.log(`${environment.backUrl}/v1/modelos/obtenerPostulaciones/`+id)
+      return this.http.get<any>(`${environment.backUrl}/v1/modelos/obtenerPostulaciones/`+id);
+    }
   // ¿Lo movemos a NivelesServices?
   obtenerNiveles(): Observable<Nivel[]> {
     return this.http.get<Nivel[]>(`${environment.backUrl}/v1/niveles`);

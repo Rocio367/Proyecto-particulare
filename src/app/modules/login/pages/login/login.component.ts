@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const pass = this.loginForm.get('password').value;
     const user = this.loginForm.get('username').value;
-    let login = new Login(user, pass);
+    let login = new Login(user, pass,0);
     if(this.authService.loginSimulator(login)){
       localStorage.setItem('recargar_menu', JSON.stringify(true));
        this.router.navigate(['/home'])
