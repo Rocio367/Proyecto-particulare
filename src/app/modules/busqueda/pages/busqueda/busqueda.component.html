@@ -3,7 +3,7 @@
 
     <div class="col-lg-12">
       <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
-        <p-dataView #dv [value]="results" [paginator]="true" [rows]="6" filterBy="" layout="grid">
+        <p-dataView #dv [value]="clases" [paginator]="true" [rows]="6" filterBy="" layout="grid">
           <ng-template pTemplate="header">
 
             <div class=" text-center mt-3">
@@ -42,25 +42,26 @@
 
               </div>
               <div class="product-list-detail">
-                <h5 class="p-mb-2">{{item.materia}}</h5>
+                <h5 class="p-mb-2">{{item.nombre}}</h5>
                 <span><i class='pi pi-map-marker
                     '></i> {{item.ubicacion}}</span>
                 <span>{{item.descripcion}}</span>
               </div>
               <div class="product-list-action">
                 <div class='stars'>
-                  <i class="pi pi-star" [ngClass]='(item.stars >= 1)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(item.stars >= 2)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(item.stars >= 3)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(item.stars >= 4)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(item.stars >= 5)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(5 >= 1)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(5 >= 2)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(5 >= 3)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(5 >= 4)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(5 >= 5)?"amarillo":""'></i>
                   <span class='subtitle'>
-                    {{item.stars}}/ 5
+                    5/ 5
                   </span>
                 </div>
 
 
-                <span class="product-category"> {{item.type}}</span>
+                <span class="product-category"> {{item.modo}} | {{item.tipo}} </span>
+
 
 
               </div>
