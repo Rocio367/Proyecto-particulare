@@ -31,7 +31,8 @@ export class ModalSubirArchivoComponent implements OnInit {
       institucion: ['', [Validators.required]],
       carrera: ['',Validators.required],
       materia: ['',Validators.required],
-      nivel: ['',Validators.required],
+      nivel: ['',Validators.required],      
+      publico: ['', Validators.required],
     });
 
     this.modelosService.obtenerMaterias()
@@ -67,6 +68,7 @@ export class ModalSubirArchivoComponent implements OnInit {
               materia: this.formDatos.controls["materia"].value,
               carrera: this.formDatos.controls["carrera"].value,
               nivel: this.formDatos.controls["nivel"].value,
+              publico: this.formDatos.controls["publico"].value,
               archivos: archivos
             }
 

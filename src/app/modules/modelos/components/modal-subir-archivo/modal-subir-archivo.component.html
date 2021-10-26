@@ -60,6 +60,15 @@
                         class="text-center">
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
+                    <span class="w-80 mt-4 field field-checkbox">
+                        <p-checkbox binary=true
+                            value="true" 
+                            formControlName="publico" 
+                            inputId="publico">
+                        </p-checkbox>
+                        <label for="publico">Público</label>
+                    </span>
+                    <small id="publico">Si elegís la opción de público, el modelo estará visible para el resto de los usuarios de la página.</small>
                     <div class='w-80 mt-3'>
                         <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
                             (onSelect)="seleccionarModelo($event)"
