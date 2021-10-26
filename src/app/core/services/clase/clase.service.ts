@@ -13,7 +13,7 @@ export class ClaseService {
   constructor(private http: HttpClient) {}
 
   subirClase(clase: Clase): Observable<void> {
-    return this.http.post<void>(`${environment.backUrl}/v1/clases`, clase);
+    return this.http.post<void>(`${environment.backUrl}/v1/clase`, clase);
   }
 
   obtenerMaterias(): Observable<Materia[]> {
@@ -24,5 +24,7 @@ export class ClaseService {
     return this.http.get<Nivel[]>(`${environment.backUrl}/v1/niveles`);
   }
 
-
+  obtenerTodas(): Observable<Clase[]> {
+    return this.http.get<Clase[]>(`${environment.backUrl}/v1/clase`);
+  }
 }

@@ -6,6 +6,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { BusquedaService } from './../../../../core/services/busqueda/busqueda.service';
+
 
 @Component({
   selector: 'app-buscador',
@@ -17,7 +19,7 @@ export class BuscadorComponent implements OnInit {
   buscarText: string;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private busquedaService : BusquedaService) {
 
   }
   ngOnInit(): void {
