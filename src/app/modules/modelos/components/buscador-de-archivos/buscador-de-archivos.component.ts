@@ -19,11 +19,12 @@ export class BuscadorDeArchivosComponent implements OnInit {
 
   sortOrder: number;
   sortKey = 'id';
-  text: string;
-  selectedEstado: string;
-  estados = [{ name: 'Podés solicitarlo', code: '1' }, { name: 'Pendiente de respuesta', code: '2' }, { name: 'Resuelto', code: '3' }]
+  selectedEstado: any;
 
-  selectedOrder: string;
+ // estados = [{ name: 'Podés solicitarlo', code: '1' }, { name: 'Pendiente de respuesta', code: '2' }, { name: 'Resuelto', code: '3' }]
+
+  selectedOrder: any;
+  text: string;
   orden = [{ name: 'Más recientes', code: 'Asc' }, { name: 'Más antiguos', code: 'Desc' }]
   filtros = new FiltrosModelo;
   modelos: Modelo[] = [];
@@ -41,9 +42,11 @@ export class BuscadorDeArchivosComponent implements OnInit {
   }
  
   aplicar() {
-    this.filtros.text=this.text;
-    this.filtros.orden=this.selectedOrder;
-    this.filtros.estado=this.selectedEstado;
+    this.filtros.text=(this.text)?this.text: '';
+    this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : 'Asc';
+    this.filtros.idUser=Number(this.idUser);
+    this.filtros.estado=undefined;
+    console.log(this.filtros)
    if( this.filtros.text!='' || this.filtros.orden !='' || this.filtros.estado !='' ){
      this.obtenerConFiltros()
    }else{
@@ -52,11 +55,11 @@ export class BuscadorDeArchivosComponent implements OnInit {
   }
 
   limpiar() {
-    if( this.filtros.text!='' || this.filtros.orden !='' || this.filtros.estado !='' ){
-      this.obtenerConFiltros()
-    }else{
-     this.obtenerTodos()
-    }
+    this.filtros.text=null;
+    this.filtros.orden=null;
+    this.filtros.idUser=null;
+    this.obtenerConFiltros()
+   
    }
   obtenerImagenEnBase64(documento: Documento): string {
     return `data:${documento.extension};base64,${documento.datos}`
@@ -64,6 +67,7 @@ export class BuscadorDeArchivosComponent implements OnInit {
 
   obtenerTodos() {
     this.servicioDeModelos.obtenerModelos().subscribe((modelos) => {
+      this.modelos =[];
       this.modelos = modelos;
       this.modelos.forEach(modelo => {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
@@ -83,6 +87,9 @@ export class BuscadorDeArchivosComponent implements OnInit {
   }
   obtenerConFiltros() {
     this.servicioDeModelos.filtrarModelosAlumno(this.filtros).subscribe((modelos) => {
+      console.log(modelos)
+
+      this.modelos =[];
       this.modelos = modelos;
       this.modelos.forEach(modelo => {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(

@@ -35,6 +35,10 @@ export class ModelosService {
   filtrarModelosAlumno(filtros: FiltrosModelo):  Observable<Modelo[]> {
     return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/filtrarModelosAlumno`, filtros);
   }
+
+  filtrarModelosParticular(filtros: FiltrosModelo):  Observable<Modelo[]> {
+    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/filtrarModelosParticular`, filtros);
+  }
   // ¿Lo movemos a MateriasService?
   obtenerMaterias(): Observable<Materia[]> {
     return this.http.get<Materia[]>(`${environment.backUrl}/v1/materias`);

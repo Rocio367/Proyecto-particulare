@@ -15,6 +15,6 @@ export interface Modelo {
         tipo: string
     },
     archivos: Documento[],
-    fecha?: Date
+    fecha?: Date,
     estado?: string
 }
