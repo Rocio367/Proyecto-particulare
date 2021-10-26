@@ -38,24 +38,24 @@
            <mat-card class='card-interna'(click)='ver(item)' style='width: 90%;margin:10px auto;'>
             <div class="product-item">
               <div class="product-list-img">
-                <img [src]="item.foto" mat-card-avatar >
+                <img src="/assets/img/perfil.png" mat-card-avatar >
 
               </div>
               <div class="product-list-detail">
                 <h5 class="p-mb-2">{{item.nombre}}</h5>
                 <span><i class='pi pi-map-marker
-                    '></i> {{item.ubicacion}}</span>
+                    '></i> Moreno, Buenos Aires Province, Argentina</span>
                 <span>{{item.descripcion}}</span>
               </div>
               <div class="product-list-action">
                 <div class='stars'>
-                  <i class="pi pi-star" [ngClass]='(5 >= 1)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(5 >= 2)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(5 >= 3)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(5 >= 4)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(5 >= 5)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 1)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 2)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 3)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 4)?"amarillo":""'></i>
+                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 5)?"amarillo":""'></i>
                   <span class='subtitle'>
-                    5/ 5
+                    {{item.puntuacion}}/ 5
                   </span>
                 </div>
 
