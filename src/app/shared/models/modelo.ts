@@ -5,6 +5,7 @@ export interface Modelo {
     nombre: string,
     institucion: string,
     carrera: string,
+    publico: boolean,
     materia: {
         id: number,
         nombre: string
