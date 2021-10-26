@@ -18,6 +18,8 @@ export class CrearClaseComponent implements OnInit {
 
   _materias: Materia[] = [];
   _niveles: Nivel[] = [];
+  modo=[{name:'Individual',value:'INDIVIDUAL'},{name:'Grupal',value:'GRUPAL'}]
+  metodo=[{name:'Online',value:'ONLINE'},{name:'Presencial',value:'PRESENCIAL'}]
   filteredMateria: any[] = [];
   formDatos: FormGroup;
 
@@ -30,7 +32,7 @@ export class CrearClaseComponent implements OnInit {
       materia: ['', Validators.required],
       nivel: ['', Validators.required],
       modo: ['', Validators.required],
-      tipo: ['', Validators.required],
+      metodo: ['', Validators.required],
       precio: ['', Validators.required],
       descripcion: ['', Validators.required],
     });
@@ -64,7 +66,7 @@ registrarClase(){
       materia: this.formDatos.controls["materia"].value,
       nivel: this.formDatos.controls["nivel"].value,
       modo: this.formDatos.controls["modo"].value,
-      tipo: this.formDatos.controls["tipo"].value,
+      metodo: this.formDatos.controls["metodo"].value,
       precio: this.formDatos.controls["precio"].value,
       descripcion: this.formDatos.controls["descripcion"].value
     }
