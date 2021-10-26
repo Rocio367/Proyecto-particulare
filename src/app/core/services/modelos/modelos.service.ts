@@ -51,4 +51,8 @@ export class ModelosService {
   obtenerTiposDeDemora(): Observable<TipoDeDemora[]> {
     return this.http.get<TipoDeDemora[]>(`${environment.backUrl}/v1/demoras`);
   }
+
+  obtenerModeloPorId(idModelo: Number): Observable<Modelo> {
+    return this.http.get<Modelo>(`${environment.backUrl}/v1/modelos/${idModelo}`);
+  }
 }
