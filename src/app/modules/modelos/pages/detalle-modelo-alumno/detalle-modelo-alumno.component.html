@@ -4,12 +4,12 @@
         <div class="col-lg-12 text-center mt-3">
             <mat-card class='card-container  card'>
                 <div class="col-lg-12 mt-3 text-center">
-                    <h3 class=" ml-3 color-f "> Historia de la Psicología</h3>
-                    <img class='img-a img-border' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
-
+  
+                    <h3 class="color-f "> {{modelo.nombre}}</h3>
+                    <img class='img-a img-border' *ngFor="let archivo of modelo.archivos" [src]="obtenerImagenEnBase64(archivo)" (click)='verArchivo(archivo)'>
                 </div>
                 <div class="col-lg-12 mt-3 text-center">
-                    <button mat-button color='primary'>Descargar archivos</button>
+                    <button mat-button color='primary' (click)="descargarArchivos()">Descargar archivos</button>
 
                 </div>
             </mat-card>
@@ -24,32 +24,30 @@
 
                     </div>
                     <div class='col-4 desk'>
-                        <p class='color-f '>Nombre: <span class='color-d'>{{archivo.nombre}}</span></p>
-                        <p class='color-f '>Fecha: <span class='color-d'>{{archivo.fecha | date}}</span></p>
-                        <p class='color-f '>Estado: <span class='color-d'>{{archivo.estado}}</span></p>
+                        <h4 class='fs-16 mb-3'>Nombre: <span>{{modelo.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha | date}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
                     </div>
                     <div class='col-4 desk'>
-                        <p class='color-f  '>Institución: <span class='color-d'>{{archivo.institucion}}</span></p>
-                        <p class='color-f  '>Carrera: <span class='color-d'>{{archivo.carrera}}</span></p>
-
+                        <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
+                        <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
                     </div>
 
                     <div class='col-4 desk'>
-
-                        <p class='color-f  '>Materia: <span class='color-d'>{{archivo.materia}}</span></p>
-                        <p class='color-f  '>Nivel: <span class='color-d'>{{archivo.nivel}}</span></p>
+                        <h4 class='fs-16 mb-3'>Materia: <span>{{modelo.materia.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Nivel: <span>{{modelo.nivel.descripcion}}</span></h4>
                     </div>
 
                     <div class='col-12 mob'>
-                        <p class='color-f '>Nombre: <span class='color-d'>{{archivo.nombre}}</span></p>
-                        <p class='color-f '>Fecha: <span class='color-d'>{{archivo.fecha | date}}</span></p>
-                        <p class='color-f '>Estado: <span class='color-d'>{{archivo.estado}}</span></p>
+                        <h4 class='fs-16 mb-3'>Nombre: <span>{{modelo.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha | date}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
 
-                        <p class='color-f  '>Institución: <span class='color-d'>{{archivo.institucion}}</span></p>
-                        <p class='color-f  '>Carrera: <span class='color-d'>{{archivo.carrera}}</span></p>
+                        <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
+                        <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
 
-                        <p class='color-f  '>Materia: <span class='color-d'>{{archivo.materia}}</span></p>
-                        <p class='color-f  '>Nivel: <span class='color-d'>{{archivo.nivel}}</span></p>
+                        <h4 class='fs-16 mb-3'>Materia: <span>{{modelo.materia.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Nivel: <span>{{modelo.nivel.descripcion}}</span></h4>
                     </div>
                 </div>
 
@@ -68,13 +66,13 @@
                 <input type="text" value="PrimeNG" pInputText>
             </ng-template>
         </p-inplace>
-        <div class='col-lg-12 text-center mt-3' *ngIf='resoluciones && archivo.estado=="resuelto"'>
+        <div class='col-lg-12 text-center mt-3' *ngIf='resoluciones && modelo.estado=="resuelto"'>
            <mat-card class='card-container  card'>
             <h3 class="  ml-3 color-f">
                 Resoluciones:
             </h3>
 
-            <div *ngIf='resoluciones && archivo.estado=="resuelto"'>
+            <div *ngIf='resoluciones && modelo.estado=="resuelto"'>
                 <mat-card class='card-interna' *ngFor='let item of resoluciones' >
                     <div class="product-item">
                         <div class="product-list-img">
@@ -123,7 +121,7 @@
         </div>
 
         <div class='col-lg-12 text-center mt-3'
-            *ngIf='!resoluciones && archivo.estado=="resuelto" || archivo.estado=="pendiente"'>
+            *ngIf='!resoluciones && modelo.estado=="resuelto" || modelo.estado=="pendiente"'>
             <mat-card class='card-container  card'>
                 <h3 class=" ml-3 color-f">
                     Resoluciones
@@ -141,22 +139,21 @@
                         Profesores para la resolución:
                     </h3>
                 </div>
+                <div class="col-lg-12 text-center ">
+                    <p>Aún no hay postulaciones</p>
 
-                <mat-card class="card-interna" *ngFor='let item of archivo.profesores'
-                   >
+                </div>
+                <mat-card class="card-interna" *ngFor='let item of postulaciones'>
                     <div class="product-item">
                         <div class="product-list-img">
-                            <img mat-card-avatar [src]="item.foto" style=" width:100%;">
+                            <img mat-card-avatar src="../../../../../assets/img/default-user.png" style=" width:100%;">
                         </div>
                         <div class="product-list-detail">
                             <h5 class="p-mb-2 color-f">{{item.particular}}</h5>
-                            <p style='display: block;' class='color-f'>Costo de resolución : <span
-                                    class='color-d'>{{ item.costo}}</span></p>
-                            <p style='display: block;' class='color-f'> Costo explicación: <span
-                                    class='color-d'>{{ item.costo_explicacion}}</span></p>
-                            <p style='display: block;' class='color-f'>Demora: <span class='color-d'>
-                                    {{ item.demora}}</span></p>
-
+                            <h4 class='fs-16 mb-3'>Tipo: <span>{{ item.tipo.descripcion}}</span></h4>
+                            <h4 class='fs-16 mb-3'>Costo: <span>{{ item.costo}}</span></h4>
+                            <h4 class='fs-16 mb-3'>Demora: <span>{{ item.demora.descripcion}}</span></h4>
+                
                         </div>
                         <div class="product-list-action">
                             <div class='stars'>

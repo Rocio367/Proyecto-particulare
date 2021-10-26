@@ -43,7 +43,11 @@ export class ModelosService {
   obtenerMaterias(): Observable<Materia[]> {
     return this.http.get<Materia[]>(`${environment.backUrl}/v1/materias`);
   }
-
+ // ¿Lo movemos a PostulacionesService?
+    obtenerPostulacionesPorModelo(id): Observable<any> {
+      console.log(`${environment.backUrl}/v1/modelos/obtenerPostulaciones/`+id)
+      return this.http.get<any>(`${environment.backUrl}/v1/modelos/obtenerPostulaciones/`+id);
+    }
   // ¿Lo movemos a NivelesServices?
   obtenerNiveles(): Observable<Nivel[]> {
     return this.http.get<Nivel[]>(`${environment.backUrl}/v1/niveles`);
