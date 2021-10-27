@@ -17,19 +17,17 @@
               </span>
               <span class='m-3'>
                 <p-dropdown [options]="tipos" [(ngModel)]="selectedType" placeholder="Filtrar por tipo "
-                  optionLabel="name" [showClear]="true"></p-dropdown>
+                  optionLabel="name" [showClear]="true"  [(ngModel)]="metodo" ></p-dropdown>
               </span>
+           
               <span class='m-3'>   
-                <p-dropdown [options]="niveles" [(ngModel)]="selectedNiveles" placeholder="Filtrar por nivel "
-                  optionLabel="name" [showClear]="true"></p-dropdown>
-              </span>
-              <span class='m-3'>   
-                <p-calendar  placeholder="Filtrar por fecha"></p-calendar>
+                <p-calendar  placeholder="Filtrar por fecha" [(ngModel)]="fecha"></p-calendar>
 
               </span>
               <span class="p-float-label mt-5">
-                <button pButton type="submit">Buscar</button>
-            </span>
+                <button pButton  class='m-2' (click)='filtrar()' >Aplicar</button>
+
+              </span>
               
             </div>
           </ng-template>
