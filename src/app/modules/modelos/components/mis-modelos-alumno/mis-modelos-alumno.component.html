@@ -1,23 +1,32 @@
 <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
-    <p-dataView #dv [value]="modelos" [paginator]="true" [rows]="6" filterBy="nombre,materia,institucion,carrera"
-        [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+    <p-dataView #dv [value]="modelos" [paginator]="true" [rows]="8" filterBy="nombre,materia,institucion,carrera"
+       layout="grid">
         <ng-template pTemplate="header">
             <div class="text-center">
                 <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
                     <i class="pi pi-search"></i>
-                    <input class='w-100' type="search" pInputText
+                    <input class='w-100' type="search" pInputText 
                         placeholder="Buscar por nombre, materia, carrera o institución..."
-                        (input)="dv.filter($event.target.value)">
+                        [(ngModel)]="text">
+                </span>
+           
+            </div>
+            <div class=" text-center mt-3">
+                <!--<span class='m-3 filters'>
+                    <p-dropdown placeholder="Filtrar por estados " optionLabel="name" [showClear]="true" 
+                        [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
+                </span>-->
+                <span class='m-3 filters'>
+                    <p-dropdown placeholder="Ordenar " optionLabel="name" [showClear]="true"  [options]="orden" 
+                        [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
                 </span>
             </div>
             <div class=" text-center mt-3">
-                <span class='m-3 filters'>
-                    <p-dropdown placeholder="Filtrar por estados " optionLabel="name" [showClear]="true"
-                        [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
-                </span>
-                <span class='m-3 filters'>
-                    <p-dropdown placeholder="Ordenar " optionLabel="name" [showClear]="true" [options]="orden"
-                        [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
+               
+                <span>
+                    <button pButton (click)='aplicar()' class='m-2'>Aplicar</button>
+                    <button pButton (click)='limpiar()' class='m-2'>Limpiar</button>
+
                 </span>
             </div>
         </ng-template>
@@ -35,7 +44,10 @@
                             <p class='color-f mb-3'>Institución:<span>{{modelo.institucion}}</span></p>
                             <p class='color-f mb-3'>Materia:<span>{{modelo.materia.nombre}}</span></p>
                             <p class='color-f mb-3'>Nivel:<span>{{modelo.nivel.descripcion}}</span></p>
-                        </div>
+                         </div>
+                    </div>
+                    <div class="product-grid-item-bottom ">
+                        <button mat-button color='warn' (click)='verDetalle(modelo)'>Ver detalles</button>
                     </div>
                     <div class='contenedor-acctions'>
                         <div class="fecha">

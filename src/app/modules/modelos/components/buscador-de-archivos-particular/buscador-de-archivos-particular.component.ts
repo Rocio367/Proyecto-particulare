@@ -14,21 +14,21 @@ import { Modelo } from 'src/app/shared/models/modelo';
 })
 export class BuscadorDeArchivosParticularComponent implements OnInit {
 
-  archivos: Archivo[]=[];
+  
+  archivos: Archivo[] = [];
   sortOptions: SelectItem[];
-  filtros = new FiltrosModelo;
 
   sortOrder: number;
-  sortKey='id';
-  sortField: string;
-  selectedEstado:string;
-  //estados=[{name:'Podés solicitarlo',code:'1'},{name:'Pendiente de respuesta',code:'2'},{name:'Resuelto',code:'3'}]
-
-  selectedOrder:any;
-  orden = [{ name: 'Más recientes', code: 'Asc' }, { name: 'Más antiguos', code: 'Desc' }]
+  sortKey = 'id';
   text: string;
+  selectedEstado: string;
+  estados = [{ name: 'Podés solicitarlo', code: '1' }, { name: 'Pendiente de respuesta', code: '2' }, { name: 'Resuelto', code: '3' }]
 
+  selectedOrder: any;
+  orden = [{ name: 'Más recientes', code: 'Desc' }, { name: 'Más antiguos', code: 'Asc' }]
+  filtros = new FiltrosModelo;
   modelos: Modelo[] = [];
+
   idUser:string;
 
   constructor(private primengConfig: PrimeNGConfig, private router: Router, private servicioDeModelos: ModelosService) {
@@ -38,58 +38,30 @@ export class BuscadorDeArchivosParticularComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerTodos()
+    this.obtenerDatos()
   }
  
   aplicar() {
-    this.filtros.text=(this.text)?this.text: '';
-    this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : 'Asc';
-    this.filtros.idUser=Number(this.idUser);
-    this.filtros.estado=undefined;
-    console.log(this.filtros)
-   if( this.filtros.text!='' || this.filtros.orden !='' || this.filtros.estado !='' ){
-     this.obtenerConFiltros()
-   }else{
-    this.obtenerTodos()
-   }
+     this.obtenerDatos()
   }
 
   limpiar() {
-    this.filtros.text=null;
-    this.filtros.orden=null;
-    this.filtros.idUser=null;
-    this.obtenerConFiltros()
-   
+    this.text=null;
+    this.selectedOrder=null;
+    this.filtros.idUser=Number(this.idUser);
+     this.obtenerDatos()
    }
   obtenerImagenEnBase64(documento: Documento): string {
     return `data:${documento.extension};base64,${documento.datos}`
   }
 
-  obtenerTodos() {
-    this.servicioDeModelos.obtenerModelos().subscribe((modelos) => {
-      this.modelos =[];
-      this.modelos = modelos;
-      this.modelos.forEach(modelo => {
-        this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
-          (documentos) => {
-            modelo.archivos = documentos;
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-      });
-    },
-      (error) => {
-        console.error(error);
-      }
-    )
-  }
-  obtenerConFiltros() {
-    this.servicioDeModelos.filtrarModelosAlumno(this.filtros).subscribe((modelos) => {
-      console.log(modelos)
 
-      this.modelos =[];
+  obtenerDatos() {
+    this.filtros.text=(this.text)?this.text: '';
+    this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : '';
+    this.filtros.idUser=Number(this.idUser);
+    console.log(this.filtros)
+    this.servicioDeModelos.buscarModelosParticular(this.filtros).subscribe((modelos) => {
       this.modelos = modelos;
       this.modelos.forEach(modelo => {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
@@ -109,6 +81,6 @@ export class BuscadorDeArchivosParticularComponent implements OnInit {
   }
   verDetalle(l) {
     let id = l.id;
-    this.router.navigate(['detalle-modelo-particular', { q: id }])
+    this.router.navigate(['detalle-modelo-alumno', { q: id }])
   }
 }

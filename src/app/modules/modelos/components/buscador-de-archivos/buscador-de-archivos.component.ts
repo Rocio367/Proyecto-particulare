@@ -23,8 +23,8 @@ export class BuscadorDeArchivosComponent implements OnInit {
   selectedEstado: string;
   estados = [{ name: 'Podés solicitarlo', code: '1' }, { name: 'Pendiente de respuesta', code: '2' }, { name: 'Resuelto', code: '3' }]
 
-  selectedOrder: string;
-  orden = [{ name: 'Más recientes', code: 'Asc' }, { name: 'Más antiguos', code: 'Desc' }]
+  selectedOrder: any;
+  orden = [{ name: 'Más recientes', code: 'Desc' }, { name: 'Más antiguos', code: 'Asc' }]
   filtros = new FiltrosModelo;
   modelos: Modelo[] = [];
 
@@ -37,52 +37,30 @@ export class BuscadorDeArchivosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerTodos()
+    this.obtenerDatos()
   }
  
   aplicar() {
-    this.filtros.text=this.text;
-    this.filtros.orden=this.selectedOrder;
-    this.filtros.estado=this.selectedEstado;
-   if( this.filtros.text!='' || this.filtros.orden !='' || this.filtros.estado !='' ){
-     this.obtenerConFiltros()
-   }else{
-    this.obtenerTodos()
-   }
+     this.obtenerDatos()
   }
 
   limpiar() {
-    if( this.filtros.text!='' || this.filtros.orden !='' || this.filtros.estado !='' ){
-      this.obtenerConFiltros()
-    }else{
-     this.obtenerTodos()
-    }
+    this.text=null;
+    this.selectedOrder=null;
+    this.filtros.idUser=Number(this.idUser);
+     this.obtenerDatos()
    }
   obtenerImagenEnBase64(documento: Documento): string {
     return `data:${documento.extension};base64,${documento.datos}`
   }
 
-  obtenerTodos() {
-    this.servicioDeModelos.obtenerModelos().subscribe((modelos) => {
-      this.modelos = modelos;
-      this.modelos.forEach(modelo => {
-        this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
-          (documentos) => {
-            modelo.archivos = documentos;
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-      });
-    },
-      (error) => {
-        console.error(error);
-      }
-    )
-  }
-  obtenerConFiltros() {
-    this.servicioDeModelos.filtrarModelosAlumno(this.filtros).subscribe((modelos) => {
+
+  obtenerDatos() {
+    this.filtros.text=(this.text)?this.text: '';
+    this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : '';
+    this.filtros.idUser=Number(this.idUser);
+    console.log(this.filtros)
+    this.servicioDeModelos.buscarModelosAlumno(this.filtros).subscribe((modelos) => {
       this.modelos = modelos;
       this.modelos.forEach(modelo => {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(

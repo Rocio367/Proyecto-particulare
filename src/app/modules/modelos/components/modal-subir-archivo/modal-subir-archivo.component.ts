@@ -20,9 +20,10 @@ export class ModalSubirArchivoComponent implements OnInit {
   formDatos: FormGroup;
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
-
+  idUser:any;
   constructor(private form: FormBuilder,public snackBar: MatSnackBar, private modelosService: ModelosService) {
-
+    this.idUser=localStorage.getItem('idUser')
+    console.log(this.idUser)
   }
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class ModalSubirArchivoComponent implements OnInit {
       carrera: ['',Validators.required],
       materia: ['',Validators.required],
       nivel: ['',Validators.required],      
-      publico: ['', Validators.required],
+      publico: [''],
     });
 
     this.modelosService.obtenerMaterias()
@@ -55,7 +56,7 @@ export class ModalSubirArchivoComponent implements OnInit {
   }
 
   confirmar(){
-
+console.log(this.formDatos.valid)
     if(this.formDatos.valid) {
 
       let modelo: Modelo;
@@ -69,7 +70,8 @@ export class ModalSubirArchivoComponent implements OnInit {
               carrera: this.formDatos.controls["carrera"].value,
               nivel: this.formDatos.controls["nivel"].value,
               publico: this.formDatos.controls["publico"].value,
-              archivos: archivos
+              archivos: archivos,
+              usuario: Number(3)
             }
 
             console.log(modelo);

@@ -4,6 +4,7 @@ import { PrimeNGConfig, SelectItem } from 'primeng/api';
 import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
 import { Archivo } from 'src/app/shared/models/archivo';
 import { Documento } from 'src/app/shared/models/documento';
+import { FiltrosModelo } from 'src/app/shared/models/filtrosModelos';
 import { Modelo } from 'src/app/shared/models/modelo';
 
 @Component({
@@ -13,52 +14,72 @@ import { Modelo } from 'src/app/shared/models/modelo';
 })
 
 export class MisModelosParticularComponent implements OnInit {
-  archivos: Archivo[]=[];
+  archivos: Archivo[] = [];
   sortOptions: SelectItem[];
 
   sortOrder: number;
-  sortKey='id';
-  sortField: string;
-  selectedEstado:string;
-  estados=[{name:'Todos',code:''},{name:'Guardados',code:'1'},{name:'Pendiente de respuesta',code:'2'},{name:'Resuelto',code:'3'}]
+  sortKey = 'id';
+  text: string;
+  selectedEstado: string;
+  estados = [{ name: 'Podés solicitarlo', code: '1' }, { name: 'Pendiente de respuesta', code: '2' }, { name: 'Resuelto', code: '3' }]
 
-  selectedOrder:string;
-  orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}];
-
+  selectedOrder: any;
+  orden = [{ name: 'Más recientes', code: 'Desc' }, { name: 'Más antiguos', code: 'Asc' }]
+  filtros = new FiltrosModelo;
   modelos: Modelo[] = [];
-  
-  constructor(private primengConfig: PrimeNGConfig, private router: Router, private servicioDeModelos: ModelosService) {
 
+  idUser:string;
+
+  constructor(private primengConfig: PrimeNGConfig, private router: Router, private servicioDeModelos: ModelosService) {
+    this.idUser=localStorage.getItem('idUser');
+    console.log(this.idUser)
     this.primengConfig.ripple = true;
   }
 
   ngOnInit(): void {
-    this.servicioDeModelos.obtenerModelos().subscribe(
-      (modelos) => {
-          this.modelos = modelos;
-          this.modelos.forEach(modelo => {
-            this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
-              (documentos) =>{
-                modelo.archivos = documentos;
-              },
-              (error) => {
-                console.error(error);
-              }
-            );
-          });
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.obtenerDatos()
+  }
+ 
+  aplicar() {
+     this.obtenerDatos()
   }
 
-  obtenerImagenEnBase64(documento: Documento) :string {
+  limpiar() {
+    this.text=null;
+    this.selectedOrder=null;
+    this.filtros.idUser=Number(this.idUser);
+     this.obtenerDatos()
+   }
+  obtenerImagenEnBase64(documento: Documento): string {
     return `data:${documento.extension};base64,${documento.datos}`
   }
 
- verDetalle(l){  
-  let id=l.id;
-  this.router.navigate(['detalle-modelo-particular', {  q: id  }])}
-}
 
+  obtenerDatos() {
+    this.filtros.text=(this.text)?this.text: '';
+    this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : '';
+    this.filtros.idUser=Number(this.idUser);
+    console.log(this.filtros)
+    this.servicioDeModelos.buscarMisModelosParticular(this.filtros).subscribe((modelos) => {
+      this.modelos = modelos;
+      this.modelos.forEach(modelo => {
+        this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
+          (documentos) => {
+            modelo.archivos = documentos;
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      });
+    },
+      (error) => {
+        console.error(error);
+      }
+    )
+  }
+  verDetalle(l) {
+    let id = l.id;
+    this.router.navigate(['detalle-modelo-alumno', { q: id }])
+  }
+}

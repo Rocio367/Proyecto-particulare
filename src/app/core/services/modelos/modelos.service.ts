@@ -32,12 +32,19 @@ export class ModelosService {
   ofertarResolucion(ofertaDeResolucion: OfertaDeResolucion, idModelo: Number): Observable<void> {
     return this.http.post<void>(`${environment.backUrl}/v1/modelos/${idModelo}/ofertasDeResoluciones`, ofertaDeResolucion);
   }
-  filtrarModelosAlumno(filtros: FiltrosModelo):  Observable<Modelo[]> {
-    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/filtrarModelosAlumno`, filtros);
+  buscarModelosAlumno(filtros: FiltrosModelo):  Observable<Modelo[]> {
+    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/BuscarModelosAlumno`, filtros);
+  }
+  buscarMisModelosAlumno(filtros: FiltrosModelo):  Observable<Modelo[]> {
+    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/BuscarMisModelosAlumno`, filtros);
   }
 
-  filtrarModelosParticular(filtros: FiltrosModelo):  Observable<Modelo[]> {
-    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/filtrarModelosParticular`, filtros);
+  buscarModelosParticular(filtros: FiltrosModelo):  Observable<Modelo[]> {
+    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/BuscarModelosParticular`, filtros);
+  }
+
+  buscarMisModelosParticular(filtros: FiltrosModelo):  Observable<Modelo[]> {
+    return this.http.post<Modelo[]>(`${environment.backUrl}/v1/modelos/BuscarMisModelosParticular`, filtros);
   }
   // ¿Lo movemos a MateriasService?
   obtenerMaterias(): Observable<Materia[]> {

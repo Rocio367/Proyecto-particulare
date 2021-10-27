@@ -15,6 +15,7 @@ export interface Modelo {
         descripcion: string,
         tipo: string
     },
+    usuario:number;
     archivos: Documento[],
     fecha?: Date,
     estado?: string
