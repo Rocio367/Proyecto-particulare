@@ -138,10 +138,13 @@
                     <h3 class="color-f">
                         Profesores para la resolución:
                     </h3>
-                </div *ngIf='postulaciones.length = 0'>
-                    <p>Aún no hay postulaciones</p>
-
                 </div>
+
+                    <div class="col-lg-12 text-center ">
+                     <p *ngIf='postulaciones.length == 0'>Aún no hay postulaciones</p>
+                    </div>
+
+                
                 <mat-card class="card-interna" *ngFor='let item of postulaciones'>
                     <div class="product-item">
                         <div class="product-list-img">
