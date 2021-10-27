@@ -6,7 +6,6 @@
           <ng-template pTemplate="header">
             <div class=" text-center mt-3">
               <h3 class='color-f'>Filtros <i class="icofont-filter fs-21"></i></h3>
-
               <span class='m-3'>   
                 <input  ngx-google-places-autocomplete placeholder="Filtrar por ubicación..." type="text"
                 pInputText [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
@@ -16,10 +15,15 @@
 
               </span>
               <span class='m-3'>
-                <p-dropdown [options]="tipos" [(ngModel)]="selectedType" placeholder="Filtrar por tipo "
-                  optionLabel="name" [showClear]="true"  [(ngModel)]="metodo" ></p-dropdown>
+                <p-dropdown [options]="tipos" placeholder="Filtrar por tipo "
+                  optionLabel="name" [showClear]="true"  [(ngModel)]="selectedNMetodos" ></p-dropdown>
               </span>
-           
+
+              <span class='m-3'>   
+                <p-dropdown [options]="niveles" [(ngModel)]="selectedNiveles" placeholder="Filtrar por nivel "
+                  optionLabel="name" [showClear]="true"></p-dropdown>
+              </span>
+             
               <span class='m-3'>   
                 <p-calendar  placeholder="Filtrar por fecha" [(ngModel)]="fecha"></p-calendar>
 
@@ -28,7 +32,6 @@
                 <button pButton  class='m-2' (click)='filtrar()' >Aplicar</button>
 
               </span>
-              
             </div>
           </ng-template>
 
@@ -59,6 +62,7 @@
 
 
                 <span class="product-category"> {{item.modo}} | {{item.metodo}} </span>
+                <span class="product-category"> {{item.nivel.tipo}}  </span>
 
 
 

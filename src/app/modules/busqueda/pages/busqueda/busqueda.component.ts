@@ -14,7 +14,6 @@ import { R } from '@angular/cdk/keycodes';
 import { BusquedaService } from 'src/app/core/services/busqueda/busqueda.service';
 import { Nivel } from 'src/app/shared/models/nivel';
 
-
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
@@ -41,19 +40,20 @@ export class BusquedaComponent implements OnInit {
   minDate= new Date;
   selectedMateria:any;
   selectedType:any;
-  selectedNiveles:any;
+  selectedNiveles: any;
+  selectedNMetodos: any;
   selectedValues: string[] = [];
-  metodo: string;
 
 
   
   tipos:any[]=[{code:'ONLINE',name:'Online'},{code:'PRESENCIAL',name:'Me puedo acercar'}]
   materias:any[]=[{code:'1',name:'materia 1'},{code:'2',name:'Materia 2'}]
-  niveles: Nivel[] = [];
+  niveles:any[]=[{code:'1',name:'Primaria'},{code:'2',name:'Secundaria'},{code:'2',name:'Universitario / Terciario'}]  
   constructor(private router:Router,private aRouter: ActivatedRoute,
     private form: FormBuilder,
     private services: GeneralService,
-    private serviceBusqueda: BusquedaService) {
+    private serviceBusqueda: BusquedaService,
+    ) {
 
     const date = new Date();
     this.minDate= new Date(date.getTime());
@@ -63,9 +63,20 @@ export class BusquedaComponent implements OnInit {
 
   filtrar() {
    
-    this.filtros.metodo=(this.metodo)?this.metodo: '';
-    console.log(this.fecha)
-   
+    
+    this.filtros.metodo= (this.selectedNMetodos.code);
+    this.filtros.fecha= "2020-02-02T00:00:00";
+    this.filtros.nivel= (this.selectedNiveles.code);
+
+    console.log(this.filtros);
+    this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
+      (clases) => {
+        this.clases = clases;
+    },
+    (error) => {
+      console.error(error);
+    }
+    );
   }
 
   onSelectionChange(l){  
@@ -96,15 +107,6 @@ export class BusquedaComponent implements OnInit {
 
       }
     );
-
-    this.serviceBusqueda.obtenerNiveles()
-    .subscribe(
-      (niveles) => {
-        this.niveles = niveles;
-      },
-      (error) => {
-        console.log("Error obteniendo los niveles", error);
-      });
   }
 
 

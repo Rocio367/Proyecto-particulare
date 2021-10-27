@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 import { Clase } from "src/app/shared/models/clase";
 import { environment } from "../../../../environments/environment";
 import { Nivel } from 'src/app/shared/models/nivel';
+import { FiltroClase } from 'src/app/shared/models/filtrosClase';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +22,7 @@ export class BusquedaService {
     return this.http.get<Nivel[]>(`${environment.backUrl}/v1/niveles`);
   }
 
-  
+  obtenerFiltro(clase: FiltroClase): Observable<Clase[]> {
+    return this.http.post<Clase[]>(`${environment.backUrl}/v1/clases/filtrar`, clase);
+  }
 }
