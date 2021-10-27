@@ -19,14 +19,19 @@
                   optionLabel="name" [showClear]="true"  [(ngModel)]="selectedNMetodos" ></p-dropdown>
               </span>
 
-              <span class='m-3'>   
-                <p-dropdown [options]="niveles" [(ngModel)]="selectedNiveles" placeholder="Filtrar por nivel "
-                  optionLabel="name" [showClear]="true"></p-dropdown>
+            
+              <span class='m-3'>
+                <p-dropdown [options]="niveles"  [(ngModel)]="selectedNiveles" placeholder="Filtrar por niveles "
+                  optionLabel="name" [showClear]="true"   ></p-dropdown>
               </span>
-             
+              
+              <span class='m-3'>
+                <p-dropdown [options]="modo"  [(ngModel)]="selectedModo" placeholder="Filtrar por modo "
+                  optionLabel="name" [showClear]="true"   ></p-dropdown>
+              </span>
+
               <span class='m-3'>   
                 <p-calendar  placeholder="Filtrar por fecha" [(ngModel)]="fecha"></p-calendar>
-
               </span>
               <span class="p-float-label mt-5">
                 <button pButton  class='m-2' (click)='filtrar()' >Aplicar</button>

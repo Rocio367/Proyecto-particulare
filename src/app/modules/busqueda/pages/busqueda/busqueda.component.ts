@@ -41,14 +41,17 @@ export class BusquedaComponent implements OnInit {
   selectedMateria:any;
   selectedType:any;
   selectedNiveles: any;
+  selectedModo: any;
   selectedNMetodos: any;
   selectedValues: string[] = [];
 
 
   
-  tipos:any[]=[{code:'ONLINE',name:'Online'},{code:'PRESENCIAL',name:'Me puedo acercar'}]
+  tipos:any[]=[{code:'ONLINE',name:'Online'},{code:'PRESENCIAL',name:'Me puedo acercar',},{code:'ERROR',name:'Presencial | Online'}]
   materias:any[]=[{code:'1',name:'materia 1'},{code:'2',name:'Materia 2'}]
-  niveles:any[]=[{code:'1',name:'Primaria'},{code:'2',name:'Secundaria'},{code:'2',name:'Universitario / Terciario'}]  
+  niveles:any[]=[{code:'1',name:'Primaria'},{code:'2',name:'Secundaria'},{code:'3',name:'Universitario'},{code:'4',name:'Terciario'},{code:'0',name:'Todos los niveles'}]  
+  modo:any[]=[{code:'INDIVIDUAL',name:'Individual'},{code:'GRUPAL',name:'Grupal'},{code:'ERROR',name:'Individual | Grupal'}]  
+
   constructor(private router:Router,private aRouter: ActivatedRoute,
     private form: FormBuilder,
     private services: GeneralService,
@@ -60,13 +63,16 @@ export class BusquedaComponent implements OnInit {
 
   }
  
+  
 
   filtrar() {
-   
     
-    this.filtros.metodo= (this.selectedNMetodos.code);
+    
+    this.filtros.nivel= (this.selectedNiveles)?this.selectedNiveles.code : '0';
+    this.filtros.modo =  (this.selectedModo)?this.selectedModo.code:'ERROR';
+    this.filtros.metodo= (this.selectedNMetodos)?this.selectedNMetodos.code:'ERROR';
+
     this.filtros.fecha= "2020-02-02T00:00:00";
-    this.filtros.nivel= (this.selectedNiveles.code);
 
     console.log(this.filtros);
     this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
