@@ -32,7 +32,7 @@ export class DetalleModeloAlumnoComponent implements OnInit {
       .subscribe(params => {
         this.id = params.q
       });
-
+  
 
   }
 
