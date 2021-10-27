@@ -85,7 +85,8 @@ export class DetalleModeloParticularComponent implements OnInit {
       data: {
         idModelo: this.id
       },
-      header: 'Postularme par resolver ' + this.archivo.nombre});
+      header : 'Postularme para resolver ' + this.modelo.nombre,
+      width: '50%'});
   }
 
   confirmar() {
