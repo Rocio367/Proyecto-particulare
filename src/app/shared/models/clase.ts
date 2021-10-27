@@ -16,4 +16,6 @@ export interface Clase {
     fecha?: Date
     estado?: string
     cupo?: number
+    puntuacion?: number
+
 }

@@ -131,6 +131,5 @@ export class BusquedaComponent implements OnInit {
 
   ver(l){
     this.router.navigate(['detalle-clase', {  q: l.id  }])
-
   }
 }

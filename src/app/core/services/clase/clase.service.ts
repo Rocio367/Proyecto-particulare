@@ -27,4 +27,8 @@ export class ClaseService {
   obtenerTodas(): Observable<Clase[]> {
     return this.http.get<Clase[]>(`${environment.backUrl}/v1/clase`);
   }
+
+  verDetalle(id: number): Observable<Clase> {
+    return this.http.get<Clase>(`${environment.backUrl}/v1/clases/verDetalle/${id}`);
+  }
 }
