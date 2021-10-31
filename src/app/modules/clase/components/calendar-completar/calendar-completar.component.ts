@@ -67,9 +67,7 @@ export class CalendarCompletarComponent implements OnInit {
   agregar() {
     console.log(this.selected)
   }
-  confirmarEdit(){
 
-  }
   eliminar() {
 
   }

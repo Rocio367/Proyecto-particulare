@@ -20,17 +20,20 @@ export class ModalSubirArchivoComponent implements OnInit {
   formDatos: FormGroup;
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
-
+  idUser:any;
   constructor(private form: FormBuilder,public snackBar: MatSnackBar, private modelosService: ModelosService) {
-
+    this.idUser=localStorage.getItem('idUser')
+    console.log(this.idUser)
   }
 
   ngOnInit(): void {
     this.formDatos = this.form.group({
+      nombre: ['', [Validators.required]],
       institucion: ['', [Validators.required]],
       carrera: ['',Validators.required],
       materia: ['',Validators.required],
-      nivel: ['',Validators.required],
+      nivel: ['',Validators.required],      
+      publico: [''],
     });
 
     this.modelosService.obtenerMaterias()
@@ -53,7 +56,7 @@ export class ModalSubirArchivoComponent implements OnInit {
   }
 
   confirmar(){
-
+console.log(this.formDatos.valid)
     if(this.formDatos.valid) {
 
       let modelo: Modelo;
@@ -61,11 +64,14 @@ export class ModalSubirArchivoComponent implements OnInit {
       this.cargarArchivos(this.uploadedFiles)
         .then((archivos) => {
             modelo = {
+              nombre: this.formDatos.controls["nombre"].value,
               institucion: this.formDatos.controls["institucion"].value,
               materia: this.formDatos.controls["materia"].value,
               carrera: this.formDatos.controls["carrera"].value,
               nivel: this.formDatos.controls["nivel"].value,
-              archivos: archivos
+              publico: this.formDatos.controls["publico"].value,
+              archivos: archivos,
+              usuario: Number(3)
             }
 
             console.log(modelo);

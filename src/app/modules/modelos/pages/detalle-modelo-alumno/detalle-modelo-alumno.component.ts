@@ -2,10 +2,15 @@ import { M } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
 import { Archivo } from 'src/app/shared/models/archivo';
+import { Documento } from 'src/app/shared/models/documento';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
+import { Modelo } from 'src/app/shared/models/modelo';
 import { ModalContratarModelosComponent } from '../../components/modal-contratar-modelos/modal-contratar-modelos.component';
 import { ModalValorarComponent } from '../../components/modal-valorar/modal-valorar.component';
+import * as JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-detalle-modelo-alumno',
@@ -18,42 +23,45 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   { nombre:'DocResolucion2',doc: 'https://i.pinimg.com/736x/3b/12/27/3b12275ad674bbfcccde1c71b582c576.jpg', particular: 'Camila Centurion', valoracion: 5 }];
   archivo = new Archivo;
   id: number;
+  modelo: Modelo;
+  postulaciones:any[];
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog) {
     this.route
       .params
       .subscribe(params => {
         this.id = params.q
       });
-
-    this.archivo.archivos = ['https://static.filadd.com/files/f%2350479/html/external_resources/bg1.png']
-    this.archivo.nombre = 'Historia de la Psicología '
-    this.archivo.carrera = 'Licenciatura en Psicología '
-    this.archivo.institucion = 'UBA '
-    this.archivo.materia = 'Psicología '
-    this.archivo.nivel = 'Universitario '
-    this.archivo.fecha = new Date;
-    this.archivo.seguidores = 40;
-    this.archivo.profesores = [
-      { particular: 'Ezequiel Castillo', foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYTVaR_IMpvFxeYNMtYgyEMZX0ITAWOuzM_w&usqp=CAU', valoracion: 5, costo_explicacion: 100, costo: 100, demora: '1 dia' },
-      { particular: 'Teresa Cuello', foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR90JPbRmExXI8DZMz-wrFFCTV37A9iLSsMnQ&usqp=CAU', valoracion: 4, costo_explicacion: 100, costo: 200, demora: '1 dia' },
-      { particular: 'Mirta Perez', foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCfcXpXZEwtTtygwQJwKZcEAtoO1Th3xtizw&usqp=CAU', valoracion: 5, costo_explicacion: 100, costo: 150, demora: '1 dia' }]
-    this.archivo.estado = 'Podes solicitarlo'
-
+  
 
   }
 
   ngOnInit(): void {
-    if (this.id == 1) {
-      this.archivo.estado = 'Solicitar';
-    } else
-      if (this.id == 2) {
-        this.archivo.estado = 'Pendiente';
-      } else
-        if (this.id == 3) {
-          this.archivo.estado = 'Resuelto';
-        }
+
+    this.modeloService.obtenerModeloPorId(this.id)
+    .subscribe(
+      (modelo) => {
+        this.modelo = modelo;
+        
+        this.modeloService.obtenerArchivosPorModelo(modelo)
+          .subscribe(
+            (archivos) => this.modelo.archivos = archivos,
+            (error) => console.error(error)
+          )
+      },
+      (error) => console.error(error)
+    );
+
+    this.modeloService.obtenerPostulacionesPorModelo(this.id)
+    .subscribe(
+      (res) => {
+        this.postulaciones=res;
+        console.log(res)
+      },
+      (error) => console.error(error)
+    );
   }
+ 
   open(n: string) {
     window.open(n)
   }
@@ -67,5 +75,28 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   valorar() {
     this.dialog.open(ModalValorarComponent, { panelClass: 'custom-dialog-container' });
 
+  }
+
+  obtenerImagenEnBase64(documento: Documento) :string {
+    return `data:${documento.extension};base64,${documento.datos}`
+  }
+
+  verArchivo(documento: Documento) {
+    var imagen = new Image();
+    imagen.src = this.obtenerImagenEnBase64(documento);
+    var ventana = window.open("");
+    ventana.document.write(imagen.outerHTML);
+  }
+
+  descargarArchivos() {
+    var zip = new JSZip();
+    this.modelo.archivos.forEach((archivo: Documento, indice: number) => {
+      var extension = archivo.extension.split("/")[1];
+      zip.file("hoja" + (indice + 1) + "." + extension, archivo.datos, {base64: true});
+    });
+    zip.generateAsync({type:"blob"})
+      .then(function (content) {
+        saveAs(content, "examen.zip");
+      });
   }
 }

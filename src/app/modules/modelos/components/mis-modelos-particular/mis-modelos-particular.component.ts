@@ -1,78 +1,85 @@
-import {A, COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
 import { Router } from '@angular/router';
 import { PrimeNGConfig, SelectItem } from 'primeng/api';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
 import { Archivo } from 'src/app/shared/models/archivo';
+import { Documento } from 'src/app/shared/models/documento';
+import { FiltrosModelo } from 'src/app/shared/models/filtrosModelos';
+import { Modelo } from 'src/app/shared/models/modelo';
 
 @Component({
   selector: 'app-mis-modelos-particular',
   templateUrl: './mis-modelos-particular.component.html',
   styleUrls: ['./mis-modelos-particular.component.scss']
 })
+
 export class MisModelosParticularComponent implements OnInit {
-  archivos: Archivo[]=[];
+  archivos: Archivo[] = [];
   sortOptions: SelectItem[];
 
   sortOrder: number;
-  sortKey='id';
-  sortField: string;
-  selectedEstado:string;
-  estados=[{name:'Todos',code:''},{name:'Guardados',code:'1'},{name:'Pendiente de respuesta',code:'2'},{name:'Resuelto',code:'3'}]
+  sortKey = 'id';
+  text: string;
+  selectedEstado: string;
+  estados = [{ name: 'Podés solicitarlo', code: '1' }, { name: 'Pendiente de respuesta', code: '2' }, { name: 'Resuelto', code: '3' }]
 
-  selectedOrder:string;
-  orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}]
-  constructor( private primengConfig: PrimeNGConfig,private router:Router) {
-    let a2=new Archivo();
-    a2.id=4;
-    a2.archivos=['https://static.filadd.com/files/f%2350479/html/external_resources/bg1.png']
-    a2.nombre='Historia de la Psicología'
-    a2.fecha=new Date;
-    a2.seguidores=9;
-    a2.profesores=['particular 1']
-    a2.estado='Pendiente de Respuesta'
-    a2.carrera = 'Licenciatura en Psicología'
-    a2.institucion = 'UBA'
-    a2.materia = 'Psicología '
-    a2.nivel = 'Universitario '
+  selectedOrder: any;
+  orden = [{ name: 'Más recientes', code: 'Desc' }, { name: 'Más antiguos', code: 'Asc' }]
+  filtros = new FiltrosModelo;
+  modelos: Modelo[] = [];
 
-    let a3=new Archivo();
-    a3.id=5;
-    a3.archivos=['https://imgv2-2-f.scribdassets.com/img/document/333613744/original/9fb59343e0/1632755742?v=1']
-    a3.nombre='Psicología Evolutiva: Niñez'
-    a3.fecha=new Date;
-    a3.seguidores=9;
-    a3.profesores=['particular 1']
-    a3.estado='Resuelto'
-    a3.carrera = 'Licenciatura en Psicología'
-    a3.institucion = 'UBA '
-    a3.materia = 'Psicología '
-    a3.nivel = 'Universitario '
+  idUser:string;
 
+  constructor(private primengConfig: PrimeNGConfig, private router: Router, private servicioDeModelos: ModelosService) {
+    this.idUser=localStorage.getItem('idUser');
+    console.log(this.idUser)
     this.primengConfig.ripple = true;
-
-    this.archivos.push(a2,a3)
   }
 
-
-  
   ngOnInit(): void {
+    this.obtenerDatos()
+  }
+ 
+  aplicar() {
+     this.obtenerDatos()
   }
 
- 
+  limpiar() {
+    this.text=null;
+    this.selectedOrder=null;
+    this.filtros.idUser=Number(this.idUser);
+     this.obtenerDatos()
+   }
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`
+  }
 
-  like(t:Archivo){
-     
-    this.archivos[ this.archivos.indexOf(t)].seguidores++;
-    this.archivos[ this.archivos.indexOf(t)].like=!this.archivos[ this.archivos.indexOf(t)].like;
- }
 
- verDetalle(l){  
-  let id=l.id;
-  this.router.navigate(['detalle-modelo-particular', {  q: id  }])}
+  obtenerDatos() {
+    this.filtros.text=(this.text)?this.text: '';
+    this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : '';
+    this.filtros.idUser=Number(this.idUser);
+    console.log(this.filtros)
+    this.servicioDeModelos.buscarMisModelosParticular(this.filtros).subscribe((modelos) => {
+      this.modelos = modelos;
+      this.modelos.forEach(modelo => {
+        this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
+          (documentos) => {
+            modelo.archivos = documentos;
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      });
+    },
+      (error) => {
+        console.error(error);
+      }
+    )
+  }
+  verDetalle(l) {
+    let id = l.id;
+    this.router.navigate(['detalle-modelo-particular', { q: id }])
+  }
 }
-

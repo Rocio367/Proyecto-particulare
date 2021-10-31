@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ClaseService } from 'src/app/core/services/clase/clase.service';
+import { Clase } from 'src/app/shared/models/clase';
+import { Nivel } from 'src/app/shared/models/nivel';
+import { Materia } from 'src/app/shared/models/materia';
+
 
 
 @Component({
@@ -11,50 +16,86 @@ import Swal from 'sweetalert2';
 })
 export class CrearClaseComponent implements OnInit {
 
-  clase=[{name:'Online',code:'1'},{name:'Presencial',code:'2'}]
-  tipo=[{name:'Individual',code:'1'},{name:'Grupal',code:'2'},{name:'Mixto',code:'3'}]
-  niveles: any[] = [{ code: '1', name: 'Primaria' }, { code: '2', name: 'Secundaria' }, { code: '3', name: 'Universitario / Terciario' }]
-
-  materias: any[] =[];
-  materiasPrimariaSecundaria: any[] = [{code:'1',name:'Física'},{code:'2',name: 'Química'}, {code:'3',name:'Sociologia'},{code:'4',name: 'Historia de la Psicología'}];
-  materiasUnivesidadTerciarios: any[] =  [{code:'1',name:'Física'},{code:'2',name: 'Química'}, {code:'3',name:'Sociologia'},{code:'4',name: 'Historia de la Psicología'}];
+  _materias: Materia[] = [];
+  _niveles: Nivel[] = [];
+  modo=[{name:'Individual',value:'INDIVIDUAL'},{name:'Grupal',value:'GRUPAL'}]
+  metodo=[{name:'Online',value:'ONLINE'},{name:'Presencial',value:'PRESENCIAL'}]
   filteredMateria: any[] = [];
-  formDatos = this.form.group({
-    fotoPerfil: [''],
-    materia: ['', Validators.required],
-    nivel: ['', Validators.required],
-    onlineTreFalse: ['', [Validators.email, Validators.required]],
-    tipo: ['', Validators.required],
-    precio: ['', Validators.required],
-    descripcion: ['', Validators.required],
-  });
+  formDatos: FormGroup;
 
 
-  constructor(private form: FormBuilder, private router: Router ) { 
-    this.materias=this.materiasPrimariaSecundaria;
-  }
+  constructor(private form: FormBuilder, private router: Router, private claseService: ClaseService,public snackBar: MatSnackBar ) {}
 
   ngOnInit(): void {
-  }
+    this.formDatos = this.form.group({
+      nombre: ['', Validators.required],
+      materia: ['', Validators.required],
+      nivel: ['', Validators.required],
+      modo: ['', Validators.required],
+      metodo: ['', Validators.required],
+      precio: ['', Validators.required],
+      descripcion: ['', Validators.required],
+    });
 
-  ngDoCheck() {
-    console.log(this.formDatos.get('nivel').value)
-    var i = this.formDatos.get('nivel').value;
-    if (i.code == '1' || i.code == '2') {
-      this.materias = this.materiasPrimariaSecundaria;
-    } else if (i.code == 3) {
-      this.materias = this.materiasUnivesidadTerciarios;
+    this.claseService.obtenerMaterias()
+    .subscribe(
+      (materias) => {
+        this._materias = materias;
+      }, 
+      (error) => {
+        console.log("Error obeteniendo las materias", error);
+      });
+
+    this.claseService.obtenerNiveles()
+    .subscribe(
+      (niveles) => {
+        this._niveles = niveles;
+      },
+      (error) => {
+        console.log("Error obteniendo los niveles", error);
+      });
+}
+
+
+registrarClase(){
+  if(this.formDatos.valid) {
+    let clase: Clase;
+
+    clase = {
+      nombre: this.formDatos.controls["nombre"].value,
+      materia: this.formDatos.controls["materia"].value,
+      nivel: this.formDatos.controls["nivel"].value,
+      modo: this.formDatos.controls["modo"].value,
+      metodo: this.formDatos.controls["metodo"].value,
+      precio: this.formDatos.controls["precio"].value,
+      descripcion: this.formDatos.controls["descripcion"].value
     }
-  }
-  registrarClase(){
-    if(this.formDatos.valid) {
-      this.router.navigate(['/detalle-clase']);
-      return true;
+
+    this.claseService.subirClase(clase)
+              .subscribe(
+                () => {
+                  this.snackBar.open('La clase fue cargada correctamente', "", {
+                    duration: 1500,
+                    horizontalPosition: "end",
+                    verticalPosition: "top",
+                    panelClass: ['green-snackbar']
+                  });
+                  this.formDatos.reset();
+                },
+                (error) => {
+                  //!= 200
+                  console.error("Hubo un error", error);
+                });
     } else {
-      console.log(this.formDatos);
+      console.log('Error') 
       this.formDatos.markAllAsTouched();
     }
-    
   }
 
+
+
 }
+  
+
+
+

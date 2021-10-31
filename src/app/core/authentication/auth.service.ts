@@ -57,21 +57,24 @@ export class AuthService {
   setRol(rol){
     localStorage.setItem('rol',rol)
   }
-
+  setId(id){
+    localStorage.setItem('idUser',id)
+  }
   getRol(){
    return localStorage.getItem('rol')
   }
   loginSimulator(login :Login){
     let res=false;
     let cuentas:Login[]=[];
-    cuentas.push(new Login('admin','admin'))
-    cuentas.push(new Login('alumno','alumno'))
-    cuentas.push(new Login('particular','particular'))
+    cuentas.push(new Login('admin','admin',3))
+    cuentas.push(new Login('alumno','alumno',1))
+    cuentas.push(new Login('particular','particular',2))
 
     cuentas.forEach(l=>{
       if(l.password== login.password && l.username.toLocaleLowerCase() == login.username.toLocaleLowerCase()){
          res=true;
          this.setRol(l.username)
+         this.setId(l.id)
       }
     })
     return res;

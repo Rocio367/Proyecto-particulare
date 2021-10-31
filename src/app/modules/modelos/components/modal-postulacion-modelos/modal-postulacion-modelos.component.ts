@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
+import { OfertaDeResolucion } from 'src/app/shared/models/pedido-postulacion';
+import { TipoDeDemora } from 'src/app/shared/models/tipo-de-demora';
+import { TipoDeResolucion } from 'src/app/shared/models/tipo-de-resolucion';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,41 +14,53 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-postulacion-modelos.component.scss']
 })
 export class ModalPostulacionModelosComponent implements OnInit {
-  soloResolucion = true;
-  masExplicacion = true;
-  formTipo2: FormGroup;
-  formTipo1: FormGroup;
-  tipos: any[] = [{ id: '1', nombre: 'En menos de 24 horas', },
-  { id: '2', nombre: 'En mas de 24 horas' },
-  { id: '3', nombre: 'En mas de 48 horas' },
-  { id: '4', nombre: 'En mas de 72 horas' },
-  ]
 
+  tiposResolucion: TipoDeResolucion[];
+  tiposDeDemoras: TipoDeDemora[];
 
+  formularioDePostulacion: FormGroup;
 
-  constructor(private form: FormBuilder, private router: Router) {
-    this.formTipo1 = this.form.group({
-      demora: [''],
-      costoUno: [''],
+  idModelo: Number;
+
+  constructor(private form: FormBuilder, private router: Router, private servicioDeModelo: ModelosService, private config: DynamicDialogConfig) {
+    this.formularioDePostulacion = this.form.group({
+      tipoDeResolucion: ['', Validators.required],
+      tipoDeDemora: ['', Validators.required],
+      costo: ['', Validators.required]
     });
-
-    this.formTipo2 = this.form.group({
-      costoDos: [''],
-    });
+    this.idModelo = this.config.data.idModelo;
   }
+
   ngOnInit(): void {
+    this.servicioDeModelo.obtenerTiposDeResolucion().subscribe((tiposDeResolicion) => {
+      this.tiposResolucion = tiposDeResolicion;
+    });
+    this.servicioDeModelo.obtenerTiposDeDemora().subscribe((tiposDeDemoras) => {
+      this.tiposDeDemoras = tiposDeDemoras;
+    });
   }
 
   confirmar() {
-    Swal.fire(
-      'La postulacion fue exito',
-      '',
-      'success'
-    )
+
+    if(this.formularioDePostulacion.valid) {
+
+      let ofertaDeResolucion: OfertaDeResolucion = {
+        tipoResolucion: this.formularioDePostulacion.controls['tipoDeResolucion'].value,
+        tipoDeDemora: this.formularioDePostulacion.controls['tipoDeDemora'].value,
+        costo: this.formularioDePostulacion.controls['costo'].value
+      }
+
+      this.servicioDeModelo.ofertarResolucion(ofertaDeResolucion, this.idModelo)
+        .subscribe(
+          () => {
+          Swal.fire(
+            'Te postulaste con éxito',
+            '',
+            'success');
+          },
+          (error) => console.error(error));
+    } else {
+      this.formularioDePostulacion.markAllAsTouched();
+    }
   }
-
-
-
-
-
 }

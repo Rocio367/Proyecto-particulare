@@ -2,8 +2,10 @@ import { Documento } from "./documento";
 
 export interface Modelo {
     id?: number,
+    nombre: string,
     institucion: string,
     carrera: string,
+    publico: boolean,
     materia: {
         id: number,
         nombre: string
@@ -13,7 +15,8 @@ export interface Modelo {
         descripcion: string,
         tipo: string
     },
+    usuario:number;
     archivos: Documento[],
-    fecha?: Date
+    fecha?: Date,
     estado?: string
 }

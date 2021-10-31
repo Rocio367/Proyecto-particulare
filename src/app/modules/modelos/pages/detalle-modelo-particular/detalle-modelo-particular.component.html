@@ -1,24 +1,21 @@
 <div class="container container-color pt-3 pb-5">
     <div class="row">
         <div class="col-lg-12 text-center mt-3">
-
             <mat-card class='card-container card'>
                 <div class="col-lg-12 mt-3 text-center">
-                    <h3 class="color-f "> 1° Examen de Fisicoquímica</h3>
-                    <img class='img-a img-border' *ngFor="let item of archivo.archivos" [src]="item" (click)='open(item)'>
-
+                    <h3 class="color-f "> {{modelo.nombre}}</h3>
+                    <img class='img-a img-border' *ngFor="let archivo of modelo.archivos" [src]="obtenerImagenEnBase64(archivo)" (click)='verArchivo(archivo)'>
                 </div>
                 <div class="col-lg-12 mt-3 text-center">
-                    <button mat-button color='primary'>Descargar archivos</button>
+                    <button mat-button color='primary' (click)="descargarArchivos()">Descargar archivos</button>
                     <br>
-                    <button  *ngIf='archivo.estado== "resolver" ' mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>Postularme para
+                    <button  *ngIf="sePuedePostularse()" mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>Postularme para
                         resolverlo</button>
-
                 </div>
             </mat-card>
         </div>
         <div class="col-lg-12 text-center mt-3">
-            <mat-card class='card card-container '>
+            <mat-card class='card-container  card' >
                 <div class="row">
 
                     <div class="col-12">
@@ -26,32 +23,30 @@
 
                     </div>
                     <div class='col-4 desk'>
-                        <p class='color-f '>Nombre: <span class='color-d'>{{archivo.nombre}}</span></p>
-                        <p class='color-f '>Fecha: <span class='color-d'>{{archivo.fecha | date}}</span></p>
-                        <p class='color-f '>Estado: <span class='color-d'>{{archivo.estado}}</span></p>
+                        <h4 class='fs-16 mb-3'>Nombre: <span>{{modelo.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha | date}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
                     </div>
                     <div class='col-4 desk'>
-                        <p class='color-f  '>Institución: <span class='color-d'>{{archivo.institucion}}</span></p>
-                        <p class='color-f  '>Carrera: <span class='color-d'>{{archivo.carrera}}</span></p>
-
+                        <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
+                        <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
                     </div>
 
                     <div class='col-4 desk'>
-
-                        <p class='color-f  '>Materia: <span class='color-d'>{{archivo.materia}}</span></p>
-                        <p class='color-f  '>Nivel: <span class='color-d'>{{archivo.nivel}}</span></p>
+                        <h4 class='fs-16 mb-3'>Materia: <span>{{modelo.materia.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Nivel: <span>{{modelo.nivel.descripcion}}</span></h4>
                     </div>
 
                     <div class='col-12 mob'>
-                        <p class='color-f '>Nombre: <span class='color-d'>{{archivo.nombre}}</span></p>
-                        <p class='color-f '>Fecha: <span class='color-d'>{{archivo.fecha | date}}</span></p>
-                        <p class='color-f '>Estado: <span class='color-d'>{{archivo.estado}}</span></p>
+                        <h4 class='fs-16 mb-3'>Nombre: <span>{{modelo.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha | date}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
 
-                        <p class='color-f  '>Institución: <span class='color-d'>{{archivo.institucion}}</span></p>
-                        <p class='color-f  '>Carrera: <span class='color-d'>{{archivo.carrera}}</span></p>
+                        <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
+                        <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
 
-                        <p class='color-f  '>Materia: <span class='color-d'>{{archivo.materia}}</span></p>
-                        <p class='color-f  '>Nivel: <span class='color-d'>{{archivo.nivel}}</span></p>
+                        <h4 class='fs-16 mb-3'>Materia: <span>{{modelo.materia.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Nivel: <span>{{modelo.nivel.descripcion}}</span></h4>
                     </div>
                 </div>
 
@@ -62,16 +57,12 @@
             </mat-card>
 
         </div>
-
         <div class="col-lg-12 mt-3 text-center" *ngIf='archivo.estado== "pendiente" || archivo.estado== "resuelto"'>
             <mat-card class='card card-container '>
                 <h3 class="color-f ml-3">Datos del alumno: </h3>
                 <p class='color-f '>Nombre: <span class='color-d'>{{alumno.nombreCompleto}}</span></p>
-
             </mat-card>
-
         </div>
-
         <div class="col-lg-12 text-center mt-3 mb-5" *ngIf=' archivo.estado== "pendiente"'>
             <mat-card class='card card-container '>
                 <div class="col-lg-12" *ngIf=' archivo.estado== "pendiente"'>
@@ -96,20 +87,12 @@
                             Comentarios opcionales </h3>
                         <textarea class='m-2 w-100' [rows]="5" [cols]="30" [(ngModel)]="comentario" pInputTextarea
                             autoResize="autoResize"></textarea>
-
                     </div>
-
-
-
                     <button mat-button color='warn' class='mt-2' [disabled]='!this.files' (click)='enviar()'>Enviar
                         resolución</button>
-
-
                 </div>
-
             </mat-card>
         </div>
-
         <div class="col-lg-12 text-center mt-3" *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <mat-card class='card-container card'>
                 <div class="col-lg-12 mt-2" *ngIf='resoluciones && archivo.estado== "resuelto" '>
@@ -138,27 +121,16 @@
                                     <span class='subtitle'>
                                         {{item.valoracion}}/ 5
                                     </span>
-
-
                                 </div>
-
                                 <div class='actions' style='text-align: end;'>
-
-
                                     <button mat-button color='warn' (click)='openRes(item.doc)' type="button">Ver</button>
-
-
                                 </div>
-
-
                             </div>
                         </div>
                     </mat-card>
                 </div>
             </mat-card>
-
         </div>
-
         <div class="col-lg-12 text-center mt-3 mb-5" *ngIf='resoluciones && archivo.estado== "resuelto" '>
             <mat-card class='card card-container '>
                 <div class="col-lg-12 mt-2">
@@ -171,12 +143,7 @@
                         Comentarios
                     </p>
                 </div>
-
             </mat-card>
         </div>
-
-
-
-
     </div>
 </div>

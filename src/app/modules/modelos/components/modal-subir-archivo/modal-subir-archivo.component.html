@@ -5,6 +5,14 @@
                 <h3>Nuevo Modelo</h3>
                 <form [formGroup]="formDatos" class="ui large error form">
                     <span class="p-float-label w-80  mt-4">
+                        <input id="nombre" type="text" class='w-100' pInputText formControlName="nombre">
+                        <label for="nombre">Nombre</label>
+                    </span>
+                    <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched"
+                        class="text-center">
+                        <small class="p-error">Este campo es <strong>requerido</strong></small>
+                    </div>
+                    <span class="p-float-label w-80  mt-4">
                         <input id="institucion" type="text" class='w-100' pInputText formControlName="institucion">
                         <label for="institucion">Institución</label>
                     </span>
@@ -52,6 +60,15 @@
                         class="text-center">
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
+                    <span class="w-80 mt-4 field field-checkbox">
+                        <p-checkbox binary=true
+                            value="true" 
+                            formControlName="publico" 
+                            inputId="publico">
+                        </p-checkbox>
+                        <label for="publico">Público</label>
+                    </span>
+                    <small id="publico">Si elegís la opción de público, el modelo estará visible para el resto de los usuarios de la página.</small>
                     <div class='w-80 mt-3'>
                         <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
                             (onSelect)="seleccionarModelo($event)"
