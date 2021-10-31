@@ -54,6 +54,19 @@
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
+                                    <input id="documento" type="number" pInputText formControlName="documento" class="inputfield w-full">
+                                    <label for="documento">Documento</label>
+                                </span>
+                                <div *ngIf="formDatos.get('documento').hasError('required') && formDatos.get('documento').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                                <div *ngIf="formDatos.get('documento').hasError('documento') && formDatos.get('documento').touched"
+                                    class="text-center">
+                                    <small class="p-error">El formato no es correcto</small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
                                     <input id="email" type="email" pInputText formControlName="email" class="inputfield w-full">
                                     <label for="email">Email</label>
                                 </span>
@@ -81,6 +94,19 @@
                                 </span>
                                 <div *ngIf="formDatos.get('repetirContrasenia').hasError('required') && formDatos.get('repetirContrasenia').touched" class="text-center">
                                     <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="telefono" type="number" pInputText formControlName="telefono" class="inputfield w-full">
+                                    <label for="telefono">Teléfono</label>
+                                </span>
+                                <div *ngIf="formDatos.get('telefono').hasError('required') && formDatos.get('telefono').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                                <div *ngIf="formDatos.get('telefono').hasError('telefono') && formDatos.get('telefono').touched"
+                                    class="text-center">
+                                    <small class="p-error">El formato no es correcto</small>
                                 </div>
                             </div>
                             <div class="field col-12">
