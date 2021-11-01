@@ -17,7 +17,6 @@ import { UsuariosService } from "src/app/core/services/usuarios/usuarios.service
 })
 export class RegistrarAlumnoComponent implements OnInit {
   formDatos = this.form.group({
-    fotoPerfil: [""],
     nombre: ["", Validators.required],
     apellido: ["", Validators.required],
     documento: ["", Validators.required],
@@ -26,6 +25,7 @@ export class RegistrarAlumnoComponent implements OnInit {
     repetirContrasenia: ["", Validators.required],
     telefono: ["", Validators.required],
     fechaNacimiento: ["", Validators.required],
+    fotoPerfil: [""],
     intereses: [""],
   });
 
@@ -62,6 +62,7 @@ export class RegistrarAlumnoComponent implements OnInit {
         contrasenia: this.formDatos.controls["contrasenia"].value,
         telefono: this.formDatos.controls["telefono"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
+        fotoPerfil: this.imagenPerfil
       };
 
       this.usuariosService.registrarAlumno(alumno).subscribe(
