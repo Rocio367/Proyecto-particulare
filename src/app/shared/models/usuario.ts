@@ -5,6 +5,6 @@ export interface Usuario{
     email: string;
     contrasenia: string;
     telefono: number;
-    fechaNacimiento: Date;
+    fechaNacimiento: String;
     fotoPerfil: string;
 }
