@@ -6,5 +6,10 @@ export interface Usuario{
     contrasenia: string;
     telefono: number;
     fechaNacimiento: String;
-    fotoPerfil: string;
+    foto: {
+        nombre: string,
+        extension: string,
+        tamanio: Number,
+        datos: string
+    },
 }

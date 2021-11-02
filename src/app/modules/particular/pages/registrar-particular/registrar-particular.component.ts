@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ParticularService } from 'src/app/core/services/particular/particular.service';
+import { Documento } from 'src/app/shared/models/documento';
+import { FileUpload } from 'primeng/fileupload';
 
 
 @Component({
@@ -13,6 +15,7 @@ import { ParticularService } from 'src/app/core/services/particular/particular.s
   styleUrls: ['./registrar-particular.component.scss']
 })
 export class RegistrarParticularComponent implements OnInit {
+  uploadedFiles: any[] = [];
 
   formDatos = this.form.group({
     fotoPerfil: ['', Validators.required],
@@ -59,6 +62,14 @@ export class RegistrarParticularComponent implements OnInit {
     if(this.formDatos.valid) {
       let particular: Particular;
       let user : Usuario;
+      let foto : Documento;
+
+      foto = {
+        nombre: "string",
+        extension: ".png",
+        tamanio: 0,
+        datos: "string"
+      }
 
       user = {
         nombre: this.formDatos.controls["nombre"].value,
@@ -67,9 +78,10 @@ export class RegistrarParticularComponent implements OnInit {
         email: this.formDatos.controls["email"].value,
         contrasenia: this.formDatos.controls["contrasenia"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
-        fotoPerfil: null,
+        foto:foto,
         documento: 4087594,
       }
+  
 
       particular = {
         experiencia: this.formDatos.controls["formacionAcademica"].value,
@@ -97,6 +109,25 @@ export class RegistrarParticularComponent implements OnInit {
         }
   }
 
+  cargarArchivos = async (archivos: any[]): Promise<Documento[]> => {
+    return await Promise.all(archivos.map(async (usuario): Promise<Documento> => {
+      return {
+        nombre: usuario.name,
+        tamanio: usuario.size,
+        extension: usuario.type,
+        datos: await this.cargarArchivo(usuario)
+      }
+    }));
+  }
+
+  cargarArchivo = async (usuario: any): Promise<string> => {
+    let base64 = await new Promise((resolve) => {
+      let fileReader = new FileReader();
+      fileReader.onload = (e) => resolve(fileReader.result);
+      fileReader.readAsDataURL(usuario);
+    });
+    return base64 as string;
+  }
 
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
@@ -107,6 +138,14 @@ export class RegistrarParticularComponent implements OnInit {
     var fechaLimiteMaxima = fechaActual - 18;
     var fechaLimiteMinima = fechaActual - 100;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
+  }
+
+  seleccionaFoto(event) {
+
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+    console.log("Se selecciono una foto");
   }
   
 }
