@@ -67,7 +67,7 @@ export class RegistrarParticularComponent implements OnInit {
         email: this.formDatos.controls["email"].value,
         contrasenia: this.formDatos.controls["contrasenia"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
-        fotoPerfil: null,
+        fotoPerfil: this.imagenPerfil,
         documento: 4087594,
       }
 
