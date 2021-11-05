@@ -9,6 +9,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { Usuario } from "src/app/shared/models/usuario";
 import { UsuariosService } from "src/app/core/services/usuarios/usuarios.service";
+import { Alumno } from 'src/app/shared/models/alumno';
+import { Nivel } from 'src/app/shared/models/nivel';
 
 @Component({
   selector: "app-registrar-alumno",
@@ -25,8 +27,9 @@ export class RegistrarAlumnoComponent implements OnInit {
     repetirContrasenia: ["", Validators.required],
     telefono: ["", Validators.required],
     fechaNacimiento: ["", Validators.required],
-    fotoPerfil: [""],
-    intereses: [""],
+    fotoPerfil: ["", Validators.required],
+    materiasInteres: [""],
+    nivelAcademico: [""],
   });
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
@@ -52,9 +55,10 @@ export class RegistrarAlumnoComponent implements OnInit {
 
   registrarAlumno() {
     if (this.formDatos.valid) {
-      let alumno: Usuario;
+      let usuario: Usuario;
+      let alumno : Alumno;
 
-      alumno = {
+      usuario = {
         nombre: this.formDatos.controls["nombre"].value,
         apellido: this.formDatos.controls["apellido"].value,
         documento: this.formDatos.controls["documento"].value,
@@ -63,6 +67,12 @@ export class RegistrarAlumnoComponent implements OnInit {
         telefono: this.formDatos.controls["telefono"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil
+      };
+
+      alumno = {
+        materiasInteres: this.formDatos.controls["materiasInteres"].value,
+        nivelAcademico:this.formDatos.controls["nivelAcademico"].value,
+        usuario: usuario
       };
 
       this.usuariosService.registrarAlumno(alumno).subscribe(
