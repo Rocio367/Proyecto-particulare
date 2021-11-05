@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
-import { Usuario } from "src/app/shared/models/usuario";
+import { Alumno } from "src/app/shared/models/alumno";
 
 @Injectable({
     providedIn: "root",
@@ -11,8 +11,8 @@ import { Usuario } from "src/app/shared/models/usuario";
     constructor(private http: HttpClient) {}
 
 
-    registrarAlumno(usuario: Usuario): Observable<void> {
-        return this.http.post<void>(`${environment.backUrl}/v1/usuarios`, usuario);
+    registrarAlumno(alumno: Alumno): Observable<void> {
+        return this.http.post<void>(`${environment.backUrl}/v1/alumnos`, alumno);
       }
 
 
