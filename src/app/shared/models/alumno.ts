@@ -1,6 +1,6 @@
-export interface Particular {
-    id: number,
-    experiencia: string
+export interface Alumno {
+    materiasInteres: string;
+    nivelAcademico: string;
     usuario: {
         nombre: string;
         apellido: string;
