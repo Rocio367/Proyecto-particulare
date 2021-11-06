@@ -12,6 +12,11 @@ import Swal from 'sweetalert2';
 import { ModalPostulacionModelosComponent } from '../../components/modal-postulacion-modelos/modal-postulacion-modelos.component';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { OfertaDeResolucion } from 'src/app/shared/models/oferta-de-resolucion';
+import { AlumnnoService } from 'src/app/core/services/alumno/alumnno.service';
+import { OfertaDeResolucionResponse } from 'src/app/shared/models/oferta-resolucion-response';
+import { SolucionDeModeloRequest } from 'src/app/shared/models/solucion-de-modelo-request';
+import { FileUpload } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-detalle-modelo-particular',
@@ -29,14 +34,19 @@ export class DetalleModeloParticularComponent implements OnInit {
   id:Number ;
   alumno={nombreCompleto:'Agustin Rios',edad:16}
   @ViewChild('fileInput') fileInput: ElementRef;
-  files = '';
   message=false;
 
-  //
   comentario:string;
   uploadedFiles: any[] = [];
 
+  estaCargando: boolean;
+
   modelo: Modelo;
+  oferta: OfertaDeResolucionResponse;
+  idParticular: Number;
+  estaCargandoOferta: boolean;
+  @ViewChild(FileUpload)
+  private fileUploadComponent: FileUpload;
 
   constructor(public snackBar: MatSnackBar,private router: ActivatedRoute, public dialogService: DialogService, private modeloService: ModelosService) {
       this.router
@@ -44,22 +54,36 @@ export class DetalleModeloParticularComponent implements OnInit {
         .subscribe(params => {
           this.id = params.q;
         });
+        this.idParticular = Number(localStorage.getItem('idUser'));
   }
 
   ngOnInit(): void {
+    this.estaCargando = this.estaCargandoOferta = true;
 
     this.modeloService.obtenerModeloPorId(this.id)
     .subscribe(
       (modelo) => {
         this.modelo = modelo;
+        console.log(this.modelo);
         this.modeloService.obtenerArchivosPorModelo(modelo)
           .subscribe(
-            (archivos) => this.modelo.archivos = archivos,
+            (archivos) => { 
+              this.modelo.archivos = archivos;
+              this.estaCargando = false;
+            },
             (error) => console.error(error)
           )
       },
       (error) => console.error(error)
     );
+
+    this.modeloService.obtenerPostulacionesPorModelo(this.id)
+    .subscribe(
+      (ofertas) => {
+        this.oferta = ofertas.find((oferta) => oferta.usuario.id == this.idParticular);
+        this.estaCargandoOferta = false;
+      }
+    )
   }
 
   openRes(n: string) {
@@ -67,7 +91,6 @@ export class DetalleModeloParticularComponent implements OnInit {
   }
 
   contratar() {
-
   }
 
   onUpload(event) {
@@ -77,7 +100,7 @@ export class DetalleModeloParticularComponent implements OnInit {
 }
 
   sePuedePostularse(): boolean {
-    return this.modelo.estado == "PENDIENTE";
+    return this.modelo.estado == "ACTIVO";
   }
 
   postularme(){
@@ -97,12 +120,31 @@ export class DetalleModeloParticularComponent implements OnInit {
     )
   }
 
-  enviar(){
-    this.snackBar.open('La resolucion fue enviada con exito', "", {
-      duration: 1500,
-      horizontalPosition: "end",
-      verticalPosition: "top",
-      panelClass: ['green-snackbar']
+  /**
+  * Genera el json con los archivos subidos por el particular mas la descripcion opcional
+  */
+  enviarResolucion() {
+
+    this.cargarArchivos(this.uploadedFiles).then((documentos) => {
+      const solucionDeModeloRequest: SolucionDeModeloRequest = {
+        idModelo: this.id,
+        idUsuario: this.idParticular,
+        comentarioAdicional: this.comentario,
+        archivos: documentos
+      }
+
+      this.modeloService.resolverModelo(solucionDeModeloRequest)
+        .subscribe(
+          () => {
+            this.snackBar.open('La resolucion fue enviada con exito', "", {
+              duration: 1500,
+              horizontalPosition: "end",
+              verticalPosition: "top",
+              panelClass: ['green-snackbar']
+            });
+            this.limpiarFormularioResolucion();
+          },
+          (error) => console.error(error));
     });
   }
 
@@ -127,5 +169,63 @@ export class DetalleModeloParticularComponent implements OnInit {
       .then(function (content) {
         saveAs(content, "examen.zip");
       });
+  }
+
+  debeMostrarOferta(): boolean {
+    return this.oferta != undefined;
+  }
+
+  puedeSubirResolucion(): boolean {
+    return this.oferta.estado == "ACEPTADA";
+  }
+
+  cargarArchivos = async (archivosDeResolucion: any[]): Promise<Documento[]> => {
+    return await Promise.all(archivosDeResolucion.map(async (archivoResolucion): Promise<Documento> => {
+      return {
+        nombre: archivoResolucion.name,
+        tamanio: archivoResolucion.size,
+        extension: archivoResolucion.type,
+        datos: await this.cargarArchivo(archivoResolucion)
+      }
+    }));
+  }
+
+  cargarArchivo = async (archivoResolucion: any): Promise<string> => {
+    let base64 = await new Promise((resolve) => {
+      let fileReader = new FileReader();
+      fileReader.onload = (e) => resolve(fileReader.result);
+      fileReader.readAsDataURL(archivoResolucion);
+    });
+    return base64 as string;
+  }
+
+  seleccionarArchivoDeResolucion(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+    console.log("Se seleccionó uno o más archivos");
+  }
+
+  cancelarSeleccionDeArchivoDeResolucion() {
+    this.uploadedFiles.length = 0;
+    console.log("Se canceló la selección de archivos");
+  }
+
+  borrarArchivoDeResolucion(event) {
+    this.uploadedFiles.forEach((archivoDeResolucion, indice) => {
+      if (archivoDeResolucion == event.file) {
+        this.uploadedFiles.splice(indice,1);
+      }
+    });
+    console.log("Se eliminó un archivo");
+  }
+
+  noHayArchivosSeleccionados(): boolean {
+    return this.uploadedFiles.length == 0;
+  }
+
+  private limpiarFormularioResolucion() {
+    this.comentario = '';
+    this.fileUploadComponent.clear();
   }
 }

@@ -29,6 +29,7 @@ export class MisModelosParticularComponent implements OnInit {
   modelos: Modelo[] = [];
 
   idUser:string;
+  estaCargando: boolean;
 
   constructor(private primengConfig: PrimeNGConfig, private router: Router, private servicioDeModelos: ModelosService) {
     this.idUser=localStorage.getItem('idUser');
@@ -37,6 +38,7 @@ export class MisModelosParticularComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.estaCargando = true;
     this.obtenerDatos()
   }
  
@@ -66,6 +68,7 @@ export class MisModelosParticularComponent implements OnInit {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
           (documentos) => {
             modelo.archivos = documentos;
+            this.estaCargando = false;
           },
           (error) => {
             console.error(error);
