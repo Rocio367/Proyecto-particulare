@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Particular } from './../../../../shared/models/particular';
+import { Usuario } from './../../../../shared/models/usuario';
+import { ParticularService } from 'src/app/core/services/particular/particular.service';
 
 @Component({
   selector: 'app-editar-perfil-particular',
@@ -14,16 +17,12 @@ export class EditarPerfilParticularComponent implements OnInit {
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    telefono: ['', Validators.required],
+    telefono: [''],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
-    experiencia: ['', Validators.required],
-    institucuion: ['', Validators.required],
-    formacionAcademica: ['', Validators.required],
-    localidad: ['', Validators.required],
-    descripcion: ['', Validators.required],
+    formacionAcademica: ['']
 
   });
 
@@ -31,7 +30,8 @@ export class EditarPerfilParticularComponent implements OnInit {
   imagenPerfil = "";
   imagenDefault = "../../../../../assets/img/default-user.png";
 
-  constructor(private _snackBar:MatSnackBar, private form: FormBuilder, private router: Router) { }
+  constructor(private _snackBar:MatSnackBar, private form: FormBuilder, private router: Router,
+    private particularService: ParticularService,public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
@@ -59,18 +59,47 @@ export class EditarPerfilParticularComponent implements OnInit {
 
   editarParticular(){
     if(this.formDatos.valid) {
-      this._snackBar.open('Perfil editado correctamente',"", {
-        duration: 1500,
-        horizontalPosition: "end",
-        verticalPosition: "top",
-        panelClass: ['green-snackbar']
-      });
-      this.router.navigate(['/perfil-alumno']);
-      return true;
-    } else {
-      this.formDatos.markAllAsTouched();
-    }
+      let particular: Particular;
+      let user : Usuario;
+
+      user = {
+        nombre: this.formDatos.controls["nombre"].value,
+        apellido: this.formDatos.controls["apellido"].value,
+        telefono: this.formDatos.controls["telefono"].value,
+        email: this.formDatos.controls["email"].value,
+        contrasenia: this.formDatos.controls["contrasenia"].value,
+        fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
+        fotoPerfil: this.imagenPerfil,
+        documento: 4087594,
+      }
+
+      particular = {
+        id:1, /* HARDCODEADO HAY QUE CAMBIARLO */
+        experiencia: this.formDatos.controls["formacionAcademica"].value,
+        usuario: user
+      }
+
+      this.particularService.editarProfesor(particular)
+      .subscribe(
+        () => {
+          this.snackBar.open('El usuario fue editado correctamente', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['green-snackbar']
+          });
+          this.formDatos.reset();
+        },
+        (error) => {
+          //!= 200
+          console.error(particular, error);
+        });
+        } else {
+        console.log('Error') 
+        this.formDatos.markAllAsTouched();
+        }
   }
+
   obtenerRangoDeEdad() :string {
     var fechaActual = new Date().getFullYear();
     var fechaLimiteMaxima = fechaActual - 18;

@@ -72,6 +72,7 @@ export class RegistrarParticularComponent implements OnInit {
       }
 
       particular = {
+        id:null,
         experiencia: this.formDatos.controls["formacionAcademica"].value,
         usuario: user
       }
