@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
-import { OfertaDeResolucion } from 'src/app/shared/models/pedido-postulacion';
+import { OfertaDeResolucion } from 'src/app/shared/models/oferta-de-resolucion';
 import { TipoDeDemora } from 'src/app/shared/models/tipo-de-demora';
 import { TipoDeResolucion } from 'src/app/shared/models/tipo-de-resolucion';
 import Swal from 'sweetalert2';
@@ -21,6 +21,7 @@ export class ModalPostulacionModelosComponent implements OnInit {
   formularioDePostulacion: FormGroup;
 
   idModelo: Number;
+  idUsuario: Number;
 
   constructor(private form: FormBuilder, private router: Router, private servicioDeModelo: ModelosService, private config: DynamicDialogConfig) {
     this.formularioDePostulacion = this.form.group({
@@ -38,6 +39,7 @@ export class ModalPostulacionModelosComponent implements OnInit {
     this.servicioDeModelo.obtenerTiposDeDemora().subscribe((tiposDeDemoras) => {
       this.tiposDeDemoras = tiposDeDemoras;
     });
+    this.idUsuario = Number(localStorage.getItem("idUser"));
   }
 
   confirmar() {
@@ -47,7 +49,8 @@ export class ModalPostulacionModelosComponent implements OnInit {
       let ofertaDeResolucion: OfertaDeResolucion = {
         tipoResolucion: this.formularioDePostulacion.controls['tipoDeResolucion'].value,
         tipoDeDemora: this.formularioDePostulacion.controls['tipoDeDemora'].value,
-        costo: this.formularioDePostulacion.controls['costo'].value
+        costo: this.formularioDePostulacion.controls['costo'].value,
+        idUsuario: this.idUsuario
       }
 
       this.servicioDeModelo.ofertarResolucion(ofertaDeResolucion, this.idModelo)

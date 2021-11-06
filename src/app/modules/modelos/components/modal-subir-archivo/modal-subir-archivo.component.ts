@@ -7,6 +7,7 @@ import { Documento } from 'src/app/shared/models/documento';
 import { Materia } from 'src/app/shared/models/materia';
 import { Modelo } from 'src/app/shared/models/modelo';
 import { Nivel } from 'src/app/shared/models/nivel';
+import * as internal from 'stream';
 
 @Component({
   selector: 'app-modal-subir-archivo',
@@ -32,7 +33,7 @@ export class ModalSubirArchivoComponent implements OnInit {
       institucion: ['', [Validators.required]],
       carrera: ['',Validators.required],
       materia: ['',Validators.required],
-      nivel: ['',Validators.required],      
+      nivel: ['',Validators.required],
       publico: [''],
     });
 
@@ -55,8 +56,8 @@ export class ModalSubirArchivoComponent implements OnInit {
         });
   }
 
-  confirmar(){
-console.log(this.formDatos.valid)
+  confirmar() {
+    console.log(this.formDatos.valid)
     if(this.formDatos.valid) {
 
       let modelo: Modelo;
@@ -71,7 +72,7 @@ console.log(this.formDatos.valid)
               nivel: this.formDatos.controls["nivel"].value,
               publico: this.formDatos.controls["publico"].value,
               archivos: archivos,
-              usuario: Number(3)
+              usuario: this.idUser
             }
 
             console.log(modelo);
@@ -119,7 +120,6 @@ console.log(this.formDatos.valid)
   }
 
   seleccionarModelo(event) {
-
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }
