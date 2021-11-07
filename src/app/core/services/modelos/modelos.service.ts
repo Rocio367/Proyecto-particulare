@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ActualizarEstadoModeloRequest } from 'src/app/shared/models/actualizarEstadoModeloRequest';
 import { Documento } from 'src/app/shared/models/documento';
 import { FiltrosModelo } from 'src/app/shared/models/filtrosModelos';
 import { Materia } from 'src/app/shared/models/materia';
@@ -81,4 +82,7 @@ export class ModelosService {
     return this.http.post<void>(`${environment.backUrl}/v1/modelos/${solucionDeModeloRequest.idModelo}/resoluciones`, solucionDeModeloRequest);
   }
 
+  actualizarEstadoModelo(actualizarEstadoModeloRequest: ActualizarEstadoModeloRequest): Observable<Modelo> {
+    return this.http.put<Modelo>(`${environment.backUrl}/v1/modelos/${actualizarEstadoModeloRequest.idModelo}`, actualizarEstadoModeloRequest);
+  }
 }
