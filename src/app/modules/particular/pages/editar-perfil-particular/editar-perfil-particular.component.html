@@ -86,7 +86,7 @@
                             <div class="field col-12">
                                 <span class="p-float-label">
                                     <input id="repetirContrasenia" type="password" pInputText formControlName="repetirContrasenia" class="inputfield w-full">
-                                    <label for="repetirContrasenia">Volvé a repetir la contraseña</label>
+                                    <label for="repetirContrasenia">Volvé a escribir la contraseña</label>
                                 </span>
                                 <div *ngIf="formDatos.get('repetirContrasenia').hasError('required') && formDatos.get('repetirContrasenia').touched" class="text-center">
                                     <small class="p-error">Este campo es <strong>requerido</strong></small>
@@ -104,6 +104,16 @@
                                 </div>
                             </div>
                             <div class="field col-12">
+                                <span class="p-float-label">
+                                    <input id="documento" type="number" pInputText formControlName="documento" class="inputfield w-full">
+                                    <label for="documento">documento</label>
+                                </span>
+                                <div *ngIf="formDatos.get('documento').hasError('required') && formDatos.get('documento').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
+                            </div>
+
+                            <div class="field col-12">
                                 <h3>Descripción</h3>
                                 <span class="label">
                                     <textarea id="descripcion" pInputTextarea formControlName="descripcion" class="inputfield w-full"></textarea>
@@ -111,7 +121,7 @@
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
-                                    <button pButton type="submit"  (click)="editarParticular()" >Registrar</button>
+                                    <button pButton type="submit">Registrar</button>
                                 </span>
                             </div>
                         </div>

@@ -17,13 +17,13 @@ export class EditarPerfilParticularComponent implements OnInit {
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    telefono: [''],
+    telefono: ['',Validators.pattern(/^(0|\-?[1-9][0-9]*)$/)],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
-    formacionAcademica: ['']
-
+    descripcion: [''],
+    documento: ["", Validators.required],
   });
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
@@ -75,7 +75,7 @@ export class EditarPerfilParticularComponent implements OnInit {
 
       particular = {
         id:1, /* HARDCODEADO HAY QUE CAMBIARLO */
-        experiencia: this.formDatos.controls["formacionAcademica"].value,
+        experiencia: this.formDatos.controls["descripcion"].value,
         usuario: user
       }
 
@@ -92,11 +92,24 @@ export class EditarPerfilParticularComponent implements OnInit {
         },
         (error) => {
           //!= 200
+          this.formDatos.markAllAsTouched();
+          this.snackBar.open('Error al registrar usuario, ingrese los campos correctamente.', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+          });
           console.error(particular, error);
         });
         } else {
+          this.formDatos.markAllAsTouched();
+          this.snackBar.open('Error al registrar usuario, ingrese los campos correctamente.', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+          });
         console.log('Error') 
         this.formDatos.markAllAsTouched();
+        
         }
   }
 

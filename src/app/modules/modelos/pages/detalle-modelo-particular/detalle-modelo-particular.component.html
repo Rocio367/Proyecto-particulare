@@ -13,8 +13,8 @@
                     <div class="col-lg-12 mt-3 text-center">
                         <button mat-button color='primary' (click)="descargarArchivos()">Descargar archivos</button>
                         <br>
-                        <button  *ngIf="sePuedePostularse()" mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>Postularme para
-                            resolverlo
+                        <button  *ngIf="sePuedePostularse()" mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>
+                            Postularme para resolverlo
                         </button>
                     </div>
                 </mat-card>
@@ -50,7 +50,7 @@
                     </div>
                 </mat-card>
             </div>
-            <div class="col-lg-12 mt-3 text-center" *ngIf='modelo.estado== "ACTIVO" || modelo.estado== "INACTIVO"'>
+            <div class="col-lg-12 mt-3 text-center">
                 <mat-card class="card card-container">
                     <div class="row">
                         <div class="col-12">
@@ -75,31 +75,39 @@
                     </mat-card>
                 </div>
             </ng-template>
-            <div class="col-lg-12 text-center mt-3 mb-5" *ngIf='puedeSubirResolucion()'>
+            <div class="col-lg-12 text-center mt-3 mb-5">
                 <mat-card class='card card-container '>
-                    <div class="col-lg-12">
-                        <h3 class="color-f ">
-                            Adjuntar resolución del modelo
-                        </h3>
-                    </div>
-                    <div class="col-lg-12 text-center  mt-3">
-                        <div class='w-80 mt-4'>
-                            <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
-                                (onSelect)="seleccionarArchivoDeResolucion($event)"
-                                (onClear)="cancelarSeleccionDeArchivoDeResolucion()"
-                                (onRemove)="borrarArchivoDeResolucion($event)"
-                                multiple="multiple" accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
-                            </p-fileUpload>
+                    <p-progressSpinner *ngIf="cargandoBloqueResolucion;else bloqueResolucion"></p-progressSpinner>
+                    <ng-template #bloqueResolucion>
+                        <div *ngIf="puedeSubirResolucion() else resolucionYaEnviada">
+                            <div class="col-lg-12">
+                                <h3 class="color-f ">
+                                    Adjuntar resolución del modelo
+                                </h3>
+                            </div>
+                            <div class="col-lg-12 text-center  mt-3">
+                                <div class='w-80 mt-4'>
+                                    <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
+                                        (onSelect)="seleccionarArchivoDeResolucion($event)"
+                                        (onClear)="cancelarSeleccionDeArchivoDeResolucion()"
+                                        (onRemove)="borrarArchivoDeResolucion($event)"
+                                        multiple="multiple" accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
+                                    </p-fileUpload>
+                                </div>
+                                <div class='w-80 mt-4'>
+                                    <h3 class="color-f ">
+                                        Comentarios opcionales </h3>
+                                    <textarea class='m-2 w-100' [rows]="5" [cols]="30" [(ngModel)]="comentario" pInputTextarea
+                                        autoResize="autoResize"></textarea>
+                                </div>
+                                <button mat-button color='warn' class='mt-2' [disabled]='noHayArchivosSeleccionados()' (click)='enviarResolucion()'>Enviar
+                                    resolución</button>
+                            </div>
                         </div>
-                        <div class='w-80 mt-4'>
-                            <h3 class="color-f ">
-                                Comentarios opcionales </h3>
-                            <textarea class='m-2 w-100' [rows]="5" [cols]="30" [(ngModel)]="comentario" pInputTextarea
-                                autoResize="autoResize"></textarea>
-                        </div>
-                        <button mat-button color='warn' class='mt-2' [disabled]='noHayArchivosSeleccionados()' (click)='enviarResolucion()'>Enviar
-                            resolución</button>
-                    </div>
+                        <ng-template #resolucionYaEnviada>
+                            <h4>Ya enviaste una resolución para este modelo</h4>
+                        </ng-template>
+                    </ng-template>
                 </mat-card>
             </div>
             <div class="col-lg-12 text-center mt-3" *ngIf='resoluciones && archivo.estado == "INACTIVO" '>
@@ -136,20 +144,6 @@
                                 </div>
                             </div>
                         </mat-card>
-                    </div>
-                </mat-card>
-            </div>
-            <div class="col-lg-12 text-center mt-3 mb-5" *ngIf='resoluciones && modelo.estado== "INACTIVO"'>
-                <mat-card class='card card-container '>
-                    <div class="col-lg-12 mt-2">
-                        <h3 class="color-f ">
-                            Comentarios opcionales
-                        </h3>
-                    </div>
-                    <div class="col-lg-12 mt-2">
-                        <p class="">
-                            Comentarios
-                        </p>
                     </div>
                 </mat-card>
             </div>

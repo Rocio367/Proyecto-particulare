@@ -17,8 +17,9 @@ export class RegistrarParticularComponent implements OnInit {
   formDatos = this.form.group({
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
+    documento: ["", Validators.required],
     apellido: ['', Validators.required],
-    telefono: [''],
+    telefono: ['',Validators.pattern(/^(0|\-?[1-9][0-9]*)$/)],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
@@ -68,7 +69,7 @@ export class RegistrarParticularComponent implements OnInit {
         contrasenia: this.formDatos.controls["contrasenia"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil,
-        documento: 4087594,
+        documento: this.formDatos.controls["documento"].value,
       }
 
       particular = {
@@ -80,7 +81,7 @@ export class RegistrarParticularComponent implements OnInit {
       this.particularService.crearProfesor(particular)
       .subscribe(
         () => {
-          this.snackBar.open('El usuario fue cargadado correctamente', "", {
+          this.snackBar.open('El usuario fue registrado correctamente', "", {
             duration: 1500,
             horizontalPosition: "end",
             verticalPosition: "top",
@@ -89,12 +90,22 @@ export class RegistrarParticularComponent implements OnInit {
           this.formDatos.reset();
         },
         (error) => {
-          //!= 200
           console.error(particular, error);
+          this.snackBar.open('Error al registrar usuario', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+          });
+          this.formDatos.reset();
         });
         } else {
         console.log('Error') 
         this.formDatos.markAllAsTouched();
+        this.snackBar.open('Error al registrar usuario, ingrese los campos correctamente.', "", {
+          duration: 1500,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+        });
         }
   }
 

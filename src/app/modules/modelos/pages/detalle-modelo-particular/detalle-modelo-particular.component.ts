@@ -12,11 +12,12 @@ import Swal from 'sweetalert2';
 import { ModalPostulacionModelosComponent } from '../../components/modal-postulacion-modelos/modal-postulacion-modelos.component';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import { OfertaDeResolucion } from 'src/app/shared/models/oferta-de-resolucion';
-import { AlumnnoService } from 'src/app/core/services/alumno/alumnno.service';
 import { OfertaDeResolucionResponse } from 'src/app/shared/models/oferta-resolucion-response';
 import { SolucionDeModeloRequest } from 'src/app/shared/models/solucion-de-modelo-request';
 import { FileUpload } from 'primeng/fileupload';
+import { Resolucion } from 'src/app/shared/models/resolucion';
+import { ThisReceiver } from '@angular/compiler';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-detalle-modelo-particular',
@@ -45,6 +46,8 @@ export class DetalleModeloParticularComponent implements OnInit {
   oferta: OfertaDeResolucionResponse;
   idParticular: Number;
   estaCargandoOferta: boolean;
+  estaCargandoResolucion: boolean;
+  resolucion: Resolucion;
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
 
@@ -58,7 +61,7 @@ export class DetalleModeloParticularComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.estaCargando = this.estaCargandoOferta = true;
+    this.estaCargando = this.estaCargandoOferta = this.estaCargandoResolucion = true;
 
     this.modeloService.obtenerModeloPorId(this.id)
     .subscribe(
@@ -84,6 +87,14 @@ export class DetalleModeloParticularComponent implements OnInit {
         this.estaCargandoOferta = false;
       }
     )
+
+    this.modeloService.obtenerResolucionPorModelo(this.id)
+    .subscribe(
+      (resoluciones)=> {
+        this.resolucion = resoluciones.find((resolucion) => resolucion.usuario.id == this.idParticular);
+        this.estaCargandoResolucion = false;
+      }
+    );
   }
 
   openRes(n: string) {
@@ -100,7 +111,7 @@ export class DetalleModeloParticularComponent implements OnInit {
 }
 
   sePuedePostularse(): boolean {
-    return this.modelo.estado == "ACTIVO";
+    return this.oferta == undefined && this.modelo.estado == "ACTIVO";
   }
 
   postularme(){
@@ -133,16 +144,18 @@ export class DetalleModeloParticularComponent implements OnInit {
         archivos: documentos
       }
 
+      this.estaCargandoResolucion = true;
       this.modeloService.resolverModelo(solucionDeModeloRequest)
         .subscribe(
-          () => {
+          (resolucion) => {
+            this.resolucion = resolucion;
             this.snackBar.open('La resolucion fue enviada con exito', "", {
               duration: 1500,
               horizontalPosition: "end",
               verticalPosition: "top",
               panelClass: ['green-snackbar']
             });
-            this.limpiarFormularioResolucion();
+            this.estaCargandoResolucion = false;
           },
           (error) => console.error(error));
     });
@@ -176,7 +189,9 @@ export class DetalleModeloParticularComponent implements OnInit {
   }
 
   puedeSubirResolucion(): boolean {
-    return this.oferta != undefined && this.oferta.estado == "ACEPTADA";
+    return this.resolucion == undefined &&
+           this.modelo != undefined && this.modelo.estado == 'ACTIVO' &&
+           this.oferta != undefined && this.oferta.estado == "ACEPTADA";
   }
 
   cargarArchivos = async (archivosDeResolucion: any[]): Promise<Documento[]> => {
@@ -227,5 +242,9 @@ export class DetalleModeloParticularComponent implements OnInit {
   private limpiarFormularioResolucion() {
     this.comentario = '';
     this.fileUploadComponent.clear();
+  }
+
+  get cargandoBloqueResolucion(): boolean {
+    return this.estaCargandoOferta || this.estaCargando || this.estaCargandoResolucion;
   }
 }
