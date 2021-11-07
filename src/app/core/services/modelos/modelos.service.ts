@@ -9,6 +9,7 @@ import { Modelo } from 'src/app/shared/models/modelo';
 import { Nivel } from 'src/app/shared/models/nivel';
 import { OfertaDeResolucion } from 'src/app/shared/models/oferta-de-resolucion';
 import { OfertaDeResolucionResponse } from 'src/app/shared/models/oferta-resolucion-response';
+import { Resolucion } from 'src/app/shared/models/resolucion';
 import { SolucionDeModeloRequest } from 'src/app/shared/models/solucion-de-modelo-request';
 import { TipoDeDemora } from 'src/app/shared/models/tipo-de-demora';
 import { TipoDeResolucion } from 'src/app/shared/models/tipo-de-resolucion';
@@ -78,11 +79,14 @@ export class ModelosService {
     return this.http.get<Modelo>(`${environment.backUrl}/v1/modelos/${idModelo}`);
   }
 
-  resolverModelo(solucionDeModeloRequest: SolucionDeModeloRequest): Observable<void> {
-    return this.http.post<void>(`${environment.backUrl}/v1/modelos/${solucionDeModeloRequest.idModelo}/resoluciones`, solucionDeModeloRequest);
+  resolverModelo(solucionDeModeloRequest: SolucionDeModeloRequest): Observable<Resolucion> {
+    return this.http.post<Resolucion>(`${environment.backUrl}/v1/modelos/${solucionDeModeloRequest.idModelo}/resoluciones`, solucionDeModeloRequest);
   }
 
   actualizarEstadoModelo(actualizarEstadoModeloRequest: ActualizarEstadoModeloRequest): Observable<Modelo> {
     return this.http.put<Modelo>(`${environment.backUrl}/v1/modelos/${actualizarEstadoModeloRequest.idModelo}`, actualizarEstadoModeloRequest);
+  }
+  obtenerResolucionPorModelo(idModelo: Number): Observable<Resolucion[]> {
+    return this.http.get<Resolucion[]>(`${environment.backUrl}/v1/modelos/${idModelo}/resoluciones`);
   }
 }
