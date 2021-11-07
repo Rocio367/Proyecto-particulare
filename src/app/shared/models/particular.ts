@@ -1,4 +1,5 @@
 export interface Particular {
+    id: number,
     experiencia: string
     usuario: {
         nombre: string;

@@ -1,12 +1,15 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ActualizarEstadoModeloRequest } from 'src/app/shared/models/actualizarEstadoModeloRequest';
 import { Documento } from 'src/app/shared/models/documento';
 import { FiltrosModelo } from 'src/app/shared/models/filtrosModelos';
 import { Materia } from 'src/app/shared/models/materia';
 import { Modelo } from 'src/app/shared/models/modelo';
 import { Nivel } from 'src/app/shared/models/nivel';
-import { OfertaDeResolucion } from 'src/app/shared/models/pedido-postulacion';
+import { OfertaDeResolucion } from 'src/app/shared/models/oferta-de-resolucion';
+import { OfertaDeResolucionResponse } from 'src/app/shared/models/oferta-resolucion-response';
+import { SolucionDeModeloRequest } from 'src/app/shared/models/solucion-de-modelo-request';
 import { TipoDeDemora } from 'src/app/shared/models/tipo-de-demora';
 import { TipoDeResolucion } from 'src/app/shared/models/tipo-de-resolucion';
 import { environment } from "../../../../environments/environment";
@@ -15,6 +18,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: 'root'
 })
 export class ModelosService {
+
   constructor(private http: HttpClient) {}
 
   subirModelo(modelo: Modelo): Observable<void> {
@@ -51,9 +55,9 @@ export class ModelosService {
     return this.http.get<Materia[]>(`${environment.backUrl}/v1/materias`);
   }
  // ¿Lo movemos a PostulacionesService?
-    obtenerPostulacionesPorModelo(id): Observable<any> {
-      console.log(`${environment.backUrl}/v1/modelos/obtenerPostulaciones/`+id)
-      return this.http.get<any>(`${environment.backUrl}/v1/modelos/obtenerPostulaciones/`+id);
+    obtenerPostulacionesPorModelo(id): Observable<OfertaDeResolucionResponse[]> {
+      console.log(`${environment.backUrl}/v1/modelos/obtenerPostulaciones/`+ id)
+      return this.http.get<any>(`${environment.backUrl}/v1/modelos/obtenerPostulaciones/` + id);
     }
   // ¿Lo movemos a NivelesServices?
   obtenerNiveles(): Observable<Nivel[]> {
@@ -72,5 +76,13 @@ export class ModelosService {
 
   obtenerModeloPorId(idModelo: Number): Observable<Modelo> {
     return this.http.get<Modelo>(`${environment.backUrl}/v1/modelos/${idModelo}`);
+  }
+
+  resolverModelo(solucionDeModeloRequest: SolucionDeModeloRequest): Observable<void> {
+    return this.http.post<void>(`${environment.backUrl}/v1/modelos/${solucionDeModeloRequest.idModelo}/resoluciones`, solucionDeModeloRequest);
+  }
+
+  actualizarEstadoModelo(actualizarEstadoModeloRequest: ActualizarEstadoModeloRequest): Observable<Modelo> {
+    return this.http.put<Modelo>(`${environment.backUrl}/v1/modelos/${actualizarEstadoModeloRequest.idModelo}`, actualizarEstadoModeloRequest);
   }
 }
