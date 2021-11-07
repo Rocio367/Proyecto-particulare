@@ -32,6 +32,13 @@ export class ReunionComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+
+
+
+  }
+
+  ngAfterViewInit(): void {
+
     this.room = 'Clase online'; // Set your room name
     this.user = {
       name: 'Rocio Centurion' // Set your username
@@ -42,7 +49,7 @@ export class ReunionComponent implements OnInit, AfterViewInit {
       roomName: this.room,
       width: 900,
       height: 500,
-      inviteServiceUrl: "http://localhost:4200/reunion",
+      inviteServiceUrl: "http://localhost:4200/reunion/1222",
       configOverwrite: {
         inviteServiceUrl: "http://localhost:4200/reunion"
       },
@@ -57,12 +64,52 @@ export class ReunionComponent implements OnInit, AfterViewInit {
       }
     }
 
+    this.handleClose = () => {
+      console.log("handleClose");
+    }
+
+    this.handleParticipantLeft = async (participant) => {
+      console.log("handleParticipantLeft", participant); // { id: "2baa184e" }
+      const data = await this.getParticipants();
+    }
+
+    this.handleParticipantJoined = async (participant) => {
+      console.log("handleParticipantJoined", participant); // { id: "2baa184e", displayName: "Shanu Verma", formattedDisplayName: "Shanu Verma" }
+      const data = await this.getParticipants();
+    }
+
+    this.handleVideoConferenceJoined = async (participant) => {
+
+      this.api.executeCommand('startRecording', {
+        mode: 'file', //recording mode, either `file` or `stream`.
+        dropboxToken: 'sl.A76FNSokVyRzpHCe31_GGPSewzDv8wisWvD8Sluh60M_g2XegPGUAq9_x9jjlWkkJa90I7zMyz0RVMhGscbSHm6rf3Du__K8Tk3MfUQE2CcadaGXwBOlUtmx_kOwZqqISMoT7r0', //dropbox oauth2 token.
+        shouldShare: true, //whether the recording should be shared with the participants or not. Only applies to certain jitsi meet deploys.
+
+      });
+
+      console.log("handleVideoConferenceJoined", participant); // { roomName: "bwb-bfqi-vmh", id: "8c35a951", displayName: "Akash Verma", formattedDisplayName: "Akash Verma (me)"}
+      const data = await this.getParticipants();
+    }
+
+    this.handleVideoConferenceLeft = () => {
+      this.api.executeCommand('stopRecording',{
+        mode: 'file' ,//recording mode to stop, `stream` or `file`
+        dropboxToken: 'sl.A76FNSokVyRzpHCe31_GGPSewzDv8wisWvD8Sluh60M_g2XegPGUAq9_x9jjlWkkJa90I7zMyz0RVMhGscbSHm6rf3Du__K8Tk3MfUQE2CcadaGXwBOlUtmx_kOwZqqISMoT7r0', //dropbox oauth2 token.
+        shouldShare: true, //whether the recording should be shared with the participants or not. Only applies to certain jitsi meet deploys.
+
+      }
+      );
+      this.router.navigate(['/home']);
+    }
+
+    this.handleMuteStatus = (audio) => {
+      console.log("handleMuteStatus", audio); // { muted: true }
+    }
+
+    this.handleVideoStatus = (video) => {
+      console.log("handleVideoStatus", video); // { muted: true }
+    }
     this.api = new JitsiMeetExternalAPI(this.domain, this.options);
-
-  }
-
-  ngAfterViewInit(): void {
-    // Event handlers
     this.api.addEventListeners({
       readyToClose: this.handleClose,
       participantLeft: this.handleParticipantLeft,
@@ -73,38 +120,6 @@ export class ReunionComponent implements OnInit, AfterViewInit {
       videoMuteStatusChanged: this.handleVideoStatus
     });
 
-
-    this.handleClose = () => {
-      //console.log("handleClose");
-    }
-
-    this.handleParticipantLeft = async (participant) => {
-      //console.log("handleParticipantLeft", participant); // { id: "2baa184e" }
-      const data = await this.getParticipants();
-    }
-
-    this.handleParticipantJoined = async (participant) => {
-      //console.log("handleParticipantJoined", participant); // { id: "2baa184e", displayName: "Shanu Verma", formattedDisplayName: "Shanu Verma" }
-      const data = await this.getParticipants();
-    }
-
-    this.handleVideoConferenceJoined = async (participant) => {
-      //console.log("handleVideoConferenceJoined", participant); // { roomName: "bwb-bfqi-vmh", id: "8c35a951", displayName: "Akash Verma", formattedDisplayName: "Akash Verma (me)"}
-      const data = await this.getParticipants();
-    }
-
-    this.handleVideoConferenceLeft = () => {
-      //console.log("handleVideoConferenceLeft");
-      this.router.navigate(['/thank-you']);
-    }
-
-    this.handleMuteStatus = (audio) => {
-      //console.log("handleMuteStatus", audio); // { muted: true }
-    }
-
-    this.handleVideoStatus = (video) => {
-      //console.log("handleVideoStatus", video); // { muted: true }
-    }
   }
 
 
