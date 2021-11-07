@@ -7,6 +7,7 @@ import { CrearClaseComponent } from './pages/crear-clase/crear-clase.component';
 import { VerMisClasesParticularComponent } from './pages/ver-mis-clases-particular/ver-mis-clases-particular.component';
 import { DetalleClaseParticularComponent } from './pages/detalle-clase-particular/detalle-clase-particular.component';
 import { EditarClaseParticularComponent } from './pages/editar-clase-particular/editar-clase-particular.component';
+import { ReunionComponent } from './pages/reunion/reunion.component';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'detalle-clase-particular', component: DetalleClaseParticularComponent },
   { path: 'crear-clase', component: CrearClaseComponent },
   { path: 'ver-clase-particular', component: VerMisClasesParticularComponent },
+  { path: 'reunion', component: ReunionComponent },
 
 
 ];

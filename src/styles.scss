@@ -121,7 +121,12 @@
     background: #23be90;
 }
 }
-
+#jitsi-iframe  iframe{
+    border-radius: 3px!important;
+    height: 100%!important;
+    width: 100%!important;
+    }
+    
 body {
     margin: 0;
     padding: 0;

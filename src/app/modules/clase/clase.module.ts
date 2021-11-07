@@ -29,10 +29,11 @@ import { DetalleClaseParticularComponent } from './pages/detalle-clase-particula
 import { EditarClaseParticularComponent } from './pages/editar-clase-particular/editar-clase-particular.component';
 import { CalendarCompletarComponent } from './components/calendar-completar/calendar-completar.component';
 import { CalendarEditarComponent } from './components/calendar-editar/calendar-editar.component';
+import { ReunionComponent } from './pages/reunion/reunion.component';
 
 
 @NgModule({
-  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent],
+  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent, ReunionComponent],
   imports:[ CardModule,FieldsetModule,
     ButtonModule,
     ListboxModule,
