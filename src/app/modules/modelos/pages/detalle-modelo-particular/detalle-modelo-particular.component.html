@@ -13,8 +13,8 @@
                     <div class="col-lg-12 mt-3 text-center">
                         <button mat-button color='primary' (click)="descargarArchivos()">Descargar archivos</button>
                         <br>
-                        <button  *ngIf="sePuedePostularse()" mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>Postularme para
-                            resolverlo
+                        <button  *ngIf="sePuedePostularse()" mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>
+                            Postularme para resolverlo
                         </button>
                     </div>
                 </mat-card>
@@ -50,7 +50,7 @@
                     </div>
                 </mat-card>
             </div>
-            <div class="col-lg-12 mt-3 text-center" *ngIf='modelo.estado== "ACTIVO" || modelo.estado== "INACTIVO"'>
+            <div class="col-lg-12 mt-3 text-center">
                 <mat-card class="card card-container">
                     <div class="row">
                         <div class="col-12">
@@ -136,20 +136,6 @@
                                 </div>
                             </div>
                         </mat-card>
-                    </div>
-                </mat-card>
-            </div>
-            <div class="col-lg-12 text-center mt-3 mb-5" *ngIf='resoluciones && modelo.estado== "INACTIVO"'>
-                <mat-card class='card card-container '>
-                    <div class="col-lg-12 mt-2">
-                        <h3 class="color-f ">
-                            Comentarios opcionales
-                        </h3>
-                    </div>
-                    <div class="col-lg-12 mt-2">
-                        <p class="">
-                            Comentarios
-                        </p>
                     </div>
                 </mat-card>
             </div>

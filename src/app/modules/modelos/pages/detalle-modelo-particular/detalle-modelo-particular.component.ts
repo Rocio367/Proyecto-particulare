@@ -176,7 +176,7 @@ export class DetalleModeloParticularComponent implements OnInit {
   }
 
   puedeSubirResolucion(): boolean {
-    return this.oferta != undefined && this.oferta.estado == "ACEPTADA";
+    return this.modelo.estado == 'ACTIVO' && this.oferta != undefined && this.oferta.estado == "ACEPTADA";
   }
 
   cargarArchivos = async (archivosDeResolucion: any[]): Promise<Documento[]> => {
