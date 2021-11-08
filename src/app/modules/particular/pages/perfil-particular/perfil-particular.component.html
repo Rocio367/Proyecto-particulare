@@ -1,26 +1,43 @@
 <div class="p-3 container-color">
+  <form [formGroup]="formDatos" class="ui large error form text-center">
   <p-card>
     <div class="flex justify-content-evenly">
       <div>
+        <br>
         <img mat-card-avatar src="../../../../../assets/img/default-user.png" />
       </div>
       <p-divider layout="vertical"></p-divider>
       <div>
         <h4>Nombre y apellido </h4>
         <h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>
-        <h4 class='fs-16 mb-3'>Localidad: <span> - <i class='pi pi-map-marker rojo'></i></span></h4>
-        <h4 class='fs-16 mb-3'>Experiencia: <span> -</span></h4>
+        <div class="field col-12">
+          <span class="p-float-label">
+            <input id="localidad" formControlName="Localidad" type="text" pInputText class="inputfield w-full">
+            <label for="localidad">Localidad</label>
+          </span>
+        </div>
+        <div class="field col-12">
+          <span class="p-float-label">
+            <input id="experiencia" formControlName="experiencia" type="text" pInputText class="inputfield w-full">
+            <label for="experiencia">Experiencia</label>
+          </span>
+        </div>
+       
 
       </div>
       <p-divider layout="vertical"></p-divider>
       <div>
-        <iframe src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player" frameborder="0"
+        <iframe class="mb-5" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
+        <br>
+        <button pButton type="submit" (click)='confirmar()' style='margin:auto'>Confirmar</button>
       </div>
     </div>
   </p-card>
+  </form>
+
   <p-card styleClass="mt-3">
     <div class="grid">
       <div class="col">
@@ -65,21 +82,15 @@
 
                   <div class="field col-12">
                     <span class="p-float-label">
-                      <input id="materia" type="text" formControlName="desde" pInputText class="inputfield w-full">
-                      <label for="materia">Desde</label>
-                    </span>
-                    <div
-                      *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched"
-                      class="text-center">
+                      <p-calendar inputId="fechaDesde" formControlName="desde" dateFormat="dd-mm-yy" 
+                      [showIcon]="true" styleClass="w-full" 
+                      [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
+                      <label for="fechaNacimiento">Desde</label>
+                  </span>
+                  <div *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched" class="text-center">
                       <small class="p-error">Este campo es <strong>requerido</strong></small>
-                    </div>
-                    <div
-                    *ngIf="formDatos.get('desde').hasError('pattern') && formDatos.get('desde').touched"
-                    class="text-center">
-                    <small class="p-error">Este campo es solo admite <strong>números</strong></small>
                   </div>
                   </div>
-
 
                 </div>
                 <div class="col-md-6">
@@ -87,27 +98,26 @@
 
                   <div class="field col-12">
                     <span class="p-float-label">
-                      <input id="materia" type="text" formControlName="hasta" pInputText class="inputfield w-full">
-                      <label for="materia">Hasta</label>
-                    </span>
-                    <div
-                      *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched"
-                      class="text-center">
+                      <p-calendar inputId="fechaHasta" formControlName="hasta" dateFormat="dd-mm-yy" 
+                      [showIcon]="true" styleClass="w-full" 
+                      [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
+                      <label for="fechaNacimiento">Hasta</label>
+                  </span>
+                  <div *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched" class="text-center">
                       <small class="p-error">Este campo es <strong>requerido</strong></small>
-                    </div>
-                    <div
-                      *ngIf="formDatos.get('hasta').hasError('pattern') && formDatos.get('hasta').touched"
-                      class="text-center">
-                      <small class="p-error">Este campo es solo admite <strong>números</strong></small>
-                    </div>
+                  </div>
                   </div>
 
                   <div class="field col-12">
-                    <span class="p-float-label">
-                      <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*"
-                        maxFileSize="1000000" (onUpload)="onUpload($event)" [auto]="true"
-                        chooseLabel="Adjuntar documento"></p-fileUpload>
-                    </span>
+                      <mat-form-field class='pl-3 input-large'>
+                          <ngx-mat-file-input
+                              formControlName="documento"
+                              multiple=false
+                              accept=".png, .jpg, .jpeg"
+                              color="warn" placeholder="Documento">
+                              <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
+                          </ngx-mat-file-input>
+                      </mat-form-field>
                   </div>
 
                 </div>

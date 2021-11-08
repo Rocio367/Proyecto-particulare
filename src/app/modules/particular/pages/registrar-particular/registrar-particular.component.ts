@@ -17,9 +17,8 @@ export class RegistrarParticularComponent implements OnInit {
   formDatos = this.form.group({
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
-    documento: ["", Validators.required],
     apellido: ['', Validators.required],
-    telefono: ['',Validators.pattern(/^(0|\-?[1-9][0-9]*)$/)],
+    telefono: ['',],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
@@ -69,11 +68,13 @@ export class RegistrarParticularComponent implements OnInit {
         contrasenia: this.formDatos.controls["contrasenia"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil,
-        documento: this.formDatos.controls["documento"].value,
+        documento: 4087594,
       }
 
       particular = {
         id:null,
+        video:null,
+        localidad:null,
         experiencia: this.formDatos.controls["formacionAcademica"].value,
         usuario: user
       }

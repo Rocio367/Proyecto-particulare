@@ -70,11 +70,13 @@ export class EditarPerfilParticularComponent implements OnInit {
         contrasenia: this.formDatos.controls["contrasenia"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil,
-        documento: 4087594,
+        documento:  this.formDatos.controls["documento"].value,
       }
 
       particular = {
         id:1, /* HARDCODEADO HAY QUE CAMBIARLO */
+        video:null,
+        localidad:null,
         experiencia: this.formDatos.controls["descripcion"].value,
         usuario: user
       }
