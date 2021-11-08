@@ -18,6 +18,9 @@ import { Nivel } from 'src/app/shared/models/nivel';
   styleUrls: ["./registrar-alumno.component.scss"],
 })
 export class RegistrarAlumnoComponent implements OnInit {
+
+  nivelAcademico=[{name:'Primaria',value:'1'},{name:'Secundaria',value:'2'},{name:'Universitario',value:'3'},{name:'Terciario',value:'4'}]
+
   formDatos = this.form.group({
     nombre: ["", Validators.required],
     apellido: ["", Validators.required],
@@ -29,7 +32,7 @@ export class RegistrarAlumnoComponent implements OnInit {
     fechaNacimiento: ["", Validators.required],
     fotoPerfil: ["", Validators.required],
     materiasInteres: [""],
-    nivelAcademico: [""],
+    nivelAcademico: ["", Validators.required],
   });
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
@@ -71,7 +74,7 @@ export class RegistrarAlumnoComponent implements OnInit {
 
       alumno = {
         materiasInteres: this.formDatos.controls["materiasInteres"].value,
-        nivelAcademico:this.formDatos.controls["nivelAcademico"].value,
+        nivelAcademico:this.formDatos.controls["nivel"].value,
         usuario: usuario
       };
 

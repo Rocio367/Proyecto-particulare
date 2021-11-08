@@ -131,9 +131,20 @@
                             </div>
                             <div class="col-12">
                                 <span class="p-float-label">
-                                    <input id="nivelAcademico" pInputTextarea formControlName="nivelAcademico" class="inputfield w-full">
-                                    <label for="nivelAcademico">Nivel Académico</label>
-                                </span>
+                                    <p-dropdown
+                                    id="nivelAcademico"
+                                    [autoDisplayFirst]="false"
+                                    [options]="nivelAcademico"
+                                    placeholder="Nivel"
+                                    class="w-100"
+                                    formControlName="nivelAcademico"
+                                    optionLabel="name"
+                                    optionValue="value">
+                                    </p-dropdown>
+                                  </span>
+                                  <div *ngIf="formDatos.get('nivelAcademico').hasError('required') && formDatos.get('nivelAcademico').touched" class="text-center">
+                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
+                                </div>
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
