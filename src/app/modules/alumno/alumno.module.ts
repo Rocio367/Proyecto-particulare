@@ -16,12 +16,13 @@ import {ButtonModule} from 'primeng/button';
 import {DividerModule} from 'primeng/divider';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
   declarations:[RegistrarAlumnoComponent, EditarPerfilAlumnoComponent,PerfilAlumnoComponent, TablaComponent],
   imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule, CalendarModule, 
-            InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule, DataViewModule, TableModule,],
+            InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule, DataViewModule, TableModule,DropdownModule],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
