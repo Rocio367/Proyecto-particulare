@@ -1,9 +1,12 @@
+import { DatosAcademicosService } from 'src/app/core/services/DatosAcademicos/DatosAcademicos.service';
+import { DatosAcademicos} from './../../../../shared/models/datosAcademicos';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, PatternValidator } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Clase } from 'src/app/shared/models/clase';
 import { Patters } from 'src/app/shared/models/patters';
+
 
 @Component({
   selector: 'app-perfil-particular',
@@ -17,41 +20,86 @@ export class PerfilParticularComponent implements OnInit {
   openTipo='';
    formDatos = this.form.group({
     titulo: ['', [Validators.required]],
-    desde: ['',[Validators.required,Validators.pattern(Patters.OnlyNumber)]],
-    hasta: ['',[Validators.required,Validators.pattern(Patters.OnlyNumber)]],
+    desde: ['',[Validators.required]],
+    hasta: ['',[Validators.required]],
+    documento: [''],
+
   });
-  constructor(private router:Router,private form: FormBuilder,public snackBar: MatSnackBar) { }
+  documento = "";
+
+  constructor(private router:Router,private form: FormBuilder,public snackBar: MatSnackBar,
+    private datosAcademicosService: DatosAcademicosService ) { }
   uploadedFiles: any[] = [];
 
   ngOnInit(): void {
-
+    this.formDatos.controls['documento'].valueChanges.subscribe(
+      archivo => {
+        const reader = new FileReader();
+        reader.readAsDataURL(archivo)
+        reader.onload = () => {
+          this.documento = reader.result as string;
+        }
+      }
+    );      
     this.clases = [
       { id:1,materia: 'Inglés básico', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
       {id:2, materia: 'Inglés Avanzado', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
       {id:3, materia: 'Programación OPP', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
      
     ];
-
-  }
+    }
    
   crear(){
    this.open=true;
    this.openTipo='creado'
   }
+
   confirmar(){
     this.open=true;
     this.openTipo;
     if(this.formDatos.valid) {
-      this.snackBar.open('El dato academico fue '+this.openTipo+' correctamente',"", {
-        duration: 1500,
-        horizontalPosition: "end",
-        verticalPosition: "top",
-        panelClass: ['green-snackbar']
-      });
-    } else {
-      this.formDatos.markAllAsTouched();
-    }
+      let datosAcademicos: DatosAcademicos;
+
+      datosAcademicos = {
+        id: 1,
+        idProfesor: 1,
+        titulo: this.formDatos.controls["titulo"].value,
+        fechaInicio:  this.formDatos.controls["desde"].value,
+        fechaFin:  this.formDatos.controls["hasta"].value,
+        documento: this.documento,
+      }
+
+      this.datosAcademicosService.crearDatoAcademico(datosAcademicos)
+      .subscribe(
+        () => {
+          this.snackBar.open('El usuario fue registrado correctamente', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['green-snackbar']
+          });
+          this.formDatos.reset();
+        },
+        (error) => {
+          console.error(datosAcademicos, error);
+          this.snackBar.open('Error al registrar dato académico', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+          });
+          this.formDatos.reset();
+        });
+        } else {
+        console.log('Error') 
+        this.formDatos.markAllAsTouched();
+        this.snackBar.open('Error al registrar datos académicos, ingrese los campos correctamente.', "", {
+          duration: 1500,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+        });
+      }
    }
+
   editar(item:any){
     this.open=true;
     this.openTipo='editado'

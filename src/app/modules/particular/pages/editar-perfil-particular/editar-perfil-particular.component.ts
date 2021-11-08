@@ -26,6 +26,7 @@ export class EditarPerfilParticularComponent implements OnInit {
     documento: ["", Validators.required],
   });
 
+
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
   imagenDefault = "../../../../../assets/img/default-user.png";
@@ -49,9 +50,7 @@ export class EditarPerfilParticularComponent implements OnInit {
     La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases o estudiando programación por interés propio.
     Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre vaya por más.
     Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se aprende más rápido, disfrutando lo que se hace.`);
-  
-    this.formDatos.controls['formacionAcademica'].setValue('Ingeniero en informática')
-  }
+    }
 
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
@@ -70,11 +69,13 @@ export class EditarPerfilParticularComponent implements OnInit {
         contrasenia: this.formDatos.controls["contrasenia"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil,
-        documento: 4087594,
+        documento:  this.formDatos.controls["documento"].value,
       }
 
       particular = {
         id:1, /* HARDCODEADO HAY QUE CAMBIARLO */
+        video:null,
+        localidad:null,
         experiencia: this.formDatos.controls["descripcion"].value,
         usuario: user
       }
@@ -113,6 +114,7 @@ export class EditarPerfilParticularComponent implements OnInit {
         }
   }
 
+ 
   obtenerRangoDeEdad() :string {
     var fechaActual = new Date().getFullYear();
     var fechaLimiteMaxima = fechaActual - 18;

@@ -1,6 +1,8 @@
 export interface Particular {
     id: number,
-    experiencia: string
+    experiencia: string,
+    video:string,
+    localidad:string,
     usuario: {
         nombre: string;
         apellido: string;
