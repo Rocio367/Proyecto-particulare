@@ -1,43 +1,5 @@
 <div class="p-3 container-color">
-  <form [formGroup]="formDatos" class="ui large error form text-center">
-  <p-card>
-    <div class="flex justify-content-evenly">
-      <div>
-        <br>
-        <img mat-card-avatar src="../../../../../assets/img/default-user.png" />
-      </div>
-      <p-divider layout="vertical"></p-divider>
-      <div>
-        <h4>Nombre y apellido </h4>
-        <h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>
-        <div class="field col-12">
-          <span class="p-float-label">
-            <input id="localidad" formControlName="Localidad" type="text" pInputText class="inputfield w-full">
-            <label for="localidad">Localidad</label>
-          </span>
-        </div>
-        <div class="field col-12">
-          <span class="p-float-label">
-            <input id="experiencia" formControlName="experiencia" type="text" pInputText class="inputfield w-full">
-            <label for="experiencia">Experiencia</label>
-          </span>
-        </div>
-       
-
-      </div>
-      <p-divider layout="vertical"></p-divider>
-      <div>
-        <iframe class="mb-5" src="https://www.youtube.com/embed/V202A8p7uh8" title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-        <br>
-        <button pButton type="submit" (click)='confirmar()' style='margin:auto'>Confirmar</button>
-      </div>
-    </div>
-  </p-card>
-  </form>
-
+  <app-perfi-header></app-perfi-header>
   <p-card styleClass="mt-3">
     <div class="grid">
       <div class="col">

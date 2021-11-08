@@ -20,4 +20,8 @@ export class ParticularService {
     return this.http.post<void>(`${environment.backUrl}/v1/profesor/Modificar`, profesor);
   }
 
+  editarPerfil(profesor: Particular): Observable<void> {
+    return this.http.post<void>(`${environment.backUrl}/v1/profesor/editarPerfil`, profesor);
+  }
+
 }
