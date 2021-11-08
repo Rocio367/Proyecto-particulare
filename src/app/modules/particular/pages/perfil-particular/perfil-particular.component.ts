@@ -1,4 +1,3 @@
-import { DatosAcademicosService } from 'src/app/core/services/DatosAcademicos/DatosAcademicos.service';
 import { DatosAcademicos} from './../../../../shared/models/datosAcademicos';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, PatternValidator } from '@angular/forms';
@@ -6,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Clase } from 'src/app/shared/models/clase';
 import { Patters } from 'src/app/shared/models/patters';
+import { DatosAcademicosService } from 'src/app/core/services/datosAcademicos/datosAcademicos.service';
 
 
 @Component({
