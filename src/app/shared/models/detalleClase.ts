@@ -1,4 +1,5 @@
 export class DetalleClase{
+    id: Number;
     foto: string;
     type: string;
     materia: string;
