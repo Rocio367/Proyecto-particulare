@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Publicacion } from 'src/app/shared/models/publicacion';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
+import { ClaseService } from 'src/app/core/services/clase/clase.service';
+import { Clase } from 'src/app/shared/models/clase';
 
 
 @Component({
@@ -9,27 +11,35 @@ import Swal from 'sweetalert2';
   styleUrls: ['./ver-mis-clases-particular.component.scss']
 })
 export class VerMisClasesParticularComponent implements OnInit {
-
-
+  id: number;
+  clases:any[];
 
   orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}]
   filtro=[{name:'Disponible',code:'1'},{name:'No disponible',code:'2'}]
-  publicacion: Publicacion[];
+  
 
   sortOrder: number;
   sortKey='id';
   sortField: string;
   selectedEstado:string;
 
-  constructor() { }
+  constructor(private claseService: ClaseService,private route: ActivatedRoute) { 
+    this.route
+      .params
+      .subscribe(params => {
+        this.id = params.q
+      });
+  }
 
   ngOnInit(): void {
-    this.publicacion = [
-      { materia: 'Matemáticas', nivel: 'Secundario básico',modo:'online', estado: 'Finalizada', tipo: 'individual'},
-      { materia: 'Matemáticas', nivel: 'Secundario Superior', modo:'online', estado: 'Finalizada', tipo: 'individual'},
-      { materia: 'Álgebra', nivel: 'Universidad', modo:'online', estado: 'Ausente', tipo:'individual'},
-      { materia: 'Matemáticas', nivel: 'Universidad', modo:'online', estado: 'Pendiente', tipo: 'individual'},
-    ];
+    this.claseService.obtenerClasesPorParticular(1)
+    .subscribe(
+      (res) => {
+        this.clases=res
+        console.log(res)
+      },
+      (error) => console.error(error)
+    );
   }
 
   eliminar(){
