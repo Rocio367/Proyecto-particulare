@@ -1,13 +1,16 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import * as moment from 'moment'
-import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
-import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
+import { PrimeNGConfig } from "primeng/api";
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Clase } from "src/app/shared/models/clase";
+import { PagoComponent } from "../../pages/pago/pago.component";
+
 @Component({
   selector: 'app-calendar-detalle-clase',
   templateUrl: './calendar-detalle-clase.component.html',
-  styleUrls: ['./calendar-detalle-clase.component.scss']
+  styleUrls: ['./calendar-detalle-clase.component.scss'],
+  providers: [DialogService]
 })
 export class CalendarDetalleClaseComponent implements OnInit {
   value = new Date;
@@ -40,7 +43,12 @@ export class CalendarDetalleClaseComponent implements OnInit {
   anos = []
   horariosAsignados: any[];
   SelectedAno: any;
-  constructor(private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog) {
+  @Input()
+  clase: Clase;
+  referenciaDialogoDinamico: DynamicDialogRef;
+
+  constructor(private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
+    public dialogService: DialogService) {
 
     this.anos.push({ code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
     this.anos.push({ code: (this.now.getFullYear() + 1).toString(), name: (this.now.getFullYear() + 1).toString() })
@@ -51,7 +59,7 @@ export class CalendarDetalleClaseComponent implements OnInit {
     this.SelectedAno = this.anos.find(d => d.code == (this.now.getFullYear()).toString())
 
   
-    //ejemplo de como vendria eljson   de disponibilidad el back    
+    //ejemplo de como vendria eljson   de disponibilidad el back
     this.disponibilidad = [
       {
         date: new Date('2021-10-21'),
@@ -120,20 +128,11 @@ export class CalendarDetalleClaseComponent implements OnInit {
     this.disponibilidad = filtered;
   }
   confirmar() {
-    // se toman los datos y se guardan en la BD 
-    this.datosAgenda.push(
-      {
-        date:this.value,
-        horariosAsignados:this.horariosAsignados
-        //aca pueden ir otros datos
-      }
-    )
-    this.horariosAsignados=[];
-    this._snackbar.open("La clase se agendo correctamente", "", {
-      duration: 1500,
-      horizontalPosition: "end",
-      verticalPosition: "top",
-      panelClass: ['green-snackbar']
+    this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
+      data: {
+        clase: this.clase
+      },
+      width: '90%'
     });
   }
 
