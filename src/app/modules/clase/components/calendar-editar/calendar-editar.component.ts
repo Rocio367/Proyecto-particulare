@@ -57,6 +57,8 @@ export class CalendarEditarComponent implements OnInit {
            this.disponibilidad.push(element.fecha)
         }
       });
+      this.addDisponibilidad.emit(this.disponibilidad)
+
     })
 
   }
@@ -115,10 +117,12 @@ export class CalendarEditarComponent implements OnInit {
   eliminar(date) {
     let index = this.disponibilidad.indexOf(date);
     this.disponibilidad.splice(index, 1);
+    this.addDisponibilidad.emit(this.disponibilidad)
+
   }
   includes(fecha) {
     let f = new Date(fecha)
-    let repetido = this.disponibilidad.filter(r => r.getFullYear() == f.getFullYear() && r.getMonth() == f.getMonth() && r.getDate() == f.getDate() && r.getHours() == f.getHours())
+    let repetido = this.disponibilidad.filter(r => new Date(r).getFullYear() == f.getFullYear() && new Date(r).getMonth() == f.getMonth() && new Date(r).getDate() == f.getDate() && new Date(r).getHours() == f.getHours())
     return repetido;
   }
  

@@ -76,22 +76,21 @@ export class EditarClaseParticularComponent implements OnInit {
   }
 
   addDisponibilidad(event) {
+    console.log(this.disponibilidad)
     this.disponibilidad = event;
   }
   editarClase() {
     if (this.formDatos.valid) {
       if (this.disponibilidad) {
-        let clase: Clase;
-
-
-        clase.nombre = this.formDatos.controls["nombre"].value;
-        clase.descripcion = this.formDatos.controls["descripcion"].value;
-        clase.disponibilidad = this.disponibilidad;
-
+        let clase = {
+          nombre : this.formDatos.get("nombre").value,
+          descripcion :this.formDatos.get("descripcion").value,
+          disponibilidad : this.disponibilidad,
+        }
 
         console.log(clase)
 
-        this.claseService.editarClase(clase)
+        this.claseService.editarClase(clase,this.id)
           .subscribe(
             () => {
               this.snackBar.open('La clase fue modificada correctamente', "", {
