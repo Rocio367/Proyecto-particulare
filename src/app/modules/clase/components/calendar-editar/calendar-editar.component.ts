@@ -22,6 +22,7 @@ export class CalendarEditarComponent implements OnInit {
   dates: Date[] = [new Date()]
   disponibilidad: Date[] = []
   @Output() addDisponibilidad: EventEmitter<any> = new EventEmitter<any>();
+  @Output()  existeFechaContratada: EventEmitter<any> = new EventEmitter<any>();
    id:number;
   constructor(private aRouter:ActivatedRoute,private claseService:ClaseService,private primengConfig: PrimeNGConfig, public snackBar: MatSnackBar, public dialog: MatDialog) {
     this.aRouter.params.subscribe(
@@ -53,8 +54,11 @@ export class CalendarEditarComponent implements OnInit {
 
     this.claseService.obtenerDisponibilidad(this.id).subscribe(res=>{
       res.forEach(element => {
-        if(element.estado=='PENDIENTE'){
+        console.log(element)
+        if(element.estado=='DISPONIBLE'){
            this.disponibilidad.push(element.fecha)
+        }else{
+          this.existeFechaContratada.emit(this.disponibilidad)
         }
       });
       this.addDisponibilidad.emit(this.disponibilidad)

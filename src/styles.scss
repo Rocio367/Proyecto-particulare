@@ -474,7 +474,14 @@ a {
 .green-snackbar {
     background: #23be90;
   }
+.red-snackbar{
+    background: #cc1c39;
 
+}
+.mat-simple-snackbar{
+    line-height:24px;
+    font-size: 17px;
+}
 .p-autocomplete-input.p-inputtext{
     width: 100%;
 }

@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12 text-center">
-                            <app-calendar-editar (addDisponibilidad)="addDisponibilidad($event)"></app-calendar-editar>
+                            <app-calendar-editar  (existeFechaContratada)="existeFechaContratada($event)" (addDisponibilidad)="addDisponibilidad($event)"></app-calendar-editar>
                         </div>
                         <button pButton class="mt-2" (click)="editarClase()">
                             Confirmar </button>

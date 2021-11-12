@@ -42,12 +42,7 @@ export class EditarClaseParticularComponent implements OnInit {
         cupo: [res.cupo],
       });
 
-      this.formDatos.get('materia').disable();
-      this.formDatos.get('nivel').disable();
-      this.formDatos.get('modo').disable();
-      this.formDatos.get('metodo').disable();
-      this.formDatos.get('precio').disable();
-      this.formDatos.get('cupo').disable();
+     
 
     })
 
@@ -83,9 +78,15 @@ export class EditarClaseParticularComponent implements OnInit {
     if (this.formDatos.valid) {
       if (this.disponibilidad) {
         let clase = {
-          nombre : this.formDatos.get("nombre").value,
-          descripcion :this.formDatos.get("descripcion").value,
-          disponibilidad : this.disponibilidad,
+          nombre: this.formDatos.controls["nombre"].value,
+          materia: this.formDatos.controls["materia"].value,
+          nivel: this.formDatos.controls["nivel"].value,
+          modo: this.formDatos.controls["modo"].value,
+          metodo: this.formDatos.controls["metodo"].value,
+          precio: this.formDatos.controls["precio"].value,
+          descripcion: this.formDatos.controls["descripcion"].value,
+          cupo: this.formDatos.controls["cupo"].value,
+          disponibilidad: this.disponibilidad
         }
 
         console.log(clase)
@@ -94,7 +95,7 @@ export class EditarClaseParticularComponent implements OnInit {
           .subscribe(
             () => {
               this.snackBar.open('La clase fue modificada correctamente', "", {
-                duration: 1500,
+                duration: 3000,
                 horizontalPosition: "end",
                 verticalPosition: "top",
                 panelClass: ['green-snackbar']
@@ -102,8 +103,12 @@ export class EditarClaseParticularComponent implements OnInit {
               this.formDatos.reset();
             },
             (error) => {
-              //!= 200
-              console.error("Hubo un error", error);
+              this.snackBar.open(localStorage.getItem('errorMensaje'), "", {
+                duration: 3000,
+                horizontalPosition: "end",
+                verticalPosition: "top",
+                panelClass: ['red-snackbar']
+              });
             });
 
       } else {
@@ -137,6 +142,15 @@ export class EditarClaseParticularComponent implements OnInit {
       this.cupo = false;
 
     }
+  }
+
+  existeFechaContratada(event){
+    this.formDatos.get('materia').disable();
+    this.formDatos.get('nivel').disable();
+    this.formDatos.get('modo').disable();
+    this.formDatos.get('metodo').disable();
+    this.formDatos.get('precio').disable();
+    this.formDatos.get('cupo').disable();
   }
 }
 
