@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
-import { Clase } from 'src/app/shared/models/clase';
 
 
 @Component({
@@ -23,7 +22,7 @@ export class VerMisClasesParticularComponent implements OnInit {
   sortField: string;
   selectedEstado:string;
 
-  constructor(private router: Router, private claseService: ClaseService,private route: ActivatedRoute) { 
+  constructor(private router: Router, private claseService: ClaseService,private route: ActivatedRoute, public snackBar: MatSnackBar) { 
     this.route
       .params
       .subscribe(params => {
@@ -47,11 +46,22 @@ export class VerMisClasesParticularComponent implements OnInit {
   verDetalle(id) {
     this.router.navigate(['detalle-clase-particular', { q: id }])
   }
-  eliminar(){
-    Swal.fire(
-      'Se ha cancelado la clase correctamente',
-      '',
-      'success'
-    )
+  eliminar(id){
+    this.claseService.eliminarClase(id)
+    .subscribe(
+      () => {
+        this.snackBar.open('La clase fue eliminada correctamente', "", {
+          duration: 2000,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+          panelClass: ['green-snackbar']
+        });
+      },
+      (error) => console.error(error)
+    );
   }
+
+
+
+  
 }
