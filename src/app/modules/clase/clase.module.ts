@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';
@@ -43,6 +43,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     TableModule,OrderListModule,GalleriaModule,FileUploadModule,ToastModule, DynamicDialogModule,
     ProgressSpinnerModule,],
   exports:[],
+  providers:[DatePipe],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class ClaseModule { }

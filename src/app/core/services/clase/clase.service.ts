@@ -27,6 +27,13 @@ export class ClaseService {
       })
     );
   }
+  anotarse(anotarse: any): Observable<void> {
+    return this.http.post<void>(`${environment.backUrl}/v1/clases/anotarse`, anotarse,{headers: this.headers,observe: 'response'}).pipe(tap(
+      (res: any) => {
+        return res;
+      })
+    );
+  }
   eliminarClase(id: number): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/clases/eliminarClase/${id}`);
   }

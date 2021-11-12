@@ -56,7 +56,7 @@ export class CalendarEditarComponent implements OnInit {
       res.forEach(element => {
         console.log(element)
         if(element.estado=='DISPONIBLE'){
-           this.disponibilidad.push(element.fecha)
+           this.disponibilidad.push(new Date(element.fecha))
         }else{
           this.existeFechaContratada.emit(this.disponibilidad)
         }
