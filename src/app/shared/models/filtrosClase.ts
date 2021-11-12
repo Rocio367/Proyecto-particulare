@@ -1,6 +1,6 @@
 export class FiltroClase{
     metodo:string;
-    fecha: string;
+    fecha: Date;
     nivel:number;
     modo:string;
 }

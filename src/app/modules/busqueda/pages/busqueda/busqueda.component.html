@@ -6,13 +6,9 @@
           <ng-template pTemplate="header">
             <div class=" text-center mt-3">
               <h3 class='color-f mb-4'>Filtros <i class="icofont-filter fs-21"></i></h3>
+             
               <span class='m-3'>   
-                <input  ngx-google-places-autocomplete placeholder="Filtrar por ubicación" type="text"
-                pInputText [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
-              </span>
-              <span class='m-3'>   
-                <p-calendar  placeholder="Filtrar por fecha" [(ngModel)]="fecha"></p-calendar>
-
+                <p-calendar  placeholder="Filtrar por fecha" [(ngModel)]="fecha" dateFormat="dd-mm-yy"></p-calendar>
               </span>
               <span class='m-3'>
                 <p-dropdown [options]="tipos" placeholder="Filtrar por Método"
@@ -21,12 +17,12 @@
 
               <span class='m-3'>
                 <p-dropdown [options]="niveles"  [(ngModel)]="selectedNiveles" placeholder="Filtrar por Nivel"
-                  optionLabel="name" [showClear]="true"   ></p-dropdown>
+                  optionLabel="name" [showClear]="true" ></p-dropdown>
               </span>
               
-              <span class='m-3'>
+              <span class='m-3 ancho'>
                 <p-dropdown [options]="modo"  [(ngModel)]="selectedModo" placeholder="Filtrar por Modo "
-                  optionLabel="name" [showClear]="true"   ></p-dropdown>
+                  optionLabel="name" [showClear]="true"></p-dropdown>
               </span>
 
               <span class="p-float-label mt-4">
