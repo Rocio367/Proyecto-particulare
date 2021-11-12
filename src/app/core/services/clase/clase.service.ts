@@ -15,9 +15,15 @@ export class ClaseService {
   subirClase(clase: Clase): Observable<void> {
     return this.http.post<void>(`${environment.backUrl}/v1/clases`, clase);
   }
+
   editarClase(clase: any,id): Observable<void> {
     return this.http.post<void>(`${environment.backUrl}/v1/clases/editar/${id}`, clase);
   }
+
+  eliminarClase(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/eliminarClase/${id}`);
+  }
+
   obtenerDisponibilidad(id : number): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/clases/obtenerDisponibilidad/${id}`);
   }
