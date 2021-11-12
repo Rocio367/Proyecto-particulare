@@ -10,7 +10,7 @@ import { Resultado } from 'src/app/shared/models/resultado';
 import Swal from 'sweetalert2';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import { R } from '@angular/cdk/keycodes';
+import { R, T } from '@angular/cdk/keycodes';
 import { BusquedaService } from 'src/app/core/services/busqueda/busqueda.service';
 import { Nivel } from 'src/app/shared/models/nivel';
 
@@ -71,8 +71,7 @@ export class BusquedaComponent implements OnInit {
     this.filtros.nivel= (this.selectedNiveles)?this.selectedNiveles.code : '0';
     this.filtros.modo =  (this.selectedModo)?this.selectedModo.code:'ERROR';
     this.filtros.metodo= (this.selectedNMetodos)?this.selectedNMetodos.code:'ERROR';
-
-    this.filtros.fecha= "2020-02-02T00:00:00";
+    this.filtros.fecha=  this.fecha;
 
     console.log(this.filtros);
     this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
