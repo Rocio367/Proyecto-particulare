@@ -2,12 +2,14 @@ export class DetalleClase{
     id: Number;
     foto: string;
     type: string;
-    materia: string;
+    materia: any;
     descripcion: string;
     ubicacion: string;
     particular: string;
-    nivel:string;
+    nivel:any;
     stars: number;
     academico:string;
     precio_por_hora:number;
+    titulo:string;
+    modo:string;
 }

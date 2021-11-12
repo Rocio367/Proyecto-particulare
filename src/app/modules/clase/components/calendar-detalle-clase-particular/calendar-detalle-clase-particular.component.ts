@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { ActivatedRoute, Params } from "@angular/router";
 import * as moment from 'moment'
 import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
+import { ClaseService } from "src/app/core/services/clase/clase.service";
 import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
 @Component({
   selector: 'app-calendar-detalle-clase-particular',
@@ -17,8 +19,16 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
   dateSelect: any;
   dateValue: any;
   selected: any[];
-  dates: Date[] = [new Date()]
-  constructor(private primengConfig: PrimeNGConfig, public dialog: MatDialog) {
+  fechasDisponibles: Date[] = [];
+  fechasNoDisponibles: Date[] =[];
+  id:number;
+  constructor(private aRouter:ActivatedRoute,private primengConfig: PrimeNGConfig, public dialog: MatDialog,private claseService:ClaseService) {
+    
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        this.id=Number(params.q);
+      }
+    );
     this.horarios = [
 
       { name: "07:00 AM", value: "7" },
@@ -41,28 +51,24 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
 
     ]
 
-    //  this.horariosAsignados = [ "7" , "8" ,"9","4"]
+    this.claseService.obtenerDisponibilidad(this.id).subscribe(res=>{
+     res.forEach(element => {
+        if(element.estado=='PENDIENTE'){
+          this.fechasDisponibles.push(new Date(element.fecha));
+        }else{
+          this.fechasNoDisponibles.push(new Date(element.fecha));
+        }
+     });
+    })
+    //faltan reseñas 
 
-
-
+    //faltan alumnos inscriptos
   }
 
   ngOnInit(): void {
     let now = new Date();
     this.primengConfig.ripple = true;
 
-  }
-  verHorarios(date, i) {
-    this.value = date;
-    let index = 0;
-    this.dates.forEach(d => {
-      if (index == i) {
-        $('#' + index).addClass('result-active')
-      } else {
-        $('#' + index).removeClass('result-active')
-      }
-
-    })
   }
 
 
