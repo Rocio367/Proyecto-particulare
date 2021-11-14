@@ -10,13 +10,12 @@
           <mat-card>
             <div mat-line><i class="pi pi-briefcase
                 ml-2 mr-2" style="font-size: 1rem"></i>{{item.titulo}}</div>
-            <div class='ml-2' mat-line> {{item.desde}} - {{item.hasta}}</div>
+            <div class='ml-2' mat-line> {{item.fechaInicio}} - {{item.fechaFin}}</div>
             <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;"
                 (click)="oponDoc(item.doc)"> Ver certificado</a></div>
             <div class='actions'>
               <i class="pi pi-pencil fs-21 m-1
                   " style="color:#35a763;cursor:pointer;" (click)='editar(item)'></i>
-
               <i class="pi pi-trash fs-21 m-1" (click)='eliminar()' style="cursor:pointer;color:red"></i>
             </div>
 
@@ -93,20 +92,7 @@
       </div>
     </div>
   </p-card>
-  <p-card styleClass="mt-3">
-    <div class="grid">
-      <div class="col">
-        <h4 class="color-f">Descripción:</h4>
-        <p>Me llamo Mario, soy ingeniero en informática, programador freelance.
-          La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases
-          o estudiando programación por interés propio.
-          Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre
-          vaya por más.
-          Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se
-          aprende más rápido, disfrutando lo que se hace.</p>
-      </div>
-    </div>
-  </p-card>
+ 
   <p-card styleClass="mt-3">
     <p-table [value]="clases">
       <ng-template pTemplate="caption">
