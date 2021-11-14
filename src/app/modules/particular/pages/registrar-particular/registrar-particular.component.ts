@@ -59,6 +59,8 @@ export class RegistrarParticularComponent implements OnInit {
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil,
         documento: 4087594,
+        id:null,
+        rol:null
       }
 
       particular = {

@@ -52,7 +52,7 @@ export class EditarPerfilParticularComponent implements OnInit {
         }
       }
     );
-    this.particularService.buscarPorIdProfesor(5).subscribe( 
+    this.particularService.buscarPorIdProfesor(4).subscribe( 
       (particular) => {
         this.particular = particular;
         this.formDatos.controls['nombre'].setValue(this.particular.usuario.nombre);
@@ -94,6 +94,8 @@ export class EditarPerfilParticularComponent implements OnInit {
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil,
         documento:  this.formDatos.controls["documento"].value,
+        id:null,
+        rol:null,
       }
 
       particular = {

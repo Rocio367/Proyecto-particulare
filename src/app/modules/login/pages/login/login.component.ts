@@ -1,3 +1,5 @@
+import { Particular } from 'src/app/shared/models/particular';
+import { LoginService } from './../../../../core/services/login/login.service';
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -6,6 +8,7 @@ import { Router } from '@angular/router';
 import { Login } from 'src/app/shared/models/login';
 import { AuthService } from '../../../../core/authentication/auth.service';
 import { RedirectService } from '../../../../core/services/redirect/redirect.service';
+import { Usuario } from './../../../../shared/models/usuario';
 
 
 @Component({
@@ -17,7 +20,10 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
   passwordVisibility=false;
-  constructor(private _snackBar: MatSnackBar,private router: Router, private authService: AuthService, private form: FormBuilder, private redirectService: RedirectService) {
+  usuario: Usuario;
+  constructor(private _snackBar: MatSnackBar,private router: Router, private authService: AuthService, private form: FormBuilder,
+     private redirectService: RedirectService, private loginService: LoginService,
+     public snackBar: MatSnackBar) {
     this.loginForm = this.form.group({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', Validators.required)
@@ -25,17 +31,75 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
   }
+
+
   onSubmit() {
-    const pass = this.loginForm.get('password').value;
-    const user = this.loginForm.get('username').value;
-    let login = new Login(user, pass,0);
-    if(this.authService.loginSimulator(login)){
-      localStorage.setItem('recargar_menu', JSON.stringify(true));
-       this.router.navigate(['/home'])
-    }else{
-      this.openSnackBar('Usuario o contraseña incorrectas','x')
+    
+    if(this.loginForm.valid) {
+      let user : Usuario;
+      user = {
+        nombre: null,
+        apellido: null,
+        telefono:null,
+        email: this.loginForm.get('username').value,
+        contrasenia: this.loginForm.get('password').value,
+        fechaNacimiento:null,
+        fotoPerfil:null,
+        documento: null,
+        rol:null,
+        id:null
+      }
+
+
+      this.loginService.login(user)
+      .subscribe(
+        (usuario) => {
+          this.usuario = usuario;
+          this.snackBar.open('El usuario fue registrado correctamente', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['green-snackbar']
+           });
+          this.authService.loginSimulator(usuario);
+          localStorage.setItem('recargar_menu', JSON.stringify(true));
+          this.router.navigate(['/home'])
+          console.log(usuario) 
+        },
+        (error) => {
+          console.error(user, error);
+          this.snackBar.open('Email y/o contraseña incorrecta', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+          });
+          localStorage.setItem('recargar_menu', JSON.stringify(true));
+          this.loginForm.reset();
+        });
+        } else {
+        console.log('Error') 
+        this.loginForm.markAllAsTouched();
+        this.snackBar.open('Error al iniciar sesión, por favor ingrese email y contraseña.', "", {
+          duration: 1500,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+        });
+        }
     }
-  }
+
+
+    onSubmitRo() {
+      const pass = this.loginForm.get('password').value;
+      const user = this.loginForm.get('username').value;
+      let login = new Login(user, pass,0);
+      if(this.authService.loginSimulatorRo(login)){
+        localStorage.setItem('recargar_menu', JSON.stringify(true));
+         this.router.navigate(['/home'])
+      }else{
+        this.openSnackBar('Usuario o contraseña incorrectas','x')
+      }
+    }
+  
   Registrarse(){
     this.router.navigate(['registrarse'])
   }

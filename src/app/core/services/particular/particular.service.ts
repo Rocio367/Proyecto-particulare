@@ -28,6 +28,7 @@ export class ParticularService {
   obtenerTodos(): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/profesor/obtenerTodos`);
   }
+  
   buscarPorIdProfesor(idUsuario: Number): Observable<Particular>{
     return this.http.get<Particular>(`${environment.backUrl}/v1/profesor/mostrarRegistro/${idUsuario}`);
   }
