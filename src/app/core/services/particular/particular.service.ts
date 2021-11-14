@@ -24,4 +24,7 @@ export class ParticularService {
     return this.http.post<void>(`${environment.backUrl}/v1/profesor/editarPerfil`, profesor);
   }
 
+  obtenerTodos(): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/profesor/obtenerTodos`);
+  }
 }

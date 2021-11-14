@@ -2,9 +2,15 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params } from '@angular/router';
+import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
+import { ParticularService } from 'src/app/core/services/particular/particular.service';
+import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
 import { Mensaje } from 'src/app/shared/models/mensaje';
+import { MensajePost } from 'src/app/shared/models/mensajePost';
 import { Patters } from 'src/app/shared/models/patters';
 import Swal from 'sweetalert2';
+import { MensajesComponent } from '../../pages/mensajes/mensajes.component';
 
 @Component({
   selector: 'app-modal-responder',
@@ -12,28 +18,63 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-responder.component.scss']
 })
 export class ModalResponderComponent implements OnInit {
-  text:string;
+  text: string;
   formDatos = this.form.group({
-    destinatario: ['',Validators.required],
+    destinatario: ['', Validators.required],
     asunto: ['', Validators.required],
     mensaje: ['', Validators.required],
-   
+
   });
-  constructor(private form: FormBuilder,private _snackBar : MatSnackBar) { 
-    
+  usuarios: any[] = [];
+  idMensaje: number;
+  constructor(private servicesParticular: ParticularService, private form: FormBuilder, private _snackBar: MatSnackBar, private mensajeServices: MensajesService, private UsuarioServices: UsuariosService, private aRouter: ActivatedRoute) {
+    this.servicesParticular.obtenerTodos().subscribe(res => {
+      res.forEach(element => {
+        this.usuarios.push({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
+      });
+      this.UsuarioServices.obtenerTodos().subscribe(res2 => {
+        res2.forEach(element => {
+          this.usuarios.push({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
+        });
+      })
+    })
+
   }
 
   ngOnInit(): void {
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        if (params.q) {
+          this.idMensaje = Number(params.q);
 
+          this.mensajeServices.getMensaje(this.idMensaje).subscribe(res => {
+            this.formDatos.controls['asunto'].setValue(res.asunto)
+            this.formDatos.controls['destinatario'].setValue({ name: res.emisor.nombre + ' , ' + res.emisor.apellido, code: res.emisor.id })
+          })
+        }
+      }
+    );
   }
-  enviar(){
-    if(this.formDatos.valid) {
-      this._snackBar.open("El mensaje fue enviado correctamente", "", {
-        duration: 1500,
-        horizontalPosition: "end",
-        verticalPosition: "top",
-        panelClass: ['green-snackbar']
-      });
+  enviar() {
+    if (this.formDatos.valid) {
+      let mensaje = new MensajePost();
+      mensaje.contenido = this.formDatos.get('mensaje').value;
+      mensaje.asunto = this.formDatos.get('asunto').value;
+      mensaje.receptor = (this.formDatos.get('destinatario').value).code;
+      //deberia ser el id del usuario actual
+      mensaje.emisor = 1;
+
+      mensaje.idMensaje = this.idMensaje;
+      console.log(mensaje)
+
+       this.mensajeServices.crearMensaje(mensaje).subscribe(res => {
+         this._snackBar.open("El mensaje fue enviado correctamente", "", {
+           duration: 1500,
+           horizontalPosition: "end",
+           verticalPosition: "top",
+           panelClass: ['green-snackbar']
+         });
+       })
       return true;
     } else {
       this.formDatos.markAllAsTouched();
