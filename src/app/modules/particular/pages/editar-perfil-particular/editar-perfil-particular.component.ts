@@ -1,17 +1,23 @@
+import { Documento } from './../../../../shared/models/documento';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { Particular } from './../../../../shared/models/particular';
 import { Usuario } from './../../../../shared/models/usuario';
 import { ParticularService } from 'src/app/core/services/particular/particular.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-perfil-particular',
   templateUrl: './editar-perfil-particular.component.html',
   styleUrls: ['./editar-perfil-particular.component.scss']
 })
+
+
+
 export class EditarPerfilParticularComponent implements OnInit {
+  valor: number;
+  particular: Particular;
 
   formDatos = this.form.group({
     fotoPerfil: ['', Validators.required],
@@ -26,13 +32,15 @@ export class EditarPerfilParticularComponent implements OnInit {
     documento: ["", Validators.required],
   });
 
+  
+
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
   imagenPerfil = "";
   imagenDefault = "../../../../../assets/img/default-user.png";
 
   constructor(private _snackBar:MatSnackBar, private form: FormBuilder, private router: Router,
-    private particularService: ParticularService,public snackBar: MatSnackBar) { }
+    private particularService: ParticularService,public snackBar: MatSnackBar,private aRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
@@ -44,14 +52,31 @@ export class EditarPerfilParticularComponent implements OnInit {
         }
       }
     );
-
-    // Mock para el video
-    this.formDatos.controls['descripcion'].setValue(`Me llamo Mario, soy ingeniero en informática, programador freelance. 
-    La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases o estudiando programación por interés propio.
-    Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre vaya por más.
-    Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se aprende más rápido, disfrutando lo que se hace.`);
+    this.particularService.buscarPorIdProfesor(5).subscribe( 
+      (particular) => {
+        this.particular = particular;
+        this.formDatos.controls['nombre'].setValue(this.particular.usuario.nombre);
+        this.formDatos.controls['apellido'].setValue(this.particular.usuario.apellido);
+        this.formDatos.controls['telefono'].setValue(this.particular.usuario.telefono);
+        this.formDatos.controls['email'].setValue(this.particular.usuario.email);
+        this.formDatos.controls['contrasenia'].setValue(this.particular.usuario.contrasenia);
+        this.formDatos.controls['repetirContrasenia'].setValue(this.particular.usuario.contrasenia);
+        this.formDatos.controls['descripcion'].setValue(this.particular.experiencia);
+        this.formDatos.controls['documento'].setValue(this.particular.usuario.documento);
+        this.imagenDefault= this.particular.usuario.fotoPerfil;
+    },
+    (error) => {
+      console.error(error);
     }
+    );
+  
+  }
+  
 
+
+
+
+    
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
   }
@@ -73,7 +98,7 @@ export class EditarPerfilParticularComponent implements OnInit {
       }
 
       particular = {
-        id:1, /* HARDCODEADO HAY QUE CAMBIARLO */
+        id:5, /* HARDCODEADO HAY QUE CAMBIARLO */
         video:null,
         localidad:null,
         experiencia: this.formDatos.controls["descripcion"].value,
@@ -89,7 +114,6 @@ export class EditarPerfilParticularComponent implements OnInit {
             verticalPosition: "top",
             panelClass: ['green-snackbar']
           });
-          this.formDatos.reset();
         },
         (error) => {
           //!= 200

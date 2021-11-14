@@ -43,16 +43,6 @@ export class RegistrarParticularComponent implements OnInit {
         }
       }
     );
-
-    //Datos mockeados para video
-    this.formDatos.controls['nombre'].setValue('Mario');
-    this.formDatos.controls['apellido'].setValue('Perez');
-    this.formDatos.controls['telefono'].setValue('1155778956');
-    this.formDatos.controls['email'].setValue('mario@gmail.com');
-    this.formDatos.controls['contrasenia'].setValue('12345');
-    this.formDatos.controls['repetirContrasenia'].setValue('12345');
-    this.formDatos.controls['fechaNacimiento'].setValue(new Date(1989, 1, 20));
-    this.formDatos.controls['formacionAcademica'].setValue('Ingeniero en informática');
   }
 
   registrarParticular(){

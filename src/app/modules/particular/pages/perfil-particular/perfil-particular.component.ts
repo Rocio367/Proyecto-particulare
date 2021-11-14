@@ -1,3 +1,4 @@
+import { DetalleClase } from './../../../../shared/models/detalleClase';
 import { DatosAcademicos} from './../../../../shared/models/datosAcademicos';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, PatternValidator } from '@angular/forms';
@@ -14,7 +15,8 @@ import { DatosAcademicosService } from 'src/app/core/services/datosAcademicos/da
   styleUrls: ['./perfil-particular.component.scss']
 })
 export class PerfilParticularComponent implements OnInit {
-  datosAcademicos:any[]=[{titulo:'Ingeniería en Informática',desde:'2015',hasta:'2018',doc:'https://image.slidesharecdn.com/certificadoparticipantes-140819025230-phpapp01/95/certificado-participantes-1-638.jpg?cb=1408416938'}]
+  
+  datosAcademicos:DatosAcademicos[]= [];
   clases: any[]
   open=false;
   openTipo='';
@@ -47,6 +49,16 @@ export class PerfilParticularComponent implements OnInit {
       {id:3, materia: 'Programación OPP', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
      
     ];
+
+    this.datosAcademicosService.buscarPorIdProfesor(2).subscribe( 
+      (datosAcademicos) => {
+        this.datosAcademicos = datosAcademicos;
+    },
+    (error) => {
+      console.error(error);
+    }
+    );
+  
     }
    
   crear(){
@@ -61,8 +73,8 @@ export class PerfilParticularComponent implements OnInit {
       let datosAcademicos: DatosAcademicos;
 
       datosAcademicos = {
-        id: 1,
-        idProfesor: 1,
+        id: 2,
+        idProfesor: 2,
         titulo: this.formDatos.controls["titulo"].value,
         fechaInicio:  this.formDatos.controls["desde"].value,
         fechaFin:  this.formDatos.controls["hasta"].value,
