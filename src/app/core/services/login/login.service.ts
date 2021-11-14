@@ -14,7 +14,7 @@ export class LoginService {
     this.headers.set('Content-Length', '<calculated when request is sent>');
   }
 
-  login(usuario: Usuario):  Observable<Usuario> {
-    return this.http.post<Usuario>(`${environment.backUrl}/v1/login/login`, usuario);
+  login(usuario: Usuario):  Observable<any> {
+    return this.http.post<any>(`${environment.backUrl}/v1/login/login`, usuario);
   }
 }
