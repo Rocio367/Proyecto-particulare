@@ -16,10 +16,11 @@ import {EditorModule} from 'primeng/editor';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {DropdownModule} from 'primeng/dropdown';
+import {AccordionModule} from 'primeng/accordion';
 
 @NgModule({
   declarations: [MensajesComponent, RecibidosComponent, EnviadosComponent, ModalResponderComponent, PapeleraComponent, MensajeDetalleComponent],
-  imports:[DropdownModule,MessagesModule,MessageModule,EditorModule,CardModule,InputTextModule, ButtonModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[AccordionModule,DropdownModule,MessagesModule,MessageModule,EditorModule,CardModule,InputTextModule, ButtonModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })

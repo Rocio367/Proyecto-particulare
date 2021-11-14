@@ -1,11 +1,15 @@
-<div class="detalles-mensajes mt-2 mb-4">
-    <p class='color-f'>De: <span class='color-d'>{{mensaje.emisor.nombre}}, {{mensaje.emisor.apellido}}</span></p>
-    <p class='color-f'>Para: <span class='color-d'> {{mensaje.destinatario.nombre}} , {{mensaje.destinatario.apellido}} </span></p>
-    <p class='color-f'>Asunto: <span class='color-d'>{{mensaje.asunto}}</span></p>
-    <p class='color-f'>Contenido: <span class='color-d' id='contenido'></span></p>
+<p class='color-f ml-3'><span class='color-d fs-25'>{{asunto }}</span></p>
+
+<div *ngFor='let m of respuestas'>
+    <div class='card-interna p-3'>
+        <div class='detalles-mensajes-2 pointer' (click)='verContenido(m)'>
+            <p class='color-f '> <span class='color-d fs-21'> {{m.emisor }}   </span> - <span>  {{ m.fecha | date}}</span></p>
+            <p class='color-f'>Para: <span class='color-d'> {{m.destinatario }} </span></p>
+            <div class='hidden color-f' [id]="m.id">
+               
+            </div>
+            <button mat-button [id]="'b-'+m.id" color='warn' class='m-2 hidden'  (click)='respuesta(m)'> Responder</button>
+        </div>
+    </div>
+
 </div>
-<button mat-button color='warn' class='m-2' *ngIf='responder' (click)='respuesta()'  > Responder</button>
-<button mat-button color='warn'  class='m-2' (click)='verRespuestas()'  > Ver todas las respuestas</button>
-
-
-

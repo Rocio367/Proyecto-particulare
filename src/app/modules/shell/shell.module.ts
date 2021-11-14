@@ -20,6 +20,7 @@ import { SharedModule } from 'primeng/api';
 import {MenubarModule} from 'primeng/menubar';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
+import {BadgeModule} from 'primeng/badge';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {InputTextModule} from 'primeng/inputtext';
   imports:[
     InputTextModule,
     ButtonModule,
-    MenubarModule,
+    MenubarModule,BadgeModule,
     CommonModule, ShellRoutingModule,AngularMaterialModule,SharedModule,
     MatCardModule, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, MatButtonModule, MatSnackBarModule, MatExpansionModule,
   ],

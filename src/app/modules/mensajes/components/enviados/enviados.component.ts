@@ -29,6 +29,7 @@ export class EnviadosComponent implements OnInit {
       this.enviados=[]
       this.seleccion(null)
       res.forEach(element => {
+         console.log(element)
 
         let m = new Mensaje();
         m.id = element.id;

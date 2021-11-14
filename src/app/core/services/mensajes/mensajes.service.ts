@@ -40,4 +40,12 @@ export class MensajesService {
   restaurar(id, idUser): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/mensajes/restaurar/${id}/${idUser}`,);
   }
+
+  marcarMensajeComoLeido(id, idUser): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/mensajes/marcarMensajeComoLeido/${id}/${idUser}`,);
+  }
+
+  checkearMensajesNoLeidos(idUser): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/mensajes/checkearMensajesNoLeidos/${idUser}`,);
+  }
 }
