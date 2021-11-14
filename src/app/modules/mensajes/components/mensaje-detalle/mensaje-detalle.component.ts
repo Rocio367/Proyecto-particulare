@@ -17,7 +17,7 @@ export class MensajeDetalleComponent implements OnInit {
   @Input() mensaje: Mensaje;
   @Input() responder = true;
   respuestas: any[] = [];
-  idUser = 1
+  idUser=localStorage.getItem('idUser');
   resp = false;
   html = ''
   asunto: string;

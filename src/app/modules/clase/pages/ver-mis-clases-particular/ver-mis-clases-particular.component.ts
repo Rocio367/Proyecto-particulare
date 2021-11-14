@@ -21,6 +21,7 @@ export class VerMisClasesParticularComponent implements OnInit {
   sortKey='id';
   sortField: string;
   selectedEstado:string;
+  idUser=localStorage.getItem('idUser');
 
   constructor(private router: Router, private claseService: ClaseService,private route: ActivatedRoute, public snackBar: MatSnackBar) { 
     this.route
@@ -31,7 +32,7 @@ export class VerMisClasesParticularComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.claseService.obtenerClasesPorParticular(1)
+    this.claseService.obtenerClasesPorParticular(Number(this.idUser))
     .subscribe(
       (res) => {
         this.clases=res

@@ -21,7 +21,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   rol = ''
   isLoggedIn = false;
   defaultMenu = true;
-  idUser = 1;
+  idUser=localStorage.getItem('idUser');;
   items: MenuItem[];
   constructor(private MensajeServices: MensajesService, private authService: AuthService, private router: Router, private redirectService: RedirectService) {
     this.getMenu()
@@ -74,6 +74,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   getMenu() {
     this.isLoggedIn = this.authService.isLoggedIn()
     this.rol = localStorage.getItem('rol');
+    console.log(this.rol)
     this.items = [];
 
     switch (this.rol) {

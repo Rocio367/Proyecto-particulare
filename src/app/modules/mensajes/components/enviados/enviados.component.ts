@@ -13,7 +13,7 @@ export class EnviadosComponent implements OnInit {
   enviados: Mensaje[] = [];
   mensaje: Mensaje;
   responder = false;
-  idUser = 1;
+  idUser=localStorage.getItem('idUser');;
   constructor(private _snackBar: MatSnackBar, private mensajeServices: MensajesService) {
 
     this.cargar()
