@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { Mensaje } from 'src/app/shared/models/mensaje';
 import Swal from 'sweetalert2';
 
@@ -10,48 +12,59 @@ import Swal from 'sweetalert2';
 export class RecibidosComponent implements OnInit {
   recibidos: Mensaje[] = [];
   mensaje: Mensaje;
-  constructor() {
-    let m1 = new Mensaje();
-    m1.asunto = 'asunto ';
-    m1.contenido = 'contenido ';
-    m1.fecha = new Date();
-    m1.emisor = 'username emisor';
-    m1.destinatario = 'username destinatario';
-    m1.leido = false;
-    let m2 = new Mensaje();
-    m2.asunto = 'asunto ';
-    m2.contenido = 'contenido ';
-    m2.fecha = new Date();
-    m2.emisor = 'username emisor';
-    m2.destinatario = 'username destinatario';
-    m2.leido = true;
+  idUser = 1;
+  constructor(private _snackBar: MatSnackBar, private mensajeServices: MensajesService) {
+    this.cargar()
 
-    let m3 = new Mensaje();
-    m3.asunto = 'asunto ';
-    m3.contenido = 'contenido ';
-    m3.fecha = new Date();
-    m3.emisor = 'username emisor';
-    m3.destinatario = 'username destinatario';
-    m3.leido = true;
-    this.recibidos.push(m1, m2, m3)
+
   }
 
   ngOnInit(): void {
+
+  }
+  cargar() {
+    this.mensajeServices.recibidos(this.idUser).subscribe(res => {
+      
+      this.seleccion(null)
+      this.recibidos=[]
+      res.forEach(element => {
+        console.log(element)
+
+        let m = new Mensaje();
+        m.id = element.id;
+        m.asunto = element.asunto;
+        m.contenido = element.contenido;
+        m.fecha = new Date(element.fecha);
+        m.emisor = element.emisor;
+        m.destinatario = element.receptor;
+        if (element.emisor.id == this.idUser) {
+          m.leido = element.leidoEmisor;
+        }
+        if (element.receptor.id == this.idUser) {
+          m.leido = element.leidoReceptor;
+        }
+        this.recibidos.push(m)
+      });
+    })
+
   }
   delete(m: Mensaje) {
-
-    this.recibidos.splice(this.recibidos.indexOf(m), 1);
-    Swal.fire(
-      'El mensaje se movio a la papalera',
-      '',
-      'success'
-    )
+    this.mensajeServices.eliminar(m.id, this.idUser).subscribe(res => {
+      this.cargar()
+     console.log(res)
+      this._snackBar.open("El mensaje fue eliminado correctamente", "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
+    })
   }
 
-  seleccion(m:Mensaje){
-    this.mensaje=m;
+  seleccion(m: Mensaje) {
+    this.mensaje = m;
   }
 
-  
+
 }
 
