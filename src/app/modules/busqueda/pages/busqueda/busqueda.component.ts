@@ -44,7 +44,7 @@ export class BusquedaComponent implements OnInit {
   selectedModo: any;
   selectedNMetodos: any;
   selectedValues: string[] = [];
-
+  busqueda: string;
 
   
   tipos:any[]=[{code:'ONLINE',name:'Online'},{code:'PRESENCIAL',name:'Me puedo acercar',},{code:'ERROR',name:'Presencial | Online'}]
@@ -72,6 +72,7 @@ export class BusquedaComponent implements OnInit {
     this.filtros.modo =  (this.selectedModo)?this.selectedModo.code:'ERROR';
     this.filtros.metodo= (this.selectedNMetodos)?this.selectedNMetodos.code:'ERROR';
     this.filtros.fecha=  this.fecha;
+    this.filtros.busqueda = this.busqueda;
 
     console.log(this.filtros);
     this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
@@ -109,7 +110,7 @@ export class BusquedaComponent implements OnInit {
       (params: Params) => {
         this.valor = params.q;
         this.buscar(1)
-
+        this.busqueda = params.q;
       }
     );
   }

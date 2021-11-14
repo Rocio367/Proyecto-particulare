@@ -31,8 +31,8 @@ export class TokenInterceptor implements HttpInterceptor {
     const loginUrl = `${environment.apiUrl}/login_check`;
     const refreshTokenUrl = `${environment.apiUrl}/refresh/token`;
 
-    if (this.authService.getToken()) {
-      request = TokenInterceptor.addToken(request, this.authService.getToken());
+    if (localStorage.getItem('token')) {
+      request = TokenInterceptor.addToken(request, localStorage.getItem('token'));
     }
 
     return next.handle(request).pipe(

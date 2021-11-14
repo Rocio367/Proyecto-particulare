@@ -7,7 +7,7 @@
                         <div class="grid">
                             <div class="col-12">
                                 <img *ngIf="fotoDePerfilCargada(); else imgDefault"
-                                    [src]="imagenPerfil" mat-card-avatar 
+                                    [src]="imagenPerfil"  mat-card-avatar 
                                     class="mx-auto d-block img-thumbnail redondeo" style="max-height: 200px; max-width: 200px;"/>
                                     <ng-template #imgDefault>
                                         <img mat-card-avatar [src]="imagenDefault" 
@@ -105,8 +105,8 @@
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
-                                    <input id="documento" type="number" pInputText formControlName="documento" class="inputfield w-full">
-                                    <label for="documento">documento</label>
+                                    <input id="documento" type="text" pInputText formControlName="documento" class="inputfield w-full">
+                                    <label for="documento">Documento</label>
                                 </span>
                                 <div *ngIf="formDatos.get('documento').hasError('required') && formDatos.get('documento').touched" class="text-center">
                                     <small class="p-error">Este campo es <strong>requerido</strong></small>

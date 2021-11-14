@@ -74,7 +74,7 @@ export class RegistrarAlumnoComponent implements OnInit {
 
       alumno = {
         materiasInteres: this.formDatos.controls["materiasInteres"].value,
-        nivelAcademico:this.formDatos.controls["nivel"].value,
+        nivelAcademico:this.formDatos.controls["nivelAcademico"].value,
         usuario: usuario
       };
 

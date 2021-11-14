@@ -4,109 +4,88 @@
     <div class="grid">
       <div class="col">
 
-        <h4 class="color-f">Datos académicos: <i class="pi pi-plus-circle ml-2 mt-2 mr-2"
-            style="font-size: 2rem;color:#35a763" (click)='crear()'></i></h4>
+        <h4 class="color-f">Datos académicos: </h4>
         <mat-list-item *ngFor="let item of datosAcademicos">
           <mat-card>
             <div mat-line><i class="pi pi-briefcase
                 ml-2 mr-2" style="font-size: 1rem"></i>{{item.titulo}}</div>
-            <div class='ml-2' mat-line> {{item.desde}} - {{item.hasta}}</div>
+            <div class='ml-2' mat-line> {{item.fechaInicio}} - {{item.fechaFin}}</div>
             <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;"
                 (click)="oponDoc(item.doc)"> Ver certificado</a></div>
             <div class='actions'>
-              <i class="pi pi-pencil fs-21 m-1
-                  " style="color:#35a763;cursor:pointer;" (click)='editar(item)'></i>
-
-              <i class="pi pi-trash fs-21 m-1" (click)='eliminar()' style="cursor:pointer;color:red"></i>
+              <i class="pi pi-trash fs-21 m-1" (click)='eliminar(item.id)' style="cursor:pointer;color:red"></i>
             </div>
 
           </mat-card>
+        </mat-list-item>
 
-          <mat-card *ngIf='open'>
+        <form [formGroup]="formDatos" class="ui large error form text-center">
 
-            <i class="pi pi-times float-right m-4" (click)='close()' style='color:#35a763;'></i>
-            <form [formGroup]="formDatos" class="ui large error form text-center">
-
-              <div class="grid container">
-                <div class="col-md-6">
-                  <br>
-                  <div class="field col-12">
-                    <span class="p-float-label">
-                      <input id="materia" formControlName="titulo" type="text" pInputText class="inputfield w-full">
-                      <label for="materia">Título</label>
-                    </span>
-                    <div
-                      *ngIf="formDatos.get('titulo').hasError('required') && formDatos.get('titulo').touched"
-                      class="text-center">
-                      <small class="p-error">Este campo es <strong>requerido</strong></small>
-                    </div>
-                  </div>
-
-                  <div class="field col-12">
-                    <span class="p-float-label">
-                      <p-calendar inputId="fechaDesde" formControlName="desde" dateFormat="dd-mm-yy" 
-                      [showIcon]="true" styleClass="w-full" 
-                      [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
-                      <label for="fechaNacimiento">Desde</label>
-                  </span>
-                  <div *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched" class="text-center">
-                      <small class="p-error">Este campo es <strong>requerido</strong></small>
-                  </div>
-                  </div>
-
+          <div class="grid container">
+            <div class="col-md-6">
+              <br>
+              <div class="field col-12">
+                <span class="p-float-label">
+                  <input id="materia" formControlName="titulo" type="text" pInputText class="inputfield w-full">
+                  <label for="materia">Título</label>
+                </span>
+                <div
+                  *ngIf="formDatos.get('titulo').hasError('required') && formDatos.get('titulo').touched"
+                  class="text-center">
+                  <small class="p-error">Este campo es <strong>requerido</strong></small>
                 </div>
-                <div class="col-md-6">
-                  <br>
-
-                  <div class="field col-12">
-                    <span class="p-float-label">
-                      <p-calendar inputId="fechaHasta" formControlName="hasta" dateFormat="dd-mm-yy" 
-                      [showIcon]="true" styleClass="w-full" 
-                      [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
-                      <label for="fechaNacimiento">Hasta</label>
-                  </span>
-                  <div *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched" class="text-center">
-                      <small class="p-error">Este campo es <strong>requerido</strong></small>
-                  </div>
-                  </div>
-
-                  <div class="field col-12">
-                      <mat-form-field class='pl-3 input-large'>
-                          <ngx-mat-file-input
-                              formControlName="documento"
-                              multiple=false
-                              accept=".png, .jpg, .jpeg"
-                              color="warn" placeholder="Documento">
-                              <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
-                          </ngx-mat-file-input>
-                      </mat-form-field>
-                  </div>
-
-                </div>
-
               </div>
 
-              <button pButton type="submit" (click)='confirmar()' style='margin:auto'>Confirmar</button>
-            </form>
-          </mat-card>
-        </mat-list-item>
+              <div class="field col-12">
+                <span class="p-float-label">
+                  <p-calendar inputId="fechaDesde" formControlName="desde" dateFormat="dd-mm-yy" 
+                  [showIcon]="true" styleClass="w-full" 
+                  [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
+                  <label for="fechaNacimiento">Desde</label>
+              </span>
+              <div *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched" class="text-center">
+                  <small class="p-error">Este campo es <strong>requerido</strong></small>
+              </div>
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <br>
+
+              <div class="field col-12">
+                <span class="p-float-label">
+                  <p-calendar inputId="fechaHasta" formControlName="hasta" dateFormat="dd-mm-yy" 
+                  [showIcon]="true" styleClass="w-full" 
+                  [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
+                  <label for="fechaNacimiento">Hasta</label>
+              </span>
+              <div *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched" class="text-center">
+                  <small class="p-error">Este campo es <strong>requerido</strong></small>
+              </div>
+              </div>
+
+              <div class="field col-12">
+                  <mat-form-field class='pl-3 input-large'>
+                      <ngx-mat-file-input
+                          formControlName="documento"
+                          multiple=false
+                          accept=".png, .jpg, .jpeg"
+                          color="warn" placeholder="Documento">
+                          <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
+                      </ngx-mat-file-input>
+                  </mat-form-field>
+              </div>
+
+            </div>
+
+          </div>
+
+          <button pButton type="submit" (click)='confirmar()' style='margin:auto'>Agregar</button>
+        </form>
       </div>
     </div>
   </p-card>
-  <p-card styleClass="mt-3">
-    <div class="grid">
-      <div class="col">
-        <h4 class="color-f">Descripción:</h4>
-        <p>Me llamo Mario, soy ingeniero en informática, programador freelance.
-          La programación es parte de mi vida casi en todo momento , siempre estoy realizando tanto sea trabajos, clases
-          o estudiando programación por interés propio.
-          Me encanta enseñar, se me da fácil explicarme, ejemplificar y a la vez motivar a mi alumno para que siempre
-          vaya por más.
-          Te aseguro que si haces una clase conmigo podrás divertirte y aprender, que es la manera que siempre se
-          aprende más rápido, disfrutando lo que se hace.</p>
-      </div>
-    </div>
-  </p-card>
+ 
   <p-card styleClass="mt-3">
     <p-table [value]="clases">
       <ng-template pTemplate="caption">
@@ -126,10 +105,10 @@
       </ng-template>
       <ng-template pTemplate="body" let-clase>
         <tr>
-          <td>{{clase.materia}}</td>
+          <td>{{clase.materia.nombre}}</td>
           <td>{{clase.fecha | date}}</td>
-          <td>{{clase.cantidadDeAlumnos}}</td>
-          <td>{{clase.calificacion}} / 5</td>
+          <td>{{clase.cupo}}</td>
+          <td>{{clase.puntuacion}} / 5</td>
           <td><button pButton label="Ver más" (click)='verDetalle(clase)'></button></td>
         </tr>
       </ng-template>
