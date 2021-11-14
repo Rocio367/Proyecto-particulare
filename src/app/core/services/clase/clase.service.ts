@@ -60,4 +60,18 @@ export class ClaseService {
   verDetalle(id: number): Observable<Clase> {
     return this.http.get<Clase>(`${environment.backUrl}/v1/clases/verDetalle/${id}`);
   }
+
+  claseIniciada(id: number, link :string): Observable<Clase> {
+    return this.http.get<Clase>(`${environment.backUrl}/v1/clases/claseIniciada/${id}/${link}`);
+  }
+
+
+
+  claseFinalizada(id: number): Observable<Clase> {
+    return this.http.get<Clase>(`${environment.backUrl}/v1/clases/claseFinalizada/${id}`);
+  }
+
+  detalleClase(id: number): Observable<Clase> {
+    return this.http.get<Clase>(`${environment.backUrl}/v1/clases/detalleClase/${id}`);
+  }
 }

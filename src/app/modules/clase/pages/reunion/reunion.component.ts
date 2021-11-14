@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ClaseService } from 'src/app/core/services/clase/clase.service';
+import { environment } from 'src/environments/environment';
 declare var JitsiMeetExternalAPI: any;
 
 @Component({
@@ -26,11 +28,20 @@ export class ReunionComponent implements OnInit, AfterViewInit {
   handleVideoConferenceLeft: any;
   handleMuteStatus: any;
   handleVideoStatus: any;
-
-  constructor(
-    private router: Router
-  ) { }
-
+  id:number;
+  linkClase:string;
+  constructor(private aRouter:ActivatedRoute,private router: Router,private claseServices:ClaseService) {
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        this.id=Number(params.q);
+        this.linkClase= environment.frontUrl+"/reunion/"+this.id
+        this.claseServices.detalleClase(this.id).subscribe(res=>{
+          console.log(res)
+        })
+      }
+    );
+    
+    }
   ngOnInit(): void {
 
 
@@ -49,13 +60,13 @@ export class ReunionComponent implements OnInit, AfterViewInit {
       roomName: this.room,
       width: 900,
       height: 500,
-      inviteServiceUrl: "http://localhost:4200/reunion/1222",
+      inviteServiceUrl: this.linkClase,
       configOverwrite: {
-        inviteServiceUrl: "http://localhost:4200/reunion"
+        inviteServiceUrl: this.linkClase
       },
       interfaceConfigOverwrite: {
         filmStripOnly: true,
-        inviteServiceUrl: "http://localhost:4200/reunion"
+        inviteServiceUrl: this.linkClase
       },
 
       parentNode: document.querySelector('#jitsi-iframe'),
@@ -80,26 +91,30 @@ export class ReunionComponent implements OnInit, AfterViewInit {
 
     this.handleVideoConferenceJoined = async (participant) => {
 
-      this.api.executeCommand('startRecording', {
+      /*this.api.executeCommand('startRecording', {
         mode: 'file', //recording mode, either `file` or `stream`.
         dropboxToken: 'sl.A76FNSokVyRzpHCe31_GGPSewzDv8wisWvD8Sluh60M_g2XegPGUAq9_x9jjlWkkJa90I7zMyz0RVMhGscbSHm6rf3Du__K8Tk3MfUQE2CcadaGXwBOlUtmx_kOwZqqISMoT7r0', //dropbox oauth2 token.
         shouldShare: true, //whether the recording should be shared with the participants or not. Only applies to certain jitsi meet deploys.
 
-      });
-
-      console.log("handleVideoConferenceJoined", participant); // { roomName: "bwb-bfqi-vmh", id: "8c35a951", displayName: "Akash Verma", formattedDisplayName: "Akash Verma (me)"}
-      const data = await this.getParticipants();
+      });*/
+      this.claseServices.claseIniciada(this.id,this.linkClase).subscribe(res=>{
+        console.log(res)
+      })
     }
 
     this.handleVideoConferenceLeft = () => {
-      this.api.executeCommand('stopRecording',{
+      /*this.api.executeCommand('stopRecording',{
         mode: 'file' ,//recording mode to stop, `stream` or `file`
         dropboxToken: 'sl.A76FNSokVyRzpHCe31_GGPSewzDv8wisWvD8Sluh60M_g2XegPGUAq9_x9jjlWkkJa90I7zMyz0RVMhGscbSHm6rf3Du__K8Tk3MfUQE2CcadaGXwBOlUtmx_kOwZqqISMoT7r0', //dropbox oauth2 token.
         shouldShare: true, //whether the recording should be shared with the participants or not. Only applies to certain jitsi meet deploys.
 
       }
-      );
-      this.router.navigate(['/home']);
+      );*/
+      this.claseServices.claseFinalizada(this.id).subscribe(res=>{
+        console.log(res)
+        this.router.navigate(['/home']);
+
+      })
     }
 
     this.handleMuteStatus = (audio) => {
