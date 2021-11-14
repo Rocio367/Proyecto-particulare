@@ -80,7 +80,8 @@ export class RegistrarParticularComponent implements OnInit {
             verticalPosition: "top",
             panelClass: ['green-snackbar']
           });
-          this.formDatos.reset();
+          this.router.navigate(['/home'])
+
         },
         (error) => {
           console.error(particular, error);
