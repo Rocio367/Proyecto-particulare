@@ -14,6 +14,8 @@ import { Usuario } from 'src/app/shared/models/usuario';
 })
 export class PerfiHeaderComponent implements OnInit {
   particular: Particular;
+  id: number = Number(localStorage.getItem('idUser'));
+  id_profesor:number;
 
   formDatos = this.form.group({
     localidad: [''],
@@ -25,11 +27,12 @@ export class PerfiHeaderComponent implements OnInit {
 
     ngOnInit(): void {
      
-        this.particularService.buscarPorIdProfesor(5).subscribe( 
+        this.particularService.buscarPorIdProfesor(this.id).subscribe( 
           (particular) => {
             this.particular = particular;
             this.formDatos.controls["localidad"].setValue(this.particular.localidad)
             this.formDatos.controls["experiencia"].setValue(this.particular.experiencia)
+            console.error(this.id);
         },
         (error) => {
           console.error(error);
@@ -42,9 +45,10 @@ export class PerfiHeaderComponent implements OnInit {
     if(this.formDatos.valid) {
       let particular: Particular;
       let user : Usuario;
+      this.id_profesor = this.particular.id;
 
       particular = {
-        id:2, /* HARDCODEADO HAY QUE CAMBIARLO */
+        id:this.particular.id,
         video: null,
         localidad: this.formDatos.controls["localidad"].value,
         experiencia: this.formDatos.controls["experiencia"].value,
