@@ -23,4 +23,7 @@ export class DatosAcademicosService {
   buscarPorIdProfesor(idUsuario: Number): Observable<DatosAcademicos[]>{
     return this.http.get<DatosAcademicos[]>(`${environment.backUrl}/v1/profesor/mostrarDatosAcademicos/${idUsuario}`);
   }
+  borrarPorIdProfesor(idDatoAcademico: Number): Observable<void>{
+    return this.http.get<void>(`${environment.backUrl}/v1/profesor/eliminarDatoAacademico/${idDatoAcademico}`);
+  }
 }

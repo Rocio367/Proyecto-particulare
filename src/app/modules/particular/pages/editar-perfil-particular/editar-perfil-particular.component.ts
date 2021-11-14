@@ -63,7 +63,6 @@ export class EditarPerfilParticularComponent implements OnInit {
         this.formDatos.controls['repetirContrasenia'].setValue(this.particular.usuario.contrasenia);
         this.formDatos.controls['descripcion'].setValue(this.particular.experiencia);
         this.formDatos.controls['documento'].setValue(this.particular.usuario.documento);
-        this.imagenDefault= this.particular.usuario.fotoPerfil;
     },
     (error) => {
       console.error(error);
