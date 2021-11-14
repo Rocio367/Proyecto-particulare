@@ -18,7 +18,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class EditarPerfilParticularComponent implements OnInit {
   valor: number;
   particular: Particular;
-
+  id: number = Number(localStorage.getItem('idUser'));
   formDatos = this.form.group({
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
@@ -52,7 +52,7 @@ export class EditarPerfilParticularComponent implements OnInit {
         }
       }
     );
-    this.particularService.buscarPorIdProfesor(4).subscribe( 
+    this.particularService.buscarPorIdProfesor(this.id).subscribe( 
       (particular) => {
         this.particular = particular;
         this.formDatos.controls['nombre'].setValue(this.particular.usuario.nombre);
@@ -63,6 +63,7 @@ export class EditarPerfilParticularComponent implements OnInit {
         this.formDatos.controls['repetirContrasenia'].setValue(this.particular.usuario.contrasenia);
         this.formDatos.controls['descripcion'].setValue(this.particular.experiencia);
         this.formDatos.controls['documento'].setValue(this.particular.usuario.documento);
+
     },
     (error) => {
       console.error(error);
@@ -71,11 +72,6 @@ export class EditarPerfilParticularComponent implements OnInit {
   
   }
   
-
-
-
-
-    
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
   }
@@ -94,12 +90,12 @@ export class EditarPerfilParticularComponent implements OnInit {
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil,
         documento:  this.formDatos.controls["documento"].value,
-        id:null,
+        id:this.id,
         rol:null,
       }
 
       particular = {
-        id:5, /* HARDCODEADO HAY QUE CAMBIARLO */
+        id:this.id, /* HARDCODEADO HAY QUE CAMBIARLO */
         video:null,
         localidad:null,
         experiencia: this.formDatos.controls["descripcion"].value,
