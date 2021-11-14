@@ -55,6 +55,7 @@ export class PerfilParticularComponent implements OnInit {
         this.datosAcademicosService.buscarPorIdProfesor(particular.id).subscribe( 
           (datosAcademicos) => {
             this.datosAcademicos = datosAcademicos;
+            console.error(particular.id);
         },
         (error) => {
           console.error(error);
@@ -92,7 +93,7 @@ export class PerfilParticularComponent implements OnInit {
 
       datosAcademicos = {
         id: 2,
-        idProfesor: 2,
+        idProfesor: this.particular.id,
         titulo: this.formDatos.controls["titulo"].value,
         fechaInicio:  this.formDatos.controls["desde"].value,
         fechaFin:  this.formDatos.controls["hasta"].value,
