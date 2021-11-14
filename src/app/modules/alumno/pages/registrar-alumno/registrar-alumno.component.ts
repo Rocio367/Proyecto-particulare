@@ -69,7 +69,9 @@ export class RegistrarAlumnoComponent implements OnInit {
         contrasenia: this.formDatos.controls["contrasenia"].value,
         telefono: this.formDatos.controls["telefono"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
-        fotoPerfil: this.imagenPerfil
+        fotoPerfil: this.imagenPerfil,
+        id:null,
+        rol:null
       };
 
       alumno = {
