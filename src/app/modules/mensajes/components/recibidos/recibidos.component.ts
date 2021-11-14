@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class RecibidosComponent implements OnInit {
   recibidos: Mensaje[] = [];
   mensaje: Mensaje;
-  idUser = 1;
+  idUser=localStorage.getItem('idUser');;
   constructor(private _snackBar: MatSnackBar, private mensajeServices: MensajesService) {
     this.cargar()
 

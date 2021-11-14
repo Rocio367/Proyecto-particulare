@@ -27,7 +27,7 @@ export class ModalResponderComponent implements OnInit {
   });
   usuarios: any[] = [];
   idMensaje: number;
-  idUser=1;
+  idUser=localStorage.getItem('idUser');
   constructor(private router:Router,private servicesParticular: ParticularService, private form: FormBuilder, private _snackBar: MatSnackBar, private mensajeServices: MensajesService, private UsuarioServices: UsuariosService, private aRouter: ActivatedRoute) {
     this.servicesParticular.obtenerTodos().subscribe(res => {
       res.forEach(element => {

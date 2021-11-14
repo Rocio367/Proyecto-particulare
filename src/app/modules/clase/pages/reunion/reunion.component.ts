@@ -17,6 +17,7 @@ export class ReunionComponent implements OnInit, AfterViewInit {
   options: any;
   api: any;
   user: any;
+  idUser=localStorage.getItem('idUser');
 
   // For Custom Controls
   isAudioMuted = false;
@@ -37,6 +38,7 @@ export class ReunionComponent implements OnInit, AfterViewInit {
         this.linkClase= environment.frontUrl+"/reunion/"+this.id
         this.claseServices.detalleClase(this.id).subscribe(res=>{
           console.log(res)
+          //vreficiar que el idUser este entre los alumnos
         })
       }
     );

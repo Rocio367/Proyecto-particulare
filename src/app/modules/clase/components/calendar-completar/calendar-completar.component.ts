@@ -46,7 +46,6 @@ export class CalendarCompletarComponent implements OnInit {
 
     ]
 
-    //  this.horariosAsignados = [ "7" , "8" ,"9","4"]
 
 
 
@@ -76,7 +75,6 @@ export class CalendarCompletarComponent implements OnInit {
         let hora = new Date(0, 0, 0, h, 0, 0)
         //año ,mes, dia ,horas,minutos
         let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
-        console.log(this.includes(nuevo).length)
         if (this.includes(nuevo).length == 0) {
           this.disponibilidad.push(nuevo)
           this.dates = [new Date()]

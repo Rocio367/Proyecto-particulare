@@ -14,7 +14,7 @@ export class PapeleraComponent implements OnInit {
   eliminados: Mensaje[] = [];
   mensaje=undefined;
   responder = false;
-  idUser = 1;
+  idUser=localStorage.getItem('idUser');;
   constructor(private _snackBar: MatSnackBar, private mensajeServices: MensajesService) {
     this.cargar()
   }
