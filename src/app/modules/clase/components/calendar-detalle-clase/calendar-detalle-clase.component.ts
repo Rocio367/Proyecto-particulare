@@ -24,9 +24,9 @@ export class CalendarDetalleClaseComponent implements OnInit {
   dateSelect: any;
   dateValue: any;
   now = new Date()
-  disponibilidad: any[]=[]
-  datesFilter: any[]=[]
-  selected:any[]=[]
+  disponibilidad: any[] = []
+  datesFilter: any[] = []
+  selected: any[] = []
   meses = [
     { code: '1', label: 'Enero' },
     { code: '2', name: 'Febrero' },
@@ -49,36 +49,35 @@ export class CalendarDetalleClaseComponent implements OnInit {
   @Input()
   clase: Clase;
   referenciaDialogoDinamico: DynamicDialogRef;
-  id:number;
-  constructor(public datepipe: DatePipe,private aRouter:ActivatedRoute,private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
-    public dialogService: DialogService,private claseServices:ClaseService) {
-      this.aRouter.params.subscribe(
-        (params: Params) => {
-          this.id=Number(params.q);
-        }
-      );
+  id: number;
+  constructor(public datepipe: DatePipe, private aRouter: ActivatedRoute, private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
+    public dialogService: DialogService, private claseServices: ClaseService) {
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        this.id = Number(params.q);
+      }
+    );
 
-      this.claseServices.obtenerDisponibilidad(this.id).subscribe(res=>{
-        res.forEach(element => {
-         // if(element.estado=='DISPONIBLE'){
-         if(element.estado=='PENDIENTE'){
-          this.disponibilidad.push( { name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
-          this.datesFilter.push( { name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
+    this.claseServices.obtenerDisponibilidad(this.id).subscribe(res => {
+      res.forEach(element => {
+        if (element.estado == 'DISPONIBLE') {
+          this.disponibilidad.push({ name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
+          this.datesFilter.push({ name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
         }
-        });  
-        this.anos.push({ code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
-        this.anos.push({ code: (this.now.getFullYear() + 1).toString(), name: (this.now.getFullYear() + 1).toString() })
-        this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 2).toString() })
-        this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 4).toString() })
-    
-        this.SelectedMes = this.meses.find(d => d.code == (this.now.getMonth() + 1).toString())
-        this.SelectedAno = this.anos.find(d => d.code == (this.now.getFullYear()).toString())
-  
-      })
+      });
+      this.anos.push({ code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
+      this.anos.push({ code: (this.now.getFullYear() + 1).toString(), name: (this.now.getFullYear() + 1).toString() })
+      this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 2).toString() })
+      this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 4).toString() })
+
+      this.SelectedMes = this.meses.find(d => d.code == (this.now.getMonth() + 1).toString())
+      this.SelectedAno = this.anos.find(d => d.code == (this.now.getFullYear()).toString())
+
+    })
   }
 
   ngOnInit(): void {
-  
+
 
     this.primengConfig.ripple = true;
 
