@@ -23,14 +23,14 @@
                         
                     </div>
                     <div  class='div-a ml-4'>
-                        <h3 class='color-f'>Clases de {{clases.nombre}} para apoyo escolar y niveles avanzados</h3>
-                        <h4 class='fs-16 mb-3'>Particular: <span> Paula Tufró</span></h4>
+                        <h3 class='color-f'>{{registro.titulo}}</h3>
+                        <h4 class='fs-16 mb-3'>Particular: <span>{{registro.particular}}</span></h4>
                         <h4 class='fs-16 mb-3'>Nivel: <span>  {{clases.nivel.descripcion}}</span></h4>
                         <h4 class='fs-16 mb-3'>Método: <span>  {{clases.metodo}}</span></h4>
                         <h4 class='fs-16 mb-3'>Tipo de clase: <span> {{clases.modo}}</span></h4>
                         <h4 class='fs-16 mb-3'>Localidad: <span> <i class='pi pi-map-marker rojo'></i>
                                 {{registro.ubicacion}}</span></h4>
-                        <td><a href="nuevo-mensaje"><button pButton label="Contactar" class="mt-2"></button></a> </td>  
+                        <td><button (click)=contactar() pButton label="Contactar" class="mt-2"></button> </td>  
                             
                     </div>
                   

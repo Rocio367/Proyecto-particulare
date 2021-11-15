@@ -60,6 +60,16 @@ export class ModalResponderComponent implements OnInit {
 
           })
         }
+
+        if (params.p) {
+          this.servicesParticular.buscarPorIdProfesor(params.p).subscribe(res=>{
+            this.formDatos.controls['asunto'].setValue('Contacto')
+            this.formDatos.controls['destinatario'].setValue({ name: res.nombre + ' , ' + res.apellido, code: res.id })
+            this.formDatos.get('destinatario').disable();
+
+          })
+         
+        }
       }
     );
   }

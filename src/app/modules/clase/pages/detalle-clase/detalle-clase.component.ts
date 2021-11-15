@@ -16,6 +16,7 @@ export class DetalleClaseComponent implements OnInit {
   valor: number;
   id:number;
   idUser=localStorage.getItem('idUser');
+  idParticular:string;
 
   constructor(private claseService:ClaseService,private particularServices:ParticularService,private router:Router,private aRouter: ActivatedRoute,) { 
     this.aRouter.params.subscribe(
@@ -37,6 +38,7 @@ export class DetalleClaseComponent implements OnInit {
 
     this.particularServices.buscarPorIdProfesor(Number(this.idUser)).subscribe(res=>{
       console.log(res)
+      this.idParticular=res.usuario.id;
       this.registro.foto = res.usuario.fotoPerfil;
       this.registro.ubicacion = res.localidad;
       this.registro.particular = res.usuario.nombre +' ' + res.usuario.apellido;
@@ -67,5 +69,7 @@ export class DetalleClaseComponent implements OnInit {
     }
     );
    }
-
+   contactar(){
+      this.router.navigate(['nuevo-mensaje',{p:this.idParticular}])
+   }
 }
