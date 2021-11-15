@@ -50,6 +50,7 @@ export class CalendarDetalleClaseComponent implements OnInit {
   clase: Clase;
   referenciaDialogoDinamico: DynamicDialogRef;
   id: number;
+  idUser;
   constructor(public datepipe: DatePipe, private aRouter: ActivatedRoute, private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
     public dialogService: DialogService, private claseServices: ClaseService) {
     this.aRouter.params.subscribe(
@@ -80,7 +81,7 @@ export class CalendarDetalleClaseComponent implements OnInit {
 
 
     this.primengConfig.ripple = true;
-
+    this.idUser = localStorage.getItem('idUser');
   }
 
   filter() {
@@ -99,7 +100,8 @@ export class CalendarDetalleClaseComponent implements OnInit {
   confirmar() {
     this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
       data: {
-        clase: this.clase
+        clase: this.clase,
+        idUsuario: this.idUser
       },
       width: '90%'
     });

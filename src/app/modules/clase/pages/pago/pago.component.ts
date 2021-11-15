@@ -14,6 +14,7 @@ export class PagoComponent implements OnInit {
   cargandoPago: boolean;
   procesoDeCompra: ProcesoDeCompra;
   private clase: DetalleClase;
+  private idUsuario;
 
   constructor(private productosService: ProductosService,
               public config: DynamicDialogConfig,
@@ -22,8 +23,13 @@ export class PagoComponent implements OnInit {
   ngOnInit(): void {
     this.cargandoPago = true;
     this.clase = this.config.data.clase;
-    // Lo hardcodeo porque clase no tiene id
-    this.productosService.iniciarCompra(JSON.stringify(1))
+    this.idUsuario = this.config.data.idUsuario;
+
+    const pedidoDeCompra = {
+      idUsuario: this.idUsuario
+    }
+
+    this.productosService.iniciarCompra(this.clase.id, pedidoDeCompra)
       .subscribe(
         (procesoDeCompra) => {
           this.procesoDeCompra = procesoDeCompra;
