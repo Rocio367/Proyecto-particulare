@@ -30,6 +30,8 @@ export class EditarPerfilParticularComponent implements OnInit {
     fechaNacimiento: ['', Validators.required],
     descripcion: [''],
     documento: ["", Validators.required],
+    localidad: [""],
+
   });
 
   
@@ -63,6 +65,7 @@ export class EditarPerfilParticularComponent implements OnInit {
         this.formDatos.controls['repetirContrasenia'].setValue(this.particular.usuario.contrasenia);
         this.formDatos.controls['descripcion'].setValue(this.particular.experiencia);
         this.formDatos.controls['documento'].setValue(this.particular.usuario.documento);
+        this.formDatos.controls['localidad'].setValue(this.particular.localidad);
 
     },
     (error) => {
@@ -95,9 +98,9 @@ export class EditarPerfilParticularComponent implements OnInit {
       }
 
       particular = {
-        id:this.id, /* HARDCODEADO HAY QUE CAMBIARLO */
+        id:this.id,
+        localidad: this.formDatos.controls["localidad"].value,
         video:null,
-        localidad:null,
         experiencia: this.formDatos.controls["descripcion"].value,
         usuario: user
       }

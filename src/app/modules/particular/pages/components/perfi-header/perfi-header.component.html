@@ -8,26 +8,21 @@
         <div>
           <br>
           <h4>{{particular.usuario.nombre}} {{particular.usuario.apellido}}</h4>
-          <h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>
           <div class="field col-12">
-            <span class="p-float-label">
-              <input id="localidad" formControlName="localidad" type="text" pInputText class="inputfield w-full">
-              <label for="localidad">Localidad</label>
-            </span>
+            <h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>
+            <h4 class='fs-16 mb-3'>Localidad:{{particular.localidad}}</h4>
           </div>
         </div>
         <p-divider layout="vertical"></p-divider>
-        <div>
-          <div class="field col-12">
-            <div class="field col-12">
-              <span class="p-float-label">
-                <textarea id="experiencia" formControlName="experiencia" type="text" pInputText class="inputfield w-full"></textarea>
-                <label for="experiencia">Breve descripción</label>
-              </span>
-            </div>
-        </div>
-          <button pButton type="submit" (click)='confirmar()' style='margin:auto'>Confirmar</button>
-        </div>
+    
       </div>
     </p-card>
 </form>
+
+<p-card>
+  <div class="col-12">
+    <h3>Descripción</h3>
+    <hr/>
+    <h6>{{particular.experiencia}}</h6>
+  </div>
+</p-card>
