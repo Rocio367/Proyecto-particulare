@@ -12,4 +12,7 @@ export class DetalleClase{
     precio_por_hora:number;
     titulo:string;
     modo:string;
+    experiencia:string;
+    telefono:number;
+    mail:string;
 }

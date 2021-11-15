@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
+import { ParticularService } from 'src/app/core/services/particular/particular.service';
 import { DetalleClase } from 'src/app/shared/models/detalleClase';
 
 @Component({
@@ -17,7 +18,8 @@ export class DetalleClaseParticularComponent implements OnInit {
     
   ];
   id:number;
-  constructor(private aRouter:ActivatedRoute,private claseService:ClaseService) { 
+  idUser=localStorage.getItem('idUser');
+  constructor(private aRouter:ActivatedRoute,private claseService:ClaseService,private particularServices:ParticularService) { 
     this.aRouter.params.subscribe(
       (params: Params) => {
         this.id=Number(params.q);
@@ -27,19 +29,28 @@ export class DetalleClaseParticularComponent implements OnInit {
       console.log(res)
       this.registro.descripcion = res.descripcion;
       this.registro.titulo = res.nombre;
-      this.registro.foto = 'default-user.png';
       this.registro.materia = res.materia;
       this.registro.stars = 5;
       this.registro.type = res.metodo;
-      this.registro.ubicacion = 'Moron, Buenos Aires';
       this.registro.nivel = res.nivel;
-      this.registro.particular = 'Romina Perez';
-      this.registro.academico='Titulo academico ';
       this.registro.precio_por_hora=res.precio;
       this.registro.modo=res.modo;
     })
 
-   
+    this.particularServices.buscarPorIdProfesor(Number(this.idUser)).subscribe(res=>{
+      console.log(res)
+      this.registro.foto = res.usuario.fotoPerfil;
+      this.registro.ubicacion = res.localidad;
+      this.registro.particular = res.usuario.nombre +' ' + res.usuario.apellido;
+     // this.registro.academico='Titulo academico ';
+      this.registro.experiencia=res.experiencia;
+      this.registro.telefono=res.usuario.telefono;
+      this.registro.mail=res.usuario.email;
+    })
+
+    this.claseService.detalleClase(this.id).subscribe(res=>{
+      console.log(res)
+    })
    
   }
 

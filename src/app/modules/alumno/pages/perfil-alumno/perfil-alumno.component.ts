@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlumnnoService } from 'src/app/core/services/alumno/alumnno.service';
 import { CardModel } from 'src/app/shared/models/card';
 import { Clase } from 'src/app/shared/models/clase';
 
@@ -25,8 +26,15 @@ export class PerfilAlumnoComponent implements OnInit {
 
   beneficios: CardModel[]
   clases: Clase[]
-
-  constructor() { }
+  idUser=localStorage.getItem('idUser');
+  user:any;
+  constructor(private alumnoService:AlumnnoService) { 
+   this.alumnoService.buscarPorId(Number(this.idUser)).subscribe(res=>{
+     console.log(res)
+   //  this.user=res;
+   }
+    )
+  }
 
    folders: Section[] = [
     {

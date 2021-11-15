@@ -203,7 +203,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
 
         break;
       }
-      case 'particular': {
+      case 'profesor': {
 
 
         this.items = [
