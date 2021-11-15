@@ -9,7 +9,7 @@ import { environment } from "../../../../environments/environment";
   })
 export class ProductosService {
     private urlBase: string;
-    private path: string = "/v1/clases"; // supongo que apuntaria a productos
+    private path: string = "/v1/productos"; // supongo que apuntaria a productos
 
     constructor(private http: HttpClient) {
         this.urlBase = environment.backUrl + this.path;
@@ -17,8 +17,8 @@ export class ProductosService {
 
     // Por ahora recibo un objeto variable
     // y apunto al endpoint de clases
-    iniciarCompra(producto: any): Observable<ProcesoDeCompra> {
-        return this.http.post<ProcesoDeCompra>(`${this.urlBase}/${producto}/pagos`, producto,  {headers : new HttpHeaders({ 'Content-Type': 'application/json' })});
+    iniciarCompra(producto: any, pedidoDeCompra: any): Observable<ProcesoDeCompra> {
+        return this.http.post<ProcesoDeCompra>(`${this.urlBase}/${producto}/compras`, pedidoDeCompra,  {headers : new HttpHeaders({ 'Content-Type': 'application/json' })});
     }
 
 }
