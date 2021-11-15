@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { FileUpload } from 'primeng/fileupload';
 import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
 import { Documento } from 'src/app/shared/models/documento';
@@ -22,7 +23,7 @@ export class ModalSubirArchivoComponent implements OnInit {
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
   idUser:any;
-  constructor(private form: FormBuilder,public snackBar: MatSnackBar, private modelosService: ModelosService) {
+  constructor(private form: FormBuilder,public snackBar: MatSnackBar,private router:Router, private modelosService: ModelosService) {
     this.idUser=localStorage.getItem('idUser')
     console.log(this.idUser)
   }
@@ -86,6 +87,14 @@ export class ModalSubirArchivoComponent implements OnInit {
                     verticalPosition: "top",
                     panelClass: ['green-snackbar']
                   });
+                  if(localStorage.getItem('rol') == 'particular'){
+                    this.router.navigate(['mis-modelos-particular'])
+
+                  }else{
+                    this.router.navigate(['mis-modelos-alumno'])
+
+                  }
+
                   this.formDatos.reset();
                   this.fileUploadComponent.clear();
                 },

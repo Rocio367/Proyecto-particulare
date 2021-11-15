@@ -13,26 +13,30 @@ import { Usuario } from 'src/app/shared/models/usuario';
   styleUrls: ['./perfi-header.component.scss']
 })
 export class PerfiHeaderComponent implements OnInit {
+  particular: Particular;
+  id: number = Number(localStorage.getItem('idUser'));
+  id_profesor:number;
 
   formDatos = this.form.group({
-    video: [''],
     localidad: [''],
     experiencia: [''],
   });
 
-  video = "";
   constructor(private snackBar:MatSnackBar, private form: FormBuilder, private router: Router,
     private particularService: ParticularService) { }
 
     ngOnInit(): void {
-      this.formDatos.controls['video'].valueChanges.subscribe(
-        archivo => {
-          const reader = new FileReader();
-          reader.readAsDataURL(archivo)
-          reader.onload = () => {
-            this.video = reader.result as string;
-            }
-          }
+     
+        this.particularService.buscarPorIdProfesor(this.id).subscribe( 
+          (particular) => {
+            this.particular = particular;
+            this.formDatos.controls["localidad"].setValue(this.particular.localidad)
+            this.formDatos.controls["experiencia"].setValue(this.particular.experiencia)
+            console.error(this.id);
+        },
+        (error) => {
+          console.error(error);
+        }
         );      
       }
 
@@ -41,10 +45,11 @@ export class PerfiHeaderComponent implements OnInit {
     if(this.formDatos.valid) {
       let particular: Particular;
       let user : Usuario;
+      this.id_profesor = this.particular.id;
 
       particular = {
-        id:1, /* HARDCODEADO HAY QUE CAMBIARLO */
-        video: this.video,
+        id:this.particular.id,
+        video: null,
         localidad: this.formDatos.controls["localidad"].value,
         experiencia: this.formDatos.controls["experiencia"].value,
         usuario: null
@@ -59,12 +64,11 @@ export class PerfiHeaderComponent implements OnInit {
             verticalPosition: "top",
             panelClass: ['green-snackbar']
           });
-          this.formDatos.reset();
         },
         (error) => {
           //!= 200
           this.formDatos.markAllAsTouched();
-          this.snackBar.open('Error al editar el perfil, ingrese los campos correctamente.', "", {
+          this.snackBar.open('Error al editar el perfil, usted no esta autorizado para modificar este perfil.', "", {
             duration: 1500,
             horizontalPosition: "end",
             verticalPosition: "top",

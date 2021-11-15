@@ -1,9 +1,10 @@
 export class Mensaje{
+    id:number;
     fecha:Date;
     contenido:string;
     asunto:string;
-    destinatario:string;
-    emisor:string;
-    estado:string;
+    destinatario:any;
+    emisor:any;
+    estado:any;
     leido:boolean;
 }

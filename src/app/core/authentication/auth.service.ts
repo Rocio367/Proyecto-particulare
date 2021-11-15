@@ -6,6 +6,8 @@ import { Token } from '../../shared/models/token';
 import { environment } from '../../../environments/environment';
 import { User } from '../../shared/models/user';
 import { Login } from 'src/app/shared/models/login';
+import { Usuario } from 'src/app/shared/models/usuario';
+
 
 
 @Injectable({
@@ -63,7 +65,10 @@ export class AuthService {
   getRol(){
    return localStorage.getItem('rol')
   }
-  loginSimulator(login :Login){
+
+
+
+  loginSimulatorRo(login :Login){
     let res=false;
     let cuentas:Login[]=[];
     cuentas.push(new Login('admin','admin',3))
@@ -80,6 +85,16 @@ export class AuthService {
     return res;
 
   }
+
+
+  loginSimulator(user :Usuario){
+    let res=false;
+    res=true;
+    this.setRol(user.rol)
+    this.setId(user.id)
+    return res;
+  }
+
   getCurrentUser() {
     return localStorage.getItem(this.SESSION_USER);
   }

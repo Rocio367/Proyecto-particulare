@@ -11,6 +11,8 @@ export class ModalValorarComponent implements OnInit {
 
   
   formPaso1: FormGroup;
+  idUser=localStorage.getItem('idUser');
+
   constructor(private form: FormBuilder, private router: Router) {
     this.formPaso1 = this.form.group({
       valoracion: ['0', [Validators.required]],

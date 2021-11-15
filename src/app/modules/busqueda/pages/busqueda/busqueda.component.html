@@ -6,10 +6,17 @@
           <ng-template pTemplate="header">
             <div class=" text-center mt-3">
               <h3 class='color-f mb-4'>Filtros <i class="icofont-filter fs-21"></i></h3>
+
+
+              <span class="p-input-icon-right m-2">
+                <input type="text"   class="p-inputtext-sm w-100" [value]="busqueda"  [(ngModel)]="busqueda"   pInputText placeholder="Buscar clases.." />
+              </span>
              
               <span class='m-3'>   
                 <p-calendar  placeholder="Filtrar por fecha" [(ngModel)]="fecha" dateFormat="dd-mm-yy"></p-calendar>
               </span>
+
+              <br/>
               <span class='m-3'>
                 <p-dropdown [options]="tipos" placeholder="Filtrar por Método"
                   optionLabel="name" [showClear]="true"  [(ngModel)]="selectedNMetodos" ></p-dropdown>

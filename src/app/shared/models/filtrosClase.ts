@@ -3,4 +3,5 @@ export class FiltroClase{
     fecha: Date;
     nivel:number;
     modo:string;
+    busqueda:string;
 }

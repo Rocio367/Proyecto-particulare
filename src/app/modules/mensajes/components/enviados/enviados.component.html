@@ -2,12 +2,13 @@
     <mat-card style='margin: auto;width: 90%;'>
         <div class="row" *ngIf='enviados'>
             <div class="col-lg-4">
-                <mat-list>
-                    <mat-list-item (click)='seleccion(mensaje)' [ngClass]='(mensaje.leido)? "leido":"no-leido "' *ngFor="let mensaje of enviados">
-                        <div class='fs-18' mat-line>{{mensaje.emisor}}</div>
-                        <div mat-line>{{mensaje.asunto}}</div>
-                        <div mat-line> {{mensaje.fecha | date}} </div>
-                        <i class="pi pi-trash fs-21 icon" (click)='delete(mensaje)'></i>
+                <mat-list >
+                    <mat-list-item  [ngClass]='(mensaje.leido)? "leido":"no-leido "' *ngFor="let mensaje of enviados">
+                        <div class='fs-18' mat-line>{{mensaje.emisor.nombre}}, {{mensaje.emisor.apellido}}</div>
+                        <div   mat-line>{{mensaje.asunto}}</div>
+                        <div  mat-line> {{mensaje.fecha | date}} </div>
+                        <button  (click)='seleccion(mensaje)' class='m-2' pButton label="Ver"></button>
+                        <button (click)='delete(mensaje)'  class='m-2'  pButton label="Eliminar"></button>
                     </mat-list-item>
                    
                   </mat-list>
@@ -16,9 +17,13 @@
                  <app-mensaje-detalle [responder]='responder' [mensaje]='mensaje'></app-mensaje-detalle>
             </div>
     
-            <div class='col-lg-8 seleccion-mensaje mt-2' *ngIf='!mensaje'>
+            <div class='col-lg-8 seleccion-mensaje mt-2' *ngIf='!mensaje && enviados.length>0'>
                   Seleccione un mensaje para ver más detalles
             </div>
+
+            <div class='col-lg-8 seleccion-mensaje mt-2' *ngIf='enviados.length==0'>
+                No hay mensajes enviados
+          </div>
         </div>
         <div class="row text-center" *ngIf='!enviados'>
             <div class='seleccion-mensaje col-12 text-center' >

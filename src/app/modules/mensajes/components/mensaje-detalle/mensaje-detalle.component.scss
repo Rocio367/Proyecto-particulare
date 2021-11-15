@@ -1,21 +1,27 @@
-mat-card{
+mat-card {
     margin-top: 5%;
 }
-
-.detalles-mensajes{
+.pointer{
+    cursor: pointer;
+}
+.detalles-mensajes {
     display: flex;
-   flex-direction: column;
+    flex-direction: column;
+}
+#respuestas{
+    margin-left: 4em!important;
+    
 }
 
-.detalles-mensajes p{
+.detalles-mensajes p {
     margin-bottom: 8px;
 }
 
-.btn-mensaje{
+.btn-mensaje {
     margin-top: 2%;
-    margin-bottom: 2%; 
+    margin-bottom: 2%;
 }
 
-.btn-text{
+.btn-text {
     color: white;
 }

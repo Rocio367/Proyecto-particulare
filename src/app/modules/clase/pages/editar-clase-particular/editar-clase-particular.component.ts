@@ -100,6 +100,8 @@ export class EditarClaseParticularComponent implements OnInit {
                 verticalPosition: "top",
                 panelClass: ['green-snackbar']
               });
+              this.router.navigate(['ver-clase-particular'])
+
               this.formDatos.reset();
             },
             (error) => {

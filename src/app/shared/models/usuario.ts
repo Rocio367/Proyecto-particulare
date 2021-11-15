@@ -7,4 +7,6 @@ export interface Usuario{
     telefono: number;
     fechaNacimiento: String;
     fotoPerfil: string;
+    rol:string;
+    id:number;
 }

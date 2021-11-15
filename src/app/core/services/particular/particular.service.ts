@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
+import { Usuario } from "src/app/shared/models/usuario";
 
 
 @Injectable({
@@ -22,6 +23,14 @@ export class ParticularService {
 
   editarPerfil(profesor: Particular): Observable<void> {
     return this.http.post<void>(`${environment.backUrl}/v1/profesor/editarPerfil`, profesor);
+  }
+
+  obtenerTodos(): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/profesor/obtenerTodos`);
+  }
+  
+  buscarPorIdProfesor(idUsuario: Number): Observable<any>{
+    return this.http.get<any>(`${environment.backUrl}/v1/profesor/mostrarRegistro/${idUsuario}`);
   }
 
 }

@@ -32,7 +32,6 @@ export class BuscadorDeArchivosComponent implements OnInit {
 
   constructor(private primengConfig: PrimeNGConfig, private router: Router, private servicioDeModelos: ModelosService) {
     this.idUser=localStorage.getItem('idUser');
-    console.log(this.idUser)
     this.primengConfig.ripple = true;
   }
 

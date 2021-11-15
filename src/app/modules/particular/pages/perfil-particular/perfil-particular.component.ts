@@ -1,3 +1,4 @@
+import { DetalleClase } from './../../../../shared/models/detalleClase';
 import { DatosAcademicos} from './../../../../shared/models/datosAcademicos';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, PatternValidator } from '@angular/forms';
@@ -6,6 +7,9 @@ import { Router } from '@angular/router';
 import { Clase } from 'src/app/shared/models/clase';
 import { Patters } from 'src/app/shared/models/patters';
 import { DatosAcademicosService } from 'src/app/core/services/datosAcademicos/datosAcademicos.service';
+import { ClaseService } from 'src/app/core/services/clase/clase.service';
+import { Particular } from './../../../../shared/models/particular';
+import { ParticularService } from 'src/app/core/services/particular/particular.service';
 
 
 @Component({
@@ -14,8 +18,10 @@ import { DatosAcademicosService } from 'src/app/core/services/datosAcademicos/da
   styleUrls: ['./perfil-particular.component.scss']
 })
 export class PerfilParticularComponent implements OnInit {
-  datosAcademicos:any[]=[{titulo:'Ingeniería en Informática',desde:'2015',hasta:'2018',doc:'https://image.slidesharecdn.com/certificadoparticipantes-140819025230-phpapp01/95/certificado-participantes-1-638.jpg?cb=1408416938'}]
-  clases: any[]
+  particular: Particular;
+  id: number = Number(localStorage.getItem('idUser'));
+  datosAcademicos:DatosAcademicos[]= [];
+  clases: Clase[]= [];
   open=false;
   openTipo='';
    formDatos = this.form.group({
@@ -28,7 +34,8 @@ export class PerfilParticularComponent implements OnInit {
   documento = "";
 
   constructor(private router:Router,private form: FormBuilder,public snackBar: MatSnackBar,
-    private datosAcademicosService: DatosAcademicosService ) { }
+    private datosAcademicosService: DatosAcademicosService,private claseService: ClaseService,
+    private particularService: ParticularService ) { }
   uploadedFiles: any[] = [];
 
   ngOnInit(): void {
@@ -40,13 +47,37 @@ export class PerfilParticularComponent implements OnInit {
           this.documento = reader.result as string;
         }
       }
-    );      
-    this.clases = [
-      { id:1,materia: 'Inglés básico', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
-      {id:2, materia: 'Inglés Avanzado', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
-      {id:3, materia: 'Programación OPP', fecha: new Date(2021, 9, 10),cantidadDeAlumnos: 5,calificacion:5},
-     
-    ];
+    ); 
+    this.particularService.buscarPorIdProfesor(this.id).subscribe( 
+      (particular) => {
+        this.particular = particular;
+
+        this.datosAcademicosService.buscarPorIdProfesor(particular.id).subscribe( 
+          (datosAcademicos) => {
+            this.datosAcademicos = datosAcademicos;
+            console.error(particular.id);
+        },
+        (error) => {
+          console.error(error);
+        }
+        );
+
+        this.claseService.obtenerClasesPorParticular(particular.id).subscribe( 
+          (clases) => {
+            this.clases = clases;
+        },
+        (error) => {
+          console.error(error);
+        }
+        );
+
+    },
+    (error) => {
+      console.error(error);
+    }
+    );     
+   
+  
     }
    
   crear(){
@@ -61,8 +92,8 @@ export class PerfilParticularComponent implements OnInit {
       let datosAcademicos: DatosAcademicos;
 
       datosAcademicos = {
-        id: 1,
-        idProfesor: 1,
+        id: 2,
+        idProfesor: this.particular.id,
         titulo: this.formDatos.controls["titulo"].value,
         fechaInicio:  this.formDatos.controls["desde"].value,
         fechaFin:  this.formDatos.controls["hasta"].value,
@@ -79,6 +110,7 @@ export class PerfilParticularComponent implements OnInit {
             panelClass: ['green-snackbar']
           });
           this.formDatos.reset();
+          this.ngOnInit();
         },
         (error) => {
           console.error(datosAcademicos, error);
@@ -110,8 +142,22 @@ export class PerfilParticularComponent implements OnInit {
     this.openTipo=''
 
   }
-  eliminar(){
-
+  eliminar(id:number){
+    this.datosAcademicosService.borrarPorIdProfesor(id).subscribe( 
+      () => {
+        this.snackBar.open('El registro de dato acádemico fue eliminado correctamente', "", {
+          duration: 1500,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+          panelClass: ['green-snackbar']
+        });
+        this.ngOnInit();
+      },
+      
+    (error) => {
+      console.error(error);
+    }
+    );
   }
   oponDoc(doc){
     window.open(doc)
@@ -125,6 +171,6 @@ export class PerfilParticularComponent implements OnInit {
 }
   verDetalle(l:any){
     let id=l.id;
-    this.router.navigate(['detalle-modelo-alumno', {  q: id  }])
+    this.router.navigate(['detalle-clase', {  q: id  }])
   }
 }

@@ -24,6 +24,7 @@ export class CrearClaseComponent implements OnInit {
   formDatos: FormGroup;
   cupo = false;
   disponibilidad: any;
+  idUser=localStorage.getItem('idUser');
   constructor(private form: FormBuilder, private router: Router, private claseService: ClaseService, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -74,8 +75,8 @@ export class CrearClaseComponent implements OnInit {
           precio: this.formDatos.controls["precio"].value,
           descripcion: this.formDatos.controls["descripcion"].value,
           cupo: this.formDatos.controls["cupo"].value,
-          disponibilidad: this.disponibilidad
-
+          disponibilidad: this.disponibilidad,
+          id_particular:Number(this.idUser),
         }
         console.log(clase)
 
@@ -88,6 +89,7 @@ export class CrearClaseComponent implements OnInit {
                 verticalPosition: "top",
                 panelClass: ['green-snackbar']
               });
+              this.router.navigate(['ver-clase-particular'])
               this.formDatos.reset();
             },
             (error) => {
