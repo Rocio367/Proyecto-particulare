@@ -7,13 +7,11 @@ import { Archivo } from 'src/app/shared/models/archivo';
 import { Documento } from 'src/app/shared/models/documento';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 import { Modelo } from 'src/app/shared/models/modelo';
-import { ModalContratarModelosComponent } from '../../components/modal-contratar-modelos/modal-contratar-modelos.component';
 import { ModalValorarComponent } from '../../components/modal-valorar/modal-valorar.component';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { ActualizarEstadoModeloRequest } from 'src/app/shared/models/actualizarEstadoModeloRequest';
 import Swal from 'sweetalert2';
-import { ProductosService } from 'src/app/core/services/productos/productos.service';
 
 @Component({
   selector: 'app-detalle-modelo-alumno',
@@ -32,7 +30,7 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   comprando: boolean = false;
   idUsuario: string;
 
-  constructor(private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog, private productosService: ProductosService) {
+  constructor(private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog) {
     this.route
       .params
       .subscribe(params => {
@@ -73,19 +71,6 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   }
   openRes(n: string) {
     window.open( n)
-  }
-  contratar(idOfertaResolucion: number) {
-    this.comprando = true;
-    // No entiendo lo del popup... por ahora dejo la llamada al servicio de compra
-    // this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container' });
-    const pedidoDeCompra = {
-      idUsuario: this.idUsuario
-    };
-    this.productosService.iniciarCompra(idOfertaResolucion, pedidoDeCompra)
-      .subscribe((procesoDeCompra) => {
-        window.open(procesoDeCompra.urlExterna, "_blank");
-        this.comprando = false;
-      })
   }
 
   valorar() {
