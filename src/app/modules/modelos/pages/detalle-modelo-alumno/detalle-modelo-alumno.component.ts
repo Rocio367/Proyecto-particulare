@@ -13,6 +13,7 @@ import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { ActualizarEstadoModeloRequest } from 'src/app/shared/models/actualizarEstadoModeloRequest';
 import Swal from 'sweetalert2';
+import { ProductosService } from 'src/app/core/services/productos/productos.service';
 
 @Component({
   selector: 'app-detalle-modelo-alumno',
@@ -28,8 +29,10 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   modelo: Modelo;
   postulaciones:any[];
   tituloBotonCambiarEstado: string;
+  comprando: boolean = false;
+  idUsuario: string;
 
-  constructor(private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog, private productosService: ProductosService) {
     this.route
       .params
       .subscribe(params => {
@@ -61,6 +64,8 @@ export class DetalleModeloAlumnoComponent implements OnInit {
       },
       (error) => console.error(error)
     );
+
+    this.idUsuario = localStorage.getItem('idUser');
   }
  
   open(n: string) {
@@ -69,8 +74,18 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   openRes(n: string) {
     window.open( n)
   }
-  contratar() {
-    this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container' });
+  contratar(idOfertaResolucion: number) {
+    this.comprando = true;
+    // No entiendo lo del popup... por ahora dejo la llamada al servicio de compra
+    // this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container' });
+    const pedidoDeCompra = {
+      idUsuario: this.idUsuario
+    };
+    this.productosService.iniciarCompra(idOfertaResolucion, pedidoDeCompra)
+      .subscribe((procesoDeCompra) => {
+        window.open(procesoDeCompra.urlExterna, "_blank");
+        this.comprando = false;
+      })
   }
 
   valorar() {
