@@ -76,7 +76,7 @@ export class CrearClaseComponent implements OnInit {
           descripcion: this.formDatos.controls["descripcion"].value,
           cupo: this.formDatos.controls["cupo"].value,
           disponibilidad: this.disponibilidad,
-          id_particular:Number(this.idUser),
+          id_profesor: Number(this.idUser),
         }
         console.log(clase)
 
