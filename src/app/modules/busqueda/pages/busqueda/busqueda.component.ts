@@ -110,8 +110,13 @@ export class BusquedaComponent implements OnInit {
       (params: Params) => {
         this.valor = params.q;
         this.buscar(1)
-        this.busqueda = params.q;
+        this.busqueda = this.valor;
+
+        if (this.valor === "undefined") {
+          this.busqueda = " ";
+        }
       }
+      
     );
   }
 
