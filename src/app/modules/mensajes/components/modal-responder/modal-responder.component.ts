@@ -32,6 +32,7 @@ export class ModalResponderComponent implements OnInit {
     this.servicesParticular.obtenerTodos().subscribe(res => {
       res.forEach(element => {
         if(element.usuario.id != this.idUser){
+          console.log({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
           this.usuarios.push({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
         }
       });
@@ -63,8 +64,10 @@ export class ModalResponderComponent implements OnInit {
 
         if (params.p) {
           this.servicesParticular.buscarPorIdProfesor(params.p).subscribe(res=>{
+            console.log(res)
+            console.log({ name: res.usuario.nombre + ' , ' + res.usuario.apellido, code: res.usuario.id })
             this.formDatos.controls['asunto'].setValue('Contacto')
-            this.formDatos.controls['destinatario'].setValue({ name: res.nombre + ' , ' + res.apellido, code: res.id })
+            this.formDatos.controls['destinatario'].setValue({ name: res.usuario.nombre + ' , ' + res.usuario.apellido, code: res.usuario.id })
             this.formDatos.get('destinatario').disable();
 
           })
