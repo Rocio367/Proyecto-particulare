@@ -39,6 +39,7 @@
           <th>Calificación</th>
 
           <th></th>
+          <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-clase>
@@ -48,6 +49,7 @@
           <td>{{clase.cupo}}</td>
           <td>{{clase.puntuacion}} / 5</td>
           <td><button pButton label="Ver más"></button></td>
+          <td><button (click)='iniciar()'  pButton label="Ir a la clase"></button></td>
         </tr>
       </ng-template>
     </p-table>

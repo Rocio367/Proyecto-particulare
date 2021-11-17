@@ -13,6 +13,7 @@ import { ClaseService } from "src/app/core/services/clase/clase.service";
 import { Particular } from "./../../../../shared/models/particular";
 import { ParticularService } from "src/app/core/services/particular/particular.service";
 import { Alumno } from "src/app/shared/models/alumno";
+import { Router } from "@angular/router";
 
 export interface Section {
   name: string;
@@ -41,6 +42,7 @@ export class PerfilAlumnoComponent implements OnInit {
   user: any;
 
   constructor(
+    private router: Router,
     private alumnoService: AlumnnoService,
     private claseService: ClaseService,
     private particularService: ParticularService,
@@ -98,5 +100,13 @@ export class PerfilAlumnoComponent implements OnInit {
           "Podes probar nuestros servicios gratuitamente la primera vez.",
       },
     ];
+  
+  
   }
+
+  iniciar(){
+    this.router.navigate(['reunion', { q: 222 }])
+
+  }
+
 }

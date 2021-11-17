@@ -62,6 +62,11 @@ export class VerMisClasesParticularComponent implements OnInit {
     );
   }
 
+  iniciar(id){
+    this.router.navigate(['reunion', { q: 222 }])
+
+  }
+
 
 
   
