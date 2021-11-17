@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { AlumnnoService } from "src/app/core/services/alumno/alumnno.service";
 import { CardModel } from "src/app/shared/models/card";
 import { Clase } from "src/app/shared/models/clase";
-import { Alumno } from "src/app/shared/models/Alumno";
 import { Usuario } from "src/app/shared/models/usuario";
 import {
   FormGroup,
@@ -13,6 +12,7 @@ import {
 import { ClaseService } from "src/app/core/services/clase/clase.service";
 import { Particular } from "./../../../../shared/models/particular";
 import { ParticularService } from "src/app/core/services/particular/particular.service";
+import { Alumno } from "src/app/shared/models/alumno";
 
 export interface Section {
   name: string;
