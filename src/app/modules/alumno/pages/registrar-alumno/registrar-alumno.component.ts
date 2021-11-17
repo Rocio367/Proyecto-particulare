@@ -88,7 +88,7 @@ export class RegistrarAlumnoComponent implements OnInit {
             verticalPosition: "top",
             panelClass: ["green-snackbar"],
           });
-          this.router.navigate(["/perfil-alumno"]);
+          this.router.navigate(["/home"]);
           return true;
         },
         (error) => {

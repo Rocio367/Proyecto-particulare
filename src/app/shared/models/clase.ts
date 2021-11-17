@@ -17,7 +17,7 @@ export interface Clase {
     estado?: string
     cupo?: number
     puntuacion?: number,
-    id_particular: number,
+    id_profesor: number,
     disponibilidad:Date[];
 
 }

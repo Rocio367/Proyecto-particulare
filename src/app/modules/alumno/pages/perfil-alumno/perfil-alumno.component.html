@@ -6,9 +6,9 @@
       </div>
       <p-divider layout="vertical"></p-divider>
       <div>
-        <h4>{{user.nombre }} {{user.apellido}} </h4>  
-        <h4 class='fs-16 mb-3'>Edad: <span>25</span></h4>
-        <h4 class='fs-16 mb-3'>Intereses: <span> - </span></h4>
+        <h4>{{alumno.usuario.nombre}} {{alumno.usuario.apellido}} </h4>  
+        <h4 class='fs-16 mb-3'>Fecha Nacimiento: <span>{{alumno.usuario.fechaNacimiento}}</span></h4>
+        <h4 class='fs-16 mb-3'>Intereses: <span> {{alumno.materiasInteres}} </span></h4>
         <h4 class='fs-16 mb-3'>Institución: <span> - </span></h4>
         <h4 class='fs-16 mb-3'>Nivel académico: <span> - </span></h4>
       </div>
@@ -23,35 +23,33 @@
       </div>
     </div>
   </p-card>
+  
   <p-card styleClass="mt-3">
     <p-table [value]="clases">
       <ng-template pTemplate="caption">
         <div>
           <h4 class="color-f">Mis clases</h4>
         </div>
-    </ng-template>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th>Nombre de la clase</th>
-          <th>Nombre del profesor</th>
-          <th>Fecha de clase</th>
-          <th>Estado</th>
-          <th>Video</th>
-          <th></th>
+          <th>Materia</th>
+          <th>Fecha de publicación</th>
+          <th>Cantidad de alumnos</th>
+          <th>Calificación</th>
+
           <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-clase>
         <tr>
-            <td>{{clase.nombre}}</td>
-            <td>{{clase.profesor}}</td>
-            <td>{{clase.fecha | date}}</td>
-            <td>{{clase.estado}}</td>
-            <td><button pButton icon="pi pi-youtube"></button></td>
-            <td><button pButton label="Ver más"></button></td>
-            <td><a href="nuevo-mensaje"><button pButton label="Contactar" class="mt-2"></button></a> </td>  
+          <td>{{clase.materia.nombre}}</td>
+          <td>{{clase.fecha | date}}</td>
+          <td>{{clase.cupo}}</td>
+          <td>{{clase.puntuacion}} / 5</td>
+          <td><button pButton label="Ver más"></button></td>
         </tr>
-    </ng-template>
+      </ng-template>
     </p-table>
   </p-card>
   <!--<p-card styleClass="mt-3">
