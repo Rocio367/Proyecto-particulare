@@ -7,7 +7,6 @@ import { Archivo } from 'src/app/shared/models/archivo';
 import { Documento } from 'src/app/shared/models/documento';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 import { Modelo } from 'src/app/shared/models/modelo';
-import { ModalContratarModelosComponent } from '../../components/modal-contratar-modelos/modal-contratar-modelos.component';
 import { ModalValorarComponent } from '../../components/modal-valorar/modal-valorar.component';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -28,6 +27,8 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   modelo: Modelo;
   postulaciones:any[];
   tituloBotonCambiarEstado: string;
+  comprando: boolean = false;
+  idUsuario: string;
 
   constructor(private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog) {
     this.route
@@ -61,6 +62,8 @@ export class DetalleModeloAlumnoComponent implements OnInit {
       },
       (error) => console.error(error)
     );
+
+    this.idUsuario = localStorage.getItem('idUser');
   }
  
   open(n: string) {
@@ -68,9 +71,6 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   }
   openRes(n: string) {
     window.open( n)
-  }
-  contratar() {
-    this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container' });
   }
 
   valorar() {

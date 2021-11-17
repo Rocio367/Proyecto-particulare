@@ -112,32 +112,10 @@
                      <p *ngIf='postulaciones.length == 0'>Aún no hay postulaciones</p>
                     </div>
                 <mat-card class="card-interna" *ngFor='let item of postulaciones'>
-                    <div class="product-item">
-                        <div class="product-list-img">
-                            <img mat-card-avatar src="../../../../../assets/img/default-user.png" style=" width:100%;">
-                        </div>
-                        <div class="product-list-detail">
-                            <h5 class="p-mb-2 color-f">{{item.particular}}</h5>
-                            <h4 class='fs-16 mb-3'>Tipo: <span>{{ item.tipo.descripcion}}</span></h4>
-                            <h4 class='fs-16 mb-3'>Costo: <span>{{ item.costo}}</span></h4>
-                            <h4 class='fs-16 mb-3'>Demora: <span>{{ item.demora.descripcion}}</span></h4>
-                        </div>
-                        <div class="product-list-action">
-                            <div class='stars'>
-                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-                                <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
-                                <span class='subtitle'>
-                                    {{item.valoracion}}/ 5
-                                </span>
-                            </div>
-                            <div class='actions' style='text-align: end;'>
-                                <button mat-button color='warn' (click)='contratar()' type="button">Contratar</button>
-                            </div>
-                        </div>
-                    </div>
+                    <app-oferta-recibida
+                        [idAlumno]="idUsuario"
+                        [ofertaDeResolucion]="item">
+                    </app-oferta-recibida>
                 </mat-card>
             </mat-card>
         </div>
