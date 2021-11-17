@@ -1,4 +1,4 @@
-import { V } from '@angular/cdk/keycodes';
+import { I, V } from '@angular/cdk/keycodes';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,41 +34,86 @@ export class MensajeDetalleComponent implements OnInit {
       this.mensajeServices.getDetalle(this.mensaje.id).subscribe(res => {
         console.log(res)
         this.resp = true;
-        res.respuestas.forEach(element => {
+        if( res.respuestas.length > 0){
+          res.respuestas.forEach(element => {
+            let m = new Mensaje();
+            m.id = element.id;
+            this.asunto = element.asunto;
+            m.contenido = element.contenido;
+            m.fecha = new Date(element.fecha);
+            m.destinatario = element.receptor.nombre + ',' + element.receptor.apellido;
+            m.emisor = element.emisor.nombre + ',' + element.emisor.apellido;
+  
+            this.respuestas.push(m)
+            if (element.emisor.id == this.idUser && !element.leidoEmisor) {
+              this.mensajeServices.marcarMensajeComoLeido(element.id, this.idUser).subscribe(res => {
+                console.log(res)
+              })
+            }
+            if (element.receptor.id == this.idUser && element.leidoReceptor) {
+              this.mensajeServices.marcarMensajeComoLeido(element.id, this.idUser).subscribe(res => {
+                console.log(res)
+              })
+            }
+  
+            if (element.emisor.id == this.idUser) {
+              m.emisor = 'Mi';
+            }
+  
+  
+            if (element.receptor.id == this.idUser) {
+              m.destinatario = 'Mi';
+            }
+          })
+          let element = document.getElementById(String(this.mensaje.id));
+          if(element){
+            element.innerHTML = this.mensaje.contenido;
+            element.scrollIntoView({ block: "center", behavior: "smooth" });
+
+          }
+          $('#' + this.mensaje.id).removeClass('hidden');
+          $('#b-' + this.mensaje.id).removeClass('hidden');
+        }else{
+
           let m = new Mensaje();
-          m.id = element.id;
-          this.asunto = element.asunto;
-          m.contenido = element.contenido;
-          m.fecha = new Date(element.fecha);
-          m.destinatario = element.receptor.nombre + ',' + element.receptor.apellido;
-          m.emisor = element.emisor.nombre + ',' + element.emisor.apellido;
+          m.id = Number(res.mensaje.id);
+          this.asunto = res.mensaje.asunto;
+          m.contenido = res.mensaje.contenido;
+          m.fecha = new Date(res.mensaje.fecha);
+          m.destinatario = res.mensaje.receptor.nombre + ',' + res.mensaje.receptor.apellido;
+          m.emisor = res.mensaje.nombre + ',' + res.mensaje.apellido;
 
           this.respuestas.push(m)
-          if (element.emisor.id == this.idUser && !element.leidoEmisor) {
-            this.mensajeServices.marcarMensajeComoLeido(element.id, this.idUser).subscribe(res => {
+          if (res.mensaje.emisor.id == this.idUser && !res.mensaje.leidoEmisor) {
+            this.mensajeServices.marcarMensajeComoLeido(res.mensaje.id, this.idUser).subscribe(res => {
               console.log(res)
             })
           }
-          if (element.receptor.id == this.idUser && element.leidoReceptor) {
-            this.mensajeServices.marcarMensajeComoLeido(element.id, this.idUser).subscribe(res => {
+          if (res.mensaje.receptor.id == this.idUser && res.mensaje.leidoReceptor) {
+            this.mensajeServices.marcarMensajeComoLeido(res.mensaje.id, this.idUser).subscribe(res => {
               console.log(res)
             })
           }
 
-          if (element.emisor.id == this.idUser) {
+          if (res.mensaje.emisor.id == this.idUser) {
             m.emisor = 'Mi';
           }
 
 
-          if (element.receptor.id == this.idUser) {
+          if (res.mensaje.receptor.id == this.idUser) {
             m.destinatario = 'Mi';
           }
-        })
+       
         let element = document.getElementById(String(this.mensaje.id));
-        element.innerHTML = this.mensaje.contenido;
+        if(element){
+          element.innerHTML = this.mensaje.contenido;
+          element.scrollIntoView({ block: "center", behavior: "smooth" });
+
+        }
         $('#' + this.mensaje.id).removeClass('hidden');
         $('#b-' + this.mensaje.id).removeClass('hidden');
-        element.scrollIntoView({ block: "center", behavior: "smooth" });
+        }
+     
       })
     }
 
