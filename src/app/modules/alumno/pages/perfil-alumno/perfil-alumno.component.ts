@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AlumnnoService } from 'src/app/core/services/alumno/alumnno.service';
 import { CardModel } from 'src/app/shared/models/card';
 import { Clase } from 'src/app/shared/models/clase';
+import { Alumno } from 'src/app/shared/models/Alumno';
+import { Usuario } from 'src/app/shared/models/usuario';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+
 
 export interface Section {
   name: string;
@@ -23,18 +27,15 @@ export interface PeriodicElement {
   styleUrls: ['./perfil-alumno.component.scss']
 })
 export class PerfilAlumnoComponent implements OnInit {
-
+  alumno: Alumno;
   beneficios: CardModel[]
   clases: Clase[]
-  idUser=localStorage.getItem('idUser');
+  id: number = Number(localStorage.getItem('idUser'));
+  id_alumno:number;
   user:any;
-  constructor(private alumnoService:AlumnnoService) { 
-   this.alumnoService.buscarPorId(Number(this.idUser)).subscribe(res=>{
-     console.log(res)
-   //  this.user=res;
-   }
-    )
-  }
+
+
+  constructor(private alumnoService:AlumnnoService, private form: FormBuilder) {}
 
    folders: Section[] = [
     {
@@ -52,6 +53,21 @@ export class PerfilAlumnoComponent implements OnInit {
   ];
 
   ngOnInit() {
+
+
+    this.alumnoService.buscarPorId(this.id).subscribe( 
+      (alumno) => {
+        this.alumno = alumno;
+        console.error(this.id);
+    },
+    (error) => {
+      console.error(error);
+    }
+    ); 
+     
+    
+
+
 
     this.beneficios = [
       { titulo: 'Pack 20 clases 10%', subtitulo: 'Descuentos', contenido: 'This card has divider and indeterminate progress as footer'},
