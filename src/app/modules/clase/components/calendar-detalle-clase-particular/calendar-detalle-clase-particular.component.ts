@@ -20,13 +20,13 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
   dateValue: any;
   selected: any[];
   fechasDisponibles: Date[] = [];
-  fechasNoDisponibles: Date[] =[];
-  id:number;
-  constructor(private aRouter:ActivatedRoute,private primengConfig: PrimeNGConfig, public dialog: MatDialog,private claseService:ClaseService) {
-    
+  fechasNoDisponibles: Date[] = [];
+  id: number;
+  constructor(private aRouter: ActivatedRoute, private primengConfig: PrimeNGConfig, public dialog: MatDialog, private claseService: ClaseService) {
+
     this.aRouter.params.subscribe(
       (params: Params) => {
-        this.id=Number(params.q);
+        this.id = Number(params.q);
       }
     );
     this.horarios = [
@@ -51,14 +51,14 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
 
     ]
 
-    this.claseService.obtenerDisponibilidad(this.id).subscribe(res=>{
-     res.forEach(element => {
-        if(element.estado=='PENDIENTE'){
+    this.claseService.obtenerDisponibilidad(this.id).subscribe(res => {
+      res.forEach(element => {
+        if (element.estado == 'DISPONIBLE') {
           this.fechasDisponibles.push(new Date(element.fecha));
-        }else{
+        } else {
           this.fechasNoDisponibles.push(new Date(element.fecha));
         }
-     });
+      });
     })
     //faltan reseñas 
 
