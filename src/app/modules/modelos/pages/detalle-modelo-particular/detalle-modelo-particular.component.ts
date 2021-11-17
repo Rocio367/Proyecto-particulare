@@ -188,6 +188,11 @@ export class DetalleModeloParticularComponent implements OnInit {
     return this.oferta != undefined;
   }
 
+  /**
+   * Si tiene una oferta aceptada y no subio la resolucion y el modelo aun
+   * esta activo, puede subir resolucion
+   * @returns
+   */
   puedeSubirResolucion(): boolean {
     return this.resolucion == undefined &&
            this.modelo != undefined && this.modelo.estado == 'ACTIVO' &&
@@ -246,5 +251,13 @@ export class DetalleModeloParticularComponent implements OnInit {
 
   get cargandoBloqueResolucion(): boolean {
     return this.estaCargandoOferta || this.estaCargando || this.estaCargandoResolucion;
+  }
+
+  mostrarPorQueNoSePuedeResolver(): string {
+    let modeloInactivo = this.modelo != undefined && this.modelo.estado == "INACTIVO";
+    return modeloInactivo ? "No se aceptan resoluciones para este modelo" :
+      this.oferta == undefined ? "Tenes que ofertar una resolución antes de poder publicar una" :
+      this.oferta != undefined && this.oferta.estado != "ACEPTADA" ? "Tu oferta aún no fue aceptada" :
+      "Ya enviaste una resolución para este modelo";
   }
 }
