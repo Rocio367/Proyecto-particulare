@@ -26,13 +26,13 @@ export class MensajeDetalleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.verRespuestas()
+    //this.verRespuestas()
   }
 
   verRespuestas() {
     if (this.respuestas.length == 0) {
       this.mensajeServices.getDetalle(this.mensaje.id).subscribe(res => {
+        console.log(res)
         this.resp = true;
         res.respuestas.forEach(element => {
           let m = new Mensaje();

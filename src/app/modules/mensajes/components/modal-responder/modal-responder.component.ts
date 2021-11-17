@@ -80,7 +80,7 @@ export class ModalResponderComponent implements OnInit {
       mensaje.asunto = this.formDatos.get('asunto').value;
       mensaje.receptor = (this.formDatos.get('destinatario').value).code;
       //deberia ser el id del usuario actual
-      mensaje.emisor = 1;
+      mensaje.emisor = Number(this.idUser);
 
       mensaje.idMensaje = this.idMensaje;
       console.log(mensaje)
