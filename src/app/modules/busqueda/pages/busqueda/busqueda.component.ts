@@ -10,7 +10,7 @@ import { Resultado } from 'src/app/shared/models/resultado';
 import Swal from 'sweetalert2';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import { R } from '@angular/cdk/keycodes';
+import { R, T } from '@angular/cdk/keycodes';
 import { BusquedaService } from 'src/app/core/services/busqueda/busqueda.service';
 import { Nivel } from 'src/app/shared/models/nivel';
 
@@ -44,7 +44,7 @@ export class BusquedaComponent implements OnInit {
   selectedModo: any;
   selectedNMetodos: any;
   selectedValues: string[] = [];
-
+  busqueda: string;
 
   
   tipos:any[]=[{code:'ONLINE',name:'Online'},{code:'PRESENCIAL',name:'Me puedo acercar',},{code:'ERROR',name:'Presencial | Online'}]
@@ -71,8 +71,8 @@ export class BusquedaComponent implements OnInit {
     this.filtros.nivel= (this.selectedNiveles)?this.selectedNiveles.code : '0';
     this.filtros.modo =  (this.selectedModo)?this.selectedModo.code:'ERROR';
     this.filtros.metodo= (this.selectedNMetodos)?this.selectedNMetodos.code:'ERROR';
-
-    this.filtros.fecha= "2020-02-02T00:00:00";
+    this.filtros.fecha=  this.fecha;
+    this.filtros.busqueda = this.busqueda;
 
     console.log(this.filtros);
     this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
@@ -110,8 +110,13 @@ export class BusquedaComponent implements OnInit {
       (params: Params) => {
         this.valor = params.q;
         this.buscar(1)
+        this.busqueda = this.valor;
 
+        if (this.valor === "undefined") {
+          this.busqueda = " ";
+        }
       }
+      
     );
   }
 

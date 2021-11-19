@@ -1,0 +1,28 @@
+<form [formGroup]="formDatos" class="ui large error form text-center">
+    <p-card>
+      <div class="flex justify-content-evenly">
+        <div>
+          <img mat-card-avatar src="../../../../../assets/img/default-user.png" />
+        </div>
+        <p-divider layout="vertical"></p-divider>
+        <div>
+          <br>
+          <h4>{{particular.usuario.nombre}} {{particular.usuario.apellido}}</h4>
+          <div class="field col-12">
+            <h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>
+            <h4 class='fs-16 mb-3'>Localidad:{{particular.localidad}}</h4>
+          </div>
+        </div>
+        <p-divider layout="vertical"></p-divider>
+    
+      </div>
+    </p-card>
+</form>
+
+<p-card>
+  <div class="col-12">
+    <h3>Descripción</h3>
+    <hr/>
+    <h6>{{particular.experiencia}}</h6>
+  </div>
+</p-card>

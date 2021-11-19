@@ -4,10 +4,22 @@
             <p-card class='card-container card'>
                 <h3>Nuevo Mensaje</h3>
                 <form [formGroup]="formDatos" class="ui large error form">
+               
                     <span class="p-float-label w-80  mt-4">
-                        <input id="float-input" formControlName="destinatario" value='Paula Tufró' class='w-100'
-                            type="text" pInputText>
-                        <label for="float-input">Paula Tufró</label>
+                       
+                        <p-dropdown [options]="usuarios" class='w-100' formControlName="destinatario"  optionLabel="name"
+                        [filter]="true" filterBy="name" [showClear]="true" placeholder="Destinatario">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="formDatos.get('destinatario').value">
+                                <div>{{(formDatos.get('destinatario').value).name}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.name}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
                     </span>
                     <div *ngIf="formDatos.get('destinatario').hasError('required') && formDatos.get('destinatario').touched"
                         class="text-center">

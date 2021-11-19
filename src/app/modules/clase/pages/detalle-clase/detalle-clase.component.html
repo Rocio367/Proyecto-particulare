@@ -1,3 +1,5 @@
+<script>
+</script>
 <div class="p-5 container container-color">
     <div class='container'>
         <div class="col-lg-12">
@@ -21,14 +23,14 @@
                         
                     </div>
                     <div  class='div-a ml-4'>
-                        <h3 class='color-f'>Clases de {{clases.nombre}} para apoyo escolar y niveles avanzados</h3>
-                        <h4 class='fs-16 mb-3'>Particular: <span> Paula Tufró</span></h4>
+                        <h3 class='color-f'>{{registro.titulo}}</h3>
+                        <h4 class='fs-16 mb-3'>Particular: <span>{{registro.particular}}</span></h4>
                         <h4 class='fs-16 mb-3'>Nivel: <span>  {{clases.nivel.descripcion}}</span></h4>
                         <h4 class='fs-16 mb-3'>Método: <span>  {{clases.metodo}}</span></h4>
                         <h4 class='fs-16 mb-3'>Tipo de clase: <span> {{clases.modo}}</span></h4>
                         <h4 class='fs-16 mb-3'>Localidad: <span> <i class='pi pi-map-marker rojo'></i>
                                 {{registro.ubicacion}}</span></h4>
-                        <td><a href="nuevo-mensaje"><button pButton label="Contactar" class="mt-2"></button></a> </td>  
+                        <td><button (click)=contactar() pButton label="Contactar" class="mt-2"></button> </td>  
                             
                     </div>
                   
@@ -50,9 +52,10 @@
             <p-card>
                 <h3 class="mt-1">Agendá tu clase</h3>
                     <div class='col-lg-12  mt-4 '>
-                        <app-calendar-detalle-clase></app-calendar-detalle-clase>
+                        <app-calendar-detalle-clase 
+                            [clase]="clases">
+                        </app-calendar-detalle-clase>
                     </div>
-
             </p-card>
         </div>
 

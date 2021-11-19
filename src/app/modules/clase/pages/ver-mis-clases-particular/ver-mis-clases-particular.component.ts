@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Publicacion } from 'src/app/shared/models/publicacion';
-import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ClaseService } from 'src/app/core/services/clase/clase.service';
 
 
 @Component({
@@ -9,34 +10,64 @@ import Swal from 'sweetalert2';
   styleUrls: ['./ver-mis-clases-particular.component.scss']
 })
 export class VerMisClasesParticularComponent implements OnInit {
-
-
+  id: number;
+  clases:any[];
 
   orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}]
   filtro=[{name:'Disponible',code:'1'},{name:'No disponible',code:'2'}]
-  publicacion: Publicacion[];
+  
 
   sortOrder: number;
   sortKey='id';
   sortField: string;
   selectedEstado:string;
+  idUser=localStorage.getItem('idUser');
 
-  constructor() { }
+  constructor(private router: Router, private claseService: ClaseService,private route: ActivatedRoute, public snackBar: MatSnackBar) { 
+    this.route
+      .params
+      .subscribe(params => {
+        this.id = params.q
+      });
+  }
 
   ngOnInit(): void {
-    this.publicacion = [
-      { materia: 'Matemáticas', nivel: 'Secundario básico',modo:'online', estado: 'Finalizada', tipo: 'individual'},
-      { materia: 'Matemáticas', nivel: 'Secundario Superior', modo:'online', estado: 'Finalizada', tipo: 'individual'},
-      { materia: 'Álgebra', nivel: 'Universidad', modo:'online', estado: 'Ausente', tipo:'individual'},
-      { materia: 'Matemáticas', nivel: 'Universidad', modo:'online', estado: 'Pendiente', tipo: 'individual'},
-    ];
+    this.claseService.obtenerClasesPorParticular(Number(this.idUser))
+    .subscribe(
+      (res) => {
+        this.clases=res
+        console.log(this.clases)
+      },
+      (error) => console.error(error)
+    );
+  }
+  irEditar(id) {
+    this.router.navigate(['editar-detalle-clase-particular', { q: id }])
+  }
+  verDetalle(id) {
+    this.router.navigate(['detalle-clase-particular', { q: id }])
+  }
+  eliminar(id){
+    this.claseService.eliminarClase(id)
+    .subscribe(
+      () => {
+        this.snackBar.open('La clase fue eliminada correctamente', "", {
+          duration: 2000,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+          panelClass: ['green-snackbar']
+        });
+      },
+      (error) => console.error(error)
+    );
   }
 
-  eliminar(){
-    Swal.fire(
-      'Se ha cancelado la clase correctamente',
-      '',
-      'success'
-    )
+  iniciar(id){
+    this.router.navigate(['reunion', { q: 222 }])
+
   }
+
+
+
+  
 }

@@ -20,6 +20,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {ListboxModule} from 'primeng/listbox';
 import {ButtonModule} from 'primeng/button';
 import {FieldsetModule} from 'primeng/fieldset';
+import { UrlSegura } from '../pipes/url-segura';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {FieldsetModule} from 'primeng/fieldset';
     ModalAnotarseComponent,
     CardsComunComponent,
     TableComponent,
+    UrlSegura
   ],
   imports: [
     FieldsetModule,
@@ -62,6 +64,7 @@ import {FieldsetModule} from 'primeng/fieldset';
     ModalConsultaComponent,
     ModalAnotarseComponent,
     TableComponent,
+    UrlSegura,
     ],
   entryComponents: [],
 

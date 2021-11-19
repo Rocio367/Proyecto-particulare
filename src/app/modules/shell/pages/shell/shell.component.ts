@@ -1,9 +1,10 @@
 import { Route } from '@angular/compiler/src/core';
 import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api/menuitem';
+import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { AuthService } from '../../../../core/authentication/auth.service';
 import { RedirectService } from '../../../../core/services/redirect/redirect.service';
-import { Menu, MenuItem } from '../../../../shared/models/menu';
 
 
 @Component({
@@ -20,9 +21,9 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   rol = ''
   isLoggedIn = false;
   defaultMenu = true;
-
-  items: any[];
-  constructor(private authService: AuthService, private router: Router, private redirectService: RedirectService) {
+  idUser=localStorage.getItem('idUser');;
+  items: MenuItem[];
+  constructor(private MensajeServices: MensajesService, private authService: AuthService, private router: Router, private redirectService: RedirectService) {
     this.getMenu()
   }
 
@@ -51,7 +52,16 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
+  /*  var iconMensaje = $('.pi-envelope');
+    if (iconMensaje.find('#badge').length === 0 ) {
+      let numberNoLeidos = '';
+      this.MensajeServices.checkearMensajesNoLeidos(this.idUser).subscribe(res => {
+        console.log(res)
+        numberNoLeidos = res
+        iconMensaje.append($('<span id="badge">' + numberNoLeidos + '</span>'));
 
+      })
+    }*/
     if (this.loaded === false) {
       this.getMenu();
     }
@@ -59,11 +69,12 @@ export class ShellComponent implements OnInit, AfterContentChecked {
       this.getMenu();
       localStorage.setItem('recargar_menu', JSON.stringify(false));
     }
-
+  
   }
   getMenu() {
     this.isLoggedIn = this.authService.isLoggedIn()
     this.rol = localStorage.getItem('rol');
+    console.log(this.rol)
     this.items = [];
 
     switch (this.rol) {
@@ -96,7 +107,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
               {
                 label: 'Nuevo mensaje',
                 icon: 'pi pi-fw pi-pencil',
-                routerLink: 'nuevo-mensaje'
+                routerLink: 'nuevo-mensaje',
 
               },
               {
@@ -145,23 +156,23 @@ export class ShellComponent implements OnInit, AfterContentChecked {
 
             ]
           },
-          {
-            label: 'Foro',
-            icon: 'pi pi-fw pi-comments',
-             items:[
-               {
-              label: 'Nuevo tema',
-              icon: 'pi pi-fw pi-comment',
-              routerLink: 'nuevo-tema'
-
-            },
-            {
-              label: 'Explorar temas',
-              icon: 'pi pi-fw pi-tags',
-              routerLink: 'temas-foro',
-
-            }]
-          },
+          /* {
+             label: 'Foro',
+             icon: 'pi pi-fw pi-comments',
+              items:[
+                {
+               label: 'Nuevo tema',
+               icon: 'pi pi-fw pi-comment',
+               routerLink: 'nuevo-tema'
+ 
+             },
+             {
+               label: 'Explorar temas',
+               icon: 'pi pi-fw pi-tags',
+               routerLink: 'temas-foro',
+ 
+             }]
+           },*/
         ];
         break;
       }
@@ -180,20 +191,20 @@ export class ShellComponent implements OnInit, AfterContentChecked {
             routerLink: 'ganacias-administrador'
 
           },
-       
-          {
-            label: 'Foro',
-            icon: 'pi pi-fw pi-comments',
-            routerLink:'temas-foro'
-    
-            //  items:[]
-          },
+
+          /* {
+             label: 'Foro',
+             icon: 'pi pi-fw pi-comments',
+             routerLink:'temas-foro'
+     
+             //  items:[]
+           },*/
         ];
-       
+
         break;
       }
       case 'particular': {
-      
+
 
         this.items = [
 
@@ -223,7 +234,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
               {
                 label: 'Nuevo mensaje',
                 icon: 'pi pi-fw pi-pencil',
-                routerLink: 'nuevo-mensaje'
+                routerLink: 'nuevo-mensaje',
 
               },
               {
@@ -291,24 +302,24 @@ export class ShellComponent implements OnInit, AfterContentChecked {
 
             ]
           },
-          {
-            label: 'Foro',
-            icon: 'pi pi-fw pi-comments',
-             items:[
-               {
-              label: 'Nuevo tema',
-              icon: 'pi pi-fw pi-folder',
-              routerLink: 'nuevo-tema'
+          /* {
+             label: 'Foro',
+             icon: 'pi pi-fw pi-comments',
+              items:[
+                {
+               label: 'Nuevo tema',
+               icon: 'pi pi-fw pi-folder',
+               routerLink: 'nuevo-tema'
+ 
+             },
+             {
+               label: 'Explorar temas',
+               icon: 'pi pi-fw pi-folder',
+               routerLink: 'temas-foro',
+ 
+             }]
+           },*/
 
-            },
-            {
-              label: 'Explorar temas',
-              icon: 'pi pi-fw pi-folder',
-              routerLink: 'temas-foro',
-
-            }]
-          },
-        
         ];
         break;
       }

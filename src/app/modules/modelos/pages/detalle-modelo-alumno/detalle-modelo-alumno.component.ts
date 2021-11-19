@@ -7,10 +7,11 @@ import { Archivo } from 'src/app/shared/models/archivo';
 import { Documento } from 'src/app/shared/models/documento';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 import { Modelo } from 'src/app/shared/models/modelo';
-import { ModalContratarModelosComponent } from '../../components/modal-contratar-modelos/modal-contratar-modelos.component';
 import { ModalValorarComponent } from '../../components/modal-valorar/modal-valorar.component';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { ActualizarEstadoModeloRequest } from 'src/app/shared/models/actualizarEstadoModeloRequest';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalle-modelo-alumno',
@@ -25,6 +26,9 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   id: number;
   modelo: Modelo;
   postulaciones:any[];
+  tituloBotonCambiarEstado: string;
+  comprando: boolean = false;
+  idUsuario: string;
 
   constructor(private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog) {
     this.route
@@ -32,8 +36,6 @@ export class DetalleModeloAlumnoComponent implements OnInit {
       .subscribe(params => {
         this.id = params.q
       });
-  
-
   }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class DetalleModeloAlumnoComponent implements OnInit {
     .subscribe(
       (modelo) => {
         this.modelo = modelo;
-        
+        this.actualizarTituloBotonCambiarEstado();
         this.modeloService.obtenerArchivosPorModelo(modelo)
           .subscribe(
             (archivos) => this.modelo.archivos = archivos,
@@ -60,6 +62,8 @@ export class DetalleModeloAlumnoComponent implements OnInit {
       },
       (error) => console.error(error)
     );
+
+    this.idUsuario = localStorage.getItem('idUser');
   }
  
   open(n: string) {
@@ -68,13 +72,9 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   openRes(n: string) {
     window.open( n)
   }
-  contratar() {
-    this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container' });
-  }
 
   valorar() {
     this.dialog.open(ModalValorarComponent, { panelClass: 'custom-dialog-container' });
-
   }
 
   obtenerImagenEnBase64(documento: Documento) :string {
@@ -99,4 +99,36 @@ export class DetalleModeloAlumnoComponent implements OnInit {
         saveAs(content, "examen.zip");
       });
   }
-}
+
+  actualizarEstadoModelo(){
+
+    var estado = this.modelo.estado == 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+    var estadoRequest: ActualizarEstadoModeloRequest = 
+    {
+      estado: estado,
+      idModelo: this.modelo.id
+    }
+
+    this.modeloService.actualizarEstadoModelo(estadoRequest)
+      .subscribe(
+        (modelo) => {
+          let mensaje = modelo.estado == 'INACTIVO' ? 
+            'El modelo se ha INACTIVADO correctamente' :
+            'El modelo se ha ACTIVADO correctamente'
+          Swal.fire(mensaje, '', 'success');
+          this.modelo = modelo;
+          this.modeloService.obtenerArchivosPorModelo(modelo)
+            .subscribe(
+            (archivos) => this.modelo.archivos = archivos,
+            (error) => console.error(error)
+          )
+          this.actualizarTituloBotonCambiarEstado();
+        },
+        (error) => console.error(error)
+      );
+    }
+
+    private actualizarTituloBotonCambiarEstado(): void {
+      this.tituloBotonCambiarEstado = this.modelo.estado == 'ACTIVO' ? 'Inactivar modelo' : 'Activar modelo';
+    }
+  }

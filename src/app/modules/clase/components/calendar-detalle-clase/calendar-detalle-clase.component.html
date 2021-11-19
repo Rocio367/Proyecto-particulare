@@ -1,6 +1,5 @@
 <div class="row">
-	<div class="col-lg-6">
-		<h4 class='color-f'>Fechas</h4>
+	<div class="col-lg-12">
 		<span class='m-2'>
 			<p-dropdown [options]="meses" [(ngModel)]="SelectedMes" (click)='filter()' optionLabel="name"
 				[filter]="true" filterBy="name" [showClear]="true" placeholder="Mes">
@@ -31,23 +30,14 @@
 				</ng-template>
 			</p-dropdown>
 		</span>
-		<div class=' mt-3 text-center'>
-			<div class='date-results' (click)='verHorarios(date)' *ngFor='let date of disponibilidad;index as i'>
-				<span>{{ date.date |date}}</span>
-			</div>
-			<div *ngIf='disponibilidad.length ==0'>
-				No hay disponibilidad
-			</div>
-		</div>
-
-	</div>
-	<div class="col-lg-5">
-			<h4 class='color-f'>{{value| date}}- Horarios</h4>
-			<p-selectButton [options]="horarios" [(ngModel)]="horariosAsignados" multiple="multiple" optionLabel="name"
+		<div class="p-field p-col-12 p-md-4 text-center">
+			<p-selectButton [options]="disponibilidad" [(ngModel)]="selected" multiple="multiple" optionLabel="name"
 				optionValue="value"></p-selectButton>
-	</div>
-	<div class="col-lg-12">
-		<button pButton class='mt-2' type="button" label="Confirmar" (click)='confirmar()'></button>
+		</div>
+	
 
+		<div class="col-lg-12">
+			<button pButton class='mt-2' type="button" label="Confirmar" (click)='confirmar()'></button>
+
+		</div>
 	</div>
-</div>

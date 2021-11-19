@@ -1,12 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { FileUpload } from 'primeng/fileupload';
 import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
 import { Documento } from 'src/app/shared/models/documento';
 import { Materia } from 'src/app/shared/models/materia';
 import { Modelo } from 'src/app/shared/models/modelo';
 import { Nivel } from 'src/app/shared/models/nivel';
+import * as internal from 'stream';
 
 @Component({
   selector: 'app-modal-subir-archivo',
@@ -21,7 +23,7 @@ export class ModalSubirArchivoComponent implements OnInit {
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
   idUser:any;
-  constructor(private form: FormBuilder,public snackBar: MatSnackBar, private modelosService: ModelosService) {
+  constructor(private form: FormBuilder,public snackBar: MatSnackBar,private router:Router, private modelosService: ModelosService) {
     this.idUser=localStorage.getItem('idUser')
     console.log(this.idUser)
   }
@@ -32,7 +34,7 @@ export class ModalSubirArchivoComponent implements OnInit {
       institucion: ['', [Validators.required]],
       carrera: ['',Validators.required],
       materia: ['',Validators.required],
-      nivel: ['',Validators.required],      
+      nivel: ['',Validators.required],
       publico: [''],
     });
 
@@ -55,8 +57,8 @@ export class ModalSubirArchivoComponent implements OnInit {
         });
   }
 
-  confirmar(){
-console.log(this.formDatos.valid)
+  confirmar() {
+    console.log(this.formDatos.valid)
     if(this.formDatos.valid) {
 
       let modelo: Modelo;
@@ -71,7 +73,7 @@ console.log(this.formDatos.valid)
               nivel: this.formDatos.controls["nivel"].value,
               publico: this.formDatos.controls["publico"].value,
               archivos: archivos,
-              usuario: Number(3)
+              usuario: this.idUser
             }
 
             console.log(modelo);
@@ -85,6 +87,14 @@ console.log(this.formDatos.valid)
                     verticalPosition: "top",
                     panelClass: ['green-snackbar']
                   });
+                  if(localStorage.getItem('rol') == 'particular'){
+                    this.router.navigate(['mis-modelos-particular'])
+
+                  }else{
+                    this.router.navigate(['mis-modelos-alumno'])
+
+                  }
+
                   this.formDatos.reset();
                   this.fileUploadComponent.clear();
                 },
@@ -119,7 +129,6 @@ console.log(this.formDatos.valid)
   }
 
   seleccionarModelo(event) {
-
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }

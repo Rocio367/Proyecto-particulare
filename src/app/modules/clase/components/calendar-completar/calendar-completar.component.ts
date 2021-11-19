@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { timeStamp } from "console";
 import * as moment from 'moment'
 import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
 import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
@@ -18,7 +20,10 @@ export class CalendarCompletarComponent implements OnInit {
   dateValue: any;
   selected: any[];
   dates: Date[] = [new Date()]
-  constructor(private primengConfig: PrimeNGConfig, public dialog: MatDialog) {
+  disponibilidad: Date[] = []
+  @Output() addDisponibilidad: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private primengConfig: PrimeNGConfig, public snackBar: MatSnackBar, public dialog: MatDialog) {
     this.horarios = [
 
       { name: "07:00 AM", value: "7" },
@@ -41,14 +46,13 @@ export class CalendarCompletarComponent implements OnInit {
 
     ]
 
-   //  this.horariosAsignados = [ "7" , "8" ,"9","4"]
-      
+
 
 
   }
 
   ngOnInit(): void {
-    let now = new Date();
+
     this.primengConfig.ripple = true;
 
   }
@@ -65,14 +69,48 @@ export class CalendarCompletarComponent implements OnInit {
     })
   }
   agregar() {
-    console.log(this.selected)
+    this.dates.forEach(f => {
+      let fecha = new Date()
+      this.selected.forEach(h => {
+        let hora = new Date(0, 0, 0, h, 0, 0)
+        //año ,mes, dia ,horas,minutos
+        let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
+        if (this.includes(nuevo).length == 0) {
+          this.disponibilidad.push(nuevo)
+          this.dates = [new Date()]
+          this.selected = [];
+          this.addDisponibilidad.emit(this.disponibilidad)
+          this.snackBar.open('Disponibilidad agregada correctamente', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['green-snackbar']
+          });
+        } else {
+          this.snackBar.open('No puede agregar la misma fecha dos veces', "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['red-snackbar']
+          });
+        }
+      })
+
+    })
+
+
   }
 
-  eliminar() {
-
+  eliminar(date) {
+    let index = this.disponibilidad.indexOf(date);
+    this.disponibilidad.splice(index, 1);
   }
-
-
+  includes(fecha) {
+    let f = new Date(fecha)
+    let repetido = this.disponibilidad.filter(r => r.getFullYear() == f.getFullYear() && r.getMonth() == f.getMonth() && r.getDate() == f.getDate() && r.getHours() == f.getHours())
+    return repetido;
+  }
+ 
 
 
 }

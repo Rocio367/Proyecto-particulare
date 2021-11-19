@@ -17,9 +17,10 @@ import {DividerModule} from 'primeng/divider';
 import {RatingModule} from 'primeng/rating';
 import {TableModule} from 'primeng/table';
 import {FileUploadModule} from 'primeng/fileupload';
+import { PerfiHeaderComponent } from './pages/components/perfi-header/perfi-header.component';
 
 @NgModule({
-  declarations:[ RegistrarParticularComponent, PerfilParticularComponent, EditarPerfilParticularComponent, ComentariosParticularComponent],
+  declarations:[ RegistrarParticularComponent, PerfilParticularComponent, EditarPerfilParticularComponent, ComentariosParticularComponent, PerfiHeaderComponent],
   imports:[ FileUploadModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule,CalendarModule, 
     InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule,RatingModule,TableModule,],
   exports:[],

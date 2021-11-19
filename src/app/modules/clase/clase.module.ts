@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';
@@ -29,17 +29,21 @@ import { DetalleClaseParticularComponent } from './pages/detalle-clase-particula
 import { EditarClaseParticularComponent } from './pages/editar-clase-particular/editar-clase-particular.component';
 import { CalendarCompletarComponent } from './components/calendar-completar/calendar-completar.component';
 import { CalendarEditarComponent } from './components/calendar-editar/calendar-editar.component';
-
+import { ReunionComponent } from './pages/reunion/reunion.component';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
-  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent],
+  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent, ReunionComponent,],
   imports:[ CardModule,FieldsetModule,
     ButtonModule,
     ListboxModule,
     CalendarModule, CommonModule,SharedModule,RouterModule,AngularMaterialModule,InputTextModule,
     InputTextareaModule,DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,
-    TableModule,OrderListModule,GalleriaModule,FileUploadModule,ToastModule ],
+    TableModule,OrderListModule,GalleriaModule,FileUploadModule,ToastModule, DynamicDialogModule,
+    ProgressSpinnerModule,],
   exports:[],
+  providers:[DatePipe],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class ClaseModule { }

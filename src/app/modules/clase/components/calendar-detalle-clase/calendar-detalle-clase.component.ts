@@ -1,13 +1,20 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { DatePipe } from "@angular/common";
+import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import * as moment from 'moment'
-import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
-import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
+import { ActivatedRoute, Params } from "@angular/router";
+import { format } from "path";
+import { PrimeNGConfig } from "primeng/api";
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { ClaseService } from "src/app/core/services/clase/clase.service";
+import { Clase } from "src/app/shared/models/clase";
+import { PagoComponent } from "../../pages/pago/pago.component";
+
 @Component({
   selector: 'app-calendar-detalle-clase',
   templateUrl: './calendar-detalle-clase.component.html',
-  styleUrls: ['./calendar-detalle-clase.component.scss']
+  styleUrls: ['./calendar-detalle-clase.component.scss'],
+  providers: [DialogService]
 })
 export class CalendarDetalleClaseComponent implements OnInit {
   value = new Date;
@@ -16,11 +23,10 @@ export class CalendarDetalleClaseComponent implements OnInit {
   horarioSelect: any;
   dateSelect: any;
   dateValue: any;
-  selected: any[];
   now = new Date()
-  disponibilidad: any[]
-  datesFilter: any[];
-  datosAgenda:any[]=[]
+  disponibilidad: any[] = []
+  datesFilter: any[] = []
+  selected: any[] = []
   meses = [
     { code: '1', label: 'Enero' },
     { code: '2', name: 'Febrero' },
@@ -40,106 +46,66 @@ export class CalendarDetalleClaseComponent implements OnInit {
   anos = []
   horariosAsignados: any[];
   SelectedAno: any;
-  constructor(private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog) {
-
-    this.anos.push({ code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
-    this.anos.push({ code: (this.now.getFullYear() + 1).toString(), name: (this.now.getFullYear() + 1).toString() })
-    this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 2).toString() })
-    this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 4).toString() })
-
-    this.SelectedMes = this.meses.find(d => d.code == (this.now.getMonth() + 1).toString())
-    this.SelectedAno = this.anos.find(d => d.code == (this.now.getFullYear()).toString())
-
-  
-    //ejemplo de como vendria eljson   de disponibilidad el back    
-    this.disponibilidad = [
-      {
-        date: new Date('2021-10-21'),
-        horarios: [
-          { name: "07:00 AM", value: "7" },
-          { name: "08:00 AM", value: "8" },
-          { name: "09:00 AM", value: "9" },
-          { name: "10:00 AM", value: "10" }
-        ]
-      },
-      {
-        date: new Date('2021-10-22'),
-        horarios: [
-          { name: "10:00 AM", value: "10" },
-          { name: "11:00 AM", value: "11" },
-          { name: "14:00 PM", value: "14" },
-          { name: "15:00 PM", value: "15" }
-        ]
-      },
-      {
-        date: new Date('2021-10-23'),
-        horarios: [
-          { name: "09:00 AM", value: "9" },
-          { name: "10:00 AM", value: "10" }
-
-        ]
-      },
-      {
-        date: new Date('2021-10-24'),
-        horarios: [
-          { name: "09:00 AM", value: "9" },
-          { name: "10:00 AM", value: "10" },
-          { name: "17:00 AM", value: "17" },
-          { name: "18:00 AM", value: "18" }
-        ]
+  @Input()
+  clase: Clase;
+  referenciaDialogoDinamico: DynamicDialogRef;
+  id: number;
+  idUser;
+  constructor(public datepipe: DatePipe, private aRouter: ActivatedRoute, private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
+    public dialogService: DialogService, private claseServices: ClaseService) {
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        this.id = Number(params.q);
       }
-    ]
-    this.value=this.disponibilidad[0].date
-    this.horarios=this.disponibilidad[0].horarios
-    //igualo array para luego filtrar
-    this.datesFilter = this.disponibilidad;
+    );
 
-    this.filter()
+    this.claseServices.obtenerDisponibilidad(this.id).subscribe(res => {
+      res.forEach(element => {
+        if (element.estado == 'DISPONIBLE') {
+          this.disponibilidad.push({ name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
+          this.datesFilter.push({ name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
+        }
+      });
+      this.anos.push({ code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
+      this.anos.push({ code: (this.now.getFullYear() + 1).toString(), name: (this.now.getFullYear() + 1).toString() })
+      this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 2).toString() })
+      this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 4).toString() })
 
+      this.SelectedMes = this.meses.find(d => d.code == (this.now.getMonth() + 1).toString())
+      this.SelectedAno = this.anos.find(d => d.code == (this.now.getFullYear()).toString())
+
+    })
   }
 
   ngOnInit(): void {
-    let now = new Date();
+
+
     this.primengConfig.ripple = true;
-
+    this.idUser = localStorage.getItem('idUser');
   }
-  ngDoCheck() {
-    this.filter()
 
-  }
   filter() {
     let filtered: any[] = [];
     filtered = this.datesFilter;
+    console.log(this.datesFilter)
     if (this.SelectedAno) {
-      filtered = filtered.filter(d => (d.date.getFullYear()) == this.SelectedAno.code);
+      filtered = filtered.filter(d => (new Date(d).getFullYear()) == this.SelectedAno.code);
     }
     if (this.SelectedMes) {
-      filtered = filtered.filter(d => (d.date.getMonth() + 1) == this.SelectedMes.code);
+      filtered = filtered.filter(d => (new Date(d).getMonth() + 1) == this.SelectedMes.code);
     }
 
     this.disponibilidad = filtered;
   }
   confirmar() {
-    // se toman los datos y se guardan en la BD 
-    this.datosAgenda.push(
-      {
-        date:this.value,
-        horariosAsignados:this.horariosAsignados
-        //aca pueden ir otros datos
-      }
-    )
-    this.horariosAsignados=[];
-    this._snackbar.open("La clase se agendo correctamente", "", {
-      duration: 1500,
-      horizontalPosition: "end",
-      verticalPosition: "top",
-      panelClass: ['green-snackbar']
+    this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
+      data: {
+        clase: this.clase,
+        idUsuario: this.idUser
+      },
+      width: '90%'
     });
   }
 
-  verHorarios(v) {
-    this.value = v.date;
-    this.horarios = v.horarios;
-  }
 
 }

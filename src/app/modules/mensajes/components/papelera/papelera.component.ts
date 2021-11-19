@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { Mensaje } from 'src/app/shared/models/mensaje';
 import Swal from 'sweetalert2';
 
@@ -10,34 +12,53 @@ import Swal from 'sweetalert2';
 export class PapeleraComponent implements OnInit {
 
   eliminados: Mensaje[] = [];
-  mensaje: Mensaje;
-  responder=false;
-  constructor() {
-    let m1 = new Mensaje();
-    m1.asunto = 'asunto ';
-    m1.contenido = 'contenido ';
-    m1.fecha = new Date();
-    m1.emisor = 'username emisor';
-    m1.destinatario = 'username destinatario';
-    m1.leido = false;
-  
-    this.eliminados.push(m1)
+  mensaje=undefined;
+  responder = false;
+  idUser=localStorage.getItem('idUser');;
+  constructor(private _snackBar: MatSnackBar, private mensajeServices: MensajesService) {
+    this.cargar()
   }
+  cargar() {
 
+    this.mensajeServices.eliminados(this.idUser).subscribe(res => {
+       this.eliminados=[]
+       this.mensaje=undefined
+      res.forEach(element => {
+        let m = new Mensaje();
+        m.id = element.id;
+        m.asunto = element.asunto;
+        m.contenido = element.contenido;
+        m.fecha = new Date(element.fecha);
+        m.emisor = element.emisor;
+        m.destinatario = element.receptor;
+        if (element.emisor.id == this.idUser) {
+          m.leido = element.leidoEmisor;
+        }
+        if (element.receptor.id == this.idUser) {
+          m.leido = element.leidoReceptor;
+        }
+        this.eliminados.push(m)
+      });
+    })
+  }
   ngOnInit(): void {
+
   }
   add(m: Mensaje) {
+    this.mensajeServices.restaurar(m.id, this.idUser).subscribe(res => {
+      this.cargar()
 
-    this.eliminados.push(m)
-    Swal.fire(
-      'El mensaje restaurado con exito',
-      '',
-      'success'
-    )
+      this._snackBar.open("El mensaje fue restaurado correctamente", "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
+    })
   }
 
-  seleccion(m:Mensaje){
-    this.mensaje=m;
+  seleccion(m: Mensaje) {
+    this.mensaje = m;
   }
 
 }

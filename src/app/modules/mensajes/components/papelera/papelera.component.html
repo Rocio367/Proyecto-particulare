@@ -2,14 +2,14 @@
     <mat-card style='margin: auto;width: 90%;'>
         <div class="row" *ngIf='eliminados'>
             <div class="col-lg-4">
-                <mat-list>
-                    <mat-list-item (click)='seleccion(mensaje)' [ngClass]='(mensaje.leido)? "leido":"no-leido "'
+                <mat-list >
+                    <mat-list-item [ngClass]='(mensaje.leido)? "leido":"no-leido "'
                         *ngFor="let mensaje of eliminados">
-                        <div class='fs-18' mat-line>{{mensaje.emisor}}</div>
-                        <div mat-line>{{mensaje.asunto}}</div>
-                        <div mat-line> {{mensaje.fecha | date}} </div>
-                        <i class="pi pi-arrow-circle-left fs-21
-                    icon" (click)='add(mensaje)'></i>
+                        <div class='fs-18' mat-line>{{mensaje.emisor.nombre}}, {{mensaje.emisor.apellido}}</div>
+                        <div   mat-line>{{mensaje.asunto}}</div>
+                        <div  mat-line> {{mensaje.fecha | date}} </div>
+                        <button  (click)='seleccion(mensaje)' class='m-2' pButton label="Ver"></button>
+                        <button (click)='add(mensaje)' class='m-2' pButton label="Restaurar"></button>
                     </mat-list-item>
 
                 </mat-list>
@@ -17,10 +17,13 @@
             <div class='col-lg-8' *ngIf='mensaje'>
                 <app-mensaje-detalle [responder]='responder' [mensaje]='mensaje'></app-mensaje-detalle>
             </div>
+            <div class='col-lg-8 seleccion-mensaje mt-2' *ngIf='!mensaje && eliminados.length>0'>
+                Seleccione un mensaje para ver más detalles
+          </div>
 
-            <div class='col-lg-8 seleccion-mensaje mt-2' *ngIf='!mensaje'>
-                Seleccione un mensaje para ver mas detalles
-            </div>
+          <div class='col-lg-8 seleccion-mensaje mt-2' *ngIf='eliminados.length==0'>
+              No hay mensajes en la papelera
+        </div>
         </div>
         <div class="row text-center" *ngIf='!eliminados'>
             <div class='seleccion-mensaje col-12 text-center'>

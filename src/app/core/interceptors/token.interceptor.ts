@@ -31,18 +31,20 @@ export class TokenInterceptor implements HttpInterceptor {
     const loginUrl = `${environment.apiUrl}/login_check`;
     const refreshTokenUrl = `${environment.apiUrl}/refresh/token`;
 
-    if (this.authService.getToken()) {
-      request = TokenInterceptor.addToken(request, this.authService.getToken());
+    if (localStorage.getItem('token')) {
+      request = TokenInterceptor.addToken(request, localStorage.getItem('token'));
     }
 
     return next.handle(request).pipe(
       catchError((error:HttpErrorResponse) => {
-
+         console.log(error.error)
         let errorMessage;
-        if (error.error instanceof ErrorEvent) {
-          // client-side error
-          errorMessage = `Error:${error.error.message}`;
-        } else {
+        if (error.status === 400 && error.error) {
+           localStorage.setItem('errorMensaje',error.error)
+        }else{
+          localStorage.setItem('errorMensaje','Lo sentimos , no se pudo identificar el error')
+
+        }
           if (error.status === 401) {
             if (request.url === refreshTokenUrl) {
               this.authService.removeTokens();
@@ -64,7 +66,7 @@ export class TokenInterceptor implements HttpInterceptor {
               errorMessage += `\nDetail:${error.error}`;
             }
           }
-        }
+        
 
         if (error.status === 404) {
           //this.redirectService.toNotFound(errorMessage);
