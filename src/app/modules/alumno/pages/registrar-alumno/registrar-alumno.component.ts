@@ -28,7 +28,7 @@ export class RegistrarAlumnoComponent implements OnInit {
     email: ["", [Validators.email, Validators.required]],
     contrasenia: ["", Validators.required],
     repetirContrasenia: ["", Validators.required],
-    telefono: ["", Validators.required],
+    telefono: ['',Validators.pattern(/^(0|\-?[1-9][0-9]*)$/)],
     fechaNacimiento: ["", Validators.required],
     fotoPerfil: ["", Validators.required],
     materiasInteres: [""],
