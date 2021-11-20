@@ -124,11 +124,12 @@ export class DetalleModeloParticularComponent implements OnInit {
   }
 
   confirmar() {
-    Swal.fire(
-      'El archivo fue subido correctamente',
-      '',
-      'success'
-    )
+    this.snackBar.open('Archiv subido correctamente', "", {
+      duration: 1500,
+      horizontalPosition: "end",
+      verticalPosition: "top",
+      panelClass: ['green-snackbar']
+    });
   }
 
   /**

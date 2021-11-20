@@ -27,7 +27,7 @@
                   <td *ngIf='item.estado=="DISPONIBLE" || item.estado=="NODISPONIBLE"'> PENDIENTE</td>
                   <td *ngIf='item.estado!="DISPONIBLE" && item.estado!="NODISPONIBLE"'> {{item.estado}}</td>
                   <td><button (click)='verDetalle(item.clase.id)' pButton label="Ver detalles"></button></td>
-                  <td><button (click)='unirse(item.clase.id)' pButton label="Unirse"></button></td>
+                  <td><button (click)='unirse(item.id)' pButton label="Unirse"></button></td>
               </tr>
           </ng-template>
           </p-table>

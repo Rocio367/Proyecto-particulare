@@ -58,6 +58,8 @@ export class LoginComponent implements OnInit {
             //variables de sesion
             localStorage.setItem('rol',usuario.rol)
             localStorage.setItem('idUser',usuario.id)
+            localStorage.setItem('name',usuario.nombre + ' ' +usuario.apellido )
+            console.log(usuario)
             localStorage.setItem('recargar_menu', JSON.stringify(true));
             this.router.navigate(['/home'])
             console.log(usuario)

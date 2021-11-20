@@ -67,7 +67,7 @@ export class ClaseService {
   }
 
   claseIniciada(id: number, link :string): Observable<Clase> {
-    return this.http.get<Clase>(`${environment.backUrl}/v1/clases/claseIniciada/${id}/${link}`);
+    return this.http.post<Clase>(`${environment.backUrl}/v1/clases/claseIniciada/${id}`,{link:link});
   }
 
 
@@ -78,5 +78,12 @@ export class ClaseService {
 
   detalleClase(id: number): Observable<Clase> {
     return this.http.get<Clase>(`${environment.backUrl}/v1/clases/detalleClase/${id}`);
+  }
+
+  participantes(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/participantes/${id}`);
+  }
+  estado(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/estado/${id}`);
   }
 }

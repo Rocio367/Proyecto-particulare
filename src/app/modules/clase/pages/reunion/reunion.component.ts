@@ -1,4 +1,6 @@
+import { I } from '@angular/cdk/keycodes';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
 import { environment } from 'src/environments/environment';
@@ -9,7 +11,7 @@ declare var JitsiMeetExternalAPI: any;
   templateUrl: './reunion.component.html',
   styleUrls: ['./reunion.component.scss']
 })
-export class ReunionComponent implements OnInit, AfterViewInit {
+export class ReunionComponent implements OnInit {
 
   domain: string = "meet.jit.si"; // For self hosted use your domain
   //domain: string = "localhost:4200"; // For self hosted use your domain
@@ -17,7 +19,8 @@ export class ReunionComponent implements OnInit, AfterViewInit {
   options: any;
   api: any;
   user: any;
-  idUser=localStorage.getItem('idUser');
+  idUser = localStorage.getItem('idUser');
+  rol = localStorage.getItem('rol');
 
   // For Custom Controls
   isAudioMuted = false;
@@ -29,35 +32,80 @@ export class ReunionComponent implements OnInit, AfterViewInit {
   handleVideoConferenceLeft: any;
   handleMuteStatus: any;
   handleVideoStatus: any;
-  id:number;
-  linkClase:string;
-  constructor(private aRouter:ActivatedRoute,private router: Router,private claseServices:ClaseService) {
+  id: number;
+  linkClase: string;
+  estado: string;
+  mostrar = false;
+  mensaje = ''
+  clase:any;
+  constructor(private aRouter: ActivatedRoute, public snackBar: MatSnackBar, private router: Router, private claseServices: ClaseService) {
     this.aRouter.params.subscribe(
       (params: Params) => {
-        this.id=Number(params.q);
-        this.linkClase= environment.frontUrl+"/reunion/"+this.id
-        this.claseServices.detalleClase(this.id).subscribe(res=>{
-          console.log(res)
-          //vreficiar que el idUser este entre los alumnos
+        this.id = Number(params.q);
+        this.linkClase = environment.frontUrl + "/reunion;q="+ this.id
+        //solo pueden entrar usuarios permitidos
+        this.claseServices.detalleClase(this.id).subscribe(clase => {
+          this.clase=clase;
+          if(this.claseDisponible()){
+            this.claseServices.participantes(this.id).subscribe(res => {
+              console.log(res)
+              console.log(clase)
+              this.estado = clase.estado;
+              res.forEach(u => {
+                if (this.rol == 'particular') {
+                  this.snackBar.open('Debe iniciar la clase', "", {
+                    duration: 1500,
+                    horizontalPosition: "end",
+                    verticalPosition: "top",
+                    panelClass: ['yellow-snackbar']
+                  });
+  
+                }
+                if (this.rol == 'alumno') {
+                  if (u.rol == 'alumno' && u.id == this.idUser && this.estado != 'INICIADA') {
+                    this.mostrar = false;
+                    this.mensaje = 'El particular aun no a iniciado la clase, debe esperar para unirse'
+                  }
+                  if (u.rol == 'alumno' && u.id == this.idUser && this.estado == 'FINALIZADA') {
+                    this.mostrar = false;
+                    this.mensaje = 'La clase ya ha finalizado'
+                  }
+                }
+  
+              });
+            });
+          }
+         
         })
       }
     );
-    
-    }
+
+  }
+
+  claseDisponible(){
+     let fechaClase=new Date(this.clase.fecha)
+     let fechaActual=new Date()
+     let fechaFinalizacion=new Date(this.clase.fecha)
+     fechaFinalizacion.setHours(fechaClase.getHours()+1);
+     console.log(fechaClase)
+     console.log(fechaActual)
+     console.log(fechaFinalizacion)
+
+     if(fechaActual.getTime() >=fechaClase.getTime()  && fechaClase.getTime() < fechaFinalizacion.getTime()){
+           this.mensaje='No se encuntra una clase programa en este horario'
+           return true;
+     }
+     return false;
+  }
   ngOnInit(): void {
 
 
 
-  }
-
-  ngAfterViewInit(): void {
-
     this.room = 'Clase online'; // Set your room name
     this.user = {
-      name: 'Rocio Centurion' // Set your username
+      name: localStorage.getItem('name')
 
     }
-    //aca podemos moficiar el link con un id para mandarlo a los estudiantes
     this.options = {
       roomName: this.room,
       width: 900,
@@ -76,47 +124,45 @@ export class ReunionComponent implements OnInit, AfterViewInit {
         displayName: this.user.name
       }
     }
-
     this.handleClose = () => {
       console.log("handleClose");
     }
 
     this.handleParticipantLeft = async (participant) => {
       console.log("handleParticipantLeft", participant); // { id: "2baa184e" }
-      const data = await this.getParticipants();
     }
 
     this.handleParticipantJoined = async (participant) => {
       console.log("handleParticipantJoined", participant); // { id: "2baa184e", displayName: "Shanu Verma", formattedDisplayName: "Shanu Verma" }
-      const data = await this.getParticipants();
     }
 
     this.handleVideoConferenceJoined = async (participant) => {
-
+      console.log(participant)
       /*this.api.executeCommand('startRecording', {
         mode: 'file', //recording mode, either `file` or `stream`.
         dropboxToken: 'sl.A76FNSokVyRzpHCe31_GGPSewzDv8wisWvD8Sluh60M_g2XegPGUAq9_x9jjlWkkJa90I7zMyz0RVMhGscbSHm6rf3Du__K8Tk3MfUQE2CcadaGXwBOlUtmx_kOwZqqISMoT7r0', //dropbox oauth2 token.
         shouldShare: true, //whether the recording should be shared with the participants or not. Only applies to certain jitsi meet deploys.
 
       });*/
-      this.claseServices.claseIniciada(this.id,this.linkClase).subscribe(res=>{
+      this.claseServices.claseIniciada(this.id, this.linkClase).subscribe(res => {
         console.log(res)
       })
     }
 
     this.handleVideoConferenceLeft = () => {
-      /*this.api.executeCommand('stopRecording',{
+      if (!this.claseDisponible()) {
+        /*this.api.executeCommand('stopRecording',{
         mode: 'file' ,//recording mode to stop, `stream` or `file`
         dropboxToken: 'sl.A76FNSokVyRzpHCe31_GGPSewzDv8wisWvD8Sluh60M_g2XegPGUAq9_x9jjlWkkJa90I7zMyz0RVMhGscbSHm6rf3Du__K8Tk3MfUQE2CcadaGXwBOlUtmx_kOwZqqISMoT7r0', //dropbox oauth2 token.
         shouldShare: true, //whether the recording should be shared with the participants or not. Only applies to certain jitsi meet deploys.
 
       }
       );*/
-      this.claseServices.claseFinalizada(this.id).subscribe(res=>{
-        console.log(res)
-        this.router.navigate(['/home']);
+        this.claseServices.claseFinalizada(this.id).subscribe(res => {
+          this.router.navigate(['/home']);
 
-      })
+        })
+      }
     }
 
     this.handleMuteStatus = (audio) => {
@@ -137,16 +183,12 @@ export class ReunionComponent implements OnInit, AfterViewInit {
       videoMuteStatusChanged: this.handleVideoStatus
     });
 
+
+
   }
 
 
-  getParticipants() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.api.getParticipantsInfo()); // get all participants
-      }, 500)
-    });
-  }
+
 
   executeCommand(command: string) {
     this.api.executeCommand(command);;

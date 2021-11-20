@@ -25,8 +25,8 @@ export class HorariosParticularComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  iniciar(){
-       this.router.navigate(['reunion', { q: this.idClase }])
+  iniciar(id){
+       this.router.navigate(['reunion', { q: id }])
 
   }
 }
