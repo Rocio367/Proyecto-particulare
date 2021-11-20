@@ -23,7 +23,7 @@
                     </div>
                     <div class='col-4 desk'>
                         <h4 class='fs-16 mb-3'>Nombre: <span>{{modelo.nombre}}</span></h4>
-                        <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha | date}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span></h4>
                         <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
                     </div>
                     <div class='col-4 desk'>
@@ -36,7 +36,7 @@
                     </div>
                     <div class='col-12 mob'>
                         <h4 class='fs-16 mb-3'>Nombre: <span>{{modelo.nombre}}</span></h4>
-                        <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha | date}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span></h4>
                         <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
                         <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
                         <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
@@ -89,7 +89,7 @@
                     </div>
                 </mat-card>
             </div>
-            <p *ngIf='!resoluciones'>Aun no hay resoluciones</p>
+            <p *ngIf='!resoluciones'>Aún no hay resoluciones</p>
            </mat-card>
         </div>
         <div class='col-lg-12 text-center mt-3'
@@ -98,7 +98,7 @@
                 <h3 class=" ml-3 color-f">
                     Resoluciones
                 </h3>
-                <p>Aun no hay resoluciones</p>
+                <p>Aún no hay resoluciones</p>
             </mat-card>
         </div>
         <div class="col-lg-12 mb-5 mt-3">

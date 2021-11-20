@@ -67,14 +67,7 @@ export class PerfilAlumnoComponent implements OnInit {
     this.alumnoService.buscarPorId(this.id).subscribe(
       (alumno) => {
         this.alumno = alumno;
-        this.claseService.obtenerClasesPorAlumno(alumno.id).subscribe(
-          (clases) => {
-            this.clases = clases;
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
+      
       },
       (error) => {
         console.error(error);

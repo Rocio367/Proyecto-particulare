@@ -32,9 +32,12 @@ import { CalendarEditarComponent } from './components/calendar-editar/calendar-e
 import { ReunionComponent } from './pages/reunion/reunion.component';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { HorariosParticularComponent } from './components/horarios-particular/horarios-particular.component';
+import { MisClasesPendientesAlumnoComponent } from './pages/mis-clases-pendientes-alumno/mis-clases-pendientes-alumno.component';
+import { MiHistorialDeClasesAlumnoComponent } from './pages/mi-historial-de-clases-alumno/mi-historial-de-clases-alumno.component';
 
 @NgModule({
-  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent, ReunionComponent,],
+  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent, ReunionComponent, HorariosParticularComponent, MisClasesPendientesAlumnoComponent, MiHistorialDeClasesAlumnoComponent,],
   imports:[ CardModule,FieldsetModule,
     ButtonModule,
     ListboxModule,

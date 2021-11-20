@@ -108,7 +108,7 @@
       <ng-template pTemplate="body" let-clase>
         <tr>
           <td>{{clase.materia.nombre}}</td>
-          <td>{{clase.fecha | date}}</td>
+          <td>{{clase.fecha |date:'d/M/yy, h:mm a'}}</td>
           <td>{{clase.cupo}}</td>
           <td>{{clase.puntuacion}} / 5</td>
           <td><button pButton label="Ver más" (click)='verDetalle(clase)'></button></td>

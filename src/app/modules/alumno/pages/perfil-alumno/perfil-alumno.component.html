@@ -23,55 +23,6 @@
       </div>
     </div>
   </p-card>
-  
-  <p-card styleClass="mt-3">
-    <p-table [value]="clases">
-      <ng-template pTemplate="caption">
-        <div>
-          <h4 class="color-f">Mis clases</h4>
-        </div>
-      </ng-template>
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Materia</th>
-          <th>Fecha de publicación</th>
-          <th>Cantidad de alumnos</th>
-          <th>Calificación</th>
 
-          <th></th>
-          <th></th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-clase>
-        <tr>
-          <td>{{clase.materia.nombre}}</td>
-          <td>{{clase.fecha | date}}</td>
-          <td>{{clase.cupo}}</td>
-          <td>{{clase.puntuacion}} / 5</td>
-          <td><button pButton label="Ver más"></button></td>
-          <td><button (click)='iniciar()'  pButton label="Ir a la clase"></button></td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-card>
-  <!--<p-card styleClass="mt-3">
-    <div class="grid">
-      <div class="col-12">
-        <h2 class="color-f">Conocé nuestros beneficios</h2>
-        <p class="grisLetra">Descubre los descuentos que ofrecemos.</p>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="col-4" *ngFor="let beneficio of beneficios">
-        <p-card styleClass="card-interna">
-          <ng-template pTemplate="header">
-              <div class="categoria pl-2 ">{{beneficio.subtitulo}}</div>
-          </ng-template>
-          <ng-template pTemplate="title">{{beneficio.titulo}}</ng-template>
-          <p>{{beneficio.contenido}}</p>
-        </p-card>
-      </div>
-      <br>
-    </div>
-  </p-card>-->
+  
 </div>

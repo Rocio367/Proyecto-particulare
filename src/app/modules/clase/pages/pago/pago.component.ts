@@ -21,7 +21,6 @@ export class PagoComponent implements OnInit {
 
   constructor(private productosService: ProductosService,
     public config: DynamicDialogConfig,
-    private dialogRef: DynamicDialogRef,
     private _domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -36,7 +35,6 @@ export class PagoComponent implements OnInit {
     }
     this.cargandoPago = false;
 
-    console.log(pedidoDeCompra)
     this.productosService.iniciarCompra(this.clase.id, pedidoDeCompra)
       .subscribe(
         (procesoDeCompra) => {

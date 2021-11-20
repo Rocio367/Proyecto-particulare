@@ -57,6 +57,7 @@ export class ClaseService {
     return this.http.get<Clase[]>(`${environment.backUrl}/v1/clases/misClases/${idParticular}`);
   }
 
+
   obtenerClasesPorAlumno(idAlumno: Number): Observable<Clase[]> {
     return this.http.get<Clase[]>(`${environment.backUrl}/v1/clases/misClasesAlumno/${idAlumno}`);
   }

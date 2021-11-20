@@ -79,7 +79,7 @@
           <ng-template pTemplate="body" let-clase>
             <tr>
               <td>{{ clase.nombreCompleto }}</td>
-              <td>{{ clase.fecha | date }}</td>
+              <td>{{ clase.fecha |date:'d/M/yy, h:mm a' }}</td>
               <td>{{ clase.horario }}</td>
               <td>{{ clase.estado }}</td>
             </tr>

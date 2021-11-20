@@ -3,7 +3,7 @@
 <div *ngFor='let m of respuestas'>
     <div class='card-interna p-3'>
         <div class='detalles-mensajes-2 pointer' (click)='verContenido(m)'>
-            <p class='color-f '> <span class='color-d fs-21'> {{m.emisor }}   </span> - <span>  {{ m.fecha | date}}</span></p>
+            <p class='color-f '> <span class='color-d fs-21'> {{m.emisor }}   </span> - <span>  {{ m.fecha |date:'d/M/yy, h:mm a'}}</span></p>
             <p class='color-f'>Para: <span class='color-d'> {{m.destinatario }} </span></p>
             <div class='hidden color-f' [id]="m.id">
                
