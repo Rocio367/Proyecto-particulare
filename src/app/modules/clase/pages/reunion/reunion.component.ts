@@ -92,7 +92,7 @@ export class ReunionComponent implements OnInit {
      console.log(fechaFinalizacion)
 
      if(fechaActual.getTime() >=fechaClase.getTime()  && fechaClase.getTime() < fechaFinalizacion.getTime()){
-           this.mensaje='No se encuntra una clase programa en este horario'
+           this.mensaje='no se encontró una clase programa para este horario'
            return true;
      }
      return false;

@@ -1,32 +1,27 @@
-<div class="container-color"  *ngIf='mostrar'>
-    <p-card id='card-reunion' > 
+<div class="container-color" *ngIf='mostrar'>
+    <p-card id='card-reunion'>
         <div id="jitsi-iframe"></div>
     </p-card>
 </div>
 
 <div class="container-color" *ngIf='!mostrar'>
-        <p-card id='card-reunion' > 
-            {{mensaje}}
-        </p-card>
-    </div>
-<!--For Custom Controls
+    <p-card id='card-reunion'>
 
-<div class="item-center">
-    <button (click)="executeCommand('toggleAudio')" pButton label=""> <i class="fas fa-2x grey-color"
-            [ngClass]="isAudioMuted ? 'fa-microphone-slash' : 'fa-microphone'" aria-hidden="true"
-            title="Mute / Unmute"></i></button>
+        <div class="row">
+            <div class="col-md-12 text-center p-ef-f">
+                <h2 class='color-f mt-2'> Ups algo salio mal..</h2>
+            </div>
+            <div class="col-lg-12 text-center mt-5">
+                <img src='./assets/img/sad.png' width="100">
+            </div>
 
-    <button (click)="executeCommand('hangup')" pButton label=""> <i class="fas fa-phone-slash fa-2x red-color"
-            aria-hidden="true" title="Leave"></i></button>
+            <div class="col-lg-12  text-center mt-5">
+                <h4 class='color-f mt-2'>
+                    {{mensaje}}
 
-    <button (click)="executeCommand('toggleVideo')" pButton label=""> <i class="fas fa-2x grey-color"
-            [ngClass]="isVideoMuted ? 'fa-video-slash' : 'fa-video'" aria-hidden="true" title="Start / Stop camera"></i>
-    </button>
+                </h4>
 
-    <button (click)="executeCommand('toggleShareScreen')" pButton label=""> <i class="fas fa-film fa-2x grey-color"
-            aria-hidden="true" title="Share your screen"></i>
-    </button>
-
-
-
-</div>-->
+            </div>
+        </div>
+    </p-card>
+</div>
