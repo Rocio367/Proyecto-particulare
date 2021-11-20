@@ -38,8 +38,6 @@ export class PerfilAlumnoComponent implements OnInit {
   beneficios: CardModel[];
   clases: Clase[] = [];
   id: number = Number(localStorage.getItem("idUser"));
-  id_alumno: number;
-  user: any;
 
   constructor(
     private router: Router,
@@ -48,6 +46,7 @@ export class PerfilAlumnoComponent implements OnInit {
     private particularService: ParticularService,
     private form: FormBuilder
   ) {}
+
 
   folders: Section[] = [
     {
