@@ -1,3 +1,4 @@
+import { I } from "@angular/cdk/keycodes";
 import { DatePipe } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
@@ -51,7 +52,8 @@ export class CalendarDetalleClaseComponent implements OnInit {
   referenciaDialogoDinamico: DynamicDialogRef;
   id: number;
   idUser;
-  constructor(public datepipe: DatePipe, private aRouter: ActivatedRoute, private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
+  
+  constructor(public datepipe: DatePipe, public snackBar: MatSnackBar, private aRouter: ActivatedRoute, private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
     public dialogService: DialogService, private claseServices: ClaseService) {
     this.aRouter.params.subscribe(
       (params: Params) => {
@@ -98,13 +100,25 @@ export class CalendarDetalleClaseComponent implements OnInit {
     this.disponibilidad = filtered;
   }
   confirmar() {
-    this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
-      data: {
-        clase: this.clase,
-        idUsuario: this.idUser
-      },
-      width: '90%'
-    });
+    if(this.selected.length > 0){
+      this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
+        data: {
+          clase: this.clase,
+          detalles:this.selected,
+          idUsuario: this.idUser
+        },
+        width: '90%',
+        height: '90%',
+      });
+      this.selected=[]
+    }else{
+      this.snackBar.open('Debe seleccionar una fecha antes de confirmar', "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['red-snackbar']
+      });
+    }
   }
 
 
