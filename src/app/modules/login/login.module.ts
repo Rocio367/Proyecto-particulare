@@ -5,12 +5,11 @@ import {LoginComponent} from './pages/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';
 import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
-import { GoogleLoginComponent } from './components/google/google-login.component';
 import {ButtonModule} from 'primeng/button';
 
 
 @NgModule({
-  declarations:[LoginComponent, RegistrarseComponent, GoogleLoginComponent,],
+  declarations:[LoginComponent, RegistrarseComponent],
   imports:[CommonModule, LoginRoutingModule,ReactiveFormsModule, AngularMaterialModule,ButtonModule],
   exports:[LoginRoutingModule]
 })
