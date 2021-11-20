@@ -49,6 +49,7 @@ export class PerfilAlumnoComponent implements OnInit {
     private form: FormBuilder
   ) {}
 
+
   folders: Section[] = [
     {
       name: "Clase 1",
