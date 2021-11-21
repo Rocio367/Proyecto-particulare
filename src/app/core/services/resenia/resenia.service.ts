@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AnyAaaaRecord } from 'dns';
 import { Observable } from 'rxjs';
 import { Alumno } from 'src/app/shared/models/alumno';
 import { environment } from 'src/environments/environment';
@@ -15,7 +16,7 @@ export class ReseniaService {
     return this.http.post<void>(`${environment.backUrl}/v1/resenia/guardar`, resenia);
   }
 
-  obtenerResenias(id): Observable<void> {
-    return this.http.get<void>(`${environment.backUrl}/v1/resenia/obtener/${id}`);
+  obtenerResenias(id): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/resenia/obtener/${id}`);
   }
 }

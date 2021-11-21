@@ -20,40 +20,39 @@ export class DetalleClaseComponent implements OnInit {
   idParticular: string;
   opiniones: any;
 
-  constructor(private claseService: ClaseService, private reseniaService: ReseniaService, private particularServices: ParticularService, private router: Router, private aRouter: ActivatedRoute,) {
+  constructor(private claseService: ClaseService,  private particularServices: ParticularService, private router: Router, private aRouter: ActivatedRoute,) {
     this.aRouter.params.subscribe(
       (params: Params) => {
         this.id = Number(params.q);
       }
     );
     this.claseService.verDetalle(this.id).subscribe(res => {
-      console.log(res)
+      console.log(res.profesor.id)
+      this.idParticular=res.profesor.id;
       this.registro.descripcion = res.descripcion;
       this.registro.titulo = res.nombre;
       this.registro.materia = res.materia;
-      this.registro.stars = 5;
+      this.registro.stars = Number(res.puntuacion);
       this.registro.type = res.metodo;
       this.registro.nivel = res.nivel;
       this.registro.precio_por_hora = res.precio;
       this.registro.modo = res.modo;
+      this.particularServices.buscarPorIdProfesor(Number(this.idParticular)).subscribe(res => {
+        console.log(res)
+        this.idParticular = res.usuario.id;
+        this.registro.foto = res.usuario.fotoPerfil;
+        this.registro.ubicacion = res.localidad;
+        this.registro.particular = res.usuario.nombre + ' ' + res.usuario.apellido;
+        // this.registro.academico='Titulo academico ';
+        this.registro.experiencia = res.experiencia;
+        this.registro.telefono = res.usuario.telefono;
+        this.registro.mail = res.usuario.email;
+      })
     })
 
-    this.particularServices.buscarPorIdProfesor(Number(this.idUser)).subscribe(res => {
-      console.log(res)
-      this.idParticular = res.usuario.id;
-      this.registro.foto = res.usuario.fotoPerfil;
-      this.registro.ubicacion = res.localidad;
-      this.registro.particular = res.usuario.nombre + ' ' + res.usuario.apellido;
-      // this.registro.academico='Titulo academico ';
-      this.registro.experiencia = res.experiencia;
-      this.registro.telefono = res.usuario.telefono;
-      this.registro.mail = res.usuario.email;
-    })
+   
 
-    this.reseniaService.obtenerResenias(this.id).subscribe(res => {
-      console.log(res)
-      this.opiniones = res;
-    })
+    
   }
 
   ngOnInit(): void {

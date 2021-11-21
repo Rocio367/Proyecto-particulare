@@ -18,10 +18,10 @@ export class PagoComponent implements OnInit {
   private detalles: any[];
   private idUsuario;
   url: string;
-
   constructor(private productosService: ProductosService,
     public config: DynamicDialogConfig,
-    private _domSanitizer: DomSanitizer) { }
+    private _domSanitizer: DomSanitizer,
+    private dialogRef: DynamicDialogRef) { }
 
   ngOnInit(): void {
     this.cargandoPago = true;
@@ -40,9 +40,10 @@ export class PagoComponent implements OnInit {
         (procesoDeCompra) => {
           console.log(procesoDeCompra)
           this.procesoDeCompra = procesoDeCompra;
+          //window.open(procesoDeCompra.urlExterna, "_blank");
           this.url = procesoDeCompra.urlExterna;
           this.cargandoPago = false;
-          //   this.dialogRef.close();
+       // this.dialogRef.close();
         },
         (error) => {
           console.log(error);

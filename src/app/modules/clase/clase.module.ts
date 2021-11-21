@@ -35,10 +35,12 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { HorariosParticularComponent } from './components/horarios-particular/horarios-particular.component';
 import { MisClasesPendientesAlumnoComponent } from './pages/mis-clases-pendientes-alumno/mis-clases-pendientes-alumno.component';
 import { MiHistorialDeClasesAlumnoComponent } from './pages/mi-historial-de-clases-alumno/mi-historial-de-clases-alumno.component';
+import { ComentariosComponent } from './components/comentarios/comentarios.component';
+import {RatingModule} from 'primeng/rating';
 
 @NgModule({
-  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent, ReunionComponent, HorariosParticularComponent, MisClasesPendientesAlumnoComponent, MiHistorialDeClasesAlumnoComponent,],
-  imports:[ CardModule,FieldsetModule,
+  declarations:[CalendarEditarComponent,DetalleClaseComponent, PagoComponent, CalendarDetalleClaseComponent, CrearClaseComponent, VerMisClasesParticularComponent, CalendarDetalleClaseParticularComponent, DetalleClaseParticularComponent, EditarClaseParticularComponent, CalendarCompletarComponent, ReunionComponent, HorariosParticularComponent, MisClasesPendientesAlumnoComponent, MiHistorialDeClasesAlumnoComponent, ComentariosComponent,],
+  imports:[ RatingModule,CardModule,FieldsetModule,
     ButtonModule,
     ListboxModule,
     CalendarModule, CommonModule,SharedModule,RouterModule,AngularMaterialModule,InputTextModule,
