@@ -56,7 +56,9 @@
                             class='w-100'
                             formControlName="materia"
                             optionLabel="nombre"
-                            optionValue="id">
+                            optionValue="id"
+                            [filter]="true"
+                            filterBy="nombre">
                         </p-dropdown>
                         <label for="materia">Materia</label>
                     </span>
