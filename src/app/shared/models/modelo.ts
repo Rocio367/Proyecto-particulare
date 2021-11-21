@@ -7,7 +7,10 @@ export interface Modelo {
         id: number,
         nombre: string
     },
-    carrera: string,
+    carrera: {
+        id: number,
+        nombre: string
+    },
     publico: boolean,
     materia: {
         id: number,

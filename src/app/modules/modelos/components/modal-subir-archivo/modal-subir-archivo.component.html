@@ -30,9 +30,19 @@
                         class="text-center">
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
-                    <span class="p-float-label w-80  mt-4">
-                        <input id="carrera" type="text" class='w-100' pInputText formControlName="carrera">
-                        <label for="carrera">Carrera</label>
+                    <span class="p-float-label w-80 mt-4">
+                        <p-dropdown
+                            id="carrera"
+                            [autoDisplayFirst]="false"
+                            [options]="_carrera"
+                            class='w-100'
+                            formControlName="carrera"
+                            optionLabel="nombre"
+                            optionValue="id"
+                            [filter]="true"
+                            filterBy="nombre" >
+                        </p-dropdown>
+                        <label for="institucion">Carrera</label>
                     </span>
                     <div *ngIf="formDatos.get('carrera').hasError('required') && formDatos.get('carrera').touched"
                         class="text-center">
