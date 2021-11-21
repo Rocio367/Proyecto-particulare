@@ -3,7 +3,10 @@ import { Documento } from "./documento";
 export interface Modelo {
     id?: number,
     nombre: string,
-    institucion: string,
+    institucion: {
+        id: number,
+        nombre: string
+    },
     carrera: string,
     publico: boolean,
     materia: {

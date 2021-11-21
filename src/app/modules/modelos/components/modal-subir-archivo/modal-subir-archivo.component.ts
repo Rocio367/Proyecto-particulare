@@ -8,6 +8,8 @@ import { Documento } from 'src/app/shared/models/documento';
 import { Materia } from 'src/app/shared/models/materia';
 import { Modelo } from 'src/app/shared/models/modelo';
 import { Nivel } from 'src/app/shared/models/nivel';
+import { Institucion } from 'src/app/shared/models/institucion';
+import { InstitucionService } from 'src/app/core/services/institucion/institucion.service';
 import * as internal from 'stream';
 
 @Component({
@@ -16,14 +18,16 @@ import * as internal from 'stream';
   styleUrls: ['./modal-subir-archivo.component.scss']
 })
 export class ModalSubirArchivoComponent implements OnInit {
+ 
   uploadedFiles: any[] = [];
+  _institucion: Institucion[] = [];
   _materias: Materia[] = [];
   _niveles: Nivel[] = [];
   formDatos: FormGroup;
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
   idUser:any;
-  constructor(private form: FormBuilder,public snackBar: MatSnackBar,private router:Router, private modelosService: ModelosService) {
+  constructor(private form: FormBuilder,public snackBar: MatSnackBar,private router:Router, private modelosService: ModelosService, private institucionService: InstitucionService) {
     this.idUser=localStorage.getItem('idUser')
     console.log(this.idUser)
   }
@@ -37,6 +41,16 @@ export class ModalSubirArchivoComponent implements OnInit {
       nivel: ['',Validators.required],
       publico: [''],
     });
+
+    this.institucionService.obtenerInstitucion()
+      .subscribe(
+        (institucion) => {
+          this._institucion = institucion;
+        },
+        (error) => {
+          console.log("Error obteniendo las instituciones", error);
+        });
+
 
     this.modelosService.obtenerMaterias()
       .subscribe(
