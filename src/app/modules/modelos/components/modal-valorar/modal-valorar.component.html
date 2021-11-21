@@ -1,28 +1,18 @@
 <div mat-dialog-content>
     <div class="">
-        <div class="modal-header">
-            <div type="button" class="close" mat-dialog-close aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </div>
-        </div>
+
         <div class="modal-body text-center">
-
-            <h3 class='color-f'>Valoracion </h3>
+            <h3 class='color-f text-center'>Danos tu opinión </h3>
             <p class="clasificacion">
-                <mat-checkbox id="radio1" class="example-margin"></mat-checkbox>
-                <label for="radio1"><i class="pi pi-star fs-40"></i></label>
-                <mat-checkbox id="radio2" class="example-margin "></mat-checkbox>
-                <label for="radio2"><i class="pi pi-star fs-40"></i></label>
-                <mat-checkbox id="radio3" class="example-margin"></mat-checkbox>
-                <label for="radio3"><i class="pi pi-star fs-40"></i></label>
-                <mat-checkbox id="radio4" class="example-margin"></mat-checkbox>
-                <label for="radio4"><i class="pi pi-star fs-40"></i></label>
-                <mat-checkbox id="radio5" class="example-margin"></mat-checkbox>
-                <label for="radio5"><i class="pi pi-star fs-40"></i></label>
+               <!-- {{estrellas}}/ 5-->
+
+                <p-rating [cancel]="false" [(ngModel)]="estrellas"></p-rating>
+
             </p>
+            <textarea style='min-height: 100px;' pInputTextarea class="inputfield w-full mt-3"
+                [(ngModel)]="comentario"></textarea>
 
-
-
+             <button (click)='valorar()' class='mt-5' pButton label="Confirmar"></button>
         </div>
     </div>
 </div>

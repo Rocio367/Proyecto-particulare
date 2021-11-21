@@ -60,9 +60,7 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
         }
       });
     })
-    //faltan reseñas 
 
-    //faltan alumnos inscriptos
   }
 
   ngOnInit(): void {

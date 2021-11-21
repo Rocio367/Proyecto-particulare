@@ -73,7 +73,8 @@ import { ContactoModule } from '../modules/contacto/contacto.module';
     ContactoRoutingModule,
   ],
    
-  declarations: []
+  declarations: [
+  ]
 })
 export class CoreModule {
 }

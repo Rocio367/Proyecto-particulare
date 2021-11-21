@@ -31,10 +31,11 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { OfertaRecibida } from './components/oferta-recibida/oferta-recibida.component';
+import {RatingModule} from 'primeng/rating';
 
 @NgModule({
   declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalSubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent,OfertaRecibida,],
-  imports:[AutoCompleteModule,DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,CardModule,InputTextModule,InputTextareaModule,ToastModule,FileUploadModule,ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, DynamicDialogModule,ProgressSpinnerModule,],
+  imports:[RatingModule,AutoCompleteModule,DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,CardModule,InputTextModule,InputTextareaModule,ToastModule,FileUploadModule,ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, DynamicDialogModule,ProgressSpinnerModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })

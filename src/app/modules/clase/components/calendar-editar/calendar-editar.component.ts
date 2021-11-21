@@ -19,7 +19,7 @@ export class CalendarEditarComponent implements OnInit {
   dateSelect: any;
   dateValue: any;
   selected: any[];
-  dates: Date[] = []
+  dates: Date[];
   disponibilidad: Date[] = []
   @Output() addDisponibilidad: EventEmitter<any> = new EventEmitter<any>();
   @Output() existeFechaContratada: EventEmitter<any> = new EventEmitter<any>();

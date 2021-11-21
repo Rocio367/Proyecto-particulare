@@ -3,6 +3,25 @@
 /* You can add global styles to this file, and also import other style files */
 /* General */
 //header
+.pi-star-o{
+    color: #e0d71e!important;
+    font-size: 2em!important;
+}
+
+.p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon:hover {
+    color: #e0d71e!important;
+    font-size: 2em!important;
+}
+
+.p-rating .p-rating-icon.pi-star {
+    color: #e0d71e!important;
+    font-size: 2em!important;
+}
+
+.p-rating .p-rating-icon:focus {
+    font-size: 2em!important;
+    box-shadow: 0 0 0 0.2rem #e0d61e83;
+}
 .p-menubar {
     padding: 1rem !important;
     background: #23be90 !important;

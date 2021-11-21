@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
 import { ParticularService } from 'src/app/core/services/particular/particular.service';
+import { ReseniaService } from 'src/app/core/services/resenia/resenia.service';
 import { DetalleClase } from 'src/app/shared/models/detalleClase';
 
 @Component({
@@ -11,20 +12,24 @@ import { DetalleClase } from 'src/app/shared/models/detalleClase';
 })
 export class DetalleClaseParticularComponent implements OnInit {
   registro= new DetalleClase();
-  alumnos = [
-    { nombreCompleto: 'Micaela Cuello', fecha: new Date(),horario:'14:00 PM', estado: 'Pendiente'},
-    { nombreCompleto: 'Micaela Cuello', fecha: new Date(),horario:'15:00 PM', estado: 'Pendiente'},
-    { nombreCompleto: 'Micaela Cuello', fecha: new Date(),horario:'19:00 PM', estado: 'Finalizada'},
-    
-  ];
+  alumnos = [];
   id:number;
   idUser=localStorage.getItem('idUser');
-  constructor(private aRouter:ActivatedRoute,private claseService:ClaseService,private particularServices:ParticularService) { 
+  opiniones: any;
+  constructor(private reseniaService: ReseniaService,private aRouter:ActivatedRoute,private claseService:ClaseService,private particularServices:ParticularService) { 
     this.aRouter.params.subscribe(
       (params: Params) => {
         this.id=Number(params.q);
       }
     );
+    this.claseService.compras(this.id).subscribe(res => {
+       res.forEach(element => {
+          if(element.usuario.rol=='alumno'){
+            this.alumnos.push( { nombreCompleto: element.usuario.nombre+' '+element.usuario.apellido, fecha: new Date(element.fecha),estado:element.estado});
+          }
+       });
+       console.log(this.alumnos)
+    })
     this.claseService.verDetalle(this.id).subscribe(res => {
       console.log(res)
       this.registro.descripcion = res.descripcion;
@@ -51,7 +56,10 @@ export class DetalleClaseParticularComponent implements OnInit {
     this.claseService.detalleClase(this.id).subscribe(res=>{
       console.log(res)
     })
-   
+    this.reseniaService.obtenerResenias(this.id).subscribe(res => {
+      console.log(res)
+      this.opiniones = res;
+    })
   }
 
   ngOnInit(): void {

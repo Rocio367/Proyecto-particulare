@@ -83,6 +83,9 @@ export class ClaseService {
   participantes(id: number): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/clases/participantes/${id}`);
   }
+  compras(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/compras/${id}`);
+  }
   estado(id: number): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/clases/estado/${id}`);
   }
