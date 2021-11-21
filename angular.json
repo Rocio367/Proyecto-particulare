@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "tgn-front": {
+        "EstudiaEnCasaWeb": {
             "projectType": "application",
             "schematics": {},
             "root": "",
