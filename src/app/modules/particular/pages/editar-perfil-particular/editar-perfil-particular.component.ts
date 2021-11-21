@@ -23,13 +23,13 @@ export class EditarPerfilParticularComponent implements OnInit {
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    telefono: ['',Validators.pattern(/^(0|\-?[1-9][0-9]*)$/)],
+    telefono: ['', Validators.pattern("^[0-9]*$")],
     email: ['', [Validators.email, Validators.required]],
-    contrasenia: ['', Validators.required],
+    contrasenia: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],    
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
     descripcion: [''],
-    documento: ["", Validators.required],
+    documento: ["", Validators.required,Validators.pattern("^[0-9]*$")],
     localidad: [""],
 
   });
