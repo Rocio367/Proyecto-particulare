@@ -73,8 +73,8 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   }
   getMenu() {
     this.isLoggedIn = this.authService.isLoggedIn()
-    this.rol = localStorage.getItem('rol');
-    console.log(this.rol)
+   // this.rol = localStorage.getItem('rol');
+   this.rol='admin'
     this.items = [];
 
     switch (this.rol) {
@@ -201,7 +201,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
           {
             label: 'Usuarios',
             icon: 'pi pi-fw pi-users',
-            routerLink: 'nuevo-modelo'
+            routerLink: 'control-usuarios'
 
           },
           {

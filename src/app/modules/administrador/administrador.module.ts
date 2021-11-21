@@ -6,11 +6,12 @@ import { SharedModule } from 'src/app/shared/components/shared.module';
 import { GraficosGananciasProfesorComponent } from './pages/graficos-ganancias-profesor/graficos-ganancias-profesor.component';
 import { GraficoGananciasAdministradorComponent } from './pages/grafico-ganancias-administrador/grafico-ganancias-administrador.component';
 import { ControlDeUsuariosComponent } from './pages/control-de-usuarios/control-de-usuarios.component';
+import {ChartModule} from 'primeng/chart';
 
 
 @NgModule({
   declarations:[GraficosGananciasProfesorComponent, GraficoGananciasAdministradorComponent, ControlDeUsuariosComponent],
-  imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[ChartModule, CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
