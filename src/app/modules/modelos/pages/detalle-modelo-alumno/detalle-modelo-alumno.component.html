@@ -27,8 +27,8 @@
                         <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
                     </div>
                     <div class='col-4 desk'>
-                        <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
-                        <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion.nombre}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.carrera.nombre}}</span></h4>
                     </div>
                     <div class='col-4 desk'>
                         <h4 class='fs-16 mb-3'>Materia: <span>{{modelo.materia.nombre}}</span></h4>
@@ -39,7 +39,7 @@
                         <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span></h4>
                         <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
                         <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
-                        <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion.nombre}}</span></h4>
                         <h4 class='fs-16 mb-3'>Materia: <span>{{modelo.materia.nombre}}</span></h4>
                         <h4 class='fs-16 mb-3'>Nivel: <span>{{modelo.nivel.descripcion}}</span></h4>
                     </div>

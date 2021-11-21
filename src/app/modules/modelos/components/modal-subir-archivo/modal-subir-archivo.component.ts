@@ -8,6 +8,10 @@ import { Documento } from 'src/app/shared/models/documento';
 import { Materia } from 'src/app/shared/models/materia';
 import { Modelo } from 'src/app/shared/models/modelo';
 import { Nivel } from 'src/app/shared/models/nivel';
+import { Institucion } from 'src/app/shared/models/institucion';
+import { InstitucionService } from 'src/app/core/services/institucion/institucion.service';
+import { Carrera } from 'src/app/shared/models/carrera';
+import { CarreraService } from 'src/app/core/services/carrera/carrera.service';
 import * as internal from 'stream';
 
 @Component({
@@ -16,14 +20,17 @@ import * as internal from 'stream';
   styleUrls: ['./modal-subir-archivo.component.scss']
 })
 export class ModalSubirArchivoComponent implements OnInit {
+ 
   uploadedFiles: any[] = [];
+  _institucion: Institucion[] = [];
+  _carrera: Carrera[] = [];
   _materias: Materia[] = [];
   _niveles: Nivel[] = [];
   formDatos: FormGroup;
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
   idUser:any;
-  constructor(private form: FormBuilder,public snackBar: MatSnackBar,private router:Router, private modelosService: ModelosService) {
+  constructor(private form: FormBuilder,public snackBar: MatSnackBar,private router:Router, private modelosService: ModelosService, private institucionService: InstitucionService, private carreraService: CarreraService) {
     this.idUser=localStorage.getItem('idUser')
     console.log(this.idUser)
   }
@@ -38,13 +45,32 @@ export class ModalSubirArchivoComponent implements OnInit {
       publico: [''],
     });
 
+    this.institucionService.obtenerInstitucion()
+      .subscribe(
+        (institucion) => {
+          this._institucion = institucion;
+        },
+        (error) => {
+          console.log("Error obteniendo las instituciones", error);
+        });
+
+    this.carreraService.obtenerCarrera()
+      .subscribe(
+        (carrera) => {
+          this._carrera = carrera;
+        },
+        (error) => {
+          console.log("Error obteniendo las carreras", error);
+        });    
+
+
     this.modelosService.obtenerMaterias()
       .subscribe(
         (materias) => {
           this._materias = materias;
         }, 
         (error) => {
-          console.log("Error obeteniendo las materias", error);
+          console.log("Error obteniendo las materias", error);
         });
 
     this.modelosService.obtenerNiveles()

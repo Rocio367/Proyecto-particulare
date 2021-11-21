@@ -3,8 +3,14 @@ import { Documento } from "./documento";
 export interface Modelo {
     id?: number,
     nombre: string,
-    institucion: string,
-    carrera: string,
+    institucion: {
+        id: number,
+        nombre: string
+    },
+    carrera: {
+        id: number,
+        nombre: string
+    },
     publico: boolean,
     materia: {
         id: number,
