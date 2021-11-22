@@ -12,7 +12,6 @@ import { Institucion } from 'src/app/shared/models/institucion';
 import { InstitucionService } from 'src/app/core/services/institucion/institucion.service';
 import { Carrera } from 'src/app/shared/models/carrera';
 import { CarreraService } from 'src/app/core/services/carrera/carrera.service';
-import * as internal from 'stream';
 
 @Component({
   selector: 'app-modal-subir-archivo',

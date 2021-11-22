@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { PrimeNGConfig } from 'primeng/api';
 import { Tema } from 'src/app/shared/models/tema';
 import Swal from 'sweetalert2';
-import { ModalNuevoTemaComponent } from '../../components/modal-nuevo-tema/modal-nuevo-tema.component';
 
 @Component({
   selector: 'app-temas-foro',

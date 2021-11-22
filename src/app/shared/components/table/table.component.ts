@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import { Mensaje } from 'src/app/shared/models/mensaje';
 import Swal from 'sweetalert2';
 
 

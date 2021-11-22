@@ -3,7 +3,6 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
-import { Clase } from 'src/app/shared/models/clase';
 import { Materia } from 'src/app/shared/models/materia';
 import { Nivel } from 'src/app/shared/models/nivel';
 

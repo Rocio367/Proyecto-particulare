@@ -1,4 +1,4 @@
-import { EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { EventEmitter, Input, Output, } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

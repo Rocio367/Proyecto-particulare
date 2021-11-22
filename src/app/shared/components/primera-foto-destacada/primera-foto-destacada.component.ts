@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GeneralService } from 'src/app/core/services/general/general.service';
 import { RegistroCard } from 'src/app/shared/models/registroCard';
 
 @Component({

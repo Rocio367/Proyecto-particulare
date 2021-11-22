@@ -1,12 +1,9 @@
-import { I, M, V } from '@angular/cdk/keycodes';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { element } from 'protractor';
 import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { Mensaje } from 'src/app/shared/models/mensaje';
-import { ModalResponderComponent } from '../modal-responder/modal-responder.component';
 
 @Component({
   selector: 'app-mensaje-detalle',

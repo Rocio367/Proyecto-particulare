@@ -1,10 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { timeStamp } from "console";
-import * as moment from 'moment'
 import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
-import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
 @Component({
   selector: 'app-calendar-completar',
   templateUrl: './calendar-completar.component.html',

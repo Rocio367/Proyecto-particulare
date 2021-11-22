@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ParticularService } from 'src/app/core/services/particular/particular.service';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Particular } from 'src/app/shared/models/particular';

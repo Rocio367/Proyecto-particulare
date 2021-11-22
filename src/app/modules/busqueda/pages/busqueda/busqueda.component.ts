@@ -4,15 +4,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { GeneralService } from 'src/app/core/services/general/general.service';
-import { ConsultaRequest } from 'src/app/shared/models/consultaRequest';
 import { Lugar } from 'src/app/shared/models/lugar';
 import { Resultado } from 'src/app/shared/models/resultado';
-import Swal from 'sweetalert2';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import { R, T } from '@angular/cdk/keycodes';
 import { BusquedaService } from 'src/app/core/services/busqueda/busqueda.service';
-import { Nivel } from 'src/app/shared/models/nivel';
 
 @Component({
   selector: 'app-busqueda',
