@@ -25,7 +25,12 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
   anios: any[] = []
   particulares: any[] = [];
   chartOptions: any;
-
+  totalModelos: number;
+  totalClases: number;
+  totalg1 = 0;
+  totalg2 = 0;
+  totalg4 = 0;
+  totalg5 = 0;
   mensaje1 = false;
   mensaje2 = false;
   mensaje3 = false;
@@ -115,6 +120,7 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
     e.mes = this.fecha1.getMonth() + 1;
     let data = [];
     let labels = [];
+
     this.estaditicasServices.porCompras(e).subscribe(res => {
       if (res.length > 0) {
         this.mensaje1 = false;
@@ -123,9 +129,12 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
           let index = labels.indexOf(c.producto.clase.materia.nombre);
           if (index != -1) {
             data[index] = data[index] + c.monto;
+            this.totalg1 = this.totalg1 + Number(c.monto);
+
           } else {
             labels.push(c.producto.clase.materia.nombre)
-            data.push(c.monto)
+            data.push(c.monto);
+            this.totalg1 = this.totalg1 + Number(c.monto);
           }
         });
 
@@ -159,9 +168,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
           let index = labels.indexOf(c.producto.clase.materia.nombre);
           if (index != -1) {
             data[index] = data[index] + c.monto;
+            this.totalg2 = this.totalg2 + Number(c.monto);
+
           } else {
             labels.push(c.producto.clase.materia.nombre)
             data.push(c.monto)
+            this.totalg2 = this.totalg2 + Number(c.monto);
+
           }
         });
         this.g2 = {
@@ -190,6 +203,8 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
     e.mes = Number(this.fecha3.code);
 
     this.estaditicasServices.porModeloClases(e).subscribe(res => {
+      this.totalClases = res.totalClases;
+      this.totalModelos = res.totalModelos;
       this.g3 = {
         labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
         datasets: [{
@@ -226,9 +241,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
           let index = labels.indexOf(c.producto.clase.materia.nombre);
           if (index != -1) {
             data[index] = data[index] + c.monto;
+            this.totalg4 = this.totalg4 + Number(c.monto);
+
           } else {
             labels.push(c.producto.clase.materia.nombre)
             data.push(c.monto)
+            this.totalg4 = this.totalg4 + Number(c.monto);
+
           }
         });
 
@@ -265,9 +284,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
           let index = labels.indexOf(c.producto.clase.materia.nombre);
           if (index != -1) {
             data[index] = data[index] + c.monto;
+            this.totalg5 = this.totalg5 + Number(c.monto);
+
           } else {
             labels.push(c.producto.clase.materia.nombre)
             data.push(c.monto)
+            this.totalg5 = this.totalg5 + Number(c.monto);
+
           }
         });
 
