@@ -4,36 +4,31 @@
       <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
         <p-dataView #dv [value]="clases" [paginator]="true" [rows]="6" filterBy="" layout="grid">
           <ng-template pTemplate="header">
-            <div class=" text-center mt-3">
+            <div class=" text-center mt-3 mb-3">
               <h3 class='color-f mb-4'>Filtros <i class="icofont-filter fs-21"></i></h3>
 
 
-              <span class="p-input-icon-right m-2">
-                <input type="text"   class="p-inputtext-sm w-100" [value]="busqueda"  [(ngModel)]="busqueda"   pInputText placeholder="Buscar clases.." />
+              <span class="p-input-icon-right" style="margin-bottom: 0!important">
+                <input type="text"   class="w-100" [value]="busqueda"  [(ngModel)]="busqueda"   pInputText placeholder="Buscar clases.." />
               </span>
-             
-              <span class='m-3'>   
-                <p-calendar  placeholder="Filtrar por fecha" [(ngModel)]="fecha" dateFormat="dd-mm-yy"></p-calendar>
-              </span>
-
-              <br/>
+              
               <span class='m-3'>
-                <p-dropdown [options]="tipos" placeholder="Filtrar por Método"
-                  optionLabel="name" [showClear]="true"  [(ngModel)]="selectedNMetodos" ></p-dropdown>
+                <p-dropdown [options]="tipos" placeholder="Filtrar por Método" 
+                  optionLabel="name" [showClear]="true"  [(ngModel)]="selectedNMetodos" class="subir" ></p-dropdown>
               </span>
 
               <span class='m-3'>
-                <p-dropdown [options]="niveles"  [(ngModel)]="selectedNiveles" placeholder="Filtrar por Nivel"
+                <p-dropdown [options]="niveles"  [(ngModel)]="selectedNiveles" placeholder="Filtrar por Nivel" class="subir"
                   optionLabel="name" [showClear]="true" ></p-dropdown>
               </span>
               
               <span class='m-3 ancho'>
-                <p-dropdown [options]="modo"  [(ngModel)]="selectedModo" placeholder="Filtrar por Modo "
+                <p-dropdown [options]="modo"  [(ngModel)]="selectedModo" placeholder="Filtrar por Modo " class="subir"
                   optionLabel="name" [showClear]="true"></p-dropdown>
               </span>
-
-              <span class="p-float-label mt-4">
-                <button pButton  class='m-2' (click)='filtrar()' >Aplicar</button>
+              
+              <span class='m-3 ancho'>
+                <button pButton  (click)='filtrar()' >Aplicar</button>
               </span>
             </div>
           </ng-template>

@@ -113,7 +113,7 @@ export class BusquedaComponent implements OnInit {
         this.busqueda = this.valor;
 
         if (this.valor === "undefined") {
-          this.busqueda = " ";
+          this.busqueda = "";
         }
       }
       

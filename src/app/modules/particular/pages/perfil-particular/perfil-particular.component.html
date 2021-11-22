@@ -40,7 +40,7 @@
                 <span class="p-float-label">
                   <p-calendar inputId="fechaDesde" formControlName="desde" dateFormat="dd-mm-yy" 
                   [showIcon]="true" styleClass="w-full" 
-                  [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
+                  [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
                   <label for="fechaNacimiento">Desde</label>
               </span>
               <div *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched" class="text-center">
@@ -56,7 +56,7 @@
                 <span class="p-float-label">
                   <p-calendar inputId="fechaHasta" formControlName="hasta" dateFormat="dd-mm-yy" 
                   [showIcon]="true" styleClass="w-full" 
-                  [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
+                  [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
                   <label for="fechaNacimiento">Hasta</label>
               </span>
               <div *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched" class="text-center">
