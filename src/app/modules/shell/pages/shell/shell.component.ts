@@ -282,12 +282,6 @@ export class ShellComponent implements OnInit, AfterContentChecked {
             icon: 'pi pi-fw pi-user',
             items: [
               {
-                label: 'Subir modelo',
-                icon: 'pi pi-fw pi-file-o',
-                routerLink: 'nuevo-modelo'
-
-              },
-              {
                 label: 'Buscar modelos',
                 icon: 'pi pi-fw pi-search',
                 routerLink: 'buscar-modelos-particular'
