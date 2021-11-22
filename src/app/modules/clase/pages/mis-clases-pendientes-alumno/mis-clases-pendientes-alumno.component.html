@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card class=' card-container card pb-5 pt-5' style="width: 80%;">
+  <mat-card class='card-container card pb-5 pt-5 mt-5' style="width: 80%">
 
     <p-table [value]="clases" *ngIf='clases.length >0'>
       <ng-template pTemplate="caption">
@@ -21,7 +21,7 @@
       <ng-template pTemplate="body" let-item>
         <tr>
           <td>{{item.clase.nombre}}</td>
-          <td>{{item.fecha |date:'d/M/yy, h:mm a'}}</td>
+          <td>{{item.fecha |date:'d/M/yy h:mm a'}}</td>
           <td>{{item.clase.modo}}</td>
           <td>{{item.clase.metodo}}</td>
           <td *ngIf='item.estado=="DISPONIBLE" || item.estado=="NODISPONIBLE"'> PENDIENTE</td>
