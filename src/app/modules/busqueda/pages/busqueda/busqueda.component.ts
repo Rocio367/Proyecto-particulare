@@ -72,7 +72,7 @@ export class BusquedaComponent implements OnInit {
     this.filtros.modo =  (this.selectedModo)?this.selectedModo.code:'ERROR';
     this.filtros.metodo= (this.selectedNMetodos)?this.selectedNMetodos.code:'ERROR';
     this.filtros.fecha=  this.fecha;
-    this.filtros.busqueda = this.busqueda;
+    this.filtros.busqueda = (this.busqueda)?this.busqueda:' ';
 
     console.log(this.filtros);
     this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
