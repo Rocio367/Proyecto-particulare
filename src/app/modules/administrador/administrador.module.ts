@@ -7,11 +7,13 @@ import { GraficosGananciasProfesorComponent } from './pages/graficos-ganancias-p
 import { GraficoGananciasAdministradorComponent } from './pages/grafico-ganancias-administrador/grafico-ganancias-administrador.component';
 import { ControlDeUsuariosComponent } from './pages/control-de-usuarios/control-de-usuarios.component';
 import {ChartModule} from 'primeng/chart';
+import {CalendarModule} from 'primeng/calendar';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
   declarations:[GraficosGananciasProfesorComponent, GraficoGananciasAdministradorComponent, ControlDeUsuariosComponent],
-  imports:[ChartModule, CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
+  imports:[DropdownModule,CalendarModule,ChartModule, CommonModule,SharedModule,RouterModule,AngularMaterialModule, ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })
