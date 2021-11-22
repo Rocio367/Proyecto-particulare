@@ -27,7 +27,13 @@
           <td *ngIf='item.estado=="DISPONIBLE" || item.estado=="NODISPONIBLE"'> PENDIENTE</td>
           <td *ngIf='item.estado!="DISPONIBLE" && item.estado!="NODISPONIBLE"'> {{item.estado}}</td>
           <td><button (click)='verDetalle(item.clase.id)' pButton label="Ver detalles"></button></td>
-          <td><button (click)='valorar(item.id)'  pButton label="Valorar"></button></td>
+          <td *ngIf='item.puedeValorar'><button (click)='valorar(item.id)' pButton label="Valorar"></button></td>
+          <td class='text-center' *ngIf='item.valoracion'>
+            <span>
+              <p-rating [ngModel]="item.valoracion" [cancel]="false" disabled="true" stars="5"></p-rating>
+              {{item.valoracion}} / 5
+            </span>
+          </td>
         </tr>
       </ng-template>
     </p-table>

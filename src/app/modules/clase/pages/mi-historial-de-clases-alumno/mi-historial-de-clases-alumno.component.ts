@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
+import { ReseniaService } from 'src/app/core/services/resenia/resenia.service';
 import { ModalValorarComponent } from 'src/app/modules/modelos/components/modal-valorar/modal-valorar.component';
 
 @Component({
@@ -17,16 +18,35 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
   id: number = Number(localStorage.getItem("idUser"));
   referenciaDialogoDinamico: DynamicDialogRef;
 
-  constructor(public dialogService: DialogService,private claseService: ClaseService,private router:Router) {
-    this.claseService.obtenerClasesPorAlumno(this.id).subscribe(
-      (clases) => {
-        console.log(this.id, clases)
-        this.clases = clases;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+  constructor(public dialogService: DialogService, private valoracionServices: ReseniaService, private claseService: ClaseService, private router: Router) {
+    this.valoracionServices.obtenerIdUser(this.id).subscribe(resenias => {
+      this.claseService.obtenerClasesPorAlumno(this.id).subscribe(
+        (clases) => {
+
+          resenias.forEach(e => {
+            clases.forEach(c => {
+              if (e.producto.id == c.id) {
+                c.valoracion = e.puntaje;
+                this.clases.push(c)
+
+              } else {
+                if (c.estado == 'FINALIZADO') {
+                  c.puedeValorar = true;
+                } else {
+                  c.puedeValorar = false;
+                }
+                this.clases.push(c)
+              }
+            })
+          });
+
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    })
+
   }
 
   ngOnInit(): void {
@@ -35,13 +55,13 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
     this.router.navigate(['detalle-clase', { q: id }])
   }
 
-  valorar(id){
+  valorar(id) {
     this.referenciaDialogoDinamico = this.dialogService.open(ModalValorarComponent, {
       data: {
         id: id,
       },
       width: '70%',
     });
-    }
+  }
 
 }

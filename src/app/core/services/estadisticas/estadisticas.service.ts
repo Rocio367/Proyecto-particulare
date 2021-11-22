@@ -32,4 +32,15 @@ export class EstadisticasService {
   traerParticulares(): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/profesor/todos`);
   }
+
+  //recomendaciones home
+  clasesMasPupularesDelMes(): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/estadisticas/clasesMasPupularesDelMes`);
+  }
+  modelosMasPupularesDelMes(): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/estadisticas/modelosMasPupularesDelMes`);
+  }
+  agregadosRecientemente(): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/estadisticas/agregadosRecientemente`);
+  }
 }
