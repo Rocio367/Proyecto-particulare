@@ -25,7 +25,8 @@ import { OfertaDeResolucionResponse } from "src/app/shared/models/oferta-resoluc
         // No entiendo lo del popup... por ahora dejo la llamada al servicio de compra
         // this.dialog.open(ModalContratarModelosComponent, { panelClass: 'custom-dialog-container' });
         const pedidoDeCompra = {
-          idUsuario: this.idAlumno
+          idUsuario: this.idAlumno,
+          ids: [this.ofertaDeResolucion.id]
         };
         this.productosService.iniciarCompra(this.ofertaDeResolucion.id, pedidoDeCompra)
           .subscribe((procesoDeCompra) => {
