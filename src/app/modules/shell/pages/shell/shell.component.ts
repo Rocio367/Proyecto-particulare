@@ -20,7 +20,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   rol = ''
   isLoggedIn = false;
   defaultMenu = true;
-  idUser=localStorage.getItem('idUser');;
+  idUser = localStorage.getItem('idUser');;
   items: MenuItem[];
   constructor(private MensajeServices: MensajesService, private authService: AuthService, private router: Router, private redirectService: RedirectService) {
     this.getMenu()
@@ -51,16 +51,16 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-  /*  var iconMensaje = $('.pi-envelope');
-    if (iconMensaje.find('#badge').length === 0 ) {
-      let numberNoLeidos = '';
-      this.MensajeServices.checkearMensajesNoLeidos(this.idUser).subscribe(res => {
-        console.log(res)
-        numberNoLeidos = res
-        iconMensaje.append($('<span id="badge">' + numberNoLeidos + '</span>'));
-
-      })
-    }*/
+    /*  var iconMensaje = $('.pi-envelope');
+      if (iconMensaje.find('#badge').length === 0 ) {
+        let numberNoLeidos = '';
+        this.MensajeServices.checkearMensajesNoLeidos(this.idUser).subscribe(res => {
+          console.log(res)
+          numberNoLeidos = res
+          iconMensaje.append($('<span id="badge">' + numberNoLeidos + '</span>'));
+  
+        })
+      }*/
     if (this.loaded === false) {
       this.getMenu();
     }
@@ -68,13 +68,12 @@ export class ShellComponent implements OnInit, AfterContentChecked {
       this.getMenu();
       localStorage.setItem('recargar_menu', JSON.stringify(false));
     }
-  
+
   }
   getMenu() {
     this.isLoggedIn = this.authService.isLoggedIn()
-
-     this.rol='admin'
-    //this.rol = localStorage.getItem('rol');
+    // this.rol='admin'
+    this.rol = localStorage.getItem('rol');
     this.items = [];
 
     switch (this.rol) {
@@ -175,6 +174,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
 
             ]
           },
+
           /* {
              label: 'Foro',
              icon: 'pi pi-fw pi-comments',
@@ -207,7 +207,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
           {
             label: 'Análisis',
             icon: 'pi pi-fw pi-chart-bar',
-            routerLink: 'ganacias-administrador'
+            routerLink: 'ganancias-administrador'
 
           },
 
@@ -314,6 +314,12 @@ export class ShellComponent implements OnInit, AfterContentChecked {
               }
 
             ]
+          },
+          {
+            label: 'Ganancias',
+            icon: 'pi pi-fw pi-chart-bar',
+            routerLink: 'ganancias-particular'
+
           },
           /* {
              label: 'Foro',

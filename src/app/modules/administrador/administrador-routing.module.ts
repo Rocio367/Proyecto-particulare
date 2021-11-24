@@ -6,8 +6,8 @@ import { GraficosGananciasProfesorComponent } from './pages/graficos-ganancias-p
 
 
 const routes:Routes = [
-  {path:'ganacias-profesores', component:GraficosGananciasProfesorComponent},
-  {path:'ganacias-administrador', component:GraficoGananciasAdministradorComponent},
+  {path:'ganancias-particular', component:GraficosGananciasProfesorComponent},
+  {path:'ganancias-administrador', component:GraficoGananciasAdministradorComponent},
   {path:'control-usuarios', component:ControlDeUsuariosComponent},
 
 

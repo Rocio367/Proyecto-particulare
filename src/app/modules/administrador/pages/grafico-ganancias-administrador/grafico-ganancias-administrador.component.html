@@ -10,9 +10,9 @@
 
         </span>
         <p-chart *ngIf='!mensaje3' type="bar" [data]="g3" [options]="chartOptions"></p-chart>
-        <div class='text-center mt-5'>
-            <h5  class="color-f">Ganacias clases: ${{totalClases}}</h5>
-            <h5  class="color-f">Ganacias modelos: ${{totalModelos}}</h5>
+        <div *ngIf='!mensaje3' class='text-center mt-5'>
+            <h5  class="color-f">Ganancias clases: ${{totalClases}}</h5>
+            <h5  class="color-f">Ganancias modelos: ${{totalModelos}}</h5>
         </div>
      
         <div class="row text-center" *ngIf='mensaje3'>
@@ -29,7 +29,7 @@
     <br>
     <mat-card>
         <span class='mb-5'>
-            <h3 style='display: contents;' class="color-f">Ganacias por materia ($)</h3>
+            <h3 style='display: contents;' class="color-f">Ganancias por materia ($)</h3>
             <!--style='float: right;' -->
 
             <p-calendar style='float: right;' [showIcon]="true" (onSelect)='onSelectG1()' [(ngModel)]="fecha1"
@@ -39,8 +39,8 @@
 
         </span>
         <p-chart *ngIf='!mensaje1' type="doughnut" [data]="g1" [style]="{'width': '40%'}"></p-chart>
-        <div class='text-center mt-5'>
-            <h5  class="color-f">Ganacias totales: ${{totalg1}}</h5>
+        <div *ngIf='!mensaje1'  class='text-center mt-5'>
+            <h5  class="color-f">Ganancias totales: ${{totalg1}}</h5>
         </div>
         <div class="row text-center" *ngIf='mensaje1'>
             <div class='seleccion-mensaje col-12 text-center'>
@@ -79,8 +79,8 @@
             </p-calendar>
         </span>
         <p-chart *ngIf='!mensaje2' type="doughnut" [data]="g2" [style]="{'width': '40%'}"></p-chart>
-        <div class='text-center mt-5'>
-            <h5  class="color-f">Ganacias totales: ${{totalg2}}</h5>
+        <div *ngIf='!mensaje2' class='text-center mt-5'>
+            <h5  class="color-f">Ganancias totales: ${{totalg2}}</h5>
         </div>
         <div class="row text-center" *ngIf='mensaje2'>
             <div class='seleccion-mensaje col-12 text-center'>
@@ -105,8 +105,8 @@
                 </p-calendar>
             </span>
             <p-chart *ngIf='!mensaje4' type="pie" [data]="g4" [style]="{'width': '40%'}"></p-chart>
-            <div class='text-center mt-5'>
-                <h5  class="color-f">Ganacias totales: ${{totalg4}}</h5>
+            <div *ngIf='!mensaje4'  class='text-center mt-5'>
+                <h5  class="color-f">Ganancias totales: ${{totalg4}}</h5>
             </div>
             <div class="row text-center" *ngIf='mensaje4'>
                 <div class='seleccion-mensaje col-12 text-center'>
@@ -136,8 +136,8 @@
             </p-calendar>
         </span>
         <p-chart *ngIf='!mensaje5' type="pie" [data]="g5" [style]="{'width': '40%'}"></p-chart>
-        <div class='text-center mt-5'>
-            <h5  class="color-f">Ganacias totales: ${{totalg5}}</h5>
+        <div *ngIf='!mensaje5' class='text-center mt-5'>
+            <h5  class="color-f">Ganancias totales: ${{totalg5}}</h5>
         </div>
         <div class="row text-center" *ngIf='mensaje5'>
             <div class='seleccion-mensaje col-12 text-center'>
