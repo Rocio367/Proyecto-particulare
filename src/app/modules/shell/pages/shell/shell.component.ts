@@ -73,8 +73,8 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   getMenu() {
     this.isLoggedIn = this.authService.isLoggedIn()
 
-   //this.rol='admin'
-    this.rol = localStorage.getItem('rol');
+     this.rol='admin'
+    //this.rol = localStorage.getItem('rol');
     this.items = [];
 
     switch (this.rol) {

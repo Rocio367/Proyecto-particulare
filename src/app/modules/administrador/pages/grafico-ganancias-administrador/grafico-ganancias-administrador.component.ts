@@ -128,13 +128,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
         res.forEach(c => {
           let index = labels.indexOf(c.producto.clase.materia.nombre);
           if (index != -1) {
-            data[index] = data[index] + c.monto;
-            this.totalg1 = this.totalg1 + Number(c.monto);
+            data[index] = data[index] + this.sacarPorcentaje(c.monto);
+            this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
 
           } else {
             labels.push(c.producto.clase.materia.nombre)
-            data.push(c.monto);
-            this.totalg1 = this.totalg1 + Number(c.monto);
+            data.push(this.sacarPorcentaje(c.monto));
+            this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
           }
         });
 
@@ -167,13 +167,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
         res.forEach(c => {
           let index = labels.indexOf(c.producto.clase.materia.nombre);
           if (index != -1) {
-            data[index] = data[index] + c.monto;
-            this.totalg2 = this.totalg2 + Number(c.monto);
+            data[index] = data[index] +this.sacarPorcentaje(c.monto);
+            this.totalg2 = this.totalg2 +this.sacarPorcentaje( Number(c.monto));
 
           } else {
             labels.push(c.producto.clase.materia.nombre)
-            data.push(c.monto)
-            this.totalg2 = this.totalg2 + Number(c.monto);
+            data.push(this.sacarPorcentaje(c.monto))
+            this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.monto));
 
           }
         });
@@ -203,8 +203,8 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
     e.mes = Number(this.fecha3.code);
 
     this.estaditicasServices.porModeloClases(e).subscribe(res => {
-      this.totalClases = res.totalClases;
-      this.totalModelos = res.totalModelos;
+      this.totalClases = this.sacarPorcentaje(res.totalClases);
+      this.totalModelos = this.sacarPorcentaje(res.totalModelos);
       this.g3 = {
         labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
         datasets: [{
@@ -240,13 +240,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
         res.forEach(c => {
           let index = labels.indexOf(c.producto.clase.materia.nombre);
           if (index != -1) {
-            data[index] = data[index] + c.monto;
-            this.totalg4 = this.totalg4 + Number(c.monto);
+            data[index] = data[index] + this.sacarPorcentaje(c.monto);
+            this.totalg4 = this.totalg4 + this.sacarPorcentaje(Number(c.monto));
 
           } else {
             labels.push(c.producto.clase.materia.nombre)
-            data.push(c.monto)
-            this.totalg4 = this.totalg4 + Number(c.monto);
+            data.push(this.sacarPorcentaje(c.monto))
+            this.totalg4 = this.totalg4 + this.sacarPorcentaje(Number(c.monto));
 
           }
         });
@@ -283,13 +283,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
         res.forEach(c => {
           let index = labels.indexOf(c.producto.clase.materia.nombre);
           if (index != -1) {
-            data[index] = data[index] + c.monto;
-            this.totalg5 = this.totalg5 + Number(c.monto);
+            data[index] = data[index] + this.sacarPorcentaje(c.monto);
+            this.totalg5 = this.totalg5 + this.sacarPorcentaje(Number(c.monto));
 
           } else {
             labels.push(c.producto.clase.materia.nombre)
-            data.push(c.monto)
-            this.totalg5 = this.totalg5 + Number(c.monto);
+            data.push(this.sacarPorcentaje(c.monto))
+            this.totalg5 = this.totalg5 + this.sacarPorcentaje(Number(c.monto));
 
           }
         });
@@ -309,6 +309,10 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
       }
 
     })
+  }
+
+  sacarPorcentaje(valor){
+    return (valor * 10 )/100;
   }
 }
 
