@@ -30,7 +30,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import { OfertaRecibida } from './components/oferta-recibida/oferta-recibida.component';
+import { OfertaRecibida } from './components/oferta/oferta-recibida/oferta-recibida.component';
 import {RatingModule} from 'primeng/rating';
 import { Oferta } from './components/oferta/oferta.component';
 
