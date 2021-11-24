@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { Mensaje } from 'src/app/shared/models/mensaje';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-enviados',

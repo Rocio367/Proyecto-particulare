@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Params } from "@angular/router";
-import * as moment from 'moment'
 import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
 import { ClaseService } from "src/app/core/services/clase/clase.service";
-import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
 @Component({
   selector: 'app-calendar-detalle-clase-particular',
   templateUrl: './calendar-detalle-clase-particular.component.html',

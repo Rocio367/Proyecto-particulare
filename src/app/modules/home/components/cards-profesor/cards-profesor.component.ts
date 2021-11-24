@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Resultado } from 'src/app/shared/models/resultado';
 
 export interface Section {
   type: string;

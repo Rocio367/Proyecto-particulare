@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ModelosAlumnoComponent } from './pages/modelos-alumno/modelos-alumno.component';
-import { ModelosParticularesComponent } from './pages/modelos-particulares/modelos-particulares.component';
 import { DetalleModeloParticularComponent } from './pages/detalle-modelo-particular/detalle-modelo-particular.component';
 import { DetalleModeloAlumnoComponent } from './pages/detalle-modelo-alumno/detalle-modelo-alumno.component';
 import { ModalSubirArchivoComponent } from './components/modal-subir-archivo/modal-subir-archivo.component';

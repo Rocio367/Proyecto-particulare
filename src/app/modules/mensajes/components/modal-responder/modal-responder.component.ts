@@ -1,16 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { ParticularService } from 'src/app/core/services/particular/particular.service';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
-import { Mensaje } from 'src/app/shared/models/mensaje';
 import { MensajePost } from 'src/app/shared/models/mensajePost';
-import { Patters } from 'src/app/shared/models/patters';
-import Swal from 'sweetalert2';
-import { MensajesComponent } from '../../pages/mensajes/mensajes.component';
 
 @Component({
   selector: 'app-modal-responder',

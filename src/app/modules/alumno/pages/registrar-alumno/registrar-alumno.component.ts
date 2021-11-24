@@ -1,16 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
   FormBuilder,
   Validators,
-  FormControl,
 } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { Usuario } from "src/app/shared/models/usuario";
 import { UsuariosService } from "src/app/core/services/usuarios/usuarios.service";
 import { Alumno } from 'src/app/shared/models/alumno';
-import { Nivel } from 'src/app/shared/models/nivel';
 
 @Component({
   selector: "app-registrar-alumno",

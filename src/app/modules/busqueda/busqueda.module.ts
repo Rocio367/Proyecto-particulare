@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BusquedaRoutingModule } from './busqueda-routing.module';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';

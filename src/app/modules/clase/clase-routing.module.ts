@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DetalleClaseComponent } from './pages/detalle-clase/detalle-clase.component';
-import { PagoComponent } from './pages/pago/pago.component';
 import { CrearClaseComponent } from './pages/crear-clase/crear-clase.component';
 import { VerMisClasesParticularComponent } from './pages/ver-mis-clases-particular/ver-mis-clases-particular.component';
 import { DetalleClaseParticularComponent } from './pages/detalle-clase-particular/detalle-clase-particular.component';

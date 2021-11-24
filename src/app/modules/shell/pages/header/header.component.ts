@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as $ from 'jquery';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/core/authentication/auth.service';
-import { GeneralService } from 'src/app/core/services/general/general.service';
 import { RedirectService } from 'src/app/core/services/redirect/redirect.service';
 
 

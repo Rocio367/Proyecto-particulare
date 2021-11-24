@@ -15,8 +15,7 @@ import { OfertaDeResolucionResponse } from 'src/app/shared/models/oferta-resoluc
 import { SolucionDeModeloRequest } from 'src/app/shared/models/solucion-de-modelo-request';
 import { FileUpload } from 'primeng/fileupload';
 import { Resolucion } from 'src/app/shared/models/resolucion';
-import { ThisReceiver } from '@angular/compiler';
-import { timingSafeEqual } from 'crypto';
+
 
 @Component({
   selector: 'app-detalle-modelo-particular',

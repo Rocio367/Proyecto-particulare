@@ -1,6 +1,4 @@
-import { Particular } from 'src/app/shared/models/particular';
 import { LoginService } from './../../../../core/services/login/login.service';
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';

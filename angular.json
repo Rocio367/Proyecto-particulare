@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "tgn-front": {
+        "EstudiaEnCasaWeb": {
             "projectType": "application",
             "schematics": {},
             "root": "",
@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/tgn-front",
+                        "outputPath": "dist/EstudiaEnCasaWeb",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -74,19 +74,19 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "tgn-front:build",
+                        "browserTarget": "EstudiaEnCasaWeb:build",
                         "proxyConfig": "proxy.conf.json"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "tgn-front:build:production"
+                            "browserTarget": "EstudiaEnCasaWeb:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "tgn-front:build"
+                        "browserTarget": "EstudiaEnCasaWeb:build"
                     }
                 },
                 "test": {
@@ -125,18 +125,18 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "tgn-front:serve"
+                        "devServerTarget": "EstudiaEnCasaWeb:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "tgn-front:serve:production"
+                            "devServerTarget": "EstudiaEnCasaWeb:serve:production"
                         }
                     }
                 }
             }
         }
     },
-    "defaultProject": "tgn-front",
+    "defaultProject": "EstudiaEnCasaWeb",
     "schematics": {
         "@schematics/angular:component": {
             "style": "scss"
