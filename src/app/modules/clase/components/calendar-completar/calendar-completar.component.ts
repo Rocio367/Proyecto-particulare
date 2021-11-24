@@ -58,7 +58,7 @@ export class CalendarCompletarComponent implements OnInit {
   }
  
   agregar() {
-    if (this.dates.length > 0 && this.selected.length > 0) {
+    if((this.dates && this.dates.length > 0) && ( this.selected && this.selected.length > 0)){
       this.dates.forEach(f => {
         let fecha = new Date(f)
         this.selected.forEach(h => {

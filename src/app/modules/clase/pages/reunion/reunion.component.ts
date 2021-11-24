@@ -35,21 +35,20 @@ export class ReunionComponent implements OnInit {
   id: number;
   linkClase: string;
   estado: string;
-  mostrar = false;
+  mostrar = true;
   mensaje = ''
-  clase:any;
+  clase: any;
   constructor(private aRouter: ActivatedRoute, public snackBar: MatSnackBar, private router: Router, private claseServices: ClaseService) {
     this.aRouter.params.subscribe(
       (params: Params) => {
         this.id = Number(params.q);
-        this.linkClase = environment.frontUrl + "/reunion;q="+ this.id
+        this.linkClase = environment.frontUrl + "/reunion;q=" + this.id
         //solo pueden entrar usuarios permitidos
         this.claseServices.detalleClase(this.id).subscribe(clase => {
-          this.clase=clase;
-          if(this.claseDisponible()){
+          this.clase = clase;
+          console.log(this.claseDisponible())
+          if (this.claseDisponible()) {
             this.claseServices.participantes(this.id).subscribe(res => {
-              console.log(res)
-              console.log(clase)
               this.estado = clase.estado;
               res.forEach(u => {
                 if (this.rol == 'particular') {
@@ -59,7 +58,7 @@ export class ReunionComponent implements OnInit {
                     verticalPosition: "top",
                     panelClass: ['yellow-snackbar']
                   });
-  
+
                 }
                 if (this.rol == 'alumno') {
                   if (u.rol == 'alumno' && u.id == this.idUser && this.estado != 'INICIADA') {
@@ -71,33 +70,37 @@ export class ReunionComponent implements OnInit {
                     this.mensaje = 'La clase ya ha finalizado'
                   }
                 }
-  
+
               });
             });
           }
-         
+
         })
       }
     );
 
   }
 
-  claseDisponible(){
-     let fechaClase=new Date(this.clase.fecha)
-     let fechaActual=new Date()
-     let fechaFinalizacion=new Date(this.clase.fecha)
-     fechaFinalizacion.setHours(fechaClase.getHours()+1);
-     console.log(fechaClase)
-     console.log(fechaActual)
-     console.log(fechaFinalizacion)
+  claseDisponible() {
+    let fechaClase = new Date(this.clase.fecha)
+    let fechaActual = new Date()
+    let fechaFinalizacion = new Date(this.clase.fecha)
+    fechaFinalizacion.setHours(fechaClase.getHours() + 1);
+    console.log(fechaClase)
+    console.log(fechaActual)
+    console.log(fechaFinalizacion)
 
-     if(fechaActual.getTime() >=fechaClase.getTime()  && fechaClase.getTime() < fechaFinalizacion.getTime()){
-           this.mensaje='no se encontró una clase programa para este horario'
-           return true;
-     }
-     return false;
+    if ((fechaActual.getTime() >= fechaClase.getTime() && fechaClase.getTime() < fechaFinalizacion.getTime())) {
+      return true;
+    }else{
+      this.mensaje = 'no se encontró una clase programa para este horario'
+      return false;
+
+    }
   }
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  ngAfterViewInit(): void {
 
 
 
