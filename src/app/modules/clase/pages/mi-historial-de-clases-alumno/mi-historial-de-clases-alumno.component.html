@@ -1,10 +1,10 @@
 <div class='container'>
-  <mat-card class=' card-container card pb-5 pt-5' style="width: 80%;">
+  <mat-card class=' card-container card pb-5 pt-5 mt-5' style="width: 80%;">
 
     <p-table [value]="clases" *ngIf='clases.length > 0'>
       <ng-template pTemplate="caption">
         <div>
-          <h4 class="color-f">Mis clases pendientes</h4>
+          <h4 class="color-f">Historial de mis clases</h4>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
@@ -14,7 +14,6 @@
           <th>Modo de clase</th>
           <th>Método de clase</th>
           <th>Estado</th>
-          <th></th>
           <th></th>
           <th></th>
         </tr>
@@ -28,7 +27,13 @@
           <td *ngIf='item.estado=="DISPONIBLE" || item.estado=="NODISPONIBLE"'> PENDIENTE</td>
           <td *ngIf='item.estado!="DISPONIBLE" && item.estado!="NODISPONIBLE"'> {{item.estado}}</td>
           <td><button (click)='verDetalle(item.clase.id)' pButton label="Ver detalles"></button></td>
-          <td><button (click)='valorar(item.id)' pButton label="Valorar"></button></td>
+          <td *ngIf='item.puedeValorar'><button (click)='valorar(item.id)' pButton label="Valorar"></button></td>
+          <td class='text-center' *ngIf='item.valoracion'>
+            <span>
+              <p-rating [ngModel]="item.valoracion" [cancel]="false" disabled="true" stars="5"></p-rating>
+              {{item.valoracion}} / 5
+            </span>
+          </td>
         </tr>
       </ng-template>
     </p-table>

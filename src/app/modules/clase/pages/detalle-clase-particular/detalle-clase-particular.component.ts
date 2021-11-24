@@ -31,11 +31,11 @@ export class DetalleClaseParticularComponent implements OnInit {
        console.log(this.alumnos)
     })
     this.claseService.verDetalle(this.id).subscribe(res => {
-      console.log(res)
       this.registro.descripcion = res.descripcion;
+      console.log(res)
       this.registro.titulo = res.nombre;
       this.registro.materia = res.materia;
-      this.registro.stars = 5;
+      this.registro.stars = Number(res.puntuacion);
       this.registro.type = res.metodo;
       this.registro.nivel = res.nivel;
       this.registro.precio_por_hora=res.precio;

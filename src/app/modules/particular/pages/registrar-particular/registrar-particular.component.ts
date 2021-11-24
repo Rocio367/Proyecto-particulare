@@ -18,12 +18,13 @@ export class RegistrarParticularComponent implements OnInit {
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    telefono: ['',],
+    telefono: ['', Validators.pattern("^[0-9]*$")],
     email: ['', [Validators.email, Validators.required]],
-    contrasenia: ['', Validators.required],
+    contrasenia: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],    
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
-    formacionAcademica: ['']
+    formacionAcademica: [''],
+    documento: ['',Validators.pattern("^[0-9]*$")]
   });
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
@@ -58,7 +59,7 @@ export class RegistrarParticularComponent implements OnInit {
         contrasenia: this.formDatos.controls["contrasenia"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
         fotoPerfil: this.imagenPerfil,
-        documento: 4087594,
+        documento: this.formDatos.controls["documento"].value,
         id:null,
         rol:null
       }
@@ -90,7 +91,6 @@ export class RegistrarParticularComponent implements OnInit {
             horizontalPosition: "end",
             verticalPosition: "top",
           });
-          this.formDatos.reset();
         });
         } else {
         console.log('Error') 

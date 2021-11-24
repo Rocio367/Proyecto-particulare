@@ -171,4 +171,12 @@ export class PerfilParticularComponent implements OnInit {
     let id=l.id;
     this.router.navigate(['detalle-clase', {  q: id  }])
   }
+
+  obtenerRangoDeEdad() :string {
+    var fechaActual = new Date().getFullYear();
+    var fechaLimiteMaxima = fechaActual;
+    var fechaLimiteMinima = fechaActual - 50;
+    return fechaLimiteMinima + ":" + fechaLimiteMaxima;
+  }
+  
 }

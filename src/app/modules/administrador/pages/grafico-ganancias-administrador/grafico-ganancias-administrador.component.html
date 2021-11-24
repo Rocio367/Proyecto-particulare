@@ -1,17 +1,150 @@
-<div class="container-color pt-5">
-<h2 class="color-f">Ganancias</h2>
-<div class="container mt-5  p-5 blanco2">
-<h3>Anual
-</h3>
-<img src="https://docs.tibco.com/pub/spotfire_web_player/6.0.0-november-2013/es-ES/WebHelp/GUID-418B2936-C878-4771-B874-FA8ECAA39941-display.png" alt="">
+<div class="container blanco">
+    <br>
+    <mat-card>
+        <span class='mb-5'>
+            <h3 style='display: contents;' class="color-f"> Clases vs Modelos </h3>
+            <!--style='float: right;' -->
+            <p-dropdown style='float: right;' (onChange)='onSelectG3()' [options]="anios" [(ngModel)]="fecha3"
+                optionLabel="name" optionValue="code"></p-dropdown>
+
+
+        </span>
+        <p-chart *ngIf='!mensaje3' type="bar" [data]="g3" [options]="chartOptions"></p-chart>
+        <div class='text-center mt-5'>
+            <h5  class="color-f">Ganacias clases: ${{totalClases}}</h5>
+            <h5  class="color-f">Ganacias modelos: ${{totalModelos}}</h5>
+        </div>
+     
+        <div class="row text-center" *ngIf='mensaje3'>
+            <div class='seleccion-mensaje col-12 text-center'>
+                Aún no hay datos
+            </div>
+        </div>
+    </mat-card>
+    <br>
+</div>
+<hr>
+
+<div class="container blanco">
+    <br>
+    <mat-card>
+        <span class='mb-5'>
+            <h3 style='display: contents;' class="color-f">Ganacias por materia ($)</h3>
+            <!--style='float: right;' -->
+
+            <p-calendar style='float: right;' [showIcon]="true" (onSelect)='onSelectG1()' [(ngModel)]="fecha1"
+                view="month" dateFormat="mm/yy" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"
+                inputId="monthpicker">
+            </p-calendar>
+
+        </span>
+        <p-chart *ngIf='!mensaje1' type="doughnut" [data]="g1" [style]="{'width': '40%'}"></p-chart>
+        <div class='text-center mt-5'>
+            <h5  class="color-f">Ganacias totales: ${{totalg1}}</h5>
+        </div>
+        <div class="row text-center" *ngIf='mensaje1'>
+            <div class='seleccion-mensaje col-12 text-center'>
+                Aún no hay datos
+            </div>
+        </div>
+    </mat-card>
+    <br>
+</div>
+<hr>
+
+
+<div class="container blanco">
+    <br>
+    <mat-card>
+        <span class='mb-5'>
+            <h3 style='display: contents;' class="color-f">Ganancias por materia y particular ($)</h3>
+            <!--style='float: right;' -->
+            <p-dropdown style='float: right;margin-left: 5px;' (onSelect)='onSelectG2()' [options]="particulares"
+                name="fieldName" ngDefaultControl [(ngModel)]="idParticular2" optionLabel="name" [filter]="true"
+                filterBy="name" [showClear]="true">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value" *ngIf="idParticular2">
+                        <div>{{idParticular2.name}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                    <div class="country-item">
+                        <div>{{country.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            <p-calendar style='float: right;margin-left: 5px;' [showIcon]="true" (onSelect)='onSelectG2()'
+                [(ngModel)]="fecha2" view="month" dateFormat="mm/yy" [yearNavigator]="true" [yearRange]="yearRange"
+                [readonlyInput]="true" inputId="monthpicker">
+            </p-calendar>
+        </span>
+        <p-chart *ngIf='!mensaje2' type="doughnut" [data]="g2" [style]="{'width': '40%'}"></p-chart>
+        <div class='text-center mt-5'>
+            <h5  class="color-f">Ganacias totales: ${{totalg2}}</h5>
+        </div>
+        <div class="row text-center" *ngIf='mensaje2'>
+            <div class='seleccion-mensaje col-12 text-center'>
+                Aún no hay datos
+            </div>
+        </div>
+    </mat-card>
+    <br>
 </div>
 
-<div class="container mt-5 p-5 blanco2">
-<h3>Mensual - mes actual</h3>
-<img src="https://docs.tibco.com/pub/spotfire_web_player/6.0.0-november-2013/es-ES/WebHelp/GUID-418B2936-C878-4771-B874-FA8ECAA39941-display.png" alt="">
-</div>
+<div class="container blanco">
+    <br>
+    <mat-card>
+        <div>
+            <span class='mb-5'>
+                <h3 style='display: contents;' class="color-f">Ganancias por materias en base a modelos ($)</h3>
+                <!--style='float: right;' -->
 
-<br>
-<br>
-</div>
+                <p-calendar style='float: right;margin-left: 5px;' [showIcon]="true" (onSelect)='onSelectG4()'
+                    [(ngModel)]="fecha4" view="month" dateFormat="mm/yy" [yearNavigator]="true" [yearRange]="yearRange"
+                    [readonlyInput]="true" inputId="monthpicker">
+                </p-calendar>
+            </span>
+            <p-chart *ngIf='!mensaje4' type="pie" [data]="g4" [style]="{'width': '40%'}"></p-chart>
+            <div class='text-center mt-5'>
+                <h5  class="color-f">Ganacias totales: ${{totalg4}}</h5>
+            </div>
+            <div class="row text-center" *ngIf='mensaje4'>
+                <div class='seleccion-mensaje col-12 text-center'>
+                    Aún no hay datos
+                </div>
+            </div>
+        </div>
 
+
+
+    </mat-card>
+
+    <br>
+</div>
+<hr>
+
+<div class="container blanco">
+    <br>
+    <mat-card>
+        <span class='mb-5'>
+            <h3 style='display: contents;' class="color-f">Ganancias por materias en base a clases ($)</h3>
+            <!--style='float: right;' -->
+
+            <p-calendar style='float: right;margin-left: 5px;' [showIcon]="true" (onSelect)='onSelectG5()'
+                [(ngModel)]="fecha5" view="month" dateFormat="mm/yy" [yearNavigator]="true" [yearRange]="yearRange"
+                [readonlyInput]="true" inputId="monthpicker">
+            </p-calendar>
+        </span>
+        <p-chart *ngIf='!mensaje5' type="pie" [data]="g5" [style]="{'width': '40%'}"></p-chart>
+        <div class='text-center mt-5'>
+            <h5  class="color-f">Ganacias totales: ${{totalg5}}</h5>
+        </div>
+        <div class="row text-center" *ngIf='mensaje5'>
+            <div class='seleccion-mensaje col-12 text-center'>
+                Aún no hay datos
+            </div>
+        </div>
+    </mat-card>
+    <br>
+</div>
+<hr>

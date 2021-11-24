@@ -58,12 +58,12 @@ export class ClaseService {
   }
 
 
-  obtenerClasesPorAlumno(idAlumno: Number): Observable<Clase[]> {
-    return this.http.get<Clase[]>(`${environment.backUrl}/v1/clases/misClasesAlumno/${idAlumno}`);
+  obtenerClasesPorAlumno(idAlumno: Number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/misClasesAlumno/${idAlumno}`);
   }
 
-  verDetalle(id: number): Observable<Clase> {
-    return this.http.get<Clase>(`${environment.backUrl}/v1/clases/verDetalle/${id}`);
+  verDetalle(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/verDetalle/${id}`);
   }
 
   claseIniciada(id: number, link :string): Observable<Clase> {

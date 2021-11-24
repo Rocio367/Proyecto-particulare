@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ReseniaService } from 'src/app/core/services/resenia/resenia.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class ModalValorarComponent implements OnInit {
   idUser = localStorage.getItem('idUser');
   comentario: string;
   estrellas = 1;
-  constructor(public config: DynamicDialogConfig, private _snackBar: MatSnackBar, private reseniaServices: ReseniaService) {
+
+  constructor(  private dialogRef: DynamicDialogRef,public config: DynamicDialogConfig, private _snackBar: MatSnackBar, private reseniaServices: ReseniaService) {
 
 
 
@@ -41,7 +42,9 @@ export class ModalValorarComponent implements OnInit {
           verticalPosition: "top",
           panelClass: ['green-snackbar']
         });
-      },
+        this.dialogRef.close();
+
+        },
         (error) => {
           this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
             duration: 3000,

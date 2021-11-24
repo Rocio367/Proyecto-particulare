@@ -122,7 +122,7 @@ export class DetalleModeloParticularComponent implements OnInit {
   }
 
   confirmar() {
-    this.snackBar.open('Archiv subido correctamente', "", {
+    this.snackBar.open('Archivo subido correctamente', "", {
       duration: 1500,
       horizontalPosition: "end",
       verticalPosition: "top",
@@ -148,7 +148,7 @@ export class DetalleModeloParticularComponent implements OnInit {
         .subscribe(
           (resolucion) => {
             this.resolucion = resolucion;
-            this.snackBar.open('La resolucion fue enviada con exito', "", {
+            this.snackBar.open('La resolución fue enviada con éxito', "", {
               duration: 1500,
               horizontalPosition: "end",
               verticalPosition: "top",
