@@ -3,23 +3,23 @@
 /* You can add global styles to this file, and also import other style files */
 /* General */
 //header
-.pi-star-o{
-    color: #e0d71e!important;
-    font-size: 2em!important;
+.pi-star-o {
+    color: #e0d71e !important;
+    font-size: 2em !important;
 }
 
 .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon:hover {
-    color: #e0d71e!important;
-    font-size: 2em!important;
+    color: #e0d71e !important;
+    font-size: 2em !important;
 }
 
 .p-rating .p-rating-icon.pi-star {
-    color: #e0d71e!important;
-    font-size: 2em!important;
+    color: #e0d71e !important;
+    font-size: 2em !important;
 }
 
 .p-rating .p-rating-icon:focus {
-    font-size: 2em!important;
+    font-size: 2em !important;
     box-shadow: 0 0 0 0.2rem #e0d61e83;
 }
 .p-menubar {
@@ -91,11 +91,13 @@
 }
 
 .p-button {
+   
     color: #ffffff;
     background: #e47474 !important;
     border: #e47474 !important;
 }
 .p-selectbutton .p-button {
+   
     color: #e47474;
     background: white !important;
     border: 1px solid #e47474 !important;
@@ -103,12 +105,14 @@
     margin: 2px !important;
 }
 .p-selectbutton .p-button:hover {
+   
     color: #ffffff !important;
     background: #e47474 !important;
     border: 1px solid #e47474 !important;
 }
 
 .p-button:focus {
+   
     outline: 0 none;
     outline-offset: 0;
     box-shadow: 0 0 0 0.1rem #ecb1b1;
@@ -378,22 +382,26 @@ h4 {
 
 //btn
 .mat-raised-button.mat-warn {
+   
     background-color: #e47474 !important;
     color: white !important;
 }
 
 .mat-button.mat-warn {
+   
     background-color: #e47474 !important;
     color: white !important;
 }
 
 .mat-button.mat-primary {
+   
     background-color: #23be90 !important;
     color: white !important;
     margin: 10px !important;
 }
 
 .mat-raised-button.mat-primary {
+   
     background-color: #23be90 !important;
     color: white !important;
     margin: 2px !important;
@@ -461,6 +469,7 @@ a {
 }
 .p-dropdown {
     text-align: initial;
+    width: 10em;
 }
 
 .w-100 .p-dropdown {
@@ -487,7 +496,7 @@ a {
     left: 18%;
 }
 .p-dialog .p-dialog-content {
-    height: 100%!important;
+    height: 100% !important;
 }
 
 .green-snackbar {

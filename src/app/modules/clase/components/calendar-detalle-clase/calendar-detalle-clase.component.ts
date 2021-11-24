@@ -62,11 +62,11 @@ export class CalendarDetalleClaseComponent implements OnInit {
     this.claseServices.obtenerDisponibilidad(this.id).subscribe(res => {
       res.forEach(element => {
         if (element.estado == 'DISPONIBLE') {
-          this.disponibilidad.push({ name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
-          this.datesFilter.push({ name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
+          this.disponibilidad.push({  fecha:new Date(element.fecha),name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
+          this.datesFilter.push({  fecha:new Date(element.fecha),name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
         }
       });
-      this.anos.push({ code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
+      this.anos.push({code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
       this.anos.push({ code: (this.now.getFullYear() + 1).toString(), name: (this.now.getFullYear() + 1).toString() })
       this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 2).toString() })
       this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 4).toString() })
@@ -87,13 +87,19 @@ export class CalendarDetalleClaseComponent implements OnInit {
   filter() {
     let filtered: any[] = [];
     filtered = this.datesFilter;
-    console.log(this.datesFilter)
+    console.log(filtered)
     if (this.SelectedAno) {
-      filtered = filtered.filter(d => (new Date(d).getFullYear()) == this.SelectedAno.code);
+      filtered = filtered.filter(d => (new Date(d.fecha).getFullYear()) == this.SelectedAno.code);
+      console.log(filtered)
     }
     if (this.SelectedMes) {
-      filtered = filtered.filter(d => (new Date(d).getMonth() + 1) == this.SelectedMes.code);
+      filtered = filtered.filter(d => (new Date(d.fecha).getMonth()+1) == this.SelectedMes.code);
+      console.log(filtered)
+
     }
+
+    console.log(filtered)
+
 
     this.disponibilidad = filtered;
   }

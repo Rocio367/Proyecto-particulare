@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ModelosService } from "src/app/core/services/modelos/modelos.service";
 import { OfertaDeResolucion } from "src/app/shared/models/oferta-de-resolucion";
 import { TipoDeDemora } from "src/app/shared/models/tipo-de-demora";
@@ -22,7 +22,9 @@ export class ModalPostulacionModelosComponent implements OnInit {
   idModelo: Number;
   idUsuario: Number;
 
+  
   constructor(
+    private dialogRef: DynamicDialogRef,
     private form: FormBuilder,
     private router: Router,
     private servicioDeModelo: ModelosService,
@@ -70,6 +72,7 @@ export class ModalPostulacionModelosComponent implements OnInit {
               verticalPosition: "top",
               panelClass: ["green-snackbar"],
             });
+           this.dialogRef.close()
           },
           (error) => console.error(error)
         );
