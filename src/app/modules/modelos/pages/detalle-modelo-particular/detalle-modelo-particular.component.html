@@ -1,4 +1,4 @@
-<div *ngIf="estaCargando; else mostrarDetalles">
+<div *ngIf="estaCargando; else mostrarDetalles"  class='text-center'>
     <p-progressSpinner></p-progressSpinner>
 </div>
 <ng-template #mostrarDetalles>
@@ -62,7 +62,7 @@
                     </div>
                 </mat-card>
             </div>
-            <div *ngIf="estaCargandoOferta;else mostrarOferta">
+            <div *ngIf="estaCargandoOferta;else mostrarOferta"  class='text-center'>
                 <p-progressSpinner></p-progressSpinner>
             </div>
             <ng-template #mostrarOferta>
@@ -76,7 +76,7 @@
                 </div>
             </ng-template>
             <div class="col-lg-12 text-center mt-3 mb-5">
-                <mat-card class='card card-container '>
+                <mat-card class='card card-container'  class='text-center'>
                     <p-progressSpinner *ngIf="cargandoBloqueResolucion;else bloqueResolucion"></p-progressSpinner>
                     <ng-template #bloqueResolucion>
                         <div *ngIf="puedeSubirResolucion() else noSePuedeEnviarResolucion">

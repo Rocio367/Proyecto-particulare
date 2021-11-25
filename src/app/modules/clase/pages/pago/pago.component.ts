@@ -19,7 +19,7 @@ export class PagoComponent implements OnInit {
   private detalles: any[];
   private idUsuario;
   url: string;
-  constructor(private _snackBar: MatSnackBar,private productosService: ProductosService,
+  constructor(private _snackBar: MatSnackBar, private productosService: ProductosService,
     public config: DynamicDialogConfig,
     private _domSanitizer: DomSanitizer,
     private dialogRef: DynamicDialogRef) { }
@@ -54,6 +54,8 @@ export class PagoComponent implements OnInit {
             verticalPosition: "top",
           });
           this.dialogRef.close();
+          this.cargandoPago = false;
+
           console.log(error);
         }
       );

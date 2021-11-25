@@ -54,6 +54,15 @@ export class OfertaRecibida implements OnInit {
            .subscribe((procesoDeCompra) => {
              window.open(procesoDeCompra.urlExterna, "_blank");
              this.comprando = false;
+           },
+           err =>{
+            this.snackBar.open(localStorage.getItem('errorMensaje'), "", {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top",
+              panelClass: ['red-snackbar']
+            });
+            this.comprando=false;
            })
     }else{
       this.snackBar.open('Debe seleccionar alguna fecha', "", {

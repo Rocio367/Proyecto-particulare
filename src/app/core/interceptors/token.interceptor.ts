@@ -6,6 +6,7 @@ import {catchError, filter, switchMap, take} from 'rxjs/operators';
 import {Token} from '../../shared/models/token';
 import {RedirectService} from '../services/redirect/redirect.service';
 import {environment} from '../../../environments/environment';
+import { I } from '@angular/cdk/keycodes';
 
 
 @Injectable()
@@ -44,6 +45,9 @@ export class TokenInterceptor implements HttpInterceptor {
         }else{
           localStorage.setItem('errorMensaje','Lo sentimos , no se pudo realizar la operación')
 
+        }
+        if(error.status == 500){
+          localStorage.setItem('errorMensaje',error.message)
         }
           if (error.status === 401) {
             if (request.url === refreshTokenUrl) {
