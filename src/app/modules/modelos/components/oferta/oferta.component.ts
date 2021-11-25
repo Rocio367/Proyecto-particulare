@@ -11,6 +11,14 @@ export class Oferta {
 
     public estaPendienteDeSerAceptada(): boolean {
         console.log(this.ofertaDeResolucion);
-        return this.ofertaDeResolucion.estado == 'PENDIENTE_DE_RESPUESTA'
+        return this.tieneEstadoIgual('PENDIENTE_DE_RESPUESTA');
+    }
+
+    public estaAceptada(): boolean {
+        return this.tieneEstadoIgual('ACEPTADA');
+    }
+
+    private tieneEstadoIgual(estado: string): boolean {
+        return this.ofertaDeResolucion.estado == estado;
     }
 }

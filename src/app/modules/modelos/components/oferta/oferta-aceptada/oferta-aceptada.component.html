@@ -1,0 +1,36 @@
+<div *ngIf="cargando(); else componente">
+    <p-progressSpinner></p-progressSpinner>
+</div>
+<ng-template #componente>
+    <div *ngIf="estaResuelto(); else sinResolucion">
+        <div class="product-item">
+            <div class="product-list-img">
+                <i class="pi pi-file" style="font-size: 2rem"></i>
+            </div>
+            <div class="product-list-detail">
+                <h5 class="p-mb-2">NOMBRE</h5>
+                <span>Particular : NOMBRE PARTICULAR</span>
+            </div>
+            <div class="product-list-action">
+                <div class='stars'>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 1)?"amarillo":""'></i>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 2)?"amarillo":""'></i>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 3)?"amarillo":""'></i>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 4)?"amarillo":""'></i>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 5)?"amarillo":""'></i>
+                    <span class='subtitle'>
+                        4 / 5
+                    </span>
+                </div>
+                <div class='actions' style='text-align: end;'>
+                    <button mat-button color='primary' *ngIf="puedeValorarResolucion()" (click)='valorar()' type="button"
+                        style='margin-right: 3px;'> Valorar</button>
+                    <button mat-button color='warn'(click)="openRes(item.doc)" type="button">Ver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #sinResolucion>
+        Aun no está la resolucion
+    </ng-template>
+</ng-template>

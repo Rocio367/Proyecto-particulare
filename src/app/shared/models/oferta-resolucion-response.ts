@@ -9,5 +9,8 @@ export interface OfertaDeResolucionResponse {
     costo: Number,
     demora: TipoDeDemora,
     tipo: TipoDeResolucion,
-    estado: string
+    estado: string,
+    modelo: {
+        id: number
+    }
 }

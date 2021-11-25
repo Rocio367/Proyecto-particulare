@@ -1,3 +1,6 @@
 <div *ngIf="estaPendienteDeSerAceptada()">
     <app-oferta-recibida [ofertaDeResolucion]="ofertaDeResolucion"></app-oferta-recibida>
 </div>
+<div *ngIf="estaAceptada()">
+    <app-oferta-aceptada [ofertaDeResolucion]="ofertaDeResolucion"></app-oferta-aceptada>
+</div>

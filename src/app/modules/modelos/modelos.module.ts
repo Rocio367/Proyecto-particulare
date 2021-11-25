@@ -33,9 +33,10 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { OfertaRecibida } from './components/oferta/oferta-recibida/oferta-recibida.component';
 import {RatingModule} from 'primeng/rating';
 import { Oferta } from './components/oferta/oferta.component';
+import { OfertaAceptada } from './components/oferta/oferta-aceptada/oferta-aceptada.component';
 
 @NgModule({
-  declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalSubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent,OfertaRecibida,Oferta,],
+  declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalSubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent,OfertaRecibida,Oferta,OfertaAceptada,],
   imports:[RatingModule,AutoCompleteModule,DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,CardModule,InputTextModule,InputTextareaModule,ToastModule,FileUploadModule,ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, DynamicDialogModule,ProgressSpinnerModule,],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
