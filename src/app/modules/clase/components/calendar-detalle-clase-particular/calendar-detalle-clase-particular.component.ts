@@ -20,6 +20,7 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
   fechasDisponibles: Date[] = [];
   fechasNoDisponibles: Date[] = [];
   id: number;
+  minDate=new Date;
   constructor(private aRouter: ActivatedRoute, private primengConfig: PrimeNGConfig, public dialog: MatDialog, private claseService: ClaseService) {
 
     this.aRouter.params.subscribe(
@@ -51,7 +52,7 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
 
     this.claseService.obtenerDisponibilidad(this.id).subscribe(res => {
       res.forEach(element => {
-        if (element.estado == 'DISPONIBLE') {
+        if (element.estado == 'DISPONIBLE' && new Date(element.fecha) > this.minDate ) {
           this.fechasDisponibles.push(new Date(element.fecha));
         } else {
           this.fechasNoDisponibles.push(new Date(element.fecha));

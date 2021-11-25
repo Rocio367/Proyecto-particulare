@@ -26,6 +26,8 @@ export class CalendarDetalleClaseComponent implements OnInit {
   disponibilidad: any[] = []
   datesFilter: any[] = []
   selected: any[] = []
+  minDate=new Date()
+
   meses = [
     { code: '1', label: 'Enero' },
     { code: '2', name: 'Febrero' },
@@ -61,7 +63,7 @@ export class CalendarDetalleClaseComponent implements OnInit {
 
     this.claseServices.obtenerDisponibilidad(this.id).subscribe(res => {
       res.forEach(element => {
-        if (element.estado == 'DISPONIBLE') {
+        if (element.estado == 'DISPONIBLE' && new Date(element.fecha) > this.minDate ) {
           this.disponibilidad.push({  fecha:new Date(element.fecha),name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
           this.datesFilter.push({  fecha:new Date(element.fecha),name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
         }

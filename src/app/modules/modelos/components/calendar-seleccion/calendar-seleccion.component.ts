@@ -40,6 +40,7 @@ export class CalendarSeleccionComponent implements OnInit {
   ]
   SelectedMes: any;
   anos = []
+  minDate=new Date()
   horariosAsignados: any[];
   SelectedAno: any;
   @Input() id: number;
@@ -54,9 +55,7 @@ export class CalendarSeleccionComponent implements OnInit {
   ngOnInit(): void {
     this.claseServices.obtenerDisponibilidadModelos(this.id).subscribe(res => {
       res.forEach(element => {
-        if (element.estado == 'DISPONIBLE') {
-          console.log(element)
-
+        if (element.estado == 'DISPONIBLE' && new Date(element.fecha) > this.minDate ) {
           this.disponibilidad.push({ fecha: new Date(element.fecha), name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
           this.datesFilter.push({ fecha: new Date(element.fecha), name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
         }
@@ -89,6 +88,5 @@ export class CalendarSeleccionComponent implements OnInit {
   }
   add(){
     this.addSelected.emit(this.selected)
-
   }
 }
