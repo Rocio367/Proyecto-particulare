@@ -20,7 +20,7 @@
       </ng-template>
       <ng-template pTemplate="body" let-item>
         <tr>
-          <td>{{item.clase.nombre}}</td>
+          <td *ngIf='item.clase'>{{item.clase.nombre}}</td>
           <td>{{item.fecha |date:'d/M/yy h:mm a'}}</td>
           <td>{{item.clase.modo}}</td>
           <td>{{item.clase.metodo}}</td>

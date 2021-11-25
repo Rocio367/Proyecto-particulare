@@ -6,6 +6,9 @@ export interface OfertaDeResolucionResponse {
     usuario: {
         id: Number
     },
+    modelo: {
+        id: Number
+    },
     costo: Number,
     demora: TipoDeDemora,
     tipo: TipoDeResolucion,

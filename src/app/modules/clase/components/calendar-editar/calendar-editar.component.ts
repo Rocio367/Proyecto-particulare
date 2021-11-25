@@ -24,6 +24,7 @@ export class CalendarEditarComponent implements OnInit {
   @Output() addDisponibilidad: EventEmitter<any> = new EventEmitter<any>();
   @Output() existeFechaContratada: EventEmitter<any> = new EventEmitter<any>();
   id: number;
+  minDate=new Date();
   constructor(private aRouter: ActivatedRoute, private claseService: ClaseService, private primengConfig: PrimeNGConfig, public snackBar: MatSnackBar, public dialog: MatDialog) {
     this.aRouter.params.subscribe(
       (params: Params) => {
@@ -71,26 +72,25 @@ export class CalendarEditarComponent implements OnInit {
     this.primengConfig.ripple = true;
 
   }
-
   agregar() {
-    if (this.dates.length > 0 && this.selected.length > 0) {
+    if ((this.dates && this.dates.length > 0) && (this.selected && this.selected.length > 0)) {
       this.dates.forEach(f => {
         let fecha = new Date(f)
         this.selected.forEach(h => {
           let hora = new Date(0, 0, 0, h, 0, 0)
-          //año ,mes, dia ,horas,minutos
           let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
           if (this.includes(nuevo).length == 0) {
-            this.disponibilidad.push(nuevo)
-            this.dates = []
-            this.addDisponibilidad.emit(this.disponibilidad)
-            console.log(this.disponibilidad)
-            this.snackBar.open('Disponibilidad agregada correctamente', "", {
-              duration: 1500,
-              horizontalPosition: "end",
-              verticalPosition: "top",
-              panelClass: ['green-snackbar']
-            });
+              this.disponibilidad.push(nuevo)
+              this.dates = []
+              this.addDisponibilidad.emit(this.disponibilidad)
+              console.log(this.disponibilidad)
+              this.snackBar.open('Disponibilidad agregada correctamente', "", {
+                duration: 1500,
+                horizontalPosition: "end",
+                verticalPosition: "top",
+                panelClass: ['green-snackbar']
+              });
+            
           } else {
             this.snackBar.open('No puede agregar la misma fecha dos veces', "", {
               duration: 1500,

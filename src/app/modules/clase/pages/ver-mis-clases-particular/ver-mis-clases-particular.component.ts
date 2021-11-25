@@ -68,6 +68,7 @@ export class VerMisClasesParticularComponent implements OnInit {
   }
 
   iniciar(id){
+    console.log(id)
    this.referenciaDialogoDinamico = this.dialogService.open(HorariosParticularComponent, {
     data: {
       id: id,

@@ -1,3 +1,4 @@
+import { DIR_DOCUMENT_FACTORY } from '@angular/cdk/bidi/dir-document-token';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
@@ -15,10 +16,12 @@ export class MisClasesPendientesAlumnoComponent implements OnInit {
     this.claseService.obtenerClasesPorAlumno(this.id).subscribe(
       (clases) => {
         clases.forEach(d=>{
-          if(d.estado !='FINALIZADO'){
+          if(d.estado !='FINALIZADO' && d.clase){
              this.clases.push(d)
           }
         })
+
+        console.log(this.clases)
       },
       (error) => {
         console.error(error);

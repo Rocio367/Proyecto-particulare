@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { GeneralService } from 'src/app/core/services/general/general.service';
 
 
 @Component({
@@ -10,10 +9,7 @@ import { GeneralService } from 'src/app/core/services/general/general.service';
 export class FooterComponent implements OnInit {
   menuItem:any;
   lansdingPage=false;
-  constructor(private general:GeneralService) {
-    this.general.getItemsFooter('es').subscribe(footer=>{
-      this.menuItem=footer.data[0].menu[0].menuItem;
-    })
+  constructor() {
   }
 
   ngOnInit() {

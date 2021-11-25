@@ -30,7 +30,7 @@
 				</ng-template>
 			</p-dropdown>
 		</span>
-		<div class="p-field p-col-12 p-md-4 text-center">
+		<div class="p-field p-col-12 p-md-4 text-center"  *ngIf='disponibilidad.length>0'>
 			<p-selectButton [options]="disponibilidad" [(ngModel)]="selected" multiple="multiple" optionLabel="name"
 				optionValue="value"></p-selectButton>
 		</div>

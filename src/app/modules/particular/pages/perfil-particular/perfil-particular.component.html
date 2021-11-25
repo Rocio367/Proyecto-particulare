@@ -38,7 +38,7 @@
 
               <div class="field col-12">
                 <span class="p-float-label">
-                  <p-calendar inputId="fechaDesde" formControlName="desde" dateFormat="dd-mm-yy" 
+                  <p-calendar    showButtonBar="true"  inputId="fechaDesde" formControlName="desde" dateFormat="dd-mm-yy" 
                   [showIcon]="true" styleClass="w-full" 
                   [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
                   <label for="fechaNacimiento">Desde</label>
@@ -54,7 +54,7 @@
 
               <div class="field col-12">
                 <span class="p-float-label">
-                  <p-calendar inputId="fechaHasta" formControlName="hasta" dateFormat="dd-mm-yy" 
+                  <p-calendar    showButtonBar="true"  inputId="fechaHasta" formControlName="hasta" dateFormat="dd-mm-yy" 
                   [showIcon]="true" styleClass="w-full" 
                   [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
                   <label for="fechaNacimiento">Hasta</label>

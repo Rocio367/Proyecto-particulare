@@ -14,7 +14,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-item>
         <tr>
-            <td>{{item.fecha}}</td>
+            <td>{{item.fecha |date:'d/M/yy, h:mm a'}}</td>
             <td *ngIf='item.cupoRestante > 0'>{{item.cupoRestante}}</td>
             <td *ngIf='item.cupoRestante == 0'> Sin cupo</td>
             <td>${{item.precioProducto}}</td>

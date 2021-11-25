@@ -15,30 +15,33 @@ import { BuscadorDeArchivosParticularComponent } from './components/buscador-de-
 import { MisModelosParticularComponent } from './components/mis-modelos-particular/mis-modelos-particular.component';
 import { ModalPostulacionModelosComponent } from './components/modal-postulacion-modelos/modal-postulacion-modelos.component';
 import { ModalValorarComponent } from './components/modal-valorar/modal-valorar.component';
-import {OrderListModule} from 'primeng/orderlist';
-import {GalleriaModule} from 'primeng/galleria';
-import {ButtonModule} from 'primeng/button';
-import {FileUploadModule} from 'primeng/fileupload';
-import {ToastModule} from 'primeng/toast';
-import {SelectButtonModule} from 'primeng/selectbutton';
-import {CheckboxModule} from 'primeng/checkbox';
-import {DataViewModule} from 'primeng/dataview';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {CardModule} from 'primeng/card';
-import {InputTextModule} from 'primeng/inputtext';
-import {DropdownModule} from 'primeng/dropdown';
-import {AutoCompleteModule} from 'primeng/autocomplete';
-import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import { OfertaRecibida } from './components/oferta/oferta-recibida/oferta-recibida.component';
-import {RatingModule} from 'primeng/rating';
+import { OrderListModule } from 'primeng/orderlist';
+import { GalleriaModule } from 'primeng/galleria';
+import { ButtonModule } from 'primeng/button';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DataViewModule } from 'primeng/dataview';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { OfertaRecibida } from './components/oferta-recibida/oferta-recibida.component';
+import { RatingModule } from 'primeng/rating';
+import { CalendarCompletarHorariosComponent } from './components/calendar-completar-horarios/calendar-completar-horarios.component';
+import { CalendarModule } from 'primeng/calendar';
+import { CalendarSeleccionComponent } from './components/calendar-seleccion/calendar-seleccion.component';
 import { Oferta } from './components/oferta/oferta.component';
 import { OfertaAceptada } from './components/oferta/oferta-aceptada/oferta-aceptada.component';
 
 @NgModule({
-  declarations: [DetalleModeloAlumnoComponent,DetalleModeloParticularComponent,ModelosParticularesComponent, ModelosAlumnoComponent, ModalSubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent,OfertaRecibida,Oferta,OfertaAceptada,],
-  imports:[RatingModule,AutoCompleteModule,DropdownModule,DataViewModule,CheckboxModule,SelectButtonModule,CardModule,InputTextModule,InputTextareaModule,ToastModule,FileUploadModule,ButtonModule, GalleriaModule,OrderListModule,CommonModule,SharedModule,RouterModule,AngularMaterialModule, DynamicDialogModule,ProgressSpinnerModule,],
-  exports:[],
-  schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
+  declarations: [DetalleModeloAlumnoComponent, DetalleModeloParticularComponent, ModelosParticularesComponent, ModelosAlumnoComponent, ModalSubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent, OfertaRecibida, CalendarCompletarHorariosComponent, CalendarSeleccionComponent, Oferta,OfertaAceptada,],
+  imports: [CalendarModule, RatingModule, AutoCompleteModule, DropdownModule, DataViewModule, CheckboxModule, SelectButtonModule, CardModule, InputTextModule, InputTextareaModule, ToastModule, FileUploadModule, ButtonModule, GalleriaModule, OrderListModule, CommonModule, SharedModule, RouterModule, AngularMaterialModule, DynamicDialogModule, ProgressSpinnerModule,],
+  exports: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ModelosModule { }

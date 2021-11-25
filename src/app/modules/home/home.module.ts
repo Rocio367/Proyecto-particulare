@@ -24,10 +24,11 @@ import {CardModule} from 'primeng/card';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import {DividerModule} from 'primeng/divider';
 import {RatingModule} from 'primeng/rating';
+import { RecomendacionesComponent } from './components/recomendaciones/recomendaciones.component';
 
 
 @NgModule({
-  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent, CardsProfesorComponent,PrimerosPasosComponent, CardDescuentosComponent, LandingPageComponent,],
+  declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent, CardsProfesorComponent,PrimerosPasosComponent, CardDescuentosComponent, LandingPageComponent, RecomendacionesComponent,],
   imports:[RatingModule,DividerModule,CardModule,InputTextModule,ButtonModule,AutoCompleteModule,SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],

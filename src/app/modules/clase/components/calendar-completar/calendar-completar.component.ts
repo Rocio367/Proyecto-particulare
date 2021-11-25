@@ -19,7 +19,7 @@ export class CalendarCompletarComponent implements OnInit {
   dates: Date[];
   disponibilidad: Date[] = []
   @Output() addDisponibilidad: EventEmitter<any> = new EventEmitter<any>();
-
+  minDate=new Date();
   constructor(private primengConfig: PrimeNGConfig, public snackBar: MatSnackBar, public dialog: MatDialog) {
     this.horarios = [
 
@@ -53,26 +53,26 @@ export class CalendarCompletarComponent implements OnInit {
     this.primengConfig.ripple = true;
 
   }
- 
+
   agregar() {
-    if (this.dates.length > 0 && this.selected.length > 0) {
+    if ((this.dates && this.dates.length > 0) && (this.selected && this.selected.length > 0)) {
       this.dates.forEach(f => {
         let fecha = new Date(f)
         this.selected.forEach(h => {
           let hora = new Date(0, 0, 0, h, 0, 0)
-          //año ,mes, dia ,horas,minutos
           let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
           if (this.includes(nuevo).length == 0) {
-            this.disponibilidad.push(nuevo)
-            this.dates = []
-            this.addDisponibilidad.emit(this.disponibilidad)
-            console.log(this.disponibilidad)
-            this.snackBar.open('Disponibilidad agregada correctamente', "", {
-              duration: 1500,
-              horizontalPosition: "end",
-              verticalPosition: "top",
-              panelClass: ['green-snackbar']
-            });
+              this.disponibilidad.push(nuevo)
+              this.dates = []
+              this.addDisponibilidad.emit(this.disponibilidad)
+              console.log(this.disponibilidad)
+              this.snackBar.open('Disponibilidad agregada correctamente', "", {
+                duration: 1500,
+                horizontalPosition: "end",
+                verticalPosition: "top",
+                panelClass: ['green-snackbar']
+              });
+            
           } else {
             this.snackBar.open('No puede agregar la misma fecha dos veces', "", {
               duration: 1500,
@@ -108,7 +108,7 @@ export class CalendarCompletarComponent implements OnInit {
     let repetido = this.disponibilidad.filter(r => r.getFullYear() == f.getFullYear() && r.getMonth() == f.getMonth() && r.getDate() == f.getDate() && r.getHours() == f.getHours())
     return repetido;
   }
- 
+
 
 
 }

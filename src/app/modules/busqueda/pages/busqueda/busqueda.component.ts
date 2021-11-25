@@ -3,7 +3,6 @@ import { FiltroClase } from 'src/app/shared/models/filtrosClase';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { GeneralService } from 'src/app/core/services/general/general.service';
 import { Lugar } from 'src/app/shared/models/lugar';
 import { Resultado } from 'src/app/shared/models/resultado';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
@@ -50,7 +49,6 @@ export class BusquedaComponent implements OnInit {
 
   constructor(private router:Router,private aRouter: ActivatedRoute,
     private form: FormBuilder,
-    private services: GeneralService,
     private serviceBusqueda: BusquedaService,
     ) {
 

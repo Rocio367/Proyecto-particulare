@@ -14,9 +14,11 @@ export class HorariosParticularComponent implements OnInit {
   constructor(private router:Router,public config: DynamicDialogConfig, private servicesClases: ClaseService) {
     this.idClase=Number(this.config.data.id);
     this.servicesClases.obtenerDisponibilidad(this.config.data.id).subscribe(res => {
+      console.log(res)
       res.forEach(element => {
           if(element.estado=='NODISPONIBLE'){
-            this.clases.push(Element)
+            element.fecha=new Date(element.fecha);
+            this.clases.push(element)
           }
       });
     })
