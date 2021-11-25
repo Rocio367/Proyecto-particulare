@@ -126,13 +126,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
         this.mensaje1 = false;
 
         res.forEach(c => {
-          let index = labels.indexOf(c.producto.clase.materia.nombre);
+          let index = labels.indexOf(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
           if (index != -1) {
             data[index] = data[index] + this.sacarPorcentaje(c.monto);
             this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
 
           } else {
-            labels.push(c.producto.clase.materia.nombre)
+            labels.push(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre))
             data.push(this.sacarPorcentaje(c.monto));
             this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
           }
@@ -165,13 +165,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
       if (res.length > 0) {
         this.mensaje2 = false;
         res.forEach(c => {
-          let index = labels.indexOf(c.producto.clase.materia.nombre);
+          let index = labels.indexOf(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
           if (index != -1) {
             data[index] = data[index] +this.sacarPorcentaje(c.monto);
             this.totalg2 = this.totalg2 +this.sacarPorcentaje( Number(c.monto));
 
           } else {
-            labels.push(c.producto.clase.materia.nombre)
+            labels.push(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre))
             data.push(this.sacarPorcentaje(c.monto))
             this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.monto));
 
@@ -238,13 +238,13 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
         this.mensaje4 = false;
 
         res.forEach(c => {
-          let index = labels.indexOf(c.producto.clase.materia.nombre);
+          let index = labels.indexOf(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
           if (index != -1) {
             data[index] = data[index] + this.sacarPorcentaje(c.monto);
             this.totalg4 = this.totalg4 + this.sacarPorcentaje(Number(c.monto));
 
           } else {
-            labels.push(c.producto.clase.materia.nombre)
+            labels.push(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre))
             data.push(this.sacarPorcentaje(c.monto))
             this.totalg4 = this.totalg4 + this.sacarPorcentaje(Number(c.monto));
 
@@ -281,19 +281,20 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
         this.mensaje5 = false;
 
         res.forEach(c => {
-          let index = labels.indexOf(c.producto.clase.materia.nombre);
+          console.log(c.monto)
+          let index = labels.indexOf(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
           if (index != -1) {
             data[index] = data[index] + this.sacarPorcentaje(c.monto);
             this.totalg5 = this.totalg5 + this.sacarPorcentaje(Number(c.monto));
 
           } else {
-            labels.push(c.producto.clase.materia.nombre)
+            labels.push(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre))
             data.push(this.sacarPorcentaje(c.monto))
             this.totalg5 = this.totalg5 + this.sacarPorcentaje(Number(c.monto));
 
           }
         });
-
+       console.log(labels,data)
         this.g5 = {
           labels: labels,
           datasets: [

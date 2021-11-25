@@ -101,27 +101,28 @@ export class GraficosGananciasProfesorComponent implements OnInit {
       if (res.length > 0) {
         this.mensaje2 = false;
         res.forEach(c => {
-          console.log(c)
-          let index = labels.indexOf(c.producto.clase.materia.nombre);
+          let index = labels.indexOf(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
           if (index != -1) {
-            data[index] = data[index] + this.sacarPorcentaje(c.monto);
+            data[index] = data[index] + this.sacarPorcentaje(c.producto.costo ? c.producto.costo : c.monto );
             if (c.producto.clase) {
               this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
             } else {
-              this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.monto));
+              this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.producto.costo));
             }
 
           } else {
-            labels.push(c.producto.clase.materia.nombre)
-            data.push(this.sacarPorcentaje(c.monto))
+            labels.push(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
+            data.push(this.sacarPorcentaje(c.monto ? c.monto : c.producto.costo))
             if (c.producto.clase) {
               this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
             } else {
-              this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.monto));
+              console.log(c.producto)
+              this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.producto.costo));
             }
 
           }
         });
+        console.log(labels,data)
         this.g2 = {
           labels: labels,
           datasets: [
