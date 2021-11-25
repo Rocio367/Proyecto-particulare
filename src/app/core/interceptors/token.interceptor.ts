@@ -39,10 +39,10 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((error:HttpErrorResponse) => {
          console.log(error.error)
         let errorMessage;
-        if (error.status === 400 && error.error) {
+        if (error.status == 400 && error.error) {
            localStorage.setItem('errorMensaje',error.error)
         }else{
-          localStorage.setItem('errorMensaje','Lo sentimos , no se pudo identificar el error')
+          localStorage.setItem('errorMensaje','Lo sentimos , no se pudo realizar la operación')
 
         }
           if (error.status === 401) {

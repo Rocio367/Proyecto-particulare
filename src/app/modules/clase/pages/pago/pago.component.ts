@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProductosService } from 'src/app/core/services/productos/productos.service';
@@ -18,7 +19,7 @@ export class PagoComponent implements OnInit {
   private detalles: any[];
   private idUsuario;
   url: string;
-  constructor(private productosService: ProductosService,
+  constructor(private _snackBar: MatSnackBar,private productosService: ProductosService,
     public config: DynamicDialogConfig,
     private _domSanitizer: DomSanitizer,
     private dialogRef: DynamicDialogRef) { }
@@ -43,9 +44,14 @@ export class PagoComponent implements OnInit {
           //window.open(procesoDeCompra.urlExterna, "_blank");
           this.url = procesoDeCompra.urlExterna;
           this.cargandoPago = false;
-       // this.dialogRef.close();
         },
         (error) => {
+          this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+          });
+          this.dialogRef.close();
           console.log(error);
         }
       );
