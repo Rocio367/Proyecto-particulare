@@ -21,8 +21,9 @@ export class ModalPostulacionModelosComponent implements OnInit {
 
   idModelo: Number;
   idUsuario: Number;
+  disponibilidad: any[] = [];
 
-  
+
   constructor(
     private dialogRef: DynamicDialogRef,
     private form: FormBuilder,
@@ -50,34 +51,46 @@ export class ModalPostulacionModelosComponent implements OnInit {
     });
     this.idUsuario = Number(localStorage.getItem("idUser"));
   }
-
+  addDisponibilidad(event) {
+    this.disponibilidad = event;
+  }
   confirmar() {
-    if (this.formularioDePostulacion.valid) {
-      let ofertaDeResolucion: OfertaDeResolucion = {
-        tipoResolucion:
-          this.formularioDePostulacion.controls["tipoDeResolucion"].value,
-        tipoDeDemora:
-          this.formularioDePostulacion.controls["tipoDeDemora"].value,
-        costo: this.formularioDePostulacion.controls["costo"].value,
-        idUsuario: this.idUsuario,
-      };
 
-      this.servicioDeModelo
-        .ofertarResolucion(ofertaDeResolucion, this.idModelo)
-        .subscribe(
-          () => {
-            this.snackBar.open("Te postulaste con éxito", "", {
-              duration: 2000,
-              horizontalPosition: "end",
-              verticalPosition: "top",
-              panelClass: ["green-snackbar"],
-            });
-           this.dialogRef.close()
-          },
-          (error) => console.error(error)
-        );
+    if ((this.disponibilidad && this.disponibilidad.length > 0 && this.formularioDePostulacion.get('tipoDeResolucion').value == 2) || this.formularioDePostulacion.get('tipoDeResolucion').value == 1) {
+      if (this.formularioDePostulacion.valid) {
+        let ofertaDeResolucion: OfertaDeResolucion = {
+          tipoResolucion: this.formularioDePostulacion.controls["tipoDeResolucion"].value,
+          tipoDeDemora:this.formularioDePostulacion.controls["tipoDeDemora"].value,
+          costo: this.formularioDePostulacion.controls["costo"].value,
+          idUsuario: this.idUsuario,
+          disponibilidad: this.disponibilidad,
+
+        };
+         console.log(ofertaDeResolucion)
+        this.servicioDeModelo
+          .ofertarResolucion(ofertaDeResolucion, this.idModelo)
+          .subscribe(
+            () => {
+              this.snackBar.open("Te postulaste con éxito", "", {
+                duration: 2000,
+                horizontalPosition: "end",
+                verticalPosition: "top",
+                panelClass: ["green-snackbar"],
+              });
+              this.dialogRef.close()
+            },
+            (error) => console.error(error)
+          );
+      } else {
+        this.formularioDePostulacion.markAllAsTouched();
+      }
     } else {
-      this.formularioDePostulacion.markAllAsTouched();
+      this.snackBar.open('Debe asignar disponibilidad ', "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['red-snackbar']
+      });
     }
   }
 }

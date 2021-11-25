@@ -41,6 +41,9 @@ export class ClaseService {
   obtenerDisponibilidad(id : number): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/clases/obtenerDisponibilidad/${id}`);
   }
+  obtenerDisponibilidadModelos(id : number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/obtenerDisponibilidadModelos/${id}`);
+  }
   obtenerMaterias(): Observable<Materia[]> {
     return this.http.get<Materia[]>(`${environment.backUrl}/v1/materias`);
   }

@@ -61,8 +61,8 @@ export class MisModelosAlumnoComponent implements OnInit {
     this.filtros.text=(this.text)?this.text: '';
     this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : '';
     this.filtros.idUser=Number(this.idUser);
-    console.log(this.filtros)
     this.servicioDeModelos.buscarMisModelosAlumno(this.filtros).subscribe((modelos) => {
+      console.log(modelos)
       this.modelos = modelos;
       this.modelos.forEach(modelo => {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(

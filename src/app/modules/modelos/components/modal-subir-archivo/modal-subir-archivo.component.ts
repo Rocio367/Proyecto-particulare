@@ -98,7 +98,7 @@ export class ModalSubirArchivoComponent implements OnInit {
               nivel: this.formDatos.controls["nivel"].value,
               publico: this.formDatos.controls["publico"].value,
               archivos: archivos,
-              usuario: this.idUser
+              usuario: Number(this.idUser)
             }
 
             console.log(modelo);

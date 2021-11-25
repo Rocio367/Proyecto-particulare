@@ -34,7 +34,10 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
                 } else {
                   c.puedeValorar = false;
                 }
-                this.clases.push(c)
+                if (c.clase) {
+                  this.clases.push(c)
+
+                }
               }
             })
           });

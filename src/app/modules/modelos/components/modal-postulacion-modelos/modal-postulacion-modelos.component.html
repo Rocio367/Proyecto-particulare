@@ -14,6 +14,9 @@
                         </p-dropdown>
                         <label for="tipoResolucion">Tipo de resolución</label>
                     </div>
+                    <div *ngIf="formularioDePostulacion.get('tipoDeResolucion').value == 2" >
+                             <app-calendar-completar-horarios (addDisponibilidad)="addDisponibilidad($event)"></app-calendar-completar-horarios>
+                    </div>
                     <div class="field p-float-label max-w-full">
                         <p-dropdown
                             id="tipos"

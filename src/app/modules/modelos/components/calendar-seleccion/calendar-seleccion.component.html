@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-lg-12">
-		<span class='m-2'>
+		<span class='m-2 w-50'>
 			<p-dropdown [options]="meses" [(ngModel)]="SelectedMes" (click)='filter()' optionLabel="name"
 				[filter]="true" filterBy="name" [showClear]="true" placeholder="Mes">
 				<ng-template pTemplate="selectedItem">
@@ -15,7 +15,7 @@
 				</ng-template>
 			</p-dropdown>
 		</span>
-		<span class='m-2'>
+		<span class='m-2 w-50'>
 			<p-dropdown [options]="anos" [(ngModel)]="SelectedAno" optionLabel="name" [filter]="true" filterBy="name"
 				[showClear]="true" placeholder="Año">
 				<ng-template pTemplate="selectedItem">
@@ -30,14 +30,11 @@
 				</ng-template>
 			</p-dropdown>
 		</span>
-		<div class="p-field p-col-12 p-md-4 text-center"  *ngIf='disponibilidad.length>0'>
-			<p-selectButton [options]="disponibilidad" [(ngModel)]="selected" multiple="multiple" optionLabel="name"
+		<div class="p-field p-col-12 p-md-4 text-center" *ngIf='disponibilidad.length>0'>
+		<p-selectButton  (onChange)='add()' [options]="disponibilidad" [(ngModel)]="selected" optionLabel="name"
 				optionValue="value"></p-selectButton>
 		</div>
 	
 
-		<div class="col-lg-12">
-			<button pButton class='mt-2' type="button" label="Confirmar" (click)='confirmar()'></button>
-
-		</div>
+		
 	</div>

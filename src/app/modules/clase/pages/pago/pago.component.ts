@@ -32,7 +32,9 @@ export class PagoComponent implements OnInit {
 
     const pedidoDeCompra = {
       idUsuario: this.idUsuario,
-      ids: this.detalles
+      ids: this.detalles,
+      tipo: 0,
+      fecha: 0
     }
     this.cargandoPago = false;
 
