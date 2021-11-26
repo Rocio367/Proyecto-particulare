@@ -8,7 +8,7 @@ import { RedirectService } from '../services/redirect/redirect.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AdminAuthGuard implements CanActivate, CanLoad {
+export class AdminGuard implements CanActivate, CanLoad {
 
     constructor(private authService: AuthService, private redirectService: RedirectService) {
     }

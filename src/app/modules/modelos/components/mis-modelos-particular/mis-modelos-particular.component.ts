@@ -75,6 +75,8 @@ export class MisModelosParticularComponent implements OnInit {
           }
         );
       });
+      this.estaCargando = false;
+
     },
       (error) => {
         console.error(error);
