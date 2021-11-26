@@ -91,13 +91,11 @@
 }
 
 .p-button {
-   
     color: #ffffff;
     background: #e47474 !important;
     border: #e47474 !important;
 }
 .p-selectbutton .p-button {
-   
     color: #e47474;
     background: white !important;
     border: 1px solid #e47474 !important;
@@ -105,14 +103,12 @@
     margin: 2px !important;
 }
 .p-selectbutton .p-button:hover {
-   
     color: #ffffff !important;
     background: #e47474 !important;
     border: 1px solid #e47474 !important;
 }
 
 .p-button:focus {
-   
     outline: 0 none;
     outline-offset: 0;
     box-shadow: 0 0 0 0.1rem #ecb1b1;
@@ -134,10 +130,19 @@
     cursor: pointer;
     margin: 3px;
 }
+.ql-image {
+    display: none !important;
+}
 @media screen and (max-width: 960px) {
     .p-menubar .p-menubar-root-list {
         background: #23be90;
     }
+}
+.puntitos {
+    text-overflow: ellipsis !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
 }
 #jitsi-iframe iframe {
     border-radius: 3px !important;
@@ -382,26 +387,22 @@ h4 {
 
 //btn
 .mat-raised-button.mat-warn {
-   
     background-color: #e47474 !important;
     color: white !important;
 }
 
 .mat-button.mat-warn {
-   
     background-color: #e47474 !important;
     color: white !important;
 }
 
 .mat-button.mat-primary {
-   
     background-color: #23be90 !important;
     color: white !important;
     margin: 10px !important;
 }
 
 .mat-raised-button.mat-primary {
-   
     background-color: #23be90 !important;
     color: white !important;
     margin: 2px !important;
@@ -478,6 +479,25 @@ a {
 }
 .w-100 .p-calendar {
     width: 100%;
+    margin: auto;
+}
+.w-50 {
+    width: 50%;
+}
+.w-25 {
+    width: 25%;
+}
+.w-33 {
+    width: 25%;
+}
+.cartel {
+    background: #23be90;
+    border-radius: 5px;
+    color: white;
+    padding: 12px;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
     margin: auto;
 }
 #badge {

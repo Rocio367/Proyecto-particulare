@@ -33,7 +33,7 @@ export interface PeriodicElement {
   styleUrls: ["./perfil-alumno.component.scss"],
 })
 export class PerfilAlumnoComponent implements OnInit {
-  alumno: Alumno;
+  alumno: any;
   particular: Particular;
   beneficios: CardModel[];
   clases: Clase[] = [];
@@ -48,57 +48,22 @@ export class PerfilAlumnoComponent implements OnInit {
   ) {}
 
 
-  folders: Section[] = [
-    {
-      name: "Clase 1",
-      updated: new Date("1/1/16"),
-    },
-    {
-      name: "Clase 2",
-      updated: new Date("1/17/16"),
-    },
-    {
-      name: "Clase 3",
-      updated: new Date("1/28/16"),
-    },
-  ];
-
+  
   ngOnInit() {
     this.alumnoService.buscarPorId(this.id).subscribe(
       (alumno) => {
         this.alumno = alumno;
-      
+         console.log(alumno)
       },
       (error) => {
         console.error(error);
       }
     );
 
-    this.beneficios = [
-      {
-        titulo: "Pack 20 clases 10%",
-        subtitulo: "Descuentos",
-        contenido: "This card has divider and indeterminate progress as footer",
-      },
-      {
-        titulo: "20% de descuento",
-        subtitulo: "Descuentos",
-        contenido: "Si sos un suscriptor activo de la página durante un año.",
-      },
-      {
-        titulo: "Primer clase GRATIS",
-        subtitulo: "Descuentos",
-        contenido:
-          "Podes probar nuestros servicios gratuitamente la primera vez.",
-      },
-    ];
   
   
   }
 
-  iniciar(){
-    this.router.navigate(['reunion', { q: 222 }])
-
-  }
+ 
 
 }

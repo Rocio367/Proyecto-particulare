@@ -117,7 +117,7 @@ export class MensajeDetalleComponent implements OnInit {
       $('#' + m.id).addClass('hidden');
       $('#b-' + m.id).addClass('hidden');
     }
-    element.scrollIntoView();
+    element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 
   }
   ngOnChanges(changes: SimpleChanges) {
@@ -146,7 +146,7 @@ export class MensajeDetalleComponent implements OnInit {
       $('#' + m.id).addClass('hidden');
       $('#b-' + m.id).addClass('hidden');
     }
-    element.scrollIntoView();
+    element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 
   }
 }

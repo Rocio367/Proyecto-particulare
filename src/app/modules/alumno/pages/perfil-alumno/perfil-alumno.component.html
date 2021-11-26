@@ -2,27 +2,29 @@
   <p-card>
     <div class="flex justify-content-evenly">
       <div>
-        <img mat-card-avatar src="../../../../../assets/img/default-user.png"/>
+        <!--harcodeado-->
+        <img mat-card-avatar src="../../../../../assets/img/default-user.png" />
       </div>
       <p-divider layout="vertical"></p-divider>
       <div>
-        <h4>{{alumno.usuario.nombre}} {{alumno.usuario.apellido}} </h4>  
+        <h4>{{alumno.usuario.nombre}} {{alumno.usuario.apellido}} </h4>
         <h4 class='fs-16 mb-3'>Fecha Nacimiento: <span>{{alumno.usuario.fechaNacimiento}}</span></h4>
         <h4 class='fs-16 mb-3'>Intereses: <span> {{alumno.materiasInteres}} </span></h4>
-        <h4 class='fs-16 mb-3'>Institución: <span> - </span></h4>
-        <h4 class='fs-16 mb-3'>Nivel académico: <span> - </span></h4>
+
+        <h4 class='fs-16 mb-3'>Email: <span> {{alumno.usuario.email}} </span></h4>
+        <h4 class='fs-16 mb-3'>Nivel académico: <span>{{alumno.nivel.descripcion}}</span></h4>
       </div>
       <p-divider layout="vertical"></p-divider>
-      <div>
+      <!--<div>
           <iframe src="https://www.youtube.com/embed/V202A8p7uh8" 
             title="YouTube video player" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
           </iframe>
-      </div>
+      </div>-->
     </div>
   </p-card>
 
-  
+
 </div>
