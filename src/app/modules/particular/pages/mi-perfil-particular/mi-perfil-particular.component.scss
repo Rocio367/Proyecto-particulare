@@ -1,0 +1,52 @@
+.stars {
+    bottom: 43%;
+    right: 1%;
+    padding: 5px 11px;
+    text-align: center;
+}
+.actions{
+    position: absolute;
+    bottom: 43%;
+    right: 1%;
+}
+.pi pi-star{
+    color: #b2beb7;
+    font-size: 50px!important;
+}
+.amarillo{
+    color: #e0d71e!important;
+}
+
+
+.z-index{
+    position:relative; z-index:2;
+}
+
+.blanco2{
+    background-color: rgba(255, 255, 255, 0.555);
+}
+
+mat-card{
+    margin: 10px;
+    padding: 16px 0px 16px 0px!important;
+}
+
+.mat-card-avatar{
+    height: 200px !important;
+    width: 200px !important;
+    margin:auto;
+}
+
+.borde
+ {
+      border-bottom: 1px solid rgb(5, 168, 114); 
+    }
+
+.letraGrande {
+    font-size: 40px; 
+}
+
+.mat-card-avatar {
+    object-fit: cover;
+    border-radius: 100px;
+}

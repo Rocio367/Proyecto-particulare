@@ -19,7 +19,9 @@ export class ReseniaService {
   obtenerResenias(id): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/resenia/obtener/${id}`);
   }
-
+  obtenerReseniasDelParticular(id): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/resenia/obtenerPorParticular/${id}`);
+  }
   obtenerIdUser(id): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/resenia/obtenerIdUser/${id}`);
   }

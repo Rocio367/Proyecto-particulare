@@ -18,36 +18,7 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
   referenciaDialogoDinamico: DynamicDialogRef;
 
   constructor(public dialogService: DialogService, private valoracionServices: ReseniaService, private claseService: ClaseService, private router: Router) {
-    this.valoracionServices.obtenerIdUser(this.id).subscribe(resenias => {
-      this.claseService.obtenerClasesPorAlumno(this.id).subscribe(
-        (clases) => {
-
-          resenias.forEach(e => {
-            clases.forEach(c => {
-              if (e.producto.id == c.id) {
-                c.valoracion = e.puntaje;
-                this.clases.push(c)
-
-              } else {
-                if (c.estado == 'FINALIZADO') {
-                  c.puedeValorar = true;
-                } else {
-                  c.puedeValorar = false;
-                }
-                if (c.clase) {
-                  this.clases.push(c)
-
-                }
-              }
-            })
-          });
-
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    })
+   this.cargar();
 
   }
 
@@ -65,5 +36,33 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
       width: '70%',
     });
   }
+   cargar(){
+    this.claseService.obtenerClasesPorAlumno(this.id).subscribe(
+      (clases) => {
+        this.valoracionServices.obtenerIdUser(this.id).subscribe(resenias => {
 
+          clases.forEach(c => {
+            let resenia = resenias.find(d => d.producto.id == c.id)
+            console.log(c.clase, c.estado)
+            console.log(c.clase && c.estado == 'FINALIZADON')
+            if (c.clase && c.estado == 'FINALIZADA') {
+              if (resenia) {
+                c.valoracion = resenia.puntaje;
+                this.clases.push(c)
+              }else{
+                c.puedeValorar = true;
+                this.clases.push(c)
+              }
+            
+
+            }
+          });
+
+        },
+          (error) => {
+            console.error(error);
+          }
+        );
+      })
+   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ParticularService } from 'src/app/core/services/particular/particular.service';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Particular } from 'src/app/shared/models/particular';
 import { Usuario } from 'src/app/shared/models/usuario';
@@ -23,7 +23,14 @@ export class PerfiHeaderComponent implements OnInit {
   });
 
   constructor(private snackBar:MatSnackBar, private form: FormBuilder, private router: Router,
-    private particularService: ParticularService) { }
+    private particularService: ParticularService,private aRouter: ActivatedRoute) { 
+      this.aRouter.params.subscribe(
+        (params: Params) => {
+          if(params.q){
+            this.id = Number(params.q);
+          }
+        }
+      ); }
 
     ngOnInit(): void {
      

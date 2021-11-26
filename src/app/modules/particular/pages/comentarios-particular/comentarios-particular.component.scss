@@ -1,19 +1,20 @@
-.letraGrande{
-    font-size: 25px; 
+.amarillo{
+    color: #fff424!important;
 }
 
 .stars {
     position: absolute;
-    bottom: 73%;
+    top: 4%;
     right: 1%;
     padding: 5px 11px;
     text-align: center;
 }
 
-.pi pi-star{
-    color: #b2beb7;
-    font-size: 25px!important;
+.pi{
+    cursor: pointer;
 }
-.amarillo{
-    color: #e0d71e!important;
+.arrows{
+    justify-content: center;
+    text-align: center;
+    color:#e47474 !important
 }

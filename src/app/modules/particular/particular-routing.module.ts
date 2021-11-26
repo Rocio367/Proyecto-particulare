@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { PerfilParticularComponent } from './pages/perfil-particular/perfil-particular.component';
 import { RegistrarParticularComponent } from './pages/registrar-particular/registrar-particular.component';
 import { ComentariosParticularComponent } from './pages/comentarios-particular/comentarios-particular.component';
+import { MiPerfilParticularComponent } from './pages/mi-perfil-particular/mi-perfil-particular.component';
 const routes:Routes = [
+  {path:'mi-perfil-particular', component:MiPerfilParticularComponent},
   {path:'perfil-particular', component:PerfilParticularComponent},
   {path:'editar-perfil-particular', component:EditarPerfilParticularComponent},
   {path:'registrar-particular', component:RegistrarParticularComponent},
