@@ -108,6 +108,9 @@
     border: 1px solid #e47474 !important;
 }
 
+.p-datepicker .p-datepicker-buttonbar .p-button {
+    color: white!important;
+}
 .p-button:focus {
     outline: 0 none;
     outline-offset: 0;
@@ -129,6 +132,7 @@
     border: 1px solid #23be90;
     cursor: pointer;
     margin: 3px;
+    min-width: 200px;
 }
 .ql-image {
     display: none !important;
@@ -470,7 +474,7 @@ a {
 }
 .p-dropdown {
     text-align: initial;
-    width: 10em;
+    width: 12em;
 }
 
 .w-100 .p-dropdown {
@@ -484,8 +488,14 @@ a {
 .w-50 {
     width: 50%;
 }
+.w-40 {
+    width: 40%;
+}
 .w-25 {
     width: 25%;
+}
+.w-15 {
+    width: 15%;
 }
 .w-33 {
     width: 25%;

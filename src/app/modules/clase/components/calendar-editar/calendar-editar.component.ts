@@ -81,7 +81,7 @@ export class CalendarEditarComponent implements OnInit {
           let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
           if (this.includes(nuevo).length == 0) {
               this.disponibilidad.push(nuevo)
-              this.dates = []
+              this.dates = undefined
               this.addDisponibilidad.emit(this.disponibilidad)
               console.log(this.disponibilidad)
               this.snackBar.open('Disponibilidad agregada correctamente', "", {

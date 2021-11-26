@@ -21,6 +21,8 @@ export class CalendarCompletarComponent implements OnInit {
   @Output() addDisponibilidad: EventEmitter<any> = new EventEmitter<any>();
   minDate=new Date();
   constructor(private primengConfig: PrimeNGConfig, public snackBar: MatSnackBar, public dialog: MatDialog) {
+    console.log(this.dates)
+
     this.horarios = [
 
       { name: "07:00 AM", value: "7" },
@@ -63,9 +65,9 @@ export class CalendarCompletarComponent implements OnInit {
           let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
           if (this.includes(nuevo).length == 0) {
               this.disponibilidad.push(nuevo)
-              this.dates = []
+              this.dates = undefined;
               this.addDisponibilidad.emit(this.disponibilidad)
-              console.log(this.disponibilidad)
+              console.log(this.dates)
               this.snackBar.open('Disponibilidad agregada correctamente', "", {
                 duration: 1500,
                 horizontalPosition: "end",
@@ -92,7 +94,7 @@ export class CalendarCompletarComponent implements OnInit {
         duration: 1500,
         horizontalPosition: "end",
         verticalPosition: "top",
-        panelClass: ['green-snackbar']
+        panelClass: ['red-snackbar']
       });
     }
 

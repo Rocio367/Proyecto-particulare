@@ -74,7 +74,7 @@ export class VerMisClasesParticularComponent implements OnInit {
       id: id,
     },
     width: '90%',
-    height: '90%',
+    height: 'auto',
   });
   }
 
