@@ -490,6 +490,16 @@ a {
 .w-33 {
     width: 25%;
 }
+@media screen and (max-width: 500px) {
+   /* .scroll {
+        overflow: scroll;
+        min-width: 500px;
+    }
+    .scroll .tabla {
+        width: 500px;
+    }*/
+}
+
 .cartel {
     background: #23be90;
     border-radius: 5px;

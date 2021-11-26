@@ -29,6 +29,7 @@ export class PerfiHeaderComponent implements OnInit {
      
         this.particularService.buscarPorIdProfesor(this.id).subscribe( 
           (particular) => {
+            console.log(particular)
             this.particular = particular;
             this.formDatos.controls["localidad"].setValue(this.particular.localidad)
             this.formDatos.controls["experiencia"].setValue(this.particular.experiencia)
