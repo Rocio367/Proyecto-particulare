@@ -195,7 +195,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
         ];
         break;
       }
-      case 'admin': {
+      case 'administrador': {
         this.items = [
 
           {

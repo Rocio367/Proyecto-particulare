@@ -25,11 +25,23 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import {DividerModule} from 'primeng/divider';
 import {RatingModule} from 'primeng/rating';
 import { RecomendacionesComponent } from './components/recomendaciones/recomendaciones.component';
-
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { AgmCoreModule } from '@agm/core';
+import { environment } from 'src/environments/environment';
+import {OrderListModule} from 'primeng/orderlist';
+import {ToastModule} from 'primeng/toast';
+import {SelectButtonModule} from 'primeng/selectbutton'
+import {CheckboxModule} from 'primeng/checkbox';
+import {CalendarModule} from 'primeng/calendar';
+import {DataViewModule} from 'primeng/dataview';
+import {DropdownModule} from 'primeng/dropdown';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations:[ HomeComponent, PaginatorComponent, HomeAlumnoComponent, HomeParticularComponent, HomeAdministradorComponent, HomeGeneralComponent, BuscadorComponent, CardsProfesorComponent,PrimerosPasosComponent, CardDescuentosComponent, LandingPageComponent, RecomendacionesComponent,],
-  imports:[RatingModule,DividerModule,CardModule,InputTextModule,ButtonModule,AutoCompleteModule,SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule],
+  imports:[RatingModule,DividerModule,CardModule,InputTextModule,ButtonModule,AutoCompleteModule,SharedModule, CommonModule, RouterModule,AngularMaterialModule, MatCardModule, MatButtonModule, MatToolbarModule, MatDividerModule,
+    AutocompleteLibModule,GooglePlaceModule,AgmCoreModule,OrderListModule,ToastModule,SelectButtonModule,CheckboxModule,CalendarModule,DataViewModule,DropdownModule,TableModule],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 
