@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -16,6 +16,7 @@ export class ModalValorarComponent implements OnInit {
   idUser = localStorage.getItem('idUser');
   comentario: string;
   estrellas = 1;
+  @Output() listo: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(  private dialogRef: DynamicDialogRef,public config: DynamicDialogConfig, private _snackBar: MatSnackBar, private reseniaServices: ReseniaService) {
 
@@ -42,7 +43,9 @@ export class ModalValorarComponent implements OnInit {
           verticalPosition: "top",
           panelClass: ['green-snackbar']
         });
+        this.listo.emit('listo')
         this.dialogRef.close();
+        
 
         },
         (error) => {
