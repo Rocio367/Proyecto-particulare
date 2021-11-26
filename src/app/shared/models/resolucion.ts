@@ -5,5 +5,6 @@ export interface Resolucion {
     },
     modelo: {
         id: Number
-    }
+    },
+    comentario: string
 }
