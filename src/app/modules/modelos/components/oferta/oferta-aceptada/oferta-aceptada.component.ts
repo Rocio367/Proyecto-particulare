@@ -31,6 +31,7 @@ export class OfertaAceptada implements OnInit {
         this.servicioDeModelos.obtenerResolucionPorModelo(this.ofertaDeResolucion.modelo.id)
             .subscribe((resoluciones) => {
                 this.resolucion = resoluciones.find((r) => r.usuario.id == this.ofertaDeResolucion.usuario.id);
+                this.estaCargando = this.resolucion != undefined;
                 if (this.resolucion) {
                     this.servicioDeResolucion.obtenerArchivosDeUnaResolucion(this.resolucion)
                         .subscribe(
