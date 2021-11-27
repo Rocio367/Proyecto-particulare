@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
 import { Usuario } from "src/app/shared/models/usuario";
+import { Documento } from 'src/app/shared/models/documento';
 
 
 @Injectable({
@@ -31,6 +32,10 @@ export class ParticularService {
   
   buscarPorIdProfesor(idUsuario: Number): Observable<any>{
     return this.http.get<any>(`${environment.backUrl}/v1/profesor/mostrarRegistro/${idUsuario}`);
+  }
+
+  obtenerFotoPerfilPorUsuario(idUsuario: Number): Observable<Documento[]>{
+    return this.http.get<Documento[]>(`${environment.backUrl}/v1/alumnos/fotoPerfil/${idUsuario}`);
   }
 
 }

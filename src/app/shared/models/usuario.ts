@@ -1,3 +1,5 @@
+import { Documento } from "./documento";
+
 export interface Usuario{
     nombre: string;
     apellido: string;
@@ -6,7 +8,7 @@ export interface Usuario{
     contrasenia: string;
     telefono: number;
     fechaNacimiento: String;
-    fotoPerfil: string;
+    fotoPerfil: Documento[];
     rol:string;
     id:number;
 }
