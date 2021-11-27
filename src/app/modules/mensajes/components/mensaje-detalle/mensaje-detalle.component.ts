@@ -1,12 +1,9 @@
-import { I, V } from '@angular/cdk/keycodes';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { element } from 'protractor';
 import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { Mensaje } from 'src/app/shared/models/mensaje';
-import { ModalResponderComponent } from '../modal-responder/modal-responder.component';
 
 @Component({
   selector: 'app-mensaje-detalle',
@@ -26,7 +23,8 @@ export class MensajeDetalleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.verRespuestas()
+
+
   }
 
   verRespuestas() {
@@ -66,13 +64,7 @@ export class MensajeDetalleComponent implements OnInit {
             }
           })
           let element = document.getElementById(String(this.mensaje.id));
-          if(element){
-            element.innerHTML = this.mensaje.contenido;
-            element.scrollIntoView({ block: "center", behavior: "smooth" });
-
-          }
-          $('#' + this.mensaje.id).removeClass('hidden');
-          $('#b-' + this.mensaje.id).removeClass('hidden');
+        
         }else{
 
           let m = new Mensaje();
@@ -103,28 +95,21 @@ export class MensajeDetalleComponent implements OnInit {
           if (res.mensaje.receptor.id == this.idUser) {
             m.destinatario = 'Mi';
           }
-       
-        let element = document.getElementById(String(this.mensaje.id));
-        if(element){
-          element.innerHTML = this.mensaje.contenido;
-          element.scrollIntoView({ block: "center", behavior: "smooth" });
-
-        }
-        $('#' + this.mensaje.id).removeClass('hidden');
-        $('#b-' + this.mensaje.id).removeClass('hidden');
+      
         }
      
       })
     }
 
 
-
   }
+ 
 
   verContenido(m) {
     console.log('ver contenido', m)
     let element = document.getElementById(m.id);
-    element.innerHTML = m.contenido;
+
+
     if (element.classList.contains('hidden')) {
       $('#' + m.id).removeClass('hidden');
       $('#b-' + m.id).removeClass('hidden');
@@ -132,13 +117,14 @@ export class MensajeDetalleComponent implements OnInit {
       $('#' + m.id).addClass('hidden');
       $('#b-' + m.id).addClass('hidden');
     }
-    element.scrollIntoView();
+    element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 
   }
   ngOnChanges(changes: SimpleChanges) {
     this.resp = false;
     this.respuestas = []
     this.verRespuestas()
+
   }
   esconderRespuestas() {
     this.html = '';
@@ -150,7 +136,17 @@ export class MensajeDetalleComponent implements OnInit {
     this.router.navigate(['nuevo-mensaje', { q: m.id }])
   }
   insertarHtml(m) {
-    document.getElementById('contenido' + m.id).innerHTML = m.contenido;
+    let element = document.getElementById(m.id);
+    element.innerHTML = m.contenido;
+    
+    if (element.classList.contains('hidden')) {
+      $('#' + m.id).removeClass('hidden');
+      $('#b-' + m.id).removeClass('hidden');
+    } else {
+      $('#' + m.id).addClass('hidden');
+      $('#b-' + m.id).addClass('hidden');
+    }
+    element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 
   }
 }

@@ -18,4 +18,12 @@ export class UsuariosService {
     return this.http.get<any>(`${environment.backUrl}/v1/alumnos/obtenerTodos`);
   }
 
+  obtenerTipoTodos(): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/usuario`);
+  }
+
+  bloquear(idUsuario: Number): Observable<any>{
+    return this.http.get<void>(`${environment.backUrl}/v1/usuario/Bloquear/${idUsuario}`);
+  }
+
 }

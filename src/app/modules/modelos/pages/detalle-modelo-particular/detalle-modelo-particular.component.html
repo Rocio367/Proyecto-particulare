@@ -1,4 +1,4 @@
-<div *ngIf="estaCargando; else mostrarDetalles">
+<div *ngIf="estaCargando; else mostrarDetalles" class='text-center'>
     <p-progressSpinner></p-progressSpinner>
 </div>
 <ng-template #mostrarDetalles>
@@ -8,75 +8,79 @@
                 <mat-card class='card-container card'>
                     <div class="col-lg-12 mt-3 text-center">
                         <h3 class="color-f "> {{modelo.nombre}}</h3>
-                        <img class='img-a img-border' *ngFor="let archivo of modelo.archivos" [src]="obtenerImagenEnBase64(archivo)" (click)='verArchivo(archivo)'>
+                        <img class='img-a img-border' *ngFor="let archivo of modelo.archivos"
+                            [src]="obtenerImagenEnBase64(archivo)" (click)='verArchivo(archivo)'>
                     </div>
                     <div class="col-lg-12 mt-3 text-center">
                         <button mat-button color='primary' (click)="descargarArchivos()">Descargar archivos</button>
                         <br>
-                        <button  *ngIf="sePuedePostularse()" mat-button color='warn' class='mt-2 mb-2' (click)='postularme()' class=''>
+                        <button *ngIf="sePuedePostularse()" mat-button color='warn' class='mt-2 mb-2'
+                            (click)='postularme()' class=''>
                             Postularme para resolverlo
                         </button>
                     </div>
                 </mat-card>
             </div>
-            <div class="col-lg-12 text-center mt-3">
+            <div class="col-lg-12 text-left mt-3">
                 <mat-card class="card-container card">
                     <div class="row">
                         <div class="col-12">
-                            <h3 class=" ml-3 color-f ">Datos generales: </h3>
+                            <h3 class="ml-3 color-f ">Datos Generales: </h3>
                         </div>
-                        <div class='col-4 desk'>
+                        <div class='col-3 desk ml-3  text-center'>
                             <h4 class='fs-16 mb-3'>Nombre: <span>{{modelo.nombre}}</span></h4>
-                            <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha | date}}</span></h4>
+                            <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span></h4>
                             <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
                         </div>
-                        <div class='col-4 desk'>
-                            <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
-                            <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
+                        <div class='col-4 desk ml-3 text-center'>
+                            <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion.nombre}}</span></h4>
+                            <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.carrera.nombre}}</span></h4>
                         </div>
-                        <div class='col-4 desk'>
+                        <div class='col-4 desk ml-3 text-center'>
                             <h4 class='fs-16 mb-3'>Materia: <span>{{modelo.materia.nombre}}</span></h4>
                             <h4 class='fs-16 mb-3'>Nivel: <span>{{modelo.nivel.descripcion}}</span></h4>
                         </div>
-                        <div class='col-12 mob'>
+                        <div class='col-12 mob text-center'>
                             <h4 class='fs-16 mb-3'>Nombre: <span>{{modelo.nombre}}</span></h4>
-                            <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha | date}}</span></h4>
+                            <h4 class='fs-16 mb-3'>Fecha: <span>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span></h4>
                             <h4 class='fs-16 mb-3'>Estado: <span>{{modelo.estado}}</span></h4>
-                            <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion }}</span></h4>
-                            <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.institucion}}</span></h4>
+                            <h4 class='fs-16 mb-3'>Institución: <span>{{modelo.institucion.nombre}}</span></h4>
+                            <h4 class='fs-16 mb-3'>Carrera: <span>{{modelo.carrera.nombre}}</span></h4>
                             <h4 class='fs-16 mb-3'>Materia: <span>{{modelo.materia.nombre}}</span></h4>
                             <h4 class='fs-16 mb-3'>Nivel: <span>{{modelo.nivel.descripcion}}</span></h4>
                         </div>
                     </div>
                 </mat-card>
             </div>
-            <div class="col-lg-12 mt-3 text-center">
+            <div class="col-lg-12 mt-3 text-left">
                 <mat-card class="card card-container">
                     <div class="row">
                         <div class="col-12">
-                            <h3 class=" ml-3 color-f ">Datos del alumno: </h3>
+                            <!--harcodeado-->
+                            <h3 class=" ml-3 color-f ">Datos del Alumno: </h3>
                         </div>
-                        <div class='col-4 desk'>
+                        <div class='col-4 desk ml-3'>
                             <h4 class='fs-16 mb-3'>Nombre: <span class='color-d'>{{alumno.nombreCompleto}}</span></h4>
                         </div>
                     </div>
                 </mat-card>
             </div>
-            <div *ngIf="estaCargandoOferta;else mostrarOferta">
+            <div *ngIf="estaCargandoOferta;else mostrarOferta" class='text-center'>
                 <p-progressSpinner></p-progressSpinner>
             </div>
             <ng-template #mostrarOferta>
                 <div class="col-lg-12 mt-3 text-center" *ngIf="debeMostrarOferta()">
                     <mat-card class='card card-container '>
                         <h3 class="color-f ml-3">Datos de la postulación: </h3>
-                        <p class='color-f '>Tipo de resolución: <span class='color-d'>{{oferta.tipo.descripcion}}</span></p>
-                        <p class='color-f '>Demora: <span class='color-d'>{{oferta.demora.descripcion}}</span></p>
-                        <p class='color-f '>Costo: <span class='color-d'>{{oferta.costo}}</span></p>
+                        <h4 class='fs-16 mb-3'>Tipo de resolución: <span>{{oferta.tipo.descripcion}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Demora: <span>{{oferta.demora.descripcion}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Costo: <span>{{oferta.costo}}</span></h4>
+
                     </mat-card>
                 </div>
             </ng-template>
             <div class="col-lg-12 text-center mt-3 mb-5">
-                <mat-card class='card card-container '>
+                <mat-card class='card card-container' class='text-center'>
                     <p-progressSpinner *ngIf="cargandoBloqueResolucion;else bloqueResolucion"></p-progressSpinner>
                     <ng-template #bloqueResolucion>
                         <div *ngIf="puedeSubirResolucion() else noSePuedeEnviarResolucion">
@@ -84,23 +88,27 @@
                                 <h3 class="color-f ">
                                     Adjuntar resolución del modelo
                                 </h3>
+                                <p class='color-f'>
+                                    Debe adjuntar la resolución del examen
+                                </p>
                             </div>
                             <div class="col-lg-12 text-center  mt-3">
                                 <div class='w-80 mt-4'>
                                     <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
                                         (onSelect)="seleccionarArchivoDeResolucion($event)"
                                         (onClear)="cancelarSeleccionDeArchivoDeResolucion()"
-                                        (onRemove)="borrarArchivoDeResolucion($event)"
-                                        multiple="multiple" accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
+                                        (onRemove)="borrarArchivoDeResolucion($event)" multiple="multiple"
+                                        accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
                                     </p-fileUpload>
                                 </div>
                                 <div class='w-80 mt-4'>
                                     <h3 class="color-f ">
                                         Comentarios opcionales </h3>
-                                    <textarea class='m-2 w-100' [rows]="5" [cols]="30" [(ngModel)]="comentario" pInputTextarea
-                                        autoResize="autoResize"></textarea>
+                                    <textarea class='m-2 w-100' [rows]="5" [cols]="30" [(ngModel)]="comentario"
+                                        pInputTextarea autoResize="autoResize"></textarea>
                                 </div>
-                                <button mat-button color='warn' class='mt-2' [disabled]='noHayArchivosSeleccionados()' (click)='enviarResolucion()'>Enviar
+                                <button mat-button color='warn' class='mt-2' [disabled]='noHayArchivosSeleccionados()'
+                                    (click)='enviarResolucion()'>Enviar
                                     resolución</button>
                             </div>
                         </div>
@@ -129,17 +137,23 @@
                                 </div>
                                 <div class="product-list-action">
                                     <div class='stars'>
-                                        <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-                                        <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-                                        <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-                                        <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-                                        <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
+                                        <i class="pi pi-star fs-21"
+                                            [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
+                                        <i class="pi pi-star fs-21"
+                                            [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
+                                        <i class="pi pi-star fs-21"
+                                            [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
+                                        <i class="pi pi-star fs-21"
+                                            [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
+                                        <i class="pi pi-star fs-21"
+                                            [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
                                         <span class='subtitle'>
                                             {{item.valoracion}}/ 5
                                         </span>
                                     </div>
                                     <div class='actions' style='text-align: end;'>
-                                        <button mat-button color='warn' (click)='openRes(item.doc)' type="button">Ver</button>
+                                        <button mat-button color='warn' (click)='openRes(item.doc)'
+                                            type="button">Ver</button>
                                     </div>
                                 </div>
                             </div>

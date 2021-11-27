@@ -7,7 +7,7 @@
                     <mat-list-item  [ngClass]='(mensaje.leido)? "leido":"no-leido "' *ngFor="let mensaje of recibidos">
                         <div class='fs-18' mat-line>{{mensaje.emisor.nombre}}, {{mensaje.emisor.apellido}}</div>
                         <div   mat-line>{{mensaje.asunto}}</div>
-                        <div  mat-line> {{mensaje.fecha | date}} </div>
+                        <div  mat-line> {{mensaje.fecha |date:'d/M/yy, h:mm a'}} </div>
                         <button  (click)='seleccion(mensaje)' class='m-2' pButton label="Ver"></button>
                         <button (click)='delete(mensaje)' class='m-2' pButton label="Eliminar"></button>
                     </mat-list-item>
@@ -29,7 +29,7 @@
     
         <div class="row text-center" *ngIf='!recibidos'>
             <div class='seleccion-mensaje col-12 text-center' >
-                Aun no hay mensajes eliminados</div>
+                Aún no hay mensajes eliminados</div>
         </div>
     </mat-card>
 </div>

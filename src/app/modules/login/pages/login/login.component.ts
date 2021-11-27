@@ -1,6 +1,4 @@
-import { Particular } from 'src/app/shared/models/particular';
 import { LoginService } from './../../../../core/services/login/login.service';
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -58,6 +56,8 @@ export class LoginComponent implements OnInit {
             //variables de sesion
             localStorage.setItem('rol',usuario.rol)
             localStorage.setItem('idUser',usuario.id)
+            localStorage.setItem('name',usuario.nombre + ' ' +usuario.apellido )
+            console.log(usuario)
             localStorage.setItem('recargar_menu', JSON.stringify(true));
             this.router.navigate(['/home'])
             console.log(usuario)
@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('recargar_menu', JSON.stringify(true));
       this.router.navigate(['/home'])
     } else {
-      this.openSnackBar('Usuario o contraseña incorrectas', 'x')
+      this.openSnackBar('Usuario, contraseña incorrectas o usuario bloqueado', 'x')
     }
   }
 

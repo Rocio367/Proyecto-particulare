@@ -5,5 +5,6 @@ export interface OfertaDeResolucion {
     costo: Number,
     tipoResolucion: TipoDeResolucion,
     tipoDeDemora: TipoDeDemora,
-    idUsuario: Number
+    idUsuario: Number,
+    disponibilidad:any[];
 }

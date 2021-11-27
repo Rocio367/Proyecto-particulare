@@ -1,6 +1,5 @@
-import { Documento } from './../../../../shared/models/documento';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Particular } from './../../../../shared/models/particular';
 import { Usuario } from './../../../../shared/models/usuario';
@@ -23,13 +22,13 @@ export class EditarPerfilParticularComponent implements OnInit {
     fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    telefono: ['',Validators.pattern(/^(0|\-?[1-9][0-9]*)$/)],
+    telefono: ['', Validators.pattern("^[0-9]*$")],
     email: ['', [Validators.email, Validators.required]],
-    contrasenia: ['', Validators.required],
+    contrasenia: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],    
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
     descripcion: [''],
-    documento: ["", Validators.required],
+    documento: ["", Validators.required,Validators.pattern("^[0-9]*$")],
     localidad: [""],
 
   });

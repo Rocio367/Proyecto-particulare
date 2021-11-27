@@ -1,9 +1,9 @@
 import { DatePipe } from "@angular/common";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Params } from "@angular/router";
-import { format } from "path";
 import { PrimeNGConfig } from "primeng/api";
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ClaseService } from "src/app/core/services/clase/clase.service";
@@ -27,6 +27,8 @@ export class CalendarDetalleClaseComponent implements OnInit {
   disponibilidad: any[] = []
   datesFilter: any[] = []
   selected: any[] = []
+  minDate=new Date()
+
   meses = [
     { code: '1', label: 'Enero' },
     { code: '2', name: 'Febrero' },
@@ -51,7 +53,8 @@ export class CalendarDetalleClaseComponent implements OnInit {
   referenciaDialogoDinamico: DynamicDialogRef;
   id: number;
   idUser;
-  constructor(public datepipe: DatePipe, private aRouter: ActivatedRoute, private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
+  
+  constructor(public datepipe: DatePipe, public snackBar: MatSnackBar, private aRouter: ActivatedRoute, private _snackbar: MatSnackBar, private primengConfig: PrimeNGConfig, public dialog: MatDialog,
     public dialogService: DialogService, private claseServices: ClaseService) {
     this.aRouter.params.subscribe(
       (params: Params) => {
@@ -61,12 +64,12 @@ export class CalendarDetalleClaseComponent implements OnInit {
 
     this.claseServices.obtenerDisponibilidad(this.id).subscribe(res => {
       res.forEach(element => {
-        if (element.estado == 'DISPONIBLE') {
-          this.disponibilidad.push({ name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
-          this.datesFilter.push({ name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
+        if (element.estado == 'DISPONIBLE' && new Date(element.fecha) > this.minDate ) {
+          this.disponibilidad.push({  fecha:new Date(element.fecha),name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
+          this.datesFilter.push({  fecha:new Date(element.fecha),name: this.datepipe.transform(new Date(element.fecha), 'M/d/yy, h:mm a'), value: element.id })
         }
       });
-      this.anos.push({ code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
+      this.anos.push({code: (this.now.getFullYear()).toString(), name: (this.now.getFullYear()).toString() })
       this.anos.push({ code: (this.now.getFullYear() + 1).toString(), name: (this.now.getFullYear() + 1).toString() })
       this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 2).toString() })
       this.anos.push({ code: (this.now.getFullYear() + 2).toString(), name: (this.now.getFullYear() + 4).toString() })
@@ -87,24 +90,52 @@ export class CalendarDetalleClaseComponent implements OnInit {
   filter() {
     let filtered: any[] = [];
     filtered = this.datesFilter;
-    console.log(this.datesFilter)
+    console.log(filtered)
     if (this.SelectedAno) {
-      filtered = filtered.filter(d => (new Date(d).getFullYear()) == this.SelectedAno.code);
+      filtered = filtered.filter(d => (new Date(d.fecha).getFullYear()) == this.SelectedAno.code);
+      console.log(filtered)
     }
     if (this.SelectedMes) {
-      filtered = filtered.filter(d => (new Date(d).getMonth() + 1) == this.SelectedMes.code);
+      filtered = filtered.filter(d => (new Date(d.fecha).getMonth()+1) == this.SelectedMes.code);
+      console.log(filtered)
+
     }
+
+    console.log(filtered)
+
 
     this.disponibilidad = filtered;
   }
   confirmar() {
-    this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
-      data: {
-        clase: this.clase,
-        idUsuario: this.idUser
-      },
-      width: '90%'
-    });
+    if(this.idUser){
+      if(this.selected.length > 0){
+        this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
+          data: {
+            clase: this.clase,
+            detalles:this.selected,
+            idUsuario: this.idUser
+          },
+          width: '90%',
+          height: '90%',
+        });
+        this.selected=[]
+      }else{
+        this.snackBar.open('Debe seleccionar una fecha antes de confirmar', "", {
+          duration: 1500,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+          panelClass: ['red-snackbar']
+        });
+      }
+    }else{
+      this.snackBar.open('Debe iniciar sesión para anotarse a una clase', "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['red-snackbar']
+      });
+    }
+  
   }
 
 

@@ -131,7 +131,16 @@
 
   }
 }
-
+@media only screen and (max-width: 1050px) {
+  .w-25{
+    width: 50%!important;
+  }
+  .w-50{
+    width: 100%!important;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
 @media only screen and (max-width: 700px) {
   .p-md-4 {
     width: 100%;
@@ -139,14 +148,15 @@
     padding: 0.5rem !important;
 
   }
-
+  .w-25{
+    width: 100%!important;
+    display: block;
+    margin-bottom: 5px;
+  }
   .filters {
     display: grid;
   }
 
-  .product-grid-item img {
-    height: auto;
-  }
 
   .card {
     max-width: 80vw;
@@ -236,7 +246,6 @@
 }
 
 .fecha {
-  width: 50%;
 
   padding: 5px 11px;
   text-align: left;

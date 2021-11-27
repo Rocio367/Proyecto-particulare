@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Params } from "@angular/router";
-import * as moment from 'moment'
 import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
 import { ClaseService } from "src/app/core/services/clase/clase.service";
-import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
 @Component({
   selector: 'app-calendar-detalle-clase-particular',
   templateUrl: './calendar-detalle-clase-particular.component.html',
@@ -22,6 +20,7 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
   fechasDisponibles: Date[] = [];
   fechasNoDisponibles: Date[] = [];
   id: number;
+  minDate=new Date;
   constructor(private aRouter: ActivatedRoute, private primengConfig: PrimeNGConfig, public dialog: MatDialog, private claseService: ClaseService) {
 
     this.aRouter.params.subscribe(
@@ -53,16 +52,14 @@ export class CalendarDetalleClaseParticularComponent implements OnInit {
 
     this.claseService.obtenerDisponibilidad(this.id).subscribe(res => {
       res.forEach(element => {
-        if (element.estado == 'DISPONIBLE') {
+        if (element.estado == 'DISPONIBLE' && new Date(element.fecha) > this.minDate ) {
           this.fechasDisponibles.push(new Date(element.fecha));
         } else {
           this.fechasNoDisponibles.push(new Date(element.fecha));
         }
       });
     })
-    //faltan reseñas 
 
-    //faltan alumnos inscriptos
   }
 
   ngOnInit(): void {

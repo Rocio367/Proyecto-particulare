@@ -4,7 +4,7 @@
 
 		<div class=' mt-3 text-center'>
 			<div class='date-results'  *ngFor='let date of fechasDisponibles;index as i'>
-				<span>{{ date |date:'M/d/yy, h:mm a'}}</span>
+				<span>{{ date |date:'d/M/yy, h:mm a'}}</span>
 			</div>
 			<div *ngIf='fechasDisponibles.length ==0'>
 				No hay fechas disponibles
@@ -22,7 +22,7 @@
 
 		<div class=' mt-3 text-center'>
 			<div class='date-results'  *ngFor='let date of fechasNoDisponibles;index as i'>
-				<span>{{ date |date:'M/d/yy, h:mm a'}}</span>
+				<span>{{ date |date:'d/M/yy, h:mm a'}}</span>
 			</div>
 			<div *ngIf='fechasNoDisponibles.length ==0'>
 				No hay fechas ocupadas

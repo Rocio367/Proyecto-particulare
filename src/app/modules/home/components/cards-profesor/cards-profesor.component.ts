@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Resultado } from 'src/app/shared/models/resultado';
+import { Component, Input, OnInit } from '@angular/core';
 
 export interface Section {
   type: string;
@@ -17,16 +16,14 @@ export interface Section {
   styleUrls: ['./cards-profesor.component.scss']
 })
 export class CardsProfesorComponent implements OnInit {
+  @Input() data:any;
+  element: any[] = [];
 
-  constructor() { }
-
-  element: Section[] = [
-    {type: 'Online',name: 'Profesor 1', materia:'Inglés principiantes' , ubicacion: 'Ituzaingó, Buenos Aires', descripcion:'Clases a distancia.',stars:1},
-    {type: 'Online', name: 'Profesor 2', materia: 'Inglés intermedio', ubicacion: 'Ramos Mejía, Buenos Aires', descripcion:'Clases a distancia.',stars:5},
-    {type: 'Online', name: 'Profesor 3', materia: 'Inglés básico nivel 1', ubicacion: 'San justo, Buenos Aires', descripcion:'Clases presenciales.',stars:3},    
-  ];
-
+  constructor() { 
+    
+  }
   ngOnInit(): void {
+    console.log(this.data)
   }
 
 }

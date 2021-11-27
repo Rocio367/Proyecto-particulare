@@ -3,16 +3,11 @@ import { FiltroClase } from 'src/app/shared/models/filtrosClase';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { GeneralService } from 'src/app/core/services/general/general.service';
-import { ConsultaRequest } from 'src/app/shared/models/consultaRequest';
 import { Lugar } from 'src/app/shared/models/lugar';
 import { Resultado } from 'src/app/shared/models/resultado';
-import Swal from 'sweetalert2';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import { R, T } from '@angular/cdk/keycodes';
 import { BusquedaService } from 'src/app/core/services/busqueda/busqueda.service';
-import { Nivel } from 'src/app/shared/models/nivel';
 
 @Component({
   selector: 'app-busqueda',
@@ -54,7 +49,6 @@ export class BusquedaComponent implements OnInit {
 
   constructor(private router:Router,private aRouter: ActivatedRoute,
     private form: FormBuilder,
-    private services: GeneralService,
     private serviceBusqueda: BusquedaService,
     ) {
 
@@ -72,12 +66,12 @@ export class BusquedaComponent implements OnInit {
     this.filtros.modo =  (this.selectedModo)?this.selectedModo.code:'ERROR';
     this.filtros.metodo= (this.selectedNMetodos)?this.selectedNMetodos.code:'ERROR';
     this.filtros.fecha=  this.fecha;
-    this.filtros.busqueda = this.busqueda;
+    this.filtros.busqueda = (this.busqueda)?this.busqueda:' ';
 
     console.log(this.filtros);
     this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
       (clases) => {
-        this.clases = clases;
+        this.clases = clases.sort();
     },
     (error) => {
       console.error(error);
@@ -113,7 +107,7 @@ export class BusquedaComponent implements OnInit {
         this.busqueda = this.valor;
 
         if (this.valor === "undefined") {
-          this.busqueda = " ";
+          this.busqueda = "";
         }
       }
       

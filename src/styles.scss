@@ -3,8 +3,27 @@
 /* You can add global styles to this file, and also import other style files */
 /* General */
 //header
+.pi-star-o {
+    color: #e0d71e !important;
+    font-size: 2em !important;
+}
+
+.p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon:hover {
+    color: #e0d71e !important;
+    font-size: 2em !important;
+}
+
+.p-rating .p-rating-icon.pi-star {
+    color: #e0d71e !important;
+    font-size: 2em !important;
+}
+
+.p-rating .p-rating-icon:focus {
+    font-size: 2em !important;
+    box-shadow: 0 0 0 0.2rem #e0d61e83;
+}
 .p-menubar {
-    padding: 0.5rem !important;
+    padding: 1rem !important;
     background: #23be90 !important;
     color: #23be90 !important;
     border: 1px solid #dee2e6 !important;
@@ -89,6 +108,9 @@
     border: 1px solid #e47474 !important;
 }
 
+.p-datepicker .p-datepicker-buttonbar .p-button {
+    color: white!important;
+}
 .p-button:focus {
     outline: 0 none;
     outline-offset: 0;
@@ -110,11 +132,21 @@
     border: 1px solid #23be90;
     cursor: pointer;
     margin: 3px;
+    min-width: 200px;
+}
+.ql-image {
+    display: none !important;
 }
 @media screen and (max-width: 960px) {
     .p-menubar .p-menubar-root-list {
         background: #23be90;
     }
+}
+.puntitos {
+    text-overflow: ellipsis !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
 }
 #jitsi-iframe iframe {
     border-radius: 3px !important;
@@ -442,6 +474,7 @@ a {
 }
 .p-dropdown {
     text-align: initial;
+    width: 12em;
 }
 
 .w-100 .p-dropdown {
@@ -450,6 +483,41 @@ a {
 }
 .w-100 .p-calendar {
     width: 100%;
+    margin: auto;
+}
+.w-50 {
+    width: 50%;
+}
+.w-40 {
+    width: 40%;
+}
+.w-25 {
+    width: 25%;
+}
+.w-15 {
+    width: 15%;
+}
+.w-33 {
+    width: 25%;
+}
+@media screen and (max-width: 500px) {
+   /* .scroll {
+        overflow: scroll;
+        min-width: 500px;
+    }
+    .scroll .tabla {
+        width: 500px;
+    }*/
+}
+
+.cartel {
+    background: #23be90;
+    border-radius: 5px;
+    color: white;
+    padding: 12px;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
     margin: auto;
 }
 #badge {
@@ -467,6 +535,10 @@ a {
     padding-bottom: 17px;
     left: 18%;
 }
+.p-dialog .p-dialog-content {
+    height: 100% !important;
+}
+
 .green-snackbar {
     background: #23be90;
 }

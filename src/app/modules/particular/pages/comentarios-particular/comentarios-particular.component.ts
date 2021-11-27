@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Resultado } from 'src/app/shared/models/resultado';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ReseniaService } from 'src/app/core/services/resenia/resenia.service';
 
 export interface Section {
   name: string;
@@ -14,16 +15,35 @@ export interface Section {
 })
 export class ComentariosParticularComponent implements OnInit {
 
-  constructor() { }
-
-  elements: Section[] = [
-    {
-    name: 'Alumno 1',comentario:'Lorem ipsum dolor sit amet consectetur adipiscing elit cubilia eros, magnis a augue erat ac dis sagittis faucibus, in tempor malesuada lobortis integer purus metus nunc..',stars:1
-    },
-    {name: 'Alumno 2', comentario:'Lorem ipsum dolor sit amet consectetur adipiscing elit cubilia eros, magnis a augue erat ac dis sagittis faucibus, in tempor malesuada lobortis integer purus metus nunc.',stars:5},
-  ];
+  id=new Number(localStorage.getItem('idUser'));
+  opiniones:any[]=[];
+  todas:any[]=[];
+  mostrarTodas=false;
+  constructor(private reseniaService:ReseniaService,private aRouter: ActivatedRoute) { 
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        if(params.q){
+          this.id = Number(params.q);
+        }
+      }
+    );
+    this.reseniaService.obtenerReseniasDelParticular(this.id).subscribe(res => {
+      console.log(res)
+      this.todas = res;
+      this.ocultar()
+    })
+  }
 
   ngOnInit(): void {
   }
 
+  ocultar(){
+    this.mostrarTodas=false;
+    this.opiniones=this.todas.slice(0,5);
+  }
+  mostrar(){
+    this.opiniones=this.todas;
+    this.mostrarTodas=true;
+
+  }
 }

@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { GeneralService } from 'src/app/core/services/general/general.service';
 import { RegistroCard } from 'src/app/shared/models/registroCard';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cards-general',

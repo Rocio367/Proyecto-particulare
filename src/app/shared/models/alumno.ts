@@ -11,4 +11,5 @@ export interface Alumno {
         fechaNacimiento: String;
         fotoPerfil: string;
     },
+
 }

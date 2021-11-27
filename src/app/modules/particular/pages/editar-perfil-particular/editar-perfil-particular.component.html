@@ -60,6 +60,10 @@
                                 <div *ngIf="formDatos.get('apellido').hasError('required') && formDatos.get('apellido').touched" class="text-center">
                                     <small class="p-error">Este campo es <strong>requerido</strong></small>
                                 </div>
+                                <div class="text-danger"
+                                *ngIf="formDatos.get('telefono').hasError('pattern')  && formDatos.get('telefono')?.touched">
+                                <span>El formato no es correcto, ingrese solo números</span>
+                                </div>
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
@@ -82,6 +86,10 @@
                                 <div *ngIf="formDatos.get('contrasenia').hasError('required') && formDatos.get('contrasenia').touched" class="text-center">
                                     <small class="p-error">Este campo es <strong>requerido</strong></small>
                                 </div>
+                                <div class="text-danger"
+                                *ngIf="formDatos.get('contrasenia').hasError('pattern')  && formDatos.get('contrasenia')?.touched">
+                                <span>La contraseña debe tener 8 caracteres, una mayuscula, una minuscula, un numero y un caracter especial.</span>
+                                </div>
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
@@ -94,7 +102,7 @@
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
-                                    <p-calendar inputId="fechaNacimiento" formControlName="fechaNacimiento" dateFormat="dd-mm-yy" 
+                                    <p-calendar    showButtonBar="true"  inputId="fechaNacimiento" formControlName="fechaNacimiento" dateFormat="dd-mm-yy" 
                                     [showIcon]="true" styleClass="w-full"  
                                     [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
                                     <label for="fechaNacimiento">Fecha de nacimiento</label>

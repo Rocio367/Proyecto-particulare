@@ -15,4 +15,5 @@ export class DetalleClase{
     experiencia:string;
     telefono:number;
     mail:string;
+  cupo: any;
 }

@@ -4,74 +4,70 @@
       <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
         <p-dataView #dv [value]="clases" [paginator]="true" [rows]="6" filterBy="" layout="grid">
           <ng-template pTemplate="header">
-            <div class=" text-center mt-3">
+            <div class=" text-center m-2">
               <h3 class='color-f mb-4'>Filtros <i class="icofont-filter fs-21"></i></h3>
+              <div class="row text-center">
 
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0 w-40">
+                  <input type="text" type="search" class="w-100" [value]="busqueda" [(ngModel)]="busqueda"
+                    pInputText placeholder="Buscar clases..">
+                </span>
+                <span class=' w-15'>
+                  <p-dropdown [options]="tipos" placeholder="Filtrar por Método" optionLabel="name" [showClear]="true"
+                    [(ngModel)]="selectedNMetodos"></p-dropdown>
+                </span>
 
-              <span class="p-input-icon-right m-2">
-                <input type="text"   class="p-inputtext-sm w-100" [value]="busqueda"  [(ngModel)]="busqueda"   pInputText placeholder="Buscar clases.." />
-              </span>
-             
-              <span class='m-3'>   
-                <p-calendar  placeholder="Filtrar por fecha" [(ngModel)]="fecha" dateFormat="dd-mm-yy"></p-calendar>
-              </span>
+                <span class='w-15'>
+                  <p-dropdown [options]="niveles" [(ngModel)]="selectedNiveles" placeholder="Filtrar por Nivel"
+                    optionLabel="name" [showClear]="true"></p-dropdown>
+                </span>
 
-              <br/>
-              <span class='m-3'>
-                <p-dropdown [options]="tipos" placeholder="Filtrar por Método"
-                  optionLabel="name" [showClear]="true"  [(ngModel)]="selectedNMetodos" ></p-dropdown>
-              </span>
+                <span class=' w-15'>
+                  <p-dropdown [options]="modo" [(ngModel)]="selectedModo" placeholder="Filtrar por Modo " class="mt-4"
+                    optionLabel="name" [showClear]="true"></p-dropdown>
+                </span>
 
-              <span class='m-3'>
-                <p-dropdown [options]="niveles"  [(ngModel)]="selectedNiveles" placeholder="Filtrar por Nivel"
-                  optionLabel="name" [showClear]="true" ></p-dropdown>
-              </span>
-              
-              <span class='m-3 ancho'>
-                <p-dropdown [options]="modo"  [(ngModel)]="selectedModo" placeholder="Filtrar por Modo "
-                  optionLabel="name" [showClear]="true"></p-dropdown>
-              </span>
-
-              <span class="p-float-label mt-4">
-                <button pButton  class='m-2' (click)='filtrar()' >Aplicar</button>
-              </span>
+                <span class='w-15 bt'>
+                  <button pButton (click)='filtrar()' class="mt-5 subir">Aplicar</button>
+                </span>
+              </div>
             </div>
           </ng-template>
 
           <ng-template let-item pTemplate="gridItem">
-           <mat-card class='card-interna'(click)='ver(item)' style='width: 90%;margin:10px auto;'>
-            <div class="product-item">
-              <div class="product-list-img">
-                <img src="/assets/img/perfil.png" mat-card-avatar >
+            <mat-card class='card-interna' (click)='ver(item)' style='width: 90%;margin:10px auto;'>
+              <div class="product-item">
+                <div class="product-list-img">
+                  <img src="/assets/img/perfil.png" mat-card-avatar>
 
-              </div>
-              <div class="product-list-detail">
-                <h5 class="p-mb-2">{{item.nombre}}</h5>
-                <span><i class='pi pi-map-marker
-                    '></i> Moreno, Buenos Aires Province, Argentina</span>
-                <span>{{item.descripcion}}</span>
-              </div>
-              <div class="product-list-action">
-                <div class='stars'>
-                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 1)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 2)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 3)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 4)?"amarillo":""'></i>
-                  <i class="pi pi-star" [ngClass]='(item.puntuacion >= 5)?"amarillo":""'></i>
-                  <span class='subtitle'>
-                    {{item.puntuacion}}/ 5
-                  </span>
                 </div>
+                <div class="product-list-detail">
+                  <h5 class="p-mb-2">{{item.nombre}}</h5>
+                  <span><i class='pi pi-map-marker
+                    '></i> Moreno, Buenos Aires Province, Argentina</span>
+                  <span>{{item.descripcion}}</span>
+                </div>
+                <div class="product-list-action">
+                  <div class='stars'>
+                    <i class="pi pi-star" [ngClass]='(item.puntuacion >= 1)?"amarillo":""'></i>
+                    <i class="pi pi-star" [ngClass]='(item.puntuacion >= 2)?"amarillo":""'></i>
+                    <i class="pi pi-star" [ngClass]='(item.puntuacion >= 3)?"amarillo":""'></i>
+                    <i class="pi pi-star" [ngClass]='(item.puntuacion >= 4)?"amarillo":""'></i>
+                    <i class="pi pi-star" [ngClass]='(item.puntuacion >= 5)?"amarillo":""'></i>
+                    <span class='subtitle'>
+                      {{item.puntuacion}}/ 5
+                    </span>
+                  </div>
 
 
-                <span class="product-category"> {{item.modo}} | {{item.metodo}} </span>
-                <span class="product-category"> {{item.nivel.tipo}}  </span>
+                  <span class="product-category"> {{item.modo}} | {{item.metodo}} </span>
+                  <span class="product-category"> {{item.nivel.tipo}} </span>
 
 
 
+                </div>
               </div>
-            </div>
-           </mat-card>
+            </mat-card>
           </ng-template>
         </p-dataView>
       </div>

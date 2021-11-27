@@ -1,10 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { timeStamp } from "console";
-import * as moment from 'moment'
 import { PrimeNGConfig, SelectItemGroup } from "primeng/api";
-import { RegistroCalendar } from "src/app/shared/models/registroCalendario";
 @Component({
   selector: 'app-calendar-completar',
   templateUrl: './calendar-completar.component.html',
@@ -19,11 +16,13 @@ export class CalendarCompletarComponent implements OnInit {
   dateSelect: any;
   dateValue: any;
   selected: any[];
-  dates: Date[] = [new Date()]
+  dates: Date[];
   disponibilidad: Date[] = []
   @Output() addDisponibilidad: EventEmitter<any> = new EventEmitter<any>();
-
+  minDate=new Date();
   constructor(private primengConfig: PrimeNGConfig, public snackBar: MatSnackBar, public dialog: MatDialog) {
+    console.log(this.dates)
+
     this.horarios = [
 
       { name: "07:00 AM", value: "7" },
@@ -56,47 +55,48 @@ export class CalendarCompletarComponent implements OnInit {
     this.primengConfig.ripple = true;
 
   }
-  verHorarios(date, i) {
-    this.value = date;
-    let index = 0;
-    this.dates.forEach(d => {
-      if (index == i) {
-        $('#' + index).addClass('result-active')
-      } else {
-        $('#' + index).removeClass('result-active')
-      }
 
-    })
-  }
   agregar() {
-    this.dates.forEach(f => {
-      let fecha = new Date()
-      this.selected.forEach(h => {
-        let hora = new Date(0, 0, 0, h, 0, 0)
-        //año ,mes, dia ,horas,minutos
-        let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
-        if (this.includes(nuevo).length == 0) {
-          this.disponibilidad.push(nuevo)
-          this.dates = [new Date()]
-          this.selected = [];
-          this.addDisponibilidad.emit(this.disponibilidad)
-          this.snackBar.open('Disponibilidad agregada correctamente', "", {
-            duration: 1500,
-            horizontalPosition: "end",
-            verticalPosition: "top",
-            panelClass: ['green-snackbar']
-          });
-        } else {
-          this.snackBar.open('No puede agregar la misma fecha dos veces', "", {
-            duration: 1500,
-            horizontalPosition: "end",
-            verticalPosition: "top",
-            panelClass: ['red-snackbar']
-          });
-        }
+    if ((this.dates && this.dates.length > 0) && (this.selected && this.selected.length > 0)) {
+      this.dates.forEach(f => {
+        let fecha = new Date(f)
+        this.selected.forEach(h => {
+          let hora = new Date(0, 0, 0, h, 0, 0)
+          let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
+          if (this.includes(nuevo).length == 0) {
+              this.disponibilidad.push(nuevo)
+              this.dates = undefined;
+              this.addDisponibilidad.emit(this.disponibilidad)
+              console.log(this.dates)
+              this.snackBar.open('Disponibilidad agregada correctamente', "", {
+                duration: 1500,
+                horizontalPosition: "end",
+                verticalPosition: "top",
+                panelClass: ['green-snackbar']
+              });
+            
+          } else {
+            this.snackBar.open('No puede agregar la misma fecha dos veces', "", {
+              duration: 1500,
+              horizontalPosition: "end",
+              verticalPosition: "top",
+              panelClass: ['red-snackbar']
+            });
+          }
+        })
+
+
       })
 
-    })
+      this.selected = [];
+    } else {
+      this.snackBar.open('Debe agregar almenos una fecha y un horario', "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['red-snackbar']
+      });
+    }
 
 
   }
@@ -110,7 +110,7 @@ export class CalendarCompletarComponent implements OnInit {
     let repetido = this.disponibilidad.filter(r => r.getFullYear() == f.getFullYear() && r.getMonth() == f.getMonth() && r.getDate() == f.getDate() && r.getHours() == f.getHours())
     return repetido;
   }
- 
+
 
 
 }

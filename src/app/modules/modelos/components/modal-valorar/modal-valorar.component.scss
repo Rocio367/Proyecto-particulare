@@ -19,20 +19,6 @@ label {
     color: grey;
 }
 
-.clasificacion {
-    direction: rtl;
-    /* right to left */
-    unicode-bidi: bidi-override;
-    /* bidi de bidireccional */
-}
-
-label:hover {
-    color: #e0d71e;
-}
-
-label:hover~label {
-    color: #e0d71e;
-}
 
 input[type="radio"]:checked~label {
     color: #e0d71e;

@@ -1,0 +1,349 @@
+<div class="container blanco mt-2" *ngIf='data1.length >0'>
+  <br>
+  <mat-card class="opacity">
+    <h2 class="ml-3 color-f">Clases más populares del mes</h2>
+    <div class="container mb-4">
+      <div class="row desk">
+        <mat-card class="example-card m-3 card-interna" [value]="c" *ngFor='let c of data1'>
+          <a [href]="'detalle-clase;q='+c.id">
+
+            <div class="col-lg-auto text-center ">
+              <div class="col-lg-12 BLANCO">
+                <!--harcodeado-->
+                <img style='margin-top: 50px;' mat-card-avatar src="../../../../../assets/img/default-user.png"
+                  width="150" height="150" />
+              </div>
+              <mat-card-header class="m-0 row justify-content-center">
+                <mat-card-title class='color-f'> {{c.nombre}}</mat-card-title>
+                <mat-card-subtitle> {{c.materia.nombre}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="pl-1 pr-1 categoria"> {{c.metodo}} | {{c.modo}}</p>
+                <p class='color-f'>
+                  {{c.descripcion}}
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <div class='stars'>
+                  <p-rating [ngModel]="c.puntuacion" [cancel]="false" disabled="true" stars="5">
+                  </p-rating>
+
+                </div>
+              </mat-card-actions>
+            </div>
+          </a>
+        </mat-card>
+      </div>
+      <div class="col-lg-12 text-center mob">
+        <div id="hsec1-slider" class="carousel slide  grid-cont t-dots" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li *ngFor='let c of data1;index as i' (click)="cambiarSlider1(i)"
+              [ngClass]='(i == cardSelected1)?"active" : ""'>
+            </li>
+
+          </ol>
+          <div class="carousel-inner">
+            <div *ngFor='let c of data1;index as i'>
+              <mat-card class="example-card m-3 card-interna" [value]="c" *ngIf='cardSelected1 == i'>
+                <a [href]="'detalle-clase;q='+c.id">
+
+                  <div class="col-lg-auto text-center ">
+                    <div class="col-lg-12 BLANCO">
+                      <!--harcodeado-->
+
+                      <img style='margin-top: 50px;' mat-card-avatar src="../../../../../assets/img/default-user.png"
+                        width="150" height="150" />
+                    </div>
+                    <mat-card-header class="m-0 row justify-content-center">
+                      <mat-card-title class='color-f'> {{c.nombre}}</mat-card-title>
+                      <mat-card-subtitle> {{c.materia.nombre}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p class="pl-1 pr-1 categoria"> {{c.metodo}} | {{c.modo}}</p>
+                      <p class='color-f'>
+                        {{c.descripcion}}
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <div class='stars'>
+                        <p-rating [ngModel]="c.puntuacion" [cancel]="false" disabled="true" stars="5">
+                        </p-rating>
+
+                      </div>
+                    </mat-card-actions>
+                  </div>
+                </a>
+              </mat-card>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col text-center">
+          <button mat-button color='warn' (click)='explorarClases()'>Explorar</button>
+
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <br>
+</div>
+<br>
+<div class="container blanco mt-2" *ngIf='data2.length >0'>
+  <br>
+  <mat-card class="opacity">
+    <h2 class="ml-3 color-f">Clases agregadas recientemente</h2>
+    <div class="container mb-4">
+      <div class="row desk">
+        <mat-card *ngFor='let c of data2' class="example-card m-3 card-interna" [value]="c">
+          <a [href]="'detalle-clase;q='+c.clase.id">
+
+            <div class="col-lg-auto text-center ">
+              <div class="col-lg-12 BLANCO">
+                <!--harcodeado-->
+
+                <img style='margin-top: 50px;' mat-card-avatar src="../../../../../assets/img/default-user.png"
+                  width="150" height="150" />
+              </div>
+              <mat-card-header class="m-0 row justify-content-center">
+                <mat-card-title class='color-f'> {{c.clase.nombre}}</mat-card-title>
+                <mat-card-subtitle> {{c.clase.materia.nombre}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="pl-1 pr-1 categoria"> {{c.clase.metodo}} | {{c.clase.modo}}</p>
+                <p class='color-f'>
+                  {{c.clase.descripcion}}
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <div class='stars'>
+                  <p-rating [ngModel]="c.clase.puntuacion" [cancel]="false" disabled="true" stars="5">
+                  </p-rating>
+
+                </div>
+              </mat-card-actions>
+            </div>
+          </a>
+        </mat-card>
+      </div>
+      <div class="col-lg-12 text-center mob">
+        <div id="hsec1-slider" class="carousel slide  grid-cont t-dots" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li *ngFor='let c of data2;index as i' (click)="cambiarSlider2(i)"
+              [ngClass]='(i == cardSelected2)?"active" : ""'>
+            </li>
+          </ol>
+          <div class="carousel-inner">
+            <div *ngFor='let c of data2;index as i'>
+              <mat-card class="example-card m-3 card-interna" [value]="c" *ngIf='cardSelected2 == i'>
+                <a [href]="'detalle-clase;q='+c.clase.id">
+                  <div class="col-lg-auto text-center ">
+                    <div class="col-lg-12 BLANCO">
+                      <!--harcodeado-->
+
+                      <img style='margin-top: 50px;' mat-card-avatar src="../../../../../assets/img/default-user.png"
+                        width="150" height="150" />
+                    </div>
+                    <mat-card-header class="m-0 row justify-content-center">
+                      <mat-card-title class='color-f'> {{c.clase.nombre}}</mat-card-title>
+                      <mat-card-subtitle> {{c.clase.materia.nombre}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p class="pl-1 pr-1 categoria"> {{c.clase.metodo}} | {{c.clase.modo}}</p>
+                      <p class='color-f'>
+                        {{c.clase.descripcion}}
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <div class='stars'>
+                        <p-rating [ngModel]="c.clase.puntuacion" [cancel]="false" disabled="true" stars="5">
+                        </p-rating>
+
+                      </div>
+                    </mat-card-actions>
+                  </div>
+                </a>
+              </mat-card>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col text-center">
+          <button mat-button color='warn' (click)='explorarClases()'>Explorar</button>
+
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <br>
+</div>
+<br>
+
+<div class="container blanco mt-2" *ngIf='data3.length >0'>
+  <br>
+  <mat-card class="opacity">
+    <h2 class="ml-3 color-f">Modelos más populares del mes</h2>
+    <div class="container mb-4">
+      <div class="row desk">
+        <mat-card class="example-card m-3 card-interna" *ngFor='let m of data3' [value]="m">
+          <a [href]="'detalle-modelo-alumno;q='+m.id">
+
+            <div class="col-lg-auto text-center ">
+              <div class="col-lg-12 BLANCO">
+                <!--harcodeado-->
+
+                <!--<img [src]="obtenerImagenEnBase64(m.archivos[0])">-->
+              </div>
+
+              <mat-card-header class="m-0 row justify-content-center">
+                <mat-card-title class='color-f'> {{m.nombre}}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p class='color-f mb-3'>Institución:<span>{{m.institucion.nombre}}</span></p>
+                <p class='color-f mb-3'>Materia:<span>{{m.materia.nombre}}</span></p>
+                <p class='color-f mb-3'>Nivel:<span>{{m.nivel.descripcion}}</span></p>
+              </mat-card-content>
+
+            </div>
+          </a>
+
+        </mat-card>
+      </div>
+      <div class="col-lg-12 text-center mob">
+        <div id="hsec1-slider" class="carousel slide  grid-cont t-dots" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li *ngFor='let m of data3;index as i' (click)="cambiarSlider3(i)"
+              [ngClass]='(i == cardSelected3)?"active" : ""'>
+            </li>
+
+          </ol>
+          <div class="carousel-inner">
+            <div *ngFor='let m of data3;index as i'>
+              <mat-card class="example-card m-3 card-interna" [value]="m" *ngIf='cardSelected3 == i'>
+                <a [href]="'detalle-modelo-alumno;q='+m.id">
+
+                  <div class="col-lg-auto text-center ">
+                    <div class="col-lg-12 BLANCO">
+                      <!--harcodeado-->
+
+                      <!--<img [src]="obtenerImagenEnBase64(m.archivos[0])">-->
+                    </div>
+
+                    <mat-card-header class="m-0 row justify-content-center">
+                      <mat-card-title class='color-f'> {{m.nombre}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p class='color-f mb-3'>Institución:<span>{{m.institucion.nombre}}</span></p>
+                      <p class='color-f mb-3'>Materia:<span>{{m.materia.nombre}}</span></p>
+                      <p class='color-f mb-3'>Nivel:<span>{{m.nivel.descripcion}}</span></p>
+                    </mat-card-content>
+
+                  </div>
+                </a>
+              </mat-card>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col text-center">
+          <button mat-button color='warn' (click)='explorarModelos()'>Explorar</button>
+
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <br>
+</div>
+
+<br>
+<div class="container blanco mt-2" *ngIf='data4.length >0'>
+  <br>
+  <mat-card class="opacity">
+    <h2 class="ml-3 color-f">Modelos agreados recientemente</h2>
+    <div class="container mb-4">
+      <div class="row desk">
+        <mat-card *ngFor='let m of data4' class="example-card m-3 card-interna" [value]="m">
+          <a [href]="'detalle-modelo-alumno;q='+m.modelo.id">
+
+            <div class="col-lg-auto text-center ">
+              <div class="col-lg-12 BLANCO">
+                <!--harcodeado-->
+
+                <!--<img [src]="obtenerImagenEnBase64(m.modelo.archivos[0])">-->
+              </div>
+
+              <mat-card-header class="m-0 row justify-content-center">
+                <mat-card-title class='color-f'> {{m.modelo.nombre}}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p class='color-f mb-3'>Institución:<span>{{m.modelo.institucion.nombre}}</span></p>
+                <p class='color-f mb-3'>Materia:<span>{{m.modelo.materia.nombre}}</span></p>
+                <p class='color-f mb-3'>Nivel:<span>{{m.modelo.nivel.descripcion}}</span></p>
+              </mat-card-content>
+
+            </div>
+          </a>
+
+        </mat-card>
+      </div>
+      <div class="col-lg-12 text-center mob">
+        <div id="hsec1-slider" class="carousel slide  grid-cont t-dots" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li *ngFor='let c of data4;index as i' (click)="cambiarSlider4(i)"
+              [ngClass]='(i == cardSelected4)?"active" : ""'>
+            </li>
+
+          </ol>
+          <div class="carousel-inner">
+            <div *ngFor='let m of data4;index as i'>
+              {{m.producto|json}}
+              <mat-card class="example-card m-3 card-interna" [value]="m" *ngIf='cardSelected4 == i'>
+                <a [href]="'detalle-modelo-alumno;q='+m.modelo.id">
+
+                  <div class="col-lg-auto text-center ">
+                    <div class="col-lg-12 BLANCO">
+                      <!--harcodeado-->
+
+                      <!--<img [src]="obtenerImagenEnBase64(m.modelo.archivos[0])">-->
+                    </div>
+
+                    <mat-card-header class="m-0 row justify-content-center">
+                      <mat-card-title class='color-f'> {{m.modelo.nombre}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p class='color-f mb-3'>Institución:<span>{{m.modelo.institucion.nombre}}</span></p>
+                      <p class='color-f mb-3'>Materia:<span>{{m.modelo.materia.nombre}}</span></p>
+                      <p class='color-f mb-3'>Nivel:<span>{{m.modelo.nivel.descripcion}}</span></p>
+                    </mat-card-content>
+
+                  </div>
+                </a>
+              </mat-card>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col text-center">
+          <button mat-button color='warn' (click)='explorarModelos()'>Explorar</button>
+
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <br>
+</div>

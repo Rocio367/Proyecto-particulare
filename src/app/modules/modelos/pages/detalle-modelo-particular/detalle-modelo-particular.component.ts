@@ -8,7 +8,6 @@ import { Archivo } from 'src/app/shared/models/archivo';
 import { Documento } from 'src/app/shared/models/documento';
 import { imgGallery } from 'src/app/shared/models/imgGallery';
 import { Modelo } from 'src/app/shared/models/modelo';
-import Swal from 'sweetalert2';
 import { ModalPostulacionModelosComponent } from '../../components/modal-postulacion-modelos/modal-postulacion-modelos.component';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -16,8 +15,7 @@ import { OfertaDeResolucionResponse } from 'src/app/shared/models/oferta-resoluc
 import { SolucionDeModeloRequest } from 'src/app/shared/models/solucion-de-modelo-request';
 import { FileUpload } from 'primeng/fileupload';
 import { Resolucion } from 'src/app/shared/models/resolucion';
-import { ThisReceiver } from '@angular/compiler';
-import { timingSafeEqual } from 'crypto';
+
 
 @Component({
   selector: 'app-detalle-modelo-particular',
@@ -124,11 +122,12 @@ export class DetalleModeloParticularComponent implements OnInit {
   }
 
   confirmar() {
-    Swal.fire(
-      'El archivo fue subido correctamente',
-      '',
-      'success'
-    )
+    this.snackBar.open('Archivo subido correctamente', "", {
+      duration: 1500,
+      horizontalPosition: "end",
+      verticalPosition: "top",
+      panelClass: ['green-snackbar']
+    });
   }
 
   /**
@@ -149,7 +148,7 @@ export class DetalleModeloParticularComponent implements OnInit {
         .subscribe(
           (resolucion) => {
             this.resolucion = resolucion;
-            this.snackBar.open('La resolucion fue enviada con exito', "", {
+            this.snackBar.open('La resolución fue enviada con éxito', "", {
               duration: 1500,
               horizontalPosition: "end",
               verticalPosition: "top",

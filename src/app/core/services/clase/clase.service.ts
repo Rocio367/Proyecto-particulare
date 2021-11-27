@@ -41,6 +41,9 @@ export class ClaseService {
   obtenerDisponibilidad(id : number): Observable<any> {
     return this.http.get<any>(`${environment.backUrl}/v1/clases/obtenerDisponibilidad/${id}`);
   }
+  obtenerDisponibilidadModelos(id : number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/obtenerDisponibilidadModelos/${id}`);
+  }
   obtenerMaterias(): Observable<Materia[]> {
     return this.http.get<Materia[]>(`${environment.backUrl}/v1/materias`);
   }
@@ -57,16 +60,17 @@ export class ClaseService {
     return this.http.get<Clase[]>(`${environment.backUrl}/v1/clases/misClases/${idParticular}`);
   }
 
-  obtenerClasesPorAlumno(idAlumno: Number): Observable<Clase[]> {
-    return this.http.get<Clase[]>(`${environment.backUrl}/v1/clases/misClasesAlumno/${idAlumno}`);
+
+  obtenerClasesPorAlumno(idAlumno: Number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/misClasesAlumno/${idAlumno}`);
   }
 
-  verDetalle(id: number): Observable<Clase> {
-    return this.http.get<Clase>(`${environment.backUrl}/v1/clases/verDetalle/${id}`);
+  verDetalle(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/verDetalle/${id}`);
   }
 
   claseIniciada(id: number, link :string): Observable<Clase> {
-    return this.http.get<Clase>(`${environment.backUrl}/v1/clases/claseIniciada/${id}/${link}`);
+    return this.http.post<Clase>(`${environment.backUrl}/v1/clases/claseIniciada/${id}`,{link:link});
   }
 
 
@@ -77,5 +81,15 @@ export class ClaseService {
 
   detalleClase(id: number): Observable<Clase> {
     return this.http.get<Clase>(`${environment.backUrl}/v1/clases/detalleClase/${id}`);
+  }
+
+  participantes(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/participantes/${id}`);
+  }
+  compras(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/compras/${id}`);
+  }
+  estado(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/clases/estado/${id}`);
   }
 }

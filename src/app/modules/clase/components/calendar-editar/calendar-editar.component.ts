@@ -19,15 +19,16 @@ export class CalendarEditarComponent implements OnInit {
   dateSelect: any;
   dateValue: any;
   selected: any[];
-  dates: Date[] = [new Date()]
+  dates: Date[];
   disponibilidad: Date[] = []
   @Output() addDisponibilidad: EventEmitter<any> = new EventEmitter<any>();
-  @Output()  existeFechaContratada: EventEmitter<any> = new EventEmitter<any>();
-   id:number;
-  constructor(private aRouter:ActivatedRoute,private claseService:ClaseService,private primengConfig: PrimeNGConfig, public snackBar: MatSnackBar, public dialog: MatDialog) {
+  @Output() existeFechaContratada: EventEmitter<any> = new EventEmitter<any>();
+  id: number;
+  minDate=new Date();
+  constructor(private aRouter: ActivatedRoute, private claseService: ClaseService, private primengConfig: PrimeNGConfig, public snackBar: MatSnackBar, public dialog: MatDialog) {
     this.aRouter.params.subscribe(
       (params: Params) => {
-        this.id=Number(params.q);
+        this.id = Number(params.q);
       }
     );
     this.horarios = [
@@ -52,12 +53,11 @@ export class CalendarEditarComponent implements OnInit {
 
     ]
 
-    this.claseService.obtenerDisponibilidad(this.id).subscribe(res=>{
+    this.claseService.obtenerDisponibilidad(this.id).subscribe(res => {
       res.forEach(element => {
-        console.log(element)
-        if(element.estado=='DISPONIBLE'){
-           this.disponibilidad.push(new Date(element.fecha))
-        }else{
+        if (element.estado == 'DISPONIBLE') {
+          this.disponibilidad.push(new Date(element.fecha))
+        } else {
           this.existeFechaContratada.emit(this.disponibilidad)
         }
       });
@@ -72,48 +72,47 @@ export class CalendarEditarComponent implements OnInit {
     this.primengConfig.ripple = true;
 
   }
-  verHorarios(date, i) {
-    this.value = date;
-    let index = 0;
-    this.dates.forEach(d => {
-      if (index == i) {
-        $('#' + index).addClass('result-active')
-      } else {
-        $('#' + index).removeClass('result-active')
-      }
-
-    })
-  }
   agregar() {
-    this.dates.forEach(f => {
-      let fecha = new Date()
-      this.selected.forEach(h => {
-        let hora = new Date(0, 0, 0, h, 0, 0)
-        //año ,mes, dia ,horas,minutos
-        let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
-        console.log(this.includes(nuevo).length)
-        if (this.includes(nuevo).length == 0) {
-          this.disponibilidad.push(nuevo)
-          this.dates = [new Date()]
-          this.selected = [];
-          this.addDisponibilidad.emit(this.disponibilidad)
-          this.snackBar.open('Disponibilidad agregada correctamente', "", {
-            duration: 1500,
-            horizontalPosition: "end",
-            verticalPosition: "top",
-            panelClass: ['green-snackbar']
-          });
-        } else {
-          this.snackBar.open('No puede agregar la misma fecha dos veces', "", {
-            duration: 1500,
-            horizontalPosition: "end",
-            verticalPosition: "top",
-            panelClass: ['red-snackbar']
-          });
-        }
+    if ((this.dates && this.dates.length > 0) && (this.selected && this.selected.length > 0)) {
+      this.dates.forEach(f => {
+        let fecha = new Date(f)
+        this.selected.forEach(h => {
+          let hora = new Date(0, 0, 0, h, 0, 0)
+          let nuevo = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hora.getHours(), 0, 0);
+          if (this.includes(nuevo).length == 0) {
+              this.disponibilidad.push(nuevo)
+              this.dates = undefined
+              this.addDisponibilidad.emit(this.disponibilidad)
+              console.log(this.disponibilidad)
+              this.snackBar.open('Disponibilidad agregada correctamente', "", {
+                duration: 1500,
+                horizontalPosition: "end",
+                verticalPosition: "top",
+                panelClass: ['green-snackbar']
+              });
+            
+          } else {
+            this.snackBar.open('No puede agregar la misma fecha dos veces', "", {
+              duration: 1500,
+              horizontalPosition: "end",
+              verticalPosition: "top",
+              panelClass: ['red-snackbar']
+            });
+          }
+        })
+
+
       })
 
-    })
+      this.selected = [];
+    } else {
+      this.snackBar.open('Debe agregar almenos una fecha y un horario', "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['green-snackbar']
+      });
+    }
 
 
   }
@@ -129,7 +128,7 @@ export class CalendarEditarComponent implements OnInit {
     let repetido = this.disponibilidad.filter(r => new Date(r).getFullYear() == f.getFullYear() && new Date(r).getMonth() == f.getMonth() && new Date(r).getDate() == f.getDate() && new Date(r).getHours() == f.getHours())
     return repetido;
   }
- 
+
 
 
 }

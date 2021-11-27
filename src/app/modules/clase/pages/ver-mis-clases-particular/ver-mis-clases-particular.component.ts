@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
+import { HorariosParticularComponent } from '../../components/horarios-particular/horarios-particular.component';
 
 
 @Component({
   selector: 'app-ver-mis-clases-particular',
   templateUrl: './ver-mis-clases-particular.component.html',
-  styleUrls: ['./ver-mis-clases-particular.component.scss']
+  styleUrls: ['./ver-mis-clases-particular.component.scss'],
+  providers: [DialogService]
+
 })
 export class VerMisClasesParticularComponent implements OnInit {
   id: number;
@@ -22,8 +26,9 @@ export class VerMisClasesParticularComponent implements OnInit {
   sortField: string;
   selectedEstado:string;
   idUser=localStorage.getItem('idUser');
+  referenciaDialogoDinamico: DynamicDialogRef;
 
-  constructor(private router: Router, private claseService: ClaseService,private route: ActivatedRoute, public snackBar: MatSnackBar) { 
+  constructor(private router: Router,  public dialogService: DialogService,private claseService: ClaseService,private route: ActivatedRoute, public snackBar: MatSnackBar) { 
     this.route
       .params
       .subscribe(params => {
@@ -63,8 +68,14 @@ export class VerMisClasesParticularComponent implements OnInit {
   }
 
   iniciar(id){
-    this.router.navigate(['reunion', { q: 222 }])
-
+    console.log(id)
+   this.referenciaDialogoDinamico = this.dialogService.open(HorariosParticularComponent, {
+    data: {
+      id: id,
+    },
+    width: '90%',
+    height: 'auto',
+  });
   }
 
 

@@ -1,4 +1,3 @@
-import { M } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -20,8 +19,6 @@ import Swal from 'sweetalert2';
 })
 export class DetalleModeloAlumnoComponent implements OnInit {
   gallery: imgGallery[] = [];
-  resoluciones: any[] = [{ nombre:'DocResolucion',doc: 'https://2.bp.blogspot.com/-9jVR3GjWcn8/UZxBIaDMe7I/AAAAAAAAFuk/62w7V-Xo6Jg/s1600/GEOMETRIA+PLANA+Y+DEL+ESPACIO+PROBLEMAS+RESUELTOS+TIPO+EXAMEN+DE+ADMISION+UNI+(4).gif', particular: 'Ezequiel Castillo', valoracion: null },
-  { nombre:'DocResolucion2',doc: 'https://i.pinimg.com/736x/3b/12/27/3b12275ad674bbfcccde1c71b582c576.jpg', particular: 'Camila Centurion', valoracion: 5 }];
   archivo = new Archivo;
   id: number;
   modelo: Modelo;

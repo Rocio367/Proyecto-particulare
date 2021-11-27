@@ -4,7 +4,7 @@
             <p-card class='card-container card'>
                 <h3>Nuevo Modelo</h3>
                 <form [formGroup]="formDatos" class="ui large error form">
-                    <span class="p-float-label w-80  mt-4">
+                    <span class="p-float-label w-80  mt-5">
                         <input id="nombre" type="text" class='w-100' pInputText formControlName="nombre">
                         <label for="nombre">Nombre</label>
                     </span>
@@ -12,17 +12,37 @@
                         class="text-center">
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
-                    <span class="p-float-label w-80  mt-4">
-                        <input id="institucion" type="text" class='w-100' pInputText formControlName="institucion">
+                    <span class="p-float-label w-80 mt-4">
+                        <p-dropdown
+                            id="institucion"
+                            [autoDisplayFirst]="false"
+                            [options]="_institucion"
+                            class='w-100'
+                            formControlName="institucion"
+                            optionLabel="nombre"
+                            optionValue="id"
+                            [filter]="true"
+                            filterBy="nombre" >
+                        </p-dropdown>
                         <label for="institucion">Institución</label>
                     </span>
                     <div *ngIf="formDatos.get('institucion').hasError('required') && formDatos.get('institucion').touched"
                         class="text-center">
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
-                    <span class="p-float-label w-80  mt-4">
-                        <input id="carrera" type="text" class='w-100' pInputText formControlName="carrera">
-                        <label for="carrera">Carrera</label>
+                    <span class="p-float-label w-80 mt-4">
+                        <p-dropdown
+                            id="carrera"
+                            [autoDisplayFirst]="false"
+                            [options]="_carrera"
+                            class='w-100'
+                            formControlName="carrera"
+                            optionLabel="nombre"
+                            optionValue="id"
+                            [filter]="true"
+                            filterBy="nombre" >
+                        </p-dropdown>
+                        <label for="institucion">Carrera</label>
                     </span>
                     <div *ngIf="formDatos.get('carrera').hasError('required') && formDatos.get('carrera').touched"
                         class="text-center">
@@ -36,7 +56,9 @@
                             class='w-100'
                             formControlName="materia"
                             optionLabel="nombre"
-                            optionValue="id">
+                            optionValue="id"
+                            [filter]="true"
+                            filterBy="nombre">
                         </p-dropdown>
                         <label for="materia">Materia</label>
                     </span>
