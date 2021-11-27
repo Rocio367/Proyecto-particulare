@@ -8,6 +8,8 @@ import { ParticularService } from 'src/app/core/services/particular/particular.s
 import { Clase } from 'src/app/shared/models/clase';
 import { DatosAcademicos } from 'src/app/shared/models/datosAcademicos';
 import { Particular } from 'src/app/shared/models/particular';
+import { Documento } from 'src/app/shared/models/documento';
+
 
 @Component({
   selector: 'app-mi-perfil-particular',
@@ -26,10 +28,7 @@ export class MiPerfilParticularComponent implements OnInit {
     titulo: ['', [Validators.required]],
     desde: ['',[Validators.required]],
     hasta: ['',[Validators.required]],
-    documento: [''],
-
   });
-  documento = "";
 
   constructor(private aRouter: ActivatedRoute,private router:Router,private form: FormBuilder,public snackBar: MatSnackBar,
     private datosAcademicosService: DatosAcademicosService,private claseService: ClaseService,
@@ -45,15 +44,6 @@ export class MiPerfilParticularComponent implements OnInit {
   uploadedFiles: any[] = [];
 
   ngOnInit(): void {
-    this.formDatos.controls['documento'].valueChanges.subscribe(
-      archivo => {
-        const reader = new FileReader();
-        reader.readAsDataURL(archivo)
-        reader.onload = () => {
-          this.documento = reader.result as string;
-        }
-      }
-    ); 
     this.particularService.buscarPorIdProfesor(this.id).subscribe( 
       (particular) => {
         this.particular = particular;
@@ -94,49 +84,52 @@ export class MiPerfilParticularComponent implements OnInit {
   confirmar(){
     this.open=true;
     this.openTipo;
+    let datosAcademicos: DatosAcademicos;
+
     if(this.formDatos.valid) {
-      let datosAcademicos: DatosAcademicos;
-
-      datosAcademicos = {
-        id: 2,
-        idProfesor: this.particular.id,
-        titulo: this.formDatos.controls["titulo"].value,
-        fechaInicio:  this.formDatos.controls["desde"].value,
-        fechaFin:  this.formDatos.controls["hasta"].value,
-        documento: this.documento,
-      }
-
-      this.datosAcademicosService.crearDatoAcademico(datosAcademicos)
-      .subscribe(
-        () => {
-          this.snackBar.open('El usuario fue registrado correctamente', "", {
-            duration: 1500,
-            horizontalPosition: "end",
-            verticalPosition: "top",
-            panelClass: ['green-snackbar']
+      this.cargarArchivos(this.uploadedFiles)
+      .then((archivos) => {
+        datosAcademicos = {
+          id: 2,
+          idProfesor: this.particular.id,
+          titulo: this.formDatos.controls["titulo"].value,
+          fechaInicio:  this.formDatos.controls["desde"].value,
+          fechaFin:  this.formDatos.controls["hasta"].value,
+          archivos:archivos,
+        }
+        console.log(datosAcademicos) 
+        this.datosAcademicosService.crearDatoAcademico(datosAcademicos)
+        .subscribe(
+          () => {
+            this.snackBar.open('El dato academico fue registrado correctamente', "", {
+              duration: 1500,
+              horizontalPosition: "end",
+              verticalPosition: "top",
+              panelClass: ['green-snackbar']
+            });
+            this.formDatos.reset();
+            this.ngOnInit();
+          },
+          (error) => {
+            console.error(datosAcademicos, error);
+            this.snackBar.open('Error al registrar dato académico', "", {
+              duration: 1500,
+              horizontalPosition: "end",
+              verticalPosition: "top",
+            });
+            this.formDatos.reset();
           });
-          this.formDatos.reset();
-          this.ngOnInit();
-        },
-        (error) => {
-          console.error(datosAcademicos, error);
-          this.snackBar.open('Error al registrar dato académico', "", {
-            duration: 1500,
-            horizontalPosition: "end",
-            verticalPosition: "top",
-          });
-          this.formDatos.reset();
-        });
-        } else {
-        console.log('Error') 
-        this.formDatos.markAllAsTouched();
-        this.snackBar.open('Error al registrar datos académicos, ingrese los campos correctamente.', "", {
-          duration: 1500,
-          horizontalPosition: "end",
-          verticalPosition: "top",
-        });
-      }
+      });
+      } else {
+      console.log('Error') 
+      this.formDatos.markAllAsTouched();
+      this.snackBar.open('Error al registrar datos académicos, ingrese los campos correctamente.', "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+      });
    }
+  }
 
   editar(item:any){
     this.open=true;
@@ -148,6 +141,27 @@ export class MiPerfilParticularComponent implements OnInit {
     this.openTipo=''
 
   }
+
+  cargarArchivos = async (archivos: any[]): Promise<Documento[]> => {
+    return await Promise.all(archivos.map(async (datosAcademicos): Promise<Documento> => {
+      return {
+        nombre: datosAcademicos.name,
+        tamanio: datosAcademicos.size,
+        extension: datosAcademicos.type,
+        datos: await this.cargarArchivo(datosAcademicos)
+      }
+    }));
+  }
+
+  cargarArchivo = async (modelo: any): Promise<string> => {
+    let base64 = await new Promise((resolve) => {
+      let fileReader = new FileReader();
+      fileReader.onload = (e) => resolve(fileReader.result);
+      fileReader.readAsDataURL(modelo);
+    });
+    return base64 as string;
+  }
+
   eliminar(id:number){
     this.datosAcademicosService.borrarPorIdProfesor(id).subscribe( 
       () => {
@@ -186,5 +200,29 @@ export class MiPerfilParticularComponent implements OnInit {
     var fechaLimiteMinima = fechaActual - 50;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
+
+  borrarDocumento(event) {
+    this.uploadedFiles.forEach((modelo, indice) => {
+      if (modelo == event.file) {
+        this.uploadedFiles.splice(indice,1);
+      }
+    });
+    console.log("Se elimino un documento");
+  }
+
+  cancelarSeleccionDeDocumentos() {
+    this.uploadedFiles.length = 0;
+    console.log("Se cancelo la seleccion de archivos");
+  }
+
+  seleccionarDocumento(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+    console.log("Se selecciono uno o mas documentos");
+  }
   
 }
+
+
+

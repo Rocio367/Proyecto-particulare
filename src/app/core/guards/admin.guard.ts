@@ -22,7 +22,7 @@ export class AdminGuard implements CanActivate, CanLoad {
     }
 
     private checkLogin() {
-        if (localStorage.getItem('rol')=='admin') {
+        if (localStorage.getItem('rol')=='administrador') {
             return true;
         }else {
             return false;
