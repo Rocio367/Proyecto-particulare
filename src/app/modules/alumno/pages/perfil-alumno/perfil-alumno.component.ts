@@ -34,7 +34,7 @@ export interface PeriodicElement {
   styleUrls: ["./perfil-alumno.component.scss"],
 })
 export class PerfilAlumnoComponent implements OnInit {
-  alumno: Alumno;
+  alumno: any;
   particular: Particular;
   beneficios: CardModel[];
   clases: Clase[] = [];
@@ -63,7 +63,7 @@ export class PerfilAlumnoComponent implements OnInit {
       (error) => console.error(error)
     );
 
-    console.log("Soy una foto" + this.alumnoService.obtenerFotoPerfilPorUsuario(this.id))
+   // console.log("Soy una foto" + this.alumnoService.obtenerFotoPerfilPorUsuario(this.id))
 
   }
 

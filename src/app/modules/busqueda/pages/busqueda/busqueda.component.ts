@@ -71,7 +71,7 @@ export class BusquedaComponent implements OnInit {
     console.log(this.filtros);
     this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
       (clases) => {
-        this.clases = clases;
+        this.clases = clases.sort();
     },
     (error) => {
       console.error(error);

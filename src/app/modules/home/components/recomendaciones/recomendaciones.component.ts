@@ -15,11 +15,17 @@ export class RecomendacionesComponent implements OnInit {
   data3: any[] = [];
   data4: any[] = [];
   cantCards = 4;
+  cardSelected1=0;
+  cardSelected2=0;
+  cardSelected3=0;
+  cardSelected4=0;
   constructor(private services: EstadisticasService,private router:Router) {
     this.services.clasesMasPupularesDelMes().subscribe(res => {
       res.forEach(r => {
         r.clases.cant = r.cant;
-        this.data1.push(r.clases)
+        if(!r.clases.modelo ){
+          this.data1.push(r.clases)
+        }
       });
 
       this.data1 = this.data1.sort(function (a, b) { return a.cant - b.cant });
@@ -36,12 +42,15 @@ export class RecomendacionesComponent implements OnInit {
     })
 
     this.services.agregadosRecientemente().subscribe(res => {
-      this.data2 = res.clases;
+      res.clases.forEach(r => {
+        if(r.estado== 'DISPONIBLE'){
+          this.data2.push(r)
+        }
+      });
       this.data4 = res.modelos;
       this.data2 = this.data2.slice(0, this.cantCards)
       this.data4 = this.data4.slice(0, this.cantCards)
       console.log(this.data4)
-
     })
   }
   obtenerImagenEnBase64(documento: Documento): string {
@@ -56,6 +65,19 @@ export class RecomendacionesComponent implements OnInit {
   }
   explorarModelos() {
     this.router.navigate(['buscar-modelos-alumno'])
+  }
+
+  cambiarSlider1(i: number) {
+    this.cardSelected1=i;
+  }
+  cambiarSlider2(i: number) {
+    this.cardSelected2=i;
+  }
+  cambiarSlider3(i: number) {
+    this.cardSelected3=i;
+  }
+  cambiarSlider4(i: number) {
+    this.cardSelected4=i;
   }
 }
 

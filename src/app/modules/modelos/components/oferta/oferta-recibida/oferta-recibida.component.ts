@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ProductosService } from "src/app/core/services/productos/productos.service";
 import { OfertaDeResolucionResponse } from "src/app/shared/models/oferta-resolucion-response";
-import { ModalContratarModelosComponent } from "../modal-contratar-modelos/modal-contratar-modelos.component";
+import { ModalContratarModelosComponent } from "../../modal-contratar-modelos/modal-contratar-modelos.component";
 
 @Component({
   selector: 'app-oferta-recibida',
@@ -14,7 +14,7 @@ export class OfertaRecibida implements OnInit {
   selectedType = '1';
   tipos: any[] = [{ code: '1', name: 'Contratar solo resolución', },
   { code: '2', name: 'Contratar resolución y explicacion' },]
-  @Input() idAlumno: number
+  idAlumno: string
   comprando: boolean = false;
   selected=0;
   item: any = {};
@@ -24,6 +24,7 @@ export class OfertaRecibida implements OnInit {
   }
   ngOnInit(): void {
     console.log(this.ofertaDeResolucion)
+    this.idAlumno = localStorage.getItem('idUser');
   }
 
   contratar() {

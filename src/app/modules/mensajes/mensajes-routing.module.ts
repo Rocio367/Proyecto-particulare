@@ -5,13 +5,14 @@ import { ModalResponderComponent } from './components/modal-responder/modal-resp
 import { RecibidosComponent } from './components/recibidos/recibidos.component';
 import { EnviadosComponent } from './components/enviados/enviados.component';
 import { PapeleraComponent } from './components/papelera/papelera.component';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 const routes:Routes = [
-  {path:'nuevo-mensaje', component:ModalResponderComponent},
-  {path:'recibidos', component:RecibidosComponent},
-  {path:'enviados', component:EnviadosComponent},
-  {path:'papelera', component:PapeleraComponent},
-  {path:'mensajes', component:MensajesComponent},
+  {path:'nuevo-mensaje', component:ModalResponderComponent,canActivate: [AuthGuard]},
+  {path:'recibidos', component:RecibidosComponent,canActivate: [AuthGuard]},
+  {path:'enviados', component:EnviadosComponent,canActivate: [AuthGuard]},
+  {path:'papelera', component:PapeleraComponent,canActivate: [AuthGuard]},
+  {path:'mensajes', component:MensajesComponent,canActivate: [AuthGuard]},
 
 ];
 

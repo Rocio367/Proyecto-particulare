@@ -7,9 +7,9 @@
         </h2>
       </div>
       <div class="col-lg-auto text-center desk">
-        <mat-card class="example-card" *ngFor='let item of cards'>
+        <mat-card class="example-card" *ngFor='let item of cards;index as i'>
           <mat-card-header>
-            <div class='categoria'>{{item.categoria}}</div>
+            <div class='categoria'>{{item.categoria}} </div>
             <img mat-card-avatar [src]="'./assets/img/'+item.avatar" alt="foto ">
             <mat-card-title>{{item.particular}}</mat-card-title>
             <mat-card-subtitle>{{item.subtitle}}</mat-card-subtitle>

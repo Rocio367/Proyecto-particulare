@@ -34,7 +34,7 @@ export class ReunionComponent implements OnInit {
   id: number;
   linkClase: string;
   estado: string;
-  mostrar = true;
+  mostrar = false;
   mensaje = ''
   clase: any;
   constructor(private aRouter: ActivatedRoute, public snackBar: MatSnackBar, private router: Router, private claseServices: ClaseService) {
@@ -44,8 +44,8 @@ export class ReunionComponent implements OnInit {
         this.linkClase = environment.frontUrl + "/reunion;q=" + this.id
         //solo pueden entrar usuarios permitidos
         this.claseServices.detalleClase(this.id).subscribe(clase => {
+          console.log(clase)
           this.clase = clase;
-          console.log(this.claseDisponible())
           if (this.claseDisponible()) {
             this.claseServices.participantes(this.id).subscribe(res => {
               this.estado = clase.estado;
@@ -80,18 +80,18 @@ export class ReunionComponent implements OnInit {
 
   }
 
-  claseDisponible() {
-    let fechaClase = new Date(this.clase.fecha)
+  claseDisponible() :Boolean{
+    let fechaClase = new Date()
     let fechaActual = new Date()
     let fechaFinalizacion = new Date(this.clase.fecha)
     fechaFinalizacion.setHours(fechaClase.getHours() + 1);
     console.log(fechaClase)
     console.log(fechaActual)
-    console.log(fechaFinalizacion)
-
-    if ((fechaActual.getTime() >= fechaClase.getTime() && fechaClase.getTime() < fechaFinalizacion.getTime())) {
+  
+    if ((fechaActual.getTime() <= fechaClase.getTime() && fechaClase.getTime() < fechaFinalizacion.getTime())) {
       return true;
     }else{
+      console.log('no se encontró una clase programa para este horario')
       this.mensaje = 'no se encontró una clase programa para este horario'
       return false;
 

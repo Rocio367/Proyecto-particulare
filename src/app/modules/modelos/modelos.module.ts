@@ -30,14 +30,16 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { OfertaRecibida } from './components/oferta-recibida/oferta-recibida.component';
 import { RatingModule } from 'primeng/rating';
 import { CalendarCompletarHorariosComponent } from './components/calendar-completar-horarios/calendar-completar-horarios.component';
 import { CalendarModule } from 'primeng/calendar';
 import { CalendarSeleccionComponent } from './components/calendar-seleccion/calendar-seleccion.component';
+import { Oferta } from './components/oferta/oferta.component';
+import { OfertaAceptada } from './components/oferta/oferta-aceptada/oferta-aceptada.component';
+import { OfertaRecibida } from './components/oferta/oferta-recibida/oferta-recibida.component';
 
 @NgModule({
-  declarations: [DetalleModeloAlumnoComponent, DetalleModeloParticularComponent, ModelosParticularesComponent, ModelosAlumnoComponent, ModalSubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent, OfertaRecibida, CalendarCompletarHorariosComponent, CalendarSeleccionComponent,],
+  declarations: [DetalleModeloAlumnoComponent, DetalleModeloParticularComponent, ModelosParticularesComponent, ModelosAlumnoComponent, ModalSubirArchivoComponent, BuscadorDeArchivosComponent, MisModelosAlumnoComponent, ModalContratarModelosComponent, BuscadorDeArchivosParticularComponent, MisModelosParticularComponent, ModalPostulacionModelosComponent, ModalValorarComponent, OfertaRecibida, CalendarCompletarHorariosComponent, CalendarSeleccionComponent, Oferta,OfertaAceptada,],
   imports: [CalendarModule, RatingModule, AutoCompleteModule, DropdownModule, DataViewModule, CheckboxModule, SelectButtonModule, CardModule, InputTextModule, InputTextareaModule, ToastModule, FileUploadModule, ButtonModule, GalleriaModule, OrderListModule, CommonModule, SharedModule, RouterModule, AngularMaterialModule, DynamicDialogModule, ProgressSpinnerModule,],
   exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,4 +1,5 @@
 import { DatePipe } from "@angular/common";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -106,25 +107,35 @@ export class CalendarDetalleClaseComponent implements OnInit {
     this.disponibilidad = filtered;
   }
   confirmar() {
-    if(this.selected.length > 0){
-      this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
-        data: {
-          clase: this.clase,
-          detalles:this.selected,
-          idUsuario: this.idUser
-        },
-        width: '90%',
-        height: '90%',
-      });
-      this.selected=[]
+    if(this.idUser){
+      if(this.selected.length > 0){
+        this.referenciaDialogoDinamico = this.dialogService.open(PagoComponent, {
+          data: {
+            clase: this.clase,
+            detalles:this.selected,
+            idUsuario: this.idUser
+          },
+          width: '90%',
+          height: '90%',
+        });
+        this.selected=[]
+      }else{
+        this.snackBar.open('Debe seleccionar una fecha antes de confirmar', "", {
+          duration: 1500,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+          panelClass: ['red-snackbar']
+        });
+      }
     }else{
-      this.snackBar.open('Debe seleccionar una fecha antes de confirmar', "", {
+      this.snackBar.open('Debe iniciar sesión para anotarse a una clase', "", {
         duration: 1500,
         horizontalPosition: "end",
         verticalPosition: "top",
         panelClass: ['red-snackbar']
       });
     }
+  
   }
 
 

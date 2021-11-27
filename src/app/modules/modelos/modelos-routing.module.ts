@@ -7,15 +7,18 @@ import { MisModelosAlumnoComponent } from './components/mis-modelos-alumno/mis-m
 import { BuscadorDeArchivosComponent } from './components/buscador-de-archivos/buscador-de-archivos.component';
 import { BuscadorDeArchivosParticularComponent } from './components/buscador-de-archivos-particular/buscador-de-archivos-particular.component';
 import { MisModelosParticularComponent } from './components/mis-modelos-particular/mis-modelos-particular.component';
+import { AlumnoGuard } from 'src/app/core/guards/alumno.guards';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { ParticularGuard } from 'src/app/core/guards/particular.guard';
 
 const routes:Routes = [
-  {path:'nuevo-modelo', component:ModalSubirArchivoComponent},
-  {path:'buscar-modelos-alumno', component:BuscadorDeArchivosComponent},
-  {path:'mis-modelos-alumno', component:MisModelosAlumnoComponent},
-  {path:'buscar-modelos-particular', component:BuscadorDeArchivosParticularComponent},
-  {path:'mis-modelos-particular', component:MisModelosParticularComponent},
-  {path:'detalle-modelo-alumno', component:DetalleModeloAlumnoComponent},
-  {path:'detalle-modelo-particular', component:DetalleModeloParticularComponent},
+  {path:'nuevo-modelo', component:ModalSubirArchivoComponent,canActivate: [AuthGuard,AlumnoGuard]},
+  {path:'buscar-modelos-alumno', component:BuscadorDeArchivosComponent,canActivate: [AuthGuard,AlumnoGuard]},
+  {path:'mis-modelos-alumno', component:MisModelosAlumnoComponent,canActivate: [AuthGuard,AlumnoGuard]},
+  {path:'buscar-modelos-particular', component:BuscadorDeArchivosParticularComponent,canActivate: [AuthGuard,ParticularGuard]},
+  {path:'mis-modelos-particular', component:MisModelosParticularComponent,canActivate: [AuthGuard,ParticularGuard]},
+  {path:'detalle-modelo-alumno', component:DetalleModeloAlumnoComponent,canActivate: [AuthGuard,AlumnoGuard]},
+  {path:'detalle-modelo-particular', component:DetalleModeloParticularComponent,canActivate: [AuthGuard,ParticularGuard]},
 
 ];
 

@@ -8,18 +8,22 @@ import { EditarClaseParticularComponent } from './pages/editar-clase-particular/
 import { ReunionComponent } from './pages/reunion/reunion.component';
 import { MisClasesPendientesAlumnoComponent } from './pages/mis-clases-pendientes-alumno/mis-clases-pendientes-alumno.component';
 import { MiHistorialDeClasesAlumnoComponent } from './pages/mi-historial-de-clases-alumno/mi-historial-de-clases-alumno.component';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { ParticularGuard } from 'src/app/core/guards/particular.guard';
+import { AlumnoGuard } from 'src/app/core/guards/alumno.guards';
+import { AlumnoModule } from '../alumno/alumno.module';
 
 
 
 const routes: Routes = [
   { path: 'detalle-clase', component: DetalleClaseComponent },
-  { path: 'editar-detalle-clase-particular', component: EditarClaseParticularComponent },
-  { path: 'detalle-clase-particular', component: DetalleClaseParticularComponent },
-  { path: 'crear-clase', component: CrearClaseComponent },
-  { path: 'ver-clase-particular', component: VerMisClasesParticularComponent },
-  { path: 'mis-clases-alumno', component: MisClasesPendientesAlumnoComponent },
-  { path: 'historial-alumno', component: MiHistorialDeClasesAlumnoComponent },
-  { path: 'reunion', component: ReunionComponent },
+  { path: 'editar-detalle-clase-particular', component: EditarClaseParticularComponent ,canActivate: [AuthGuard,ParticularGuard]},
+  { path: 'detalle-clase-particular', component: DetalleClaseParticularComponent ,canActivate: [AuthGuard,ParticularGuard]},
+  { path: 'crear-clase', component: CrearClaseComponent,canActivate: [AuthGuard,ParticularGuard]},
+  { path: 'ver-clase-particular', component: VerMisClasesParticularComponent ,canActivate: [AuthGuard,ParticularGuard]},
+  { path: 'mis-clases-alumno', component: MisClasesPendientesAlumnoComponent,canActivate: [AuthGuard,AlumnoGuard]},
+  { path: 'historial-alumno', component: MiHistorialDeClasesAlumnoComponent ,canActivate: [AuthGuard,AlumnoGuard]},
+  { path: 'reunion', component: ReunionComponent ,canActivate: [AuthGuard]},
 
 
 ];

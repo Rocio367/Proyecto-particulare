@@ -195,13 +195,13 @@ export class ShellComponent implements OnInit, AfterContentChecked {
         ];
         break;
       }
-      case 'admin': {
+      case 'administrador': {
         this.items = [
 
           {
             label: 'Usuarios',
             icon: 'pi pi-fw pi-users',
-            routerLink: 'control-usuarios'
+            routerLink: 'home'
 
           },
           {
@@ -234,7 +234,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
               {
                 label: 'Ver perfil',
                 icon: 'pi pi-fw pi-user-plus',
-                routerLink: 'perfil-particular'
+                routerLink: 'mi-perfil-particular'
 
               },
               {

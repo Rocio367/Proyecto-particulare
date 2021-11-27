@@ -3,29 +3,27 @@
        layout="grid">
         <ng-template pTemplate="header">
             <div class="text-center">
-                <span class="p-input-icon-left p-mb-2 p-mb-md-0" style='width:80%'>
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0 w-50">
                     <i class="pi pi-search"></i>
                     <input class='w-100' type="search" pInputText 
                         placeholder="Buscar por nombre..."
                         [(ngModel)]="text">
                 </span>
            
-            </div>
-            <div class=" text-center mt-3">
+     
                 <!--<span class='m-3 filters'>
                     <p-dropdown placeholder="Filtrar por estados " optionLabel="name" [showClear]="true" 
                         [options]="estados" [(ngModel)]="selectedEstado" optionLabel="name"></p-dropdown>
                 </span>-->
-                <span class='m-3 filters'>
+                <span class='m-3 filters w-25'>
                     <p-dropdown placeholder="Ordenar " optionLabel="name" [showClear]="true"  [options]="orden" 
                         [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
                 </span>
-            </div>
-            <div class=" text-center mt-3">
+           
                
-                <span>
-                    <button pButton (click)='aplicar()' class='m-2'>Aplicar</button>
-                    <button pButton (click)='limpiar()' class='m-2'>Limpiar</button>
+                <span class='w-25'>
+                    <button pButton (click)='aplicar()' class='ml-2'>Aplicar</button>
+                    <button pButton (click)='limpiar()' class='ml-2'>Limpiar</button>
 
                 </span>
             </div>
@@ -40,7 +38,7 @@
                     <div class="product-grid-item-content">
                         <img [src]="obtenerImagenEnBase64(modelo.archivos[0])">
                         <div class="detalles-items">
-                            <div class="product-name color-f">{{modelo.nombre}}</div>
+                            <div class="product-name color-f puntitos">{{modelo.nombre}}</div>
                             <p class='color-f mb-3'>Institución:<span>{{modelo.institucion.nombre}}</span></p>
                             <p class='color-f mb-3'>Materia:<span>{{modelo.materia.nombre}}</span></p>
                             <p class='color-f mb-3'>Nivel:<span>{{modelo.nivel.descripcion}}</span></p>

@@ -1,0 +1,40 @@
+<div *ngIf="cargando(); else componente">
+    <p-progressSpinner></p-progressSpinner>
+</div>
+
+<ng-template #componente>
+    <div *ngIf="estaResuelto(); else sinResolucion">
+        <div class="product-item">
+            <div class="product-list-img">
+                <i class="pi pi-file" style="font-size: 2rem"></i>
+            </div>
+            <div class="product-list-detail">
+                <span>Particular : {{resolucion.usuario.nombre}} {{resolucion.usuario.apellido}}</span>
+                <span>Comentarios : {{resolucion.comentario}}</span>
+            </div>
+            <div class="product-list-action">
+                <!--<div class='stars'>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 1)?"amarillo":""'></i>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 2)?"amarillo":""'></i>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 3)?"amarillo":""'></i>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 4)?"amarillo":""'></i>
+                    <i class="pi pi-star fs-21" [ngClass]='(4 >= 5)?"amarillo":""'></i>
+                    <span class='subtitle'>
+                        4 / 5
+                    </span>
+                </div>-->
+                <div class='actions' style='text-align: end;'>
+                    <!--<button mat-button color='primary' *ngIf="puedeValorarResolucion()" (click)='valorar()' type="button"
+                        style='margin-right: 3px;'> Valorar</button>-->
+                    <button mat-button color='warn' (click)="descargar()" type="button">Descargar</button>
+                </div>
+            </div>
+        </div>
+        <div class="cartel" *ngIf='ofertaDeResolucion.tipo.id == 2'>
+                Recuerde que se agendó automáticamente una clase para esta resolución,la puede ver en la sección “Mis clases”
+        </div>
+    </div>
+    <ng-template #sinResolucion>
+        Aun no está la resolucion
+    </ng-template>
+</ng-template>

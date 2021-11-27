@@ -15,7 +15,6 @@ import { PasosComponent } from './pasos/pasos.component';
 import { FormContactoComponent } from './form-contacto/form-contacto.component';
 import { ModalAnotarseComponent } from './modal-anotarse/modal-anotarse.component';
 import { CardsComunComponent } from './cards-comun/cards-comun.component';
-import { TableComponent } from './table/table.component';
 import {CalendarModule} from 'primeng/calendar';
 import {ListboxModule} from 'primeng/listbox';
 import {ButtonModule} from 'primeng/button';
@@ -36,7 +35,6 @@ import { UrlSegura } from '../pipes/url-segura';
     PasosComponent,
     ModalAnotarseComponent,
     CardsComunComponent,
-    TableComponent,
     UrlSegura
   ],
   imports: [
@@ -63,7 +61,6 @@ import { UrlSegura } from '../pipes/url-segura';
     ModalGalleryComponent,
     ModalConsultaComponent,
     ModalAnotarseComponent,
-    TableComponent,
     UrlSegura,
     ],
   entryComponents: [],

@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('recargar_menu', JSON.stringify(true));
       this.router.navigate(['/home'])
     } else {
-      this.openSnackBar('Usuario o contraseña incorrectas', 'x')
+      this.openSnackBar('Usuario, contraseña incorrectas o usuario bloqueado', 'x')
     }
   }
 

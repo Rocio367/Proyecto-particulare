@@ -13,4 +13,5 @@ export interface Alumno {
         fechaNacimiento: String;
         fotoPerfil: Documento[];
     },
+
 }
