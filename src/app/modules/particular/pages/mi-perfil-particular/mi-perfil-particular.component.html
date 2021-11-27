@@ -64,16 +64,16 @@
                     <small class="p-error">Este campo es <strong>requerido</strong></small>
                   </div>
                 </div>
-  
-                <div class="field col-12">
-                  <mat-form-field class='pl-3 input-large'>
-                    <ngx-mat-file-input formControlName="documento" multiple=false accept=".png, .jpg, .jpeg" color="warn"
-                      placeholder="Documento">
-                      <mat-icon ngxMatFileInputIcon>add_a_photo</mat-icon>
-                    </ngx-mat-file-input>
-                  </mat-form-field>
-                </div>
-  
+              </div>
+              <div class="field col-12">
+                <div class='w-80 mt-3'>
+                  <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
+                      (onSelect)="seleccionarDocumento($event)"
+                      (onClear)="cancelarSeleccionDeDocumentos()"
+                      (onRemove)="borrarDocumento($event)"
+                      multiple="multiple" accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
+                  </p-fileUpload>
+              </div>
               </div>
   
             </div>

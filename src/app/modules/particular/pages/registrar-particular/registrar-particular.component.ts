@@ -21,7 +21,6 @@ export class RegistrarParticularComponent implements OnInit {
     telefono: ['', Validators.pattern("^[0-9]*$")],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],    
-    repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
     formacionAcademica: [''],
     documento: ['',Validators.pattern("^[0-9]*$")]
@@ -69,7 +68,7 @@ export class RegistrarParticularComponent implements OnInit {
         video:null,
         localidad:null,
         experiencia: this.formDatos.controls["formacionAcademica"].value,
-        usuario: user
+        usuario: user,
       }
 
       this.particularService.crearProfesor(particular)

@@ -101,7 +101,7 @@ export class EditarPerfilParticularComponent implements OnInit {
         localidad: this.formDatos.controls["localidad"].value,
         video:null,
         experiencia: this.formDatos.controls["descripcion"].value,
-        usuario: user
+        usuario: user,
       }
 
       this.particularService.editarProfesor(particular)

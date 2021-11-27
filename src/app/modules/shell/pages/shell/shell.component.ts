@@ -201,7 +201,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
           {
             label: 'Usuarios',
             icon: 'pi pi-fw pi-users',
-            routerLink: 'control-usuarios'
+            routerLink: 'home'
 
           },
           {
