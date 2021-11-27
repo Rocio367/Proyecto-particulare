@@ -4,7 +4,7 @@
       <p-card>
         <div class="flex justify-content-evenly">
           <div class="div-a">
-            <img mat-card-avatar [src]="registro.foto" />
+            <img mat-card-avatar *ngFor="let foto of particular.usuario.fotoPerfil" [src]="obtenerImagenEnBase64(foto)" />
             <br />
 
             <div class='mt-3 text-center'>

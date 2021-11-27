@@ -6,8 +6,11 @@
             <p-card>
                 <div class="flex justify-content-evenly">
                     <div class='div-a '>
-                        <img mat-card-avatar
-                            src="https://d131oejryywhj7.cloudfront.net/p/api/usuario/dup/4NufvtIc2Ug4tC42XsKSTrpZrWiwzKWQ0.jpg/120x120cut/?s=l" />
+                        <div *ngIf="particular">  
+                            <img mat-card-avatar *ngFor="let foto of particular.usuario.fotoPerfil" [src]="obtenerImagenEnBase64(foto)" />
+                        </div>
+                        
+                        
                         <br>
 
                         <div class='mt-3 text-center'>
@@ -22,7 +25,7 @@
                     </div>
                     <div class='div-a ml-4'>
                         <h3 class='color-f'>{{registro.titulo}}</h3>
-                        <h4 class='fs-16 mb-3'>Particular: <span>{{registro.particular}}</span></h4>
+                        <h4 class='fs-16 mb-3'>Particular: <span>{{clases.profesor.usuario.nombre}} {{clases.profesor.usuario.apellido}} </span></h4>
                         <h4 class='fs-16 mb-3'>Nivel: <span> {{clases.nivel.descripcion}}</span></h4>
                         <h4 class='fs-16 mb-3'>Método: <span> {{clases.metodo}}</span></h4>
                         <h4 class='fs-16 mb-3'>Tipo de clase: <span> {{clases.modo}}</span></h4>

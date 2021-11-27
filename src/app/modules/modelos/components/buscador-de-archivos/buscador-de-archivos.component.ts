@@ -65,6 +65,8 @@ export class BuscadorDeArchivosComponent implements OnInit {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
           (documentos) => {
             modelo.archivos = documentos;
+            console.log("Soy una foto" + this.servicioDeModelos.obtenerArchivosPorModelo(modelo))
+            console.log("Soy el detalle" + this.obtenerImagenEnBase64(modelo.archivos[0]))
           },
           (error) => {
             console.error(error);

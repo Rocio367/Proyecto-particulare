@@ -2,7 +2,8 @@
   <p-card>
     <div class="flex justify-content-evenly">
       <div>
-        <img mat-card-avatar src="../../../../../assets/img/default-user.png"/>
+         <img mat-card-avatar *ngFor="let foto of alumno.usuario.fotoPerfil" [src]="obtenerImagenEnBase64(foto)" >
+      
       </div>
       <p-divider layout="vertical"></p-divider>
       <div>

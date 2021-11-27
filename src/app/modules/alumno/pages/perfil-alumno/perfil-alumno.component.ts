@@ -14,6 +14,7 @@ import { Particular } from "./../../../../shared/models/particular";
 import { ParticularService } from "src/app/core/services/particular/particular.service";
 import { Alumno } from "src/app/shared/models/alumno";
 import { Router } from "@angular/router";
+import { Documento } from "src/app/shared/models/documento";
 
 export interface Section {
   name: string;
@@ -47,58 +48,31 @@ export class PerfilAlumnoComponent implements OnInit {
     private form: FormBuilder
   ) {}
 
+  ngOnInit(): void {
 
-  folders: Section[] = [
-    {
-      name: "Clase 1",
-      updated: new Date("1/1/16"),
-    },
-    {
-      name: "Clase 2",
-      updated: new Date("1/17/16"),
-    },
-    {
-      name: "Clase 3",
-      updated: new Date("1/28/16"),
-    },
-  ];
-
-  ngOnInit() {
-    this.alumnoService.buscarPorId(this.id).subscribe(
+    this.alumnoService.buscarPorId(this.id)
+    .subscribe(
       (alumno) => {
-        this.alumno = alumno;
-      
+      this.alumno = alumno;
+      this.alumnoService.obtenerFotoPerfilPorUsuario(this.id)
+          .subscribe(
+            (archivos) => this.alumno.usuario.fotoPerfil = archivos,
+            (error) => console.error(error)
+          )
       },
-      (error) => {
-        console.error(error);
-      }
+      (error) => console.error(error)
     );
 
-    this.beneficios = [
-      {
-        titulo: "Pack 20 clases 10%",
-        subtitulo: "Descuentos",
-        contenido: "This card has divider and indeterminate progress as footer",
-      },
-      {
-        titulo: "20% de descuento",
-        subtitulo: "Descuentos",
-        contenido: "Si sos un suscriptor activo de la página durante un año.",
-      },
-      {
-        titulo: "Primer clase GRATIS",
-        subtitulo: "Descuentos",
-        contenido:
-          "Podes probar nuestros servicios gratuitamente la primera vez.",
-      },
-    ];
-  
-  
-  }
-
-  iniciar(){
-    this.router.navigate(['reunion', { q: 222 }])
+    console.log("Soy una foto" + this.alumnoService.obtenerFotoPerfilPorUsuario(this.id))
 
   }
 
+
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`;
+  }
+
+  iniciar() {
+    this.router.navigate(["reunion", { q: 222 }]);
+  }
 }

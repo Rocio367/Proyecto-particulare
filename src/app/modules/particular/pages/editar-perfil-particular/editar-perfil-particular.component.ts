@@ -82,7 +82,7 @@ export class EditarPerfilParticularComponent implements OnInit {
     if(this.formDatos.valid) {
       let particular: Particular;
       let user : Usuario;
-
+/*
       user = {
         nombre: this.formDatos.controls["nombre"].value,
         apellido: this.formDatos.controls["apellido"].value,
@@ -96,6 +96,7 @@ export class EditarPerfilParticularComponent implements OnInit {
         rol:null,
       }
 
+*/
       particular = {
         id:this.id,
         localidad: this.formDatos.controls["localidad"].value,
