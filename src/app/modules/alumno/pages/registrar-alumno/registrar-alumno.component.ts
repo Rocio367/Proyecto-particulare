@@ -59,59 +59,68 @@ export class RegistrarAlumnoComponent implements OnInit {
     if (this.formDatos.valid) {
       let usuario: Usuario;
       let alumno: Alumno;
+      if (this.uploadedFiles.length > 0) {
+        this.cargarArchivos(this.uploadedFiles)
+          .then((archivos) => {
+            usuario = {
+              nombre: this.formDatos.controls["nombre"].value,
+              apellido: this.formDatos.controls["apellido"].value,
+              documento: this.formDatos.controls["documento"].value,
+              email: this.formDatos.controls["email"].value,
+              contrasenia: this.formDatos.controls["contrasenia"].value,
+              telefono: this.formDatos.controls["telefono"].value,
+              fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
+              fotoPerfil: archivos,
+              id: null,
+              rol: null
+            }
 
+            alumno = {
+              materiasInteres: this.formDatos.controls["materiasInteres"].value,
+              nivelAcademico: this.formDatos.controls["nivelAcademico"].value,
+              usuario: usuario
+            };
+            console.log(usuario)
+            console.log("la foto es" + alumno.usuario.fotoPerfil);
 
-      this.cargarArchivos(this.uploadedFiles)
-        .then((archivos) => {
-          usuario = {
-            nombre: this.formDatos.controls["nombre"].value,
-            apellido: this.formDatos.controls["apellido"].value,
-            documento: this.formDatos.controls["documento"].value,
-            email: this.formDatos.controls["email"].value,
-            contrasenia: this.formDatos.controls["contrasenia"].value,
-            telefono: this.formDatos.controls["telefono"].value,
-            fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
-            fotoPerfil: archivos,
-            id: null,
-            rol: null
-          }
+            this.usuariosService.registrarAlumno(alumno).subscribe(
+              () => {
+                this._snackBar.open('Perfil creado correctamente', "", {
+                  duration: 3000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top",
+                  panelClass: ["green-snackbar"],
+                });
+                this.router.navigate(["/home"]);
+                return true;
+              },
+              (error) => {
+                this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
+                  duration: 1500,
+                  horizontalPosition: "end",
+                  verticalPosition: "top",
+                  panelClass: ["red-snackbar"],
 
-          alumno = {
-            materiasInteres: this.formDatos.controls["materiasInteres"].value,
-            nivelAcademico: this.formDatos.controls["nivelAcademico"].value,
-            usuario: usuario
-          };
-          console.log(usuario)
-          console.log("la foto es" + alumno.usuario.fotoPerfil);
-
-           this.usuariosService.registrarAlumno(alumno).subscribe(
-             () => {
-               this._snackBar.open('Perfil creado correctamente', "", {
-                 duration: 3000,
-                 horizontalPosition: "end",
-                 verticalPosition: "top",
-                 panelClass: ["green-snackbar"],
-               });
-               this.router.navigate(["/home"]);
-               return true;
-             },
-             (error) => {
-              this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
-                duration: 1500,
-                horizontalPosition: "end",
-                verticalPosition: "top",
-                panelClass: ["red-snackbar"],
-
+                });
               });
-             });
-        });
+          });
+      } else {
+        console.error("validacion");
+        this.formDatos.markAllAsTouched();
+      }
     } else {
-      console.error("validacion");
-      this.formDatos.markAllAsTouched();
+      this._snackBar.open("Debe agregar una foto de perfil", "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ["red-snackbar"],
+
+      })
+
+
     }
+
   }
-
-
 
 
   cargarArchivos = async (archivos: any[]): Promise<Documento[]> => {
