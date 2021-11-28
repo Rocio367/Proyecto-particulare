@@ -1,8 +1,4 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { ClaseService } from 'src/app/core/services/clase/clase.service';
-import { EstadisticasService } from 'src/app/core/services/estadisticas/estadisticas.service';
-import { Documento } from 'src/app/shared/models/documento';
-import {MatTableDataSource} from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { Usuario } from 'src/app/shared/models/usuario';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
@@ -20,7 +16,9 @@ export class HomeAdministradorComponent implements OnInit {
   usuarios: Usuario[] = [];
   @Input() isBloqueado = false;
   @Input() items: MenuItem[];
-
+  buscarText: string;
+  valor: string;
+  busqueda: string;
 
   constructor(private router:Router,private aRouter: ActivatedRoute,
     private form: FormBuilder,
@@ -31,18 +29,18 @@ export class HomeAdministradorComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.serviceUsuario.obtenerTipoTodos().subscribe( 
-      (usuarios) => {
-        this.usuarios = usuarios;
-    },
-    (error) => {
-      console.error(error);
-    }
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        this.valor = params.q;
+        this.buscador(1)
+        this.busqueda = this.valor;
+        if (this.valor === "undefined") {
+          this.busqueda = "";
+        }
+      }
+      
     );
   }
-
-
-
 
   bloquear(usuario){
      this.serviceUsuario.bloquear(usuario.id).subscribe( 
@@ -77,6 +75,21 @@ export class HomeAdministradorComponent implements OnInit {
    );
  }
 
+   buscar() {
+    this.router.navigate(['home', { q: this.buscarText }])
+  }
+
+  buscador(page) {
+    this.serviceUsuario.busquedaPorNombre(this.valor).subscribe( 
+      (usuarios) => {
+        this.usuarios = usuarios;
+    },
+    (error) => {
+      console.error(error);
+    }
+    );
+ 
+   }
 }
 
 

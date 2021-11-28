@@ -26,4 +26,7 @@ export class UsuariosService {
     return this.http.get<void>(`${environment.backUrl}/v1/usuario/Bloquear/${idUsuario}`);
   }
 
+  busquedaPorNombre(nombre: String): Observable<any>{
+    return this.http.get<any>(`${environment.backUrl}/v1/usuario/buscador/${nombre}`);
+  }
 }

@@ -5,8 +5,9 @@
 
     <div class="p-mr-2 p-input p-input-icon-right w-100">
       <div class="p-inputgroup w-100">
-          <p-autoComplete   placeholder="Buscar usuarios..." class="p-inputtext-sm w-100"></p-autoComplete>
-      </div>
+          <p-autoComplete   placeholder="Buscar usuarios..." [(ngModel)]="buscarText" class="p-inputtext-sm w-100"></p-autoComplete>
+          <i class="pi pi-search" (click)='buscar()'></i>
+        </div>
     </div>
 </p-card >    
     
@@ -25,7 +26,7 @@
         <ng-template pTemplate="body" let-usuario>
           <tr>
             <td>{{usuario.id}}</td>
-            <td>{{usuario.nombre}}{{usuario.apellido}}</td>
+            <td>{{usuario.nombre}} {{usuario.apellido}}</td>
             <td>{{usuario.email}}</td>
             <td><button mat-button color='warn' class="espacio" *ngIf='usuario.bloqueado==false' (click)='bloquear(usuario)'
                style="margin-left:.25em">Bloquear</button>
