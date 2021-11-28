@@ -37,7 +37,7 @@ export class ShellComponent implements OnInit, AfterContentChecked {
   }
   logout() {
     localStorage.clear();
-    localStorage.setItem('recargar_menu', JSON.stringify(false));
+    localStorage.setItem('recargar_menu', JSON.stringify(true));
     this.redirectService.toHome();
   }
 
