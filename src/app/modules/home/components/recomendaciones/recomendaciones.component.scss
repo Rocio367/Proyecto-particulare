@@ -67,7 +67,10 @@ ol.carousel-indicators {
     left: 10px;
     color: white;
 }
-
+.img{
+    object-fit: cover;
+    width: 100%; 
+}
 .grid-item {
     position: relative;
     margin-bottom: 10px;

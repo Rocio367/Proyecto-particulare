@@ -21,6 +21,7 @@ export class RecomendacionesComponent implements OnInit {
   cardSelected2=0;
   cardSelected3=0;
   cardSelected4=0;
+  rol=localStorage.getItem('rol');
   constructor(private services: EstadisticasService,private router:Router,private modeloService:ModelosService,private servicesParticular:ParticularService) {
     this.services.clasesMasPupularesDelMes().subscribe(res => {
       res.forEach(r => {
@@ -38,19 +39,16 @@ export class RecomendacionesComponent implements OnInit {
     })
     this.services.modelosMasPupularesDelMes().subscribe(res => {
       res.forEach(r => {
-        console.log(r.modelos)
-        r.modelos.cant = r.cant;
         this.modeloService.obtenerArchivosPorModelo(r.modelos)
         .subscribe(
           (archivos) => {
-            r.modelos.fotos=this.obtenerImagenEnBase64(archivos[0])
+            r.modelos.cant = r.cant;
+            r.modelos.foto=this.obtenerImagenEnBase64(archivos[0])
             this.data3.push(r.modelos)
-
           },
           (error) => console.error(error)
         )
       });
-       console.log(this.data3)
       this.data3 = this.data3.sort(function (a, b) { return a.cant - b.cant });
       this.data3 = this.data3.slice(0, this.cantCards)
     })
@@ -64,8 +62,20 @@ export class RecomendacionesComponent implements OnInit {
           this.data2.push(r)
        }
       });
-      console.log(this.data2)
-      this.data4 = res.modelos;
+      res.modelos.forEach(r => {
+        console.log(r)
+        this.modeloService.obtenerArchivosPorModelo(r.modelo)
+        .subscribe(
+          (archivos) => {
+            r.modelo.cant = r.cant;
+            r.modelo.foto=this.obtenerImagenEnBase64(archivos[0])
+            this.data4.push(r.modelo)
+            console.log(r.modelo)
+          },
+          (error) => console.error(error)
+        )
+      });
+
       this.data2 = this.data2.slice(0, this.cantCards)
       this.data4 = this.data4.slice(0, this.cantCards)
     })
