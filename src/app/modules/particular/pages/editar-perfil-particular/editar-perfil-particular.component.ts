@@ -99,6 +99,7 @@ export class EditarPerfilParticularComponent implements OnInit {
       this.particularService.editarProfesor(particular)
       .subscribe(
         () => {
+          this.router.navigate(['/perfil-particular']);
           this.snackBar.open('El usuario fue editado correctamente', "", {
             duration: 1500,
             horizontalPosition: "end",
@@ -186,4 +187,5 @@ export class EditarPerfilParticularComponent implements OnInit {
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
   }
+
 }
