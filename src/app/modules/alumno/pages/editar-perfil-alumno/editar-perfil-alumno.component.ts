@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AlumnnoService } from "src/app/core/services/alumno/alumnno.service";
 import { Alumno } from "src/app/shared/models/alumno";
 import { Usuario } from './../../../../shared/models/usuario';
+import { Documento } from 'src/app/shared/models/documento';
 
 
 @Component({
@@ -19,17 +20,20 @@ export class EditarPerfilAlumnoComponent implements OnInit {
   alumno: Alumno;
   id: number = Number(localStorage.getItem("idUser"));
 
+  uploadedFiles: any[] = [];
+
   formDatos = this.form.group({
-    fotoPerfil: ['', Validators.required],
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    telefono: ['',Validators.pattern(/^(0|\-?[1-9][0-9]*)$/)],
+    telefono: ['', Validators.pattern("^[0-9]*$")],
     email: ['', [Validators.email, Validators.required]],
     contrasenia: ['', Validators.required],
     repetirContrasenia: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
     intereses: ['', Validators.required],
     nivelAcademico: ['', Validators.required],
+    documento: ['',[Validators.pattern("^[0-9]*$"),Validators.required]],
+
   });
 
   tiposDeArchivosPermitidos = ".png, .jpg, .jpeg";
@@ -40,15 +44,7 @@ export class EditarPerfilAlumnoComponent implements OnInit {
     private router: Router, private alumnoService: AlumnnoService ) { }
 
   ngOnInit(): void {
-    this.formDatos.controls['fotoPerfil'].valueChanges.subscribe(
-      archivo => {
-        const reader = new FileReader();
-        reader.readAsDataURL(archivo)
-        reader.onload = () => {
-          this.imagenPerfil = reader.result as string;
-        }
-      }
-    );
+
 
     this.alumnoService.buscarPorId(this.id).subscribe( 
       (alumno) => {
@@ -74,11 +70,14 @@ export class EditarPerfilAlumnoComponent implements OnInit {
   }
 
   editarAlumno(){
+    console.log(this.formDatos);
     if(this.formDatos.valid) {
 
       let alumno: Alumno;
       let user : Usuario;
-/*
+
+      this.cargarArchivos(this.uploadedFiles)
+      .then((archivos) => {
       user = {
         nombre: this.formDatos.controls["nombre"].value,
         apellido: this.formDatos.controls["apellido"].value,
@@ -86,8 +85,8 @@ export class EditarPerfilAlumnoComponent implements OnInit {
         email: this.formDatos.controls["email"].value,
         contrasenia: this.formDatos.controls["contrasenia"].value,
         fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
-        fotoPerfil: this.imagenPerfil,
-        documento:  38663642,
+        fotoPerfil: archivos,
+        documento:   this.formDatos.controls["documento"].value,
         id:this.id,
         rol:null,
       }
@@ -95,9 +94,10 @@ export class EditarPerfilAlumnoComponent implements OnInit {
       alumno = {
         materiasInteres: this.formDatos.controls["intereses"].value,
         nivelAcademico:this.formDatos.controls["nivelAcademico"].value,
-        usuario: user
-      } HACER
-*/
+        usuario: user,
+        idUser:this.id
+      } 
+
 
       this.alumnoService.editarAlumno(alumno)
       .subscribe(
@@ -120,6 +120,7 @@ export class EditarPerfilAlumnoComponent implements OnInit {
           console.error(alumno, error);
         }
       )
+    });
     }
     else {
       this.formDatos.markAllAsTouched();
@@ -141,6 +142,51 @@ export class EditarPerfilAlumnoComponent implements OnInit {
     var fechaLimiteMinima = fechaActual - 80;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
+
+  
+  cargarArchivos = async (archivos: any[]): Promise<Documento[]> => {
+    return await Promise.all(archivos.map(async (usuario): Promise<Documento> => {
+      return {
+        nombre: usuario.name,
+        tamanio: usuario.size,
+        extension: usuario.type,
+        datos: await this.cargarArchivo(usuario)
+      }
+    }));
+  }
+
+  cargarArchivo = async (usuario: any): Promise<string> => {
+    let base64 = await new Promise((resolve) => {
+      let fileReader = new FileReader();
+      fileReader.onload = (e) => resolve(fileReader.result);
+      fileReader.readAsDataURL(usuario);
+    });
+    return base64 as string;
+  }
+
+
+  seleccionarFotoPerfil(event) {
+
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+  }
+
+
+  cancelarSeleccionDeFotoPerfil() {
+    this.uploadedFiles.length = 0;
+    console.log("Se cancelo la seleccion de archivos");
+  }
+
+  borrarFotoPerfil(event) {
+    this.uploadedFiles.forEach((modelo, indice) => {
+      if (modelo == event.file) {
+        this.uploadedFiles.splice(indice,1);
+      }
+    });
+    console.log("Se elimino un modelo");
+  }
+  
 
 
 }

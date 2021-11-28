@@ -20,6 +20,7 @@ export class MiPerfilParticularComponent implements OnInit {
 
   particular: Particular;
   id: number = Number(localStorage.getItem('idUser'));
+  minDate=new Date();
   datosAcademicos:DatosAcademicos[]= [];
   clases: Clase[]= [];
   open=false;
@@ -220,6 +221,11 @@ export class MiPerfilParticularComponent implements OnInit {
         this.uploadedFiles.push(file);
     }
     console.log("Se selecciono uno o mas documentos");
+  }
+
+
+  cambiarMinDate(){
+    this.minDate =  this.formDatos.controls["desde"].value;
   }
   
 }

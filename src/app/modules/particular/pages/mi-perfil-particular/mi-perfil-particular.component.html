@@ -39,7 +39,8 @@
                   <span class="p-float-label">
                     <p-calendar showButtonBar="true" inputId="fechaDesde" formControlName="desde" dateFormat="dd-mm-yy"
                       [showIcon]="true" styleClass="w-full" [monthNavigator]="true" [yearNavigator]="true"
-                      [yearRange]="obtenerRangoDeEdad()"></p-calendar>
+                      [yearRange]="obtenerRangoDeEdad()" (onSelect)='cambiarMinDate()'
+                      ></p-calendar>
                     <label for="fechaNacimiento">Desde</label>
                   </span>
                   <div *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched"
@@ -56,7 +57,7 @@
                   <span class="p-float-label">
                     <p-calendar showButtonBar="true" inputId="fechaHasta" formControlName="hasta" dateFormat="dd-mm-yy"
                       [showIcon]="true" styleClass="w-full" [monthNavigator]="true" [yearNavigator]="true"
-                      [yearRange]="obtenerRangoDeEdad()"></p-calendar>
+                      [yearRange]="obtenerRangoDeEdad()"  [minDate]='minDate'></p-calendar>
                     <label for="fechaNacimiento">Hasta</label>
                   </span>
                   <div *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched"
@@ -71,7 +72,7 @@
                       (onSelect)="seleccionarDocumento($event)"
                       (onClear)="cancelarSeleccionDeDocumentos()"
                       (onRemove)="borrarDocumento($event)"
-                      multiple="multiple" accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
+                       accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
                   </p-fileUpload>
               </div>
               </div>

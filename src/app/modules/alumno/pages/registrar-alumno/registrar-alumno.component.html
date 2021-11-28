@@ -19,7 +19,7 @@
                                         (onSelect)="seleccionarFotoPerfil($event)"
                                         (onClear)="cancelarSeleccionDeFotoPerfil()"
                                         (onRemove)="borrarFotoPerfil($event)"
-                            multiple="multiple" accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
+                            accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
                                 </p-fileUpload>     
                             </div>
                         </div>
@@ -51,15 +51,12 @@
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">
-                                    <input id="documento" type="number" pInputText formControlName="documento" class="inputfield w-full">
+                                    <input id="documento" type="text" pInputText formControlName="documento" class="inputfield w-full">
                                     <label for="documento">Documento</label>
                                 </span>
-                                <div *ngIf="formDatos.get('documento').hasError('required') && formDatos.get('documento').touched" class="text-center">
-                                    <small class="p-error">Este campo es <strong>requerido</strong></small>
-                                </div>
-                                <div *ngIf="formDatos.get('documento').hasError('documento') && formDatos.get('documento').touched"
-                                    class="text-center">
-                                    <small class="p-error">El formato no es correcto</small>
+                                <div class="text-danger"
+                                *ngIf="formDatos.get('documento').hasError('pattern')  && formDatos.get('documento')?.touched">
+                                <span>El formato no es correcto, ingrese solo números</span>
                                 </div>
                             </div>
                             <div class="field col-12">

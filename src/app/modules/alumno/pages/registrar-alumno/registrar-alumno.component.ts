@@ -24,7 +24,7 @@ export class RegistrarAlumnoComponent implements OnInit {
   formDatos = this.form.group({
     nombre: ["", Validators.required],
     apellido: ["", Validators.required],
-    documento: ["", Validators.required],
+    documento: ['',Validators.pattern("^[0-9]*$")],
     email: ["", [Validators.email, Validators.required]],
     contrasenia: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],    
     telefono: ['', Validators.pattern("^[0-9]*$")],
@@ -132,6 +132,7 @@ export class RegistrarAlumnoComponent implements OnInit {
 
 
   seleccionarFotoPerfil(event) {
+
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }
