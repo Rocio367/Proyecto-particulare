@@ -20,7 +20,6 @@ export class EditarPerfilAlumnoComponent implements OnInit {
   alumno: Alumno;
   id: number = Number(localStorage.getItem("idUser"));
   doc: Documento;
-  file: File;
   uploadedFiles: any[] = [];
   fotoPerfil:string;
   formDatos = this.form.group({

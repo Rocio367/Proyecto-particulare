@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AlumnnoService } from 'src/app/core/services/alumno/alumnno.service';
 import { ReseniaService } from 'src/app/core/services/resenia/resenia.service';
+import { Documento } from 'src/app/shared/models/documento';
 
 export interface Section {
   name: string;
@@ -15,27 +17,29 @@ export interface Section {
 })
 export class ComentariosParticularComponent implements OnInit {
 
-  id=new Number(localStorage.getItem('idUser'));
   opiniones:any[]=[];
   todas:any[]=[];
+  @Input() id:number;
   mostrarTodas=false;
-  constructor(private reseniaService:ReseniaService,private aRouter: ActivatedRoute) { 
-    this.aRouter.params.subscribe(
-      (params: Params) => {
-        if(params.q){
-          this.id = Number(params.q);
-        }
-      }
-    );
-    this.reseniaService.obtenerReseniasDelParticular(this.id).subscribe(res => {
-      console.log(res)
-      this.todas = res;
-      this.ocultar()
-    })
+  constructor(private reseniaService:ReseniaService,private servicesAlumno:AlumnnoService) { 
+ 
+   
   }
 
   ngOnInit(): void {
+    this.reseniaService.obtenerReseniasDelParticular(this.id).subscribe(res => {
+      res.forEach(e => {
+        this.servicesAlumno.obtenerFotoPerfilPorUsuario(e.usuario.id).subscribe(foto=>{
+          e.fotoPerfil=this.obtenerImagenEnBase64(foto[0]);
+          this.todas.push(e)
+          this.ocultar()
+        })
+
+      });
+    })
   }
+
+ 
 
   ocultar(){
     this.mostrarTodas=false;
@@ -45,5 +49,9 @@ export class ComentariosParticularComponent implements OnInit {
     this.opiniones=this.todas;
     this.mostrarTodas=true;
 
+  }
+
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`;
   }
 }

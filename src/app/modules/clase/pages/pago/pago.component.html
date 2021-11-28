@@ -1,6 +1,6 @@
 <div class='text-center'>
     <p-progressSpinner *ngIf="cargandoPago"></p-progressSpinner>
-    <iframe *ngIf='url' id="inlineFrameExample"
+    <iframe *ngIf='url && !cargandoPago' id="inlineFrameExample"
     title="Inline Frame Example"
     width="300"
     height="200"

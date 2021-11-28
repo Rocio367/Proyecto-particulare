@@ -44,8 +44,8 @@ export class ReunionComponent implements OnInit {
         this.linkClase = environment.frontUrl + "/reunion;q=" + this.id
         //solo pueden entrar usuarios permitidos
         this.claseServices.detalleClase(this.id).subscribe(clase => {
-          console.log(clase)
           this.clase = clase;
+          console.log(this.claseDisponible())
           if (this.claseDisponible()) {
             this.claseServices.participantes(this.id).subscribe(res => {
               this.estado = clase.estado;
@@ -81,14 +81,14 @@ export class ReunionComponent implements OnInit {
   }
 
   claseDisponible() :Boolean{
-    let fechaClase = new Date()
+    let fechaClase = new Date(this.clase.fecha)
     let fechaActual = new Date()
     let fechaFinalizacion = new Date(this.clase.fecha)
     fechaFinalizacion.setHours(fechaClase.getHours() + 1);
     console.log(fechaClase)
     console.log(fechaActual)
-  
-    if ((fechaActual.getTime() <= fechaClase.getTime() && fechaClase.getTime() < fechaFinalizacion.getTime())) {
+    console.log(fechaFinalizacion)
+    if (!(fechaActual.getTime() <= fechaClase.getTime()) && (fechaClase.getTime() < fechaFinalizacion.getTime())) {
       return true;
     }else{
       console.log('no se encontró una clase programa para este horario')

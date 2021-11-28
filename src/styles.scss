@@ -552,6 +552,9 @@ a {
 .p-autocomplete-input.p-inputtext {
     width: 100%;
 }
+.mat-card-avatar {
+    border-radius: 100%;
+}
 @media screen and (max-width: 900px) {
     .mob {
         display: block !important;

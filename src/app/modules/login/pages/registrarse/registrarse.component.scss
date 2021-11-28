@@ -27,4 +27,15 @@
     align-items: center;
 }
 
- 
+.container{
+    min-height: 30vh;
+}
+@media screen and (max-width: 500px) {
+    .contenedor{
+     display: block;
+    }
+    .contenedor-img img{
+        height: auto;
+        width: 100%;
+    }
+}

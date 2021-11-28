@@ -25,15 +25,19 @@ export class ModalResponderComponent implements OnInit {
   idUser=localStorage.getItem('idUser');
   constructor(private router:Router,private servicesParticular: ParticularService, private form: FormBuilder, private _snackBar: MatSnackBar, private mensajeServices: MensajesService, private UsuarioServices: UsuariosService, private aRouter: ActivatedRoute) {
     this.servicesParticular.obtenerTodos().subscribe(res => {
+      console.log(this.idUser)
       res.forEach(element => {
         if(element.usuario.id != this.idUser){
           console.log({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
           this.usuarios.push({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
+          
         }
       });
       this.UsuarioServices.obtenerTodos().subscribe(res2 => {
         res2.forEach(element => {
           if(element.usuario.id != this.idUser){
+            console.log({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
+
             this.usuarios.push({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
           }
         });

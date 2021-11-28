@@ -8,6 +8,7 @@ import { DatosAcademicosService } from 'src/app/core/services/datosAcademicos/da
 import { ClaseService } from 'src/app/core/services/clase/clase.service';
 import { Particular } from './../../../../shared/models/particular';
 import { ParticularService } from 'src/app/core/services/particular/particular.service';
+import { Documento } from 'src/app/shared/models/documento';
 
 
 @Component({
@@ -17,7 +18,8 @@ import { ParticularService } from 'src/app/core/services/particular/particular.s
 })
 export class PerfilParticularComponent implements OnInit {
   particular: Particular;
-  id: number = Number(localStorage.getItem('idUser'));
+  id: number;
+  idParticularUser: number;
   datosAcademicos:DatosAcademicos[]= [];
   clases: Clase[]= [];
   open=false;
@@ -30,6 +32,7 @@ export class PerfilParticularComponent implements OnInit {
 
   });
   documento = "";
+  fotoPerfil:Documento[];
 
   constructor(private aRouter: ActivatedRoute,private router:Router,private form: FormBuilder,public snackBar: MatSnackBar,
     private datosAcademicosService: DatosAcademicosService,private claseService: ClaseService,
@@ -40,9 +43,14 @@ export class PerfilParticularComponent implements OnInit {
             this.id = Number(params.q);
             this.particularService.buscarPorIdProfesor(this.id).subscribe( 
               (particular) => {
+                console.log(particular)
                 this.particular = particular;
-        
-                this.datosAcademicosService.buscarPorIdProfesor(particular.id).subscribe( 
+                this.idParticularUser=particular.id;
+                this.particularService.obtenerFotoPerfilPorUsuario(this.id).subscribe(
+                  (archivos) => (this.fotoPerfil = archivos),
+                  (error) => console.error(error)
+                );
+                this.datosAcademicosService.buscarPorIdProfesor(particular.usuario.id).subscribe( 
                   (datosAcademicos) => {
                     this.datosAcademicos = datosAcademicos;
                     console.error(particular.id);
@@ -52,7 +60,7 @@ export class PerfilParticularComponent implements OnInit {
                 }
                 );
         
-                this.claseService.obtenerClasesPorParticular(particular.id).subscribe( 
+                this.claseService.obtenerClasesPorParticular(particular.usuario.id).subscribe( 
                   (clases) => {
                     this.clases = clases;
                 },
@@ -80,7 +88,9 @@ export class PerfilParticularComponent implements OnInit {
  
   
 
-
+    obtenerImagenEnBase64(documento: Documento): string {
+      return `data:${documento.extension};base64,${documento.datos}`;
+    }
   
 
   oponDoc(doc){

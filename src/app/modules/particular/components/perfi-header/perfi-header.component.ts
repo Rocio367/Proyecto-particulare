@@ -16,7 +16,7 @@ export class PerfiHeaderComponent implements OnInit {
   particular: Particular;
   id: number = Number(localStorage.getItem("idUser"));
   id_profesor: number;
-
+  fotoPerfil:Documento[];
   formDatos = this.form.group({
     localidad: [""],
     experiencia: [""],
@@ -40,7 +40,7 @@ export class PerfiHeaderComponent implements OnInit {
           this.particular.experiencia
         );
         this.particularService.obtenerFotoPerfilPorUsuario(this.id).subscribe(
-          (archivos) => (this.particular.usuario.fotoPerfil = archivos),
+          (archivos) => (this.fotoPerfil = archivos),
           (error) => console.error(error)
         );
         console.error(this.id);

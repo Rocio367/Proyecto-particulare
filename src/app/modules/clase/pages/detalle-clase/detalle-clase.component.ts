@@ -21,71 +21,53 @@ export class DetalleClaseComponent implements OnInit {
   valor: number;
   id: number;
   idUser: number = Number(localStorage.getItem("idUser"));
-  idParticular: string;
+  idParticular: Number;
+  idParticularUsuario: number;
   opiniones: any;
-
-  constructor(private claseService: ClaseService,  private particularServices: ParticularService, private router: Router, private aRouter: ActivatedRoute,) {
+  doc: Documento;
+  fotoPerfil: string;
+  constructor(private claseService: ClaseService, private particularServices: ParticularService, private router: Router, private aRouter: ActivatedRoute,) {
     this.aRouter.params.subscribe(
       (params: Params) => {
         this.id = Number(params.q);
       }
     );
     this.claseService.verDetalle(this.id).subscribe(res => {
-      console.log(res.profesor.id)
-      this.idParticular=res.profesor.id;
+      this.clases = res;
+      console.log(res)
+      this.idParticular = res.profesor.id;
+      this.idParticularUsuario = res.profesor.usuario.id;
       this.registro.descripcion = res.descripcion;
       this.registro.titulo = res.nombre;
       this.registro.materia = res.materia;
       this.registro.stars = Number(res.puntuacion);
       this.registro.type = res.metodo;
       this.registro.nivel = res.nivel;
-      console.log(res);
       this.registro.precio_por_hora = res.precio;
       this.registro.modo = res.modo;
       this.idParticular = res.profesor.id;
-      console.log("soy un id" + this.idParticular);
       this.particularServices.buscarPorIdProfesor(Number(this.idParticular))
-      .subscribe(res2 => {
-        console.log(res2)
-        this.idParticular = res2.usuario.id;
-        this.registro.foto = res2.usuario.fotoPerfil;
-        this.registro.ubicacion = res2.localidad;
-        this.registro.particular = res2.usuario.nombre + ' ' + res.usuario.apellido;
-        console.log ("soy el particular" + this.registro.particular);
-        // this.registro.academico='Titulo academico ';
-        this.registro.experiencia = res2.experiencia;
-        this.registro.telefono = res2.usuario.telefono;
-        this.registro.mail = res2.usuario.email;
+        .subscribe(res2 => {
+          this.registro.foto = res2.usuario.fotoPerfil;
+          this.registro.ubicacion = res2.localidad;
+          this.registro.particular = res2.usuario.nombre + ' ' + res.usuario.apellido;
+          this.registro.experiencia = res2.experiencia;
+          this.registro.telefono = res2.usuario.telefono;
+          this.registro.mail = res2.usuario.email;
+        })
+      this.particularServices.obtenerFotoPerfilPorUsuario(Number(this.idParticular)).subscribe(res => {
+        this.doc = res[0];
+        this.fotoPerfil = this.obtenerImagenEnBase64(this.doc);
+
       })
     })
 
-   
 
-    
+
+
   }
 
   ngOnInit(): void {
-    this.aRouter.params.subscribe(
-      (params: Params) => {
-        this.valor = params.q;
-        this.buscar(1)
-      }
-    );
-
-
-    this.particularServices.buscarPorIdProfesor(Number(this.idParticular)).subscribe(
-      (particular) => {
-        this.particular = particular;
-        this.particularServices.obtenerFotoPerfilPorUsuario(Number(this.idParticular)).subscribe(
-          (archivos) => (this.particular.usuario.fotoPerfil = archivos),
-          (error) => console.error(error)
-        );
-        console.error(Number(this.idParticular));
-      },
-      (error) => {
-        console.error(error);
-      }
-    ); 
 
 
   }
@@ -94,18 +76,8 @@ export class DetalleClaseComponent implements OnInit {
     return `data:${documento.extension};base64,${documento.datos}`;
   }
 
-  buscar(page) {
-    this.claseService.verDetalle(this.valor).subscribe(
-      (clases) => {
-        this.clases = clases;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
 
   contactar() {
-    this.router.navigate(['nuevo-mensaje', { p: this.idParticular }])
+    this.router.navigate(['nuevo-mensaje', { p: this.idParticularUsuario }])
   }
 }

@@ -6,7 +6,7 @@
         <div class="container mt-4" *ngFor='let o of opiniones'>
             <mat-card class="pl-3 pr-3 p-2 card-interna mb-3">
                 <a [href]="'perfil-alumno;q='+o.usuario.id" class='color-f'>
-                    <img style='width: 40px;height: 40px;margin: auto;' mat-card-avatar [src]="o.usuario.fotoPerfil"
+                    <img style='width: 40px;height: 40px;margin: auto;' mat-card-avatar [src]="o.fotoPerfil"
                         width="100" height="100" />
                     <span class="ml-2 letraGrande"> {{o.usuario.nombre}} {{o.usuario.apellido}} </span> </a>
                 <mat-card-actions class="ml-3 mt-3">

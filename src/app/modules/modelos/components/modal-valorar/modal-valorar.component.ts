@@ -29,34 +29,43 @@ export class ModalValorarComponent implements OnInit {
 
   valorar() {
     if (this.comentario != '') {
-      let body = {
-        puntaje: this.estrellas,
-        comentario: this.comentario,
-        id_usuario: Number(localStorage.getItem('idUser')),
-        id_producto: Number(this.config.data.id),
-      }
-      console.log(body)
-      this.reseniaServices.guardar(body).subscribe(res => {
-        this._snackBar.open("Gracias por comentar!", "", {
+      if(this.comentario.length <= 200){
+        let body = {
+          puntaje: this.estrellas,
+          comentario: this.comentario,
+          id_usuario: Number(localStorage.getItem('idUser')),
+          id_producto: Number(this.config.data.id),
+        }
+        console.log(body)
+        this.reseniaServices.guardar(body).subscribe(res => {
+          this._snackBar.open("Gracias por comentar!", "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['green-snackbar']
+          });
+          this.listo.emit('listo')
+          this.dialogRef.close();
+          
+  
+          },
+          (error) => {
+            this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top",
+              panelClass: ['red-snackbar']
+            });
+          }
+          )
+      }else{
+        this._snackBar.open("Comentario demasiado largo", "", {
           duration: 1500,
           horizontalPosition: "end",
           verticalPosition: "top",
-          panelClass: ['green-snackbar']
+          panelClass: ['red-snackbar']
         });
-        this.listo.emit('listo')
-        this.dialogRef.close();
-        
-
-        },
-        (error) => {
-          this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
-            duration: 3000,
-            horizontalPosition: "end",
-            verticalPosition: "top",
-            panelClass: ['red-snackbar']
-          });
-        }
-        )
+      }
     } else {
       this._snackBar.open("Debe escribir un comentario", "", {
         duration: 1500,

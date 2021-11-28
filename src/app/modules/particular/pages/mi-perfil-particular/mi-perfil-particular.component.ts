@@ -69,7 +69,7 @@ export class MiPerfilParticularComponent implements OnInit {
         }
         );
 
-        this.claseService.obtenerClasesPorParticular(particular.id).subscribe( 
+        this.claseService.obtenerClasesPorParticular(particular.usuario.id).subscribe( 
           (clases) => {
             this.clases = clases;
         },

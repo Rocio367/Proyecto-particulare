@@ -116,13 +116,11 @@ export class GraficosGananciasProfesorComponent implements OnInit {
             if (c.producto.clase) {
               this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
             } else {
-              console.log(c.producto)
               this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.producto.costo));
             }
 
           }
         });
-        console.log(labels,data)
         this.g2 = {
           labels: labels,
           datasets: [

@@ -36,14 +36,12 @@ export class PagoComponent implements OnInit {
       tipo: 0,
       fecha: 0
     }
-    this.cargandoPago = false;
 
     this.productosService.iniciarCompra(this.clase.id, pedidoDeCompra)
       .subscribe(
         (procesoDeCompra) => {
           console.log(procesoDeCompra)
           this.procesoDeCompra = procesoDeCompra;
-          //window.open(procesoDeCompra.urlExterna, "_blank");
           this.url = procesoDeCompra.urlExterna;
           this.cargandoPago = false;
         },

@@ -6,8 +6,11 @@
             <p-card>
                 <div class="flex justify-content-evenly">
                     <div class='div-a '>
-                        <div *ngIf="particular">  
-                            <img mat-card-avatar *ngFor="let foto of particular.usuario.fotoPerfil" [src]="obtenerImagenEnBase64(foto)" />
+                        <div *ngIf="fotoPerfil" class='text-center'>  
+                            <a [href]="'perfil-particular;q='+idParticularUsuario">
+                                <img mat-card-avatar [src]="fotoPerfil" />
+
+                            </a>
                         </div>
                         
                         <br>
