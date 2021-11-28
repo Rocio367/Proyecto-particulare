@@ -10,10 +10,8 @@
               <div mat-line><i class="pi pi-briefcase
                   ml-2 mr-2" style="font-size: 1rem"></i>{{item.titulo}}</div>
               <div class='ml-2' mat-line> {{item.fechaInicio}} - {{item.fechaFin}}</div>
-              <img mat-card-avatar *ngFor="let foto of item.usuario.fotoPerfil" [src]="obtenerImagenEnBase64(foto)" >
-
-              <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;"
-                  (click)="oponDoc(item.doc)"> Ver certificado</a></div>
+              <div class='ml-2' *ngIf='item.archivos[0]' mat-line> <a style="color:#35a763;cursor:pointer;"
+                  (click)="oponDoc(item.archivos[0])"> Ver certificado</a></div>
               <div class='actions'>
                 <i class="pi pi-trash fs-21 m-1" (click)='eliminar(item.id)' style="cursor:pointer;color:red"></i>
               </div>

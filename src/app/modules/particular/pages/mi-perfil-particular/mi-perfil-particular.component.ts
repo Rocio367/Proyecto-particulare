@@ -17,7 +17,7 @@ import { Documento } from 'src/app/shared/models/documento';
   styleUrls: ['./mi-perfil-particular.component.scss']
 })
 export class MiPerfilParticularComponent implements OnInit {
-
+  info:string;
   particular: Particular;
   id: number = Number(localStorage.getItem('idUser'));
   minDate=new Date();
@@ -48,11 +48,21 @@ export class MiPerfilParticularComponent implements OnInit {
     this.particularService.buscarPorIdProfesor(this.id).subscribe( 
       (particular) => {
         this.particular = particular;
-
         this.datosAcademicosService.buscarPorIdProfesor(particular.id).subscribe( 
           (datosAcademicos) => {
             this.datosAcademicos = datosAcademicos;
             console.error(particular.id);
+
+            this.datosAcademicos.forEach(dato => {
+              this.datosAcademicosService.obtenerArchivoDatoAcademico(dato.id).subscribe(
+                (documentos) => {
+                  dato.archivos = documentos;
+                },
+                (error) => {
+                  console.error(error);
+                }
+              );
+            });
         },
         (error) => {
           console.error(error);
@@ -182,7 +192,8 @@ export class MiPerfilParticularComponent implements OnInit {
   }
 
   oponDoc(doc){
-    window.open(doc)
+    this.info = this.obtenerImagenEnBase64(doc);
+    window.open(this.info)
   }
 
   onUpload(event) {
