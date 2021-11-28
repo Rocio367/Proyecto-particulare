@@ -17,16 +17,16 @@ import { Documento } from 'src/app/shared/models/documento';
 })
 export class RegistrarAlumnoComponent implements OnInit {
 
-  nivelAcademico=[{name:'Primaria',value:'1'},{name:'Secundaria',value:'2'},{name:'Universitario',value:'3'},{name:'Terciario',value:'4'}]
+  nivelAcademico = [{ name: 'Primaria', value: '1' }, { name: 'Secundaria', value: '2' }, { name: 'Universitario', value: '3' }, { name: 'Terciario', value: '4' }]
 
   uploadedFiles: any[] = [];
-  
+
   formDatos = this.form.group({
     nombre: ["", Validators.required],
     apellido: ["", Validators.required],
-    documento: ['',Validators.pattern("^[0-9]*$")],
+    documento: ['', Validators.pattern("^[0-9]*$")],
     email: ["", [Validators.email, Validators.required]],
-    contrasenia: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],    
+    contrasenia: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],
     telefono: ['', Validators.pattern("^[0-9]*$")],
     fechaNacimiento: ["", Validators.required],
     fotoPerfil: [""],
@@ -43,7 +43,7 @@ export class RegistrarAlumnoComponent implements OnInit {
     private usuariosService: UsuariosService,
     private _snackBar: MatSnackBar,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.formDatos.controls["fotoPerfil"].valueChanges.subscribe((archivo) => {
@@ -56,56 +56,60 @@ export class RegistrarAlumnoComponent implements OnInit {
   }
 
   registrarAlumno() {
-    console.log(this.formDatos);
     if (this.formDatos.valid) {
       let usuario: Usuario;
-      let alumno : Alumno;
+      let alumno: Alumno;
 
 
       this.cargarArchivos(this.uploadedFiles)
         .then((archivos) => {
-            usuario = {
-              nombre: this.formDatos.controls["nombre"].value,
-              apellido: this.formDatos.controls["apellido"].value,
-              documento: this.formDatos.controls["documento"].value,
-              email: this.formDatos.controls["email"].value,
-              contrasenia: this.formDatos.controls["contrasenia"].value,
-              telefono: this.formDatos.controls["telefono"].value,
-              fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
-              fotoPerfil: archivos,
-              id:null,
-              rol:null
-            }
+          usuario = {
+            nombre: this.formDatos.controls["nombre"].value,
+            apellido: this.formDatos.controls["apellido"].value,
+            documento: this.formDatos.controls["documento"].value,
+            email: this.formDatos.controls["email"].value,
+            contrasenia: this.formDatos.controls["contrasenia"].value,
+            telefono: this.formDatos.controls["telefono"].value,
+            fechaNacimiento: this.formDatos.controls["fechaNacimiento"].value,
+            fotoPerfil: archivos,
+            id: null,
+            rol: null
+          }
 
-      alumno = {
-        materiasInteres: this.formDatos.controls["materiasInteres"].value,
-        nivelAcademico:this.formDatos.controls["nivelAcademico"].value,
-        usuario: usuario
-      };
+          alumno = {
+            materiasInteres: this.formDatos.controls["materiasInteres"].value,
+            nivelAcademico: this.formDatos.controls["nivelAcademico"].value,
+            usuario: usuario
+          };
+          console.log(usuario)
+          console.log("la foto es" + alumno.usuario.fotoPerfil);
 
-    //  console.log("la foto es" + alumno.usuario.fotoPerfil);
+           this.usuariosService.registrarAlumno(alumno).subscribe(
+             () => {
+               this._snackBar.open('Perfil creado correctamente', "", {
+                 duration: 3000,
+                 horizontalPosition: "end",
+                 verticalPosition: "top",
+                 panelClass: ["green-snackbar"],
+               });
+               this.router.navigate(["/home"]);
+               return true;
+             },
+             (error) => {
+              this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
+                duration: 1500,
+                horizontalPosition: "end",
+                verticalPosition: "top",
+                panelClass: ["red-snackbar"],
 
-      this.usuariosService.registrarAlumno(alumno).subscribe(
-        () => {
-          this._snackBar.open('Perfil creado correctamente', "", {
-            duration: 3000,
-            horizontalPosition: "end",
-            verticalPosition: "top",
-            panelClass: ["green-snackbar"],
-          });
-          this.router.navigate(["/home"]);
-          return true;
-        },
-        (error) => {
-          //!= 200
-          console.error("Hubo un error", error);
+              });
+             });
         });
-      });
     } else {
       console.error("validacion");
       this.formDatos.markAllAsTouched();
     }
-}
+  }
 
 
 
@@ -133,8 +137,10 @@ export class RegistrarAlumnoComponent implements OnInit {
 
   seleccionarFotoPerfil(event) {
 
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
+    for (let file of event.files) {
+      console.log(file)
+      this.imagenPerfil = file;
+      this.uploadedFiles.push(file);
     }
   }
 
@@ -147,7 +153,7 @@ export class RegistrarAlumnoComponent implements OnInit {
   borrarFotoPerfil(event) {
     this.uploadedFiles.forEach((modelo, indice) => {
       if (modelo == event.file) {
-        this.uploadedFiles.splice(indice,1);
+        this.uploadedFiles.splice(indice, 1);
       }
     });
     console.log("Se elimino un modelo");

@@ -2,30 +2,8 @@
     <div class="contenedor">
         <form [formGroup]="formDatos" class="ui large error form" (ngSubmit)="editarParticular()">
             <div class="grid">
-                <div class="col-4">
-                    <p-card>
-                        <div class="grid">
-                            <div class="col-12">
-                                <img *ngIf="fotoDePerfilCargada(); else imgDefault"
-                                    [src]="imagenPerfil" mat-card-avatar 
-                                    class="mx-auto d-block img-thumbnail redondeo" style="max-height: 200px; max-width: 200px;"/>
-                                <ng-template #imgDefault>
-                                    <img [src]="imagenDefault" 
-                                        mat-card-avatar class="d-block redondeo" width="220" height="200" />
-                                </ng-template>
-                            </div>
-                            <div class="col-12">
-                                <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
-                                        (onSelect)="seleccionarFotoPerfil($event)"
-                                        (onClear)="cancelarSeleccionDeFotoPerfil()"
-                                        (onRemove)="borrarFotoPerfil($event)"
-                            accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
-                                </p-fileUpload>  
-                            </div>
-                        </div>
-                    </p-card>
-                </div>
-                <div class="col-8">
+                <div class="col-12">
+                           
                     <p-card>
                         <div class="fluid grid">
                             <div class="col-12">
@@ -123,6 +101,17 @@
                                 <span class="label">
                                     <textarea id="descripcion" pInputTextarea formControlName="descripcion" class="inputfield w-full"></textarea>
                                 </span>
+                            </div>
+                            <div class="field col-12">
+                                Foto de perfil
+                            </div>
+                            <div class="col-12">
+                                <p-fileUpload class='mt-4' name="demo[]" customUpload="true"
+                                        (onSelect)="seleccionarFotoPerfil($event)"
+                                        (onClear)="cancelarSeleccionDeFotoPerfil()"
+                                        (onRemove)="borrarFotoPerfil($event)"
+                            accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
+                                </p-fileUpload>  
                             </div>
                             <div class="field col-12">
                                 <span class="p-float-label">

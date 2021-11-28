@@ -89,8 +89,13 @@ export class RegistrarParticularComponent implements OnInit {
           return true;
         },
         (error) => {
-          //!= 200
-          console.error("Hubo un error", error);
+          this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ["red-snackbar"],
+
+          });
         });
       });
     } else {
