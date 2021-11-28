@@ -13,7 +13,6 @@ import { MensajePost } from 'src/app/shared/models/mensajePost';
   styleUrls: ['./modal-responder.component.scss']
 })
 export class ModalResponderComponent implements OnInit {
-  text: string;
   formDatos = this.form.group({
     destinatario: ['', Validators.required],
     asunto: ['', Validators.required],
@@ -25,10 +24,8 @@ export class ModalResponderComponent implements OnInit {
   idUser=localStorage.getItem('idUser');
   constructor(private router:Router,private servicesParticular: ParticularService, private form: FormBuilder, private _snackBar: MatSnackBar, private mensajeServices: MensajesService, private UsuarioServices: UsuariosService, private aRouter: ActivatedRoute) {
     this.servicesParticular.obtenerTodos().subscribe(res => {
-      console.log(this.idUser)
       res.forEach(element => {
         if(element.usuario.id != this.idUser){
-          console.log({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
           this.usuarios.push({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
           
         }
@@ -36,8 +33,6 @@ export class ModalResponderComponent implements OnInit {
       this.UsuarioServices.obtenerTodos().subscribe(res2 => {
         res2.forEach(element => {
           if(element.usuario.id != this.idUser){
-            console.log({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
-
             this.usuarios.push({ name: element.usuario.nombre + ' , ' + element.usuario.apellido, code: element.usuario.id })
           }
         });
@@ -63,8 +58,6 @@ export class ModalResponderComponent implements OnInit {
 
         if (params.p) {
           this.servicesParticular.buscarPorIdProfesor(params.p).subscribe(res=>{
-            console.log(res)
-            console.log({ name: res.usuario.nombre + ' , ' + res.usuario.apellido, code: res.usuario.id })
             this.formDatos.controls['asunto'].setValue('Contacto')
             this.formDatos.controls['destinatario'].setValue({ name: res.usuario.nombre + ' , ' + res.usuario.apellido, code: res.usuario.id })
             this.formDatos.get('destinatario').disable();
@@ -77,27 +70,35 @@ export class ModalResponderComponent implements OnInit {
   }
   enviar() {
     if (this.formDatos.valid) {
-      let mensaje = new MensajePost();
-      mensaje.contenido = this.formDatos.get('mensaje').value;
-      mensaje.asunto = this.formDatos.get('asunto').value;
-      mensaje.receptor = (this.formDatos.get('destinatario').value).code;
-      //deberia ser el id del usuario actual
-      mensaje.emisor = Number(this.idUser);
-
-      mensaje.idMensaje = this.idMensaje;
-      console.log(mensaje)
-
-       this.mensajeServices.crearMensaje(mensaje).subscribe(res => {
-         this._snackBar.open("El mensaje fue enviado correctamente", "", {
-           duration: 1500,
-           horizontalPosition: "end",
-           verticalPosition: "top",
-           panelClass: ['green-snackbar']
-         });
-
-         this.router.navigate(['enviados'])
-       })
-      return true;
+       if(this.idUser!=(this.formDatos.get('destinatario').value).code){
+        let mensaje = new MensajePost();
+        mensaje.contenido = this.formDatos.get('mensaje').value;
+        mensaje.asunto = this.formDatos.get('asunto').value;
+        mensaje.receptor = (this.formDatos.get('destinatario').value).code;
+        mensaje.emisor = Number(this.idUser);
+  
+        mensaje.idMensaje = this.idMensaje;
+  
+         this.mensajeServices.crearMensaje(mensaje).subscribe(res => {
+           this._snackBar.open("El mensaje fue enviado correctamente", "", {
+             duration: 1500,
+             horizontalPosition: "end",
+             verticalPosition: "top",
+             panelClass: ['green-snackbar']
+           });
+  
+           this.router.navigate(['enviados'])
+         })
+        return true;
+       }else{
+          this._snackBar.open("No puede enviarse mensajes así mismo", "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['red-snackbar']
+          });
+ 
+       }
     } else {
       this.formDatos.markAllAsTouched();
     }

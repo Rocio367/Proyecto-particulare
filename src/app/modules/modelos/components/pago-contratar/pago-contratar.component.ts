@@ -21,7 +21,6 @@ export class PagoContratarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargandoPago = true;
-    console.log(this.config.data)
     this.productosService.iniciarCompra(this.config.data.ofertaDeResolucion, this.config.data)
       .subscribe((procesoDeCompra) => {
         this.procesoDeCompra = procesoDeCompra;

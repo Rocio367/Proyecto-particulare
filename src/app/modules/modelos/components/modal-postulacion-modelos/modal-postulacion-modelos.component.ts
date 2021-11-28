@@ -66,7 +66,6 @@ export class ModalPostulacionModelosComponent implements OnInit {
           disponibilidad: this.disponibilidad,
 
         };
-         console.log(ofertaDeResolucion)
         this.servicioDeModelo
           .ofertarResolucion(ofertaDeResolucion, this.idModelo)
           .subscribe(

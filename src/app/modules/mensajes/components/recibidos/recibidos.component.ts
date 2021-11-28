@@ -27,7 +27,6 @@ export class RecibidosComponent implements OnInit {
       this.seleccion(null)
       this.recibidos=[]
       res.forEach(element => {
-        console.log(element)
 
         let m = new Mensaje();
         m.id = element.id;
@@ -50,7 +49,6 @@ export class RecibidosComponent implements OnInit {
   delete(m: Mensaje) {
     this.mensajeServices.eliminar(m.id, this.idUser).subscribe(res => {
       this.cargar()
-     console.log(res)
       this._snackBar.open("El mensaje fue eliminado correctamente", "", {
         duration: 1500,
         horizontalPosition: "end",

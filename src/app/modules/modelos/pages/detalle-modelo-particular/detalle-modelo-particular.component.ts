@@ -25,13 +25,13 @@ import { Resolucion } from 'src/app/shared/models/resolucion';
 })
 export class DetalleModeloParticularComponent implements OnInit {
   gallery: imgGallery[] = [];
-  resoluciones: any[] = [{nombre:'Resolución',doc:'https://2.bp.blogspot.com/-9jVR3GjWcn8/UZxBIaDMe7I/AAAAAAAAFuk/62w7V-Xo6Jg/s1600/GEOMETRIA+PLANA+Y+DEL+ESPACIO+PROBLEMAS+RESUELTOS+TIPO+EXAMEN+DE+ADMISION+UNI+(4).gif'}];
+  resoluciones: any[] = [];
   archivo = new Archivo;
   public progress: number;
   archivoForm: FormGroup;
   dataimage: any;
   id:Number ;
-  alumno={nombreCompleto:'Agustin Rios',edad:16}
+  alumno:any;
   @ViewChild('fileInput') fileInput: ElementRef;
   message=false;
 
@@ -65,7 +65,10 @@ export class DetalleModeloParticularComponent implements OnInit {
     .subscribe(
       (modelo) => {
         this.modelo = modelo;
-        console.log(this.modelo);
+        this.alumno={
+          nombre:modelo.usuario.nombre + ' ' + modelo.usuario.apellido,
+          email:modelo.usuario.email
+        }
         this.modeloService.obtenerArchivosPorModelo(modelo)
           .subscribe(
             (archivos) => { 

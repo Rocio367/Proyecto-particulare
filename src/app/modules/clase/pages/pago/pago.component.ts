@@ -40,7 +40,6 @@ export class PagoComponent implements OnInit {
     this.productosService.iniciarCompra(this.clase.id, pedidoDeCompra)
       .subscribe(
         (procesoDeCompra) => {
-          console.log(procesoDeCompra)
           this.procesoDeCompra = procesoDeCompra;
           this.url = procesoDeCompra.urlExterna;
           this.cargandoPago = false;
@@ -50,6 +49,8 @@ export class PagoComponent implements OnInit {
             duration: 1500,
             horizontalPosition: "end",
             verticalPosition: "top",
+            panelClass: ['red-snackbar']
+
           });
           this.dialogRef.close();
           this.cargandoPago = false;

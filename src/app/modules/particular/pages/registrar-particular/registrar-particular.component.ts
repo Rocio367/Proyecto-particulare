@@ -108,7 +108,6 @@ export class RegistrarParticularComponent implements OnInit {
         });
       }
     } else {
-      console.log(this.formDatos);
       this.formDatos.markAllAsTouched();
     }
   }

@@ -43,7 +43,6 @@ export class PerfilParticularComponent implements OnInit {
           this.id = Number(params.q);
           this.particularService.buscarPorIdProfesor(this.id).subscribe(
             (particular) => {
-              console.log(particular)
               this.particular = particular;
               this.idParticularUser = particular.id;
               this.particularService.obtenerFotoPerfilPorUsuario(this.id).subscribe(

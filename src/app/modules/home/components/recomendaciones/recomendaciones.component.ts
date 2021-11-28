@@ -63,14 +63,12 @@ export class RecomendacionesComponent implements OnInit {
        }
       });
       res.modelos.forEach(r => {
-        console.log(r)
         this.modeloService.obtenerArchivosPorModelo(r.modelo)
         .subscribe(
           (archivos) => {
             r.modelo.cant = r.cant;
             r.modelo.foto=this.obtenerImagenEnBase64(archivos[0])
             this.data4.push(r.modelo)
-            console.log(r.modelo)
           },
           (error) => console.error(error)
         )

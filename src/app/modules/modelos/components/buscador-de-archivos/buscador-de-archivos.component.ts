@@ -58,7 +58,6 @@ export class BuscadorDeArchivosComponent implements OnInit {
     this.filtros.text=(this.text)?this.text: '';
     this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : '';
     this.filtros.idUser=Number(this.idUser);
-    console.log(this.filtros)
     this.servicioDeModelos.buscarModelosAlumno(this.filtros).subscribe((modelos) => {
       this.modelos = modelos;
       this.modelos.forEach(modelo => {

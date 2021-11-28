@@ -36,7 +36,6 @@ export class ModalValorarComponent implements OnInit {
           id_usuario: Number(localStorage.getItem('idUser')),
           id_producto: Number(this.config.data.id),
         }
-        console.log(body)
         this.reseniaServices.guardar(body).subscribe(res => {
           this._snackBar.open("Gracias por comentar!", "", {
             duration: 1500,
@@ -78,7 +77,6 @@ export class ModalValorarComponent implements OnInit {
 
   setPuntaje(n) {
     this.estrellas = n.toString();
-    console.log(this.estrellas)
   }
 
 

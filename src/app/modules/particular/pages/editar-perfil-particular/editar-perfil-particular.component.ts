@@ -57,7 +57,6 @@ export class EditarPerfilParticularComponent implements OnInit {
         this.formDatos.controls['documento'].setValue(this.particular.usuario.documento);
         this.formDatos.controls['localidad'].setValue(this.particular.localidad);
         this.formDatos.controls['fechaNacimiento'].setValue(new Date(particular.usuario.fechaNacimiento));
-        console.log(particular);
     },
     (error) => {
       console.error(error);
@@ -67,7 +66,6 @@ export class EditarPerfilParticularComponent implements OnInit {
   }
   
   editarParticular(){
-    console.log(this.formDatos);
     if(this.formDatos.valid) {
       let particular: Particular;
       let user : Usuario;

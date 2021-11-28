@@ -26,7 +26,6 @@ export class ModalAnotarseComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: RegistroCalendar,
     private form: FormBuilder, private router: Router) {
     this.horasDisponibles = data.available_hours;
-    console.log(data.available_hours)
     this.horariosForm = this.form.group({
       desde: ['', [Validators.required, Validators.pattern(Patters.OnlyNumber)]],
       hasta: ['', [Validators.required, Validators.pattern(Patters.OnlyNumber)]],

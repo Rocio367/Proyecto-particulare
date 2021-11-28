@@ -156,7 +156,6 @@ export class ReunionComponent implements OnInit {
 
       });*/
       this.claseServices.claseIniciada(this.id, this.linkClase).subscribe(res => {
-        console.log(res)
       })
     }
 
