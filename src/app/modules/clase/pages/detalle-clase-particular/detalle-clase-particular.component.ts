@@ -4,6 +4,8 @@ import { ClaseService } from 'src/app/core/services/clase/clase.service';
 import { ParticularService } from 'src/app/core/services/particular/particular.service';
 import { ReseniaService } from 'src/app/core/services/resenia/resenia.service';
 import { DetalleClase } from 'src/app/shared/models/detalleClase';
+import { Particular } from "src/app/shared/models/particular";
+import { Documento } from "src/app/shared/models/documento";
 
 @Component({
   selector: 'app-detalle-clase-particular',
@@ -11,10 +13,12 @@ import { DetalleClase } from 'src/app/shared/models/detalleClase';
   styleUrls: ['./detalle-clase-particular.component.scss']
 })
 export class DetalleClaseParticularComponent implements OnInit {
+
+  particular: Particular;
   registro= new DetalleClase();
   alumnos = [];
   id:number;
-  idUser=localStorage.getItem('idUser');
+  idUser: number = Number(localStorage.getItem("idUser"));
   opiniones: any;
   constructor(private reseniaService: ReseniaService,private aRouter:ActivatedRoute,private claseService:ClaseService,private particularServices:ParticularService) { 
     this.aRouter.params.subscribe(
@@ -42,7 +46,7 @@ export class DetalleClaseParticularComponent implements OnInit {
       this.registro.modo=res.modo;
     })
 
-    this.particularServices.buscarPorIdProfesor(Number(this.idUser)).subscribe(res=>{
+    this.particularServices.buscarPorIdProfesor(this.idUser).subscribe(res=>{
       console.log(res)
       this.registro.foto = res.usuario.fotoPerfil;
       this.registro.ubicacion = res.localidad;
@@ -63,7 +67,27 @@ export class DetalleClaseParticularComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.particularServices.buscarPorIdProfesor(this.idUser).subscribe(
+      (particular) => {
+        this.particular = particular;
+        this.particularServices.obtenerFotoPerfilPorUsuario(this.idUser).subscribe(
+          (archivos) => (this.particular.usuario.fotoPerfil = archivos),
+          (error) => console.error(error)
+        );
+        console.error(this.idUser);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`;
+  }
+
    
   }
 
-}
+

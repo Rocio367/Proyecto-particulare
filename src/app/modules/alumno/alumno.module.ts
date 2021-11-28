@@ -17,12 +17,13 @@ import {DividerModule} from 'primeng/divider';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 @NgModule({
   declarations:[RegistrarAlumnoComponent, EditarPerfilAlumnoComponent,PerfilAlumnoComponent, TablaComponent],
   imports:[ CommonModule,SharedModule,RouterModule,AngularMaterialModule, NgxMatFileInputModule, CalendarModule, 
-            InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule, DataViewModule, TableModule,DropdownModule],
+            InputTextModule, InputTextareaModule, CardModule, ButtonModule, DividerModule, DataViewModule, TableModule,DropdownModule,FileUploadModule ],
   exports:[],
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
 })

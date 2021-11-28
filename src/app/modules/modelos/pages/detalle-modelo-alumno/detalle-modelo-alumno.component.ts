@@ -50,6 +50,9 @@ export class DetalleModeloAlumnoComponent implements OnInit {
       },
       (error) => console.error(error)
     );
+  //  console.log("Soy una foto" + this.modeloService.obtenerArchivosPorModelo(this.modelo))
+    
+  //  console.log("Soy el detalle" + this.obtenerImagenEnBase64(this.modelo.archivos[0]))
 
     this.modeloService.obtenerPostulacionesPorModelo(this.id)
     .subscribe(
@@ -61,6 +64,11 @@ export class DetalleModeloAlumnoComponent implements OnInit {
     );
 
     this.idUsuario = localStorage.getItem('idUser');
+
+
+
+    
+
   }
  
   open(n: string) {

@@ -78,7 +78,7 @@ export class EditarPerfilAlumnoComponent implements OnInit {
 
       let alumno: Alumno;
       let user : Usuario;
-
+/*
       user = {
         nombre: this.formDatos.controls["nombre"].value,
         apellido: this.formDatos.controls["apellido"].value,
@@ -96,8 +96,8 @@ export class EditarPerfilAlumnoComponent implements OnInit {
         materiasInteres: this.formDatos.controls["intereses"].value,
         nivelAcademico:this.formDatos.controls["nivelAcademico"].value,
         usuario: user
-      }
-
+      } HACER
+*/
 
       this.alumnoService.editarAlumno(alumno)
       .subscribe(

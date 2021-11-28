@@ -64,6 +64,7 @@ export class RecibidosComponent implements OnInit {
     this.mensaje = m;
   }
 
+  // HACER --> ELIMINADO no se elimina el msj recibido por primera vez.
 
 }
 

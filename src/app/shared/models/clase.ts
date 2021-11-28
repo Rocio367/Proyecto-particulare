@@ -19,5 +19,12 @@ export interface Clase {
     puntuacion?: number,
     id_profesor: number,
     disponibilidad:Date[];
+    profesor?: {
+        id?: number,
+        usuario?: {
+            nombre?: string,
+            apellido?: string,
+        }
+    }
 
 }

@@ -1,9 +1,8 @@
-<form [formGroup]="formDatos" class="ui large error form text-center">
-    <p-card>
-      <div class="flex justify-content-evenly">
-        <div>
-          <!--harcoadeado-->
-          <img mat-card-avatar src="../../../../../assets/img/default-user.png" />
+<div class="p-3 container-color">
+  <p-card>
+    <div class="flex justify-content-evenly">
+      <div>
+          <img mat-card-avatar *ngFor="let foto of particular.usuario.fotoPerfil" [src]="obtenerImagenEnBase64(foto)" />
         </div>
         <p-divider layout="vertical"></p-divider>
         <div>
@@ -17,7 +16,7 @@
     
       </div>
     </p-card>
-</form>
+
 
 <p-card>
   <div class="col-12">
