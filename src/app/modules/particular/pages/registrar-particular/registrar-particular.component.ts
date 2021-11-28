@@ -157,7 +157,7 @@ export class RegistrarParticularComponent implements OnInit {
   obtenerRangoDeEdad() :string {
     var fechaActual = new Date().getFullYear();
     var fechaLimiteMaxima = fechaActual - 18;
-    var fechaLimiteMinima = fechaActual - 100;
+    var fechaLimiteMinima = fechaActual - 70;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
   

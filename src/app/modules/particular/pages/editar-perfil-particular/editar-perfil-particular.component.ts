@@ -56,6 +56,7 @@ export class EditarPerfilParticularComponent implements OnInit {
         this.formDatos.controls['descripcion'].setValue(this.particular.experiencia);
         this.formDatos.controls['documento'].setValue(this.particular.usuario.documento);
         this.formDatos.controls['localidad'].setValue(this.particular.localidad);
+        this.formDatos.controls['fechaNacimiento'].setValue(new Date(particular.usuario.fechaNacimiento));
         console.log(particular);
     },
     (error) => {
@@ -99,7 +100,7 @@ export class EditarPerfilParticularComponent implements OnInit {
       this.particularService.editarProfesor(particular)
       .subscribe(
         () => {
-          this.router.navigate(['/perfil-particular']);
+          this.router.navigate(['/mi-perfil-particular']);
           this.snackBar.open('El usuario fue editado correctamente', "", {
             duration: 1500,
             horizontalPosition: "end",
@@ -137,7 +138,7 @@ export class EditarPerfilParticularComponent implements OnInit {
   obtenerRangoDeEdad() :string {
     var fechaActual = new Date().getFullYear();
     var fechaLimiteMaxima = fechaActual - 18;
-    var fechaLimiteMinima = fechaActual - 100;
+    var fechaLimiteMinima = fechaActual - 70;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
 
@@ -187,5 +188,6 @@ export class EditarPerfilParticularComponent implements OnInit {
   fotoDePerfilCargada() : boolean {
     return this.imagenPerfil && this.imagenPerfil !== '';
   }
+
 
 }

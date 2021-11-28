@@ -66,14 +66,16 @@
                                 <span>La contraseña debe tener 8 caracteres, una mayuscula, una minuscula, un numero y un caracter especial.</span>
                                 </div>
                             </div>
-                            <div class="field col-12">
+                              <div class="field col-12">
                                 <span class="p-float-label">
-                                    <p-calendar    showButtonBar="true"  inputId="fechaNacimiento" formControlName="fechaNacimiento" dateFormat="dd-mm-yy" 
-                                    [showIcon]="true" styleClass="w-full"  
-                                    [monthNavigator]="true" [yearNavigator]="true" [yearRange]="obtenerRangoDeEdad()"></p-calendar>
+                                    <p-calendar showButtonBar="true" inputId="fechaNacimiento"
+                                        formControlName="fechaNacimiento" dateFormat="dd-mm-yy" [showIcon]="true"
+                                        styleClass="w-full" [monthNavigator]="true" [yearNavigator]="true"
+                                        [yearRange]="obtenerRangoDeEdad()"></p-calendar>
                                     <label for="fechaNacimiento">Fecha de nacimiento</label>
                                 </span>
-                                <div *ngIf="formDatos.get('fechaNacimiento').hasError('required') && formDatos.get('fechaNacimiento').touched" class="text-center">
+                                <div *ngIf="formDatos.get('fechaNacimiento').hasError('required') && formDatos.get('fechaNacimiento').touched"
+                                    class="text-center">
                                     <small class="p-error">Este campo es <strong>requerido</strong></small>
                                 </div>
                             </div>

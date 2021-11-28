@@ -153,7 +153,7 @@ export class EditarPerfilAlumnoComponent implements OnInit {
   obtenerRangoDeEdad(): string {
     var fechaActual = new Date().getFullYear();
     var fechaLimiteMaxima = fechaActual - 18;
-    var fechaLimiteMinima = fechaActual - 80;
+    var fechaLimiteMinima = fechaActual - 70;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
 
