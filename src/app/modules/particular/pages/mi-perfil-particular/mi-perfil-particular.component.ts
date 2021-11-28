@@ -180,10 +180,11 @@ export class MiPerfilParticularComponent implements OnInit {
     }
     );
   }
+
   oponDoc(doc){
     window.open(doc)
-
   }
+
   onUpload(event) {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
@@ -226,6 +227,10 @@ export class MiPerfilParticularComponent implements OnInit {
 
   cambiarMinDate(){
     this.minDate =  this.formDatos.controls["desde"].value;
+  }
+  
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`;
   }
   
 }
