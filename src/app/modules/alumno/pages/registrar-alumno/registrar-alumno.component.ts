@@ -27,7 +27,6 @@ export class RegistrarAlumnoComponent implements OnInit {
     documento: ["", Validators.required],
     email: ["", [Validators.email, Validators.required]],
     contrasenia: ['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],    
-    repetirContrasenia: ["", Validators.required],
     telefono: ['', Validators.pattern("^[0-9]*$")],
     fechaNacimiento: ["", Validators.required],
     fotoPerfil: [""],
@@ -57,6 +56,7 @@ export class RegistrarAlumnoComponent implements OnInit {
   }
 
   registrarAlumno() {
+    console.log(this.formDatos);
     if (this.formDatos.valid) {
       let usuario: Usuario;
       let alumno : Alumno;
@@ -102,7 +102,7 @@ export class RegistrarAlumnoComponent implements OnInit {
         });
       });
     } else {
-      console.log(this.formDatos);
+      console.error("validacion");
       this.formDatos.markAllAsTouched();
     }
 }

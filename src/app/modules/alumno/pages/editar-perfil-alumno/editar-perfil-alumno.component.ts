@@ -96,7 +96,7 @@ export class EditarPerfilAlumnoComponent implements OnInit {
         materiasInteres: this.formDatos.controls["intereses"].value,
         nivelAcademico:this.formDatos.controls["nivelAcademico"].value,
         usuario: user
-      }
+      } HACER
 */
 
       this.alumnoService.editarAlumno(alumno)

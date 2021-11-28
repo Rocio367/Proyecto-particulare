@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-lg-12" *ngIf='disponibilidad.length>0'>
+	<div class="col-lg-12">
 		<span class='m-2'>
 			<p-dropdown [options]="meses" [(ngModel)]="SelectedMes" (click)='filter()' optionLabel="name"
 				[filter]="true" filterBy="name" [showClear]="true" placeholder="Mes">

@@ -11,7 +11,7 @@
                                 <div class="field col-12">
                                     <span class="p-float-label">
                                         <input id="nombre" type="text" pInputText formControlName="nombre"
-                                            class="inputfield w-full" />
+                                            class="inputfield w-full" disabled="true" />
                                         <label for="nombre">Nombre</label>
                                     </span>
                                     <div *ngIf="formDatos.get('nombre').hasError('required') && formDatos.get('nombre').touched"
