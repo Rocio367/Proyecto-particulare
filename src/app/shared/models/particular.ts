@@ -5,6 +5,7 @@ export interface Particular {
     experiencia: string,
     video:string,
     localidad:string,
+    idUsuario?:number,
     usuario: {
         nombre: string;
         apellido: string;
