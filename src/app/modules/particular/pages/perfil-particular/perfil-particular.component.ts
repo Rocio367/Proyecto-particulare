@@ -1,4 +1,4 @@
-import { DatosAcademicos} from './../../../../shared/models/datosAcademicos';
+import { DatosAcademicos } from './../../../../shared/models/datosAcademicos';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, PatternValidator } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -20,95 +20,95 @@ export class PerfilParticularComponent implements OnInit {
   particular: Particular;
   id: number;
   idParticularUser: number;
-  datosAcademicos:DatosAcademicos[]= [];
-  clases: Clase[]= [];
-  open=false;
-  openTipo='';
-   formDatos = this.form.group({
+  datosAcademicos: DatosAcademicos[] = [];
+  clases: Clase[] = [];
+  open = false;
+  openTipo = '';
+  formDatos = this.form.group({
     titulo: ['', [Validators.required]],
-    desde: ['',[Validators.required]],
-    hasta: ['',[Validators.required]],
+    desde: ['', [Validators.required]],
+    hasta: ['', [Validators.required]],
     documento: [''],
 
   });
   documento = "";
-  fotoPerfil:Documento[];
+  fotoPerfil: Documento[];
 
-  constructor(private aRouter: ActivatedRoute,private router:Router,private form: FormBuilder,public snackBar: MatSnackBar,
-    private datosAcademicosService: DatosAcademicosService,private claseService: ClaseService,
-    private particularService: ParticularService ) {
-      this.aRouter.params.subscribe(
-        (params: Params) => {
-          if(params.q){
-            this.id = Number(params.q);
-            this.particularService.buscarPorIdProfesor(this.id).subscribe( 
-              (particular) => {
-                console.log(particular)
-                this.particular = particular;
-                this.idParticularUser=particular.id;
-                this.particularService.obtenerFotoPerfilPorUsuario(this.id).subscribe(
-                  (archivos) => (this.fotoPerfil = archivos),
-                  (error) => console.error(error)
-                );
-                this.datosAcademicosService.buscarPorIdProfesor(particular.usuario.id).subscribe( 
-                  (datosAcademicos) => {
-                    this.datosAcademicos = datosAcademicos;
-                    console.error(particular.id);
+  constructor(private aRouter: ActivatedRoute, private router: Router, private form: FormBuilder, public snackBar: MatSnackBar,
+    private datosAcademicosService: DatosAcademicosService, private claseService: ClaseService,
+    private particularService: ParticularService) {
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        if (params.q) {
+          this.id = Number(params.q);
+          this.particularService.buscarPorIdProfesor(this.id).subscribe(
+            (particular) => {
+              console.log(particular)
+              this.particular = particular;
+              this.idParticularUser = particular.id;
+              this.particularService.obtenerFotoPerfilPorUsuario(this.id).subscribe(
+                (archivos) => (this.fotoPerfil = archivos),
+                (error) => console.error(error)
+              );
+              this.datosAcademicosService.buscarPorIdProfesor(particular.usuario.id).subscribe(
+                (datosAcademicos) => {
+                  this.datosAcademicos = datosAcademicos;
+                  console.error(particular.id);
                 },
                 (error) => {
                   console.error(error);
                 }
-                );
-        
-                this.claseService.obtenerClasesPorParticular(particular.usuario.id).subscribe( 
-                  (clases) => {
-                    this.clases = clases;
+              );
+
+              this.claseService.obtenerClasesPorParticular(particular.usuario.id).subscribe(
+                (clases) => {
+                  this.clases = clases;
                 },
                 (error) => {
                   console.error(error);
                 }
-                );
-        
+              );
+
             },
             (error) => {
               console.error(error);
             }
-            );  
-          }
+          );
         }
-      );
-     }
+      }
+    );
+  }
   ngOnInit(): void {
-   
-    
-   
-  
-    }
-   
- 
-  
 
-    obtenerImagenEnBase64(documento: Documento): string {
-      return `data:${documento.extension};base64,${documento.datos}`;
-    }
-  
 
-  oponDoc(doc){
+
+
+  }
+
+
+
+
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`;
+  }
+
+
+  oponDoc(doc) {
     window.open(doc)
 
   }
 
 
-  verDetalle(l:any){
-    let id=l.id;
-    this.router.navigate(['detalle-clase', {  q: id  }])
+  verDetalle(l: any) {
+    let id = l.id;
+    this.router.navigate(['detalle-clase', { q: id }])
   }
 
-  obtenerRangoDeEdad() :string {
+  obtenerRangoDeEdad(): string {
     var fechaActual = new Date().getFullYear();
     var fechaLimiteMaxima = fechaActual;
     var fechaLimiteMinima = fechaActual - 50;
     return fechaLimiteMinima + ":" + fechaLimiteMaxima;
   }
-  
+
 }

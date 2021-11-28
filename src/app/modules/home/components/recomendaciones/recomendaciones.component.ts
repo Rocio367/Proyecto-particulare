@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EstadisticasService } from 'src/app/core/services/estadisticas/estadisticas.service';
+import { ModelosService } from 'src/app/core/services/modelos/modelos.service';
+import { ParticularService } from 'src/app/core/services/particular/particular.service';
 import { Documento } from 'src/app/shared/models/documento';
 
 @Component({
@@ -19,11 +21,14 @@ export class RecomendacionesComponent implements OnInit {
   cardSelected2=0;
   cardSelected3=0;
   cardSelected4=0;
-  constructor(private services: EstadisticasService,private router:Router) {
+  constructor(private services: EstadisticasService,private router:Router,private modeloService:ModelosService,private servicesParticular:ParticularService) {
     this.services.clasesMasPupularesDelMes().subscribe(res => {
       res.forEach(r => {
         r.clases.cant = r.cant;
         if(!r.clases.modelo ){
+          this.servicesParticular.obtenerFotoPerfilPorUsuario(r.clases.profesor.usuario.id).subscribe(res=>{
+              r.clases.foto=this.obtenerImagenEnBase64(res[0]);
+          })
           this.data1.push(r.clases)
         }
       });
@@ -33,10 +38,19 @@ export class RecomendacionesComponent implements OnInit {
     })
     this.services.modelosMasPupularesDelMes().subscribe(res => {
       res.forEach(r => {
+        console.log(r.modelos)
         r.modelos.cant = r.cant;
-        this.data3.push(r.modelos)
-      });
+        this.modeloService.obtenerArchivosPorModelo(r.modelos)
+        .subscribe(
+          (archivos) => {
+            r.modelos.fotos=this.obtenerImagenEnBase64(archivos[0])
+            this.data3.push(r.modelos)
 
+          },
+          (error) => console.error(error)
+        )
+      });
+       console.log(this.data3)
       this.data3 = this.data3.sort(function (a, b) { return a.cant - b.cant });
       this.data3 = this.data3.slice(0, this.cantCards)
     })
@@ -44,13 +58,16 @@ export class RecomendacionesComponent implements OnInit {
     this.services.agregadosRecientemente().subscribe(res => {
       res.clases.forEach(r => {
         if(r.estado== 'DISPONIBLE'){
+          this.servicesParticular.obtenerFotoPerfilPorUsuario(r.clase.profesor.usuario.id).subscribe(res=>{
+            r.foto=this.obtenerImagenEnBase64(res[0]);
+        })
           this.data2.push(r)
-        }
+       }
       });
+      console.log(this.data2)
       this.data4 = res.modelos;
       this.data2 = this.data2.slice(0, this.cantCards)
       this.data4 = this.data4.slice(0, this.cantCards)
-      console.log(this.data4)
     })
   }
   obtenerImagenEnBase64(documento: Documento): string {
@@ -79,6 +96,8 @@ export class RecomendacionesComponent implements OnInit {
   cambiarSlider4(i: number) {
     this.cardSelected4=i;
   }
+
+
 }
 
 

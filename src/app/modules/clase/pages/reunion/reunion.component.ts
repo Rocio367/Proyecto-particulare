@@ -34,7 +34,7 @@ export class ReunionComponent implements OnInit {
   id: number;
   linkClase: string;
   estado: string;
-  mostrar = false;
+  mostrar = true;
   mensaje = ''
   clase: any;
   constructor(private aRouter: ActivatedRoute, public snackBar: MatSnackBar, private router: Router, private claseServices: ClaseService) {
@@ -45,12 +45,12 @@ export class ReunionComponent implements OnInit {
         //solo pueden entrar usuarios permitidos
         this.claseServices.detalleClase(this.id).subscribe(clase => {
           this.clase = clase;
-          console.log(this.claseDisponible())
           if (this.claseDisponible()) {
             this.claseServices.participantes(this.id).subscribe(res => {
               this.estado = clase.estado;
               res.forEach(u => {
                 if (this.rol == 'particular') {
+                  this.mostrar = true;
                   this.snackBar.open('Debe iniciar la clase', "", {
                     duration: 1500,
                     horizontalPosition: "end",
@@ -69,40 +69,49 @@ export class ReunionComponent implements OnInit {
                     this.mensaje = 'La clase ya ha finalizado'
                   }
                 }
-
               });
+
+              alert(this.mostrar)
+              if(this.mostrar){
+                 this.crear();
+              }
             });
           }
 
+        
         })
       }
     );
 
   }
 
-  claseDisponible() :Boolean{
+  claseDisponible(): Boolean {
     let fechaClase = new Date(this.clase.fecha)
-    let fechaActual = new Date()
+    let fechaActual = new Date();
     let fechaFinalizacion = new Date(this.clase.fecha)
     fechaFinalizacion.setHours(fechaClase.getHours() + 1);
-    console.log(fechaClase)
-    console.log(fechaActual)
-    console.log(fechaFinalizacion)
-    if (!(fechaActual.getTime() <= fechaClase.getTime()) && (fechaClase.getTime() < fechaFinalizacion.getTime())) {
+    if ((fechaActual.getTime() >= fechaClase.getTime()) && (fechaActual.getTime() < fechaFinalizacion.getTime())) {
       return true;
-    }else{
-      console.log('no se encontró una clase programa para este horario')
+    } else {
       this.mensaje = 'no se encontró una clase programa para este horario'
+      this.mostrar=false;
       return false;
 
     }
   }
-  ngOnInit(): void { }
+
+  ngOnInit(): void {
+  
+
+  }
 
   ngAfterViewInit(): void {
 
 
 
+  }
+
+  crear() {
     this.room = 'Clase online'; // Set your room name
     this.user = {
       name: localStorage.getItem('name')
@@ -188,8 +197,6 @@ export class ReunionComponent implements OnInit {
 
 
   }
-
-
 
 
   executeCommand(command: string) {

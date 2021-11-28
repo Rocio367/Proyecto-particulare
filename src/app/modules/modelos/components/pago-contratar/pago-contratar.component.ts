@@ -3,21 +3,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProductosService } from 'src/app/core/services/productos/productos.service';
-import { DetalleClase } from 'src/app/shared/models/detalleClase';
 import { ProcesoDeCompra } from 'src/app/shared/models/proceso-de-compra';
 
 @Component({
-  selector: 'app-pago',
-  templateUrl: './pago.component.html',
-  styleUrls: ['./pago.component.scss']
+  selector: 'app-pago-contratar',
+  templateUrl: './pago-contratar.component.html',
+  styleUrls: ['./pago-contratar.component.scss']
 })
-export class PagoComponent implements OnInit {
-
+export class PagoContratarComponent implements OnInit {
   cargandoPago: boolean;
   procesoDeCompra: ProcesoDeCompra;
-  private clase: DetalleClase;
-  private detalles: any[];
-  private idUsuario;
   url: string;
   constructor(private _snackBar: MatSnackBar, private productosService: ProductosService,
     public config: DynamicDialogConfig,
@@ -26,40 +21,28 @@ export class PagoComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargandoPago = true;
-    this.clase = this.config.data.clase;
-    this.idUsuario = this.config.data.idUsuario;
-    this.detalles = this.config.data.detalles;
-
-    const pedidoDeCompra = {
-      idUsuario: this.idUsuario,
-      ids: this.detalles,
-      tipo: 0,
-      fecha: 0
-    }
-
-    this.productosService.iniciarCompra(this.clase.id, pedidoDeCompra)
-      .subscribe(
-        (procesoDeCompra) => {
-          console.log(procesoDeCompra)
-          this.procesoDeCompra = procesoDeCompra;
+    console.log(this.config.data)
+    this.productosService.iniciarCompra(this.config.data.ofertaDeResolucion, this.config.data)
+      .subscribe((procesoDeCompra) => {
+        this.procesoDeCompra = procesoDeCompra;
           this.url = procesoDeCompra.urlExterna;
           this.cargandoPago = false;
-        },
-        (error) => {
+      },
+        err => {
           this._snackBar.open(localStorage.getItem('errorMensaje'), "", {
-            duration: 1500,
+            duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top",
+            panelClass: ['red-snackbar']
           });
-          this.dialogRef.close();
           this.cargandoPago = false;
-
-          console.log(error);
-        }
-      );
+        })
   }
-
   transform(url: string): any {
     return this._domSanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
+
+
+
+

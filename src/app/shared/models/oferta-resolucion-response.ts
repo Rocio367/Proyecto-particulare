@@ -1,9 +1,12 @@
+import { ExecOptionsWithStringEncoding } from "child_process";
 import { TipoDeDemora } from "./tipo-de-demora";
 import { TipoDeResolucion } from "./tipo-de-resolucion";
 
 export interface OfertaDeResolucionResponse {
     id: Number,
     usuario: {
+        nombre?:string,
+        apellido?:string;
         id: Number
     },
     modelo: {
@@ -12,5 +15,7 @@ export interface OfertaDeResolucionResponse {
     costo: Number,
     demora: TipoDeDemora,
     tipo: TipoDeResolucion,
-    estado: string
+    estado: string,
+    foto?:string;
+    valoracion?:number;
 }
