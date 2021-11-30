@@ -34,7 +34,7 @@
                         <small class="p-error">Este campo es <strong>requerido</strong></small>
                     </div>
                     <span class="p-float-label w-80 mt-4">
-                        <p-editor [(ngModel)]="text" formControlName="mensaje" [style]="{'height':'320px'}"></p-editor>
+                        <p-editor  formControlName="mensaje" [style]="{'height':'320px'}"></p-editor>
 
                     </span>
                     <div *ngIf="formDatos.get('mensaje').hasError('required') && formDatos.get('mensaje').touched"

@@ -67,7 +67,10 @@ ol.carousel-indicators {
     left: 10px;
     color: white;
 }
-
+.img{
+    object-fit: cover;
+    width: 100%; 
+}
 .grid-item {
     position: relative;
     margin-bottom: 10px;
@@ -80,7 +83,10 @@ ol.carousel-indicators {
     border-radius: 10px;
     width: 100%;
 }
-
+.mat-card-avatar{
+    width: 100px;
+    height: 100px;
+}
 .grid-item:before {
     border-radius: 10px;
     content: '';

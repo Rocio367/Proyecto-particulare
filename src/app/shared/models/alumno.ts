@@ -1,6 +1,9 @@
+import { Documento } from "./documento";
+
 export interface Alumno {
     materiasInteres: string;
     nivelAcademico: string;
+    idUser?: number;
     usuario: {
         nombre: string;
         apellido: string;
@@ -9,7 +12,7 @@ export interface Alumno {
         contrasenia: string;
         telefono: number;
         fechaNacimiento: String;
-        fotoPerfil: string;
+        fotoPerfil: Documento[];
     },
 
 }

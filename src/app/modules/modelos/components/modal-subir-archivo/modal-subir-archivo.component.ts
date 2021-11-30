@@ -31,7 +31,6 @@ export class ModalSubirArchivoComponent implements OnInit {
   idUser:any;
   constructor(private form: FormBuilder,public snackBar: MatSnackBar,private router:Router, private modelosService: ModelosService, private institucionService: InstitucionService, private carreraService: CarreraService) {
     this.idUser=localStorage.getItem('idUser')
-    console.log(this.idUser)
   }
 
   ngOnInit(): void {
@@ -83,7 +82,6 @@ export class ModalSubirArchivoComponent implements OnInit {
   }
 
   confirmar() {
-    console.log(this.formDatos.valid)
     if(this.formDatos.valid) {
 
       let modelo: Modelo;
@@ -101,7 +99,6 @@ export class ModalSubirArchivoComponent implements OnInit {
               usuario: Number(this.idUser)
             }
 
-            console.log(modelo);
 
             this.modelosService.subirModelo(modelo)
               .subscribe(

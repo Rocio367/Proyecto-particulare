@@ -14,6 +14,7 @@ import { Particular } from "./../../../../shared/models/particular";
 import { ParticularService } from "src/app/core/services/particular/particular.service";
 import { Alumno } from "src/app/shared/models/alumno";
 import { Router } from "@angular/router";
+import { Documento } from "src/app/shared/models/documento";
 
 export interface Section {
   name: string;
@@ -47,23 +48,31 @@ export class PerfilAlumnoComponent implements OnInit {
     private form: FormBuilder
   ) {}
 
+  ngOnInit(): void {
 
-  
-  ngOnInit() {
-    this.alumnoService.buscarPorId(this.id).subscribe(
+    this.alumnoService.buscarPorId(this.id)
+    .subscribe(
       (alumno) => {
-        this.alumno = alumno;
-         console.log(alumno)
+      this.alumno = alumno;
+      this.alumnoService.obtenerFotoPerfilPorUsuario(this.id)
+          .subscribe(
+            (archivos) => this.alumno.usuario.fotoPerfil = archivos,
+            (error) => console.error(error)
+          )
       },
-      (error) => {
-        console.error(error);
-      }
+      (error) => console.error(error)
     );
 
-  
-  
+   // console.log("Soy una foto" + this.alumnoService.obtenerFotoPerfilPorUsuario(this.id))
+
   }
 
- 
 
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`;
+  }
+
+  iniciar() {
+    this.router.navigate(["reunion", { q: 222 }]);
+  }
 }

@@ -23,7 +23,6 @@ export class CardsProfesorComponent implements OnInit {
     
   }
   ngOnInit(): void {
-    console.log(this.data)
   }
 
 }

@@ -35,10 +35,11 @@
           </ng-template>
 
           <ng-template let-item pTemplate="gridItem">
-            <mat-card class='card-interna' (click)='ver(item)' style='width: 90%;margin:10px auto;'>
-              <div class="product-item">
+            <mat-card  *ngIf='item.foto' class='card-interna' (click)='ver(item)' style='width: 90%;margin:10px auto;'>
+              <div class="product-item" >
                 <div class="product-list-img">
-                  <img src="/assets/img/perfil.png" mat-card-avatar>
+
+                  <img [src]="item.foto" mat-card-avatar>
 
                 </div>
                 <div class="product-list-detail">

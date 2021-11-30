@@ -1,8 +1,11 @@
+import { Documento } from "./documento";
+
 export interface Particular {
     id: number,
     experiencia: string,
     video:string,
     localidad:string,
+    idUsuario?:number,
     usuario: {
         nombre: string;
         apellido: string;
@@ -11,6 +14,6 @@ export interface Particular {
         contrasenia: string;
         telefono: number;
         fechaNacimiento: String;
-        fotoPerfil: string;
+        fotoPerfil: Documento[];
     },
 }

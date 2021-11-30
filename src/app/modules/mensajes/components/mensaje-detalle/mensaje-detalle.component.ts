@@ -106,7 +106,6 @@ export class MensajeDetalleComponent implements OnInit {
  
 
   verContenido(m) {
-    console.log('ver contenido', m)
     let element = document.getElementById(m.id);
 
 

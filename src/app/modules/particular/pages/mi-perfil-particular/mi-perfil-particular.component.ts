@@ -17,9 +17,10 @@ import { Documento } from 'src/app/shared/models/documento';
   styleUrls: ['./mi-perfil-particular.component.scss']
 })
 export class MiPerfilParticularComponent implements OnInit {
-
+  info:string;
   particular: Particular;
   id: number = Number(localStorage.getItem('idUser'));
+  minDate=new Date();
   datosAcademicos:DatosAcademicos[]= [];
   clases: Clase[]= [];
   open=false;
@@ -47,18 +48,28 @@ export class MiPerfilParticularComponent implements OnInit {
     this.particularService.buscarPorIdProfesor(this.id).subscribe( 
       (particular) => {
         this.particular = particular;
-
         this.datosAcademicosService.buscarPorIdProfesor(particular.id).subscribe( 
           (datosAcademicos) => {
             this.datosAcademicos = datosAcademicos;
             console.error(particular.id);
+
+            this.datosAcademicos.forEach(dato => {
+              this.datosAcademicosService.obtenerArchivoDatoAcademico(dato.id).subscribe(
+                (documentos) => {
+                  dato.archivos = documentos;
+                },
+                (error) => {
+                  console.error(error);
+                }
+              );
+            });
         },
         (error) => {
           console.error(error);
         }
         );
 
-        this.claseService.obtenerClasesPorParticular(particular.id).subscribe( 
+        this.claseService.obtenerClasesPorParticular(particular.usuario.id).subscribe( 
           (clases) => {
             this.clases = clases;
         },
@@ -179,10 +190,12 @@ export class MiPerfilParticularComponent implements OnInit {
     }
     );
   }
-  oponDoc(doc){
-    window.open(doc)
 
+  oponDoc(doc){
+    this.info = this.obtenerImagenEnBase64(doc);
+    window.open(this.info)
   }
+
   onUpload(event) {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
@@ -220,6 +233,15 @@ export class MiPerfilParticularComponent implements OnInit {
         this.uploadedFiles.push(file);
     }
     console.log("Se selecciono uno o mas documentos");
+  }
+
+
+  cambiarMinDate(){
+    this.minDate =  this.formDatos.controls["desde"].value;
+  }
+  
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`;
   }
   
 }

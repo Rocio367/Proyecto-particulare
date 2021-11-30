@@ -75,8 +75,8 @@ export class ModelosService {
     return this.http.get<TipoDeDemora[]>(`${environment.backUrl}/v1/demoras`);
   }
 
-  obtenerModeloPorId(idModelo: Number): Observable<Modelo> {
-    return this.http.get<Modelo>(`${environment.backUrl}/v1/modelos/${idModelo}`);
+  obtenerModeloPorId(idModelo: Number): Observable<any> {
+    return this.http.get<any>(`${environment.backUrl}/v1/modelos/${idModelo}`);
   }
 
   resolverModelo(solucionDeModeloRequest: SolucionDeModeloRequest): Observable<Resolucion> {

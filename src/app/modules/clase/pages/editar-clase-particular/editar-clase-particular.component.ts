@@ -50,6 +50,14 @@ export class EditarClaseParticularComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // HACER
+    this.formDatos.get('materia').disable();
+    this.formDatos.get('nivel').disable();
+    this.formDatos.get('modo').disable();
+    this.formDatos.get('metodo').disable();
+    this.formDatos.get('precio').disable();
+    this.formDatos.get('cupo').disable();
+
     this.claseService.obtenerMaterias()
       .subscribe(
         (materias) => {

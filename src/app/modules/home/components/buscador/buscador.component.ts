@@ -22,7 +22,6 @@ export class BuscadorComponent implements OnInit {
   results: string[];
 
   search(event) {
-    console.log(event)
      this.results=this.results.filter(d=>d.includes(event))
   }
   buscar() {

@@ -33,7 +33,6 @@ export class MisModelosParticularComponent implements OnInit {
 
   constructor(private primengConfig: PrimeNGConfig, private router: Router, private servicioDeModelos: ModelosService) {
     this.idUser=localStorage.getItem('idUser');
-    console.log(this.idUser)
     this.primengConfig.ripple = true;
   }
 
@@ -61,7 +60,6 @@ export class MisModelosParticularComponent implements OnInit {
     this.filtros.text=(this.text)?this.text: '';
     this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : '';
     this.filtros.idUser=Number(this.idUser);
-    console.log(this.filtros)
     this.servicioDeModelos.buscarMisModelosParticular(this.filtros).subscribe((modelos) => {
       this.modelos = modelos;
       this.modelos.forEach(modelo => {

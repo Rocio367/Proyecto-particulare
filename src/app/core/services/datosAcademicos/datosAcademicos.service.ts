@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
+import { Documento } from 'src/app/shared/models/documento';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class DatosAcademicosService {
   constructor(private http: HttpClient) {
   }
@@ -26,4 +28,7 @@ export class DatosAcademicosService {
   borrarPorIdProfesor(idDatoAcademico: Number): Observable<void>{
     return this.http.get<void>(`${environment.backUrl}/v1/profesor/eliminarDatoAacademico/${idDatoAcademico}`);
   }
-}
+
+  obtenerArchivoDatoAcademico(idDatoAcademico: Number): Observable<Documento[]>{
+    return this.http.get<Documento[]>(`${environment.backUrl}/v1/profesor/archivoDatoAcademico/${idDatoAcademico}`);
+  }}

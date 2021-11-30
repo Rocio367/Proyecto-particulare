@@ -1,4 +1,4 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 declare var $: any;
 
@@ -9,13 +9,15 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
 
-  rol:string
+  rol: string
   constructor() {
-    this.rol=localStorage.getItem('rol')
+    this.rol = localStorage.getItem('rol')
+   
   }
 
 
   ngOnInit(): void {
+   
   }
 
 }

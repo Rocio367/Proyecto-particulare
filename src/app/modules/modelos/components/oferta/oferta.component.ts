@@ -10,7 +10,6 @@ export class Oferta {
     ofertaDeResolucion: OfertaDeResolucionResponse;
 
     public estaPendienteDeSerAceptada(): boolean {
-        console.log(this.ofertaDeResolucion);
         return this.tieneEstadoIgual('PENDIENTE_DE_RESPUESTA');
     }
 

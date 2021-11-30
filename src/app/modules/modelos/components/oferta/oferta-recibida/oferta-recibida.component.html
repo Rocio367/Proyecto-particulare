@@ -1,22 +1,19 @@
 <div class="product-item" *ngIf="comprando == false; else cargando">
+   
     <div class="product-list-img">
-        <img mat-card-avatar src="../../../../../assets/img/default-user.png" style=" width:100%;">
+        <img mat-card-avatar [src]="this.ofertaDeResolucion.foto" style=" width:100%;">
     </div>
     <div class="product-list-detail">
-        <h5 class="p-mb-2 color-f">Nombre del particular</h5>
+        <h5 class="p-mb-2 color-f">{{ofertaDeResolucion.usuario.nombre}} {{ofertaDeResolucion.usuario.apellido}}</h5>
         <h4 class='fs-16 mb-3'>Tipo: <span>{{ ofertaDeResolucion.tipo.descripcion}}</span></h4>
         <h4 class='fs-16 mb-3'>Costo: <span>{{ ofertaDeResolucion.costo}}</span></h4>
         <h4 class='fs-16 mb-3'>Demora: <span>{{ ofertaDeResolucion.demora.descripcion}}</span></h4>
     </div>
     <div class="product-list-action">
         <div class='stars'>
-            <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 1)?"amarillo":""'></i>
-            <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 2)?"amarillo":""'></i>
-            <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 3)?"amarillo":""'></i>
-            <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 4)?"amarillo":""'></i>
-            <i class="pi pi-star fs-21" [ngClass]='(item.valoracion >= 5)?"amarillo":""'></i>
-            <span class='subtitle'>
-                {{item.valoracion}} / 5
+            <p-rating [ngModel]="ofertaDeResolucion.valoracion" [cancel]="false" disabled="true" stars="5"></p-rating>
+            <span class='subtitle mb-5 text-center'>
+                {{ofertaDeResolucion.valoracion}} / 5
             </span>
         </div>
         <div class='actions' style='text-align: end;'>
@@ -27,18 +24,19 @@
 <br>
 <div class="" *ngIf='ofertaDeResolucion.tipo.id==2 && mostrarOpciones'>
 
-   <div class="row">
-    <div class=" col-lg-12 text-center">
-        <app-calendar-seleccion   (addSelected)="addSelected($event)" [id]="ofertaDeResolucion.modelo.id"></app-calendar-seleccion>
+    <div class="row">
+        <div class=" col-lg-12 text-center">
+            <app-calendar-seleccion (addSelected)="addSelected($event)" [id]="ofertaDeResolucion.modelo.id">
+            </app-calendar-seleccion>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-12 w-100 text-center">
-        <button pButton class='mt-2' type="button" label="Confirmar y pagar" (click)='confirmar()'></button>
-        <button pButton class='mt-2' type="button" label="Cancelar" (click)='cancelar()'></button>
+    <div class="row">
+        <div class="col-lg-12 w-100 text-center">
+            <button pButton class='mt-2' type="button" label="Confirmar y pagar" (click)='confirmar()'></button>
+            <button pButton class='mt-2' type="button" label="Cancelar" (click)='cancelar()'></button>
 
+        </div>
     </div>
-   </div>
 
 </div>
 <ng-template #cargando>

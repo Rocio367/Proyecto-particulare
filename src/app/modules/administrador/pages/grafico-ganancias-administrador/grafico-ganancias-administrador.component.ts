@@ -281,7 +281,6 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
         this.mensaje5 = false;
 
         res.forEach(c => {
-          console.log(c.monto)
           let index = labels.indexOf(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
           if (index != -1) {
             data[index] = data[index] + this.sacarPorcentaje(c.monto);
@@ -294,7 +293,6 @@ export class GraficoGananciasAdministradorComponent implements OnInit {
 
           }
         });
-       console.log(labels,data)
         this.g5 = {
           labels: labels,
           datasets: [

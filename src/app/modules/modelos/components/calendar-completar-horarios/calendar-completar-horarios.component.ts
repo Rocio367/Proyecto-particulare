@@ -68,7 +68,6 @@ export class CalendarCompletarHorariosComponent implements OnInit {
               this.disponibilidad.push(nuevo)
               this.dates = undefined
               this.addDisponibilidad.emit(this.disponibilidad)
-              console.log(this.disponibilidad)
               this.snackBar.open('Disponibilidad agregada correctamente', "", {
                 duration: 1500,
                 horizontalPosition: "end",

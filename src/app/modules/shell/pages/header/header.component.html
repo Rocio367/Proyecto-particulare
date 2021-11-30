@@ -1,13 +1,15 @@
 
 
 <p-menubar class='menu' [model]="items">
+  
   <ng-template pTemplate="start">
     <span class="logo">
       <a href="/"><img src="/assets/img/logoAnteojoREDONDO.png" style="height: 55px;" alt="logo"></a>
     </span>
+    
   </ng-template>
 
-  <div>
+  <div style='text-align: center;'>
     <span class="p-input-icon-right m-2">
       <i class="pi pi-search" (click)='buscar()'></i>
       <input type="text"   class="p-inputtext-sm w-100" pInputText placeholder="Buscar clases.." [(ngModel)]="buscarText" />

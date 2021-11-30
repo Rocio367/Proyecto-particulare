@@ -1,28 +1,26 @@
-<form [formGroup]="formDatos" class="ui large error form text-center">
-    <p-card>
-      <div class="flex justify-content-evenly">
-        <div>
-          <!--harcoadeado-->
-          <img mat-card-avatar src="../../../../../assets/img/default-user.png" />
-        </div>
-        <p-divider layout="vertical"></p-divider>
-        <div>
-          <br>
-          <h4>{{particular.usuario.nombre}} {{particular.usuario.apellido}}</h4>
-          <div class="field col-12">
-            <h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>
-            <h4 class='fs-16 mb-3'>Localidad:{{particular.localidad}}</h4>
-          </div>
-        </div>
-    
+  <p-card>
+    <div class="flex justify-content-evenly">
+      <div *ngIf='fotoPerfil'>
+        <img mat-card-avatar *ngFor="let foto of fotoPerfil" [src]="obtenerImagenEnBase64(foto)" />
       </div>
-    </p-card>
-</form>
+      <p-divider layout="vertical"></p-divider>
+      <div>
+        <br>
+        <h4 *ngIf='particular'>{{particular.usuario.nombre}} {{particular.usuario.apellido}}</h4>
+        <!--<h4 class='fs-16 mb-3'>Edad: <span> 32</span></h4>-->
+        <h4 class='fs-16 mb-3' *ngIf='particular'>Localidad:{{particular.localidad}}</h4>
+        <h4 class='fs-16 mb-3' *ngIf='particular'>Email:{{particular.usuario.email}}</h4>
+        <h4 class='fs-16 mb-3' *ngIf='particular'>Telefono:{{particular.usuario.telefono}}</h4>
+      </div>
 
-<p-card>
-  <div class="col-12">
-    <h3>Descripción</h3>
-    <hr/>
-    <h6>{{particular.experiencia}}</h6>
-  </div>
-</p-card>
+    </div>
+  </p-card>
+
+
+  <p-card>
+    <div class="col-12">
+      <h3>Descripción</h3>
+      <hr />
+      <h6 *ngIf='particular'>{{particular.experiencia}}</h6>
+    </div>
+  </p-card>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AlumnnoService } from 'src/app/core/services/alumno/alumnno.service';
 import { ReseniaService } from 'src/app/core/services/resenia/resenia.service';
+import { Documento } from 'src/app/shared/models/documento';
 
 @Component({
   selector: 'app-comentarios',
@@ -12,16 +14,21 @@ export class ComentariosComponent implements OnInit {
   opiniones:any[]=[];
   todas:any[]=[];
   mostrarTodas=false;
-  constructor(private reseniaService:ReseniaService,private aRouter: ActivatedRoute) { 
+  constructor(private reseniaService:ReseniaService,private aRouter: ActivatedRoute,private servicesAlumno:AlumnnoService) { 
     this.aRouter.params.subscribe(
       (params: Params) => {
         this.id = Number(params.q);
       }
     );
     this.reseniaService.obtenerResenias(this.id).subscribe(res => {
-      console.log(res)
-      this.todas = res;
-      this.ocultar()
+      res.forEach(e => {
+        this.servicesAlumno.obtenerFotoPerfilPorUsuario(e.usuario.id).subscribe(foto=>{
+          e.fotoPerfil=this.obtenerImagenEnBase64(foto[0]);
+          this.todas.push(e)
+          this.ocultar()
+        })
+
+      });
     })
   }
 
@@ -36,5 +43,9 @@ export class ComentariosComponent implements OnInit {
     this.opiniones=this.todas;
     this.mostrarTodas=true;
 
+  }
+
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`;
   }
 }

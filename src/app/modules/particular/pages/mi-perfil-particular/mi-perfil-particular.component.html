@@ -10,18 +10,17 @@
               <div mat-line><i class="pi pi-briefcase
                   ml-2 mr-2" style="font-size: 1rem"></i>{{item.titulo}}</div>
               <div class='ml-2' mat-line> {{item.fechaInicio}} - {{item.fechaFin}}</div>
-              <div class='ml-2' *ngIf='item.doc' mat-line> <a style="color:#35a763;cursor:pointer;"
-                  (click)="oponDoc(item.doc)"> Ver certificado</a></div>
+              <div class='ml-2' *ngIf='item.archivos[0]' mat-line> <a style="color:#35a763;cursor:pointer;"
+                  (click)="oponDoc(item.archivos[0])"> Ver certificado</a></div>
               <div class='actions'>
                 <i class="pi pi-trash fs-21 m-1" (click)='eliminar(item.id)' style="cursor:pointer;color:red"></i>
               </div>
-  
             </mat-card>
           </mat-list-item>
   
           <form [formGroup]="formDatos" class="ui large error form text-center">
   
-            <div class="grid container">
+            <div class="grid ">
               <div class="col-md-6">
                 <br>
                 <div class="field col-12">
@@ -39,7 +38,8 @@
                   <span class="p-float-label">
                     <p-calendar showButtonBar="true" inputId="fechaDesde" formControlName="desde" dateFormat="dd-mm-yy"
                       [showIcon]="true" styleClass="w-full" [monthNavigator]="true" [yearNavigator]="true"
-                      [yearRange]="obtenerRangoDeEdad()"></p-calendar>
+                      [yearRange]="obtenerRangoDeEdad()" (onSelect)='cambiarMinDate()'
+                      ></p-calendar>
                     <label for="fechaNacimiento">Desde</label>
                   </span>
                   <div *ngIf="formDatos.get('desde').hasError('required') && formDatos.get('desde').touched"
@@ -56,7 +56,7 @@
                   <span class="p-float-label">
                     <p-calendar showButtonBar="true" inputId="fechaHasta" formControlName="hasta" dateFormat="dd-mm-yy"
                       [showIcon]="true" styleClass="w-full" [monthNavigator]="true" [yearNavigator]="true"
-                      [yearRange]="obtenerRangoDeEdad()"></p-calendar>
+                      [yearRange]="obtenerRangoDeEdad()"  [minDate]='minDate'></p-calendar>
                     <label for="fechaNacimiento">Hasta</label>
                   </span>
                   <div *ngIf="formDatos.get('hasta').hasError('required') && formDatos.get('hasta').touched"
@@ -71,7 +71,7 @@
                       (onSelect)="seleccionarDocumento($event)"
                       (onClear)="cancelarSeleccionDeDocumentos()"
                       (onRemove)="borrarDocumento($event)"
-                      multiple="multiple" accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
+                       accept="image/*" chooseLabel="Elegir" [showUploadButton]=false>
                   </p-fileUpload>
               </div>
               </div>
@@ -86,7 +86,7 @@
   
   
   
-    <p-card styleClass="mt-3">
+    <p-card styleClass="mt-3" *ngIf='clases'>
       <p-table [scrollable]="true" scrollwidth="700px" [value]="clases">
         <ng-template pTemplate="caption">
           <div>

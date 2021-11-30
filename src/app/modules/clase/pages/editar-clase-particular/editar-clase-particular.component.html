@@ -6,9 +6,9 @@
                     <h3>Editar clase</h3>
                     <form [formGroup]="formDatos" class="ui large error form">
                         <div class="grid container">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <br />
-                                <div class="field col-12">
+                                <div class="field col-6">
                                     <span class="p-float-label">
                                         <input id="nombre" type="text" pInputText formControlName="nombre"
                                             class="inputfield w-full" />
@@ -20,33 +20,9 @@
                                     </div>
                                 </div>
 
-                                <div class="field col-12">
-                                    <span>
-                                        <p-dropdown id="nivel" [autoDisplayFirst]="false" [options]="_niveles"
-                                            placeholder="Nivel" class="w-100" formControlName="nivel"
-                                            optionLabel="descripcion" optionValue="id">
-                                        </p-dropdown>
-                                    </span>
-                                    <div *ngIf="formDatos.get('nivel').hasError('required') && formDatos.get('nivel').touched"
-                                        class="text-center">
-                                        <small class="p-error">Este campo es <strong>requerido</strong></small>
-                                    </div>
-                                </div>
-                                <div class="field col-12">
-                                    <span class="p-float-label">
-                                        <p-dropdown id="modo"  optionDisabled="false" [autoDisplayFirst]="false" [options]="modo"
-                                            placeholder="Modo" class="w-100" formControlName="modo" optionLabel="name"
-                                            optionValue="value" (onChange)=' esGrupal()'>
-
-                                        </p-dropdown>
-                                    </span>
-                                    <div *ngIf="formDatos.get('modo').hasError('required') && formDatos.get('modo').touched"
-                                        class="text-center">
-                                        <small class="p-error">Este campo es <strong>requerido</strong></small>
-                                    </div>
-                                </div>
-
-                                <div class="field col-12">
+                          
+                           
+                                <div class="field col-6">
                                     <span class="p-float-label">
                                         <input disabled id="precio" type="number" pInputText formControlName="precio"
                                             class="inputfield w-full" />
@@ -65,65 +41,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <br />
-
-                                <div class="field col-12">
-                                    <span class="p-float-label">
-                                        <p-dropdown id="materia" [autoDisplayFirst]="false" [options]="_materias"
-                                            placeholder="Materia" class="w-100" formControlName="materia"
-                                            optionLabel="nombre" optionValue="id">
-                                        </p-dropdown>
-                                    </span>
-                                    <div *ngIf="
-                        formDatos.get('materia').hasError('required') &&
-                        formDatos.get('materia').touched
-                      " class="text-center">
-                                        <small class="p-error">Este campo es <strong>requerido</strong></small>
-                                    </div>
-                                </div>
-                                <div class="field col-12">
-                                    <span class="p-float-label">
-                                        <p-dropdown id="metodo" [autoDisplayFirst]="false" [options]="metodo"
-                                            placeholder="Método" class="w-100" formControlName="metodo"
-                                            optionLabel="name" optionValue="value">
-                                        </p-dropdown>
-                                    </span>
-                                    <div *ngIf="formDatos.get('metodo').hasError('required') && formDatos.get('metodo').touched"
-                                        class="text-center">
-                                        <small class="p-error">Este campo es <strong>requerido</strong></small>
-                                    </div>
-                                </div>
-                                <div class="field col-12" *ngIf='cupo'>
-                                    <span class="p-float-label">
-                                        <input disabled type="number" pInputText formControlName="cupo"
-                                            class="inputfield w-full" />
-                                        <label for="nombre">Cupo</label>
-                                    </span>
-                                    <div *ngIf="formDatos.get('cupo').hasError('required') && formDatos.get('cupo').touched"
-                                        class="text-center">
-                                        <small class="p-error">Este campo es <strong>requerido</strong></small>
-                                    </div>
-                                    <div *ngIf="formDatos.get('cupo').hasError('min') && formDatos.get('cupo').touched"
-                                        class="text-center">
-                                        <small class="p-error">El valor minimo de estecampo es
-                                            <strong>2</strong></small>
-                                    </div>
-                                </div>
-                                <div class="field col-12">
-                                    <span class="p-float-label">
-                                        <textarea id="descripcion" type="text" pInputText formControlName="descripcion"
-                                            class="inputfield w-full"></textarea>
-                                        <label for="descripcion">Descripción</label>
-                                    </span>
-                                    <div *ngIf="
-                        formDatos.get('descripcion').hasError('required') &&
-                        formDatos.get('descripcion').touched
-                      " class="text-center">
-                                        <small class="p-error">Este campo es <strong>requerido</strong></small>
-                                    </div>
-                                </div>
-                            </div>
+                          
                         </div>
                         <div class="col-lg-12 text-center">
                             <app-calendar-editar  (existeFechaContratada)="existeFechaContratada($event)" (addDisponibilidad)="addDisponibilidad($event)"></app-calendar-editar>

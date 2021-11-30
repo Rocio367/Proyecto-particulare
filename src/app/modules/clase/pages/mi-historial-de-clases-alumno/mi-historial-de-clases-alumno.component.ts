@@ -43,10 +43,9 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
 
           clases.forEach(c => {
             let resenia = resenias.find(d => d.producto.id == c.id)
-            console.log(c.clase, c.estado)
-            console.log(c.clase && c.estado == 'FINALIZADON')
             if (c.clase && c.estado == 'FINALIZADA') {
-              if (resenia) {
+             
+                if (resenia) {
                 c.valoracion = resenia.puntaje;
                 this.clases.push(c)
               }else{

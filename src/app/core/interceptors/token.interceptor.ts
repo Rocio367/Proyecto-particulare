@@ -47,6 +47,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
         }
         if(error.status == 500){
+          console.log(error)
           localStorage.setItem('errorMensaje',error.message)
         }
           if (error.status === 401) {
