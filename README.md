@@ -25,6 +25,19 @@
 
     `docker push particularesapi.azurecr.io/proyecto/estudiaencasaweb`
 
+> Deprecado. Se superó la cuota gratuita
 
+## Desplegar en Github Pages
 
+1. El repositorio debe ser público
+2. Habilitar las Github Pages
 
+**Nota: Estos dos pasos se hacen solo una vez**
+
+3. Build de la aplicación
+
+   `ng build --prod --base-href "https://rocio367.github.io/Proyecto-particulares/"`
+
+4. Despliegue en Hithub Pages
+
+   `npx angular-cli-ghpages --dir=dist/EstudiaEnCasaWeb`
