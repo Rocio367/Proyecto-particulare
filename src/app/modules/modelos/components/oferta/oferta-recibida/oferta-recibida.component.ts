@@ -28,25 +28,31 @@ export class OfertaRecibida implements OnInit {
   mostrarOpciones = false;
   referenciaDialogoDinamico: DynamicDialogRef;
   providers: [DialogService]
-  constructor( public dialogService: DialogService, public snackBar: MatSnackBar,private servicesParticular:ParticularService,
-    private reseniaServices:ReseniaService) {
+  constructor(public dialogService: DialogService, public snackBar: MatSnackBar, private servicesParticular: ParticularService,
+    private reseniaServices: ReseniaService) {
     this.item.valoracion = 5;
   }
   ngOnInit(): void {
-    this.servicesParticular.obtenerFotoPerfilPorUsuario(this.ofertaDeResolucion.usuario.id).subscribe(res=>{
-      this.ofertaDeResolucion.foto=this.obtenerImagenEnBase64(res[0])
+    this.servicesParticular.obtenerFotoPerfilPorUsuario(this.ofertaDeResolucion.usuario.id).subscribe(res => {
+      this.ofertaDeResolucion.foto = this.obtenerImagenEnBase64(res[0])
     })
-    this.servicesParticular.buscarPorIdProfesor(this.ofertaDeResolucion.usuario.id).subscribe(p=>{
-      this.reseniaServices.obtenerReseniasDelParticular(p.id).subscribe(res=>{
-        let total=0;
-        let cant=res.length;
-        res.forEach(v => {
-            total=total+v.puntaje;
-        });
-        this.ofertaDeResolucion.valoracion= Math.round(total/cant);
+    this.servicesParticular.buscarPorIdProfesor(this.ofertaDeResolucion.usuario.id).subscribe(p => {
+      this.reseniaServices.obtenerReseniasDelParticular(p.id).subscribe(res => {
+        let total = 0;
+        let cant = res.length;
+        if (cant > 0) {
+          res.forEach(v => {
+            total = total + v.puntaje;
+          });
+          this.ofertaDeResolucion.valoracion = Math.round(total / cant);
+        } else {
+
+          this.ofertaDeResolucion.valoracion = 0;
+        }
+
       })
     })
-   
+
     this.idAlumno = localStorage.getItem('idUser');
   }
 
@@ -74,7 +80,7 @@ export class OfertaRecibida implements OnInit {
           ids: [this.ofertaDeResolucion.id],
           tipo: Number(this.ofertaDeResolucion.tipo.id),
           fecha: this.selected,
-          ofertaDeResolucion:this.ofertaDeResolucion.id
+          ofertaDeResolucion: this.ofertaDeResolucion.id
         },
         width: '90%',
         height: '90%',

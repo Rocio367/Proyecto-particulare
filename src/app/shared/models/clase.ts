@@ -24,7 +24,10 @@ export interface Clase {
         usuario?: {
             nombre?: string,
             apellido?: string,
+            id?:number
         }
     }
+
+    foto?:string;
 
 }

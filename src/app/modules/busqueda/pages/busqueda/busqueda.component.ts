@@ -8,6 +8,8 @@ import { Resultado } from 'src/app/shared/models/resultado';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { BusquedaService } from 'src/app/core/services/busqueda/busqueda.service';
+import { ParticularService } from 'src/app/core/services/particular/particular.service';
+import { Documento } from 'src/app/shared/models/documento';
 
 @Component({
   selector: 'app-busqueda',
@@ -48,17 +50,31 @@ export class BusquedaComponent implements OnInit {
   modo:any[]=[{code:'INDIVIDUAL',name:'Individual'},{code:'GRUPAL',name:'Grupal'},{code:'ERROR',name:'Individual | Grupal'}]  
 
   constructor(private router:Router,private aRouter: ActivatedRoute,
-    private form: FormBuilder,
+    private form: FormBuilder,private profesorServices:ParticularService,
     private serviceBusqueda: BusquedaService,
     ) {
 
     const date = new Date();
     this.minDate= new Date(date.getTime());
+    this.aRouter.params.subscribe(
+      (params: Params) => {
+        this.valor = params.q;
+        this.buscar(1)
+        this.busqueda = this.valor;
+
+        if (this.valor === "undefined") {
+          this.busqueda = "";
+        }
+      }
+      
+    );
 
   }
  
   
-
+  obtenerImagenEnBase64(documento: Documento): string {
+    return `data:${documento.extension};base64,${documento.datos}`
+  }
   filtrar() {
     
     
@@ -68,10 +84,18 @@ export class BusquedaComponent implements OnInit {
     this.filtros.fecha=  this.fecha;
     this.filtros.busqueda = (this.busqueda)?this.busqueda:' ';
 
-    console.log(this.filtros);
     this.serviceBusqueda.obtenerFiltro(this.filtros).subscribe( 
       (clases) => {
-        this.clases = clases.sort();
+        this.clases=clases;
+
+        this.clases.forEach(d=>{
+          this.profesorServices.obtenerFotoPerfilPorUsuario(d.profesor.usuario.id).subscribe(res=>{
+            d.foto=this.obtenerImagenEnBase64(res[0]);
+
+          })
+          this.clases.sort();
+
+        })
     },
     (error) => {
       console.error(error);
@@ -89,7 +113,6 @@ export class BusquedaComponent implements OnInit {
   }
 
   public handleAddressChange(address: Address) {
-    console.log(address)
     if (address.geometry != undefined) {
       this.formDatos.controls['ubicacion'].setValue(address.formatted_address);
       this.lat = address.geometry.location.lat();
@@ -100,18 +123,7 @@ export class BusquedaComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.aRouter.params.subscribe(
-      (params: Params) => {
-        this.valor = params.q;
-        this.buscar(1)
-        this.busqueda = this.valor;
-
-        if (this.valor === "undefined") {
-          this.busqueda = "";
-        }
-      }
-      
-    );
+   
   }
 
 
@@ -119,7 +131,15 @@ export class BusquedaComponent implements OnInit {
   buscar(page) {
     this.serviceBusqueda.obtenerBusqueda(this.valor).subscribe( 
       (clases) => {
-        this.clases = clases;
+        this.clases=clases;
+        this.clases.forEach(d=>{
+          this.profesorServices.obtenerFotoPerfilPorUsuario(d.profesor.usuario.id).subscribe(res=>{
+            d.foto=this.obtenerImagenEnBase64(res[0]);
+
+          })
+        })
+        
+
     },
     (error) => {
       console.error(error);
