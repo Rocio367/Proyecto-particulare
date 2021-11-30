@@ -72,7 +72,7 @@ export class BusquedaComponent implements OnInit {
   }
  
   
-  obtenerImagenEnBase64(documento: Documento): string {
+  obtenerImagenEnBase64(documento: Documento): string { 
     return `data:${documento.extension};base64,${documento.datos}`
   }
   filtrar() {
