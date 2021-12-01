@@ -88,8 +88,13 @@ export class RecomendacionesComponent implements OnInit {
   explorarClases() {
      this.router.navigate(['busqueda',{q:'undefined'}])
   }
+  
   explorarModelos() {
+    if (this.rol == "alumno"){
     this.router.navigate(['buscar-modelos-alumno'])
+    } else {
+      this.router.navigate(['buscar-modelos-particular'])
+    }
   }
 
   cambiarSlider1(i: number) {
