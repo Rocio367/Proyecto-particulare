@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EstadisticasService } from 'src/app/core/services/estadisticas/estadisticas.service';
+import { ParticularService } from 'src/app/core/services/particular/particular.service';
 import { Estadisticas } from 'src/app/shared/models/estadisticas';
 
 @Component({
@@ -43,7 +44,7 @@ export class GraficosGananciasProfesorComponent implements OnInit {
     '#9F22EC',
     '#C422EC',
     '#EC2284']
-  constructor(private estaditicasServices: EstadisticasService,) {
+  constructor(private estaditicasServices: EstadisticasService,private p:ParticularService) {
     let now = new Date().getFullYear();
     for (var i = 2021; i <= now; i++) {
       this.anios.push({ name: i.toString(), code: i.toString() })
@@ -97,48 +98,51 @@ export class GraficosGananciasProfesorComponent implements OnInit {
     e.mes = this.fecha2.getMonth() + 1;
     let data = [];
     let labels = [];
-    this.estaditicasServices.porParticular(e, localStorage.getItem('idUser')).subscribe(res => {
-      if (res.length > 0) {
-        this.mensaje2 = false;
-        res.forEach(c => {
-          let index = labels.indexOf(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
-          if (index != -1) {
-            data[index] = data[index] + this.sacarPorcentaje(c.producto.costo ? c.producto.costo : c.monto );
-            if (c.producto.clase) {
-              this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
+    this.p.buscarPorIdProfesor(Number(localStorage.getItem('idUser'))).subscribe(d=>{
+      this.estaditicasServices.porParticular(e,d.id ).subscribe(res => {
+        if (res.length > 0) {
+          this.mensaje2 = false;
+          res.forEach(c => {
+            let index = labels.indexOf(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
+            if (index != -1) {
+              data[index] = data[index] + this.sacarPorcentaje(c.producto.costo ? c.producto.costo : c.monto );
+              if (c.producto.clase) {
+                this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
+              } else {
+                this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.producto.costo));
+              }
+  
             } else {
-              this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.producto.costo));
+              labels.push(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
+              data.push(this.sacarPorcentaje(c.monto ? c.monto : c.producto.costo))
+              if (c.producto.clase) {
+                this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
+              } else {
+                this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.producto.costo));
+              }
+  
             }
-
-          } else {
-            labels.push(c.producto.clase ? (c.producto.clase.materia.nombre) : (c.producto.modelo.materia.nombre));
-            data.push(this.sacarPorcentaje(c.monto ? c.monto : c.producto.costo))
-            if (c.producto.clase) {
-              this.totalg1 = this.totalg1 + this.sacarPorcentaje(Number(c.monto));
-            } else {
-              this.totalg2 = this.totalg2 + this.sacarPorcentaje(Number(c.producto.costo));
-            }
-
+          });
+          this.g2 = {
+            labels: labels,
+            datasets: [
+              {
+                data: data,
+                backgroundColor: this.colors,
+                hoverBackgroundColor: this.colors
+              }
+            ]
           }
-        });
-        this.g2 = {
-          labels: labels,
-          datasets: [
-            {
-              data: data,
-              backgroundColor: this.colors,
-              hoverBackgroundColor: this.colors
-            }
-          ]
+        } else {
+          this.mensaje2 = true;
+  
         }
-      } else {
-        this.mensaje2 = true;
-
-      }
-
-
-
+  
+  
+  
+      })
     })
+   
   }
 
 
