@@ -10,7 +10,7 @@ import { GraficosGananciasProfesorComponent } from './pages/graficos-ganancias-p
 
 const routes:Routes = [
   {path:'ganancias-particular', component:GraficosGananciasProfesorComponent,canActivate: [AuthGuard,ParticularGuard]},
-  {path:'ganancias-administrador', component:GraficoGananciasAdministradorComponent,canActivate: [AuthGuard,AdminGuard]},
+  {path:'ganancias-administrador', component:GraficoGananciasAdministradorComponent,canActivate: [AuthGuard]},
   {path:'control-usuarios', component:ControlDeUsuariosComponent,canActivate: [AuthGuard,AdminGuard]},
 
 
