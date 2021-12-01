@@ -56,6 +56,7 @@ export class VerMisClasesParticularComponent implements OnInit {
     this.claseService.eliminarClase(id)
     .subscribe(
       () => {
+        this.ngOnInit();
         this.snackBar.open('La clase fue eliminada correctamente', "", {
           duration: 2000,
           horizontalPosition: "end",
@@ -63,7 +64,15 @@ export class VerMisClasesParticularComponent implements OnInit {
           panelClass: ['green-snackbar']
         });
       },
-      (error) => console.error(error)
+      (error) => {
+        this.snackBar.open(localStorage.getItem('errorMensaje'), "", {
+          duration: 1500,
+          horizontalPosition: "end",
+          verticalPosition: "top",
+          panelClass: ["red-snackbar"],
+
+        });
+      }
     );
   }
 
