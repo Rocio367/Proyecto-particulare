@@ -19,7 +19,7 @@ import { CarreraService } from 'src/app/core/services/carrera/carrera.service';
   styleUrls: ['./modal-subir-archivo.component.scss']
 })
 export class ModalSubirArchivoComponent implements OnInit {
- 
+
   uploadedFiles: any[] = [];
   _institucion: Institucion[] = [];
   _carrera: Carrera[] = [];
@@ -28,18 +28,18 @@ export class ModalSubirArchivoComponent implements OnInit {
   formDatos: FormGroup;
   @ViewChild(FileUpload)
   private fileUploadComponent: FileUpload;
-  idUser:any;
-  constructor(private form: FormBuilder,public snackBar: MatSnackBar,private router:Router, private modelosService: ModelosService, private institucionService: InstitucionService, private carreraService: CarreraService) {
-    this.idUser=localStorage.getItem('idUser')
+  idUser: any;
+  constructor(private form: FormBuilder, public snackBar: MatSnackBar, private router: Router, private modelosService: ModelosService, private institucionService: InstitucionService, private carreraService: CarreraService) {
+    this.idUser = localStorage.getItem('idUser')
   }
 
   ngOnInit(): void {
     this.formDatos = this.form.group({
       nombre: ['', [Validators.required]],
       institucion: ['', [Validators.required]],
-      carrera: ['',Validators.required],
-      materia: ['',Validators.required],
-      nivel: ['',Validators.required],
+      carrera: ['', Validators.required],
+      materia: ['', Validators.required],
+      nivel: ['', Validators.required],
       publico: [''],
     });
 
@@ -59,14 +59,14 @@ export class ModalSubirArchivoComponent implements OnInit {
         },
         (error) => {
           console.log("Error obteniendo las carreras", error);
-        });    
+        });
 
 
     this.modelosService.obtenerMaterias()
       .subscribe(
         (materias) => {
           this._materias = materias;
-        }, 
+        },
         (error) => {
           console.log("Error obteniendo las materias", error);
         });
@@ -82,12 +82,13 @@ export class ModalSubirArchivoComponent implements OnInit {
   }
 
   confirmar() {
-    if(this.formDatos.valid) {
+    if (this.uploadedFiles.length > 0) {
+      if (this.formDatos.valid) {
 
-      let modelo: Modelo;
+        let modelo: Modelo;
 
-      this.cargarArchivos(this.uploadedFiles)
-        .then((archivos) => {
+        this.cargarArchivos(this.uploadedFiles)
+          .then((archivos) => {
             modelo = {
               nombre: this.formDatos.controls["nombre"].value,
               institucion: this.formDatos.controls["institucion"].value,
@@ -109,10 +110,10 @@ export class ModalSubirArchivoComponent implements OnInit {
                     verticalPosition: "top",
                     panelClass: ['green-snackbar']
                   });
-                  if(localStorage.getItem('rol') == 'particular'){
+                  if (localStorage.getItem('rol') == 'particular') {
                     this.router.navigate(['mis-modelos-particular'])
 
-                  }else{
+                  } else {
                     this.router.navigate(['mis-modelos-alumno'])
 
                   }
@@ -124,10 +125,19 @@ export class ModalSubirArchivoComponent implements OnInit {
                   //!= 200
                   console.error("Hubo un error", error);
                 });
-            });
+          });
+      } else {
+        this.formDatos.markAllAsTouched();
+      }
     } else {
-      this.formDatos.markAllAsTouched();
+      this.snackBar.open('Debe cargar imagenes del modelo', "", {
+        duration: 1500,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+        panelClass: ['red-snackbar']
+      });
     }
+
   }
 
   cargarArchivos = async (archivos: any[]): Promise<Documento[]> => {
@@ -151,8 +161,8 @@ export class ModalSubirArchivoComponent implements OnInit {
   }
 
   seleccionarModelo(event) {
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
     }
     console.log("Se selecciono uno o mas archivos");
   }
@@ -165,7 +175,7 @@ export class ModalSubirArchivoComponent implements OnInit {
   borrarModelo(event) {
     this.uploadedFiles.forEach((modelo, indice) => {
       if (modelo == event.file) {
-        this.uploadedFiles.splice(indice,1);
+        this.uploadedFiles.splice(indice, 1);
       }
     });
     console.log("Se elimino un modelo");
