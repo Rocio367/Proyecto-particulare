@@ -15,20 +15,25 @@ import { HorariosParticularComponent } from '../../components/horarios-particula
 })
 export class VerMisClasesParticularComponent implements OnInit {
   id: number;
-  clases:any[];
+  clases: any[];
 
-  orden=[{name:'Mas recientes',code:'1'},{name:'Mas antiguos',code:'2'}]
-  filtro=[{name:'Disponible',code:'1'},{name:'No disponible',code:'2'}]
-  
+  orden = [{ name: 'Mas recientes', code: '1' }, { name: 'Mas antiguos', code: '2' }]
+  filtro = [{ name: 'Disponible', code: '1' }, { name: 'No disponible', code: '2' }]
+
 
   sortOrder: number;
-  sortKey='id';
+  sortKey = 'id';
   sortField: string;
-  selectedEstado:string;
-  idUser=localStorage.getItem('idUser');
+  selectedEstado: string;
+  idUser = localStorage.getItem('idUser');
   referenciaDialogoDinamico: DynamicDialogRef;
-
-  constructor(private router: Router,  public dialogService: DialogService,private claseService: ClaseService,private route: ActivatedRoute, public snackBar: MatSnackBar) { 
+  options = [
+    { name: 'Todas', code: 'todas' },
+    { name: 'Hoy', code: 'hoy' },
+  ];
+  option: any = { name: 'Todas', code: 'todas' };
+  todas: any = []
+  constructor(private router: Router, public dialogService: DialogService, private claseService: ClaseService, private route: ActivatedRoute, public snackBar: MatSnackBar) {
     this.route
       .params
       .subscribe(params => {
@@ -38,13 +43,15 @@ export class VerMisClasesParticularComponent implements OnInit {
 
   ngOnInit(): void {
     this.claseService.obtenerClasesPorParticular(Number(this.idUser))
-    .subscribe(
-      (res) => {
-        this.clases=res
-        console.log(this.clases)
-      },
-      (error) => console.error(error)
-    );
+      .subscribe(
+        (res) => {
+          this.clases = res;
+          this.clases.sort(function (a, b) { return new Date(a.fecha).getTime() - new Date(b.fecha).getTime() });
+          this.todas = res;
+          this.todas.sort(function (a, b) { return new Date(a.fecha).getTime() - new Date(b.fecha).getTime() });
+        },
+        (error) => console.error(error)
+      );
   }
   irEditar(id) {
     this.router.navigate(['editar-detalle-clase-particular', { q: id }])
@@ -52,42 +59,50 @@ export class VerMisClasesParticularComponent implements OnInit {
   verDetalle(id) {
     this.router.navigate(['detalle-clase-particular', { q: id }])
   }
-  eliminar(id){
+  eliminar(id) {
     this.claseService.eliminarClase(id)
-    .subscribe(
-      () => {
-        this.ngOnInit();
-        this.snackBar.open('La clase fue eliminada correctamente', "", {
-          duration: 2000,
-          horizontalPosition: "end",
-          verticalPosition: "top",
-          panelClass: ['green-snackbar']
-        });
-      },
-      (error) => {
-        this.snackBar.open(localStorage.getItem('errorMensaje'), "", {
-          duration: 1500,
-          horizontalPosition: "end",
-          verticalPosition: "top",
-          panelClass: ["red-snackbar"],
+      .subscribe(
+        () => {
+          this.ngOnInit();
+          this.snackBar.open('La clase fue eliminada correctamente', "", {
+            duration: 2000,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['green-snackbar']
+          });
+        },
+        (error) => {
+          this.snackBar.open(localStorage.getItem('errorMensaje'), "", {
+            duration: 1500,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ["red-snackbar"],
 
-        });
-      }
-    );
+          });
+        }
+      );
   }
 
-  iniciar(id){
+  iniciar(id) {
     console.log(id)
-   this.referenciaDialogoDinamico = this.dialogService.open(HorariosParticularComponent, {
-    data: {
-      id: id,
-    },
-    width: '90%',
-    height: 'auto',
-  });
+    this.referenciaDialogoDinamico = this.dialogService.open(HorariosParticularComponent, {
+      data: {
+        id: id,
+      },
+      width: '90%',
+      height: 'auto',
+    });
   }
 
 
+  onChange() {
+    let hoy = new Date();
+    if (this.option.code == 'hoy') {
+      this.clases = this.todas.filter(d => new Date(d.fecha).getDate() == hoy.getDate() && new Date(d.fecha).getFullYear() == hoy.getFullYear() && new Date(d.fecha).getMonth() == hoy.getMonth());
+    }
+    if (this.option.code == 'todas') {
+      this.clases = this.todas
+    }
+  }
 
-  
 }

@@ -5,14 +5,17 @@
         <ng-template pTemplate="caption">
           <div>
             <h4 class="color-f">Mis clases</h4>
+            <p-selectButton [options]="options" (onChange)='onChange()' [(ngModel)]="option" optionLabel="name"></p-selectButton>
+
           </div>
       </ng-template>
         <ng-template pTemplate="header">
-          <tr>
+          <tr *ngIf='clases.length >0'>
             <th style="width:200px;text-align: center;">Materia</th>
             <th style="width:130px;text-align: center;">Nivel acádemico</th>
             <th style="width:130px;text-align: center;">Modo de clase</th>   
             <th style="width:130px;text-align: center;">Método de clase</th>
+            <th style="width:120px;text-align: center;">Fecha</th>
             <th style="width:120px;text-align: center;"></th>
             <th style="width:100px;text-align: center;"></th>
             <th style="width:100px;text-align: center;"></th>
@@ -25,6 +28,7 @@
               <td style="width:130px;text-align: center;">{{item.nivel.descripcion}}</td>
               <td style="width:130px;text-align: center;">{{item.modo}}</td>
               <td style="width:130px;text-align: center;">{{item.metodo}}</td>
+              <td style="width:130px;text-align: center;">{{item.fecha |date:'d/M/yy, h:mm a'}}</td>
               <td style="width:120px;text-align: center;"><button (click)='verDetalle(item.id)' pButton label="Ver Más"></button></td>
               <td style="width:100px;text-align: center;"><button (click)='irEditar(item.id)' pButton label="Editar"></button></td>
               <td style="width:100px;text-align: center;"><button (click)='eliminar(item.id)' pButton label="Eliminar"></button></td>

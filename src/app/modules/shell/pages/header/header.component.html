@@ -1,6 +1,27 @@
 
 
-<p-menubar class='menu' [model]="items">
+<p-menubar class='menu' [model]="items"  *ngIf='isLoggedIn'>
+  
+  <ng-template pTemplate="start">
+    <span class="logo">
+      <a href="/"><img src="./assets/img/logoAnteojoREDONDO.png" style="height: 55px;" alt="logo"></a>
+    </span>
+    
+  </ng-template>
+
+  <div style='text-align: center;'>
+    <span class="p-input-icon-right m-2">
+      <i class="pi pi-search" (click)='buscar()'></i>
+      <input type="text"   class="p-inputtext-sm w-100" pInputText placeholder="Buscar clases.." [(ngModel)]="buscarText" />
+  </span>
+<button mat-button color='warn'   *ngIf='isLoggedIn' (click)='logout()' icon="pi pi-sign-out
+" style="margin-left:.25em">Cerrar
+Sesión</button>
+
+</div>
+</p-menubar>
+
+<p-menubar class='menu' [model]="vacio"  *ngIf='!isLoggedIn'>
   
   <ng-template pTemplate="start">
     <span class="logo">
@@ -15,9 +36,6 @@
       <input type="text"   class="p-inputtext-sm w-100" pInputText placeholder="Buscar clases.." [(ngModel)]="buscarText" />
   </span>
 
-<button mat-button color='warn'   *ngIf='isLoggedIn' (click)='logout()' icon="pi pi-sign-out
-" style="margin-left:.25em">Cerrar
-Sesión</button>
 
 <button mat-button color='warn'  *ngIf='!isLoggedIn' (click)='login()'  icon="pi pi-sign-in
 " style="margin-left:.25em">Iniciar

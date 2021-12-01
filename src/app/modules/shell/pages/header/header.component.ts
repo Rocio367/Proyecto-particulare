@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   hidden = false;
   buscarText:string;
   @Input() items: MenuItem[];
-
+   vacio :MenuItem[]=[]
   constructor(private redirectServices: RedirectService, private authServices: AuthService, private route: Router, private router: ActivatedRoute) {
     this.router.params.forEach((params: Params) => {
       params['language'];
