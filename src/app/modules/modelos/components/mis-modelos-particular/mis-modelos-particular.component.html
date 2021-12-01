@@ -37,9 +37,9 @@
                                 <img [src]="obtenerImagenEnBase64(modelo.archivos[0])">
                                 <div class="detalles-items">
                                     <div class="product-name color-f puntitos">{{modelo.nombre}}</div>
-                                    <p class='color-f mb-3'>Institución:<span>{{modelo.institucion.nombre}}</span></p>
-                                    <p class='color-f mb-3'>Materia:<span>{{modelo.materia.nombre}}</span></p>
-                                    <p class='color-f mb-3'>Nivel:<span>{{modelo.nivel.descripcion}}</span></p>
+                                    <p class='color-f mb-3'><span class="detalle-modelo">Institución:</span><span> {{modelo.institucion.nombre}}</span></p>
+                                    <p class='color-f mb-3'><span class="detalle-modelo">Materia:</span><span> {{modelo.materia.nombre}}</span></p>
+                                    <p class='color-f mb-3'><span class="detalle-modelo">Nivel:</span><span> {{modelo.nivel.descripcion}}</span></p>
                                 </div>
                             </div>
                             <div class="product-grid-item-bottom ">
