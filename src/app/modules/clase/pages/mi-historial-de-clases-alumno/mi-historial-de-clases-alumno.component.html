@@ -1,14 +1,16 @@
-<div class='container'>
+<div class='container-h'>
   <mat-card class=' card-container card pb-5 pt-5 mt-5' style="width: 80%;">
 
-    <p-table [scrollable]="true" scrollwidth="700px"  [value]="clases" *ngIf='clases.length > 0'>
+    <p-table [scrollable]="true" scrollwidth="700px"  [value]="clases" >
       <ng-template pTemplate="caption">
         <div>
           <h4 class="color-f">Historial de mis clases</h4>
+          <p-selectButton [options]="options" (onChange)='onChange()' [(ngModel)]="option" optionLabel="name"></p-selectButton>
+
         </div>
       </ng-template>
       <ng-template pTemplate="header">
-        <tr>
+        <tr *ngIf='clases.length >0'>
           <th style="width:200px;text-align: center;">Clase</th>
           <th style="width:200px;text-align: center;">Fecha</th>
           <th style="width:150px;text-align: center;">Modo de clase</th>

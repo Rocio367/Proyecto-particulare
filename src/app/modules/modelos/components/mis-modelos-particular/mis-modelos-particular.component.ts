@@ -23,7 +23,7 @@ export class MisModelosParticularComponent implements OnInit {
   selectedEstado: string;
   estados = [{ name: 'Podés solicitarlo', code: '1' }, { name: 'Pendiente de respuesta', code: '2' }, { name: 'Resuelto', code: '3' }]
 
-  selectedOrder: any;
+  selectedOrder = { name: 'Más recientes', code: 'Desc' };
   orden = [{ name: 'Más recientes', code: 'Desc' }, { name: 'Más antiguos', code: 'Asc' }]
   filtros = new FiltrosModelo;
   modelos: Modelo[] = [];
@@ -62,6 +62,9 @@ export class MisModelosParticularComponent implements OnInit {
     this.filtros.idUser=Number(this.idUser);
     this.servicioDeModelos.buscarMisModelosParticular(this.filtros).subscribe((modelos) => {
       this.modelos = modelos;
+      if (this.filtros.orden == 'Desc') {
+        this.modelos.reverse();
+      }
       this.modelos.forEach(modelo => {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
           (documentos) => {

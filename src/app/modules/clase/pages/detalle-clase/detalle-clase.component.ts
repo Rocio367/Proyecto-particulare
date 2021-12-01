@@ -34,7 +34,6 @@ export class DetalleClaseComponent implements OnInit {
     );
     this.claseService.verDetalle(this.id).subscribe(res => {
       this.clases = res;
-      console.log(res)
       this.idParticular = res.profesor.id;
       this.idParticularUsuario = res.profesor.usuario.id;
       this.registro.descripcion = res.descripcion;
@@ -46,16 +45,15 @@ export class DetalleClaseComponent implements OnInit {
       this.registro.precio_por_hora = res.precio;
       this.registro.modo = res.modo;
       this.idParticular = res.profesor.id;
-      this.particularServices.buscarPorIdProfesor(Number(this.idParticular))
+      this.particularServices.buscarPorIdProfesor(Number(this.idParticularUsuario))
         .subscribe(res2 => {
           this.registro.foto = res2.usuario.fotoPerfil;
           this.registro.ubicacion = res2.localidad;
-          this.registro.particular = res2.usuario.nombre + ' ' + res.usuario.apellido;
           this.registro.experiencia = res2.experiencia;
           this.registro.telefono = res2.usuario.telefono;
           this.registro.mail = res2.usuario.email;
         })
-      this.particularServices.obtenerFotoPerfilPorUsuario(Number(this.idParticular)).subscribe(res => {
+      this.particularServices.obtenerFotoPerfilPorUsuario(Number(this.idParticularUsuario)).subscribe(res => {
         this.doc = res[0];
         this.fotoPerfil = this.obtenerImagenEnBase64(this.doc);
 

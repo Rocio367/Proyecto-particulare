@@ -16,9 +16,14 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
   clases: any[] = [];
   id: number = Number(localStorage.getItem("idUser"));
   referenciaDialogoDinamico: DynamicDialogRef;
-
+  options = [
+    { name: 'Todas', code: 'todas' },
+    { name: 'Hoy', code: 'hoy' },
+  ];
+  option: any = { name: 'Todas', code: 'todas' };
+  todas: any = []
   constructor(public dialogService: DialogService, private valoracionServices: ReseniaService, private claseService: ClaseService, private router: Router) {
-   this.cargar();
+    this.cargar();
 
   }
 
@@ -36,24 +41,27 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
       width: '70%',
     });
   }
-   cargar(){
+  cargar() {
     this.claseService.obtenerClasesPorAlumno(this.id).subscribe(
       (clases) => {
         this.valoracionServices.obtenerIdUser(this.id).subscribe(resenias => {
 
           clases.forEach(c => {
             let resenia = resenias.find(d => d.producto.id == c.id)
-            if (c.clase && c.estado == 'FINALIZADA') {
-             
-                if (resenia) {
+            if (c.clase ) {
+
+              if (resenia) {
                 c.valoracion = resenia.puntaje;
                 this.clases.push(c)
-              }else{
+                this.todas.push(c)
+              } else {
                 c.puedeValorar = true;
-                this.clases.push(c)
+                this.todas.push(c)
               }
-            
 
+              this.clases.sort(function (a, b) { return new Date(a.fecha).getTime() - new Date(b.fecha).getTime() });
+              this.todas.sort(function (a, b) { return new Date(a.fecha).getTime() - new Date(b.fecha).getTime() });
+              this.onChange()
             }
           });
 
@@ -63,5 +71,15 @@ export class MiHistorialDeClasesAlumnoComponent implements OnInit {
           }
         );
       })
-   }
+  }
+  onChange() {
+    let hoy = new Date();
+    console.log(this.clases)
+    if (this.option.code == 'hoy') {
+      this.clases = this.todas.filter(d => new Date(d.fecha).getDate() == hoy.getDate() && new Date(d.fecha).getFullYear() == hoy.getFullYear() && new Date(d.fecha).getMonth() == hoy.getMonth());
+    }
+    if (this.option.code == 'todas') {
+      this.clases = this.todas
+    }
+  }
 }

@@ -10,7 +10,7 @@ import { ModalValorarComponent } from '../../components/modal-valorar/modal-valo
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { ActualizarEstadoModeloRequest } from 'src/app/shared/models/actualizarEstadoModeloRequest';
-import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-detalle-modelo-alumno',
@@ -27,7 +27,7 @@ export class DetalleModeloAlumnoComponent implements OnInit {
   comprando: boolean = false;
   idUsuario: string;
 
-  constructor(private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private _snackBar: MatSnackBar, private modeloService: ModelosService,private route: ActivatedRoute, private dialog: MatDialog) {
     this.route
       .params
       .subscribe(params => {
@@ -64,11 +64,6 @@ export class DetalleModeloAlumnoComponent implements OnInit {
     );
 
     this.idUsuario = localStorage.getItem('idUser');
-
-
-
-    
-
   }
  
   open(n: string) {
@@ -120,7 +115,12 @@ export class DetalleModeloAlumnoComponent implements OnInit {
           let mensaje = modelo.estado == 'INACTIVO' ? 
             'El modelo se ha INACTIVADO correctamente' :
             'El modelo se ha ACTIVADO correctamente'
-          Swal.fire(mensaje, '', 'success');
+          this._snackBar.open(mensaje, '', {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top",
+            panelClass: ['green-snackbar']
+          });
           this.modelo = modelo;
           this.modeloService.obtenerArchivosPorModelo(modelo)
             .subscribe(

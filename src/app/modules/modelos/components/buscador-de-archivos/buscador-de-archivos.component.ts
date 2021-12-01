@@ -6,6 +6,7 @@ import { Archivo } from 'src/app/shared/models/archivo';
 import { Documento } from 'src/app/shared/models/documento';
 import { FiltrosModelo } from 'src/app/shared/models/filtrosModelos';
 import { Modelo } from 'src/app/shared/models/modelo';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-buscador-de-archivos',
@@ -23,55 +24,60 @@ export class BuscadorDeArchivosComponent implements OnInit {
   selectedEstado: string;
   estados = [{ name: 'Podés solicitarlo', code: '1' }, { name: 'Pendiente de respuesta', code: '2' }, { name: 'Resuelto', code: '3' }]
 
-  selectedOrder: any;
+  selectedOrder={ name: 'Más recientes', code: 'Desc' };
   orden = [{ name: 'Más recientes', code: 'Desc' }, { name: 'Más antiguos', code: 'Asc' }]
   filtros = new FiltrosModelo;
   modelos: Modelo[] = [];
 
-  idUser:string;
+  idUser: string;
 
   constructor(private primengConfig: PrimeNGConfig, private router: Router, private servicioDeModelos: ModelosService) {
-    this.idUser=localStorage.getItem('idUser');
+    this.idUser = localStorage.getItem('idUser');
     this.primengConfig.ripple = true;
   }
 
   ngOnInit(): void {
     this.obtenerDatos()
   }
- 
+
   aplicar() {
-     this.obtenerDatos()
+    this.obtenerDatos()
   }
 
   limpiar() {
-    this.text=null;
-    this.selectedOrder=null;
-    this.filtros.idUser=Number(this.idUser);
-     this.obtenerDatos()
-   }
+    this.text = null;
+    this.selectedOrder = null;
+    this.filtros.idUser = Number(this.idUser);
+    this.obtenerDatos()
+  }
   obtenerImagenEnBase64(documento: Documento): string {
     return `data:${documento.extension};base64,${documento.datos}`
   }
 
 
   obtenerDatos() {
-    this.filtros.text=(this.text)?this.text: '';
-    this.filtros.orden=(this.selectedOrder)?this.selectedOrder.code : '';
-    this.filtros.idUser=Number(this.idUser);
+    this.filtros.text = (this.text) ? this.text : '';
+    this.filtros.orden = (this.selectedOrder) ? this.selectedOrder.code : '';
+    this.filtros.idUser = Number(this.idUser);
     this.servicioDeModelos.buscarModelosAlumno(this.filtros).subscribe((modelos) => {
+
       this.modelos = modelos;
-      this.modelos.forEach(modelo => {
+      if (this.filtros.orden == 'Desc') {
+        this.modelos.reverse();
+      }
+       this.modelos.forEach(modelo => {
         this.servicioDeModelos.obtenerArchivosPorModelo(modelo).subscribe(
           (documentos) => {
             modelo.archivos = documentos;
-            console.log("Soy una foto" + this.servicioDeModelos.obtenerArchivosPorModelo(modelo))
-            console.log("Soy el detalle" + this.obtenerImagenEnBase64(modelo.archivos[0]))
           },
           (error) => {
             console.error(error);
           }
         );
       });
+
+
+
     },
       (error) => {
         console.error(error);
