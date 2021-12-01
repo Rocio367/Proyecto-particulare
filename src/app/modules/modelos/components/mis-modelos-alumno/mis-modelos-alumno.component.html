@@ -11,37 +11,7 @@
                             [(ngModel)]="text">
                     </span>
                
-<<<<<<< Updated upstream
-                <span class='w-25'>
-                    <button pButton (click)='aplicar()' class='ml-2'>Aplicar</button>
-                    <button pButton (click)='limpiar()' class='ml-2'>Limpiar</button>
 
-                </span>
-            </div>
-        </ng-template>
-        <ng-template let-modelo pTemplate="gridItem">
-            <div class="p-col-12 p-md-4">
-                <div class="product-grid-item card card-interna">
-                    <div class="product-grid-item-top">
-                        <div class='categoria background-a'> <i class="pi pi-tag product-category-icon"></i>
-                            {{modelo.estado}}</div>
-                    </div>
-                    <div class="product-grid-item-content">
-                        <img [src]="obtenerImagenEnBase64(modelo.archivos[0])">
-                        <div class="detalles-items">
-                            <div class="product-name color-f puntitos"> {{modelo.nombre}}</div>
-                            <p class='color-f mb-3'><span class="detalle-modelo">Institución:</span><span> {{modelo.institucion.nombre}}</span></p>
-                            <p class='color-f mb-3'><span class="detalle-modelo">Materia:</span><span> {{modelo.materia.nombre}}</span></p>
-                            <p class='color-f mb-3'><span class="detalle-modelo">Nivel:</span><span> {{modelo.nivel.descripcion}}</span></p>
-                         </div>
-                    </div>
-                    <div class="product-grid-item-bottom ">
-                        <button mat-button color='warn' (click)='verDetalle(modelo)'>Ver detalles</button>
-                    </div>
-                    <div class='contenedor-acctions'>
-                        <div class="fecha">
-                            <span class='color-d'>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span>
-=======
          
                     <!--<span class='m-3 filters'>
                         <p-dropdown placeholder="Filtrar por estados " optionLabel="name" [showClear]="true" 
@@ -83,7 +53,6 @@
                             <div class="fecha">
                                 <span class='color-d'>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span>
                             </div>
->>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>
