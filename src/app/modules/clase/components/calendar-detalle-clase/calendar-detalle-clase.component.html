@@ -36,7 +36,7 @@
 		</div>
 
 
-		<div class="col-lg-12">
+		<div class="col-lg-12" *ngIf='disponibilidad.length>0'>
 			<button pButton class='mt-2' type="button" label="Confirmar" (click)='confirmar()'></button>
 
 		</div>

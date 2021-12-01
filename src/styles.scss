@@ -7,7 +7,9 @@
     color: #e0d71e !important;
     font-size: 2em !important;
 }
-
+.container-h{
+    min-height: 70vh;
+}
 .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon:hover {
     color: #e0d71e !important;
     font-size: 2em !important;
