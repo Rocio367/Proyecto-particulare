@@ -197,9 +197,9 @@
                 <mat-card-title class='color-f'> {{m.nombre}}</mat-card-title>
               </mat-card-header>
               <mat-card-content>
-                <p class='color-f mb-3'>Institución:<span>{{m.institucion.nombre}}</span></p>
-                <p class='color-f mb-3'>Materia:<span>{{m.materia.nombre}}</span></p>
-                <p class='color-f mb-3'>Nivel:<span>{{m.nivel.descripcion}}</span></p>
+                <p class='color-f mb-3'><span class="detalle-modelo">Institución:</span><span> {{m.institucion.nombre}}</span></p>
+                <p class='color-f mb-3'><span class="detalle-modelo">Materia:</span><span> {{m.materia.nombre}}</span></p>
+                <p class='color-f mb-3'><span class="detalle-modelo">Nivel:</span><span> {{m.nivel.descripcion}}</span></p>
               </mat-card-content>
 
             </div>
@@ -230,9 +230,9 @@
                       <mat-card-title class='color-f'> {{m.nombre}}</mat-card-title>
                     </mat-card-header>
                     <mat-card-content>
-                      <p class='color-f mb-3'>Institución:<span>{{m.institucion.nombre}}</span></p>
-                      <p class='color-f mb-3'>Materia:<span>{{m.materia.nombre}}</span></p>
-                      <p class='color-f mb-3'>Nivel:<span>{{m.nivel.descripcion}}</span></p>
+                      <p class='color-f mb-3'><span class="detalle-modelo">Institución:</span><span> {{m.institucion.nombre}}</span></p>
+                      <p class='color-f mb-3'><span class="detalle-modelo">Materia:</span><span> {{m.materia.nombre}}</span></p>
+                      <p class='color-f mb-3'><span class="detalle-modelo">Nivel:</span><span> {{m.nivel.descripcion}}</span></p>
                     </mat-card-content>
 
                   </div>
@@ -260,7 +260,7 @@
 <div class="container blanco mt-2" *ngIf='data4.length >0'>
   <br>
   <mat-card class="opacity">
-    <h2 class="ml-3 color-f">Modelos agreados recientemente</h2>
+    <h2 class="ml-3 color-f">Modelos agregados recientemente</h2>
     <div class="container mb-4">
       <div class="row desk">
         <mat-card *ngFor='let m of data4' class="example-card m-3 card-interna" [value]="m">
@@ -276,9 +276,9 @@
                 <mat-card-title class='color-f'> {{m.nombre}}</mat-card-title>
               </mat-card-header>
               <mat-card-content>
-                <p class='color-f mb-3'>Institución:<span>{{m.institucion.nombre}}</span></p>
-                <p class='color-f mb-3'>Materia:<span>{{m.materia.nombre}}</span></p>
-                <p class='color-f mb-3'>Nivel:<span>{{m.nivel.descripcion}}</span></p>
+                <p class='color-f mb-3'><span class="detalle-modelo">Institución:</span><span> {{m.institucion.nombre}}</span></p>
+                <p class='color-f mb-3'><span class="detalle-modelo">Materia:</span><span> {{m.materia.nombre}}</span></p>
+                <p class='color-f mb-3'><span class="detalle-modelo">Nivel:</span><span> {{m.nivel.descripcion}}</span></p>
               </mat-card-content>
 
             </div>
