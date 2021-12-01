@@ -99,7 +99,7 @@ export class GraficosGananciasProfesorComponent implements OnInit {
     let data = [];
     let labels = [];
     this.p.buscarPorIdProfesor(Number(localStorage.getItem('idUser'))).subscribe(d=>{
-      this.estaditicasServices.porParticular(e,d.id ).subscribe(res => {
+      this.estaditicasServices.porParticular(e,Number(localStorage.getItem('idUser')) ).subscribe(res => {
         if (res.length > 0) {
           this.mensaje2 = false;
           res.forEach(c => {
