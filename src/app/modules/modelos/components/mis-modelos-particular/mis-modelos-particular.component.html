@@ -2,6 +2,7 @@
     <p-progressSpinner></p-progressSpinner>
 </div>
 <ng-template #mostrarDetalles>
+<<<<<<< Updated upstream
     <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
         <p-dataView #dv [value]="modelos" [paginator]="true" [rows]="8" filterBy="nombre,materia,institucion,carrera"
             layout="grid">
@@ -38,19 +39,59 @@
                                 <p class='color-f mb-3'><span class="detalle-modelo">Institución:</span><span> {{modelo.institucion.nombre}}</span></p>
                                 <p class='color-f mb-3'><span class="detalle-modelo">Materia:</span><span> {{modelo.materia.nombre}}</span></p>
                                 <p class='color-f mb-3'><span class="detalle-modelo">Nivel:</span><span> {{modelo.nivel.descripcion}}</span></p>
+=======
+    <div class="container-h">
+        <div class="card mt-3 mb-3" style="width: 90%;margin: auto;">
+            <p-dataView #dv [value]="modelos" [paginator]="true" [rows]="8" filterBy="nombre,materia,institucion,carrera"
+                layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="text-center">
+                        <span class="p-input-icon-left p-mb-2 p-mb-md-0 w-50">
+                            <i class="pi pi-search"></i>
+                            <input class='w-100' type="search" pInputText
+                                placeholder="Buscar por nombre, materia, carrera o institución..." [(ngModel)]="text">
+                        </span>
+    
+                        <span class='m-3 filters w-25'>
+                            <p-dropdown placeholder="Ordenar " optionLabel="name" [showClear]="true" [options]="orden"
+                                [(ngModel)]="selectedOrder" optionLabel="name"></p-dropdown>
+                        </span >
+                        <span class='w-25'>
+    
+                            <button pButton (click)='aplicar()' class='ml-2'>Aplicar</button>
+                            <button pButton (click)='limpiar()' class='ml-2'>Limpiar</button>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template let-modelo pTemplate="gridItem">
+                    <div class="p-col-12 p-md-4">
+                        <div class="product-grid-item card card-interna">
+                            <div class="product-grid-item-top">
+                                <div class='categoria background-a'> <i class="pi pi-tag product-category-icon"></i>
+                                    {{modelo.estado}}</div>
+>>>>>>> Stashed changes
                             </div>
-                        </div>
-                        <div class="product-grid-item-bottom ">
-                            <button mat-button color='warn' (click)='verDetalle(modelo)'>Ver detalles</button>
-                        </div>
-                        <div class='contenedor-acctions'>
-                            <div class="fecha">
-                                <span class='color-d'>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span>
+                            <div class="product-grid-item-content">
+                                <img [src]="obtenerImagenEnBase64(modelo.archivos[0])">
+                                <div class="detalles-items">
+                                    <div class="product-name color-f puntitos">{{modelo.nombre}}</div>
+                                    <p class='color-f mb-3'>Institución:<span>{{modelo.institucion.nombre}}</span></p>
+                                    <p class='color-f mb-3'>Materia:<span>{{modelo.materia.nombre}}</span></p>
+                                    <p class='color-f mb-3'>Nivel:<span>{{modelo.nivel.descripcion}}</span></p>
+                                </div>
+                            </div>
+                            <div class="product-grid-item-bottom ">
+                                <button mat-button color='warn' (click)='verDetalle(modelo)'>Ver detalles</button>
+                            </div>
+                            <div class='contenedor-acctions'>
+                                <div class="fecha">
+                                    <span class='color-d'>{{modelo.fecha |date:'d/M/yy, h:mm a'}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </ng-template>
-        </p-dataView>
+                </ng-template>
+            </p-dataView>
+        </div>
     </div>
 </ng-template>
